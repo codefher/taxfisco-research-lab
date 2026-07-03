@@ -1,0 +1,61 @@
+{
+  "id": "taxfisco-decoy-api-to-thehive",
+  "name": "Decoy API ATT&CK Detection to TheHive",
+  "description": "Workflow que recibe alertas de la Decoy API cuando se detecta una TTP ATT&CK",
+  "trigger": {
+    "type": "webhook",
+    "name": "Decoy API Webhook",
+    "parameters": {
+      "path": "/api/v1/hooks/decoy-api",
+      "method": "POST"
+    }
+  },
+  "actions": [
+    {
+      "id": "action-1",
+      "name": "Parse ATT&CK Event",
+      "app": "Utilities",
+      "action": "json_parse",
+      "parameters": {
+        "input": "${trigger.data}"
+      }
+    },
+    {
+      "id": "action-2",
+      "name": "Create TheHive Case with ATT&CK tag",
+      "app": "TheHive",
+      "action": "create_case",
+      "parameters": {
+        "title": "DECOY-API detected ${action-1.attack_technique_name}",
+        "description": "Technique: ${action-1.attack_technique_id}\nTactic: ${action-1.attack_tactic}\nSeverity: ${action-1.severity}\nSource IP: ${action-1.source_ip}\nEndpoint: ${action-1.endpoint}\nDescription: ${action-1.description}",
+        "severity": "${action-1.severity}",
+        "tlp": "${action-1.tlp}",
+        "tags": ["decoy-api", "taxfisco", "${action-1.attack_tactic}", "${action-1.attack_technique_id}"]
+      }
+    },
+    {
+      "id": "action-3",
+      "name": "Add attacker IP to MISP",
+      "app": "MISP",
+      "action": "add_ioc",
+      "parameters": {
+        "value": "${action-1.source_ip}",
+        "type": "ip-dst",
+        "category": "Network activity",
+        "comment": "Detected attacking TaxFisco decoy with ${action-1.attack_technique_id}"
+      }
+    },
+    {
+      "id": "action-4",
+      "name": "Add observables to case",
+      "app": "TheHive",
+      "action": "add_observable",
+      "parameters": {
+        "case_id": "${action-2.case_id}",
+        "observable_type": "ip",
+        "observable_value": "${action-1.source_ip}",
+        "tlp": "AMBER"
+      }
+    }
+  ]
+}

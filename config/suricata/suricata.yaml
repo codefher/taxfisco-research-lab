@@ -1,0 +1,163 @@
+%YAML 1.1
+---
+# Suricata configuration for TaxFisco Research Lab
+# Detección de amenazas a nivel de red (NIDS)
+
+vars:
+  address-groups:
+    HOME_NET: "[172.20.0.0/16,172.21.0.0/16,172.22.0.0/16,172.23.0.0/16]"
+    EXTERNAL_NET: "any"
+    HTTP_SERVERS: "[172.20.0.10,172.20.0.20,172.20.0.21,172.20.0.50,172.20.0.51,172.20.0.52,172.20.0.53]"
+    SQL_SERVERS: "[172.20.0.30]"
+    DNS_SERVERS: "[172.20.0.30]"
+
+  port-groups:
+    HTTP_PORTS: "[80,443,2222,2323,8000,8080,8081,8888]"
+    SSH_PORTS: "[22,2222,2223]"
+    FTP_PORTS: "[21,2121]"
+    SIP_PORTS: "[5060]"
+
+default-log-dir: /var/log/suricata/
+
+stats:
+  enabled: yes
+  interval: 8
+  outputs:
+    - stats.log
+
+outputs:
+  - fast:
+      enabled: yes
+      filename: fast.log
+      append: yes
+
+  - eve-log:
+      enabled: yes
+      filetype: regular
+      filename: eve.json
+      types:
+        - alert
+        - http
+        - dns
+        - tls
+        - files
+        - smtp
+        - flow
+        - ssh
+        - stats
+
+  - http-log:
+      enabled: yes
+      filename: http.log
+      append: yes
+
+af-packet:
+  - interface: eth0
+    cluster-id: 99
+    defrag: yes
+    copy-mode: ips
+    copy-iface: eth1
+
+flow:
+  memcap: 128mb
+  hash-size: 65536
+  prealloc: 10000
+  emergency-recovery: 30
+
+stream:
+  memcap: 64mb
+
+app-layer:
+  protocols:
+    http:
+      enabled: yes
+      libhtp:
+        default-config:
+          personality: IDS
+          request-body-limit: 100mb
+          response-body-limit: 100mb
+
+    tls:
+      enabled: yes
+
+    ssh:
+      enabled: yes
+
+    smtp:
+      enabled: yes
+
+    dns:
+      enabled: yes
+
+    ftp:
+      enabled: yes
+
+    sip:
+      enabled: yes
+
+    smb:
+      enabled: yes
+
+    mssql:
+      enabled: yes
+
+    http2:
+      enabled: yes
+
+asn1-max-frames: 256
+
+host-mode: auto
+
+engine-analysis:
+  rules-fast-pattern: yes
+  corssbench: yes
+
+defrag:
+  memcap: 32mb
+
+detect:
+  transform-list:
+    - dotprefix
+    - lowercase
+    - compress_whitespace
+    - strip_whitespace
+    - strip_pseudo_headers
+
+mpm-algo: auto
+
+pcre:
+  match-limit: 3500
+  match-limit-recursion: 1500
+
+spm-algo: auto
+
+threading:
+  set-cpu-affinity: no
+  cpu-affinity:
+    - management-cpu-set:
+        cpu: [ 0 ]
+    - worker-cpu-set:
+        cpu: [ "all" ]
+  manage-cpu: yes
+
+luajit:
+  states: 128
+
+coredump:
+  max-dump: 0
+
+default-rule-path: /etc/suricata/rules
+rule-files:
+  - suricata.rules
+  - emerging-exploit.rules
+  - emerging-scan.rules
+  - emerging-web_server.rules
+  - emerging-web_client.rules
+  - emerging-sql.rules
+  - emerging-dos.rules
+  - emerging-malware.rules
+  - emerging-attack_response.rules
+  - emerging-policy.rules
+
+classification-file: /etc/suricata/classification.config
+reference-config-file: /etc/suricata/reference.config

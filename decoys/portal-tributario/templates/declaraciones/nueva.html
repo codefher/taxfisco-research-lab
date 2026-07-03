@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>TaxFisco Research Lab - DECOY</title>
+    <style>
+        body { font-family: 'Courier New', monospace; margin: 40px; background: #f4f4f4; }
+        .header { background: #2c3e50; color: white; padding: 20px; border-radius: 5px; }
+        .warning { background: #e74c3c; color: white; padding: 15px; margin: 20px 0; border-radius: 5px; }
+        .form-section { background: white; padding: 20px; border-radius: 5px; margin: 20px 0; }
+        input, textarea, select { padding: 8px; margin: 5px 0; width: 100%; box-sizing: border-box; }
+        button { padding: 10px 20px; background: #2c3e50; color: white; border: none; cursor: pointer; }
+        .badge { display: inline-block; background: #c0392b; color: white; padding: 3px 8px; border-radius: 3px; font-size: 0.8em; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>TaxFisco Research Lab <span class="badge">DECOY</span></h1>
+        <p>Sistema de Declaración Jurada - Portal de Contribuyentes</p>
+    </div>
+
+    <div class="warning">
+        <strong>ADVERTENCIA ACADÉMICA:</strong> Este portal es un honeypot para investigación de tesis.
+        Toda interacción es registrada y analizada con fines educativos.
+    </div>
+
+    <div class="form-section">
+        <h2>Nueva Declaración Jurada</h2>
+        <form method="POST">
+            {% csrf_token %}
+            <label>NIT del Contribuyente:</label>
+            <input type="text" name="nit" required>
+
+            <label>Período (YYYY-MM):</label>
+            <input type="text" name="periodo" pattern="\d{4}-\d{2}" required>
+
+            <label>Tipo de Declaración:</label>
+            <select name="tipo">
+                <option>IVA</option>
+                <option>IT</option>
+                <option>IUE</option>
+                <option>RC-IVA</option>
+            </select>
+
+            <label>Descripción (campo vulnerable a XSS stored - intencional):</label>
+            <textarea name="descripcion" rows="4"></textarea>
+
+            <button type="submit">Enviar Declaración</button>
+        </form>
+    </div>
+
+    <div class="form-section">
+        <h2>Endpoints de Investigación (vulnerables intencionalmente)</h2>
+        <ul>
+            <li><a href="/vuln/">/vuln/</a> - Índice de vulnerabilidades</li>
+            <li><a href="/vuln/sqli-login/">/vuln/sqli-login/</a> - T1190 SQL Injection</li>
+            <li><a href="/vuln/xss/?name=Test">/vuln/xss/?name=Test</a> - T1059.007 XSS</li>
+            <li><a href="/vuln/lfi/?file=/etc/passwd">/vuln/lfi/</a> - T1083 LFI</li>
+            <li><a href="/vuln/priv-esc/">/vuln/priv-esc/</a> - T1078 Privilege Escalation</li>
+            <li><a href="/vuln/data-export/">/vuln/data-export/</a> - T1530 Data Export</li>
+            <li><a href="/vuln/cmd-injection/?host=8.8.8.8">/vuln/cmd-injection/</a> - T1059 Command Injection</li>
+            <li><a href="/contribuyentes/buscar/?nit=1234567">/contribuyentes/buscar/</a> - T1190 SQLi (buscar)</li>
+        </ul>
+    </div>
+</body>
+</html>

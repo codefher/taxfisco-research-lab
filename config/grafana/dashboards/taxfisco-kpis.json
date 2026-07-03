@@ -1,0 +1,146 @@
+{
+  "annotations": {"list": []},
+  "editable": true,
+  "panels": [
+    {
+      "datasource": "WazuhIndexer",
+      "fieldConfig": {
+        "defaults": {
+          "color": {"mode": "thresholds"},
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {"color": "green", "value": null}
+            ]
+          },
+          "unit": "s"
+        }
+      },
+      "gridPos": {"h": 8, "w": 8, "x": 0, "y": 0},
+      "id": 1,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "orientation": "horizontal",
+        "reduceOptions": {"calcs": ["mean"], "fields": "", "values": false}
+      },
+      "targets": [
+        {
+          "query": "data.mttd:* | avg data.mttd",
+          "refId": "A"
+        }
+      ],
+      "title": "MTTD - Mean Time To Detect (s)",
+      "type": "stat"
+    },
+    {
+      "datasource": "WazuhIndexer",
+      "fieldConfig": {
+        "defaults": {
+          "color": {"mode": "thresholds"},
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {"color": "green", "value": null}
+            ]
+          },
+          "unit": "s"
+        }
+      },
+      "gridPos": {"h": 8, "w": 8, "x": 8, "y": 0},
+      "id": 2,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "orientation": "horizontal",
+        "reduceOptions": {"calcs": ["mean"], "fields": "", "values": false}
+      },
+      "targets": [
+        {
+          "query": "data.mttr:* | avg data.mttr",
+          "refId": "A"
+        }
+      ],
+      "title": "MTTR - Mean Time To Respond (s)",
+      "type": "stat"
+    },
+    {
+      "datasource": "TheHive",
+      "fieldConfig": {
+        "defaults": {
+          "color": {"mode": "thresholds"},
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {"color": "green", "value": null},
+              {"color": "yellow", "value": 10},
+              {"color": "red", "value": 30}
+            ]
+          }
+        }
+      },
+      "gridPos": {"h": 8, "w": 8, "x": 16, "y": 0},
+      "id": 3,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "orientation": "horizontal",
+        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false}
+      },
+      "targets": [
+        {
+          "query": "_type:case | count",
+          "refId": "A"
+        }
+      ],
+      "title": "Open Cases in TheHive",
+      "type": "stat"
+    },
+    {
+      "datasource": "WazuhIndexer",
+      "fieldConfig": {
+        "defaults": {
+          "color": {"mode": "thresholds"},
+          "unit": "none"
+        }
+      },
+      "gridPos": {"h": 8, "w": 12, "x": 0, "y": 8},
+      "id": 4,
+      "targets": [
+        {
+          "query": "data.mitre.tactic:* | aggregate by data.mitre.tactic",
+          "refId": "A"
+        }
+      ],
+      "title": "ATT&CK Tactics Detected",
+      "type": "bargauge"
+    },
+    {
+      "datasource": "WazuhIndexer",
+      "fieldConfig": {
+        "defaults": {
+          "color": {"mode": "thresholds"},
+          "unit": "none"
+        }
+      },
+      "gridPos": {"h": 8, "w": 12, "x": 12, "y": 8},
+      "id": 5,
+      "targets": [
+        {
+          "query": "data.mitre.id:* | aggregate by data.mitre.id",
+          "refId": "A"
+        }
+      ],
+      "title": "ATT&CK Techniques Detected",
+      "type": "bargauge"
+    }
+  ],
+  "refresh": "30s",
+  "schemaVersion": 39,
+  "tags": ["taxfisco", "kpi"],
+  "templating": {"list": []},
+  "time": {"from": "now-30d", "to": "now"},
+  "title": "TaxFisco - KPIs (MTTD, MTTR, Coverage)",
+  "uid": "taxfisco-kpis",
+  "version": 1
+}

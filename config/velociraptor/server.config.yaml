@@ -1,0 +1,33 @@
+{
+  "version": "7.0.0",
+  "ca_certificate": "",
+  "client": {
+    "server_name": "velociraptor",
+    "nonce": "1234567890abcdef",
+    "public_key": "PUBLIC_KEY_HERE",
+    "private_key": "PRIVATE_KEY_HERE"
+  },
+  "api_client": {
+    "server_name": "VelociraptorServer",
+    "private_key": "PRIVATE_KEY_HERE"
+  },
+  "datastore": {
+    "location": "/datastore",
+    "filestore_directory": "/datastore"
+  },
+  "frontend": {
+    "hostname": "velociraptor",
+    "bind_address": "0.0.0.0",
+    "bind_port": 8889,
+    "use_plain_http": true
+  },
+  "gui": {
+    "bind_address": "0.0.0.0",
+    "bind_port": 8889,
+    "use_plain_http": true
+  },
+  "logging": {
+    "output_directory": "/logs",
+    "level": "info"
+  }
+}

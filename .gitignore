@@ -1,0 +1,77 @@
+# =============================================================================
+# TaxFisco Research Lab - Git Ignore
+# =============================================================================
+
+# --- Secrets y credenciales (NUNCA commitear) ---
+.env
+.env.local
+.env.*.local
+*.key
+*.pem
+*.p12
+secrets/
+config/*/secret*
+config/*/credentials*
+
+# --- Logs y evidencia de ataques ---
+*.log
+logs/
+evidencia/
+attack-scenarios/*/evidencia/
+**/evidencia/
+**/logs/
+
+# --- Backups ---
+backups/
+*.bak
+*.tar.gz
+*.zip
+*.7z
+
+# --- Python ---
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.coverage
+htmlcov/
+*.egg-info/
+.venv/
+venv/
+
+# --- Node / JavaScript (por si se añaden) ---
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# --- IDEs y editores ---
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# --- Docker ---
+docker-compose.override.yml
+docker-compose.local.yml
+docker-compose.*.yml
+!docker-compose.yml
+
+# --- Archivos generados al ejecutar el lab ---
+results/
+analysis/*.json
+!analysis/.gitkeep
+attack-scenarios/*/resultados.json
+
+# --- Swap y archivos grandes ---
+*.swap
+*.dump
+*.core
+
+# --- Variables de entorno de la herramienta ---
+.vscode/settings.json
+.idea/workspace.xml

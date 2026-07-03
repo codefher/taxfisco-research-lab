@@ -1,0 +1,53 @@
+name: Lint and Validate
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  validate:
+    name: Validate project structure
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Validate docker-compose.yml
+        run: |
+          docker compose config --quiet && echo "docker-compose.yml is valid"
+
+      - name: Validate Python syntax
+        run: |
+          python -m py_compile decoys/api-tributaria/main.py
+          python -m py_compile decoys/api-tributaria/instrumentation/attack_logger.py
+          python -m py_compile decoys/api-tributaria/instrumentation/deception_tokens.py
+          python -m py_compile decoys/portal-tributario/manage.py
+          echo "Python files syntax is valid"
+
+      - name: Check for .env in repo
+        run: |
+          if [ -f .env ]; then
+            echo "ERROR: .env file found in repo! Remove it."
+            exit 1
+          fi
+          echo "No .env file in repo (good)"
+
+      - name: Validate file structure
+        run: |
+          test -f docker-compose.yml || (echo "Missing docker-compose.yml" && exit 1)
+          test -f README.md || (echo "Missing README.md" && exit 1)
+          test -f Makefile || (echo "Missing Makefile" && exit 1)
+          test -d decoys || (echo "Missing decoys/" && exit 1)
+          test -d attack-scenarios || (echo "Missing attack-scenarios/" && exit 1)
+          test -d analysis || (echo "Missing analysis/" && exit 1)
+          echo "Project structure is valid"
+
+      - name: Validate bash scripts syntax
+        run: |
+          for f in $(find attack-scenarios scripts -name "*.sh"); do
+            bash -n "$f" || (echo "Syntax error in $f" && exit 1)
+          done
+          echo "Bash scripts syntax is valid"

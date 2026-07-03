@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Wazuh Decoders - TaxFisco Research Lab
+  Decoders personalizados para honeypots fiscales
+-->
+
+<decoder name="taxfisco-decoy-api">
+  <program_name>decoy-api</program_name>
+</decoder>
+
+<decoder name="taxfisco-decoy-portal">
+  <program_name>decoy-portal</program_name>
+</decoder>
+
+<decoder name="cowrie-json">
+  <program_name>cowrie</program_name>
+</decoder>
+
+<decoder name="dionaea-json">
+  <program_name>dionaea</program_name>
+</decoder>
+
+<decoder name="opencanary">
+  <program_name>opencanary</program_name>
+</decoder>

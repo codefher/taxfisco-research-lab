@@ -1,0 +1,678 @@
+# =============================================================================
+# Honeypot Methodology for Incident Management in Fiscal Services
+# Master Thesis - TaxFisco Research Lab
+# LITE EDITION - 16 GB RAM Profile
+# =============================================================================
+#
+# Esta es la versión LITE del laboratorio, optimizada para ejecutarse en
+# equipos con 16 GB de RAM. Esta es la versión LITE del laboratorio.
+# El plan original completo (32 GB) está en lab-1/ y mantiene la cobertura
+# completa sin las adaptaciones que aquí se documentan. Esta versión LITE
+# realiza las siguientes adaptaciones:
+#
+# 1. Reducción de mem_limit en todos los servicios (-7.5 GB total)
+# 2. Eliminación del contenedor thehive.es (ahorra 1.5 GB)
+#    TheHive ahora reutiliza el Elasticsearch de Wazuh (índice dedicado)
+# 3. Reducción del heap JVM de Wazuh Indexer (1g → 768m)
+# 4. Reducción de workers PHP-FPM en MISP
+# 5. Cap del contenedor atacante Kali (CLI-only)
+#
+# Networks:
+#   dmz-net       (172.20.0.0/24) - Public-facing decoys and services
+#   honeypot-net  (172.21.0.0/24) - High-interaction honeypots
+#   soc-net       (172.22.0.0/24) - SOC tooling (SIEM, SOAR, IRP, TI)
+#   ids-net       (172.23.0.0/24) - Network sensors
+#
+# Resource budget (16 GB host + 8 GB swap):
+#   Wazuh stack:    ~3.3 GB  (lite)
+#   MISP:           ~1.8 GB  (lite)
+#   TheHive/Cortex: ~1.4 GB  (sin ES propio, reutiliza Wazuh)
+#   Shuffle:        ~0.9 GB  (lite)
+#   Velociraptor:   ~0.25 GB
+#   Grafana:        ~0.25 GB
+#   Honeypots:      ~1.1 GB
+#   Decoys:         ~0.7 GB
+#   IDS/NDR:        ~0.7 GB
+#   Postgres:       ~0.25 GB
+#   Host OS:        ~2.5 GB
+#   ─────────────────────
+#   Total:         ~13.2 GB  (cabe en 16 GB)
+#   Swap:           8 GB     (picos de RAM se mueven a disco)
+#
+# Ver PERFIL-LITE-16GB.md para la guía operativa detallada.
+# =============================================================================
+
+name: taxfisco-research-lab-lite
+
+x-logging: &default-logging
+  driver: json-file
+  options:
+    max-size: "20m"
+    max-file: "5"
+
+x-restart: &default-restart
+  restart: unless-stopped
+
+services:
+  # ===========================================================================
+  # SOC NETWORK - WAZUH SIEM (REDUCIDO)
+  # ===========================================================================
+  wazuh.manager:
+    image: wazuh/wazuh-manager:4.9.0
+    container_name: taxfisco-wazuh-manager
+    hostname: wazuh-manager
+    networks:
+      soc-net:
+        ipv4_address: 172.22.0.10
+    ports:
+      - "1514:1514/udp"   # agent enrollment
+      - "1514:1514/tcp"   # agent communication
+      - "55000:55000/tcp" # manager API
+    environment:
+      - WAZUH_MANAGER_VERSION=4.9.0
+    volumes:
+      - wazuh_manager_data:/var/ossec/data
+      - ./config/wazuh:/wazuh-config:ro
+      - /etc/localtime:/etc/localtime:ro
+    ulimits:
+      nofile:
+        soft: 65536
+        hard: 65536
+    logging: *default-logging
+    restart: unless-stopped
+    mem_limit: 1.5g  # LITE: era 2g
+
+  wazuh.indexer:
+    image: wazuh/wazuh-indexer:4.9.0
+    container_name: taxfisco-wazuh-indexer
+    hostname: wazuh-indexer
+    networks:
+      soc-net:
+        ipv4_address: 172.22.0.11
+    environment:
+      # LITE: heap reducido de 1g/1g a 512m/768m
+      - "OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx768m"
+      - "cluster.name=wazuh-cluster"
+      - "node.name=wazuh-indexer"
+      - "discovery.type=single-node"
+      - "bootstrap.memory_lock=true"
+      - "plugins.security.ssl.http.enabled=false"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - wazuh_indexer_data:/var/lib/wazuh-indexer
+    logging: *default-logging
+    restart: unless-stopped
+    mem_limit: 1g  # LITE: era 2g
+
+  wazuh.dashboard:
+    image: wazuh/wazuh-dashboard:4.9.0
+    container_name: taxfisco-wazuh-dashboard
+    hostname: wazuh-dashboard
+    networks:
+      soc-net:
+        ipv4_address: 172.22.0.12
+    ports:
+      - "443:5601/tcp"    # Kibana dashboard
+    environment:
+      - WAZUH_DASHBOARD_VERSION=4.9.0
+      - OPENSEARCH_HOSTS=["https://172.22.0.11:9200"]
+    depends_on:
+      - wazuh.indexer
+    volumes:
+      - wazuh_dashboard_data:/var/lib/wazuh-dashboard
+      - ./config/wazuh/dashboard:/wazuh-dashboard/app/plugins/main/wazuh/public/assets:ro
+    logging: *default-logging
+    restart: unless-stopped
+    mem_limit: 768m  # LITE: era 1g
+
+  # ===========================================================================
+  # SOC NETWORK - MISP THREAT INTELLIGENCE (REDUCIDO)
+  # ===========================================================================
+  misp.core:
+    image: coolacid/misp-docker:core-latest
+    container_name: taxfisco-misp-core
+    hostname: misp-core
+    networks:
+      soc-net:
+        ipv4_address: 172.22.0.20
+    ports:
+      - "8443:443/tcp"    # MISP web UI
+      - "6666:6666/tcp"   # ZeroMQ
+    environment:
+      - HOSTNAME=taxfisco-misp
+      - MYSQL_HOST=misp.db
+      - MYSQL_DATABASE=misp
+      - MYSQL_USER=misp
+      - MYSQL_PASSWORD=${MISP_DB_PASSWORD:-ChangeMe_Strong!}
+      - ADMIN_EMAIL=admin@taxfisco.local
+      - ADMIN_PASSWORD=${MISP_ADMIN_PASSWORD:-AdminMISP_2024!}
+      - BASE_URL=https://localhost:8443
+      - DISIPLINES=*
+      # LITE: reducción de workers PHP-FPM
+      - PHP_FPM_PM_MAX_CHILDREN=5
+      - PHP_FPM_PM_START_SERVERS=2
+      - PHP_FPM_PM_MIN_SPARE_SERVERS=1
+      - PHP_FPM_PM_MAX_SPARE_SERVERS=3
+    depends_on:
+      - misp.db
+    volumes:
+      - misp_data:/var/www/MISP
+      - misp_config:/etc/ossim
+    logging: *default-logging
+    restart: unless-stopped
+    mem_limit: 1g  # LITE: era 1.5g
+
+  misp.db:
+    image: mysql:8.0
+    container_name: taxfisco-misp-db
+    hostname: misp-db
+    networks:
+      soc-net:
+        ipv4_address: 172.22.0.21
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MISP_DB_ROOT_PASSWORD:-RootMISP_2024!}
+      - MYSQL_DATABASE=misp
+      - MYSQL_USER=misp
+      - MYSQL_PASSWORD=${MISP_DB_PASSWORD:-ChangeMe_Strong!}
+    command:
+      - --default-authentication-plugin=mysql_native_password
+      # LITE: configuración reducida de MySQL
+      - --innodb-buffer-pool-size=384M
+      - --max-connections=50
+      - --innodb-log-file-size=64M
+    volumes:
+      - misp_db_data:/var/lib/mysql
+    logging: *default-logging
+    restart: unless-stopped
+    mem_limit: 768m  # LITE: era 1g
+
+  misp.modules:
+    image: coolacid/misp-docker:modules-latest
+    container_name: taxfisco-misp-modules
+    hostname: misp-modules
+    networks:
+      soc-net:
+        ipv4_address: 172.22.0.22
+    environment:
+      - MISP_MODULES_URL=http://taxfisco-misp-modules:6666
+    depends_on:
+      - misp.core
+    logging: *default-logging
+    restart: unless-stopped
+    mem_limit: 384m  # LITE: era 512m
+
+  # ===========================================================================
+  # SOC NETWORK - THEHIVE + CORTEX (SIN ES PROPIO - REUTILIZA WAZUH)
+  # ===========================================================================
+  # LITE: Se eliminó el servicio thehive.es (ahorra 1.5 GB)
+  # TheHive ahora usa el Elasticsearch de Wazuh Indexer con índice dedicado "thehive"
+  thehive:
+    image: strangebee/thehive:5.5
+    container_name: taxfisco-thehive
+    hostname: thehive
+    networks:
+      soc-net:
+        ipv4_address: 172.22.0.30
+    ports:
+      - "9000:9000/tcp"   # TheHive API
+    environment:
+      - THEHIVE_SECRET=${THEHIVE_SECRET:-TheHive_SecretKey_2024}
+    depends_on:
+      - cortex
+      - wazuh.indexer    # LITE: depende de wazuh.indexer (no de thehive.es)
+    volumes:
+      - thehive_data:/var/lib/thehive/files
+      - ./config/thehive/application.conf:/etc/thehive/application.conf:ro
+    logging: *default-logging
+    restart: unless-stopped
+    mem_limit: 1g  # LITE: era 1.5g
+
+  cortex:
+    image: strangebee/cortex:3.4
+    container_name: taxfisco-cortex
+    hostname: cortex
+    networks:
+      soc-net:
+        ipv4_address: 172.22.0.32
+    ports:
+      - "9001:9001/tcp"   # Cortex API
+    volumes:
+      - cortex_data:/var/lib/cortex
+      - ./config/cortex/application.conf:/etc/cortex/application.conf:ro
+    logging: *default-logging
+    restart: unless-stopped
+    mem_limit: 384m  # LITE: era 512m
+
+  # ===========================================================================
+  # SOC NETWORK - SHUFFLE SOAR (REDUCIDO)
+  # ===========================================================================
+  shuffle:
+    image: ghcr.io/shuffle/shuffle-backend:latest
+    container_name: taxfisco-shuffle
+    hostname: shuffle
+    networks:
+      soc-net:
+        ipv4_address: 172.22.0.40
+    ports:
+      - "3001:5000/tcp"   # Shuffle UI
+      - "3443:3443/tcp"   # Orborus worker
+    environment:
+      - SHUFFLE_APP_SHUFFLE_ORBORUS=orborus
+      - SHUFFLE_APP_DB_LOCATION=db
+      - SHUFFLE_DB_LOCATION=shuffle.db
+      # LITE: workers reducidos
+      - SHUFFLE_WORKER_AMOUNT=2
+    depends_on:
+      - shuffle.db
+    volumes:
+      - shuffle_data:/opt/shuffle
+      - ./config/shuffle/workflows:/opt/shuffle/workflows:ro
+    logging: *default-logging
+    restart: unless-stopped
+    mem_limit: 512m  # LITE: era 1g
+
+  shuffle.frontend:
+    image: ghcr.io/shuffle/shuffle-frontend:latest
+    container_name: taxfisco-shuffle-frontend
+    hostname: shuffle-frontend
+    networks:
+      soc-net:
+        ipv4_address: 172.22.0.41
+    environment:
+      - BACKEND_URL=http://shuffle:5000
+    depends_on:
+      - shuffle
+    logging: *default-logging
+    restart: unless-stopped
+    mem_limit: 192m  # LITE: era 256m
+
+  shuffle.db:
+    image: postgres:15-alpine
+    container_name: taxfisco-shuffle-db
+    hostname: shuffle-db
+    networks:
+      soc-net:
+        ipv4_address: 172.22.0.42
+    environment:
+      - POSTGRES_USER=shuffle
+      - POSTGRES_PASSWORD=${SHUFFLE_DB_PASSWORD:-ShuffleDB_2024!}
+      - POSTGRES_DB=shuffle
+    volumes:
+      - shuffle_db_data:/var/lib/postgresql/data
+    logging: *default-logging
+    restart: unless-stopped
+    mem_limit: 192m  # LITE: era 256m
+
+  # ===========================================================================
+  # SOC NETWORK - VELOCIRAPTOR (DFIR) (REDUCIDO)
+  # ===========================================================================
+  velociraptor:
+    image: velocide/velociraptor:latest
+    container_name: taxfisco-velociraptor
+    hostname: velociraptor
+    networks:
+      soc-net:
+        ipv4_address: 172.22.0.50
+    ports:
+      - "8889:8889/tcp"   # Velociraptor GUI
+      - "8000:8000/tcp"   # Frontend
+    command:
+      - "velociraptor"
+      - "gui"
+      - "--datastore"
+      - "/datastore"
+    volumes:
+      - velociraptor_data:/datastore
+      - velociraptor_logs:/logs
+      - ./config/velociraptor/server.config.yaml:/etc/velociraptor/server.config.yaml:ro
+    logging: *default-logging
+    restart: unless-stopped
+    mem_limit: 256m  # LITE: era 512m
+
+  # ===========================================================================
+  # SOC NETWORK - GRAFANA (REDUCIDO)
+  # ===========================================================================
+  grafana:
+    image: grafana/grafana:11.2.0
+    container_name: taxfisco-grafana
+    hostname: grafana
+    networks:
+      soc-net:
+        ipv4_address: 172.22.0.60
+    ports:
+      - "3000:3000/tcp"
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD:-Grafana_2024!}
+      - GF_INSTALL_PLUGINS=graph
+      - GF_AUTH_ANONYMOUS_ENABLED=false
+      # LITE: caché reducida
+      - GF_DATAPROXY_TIMEOUT=30
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./config/grafana/dashboards:/etc/grafana/provisioning/dashboards:ro
+      - ./config/grafana/datasources:/etc/grafana/provisioning/datasources:ro
+    logging: *default-logging
+    restart: unless-stopped
+    mem_limit: 256m  # LITE: era 512m
+
+  # ===========================================================================
+  # HONEYPOT NETWORK - LOW/MEDIUM INTERACTION HONEYPOTS (REDUCIDO)
+  # ===========================================================================
+  cowrie:
+    image: cowrie/cowrie:latest
+    container_name: taxfisco-cowrie
+    hostname: cowrie
+    networks:
+      honeypot-net:
+        ipv4_address: 172.21.0.10
+      dmz-net:
+        ipv4_address: 172.20.0.50
+    ports:
+      - "2222:2222/tcp"   # SSH (redirected from 22)
+      - "2323:2223/tcp"   # Telnet
+    environment:
+      - COWRIE_HOSTNAME=taxfisco-portal
+    volumes:
+      - cowrie_data:/cowrie/cowrie-git/var/lib/cowrie
+      - ./config/cowrie/cowrie.cfg:/cowrie/cowrie-git/etc/cowrie.cfg.dist:ro
+    logging: *default-logging
+    restart: unless-stopped
+    mem_limit: 384m  # LITE: era 512m
+
+  dionaea:
+    image: dinotools/dionaea:latest
+    container_name: taxfisco-dionaea
+    hostname: dionaea
+    networks:
+      honeypot-net:
+        ipv4_address: 172.21.0.11
+      dmz-net:
+        ipv4_address: 172.20.0.51
+    ports:
+      - "445:445/tcp"     # SMB
+      - "21:21/tcp"       # FTP
+      - "1433:1433/tcp"   # MSSQL
+      - "5060:5060/udp"   # SIP
+      - "5060:5060/tcp"
+    volumes:
+      - dionaea_data:/opt/dionaea/var
+      - ./config/dionaea/dionaea.cfg:/opt/dionaea/etc/dionaea/dionaea.cfg:ro
+    logging: *default-logging
+    restart: unless-stopped
+    mem_limit: 384m  # LITE: era 512m
+
+  opencanary:
+    image: opencanary/opencanary:latest
+    container_name: taxfisco-opencanary
+    hostname: opencanary
+    networks:
+      honeypot-net:
+        ipv4_address: 172.21.0.12
+      dmz-net:
+        ipv4_address: 172.20.0.52
+    ports:
+      - "8081:80/tcp"     # HTTP honeypot (HTTP-1)
+      - "2121:21/tcp"     # FTP
+      - "2223:22/tcp"     # SSH (secondary)
+      - "13389:3389/tcp"  # RDP
+      - "1445:445/tcp"    # SMB
+      - "13306:3306/tcp"  # MySQL
+      - "14330:1433/tcp"  # MSSQL
+    volumes:
+      - opencanary_data:/opt/opencanary
+      - ./config/opencanary/opencanary.conf:/opt/opencanary/etc/opencanary.conf:ro
+    logging: *default-logging
+    restart: unless-stopped
+    mem_limit: 192m  # LITE: era 256m
+
+  heralding:
+    image: jonasvlk/heralding:latest
+    container_name: taxfisco-heralding
+    hostname: heralding
+    networks:
+      honeypot-net:
+        ipv4_address: 172.21.0.13
+      dmz-net:
+        ipv4_address: 172.20.0.53
+    ports:
+      - "23:23/tcp"       # Telnet (primary)
+      - "1080:1080/tcp"   # SOCKS
+      - "554:554/tcp"     # RTSP
+      - "1723:1723/tcp"   # PPTP
+    volumes:
+      - heralding_data:/heralding
+    logging: *default-logging
+    restart: unless-stopped
+    mem_limit: 192m  # LITE: era 256m
+
+  # ===========================================================================
+  # DMZ NETWORK - DECOY API TRIBUTARIA (REDUCIDO)
+  # ===========================================================================
+  decoy.api:
+    build:
+      context: ./decoys/api-tributaria
+      dockerfile: Dockerfile
+    image: taxfisco/decoy-api:latest
+    container_name: taxfisco-decoy-api
+    hostname: decoy-api
+    networks:
+      dmz-net:
+        ipv4_address: 172.20.0.20
+      soc-net:
+        ipv4_address: 172.22.0.70
+    ports:
+      - "8080:8000/tcp"   # API exposed (mimics real port)
+    environment:
+      - LOG_LEVEL=info
+      - ATTACK_LOG=/var/log/decoy-api/attacks.json
+      - FAKE_MODE=true
+    volumes:
+      - decoy_api_data:/app/data
+      - decoy_api_logs:/var/log/decoy-api
+    depends_on:
+      - postgres.fiscal
+    logging: *default-logging
+    restart: unless-stopped
+    mem_limit: 384m  # LITE: era 512m
+
+  # ===========================================================================
+  # DMZ NETWORK - DECOY PORTAL TRIBUTARIO (REDUCIDO)
+  # ===========================================================================
+  decoy.portal:
+    build:
+      context: ./decoys/portal-tributario
+      dockerfile: Dockerfile
+    image: taxfisco/decoy-portal:latest
+    container_name: taxfisco-decoy-portal
+    hostname: decoy-portal
+    networks:
+      dmz-net:
+        ipv4_address: 172.20.0.21
+      soc-net:
+        ipv4_address: 172.22.0.71
+    ports:
+      - "8888:8000/tcp"   # Web portal exposed
+    environment:
+      - DJANGO_DEBUG=true
+      - DJANGO_SECRET_KEY=${DJANGO_SECRET:-PortalDjango_2024!}
+      - ALLOWED_HOSTS=*
+    volumes:
+      - decoy_portal_data:/app/data
+      - decoy_portal_logs:/var/log/portal
+    depends_on:
+      - postgres.fiscal
+    logging: *default-logging
+    restart: unless-stopped
+    mem_limit: 384m  # LITE: era 512m
+
+  # ===========================================================================
+  # DMZ NETWORK - POSTGRESQL (synthetic fiscal data) (REDUCIDO)
+  # ===========================================================================
+  postgres.fiscal:
+    image: postgres:15-alpine
+    container_name: taxfisco-postgres
+    hostname: postgres-fiscal
+    networks:
+      dmz-net:
+        ipv4_address: 172.20.0.30
+      soc-net:
+        ipv4_address: 172.22.0.80
+    environment:
+      - POSTGRES_USER=fiscal
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-FiscalDB_2024!}
+      - POSTGRES_DB=taxfisco
+    # LITE: configuración reducida
+    command:
+      - "postgres"
+      - "-c"
+      - "shared_buffers=64MB"
+      - "-c"
+      - "max_connections=50"
+      - "-c"
+      - "work_mem=2MB"
+      - "-c"
+      - "maintenance_work_mem=64MB"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./decoys/api-tributaria/data/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    logging: *default-logging
+    restart: unless-stopped
+    mem_limit: 256m  # LITE: era 512m
+
+  # ===========================================================================
+  # IDS NETWORK - SURICATA NIDS (REDUCIDO)
+  # ===========================================================================
+  suricata:
+    image: jasonish/suricata:7.0
+    container_name: taxfisco-suricata
+    hostname: suricata
+    networks:
+      ids-net:
+        ipv4_address: 172.23.0.10
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+      - SYS_ADMIN
+    ports:
+      - "55000:55000/tcp"
+    environment:
+      - SURICATA_IFACE=eth0
+    volumes:
+      - ./config/suricata/suricata.yaml:/etc/suricata/suricata.yaml:ro
+      - ./config/suricata/rules:/etc/suricata/rules:ro
+      - suricata_logs:/var/log/suricata
+    command: -i eth0 -c /etc/suricata/suricata.yaml
+    logging: *default-logging
+    restart: unless-stopped
+    mem_limit: 384m  # LITE: era 512m
+
+  # ===========================================================================
+  # IDS NETWORK - ZEEK NDR (REDUCIDO)
+  # ===========================================================================
+  zeek:
+    image: zeek/zeek:6.0
+    container_name: taxfisco-zeek
+    hostname: zeek
+    networks:
+      ids-net:
+        ipv4_address: 172.23.0.11
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+      - SYS_ADMIN
+    environment:
+      - ZEEK_IFACE=eth0
+    volumes:
+      - ./config/zeek/local.zeek:/usr/local/zeek/share/zeek/site/local.zeek:ro
+      - zeek_logs:/var/log/zeek
+    command: -i eth0 local
+    logging: *default-logging
+    restart: unless-stopped
+    mem_limit: 384m  # LITE: era 512m
+
+  # ===========================================================================
+  # ATTACKER CONTAINER (REDUCIDO - CLI only)
+  # ===========================================================================
+  attacker:
+    image: kalilinux/kali-rolling
+    container_name: taxfisco-attacker
+    hostname: attacker
+    networks:
+      dmz-net:
+        ipv4_address: 172.20.0.99
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    stdin_open: true
+    tty: true
+    command: /bin/bash
+    volumes:
+      - ./attack-scenarios:/root/attack-scenarios:ro
+    logging: *default-logging
+    restart: "no"
+    mem_limit: 1g  # LITE: era 2g
+
+# =============================================================================
+# NETWORKS (sin cambios respecto al plan original)
+# =============================================================================
+networks:
+  dmz-net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/24
+    name: taxfisco-dmz
+
+  honeypot-net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.21.0.0/24
+    name: taxfisco-honeypot
+
+  soc-net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.22.0.0/24
+    name: taxfisco-soc
+
+  ids-net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.23.0.0/24
+    name: taxfisco-ids
+
+# =============================================================================
+# VOLUMES (sin thehive_es_data)
+# =============================================================================
+volumes:
+  wazuh_manager_data:
+  wazuh_indexer_data:
+  wazuh_dashboard_data:
+  misp_data:
+  misp_config:
+  misp_db_data:
+  thehive_data:
+  cortex_data:
+  shuffle_data:
+  shuffle_db_data:
+  velociraptor_data:
+  velociraptor_logs:
+  grafana_data:
+  cowrie_data:
+  dionaea_data:
+  opencanary_data:
+  heralding_data:
+  decoy_api_data:
+  decoy_api_logs:
+  decoy_portal_data:
+  decoy_portal_logs:
+  postgres_data:
+  suricata_logs:
+  zeek_logs:
