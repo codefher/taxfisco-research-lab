@@ -1,0 +1,28 @@
+server.name: wazuh-dashboard
+server.host: 0.0.0.0
+server.port: 5601
+
+opensearch.hosts: ['https://10.22.0.11:9200']
+opensearch.ssl.verificationMode: none
+
+# Disable security
+opensearch_security.multitenancy.enabled: false
+opensearch_security.readonly_mode.roles: []
+
+# Wazuh specific
+wazuh.monitoring.enabled: true
+wazuh.monitoring.frequency: 15
+wazuh.monitoring.shard: 10
+
+# Logging
+logging:
+  appenders:
+    file:
+      type: file
+      fileName: /var/log/wazuh-dashboard/wazuh-dashboard.log
+      layout:
+        type: pattern
+        pattern: "[%date] [%level] [%logger] %message"
+  root:
+    appenders: [file]
+    level: info

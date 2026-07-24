@@ -1,0 +1,30 @@
+cluster.name: wazuh-cluster
+node.name: wazuh-indexer
+network.host: 0.0.0.0
+discovery.type: single-node
+bootstrap.memory_lock: false
+
+# Wazuh Indexer 4.10 con SSL habilitado (single-node lab)
+plugins.security.ssl.http.enabled: true
+plugins.security.ssl.http.pemcert_filepath: /etc/wazuh-indexer/certs/indexer.pem
+plugins.security.ssl.http.pemkey_filepath: /etc/wazuh-indexer/certs/indexer.key
+plugins.security.ssl.http.pemtrustedcas_filepath: /etc/wazuh-indexer/certs/root-ca.pem
+plugins.security.ssl.transport.enabled: true
+plugins.security.ssl.transport.pemcert_filepath: /etc/wazuh-indexer/certs/indexer.pem
+plugins.security.ssl.transport.pemkey_filepath: /etc/wazuh-indexer/certs/indexer.key
+plugins.security.ssl.transport.pemtrustedcas_filepath: /etc/wazuh-indexer/certs/root-ca.pem
+
+# Admin user (CN debe coincidir con el cert admin.pem)
+plugins.security.authcz.admin_dn:
+  - "CN=admin,OU=Lab,O=TaxFisco,L=LaPaz,ST=LP,C=BO"
+
+# Auditoria deshabilitada para simplificar el lab
+plugins.security.audit.type: internal_opensearch
+
+# Network
+http.port: 9200
+transport.port: 9300
+network.publish_host: 0.0.0.0
+
+# Performance tuning
+indices.query.bool.max_clause_count: 1024

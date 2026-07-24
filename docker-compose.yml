@@ -18,10 +18,10 @@
 # 5. Cap del contenedor atacante Kali (CLI-only)
 #
 # Networks:
-#   dmz-net       (172.20.0.0/24) - Public-facing decoys and services
-#   honeypot-net  (172.21.0.0/24) - High-interaction honeypots
-#   soc-net       (172.22.0.0/24) - SOC tooling (SIEM, SOAR, IRP, TI)
-#   ids-net       (172.23.0.0/24) - Network sensors
+#   dmz-net       (10.20.0.0/24) - Public-facing decoys and services
+#   honeypot-net  (10.21.0.0/24) - High-interaction honeypots
+#   soc-net       (10.22.0.0/24) - SOC tooling (SIEM, SOAR, IRP, TI)
+#   ids-net       (10.23.0.0/24) - Network sensors
 #
 # Resource budget (16 GB host + 8 GB swap):
 #   Wazuh stack:    ~3.3 GB  (lite)
@@ -58,21 +58,23 @@ services:
   # SOC NETWORK - WAZUH SIEM (REDUCIDO)
   # ===========================================================================
   wazuh.manager:
-    image: wazuh/wazuh-manager:4.9.0
+    image: wazuh/wazuh-manager:4.10.4
     container_name: taxfisco-wazuh-manager
     hostname: wazuh-manager
     networks:
       soc-net:
-        ipv4_address: 172.22.0.10
+        ipv4_address: 10.22.0.10
     ports:
       - "1514:1514/udp"   # agent enrollment
       - "1514:1514/tcp"   # agent communication
-      - "55000:55000/tcp" # manager API
+      # 55000 manager API not exposed to host (Docker Desktop port forwarding issue)
+      # Use docker exec to access if needed
     environment:
-      - WAZUH_MANAGER_VERSION=4.9.0
+      - WAZUH_MANAGER_VERSION=4.10.4
     volumes:
       - wazuh_manager_data:/var/ossec/data
       - ./config/wazuh:/wazuh-config:ro
+      - ./config/wazuh/certs:/etc/wazuh-manager/certs:ro
       - /etc/localtime:/etc/localtime:ro
     ulimits:
       nofile:
@@ -83,47 +85,44 @@ services:
     mem_limit: 1.5g  # LITE: era 2g
 
   wazuh.indexer:
-    image: wazuh/wazuh-indexer:4.9.0
+    image: taxfisco/wazuh-indexer:4.10.4-lite
     container_name: taxfisco-wazuh-indexer
     hostname: wazuh-indexer
     networks:
       soc-net:
-        ipv4_address: 172.22.0.11
+        ipv4_address: 10.22.0.11
     environment:
       # LITE: heap reducido de 1g/1g a 512m/768m
       - "OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx768m"
-      - "cluster.name=wazuh-cluster"
-      - "node.name=wazuh-indexer"
-      - "discovery.type=single-node"
-      - "bootstrap.memory_lock=true"
-      - "plugins.security.ssl.http.enabled=false"
     ulimits:
       memlock:
         soft: -1
         hard: -1
     volumes:
       - wazuh_indexer_data:/var/lib/wazuh-indexer
+      - ./config/wazuh/certs:/etc/wazuh-indexer/certs:ro
     logging: *default-logging
     restart: unless-stopped
     mem_limit: 1g  # LITE: era 2g
 
   wazuh.dashboard:
-    image: wazuh/wazuh-dashboard:4.9.0
+    image: wazuh/wazuh-dashboard:4.10.4
     container_name: taxfisco-wazuh-dashboard
     hostname: wazuh-dashboard
     networks:
       soc-net:
-        ipv4_address: 172.22.0.12
+        ipv4_address: 10.22.0.12
     ports:
       - "443:5601/tcp"    # Kibana dashboard
     environment:
-      - WAZUH_DASHBOARD_VERSION=4.9.0
-      - OPENSEARCH_HOSTS=["https://172.22.0.11:9200"]
+      - WAZUH_DASHBOARD_VERSION=4.10.4
+      - OPENSEARCH_HOSTS=["https://10.22.0.11:9200"]
     depends_on:
       - wazuh.indexer
     volumes:
       - wazuh_dashboard_data:/var/lib/wazuh-dashboard
       - ./config/wazuh/dashboard:/wazuh-dashboard/app/plugins/main/wazuh/public/assets:ro
+      - ./config/wazuh/certs:/usr/share/wazuh-dashboard/certs:ro
     logging: *default-logging
     restart: unless-stopped
     mem_limit: 768m  # LITE: era 1g
@@ -137,7 +136,7 @@ services:
     hostname: misp-core
     networks:
       soc-net:
-        ipv4_address: 172.22.0.20
+        ipv4_address: 10.22.0.20
     ports:
       - "8443:443/tcp"    # MISP web UI
       - "6666:6666/tcp"   # ZeroMQ
@@ -156,6 +155,8 @@ services:
       - PHP_FPM_PM_START_SERVERS=2
       - PHP_FPM_PM_MIN_SPARE_SERVERS=1
       - PHP_FPM_PM_MAX_SPARE_SERVERS=3
+      # Fix for cron CRON_USER_ID env var
+      - CRON_USER_ID=1
     depends_on:
       - misp.db
     volumes:
@@ -171,7 +172,7 @@ services:
     hostname: misp-db
     networks:
       soc-net:
-        ipv4_address: 172.22.0.21
+        ipv4_address: 10.22.0.21
     environment:
       - MYSQL_ROOT_PASSWORD=${MISP_DB_ROOT_PASSWORD:-RootMISP_2024!}
       - MYSQL_DATABASE=misp
@@ -195,7 +196,7 @@ services:
     hostname: misp-modules
     networks:
       soc-net:
-        ipv4_address: 172.22.0.22
+        ipv4_address: 10.22.0.22
     environment:
       - MISP_MODULES_URL=http://taxfisco-misp-modules:6666
     depends_on:
@@ -215,7 +216,7 @@ services:
     hostname: thehive
     networks:
       soc-net:
-        ipv4_address: 172.22.0.30
+        ipv4_address: 10.22.0.30
     ports:
       - "9000:9000/tcp"   # TheHive API
     environment:
@@ -231,12 +232,12 @@ services:
     mem_limit: 1g  # LITE: era 1.5g
 
   cortex:
-    image: strangebee/cortex:3.4
+    image: thehiveproject/cortex:4.1.0
     container_name: taxfisco-cortex
     hostname: cortex
     networks:
       soc-net:
-        ipv4_address: 172.22.0.32
+        ipv4_address: 10.22.0.32
     ports:
       - "9001:9001/tcp"   # Cortex API
     volumes:
@@ -255,7 +256,7 @@ services:
     hostname: shuffle
     networks:
       soc-net:
-        ipv4_address: 172.22.0.40
+        ipv4_address: 10.22.0.40
     ports:
       - "3001:5000/tcp"   # Shuffle UI
       - "3443:3443/tcp"   # Orborus worker
@@ -265,6 +266,10 @@ services:
       - SHUFFLE_DB_LOCATION=shuffle.db
       # LITE: workers reducidos
       - SHUFFLE_WORKER_AMOUNT=2
+      # Disable internal OpenSearch (use only PostgreSQL via shuffle.db)
+      - SHUFFLE_OPENSEARCH_URL=
+      - SHUFFLE_ELASTIC_URL=
+      - DATABASE_URL=sqlite:///opt/shuffle/shuffle.db
     depends_on:
       - shuffle.db
     volumes:
@@ -280,7 +285,7 @@ services:
     hostname: shuffle-frontend
     networks:
       soc-net:
-        ipv4_address: 172.22.0.41
+        ipv4_address: 10.22.0.41
     environment:
       - BACKEND_URL=http://shuffle:5000
     depends_on:
@@ -295,7 +300,7 @@ services:
     hostname: shuffle-db
     networks:
       soc-net:
-        ipv4_address: 172.22.0.42
+        ipv4_address: 10.22.0.42
     environment:
       - POSTGRES_USER=shuffle
       - POSTGRES_PASSWORD=${SHUFFLE_DB_PASSWORD:-ShuffleDB_2024!}
@@ -310,20 +315,18 @@ services:
   # SOC NETWORK - VELOCIRAPTOR (DFIR) (REDUCIDO)
   # ===========================================================================
   velociraptor:
-    image: velocide/velociraptor:latest
+    image: wlambert/velociraptor:latest
     container_name: taxfisco-velociraptor
     hostname: velociraptor
     networks:
       soc-net:
-        ipv4_address: 172.22.0.50
+        ipv4_address: 10.22.0.50
     ports:
       - "8889:8889/tcp"   # Velociraptor GUI
       - "8000:8000/tcp"   # Frontend
-    command:
-      - "velociraptor"
-      - "gui"
-      - "--datastore"
-      - "/datastore"
+    environment:
+      - VELOX_FRONTEND_HOSTNAME=localhost
+      - VELOX_SERVER_URL=https://localhost:8000/
     volumes:
       - velociraptor_data:/datastore
       - velociraptor_logs:/logs
@@ -341,13 +344,12 @@ services:
     hostname: grafana
     networks:
       soc-net:
-        ipv4_address: 172.22.0.60
+        ipv4_address: 10.22.0.60
     ports:
       - "3000:3000/tcp"
     environment:
       - GF_SECURITY_ADMIN_USER=admin
       - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD:-Grafana_2024!}
-      - GF_INSTALL_PLUGINS=graph
       - GF_AUTH_ANONYMOUS_ENABLED=false
       # LITE: caché reducida
       - GF_DATAPROXY_TIMEOUT=30
@@ -368,11 +370,11 @@ services:
     hostname: cowrie
     networks:
       honeypot-net:
-        ipv4_address: 172.21.0.10
+        ipv4_address: 10.21.0.10
       dmz-net:
-        ipv4_address: 172.20.0.50
+        ipv4_address: 10.20.0.50
     ports:
-      - "2222:2222/tcp"   # SSH (redirected from 22)
+      - "2225:2222/tcp"   # SSH (redirected from 22) - remapped to avoid conflict
       - "2323:2223/tcp"   # Telnet
     environment:
       - COWRIE_HOSTNAME=taxfisco-portal
@@ -389,13 +391,13 @@ services:
     hostname: dionaea
     networks:
       honeypot-net:
-        ipv4_address: 172.21.0.11
+        ipv4_address: 10.21.0.11
       dmz-net:
-        ipv4_address: 172.20.0.51
+        ipv4_address: 10.20.0.51
     ports:
-      - "445:445/tcp"     # SMB
-      - "21:21/tcp"       # FTP
-      - "1433:1433/tcp"   # MSSQL
+      - "1446:445/tcp"    # SMB - remapped (445/1445 reserved by Windows host)
+      - "2122:21/tcp"      # FTP - remapped (2121 was held by old container)
+      - "14333:1433/tcp"  # MSSQL - remapped
       - "5060:5060/udp"   # SIP
       - "5060:5060/tcp"
     volumes:
@@ -403,17 +405,17 @@ services:
       - ./config/dionaea/dionaea.cfg:/opt/dionaea/etc/dionaea/dionaea.cfg:ro
     logging: *default-logging
     restart: unless-stopped
-    mem_limit: 384m  # LITE: era 512m
+    mem_limit: 256m  # LITE: reduced further to avoid OOM on small hosts
 
   opencanary:
-    image: opencanary/opencanary:latest
+    image: thinkst/opencanary:latest
     container_name: taxfisco-opencanary
     hostname: opencanary
     networks:
       honeypot-net:
-        ipv4_address: 172.21.0.12
+        ipv4_address: 10.21.0.12
       dmz-net:
-        ipv4_address: 172.20.0.52
+        ipv4_address: 10.20.0.52
     ports:
       - "8081:80/tcp"     # HTTP honeypot (HTTP-1)
       - "2121:21/tcp"     # FTP
@@ -424,20 +426,21 @@ services:
       - "14330:1433/tcp"  # MSSQL
     volumes:
       - opencanary_data:/opt/opencanary
-      - ./config/opencanary/opencanary.conf:/opt/opencanary/etc/opencanary.conf:ro
+      - ./config/opencanary/opencanary.conf:/etc/opencanaryd/opencanary.conf:ro
     logging: *default-logging
     restart: unless-stopped
     mem_limit: 192m  # LITE: era 256m
 
   heralding:
-    image: jonasvlk/heralding:latest
+    image: dtagdevsec/heralding:24.04.1
     container_name: taxfisco-heralding
     hostname: heralding
+    user: "0:0"  # Run as root to allow cert generation in /heralding
     networks:
       honeypot-net:
-        ipv4_address: 172.21.0.13
+        ipv4_address: 10.21.0.13
       dmz-net:
-        ipv4_address: 172.20.0.53
+        ipv4_address: 10.20.0.53
     ports:
       - "23:23/tcp"       # Telnet (primary)
       - "1080:1080/tcp"   # SOCKS
@@ -461,11 +464,11 @@ services:
     hostname: decoy-api
     networks:
       dmz-net:
-        ipv4_address: 172.20.0.20
+        ipv4_address: 10.20.0.20
       soc-net:
-        ipv4_address: 172.22.0.70
+        ipv4_address: 10.22.0.70
     ports:
-      - "8080:8000/tcp"   # API exposed (mimics real port)
+      - "8090:8000/tcp"   # API exposed (mimics real port) - remapped to avoid conflict
     environment:
       - LOG_LEVEL=info
       - ATTACK_LOG=/var/log/decoy-api/attacks.json
@@ -491,11 +494,11 @@ services:
     hostname: decoy-portal
     networks:
       dmz-net:
-        ipv4_address: 172.20.0.21
+        ipv4_address: 10.20.0.21
       soc-net:
-        ipv4_address: 172.22.0.71
+        ipv4_address: 10.22.0.71
     ports:
-      - "8888:8000/tcp"   # Web portal exposed
+      - "8890:8000/tcp"   # Web portal exposed - remapped (8889 used by Velociraptor)
     environment:
       - DJANGO_DEBUG=true
       - DJANGO_SECRET_KEY=${DJANGO_SECRET:-PortalDjango_2024!}
@@ -518,9 +521,9 @@ services:
     hostname: postgres-fiscal
     networks:
       dmz-net:
-        ipv4_address: 172.20.0.30
+        ipv4_address: 10.20.0.30
       soc-net:
-        ipv4_address: 172.22.0.80
+        ipv4_address: 10.22.0.80
     environment:
       - POSTGRES_USER=fiscal
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-FiscalDB_2024!}
@@ -552,20 +555,17 @@ services:
     hostname: suricata
     networks:
       ids-net:
-        ipv4_address: 172.23.0.10
+        ipv4_address: 10.23.0.10
     cap_add:
       - NET_ADMIN
       - NET_RAW
       - SYS_ADMIN
-    ports:
-      - "55000:55000/tcp"
     environment:
-      - SURICATA_IFACE=eth0
+      - SURICATA_OPTIONS=-i eth0 -c /etc/suricata/suricata.yaml
     volumes:
       - ./config/suricata/suricata.yaml:/etc/suricata/suricata.yaml:ro
       - ./config/suricata/rules:/etc/suricata/rules:ro
       - suricata_logs:/var/log/suricata
-    command: -i eth0 -c /etc/suricata/suricata.yaml
     logging: *default-logging
     restart: unless-stopped
     mem_limit: 384m  # LITE: era 512m
@@ -579,7 +579,7 @@ services:
     hostname: zeek
     networks:
       ids-net:
-        ipv4_address: 172.23.0.11
+        ipv4_address: 10.23.0.11
     cap_add:
       - NET_ADMIN
       - NET_RAW
@@ -589,7 +589,7 @@ services:
     volumes:
       - ./config/zeek/local.zeek:/usr/local/zeek/share/zeek/site/local.zeek:ro
       - zeek_logs:/var/log/zeek
-    command: -i eth0 local
+    command: ["bash", "-c", "zeek -i eth0 local"]
     logging: *default-logging
     restart: unless-stopped
     mem_limit: 384m  # LITE: era 512m
@@ -603,7 +603,7 @@ services:
     hostname: attacker
     networks:
       dmz-net:
-        ipv4_address: 172.20.0.99
+        ipv4_address: 10.20.0.99
     cap_add:
       - NET_ADMIN
       - NET_RAW
@@ -624,28 +624,28 @@ networks:
     driver: bridge
     ipam:
       config:
-        - subnet: 172.20.0.0/24
+        - subnet: 10.20.0.0/24
     name: taxfisco-dmz
 
   honeypot-net:
     driver: bridge
     ipam:
       config:
-        - subnet: 172.21.0.0/24
+        - subnet: 10.21.0.0/24
     name: taxfisco-honeypot
 
   soc-net:
     driver: bridge
     ipam:
       config:
-        - subnet: 172.22.0.0/24
+        - subnet: 10.22.0.0/24
     name: taxfisco-soc
 
   ids-net:
     driver: bridge
     ipam:
       config:
-        - subnet: 172.23.0.0/24
+        - subnet: 10.23.0.0/24
     name: taxfisco-ids
 
 # =============================================================================

@@ -55,8 +55,8 @@ af-packet:
   - interface: eth0
     cluster-id: 99
     defrag: yes
-    copy-mode: ips
-    copy-iface: eth1
+    copy-mode: tap
+    # copy-iface: eth1  # DESHABILITADO para NIDS en single-host (LITE)
 
 flow:
   memcap: 128mb
@@ -149,15 +149,8 @@ coredump:
 default-rule-path: /etc/suricata/rules
 rule-files:
   - suricata.rules
-  - emerging-exploit.rules
-  - emerging-scan.rules
-  - emerging-web_server.rules
-  - emerging-web_client.rules
-  - emerging-sql.rules
-  - emerging-dos.rules
-  - emerging-malware.rules
-  - emerging-attack_response.rules
-  - emerging-policy.rules
+  # ET rules disabled in LITE (no volume mount). To enable, download ET Open Ruleset
+  # and add files here, then re-mount ./config/suricata/rules with all ET files.
 
 classification-file: /etc/suricata/classification.config
 reference-config-file: /etc/suricata/reference.config

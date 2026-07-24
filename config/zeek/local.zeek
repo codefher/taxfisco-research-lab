@@ -12,12 +12,8 @@
 @load base/protocols/ssh
 @load base/protocols/ftp
 @load base/protocols/smb
-@load base/protocols/sip
-@load base/protocols/dhcp
-@load base/protocols/notice
 
 # Detect sensitive activities
-@load base/frameworks/notice
 @load policy/misc/detect-bruteforcing
 @load policy/misc/detect-port-scan
 @load policy/misc/detect-unencrypted-passwords
