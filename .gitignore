@@ -72,6 +72,14 @@ attack-scenarios/*/resultados.json
 *.dump
 *.core
 
+# --- Certs SSL (artefactos generados por openssl, no reproducibles) ---
+*.srl
+
+# --- Wazuh Dashboard config (se reaplica via docker cp en runtime,
+#     porque la imagen wazuh/wazuh-dashboard sobrescribe su config
+#     en cada recreate. No es commiteable de forma reproducible) ---
+config/wazuh/dashboard/
+
 # --- Variables de entorno de la herramienta ---
 .vscode/settings.json
 .idea/workspace.xml

@@ -7,14 +7,14 @@ bootstrap.memory_lock: false
 # Wazuh Indexer 4.10 con SSL habilitado (single-node lab)
 plugins.security.ssl.http.enabled: true
 plugins.security.ssl.http.pemcert_filepath: /etc/wazuh-indexer/certs/indexer.pem
-plugins.security.ssl.http.pemkey_filepath: /etc/wazuh-indexer/certs/indexer.key
+plugins.security.ssl.http.pemkey_filepath: /etc/wazuh-indexer/certs/indexer-key.pem
 plugins.security.ssl.http.pemtrustedcas_filepath: /etc/wazuh-indexer/certs/root-ca.pem
 plugins.security.ssl.transport.enabled: true
 plugins.security.ssl.transport.pemcert_filepath: /etc/wazuh-indexer/certs/indexer.pem
-plugins.security.ssl.transport.pemkey_filepath: /etc/wazuh-indexer/certs/indexer.key
+plugins.security.ssl.transport.pemkey_filepath: /etc/wazuh-indexer/certs/indexer-key.pem
 plugins.security.ssl.transport.pemtrustedcas_filepath: /etc/wazuh-indexer/certs/root-ca.pem
 
-# Admin user (CN debe coincidir con el cert admin.pem)
+# Admin user (canonical subject format from generated admin.pem cert)
 plugins.security.authcz.admin_dn:
   - "CN=admin,OU=Lab,O=TaxFisco,L=LaPaz,ST=LP,C=BO"
 

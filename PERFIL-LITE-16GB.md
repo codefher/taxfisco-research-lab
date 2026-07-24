@@ -12,6 +12,8 @@ Este es el **perfil principal** del laboratorio, optimizado para correr en works
 | Componente | Valor configurado (16 GB) | Justificación |
 |---|---|---|
 | `thehive.es` | **Eliminado**, reusa Wazuh ES | Ahorra 1.5 GB |
+| `cassandra.thehive` | **Añadido** (1.2 GB) | TheHive 5.5 lo necesita para Scalligraph/JanusGraph — el plan LITE original lo omitió, lo que dejaba TheHive no-funcional |
+| `wazuh-indexer-proxy` | **Añadido** (64 MB, nginx) | Bridge HTTP→HTTPS para que el cliente ES 7.x de JanusGraph pueda hablar con OpenSearch 2.x de Wazuh |
 | Wazuh Indexer JVM | `-Xms512m -Xmx768m` | Reducido de 1g |
 | MISP workers PHP-FPM | 5/2/1/3 | Reducido de default |
 | MISP MySQL | Buffer pool 384M, conexiones reducidas | Tuned para datos sintéticos |
@@ -21,7 +23,7 @@ Este es el **perfil principal** del laboratorio, optimizado para correr en works
 | Velociraptor | 256m | Suficiente para DFIR básico |
 | Grafana | 256m | Suficiente para dashboards |
 | Cowrie | 384m | Suficiente para SSH/Telnet |
-| Dionaea | 384m | Suficiente para captura de malware |
+| Dionaea | **Deshabilitado** | Imágenes públicas tienen bug (lib/dionaea/python3.so faltante). SMB/FTP/MSSQL/SIP ya cubiertos por OpenCanary |
 | Decoy API | 384m | Suficiente para FastAPI + ATT&CK instrumentation |
 | Decoy Portal | 384m | Suficiente para Django |
 | Postgres fiscal | 256m | Datos sintéticos pequeños |
@@ -230,6 +232,43 @@ Si más adelante decides ampliar tu workstation a 32 GB de RAM (upgrade opcional
 La migración tomaría ~15 minutos. Tus escenarios, KPIs y datos se preservarían.
 
 **Importante**: Esta migración es **estrictamente opcional** y NO es necesaria para la defensa de la tesis. El perfil LITE de 16 GB mantiene la cobertura funcional y académica completa.
+
+## 🆕 Cambios del plan original (post-instalación)
+
+El plan LITE original de 16 GB tenía **3 problemas** que se descubrieron
+al levantar el lab y se corrigieron en una segunda iteración. Documentados
+para trazabilidad académica:
+
+### 1. TheHive no arrancaba (olvidaron Cassandra)
+
+El plan original asumía que TheHive compartía ES con Wazuh y no necesitaba
+DB propia. **Incorrecto**: TheHive 5.5 usa Scalligraph/JanusGraph que
+requiere Cassandra (o HBase) obligatoriamente. Sin él, el thehive
+container ciclaba con `ClassNotFoundException: local` cada 30s.
+
+**Fix**: añadir `cassandra.thehive` (cassandra:4.1, mem_limit 1.2g) con
+TH_CQL_HOSTNAMES apuntando a él.
+
+### 2. JanusGraph no podía hablar con OpenSearch 2.x
+
+El cliente ES 7.x embebido en JanusGraph falla con OpenSearch 2.x (errores
+`Could not instantiate ElasticSearchIndex`, conexiones cerradas). El plan
+asumía compatibilidad pero no la hay.
+
+**Fix**: añadir `wazuh-indexer-proxy` (nginx 1.27-alpine, mem_limit 64m)
+que expone el Wazuh Indexer HTTPS como HTTP en 9200. JanusGraph habla
+HTTP, el proxy traduce a HTTPS upstream.
+
+### 3. dionaea inestable
+
+Todas las imágenes públicas (dinotools, cowrie, amazedostrich) crashean
+en el arranque por `lib/dionaea/python3.so` faltante o símbolos
+indefinidos. Intentamos construir desde source (Dockerfile en
+`docker-images/dionaea/`) pero faltan dependencias (libemu, libcurl-dev)
+que añadirían complejidad sin valor académico claro.
+
+**Fix**: deshabilitar dionaea. SMB/FTP/MSSQL/SIP ya están cubiertos por
+OpenCanary. La cobertura funcional del lab no cambia.
 
 ## 📚 Documentación adicional
 

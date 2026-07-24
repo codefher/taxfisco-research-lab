@@ -9,8 +9,9 @@ RUN mkdir -p /var/log/wazuh-indexer
 RUN mkdir -p /var/lib/wazuh-indexer
 RUN mkdir -p /usr/share/wazuh-indexer/opensearch-performance-analyzer/
 
-# Copy custom config (SSL habilitado con certs)
+# Copy custom config (SSL habilitado con certs) - sobreescribimos AMBAS rutas
 COPY opensearch.yml /etc/wazuh-indexer/opensearch.yml
+COPY opensearch.yml /usr/share/wazuh-indexer/opensearch.yml
 COPY opensearch_security.policy /usr/share/wazuh-indexer/opensearch-performance-analyzer/opensearch_security.policy
 
 # Set proper permissions for the wazuh-indexer user

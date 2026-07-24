@@ -92,8 +92,8 @@ services:
       soc-net:
         ipv4_address: 10.22.0.11
     environment:
-      # LITE: heap reducido de 1g/1g a 512m/768m
-      - "OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx768m"
+      # LITE: heap reducido. Xms == Xmx (requerido por bootstrap checks)
+      - "OPENSEARCH_JAVA_OPTS=-Xms768m -Xmx768m"
     ulimits:
       memlock:
         soft: -1
@@ -103,7 +103,7 @@ services:
       - ./config/wazuh/certs:/etc/wazuh-indexer/certs:ro
     logging: *default-logging
     restart: unless-stopped
-    mem_limit: 1g  # LITE: era 2g
+    mem_limit: 2g  # Aumentado desde 1g (host tiene 31GB RAM)
 
   wazuh.dashboard:
     image: wazuh/wazuh-dashboard:4.10.4
@@ -113,7 +113,7 @@ services:
       soc-net:
         ipv4_address: 10.22.0.12
     ports:
-      - "443:5601/tcp"    # Kibana dashboard
+      - "1443:5601/tcp"    # Kibana dashboard (puerto cambiado de 443 a 1443)
     environment:
       - WAZUH_DASHBOARD_VERSION=4.10.4
       - OPENSEARCH_HOSTS=["https://10.22.0.11:9200"]
@@ -122,7 +122,7 @@ services:
     volumes:
       - wazuh_dashboard_data:/var/lib/wazuh-dashboard
       - ./config/wazuh/dashboard:/wazuh-dashboard/app/plugins/main/wazuh/public/assets:ro
-      - ./config/wazuh/certs:/usr/share/wazuh-dashboard/certs:ro
+      - ./config/wazuh/certs:/etc/wazuh-dashboard/certs:ro
     logging: *default-logging
     restart: unless-stopped
     mem_limit: 768m  # LITE: era 1g
@@ -142,13 +142,13 @@ services:
       - "6666:6666/tcp"   # ZeroMQ
     environment:
       - HOSTNAME=taxfisco-misp
+      - BASEURL=https://localhost:8443
       - MYSQL_HOST=misp.db
       - MYSQL_DATABASE=misp
       - MYSQL_USER=misp
       - MYSQL_PASSWORD=${MISP_DB_PASSWORD:-ChangeMe_Strong!}
       - ADMIN_EMAIL=admin@taxfisco.local
       - ADMIN_PASSWORD=${MISP_ADMIN_PASSWORD:-AdminMISP_2024!}
-      - BASE_URL=https://localhost:8443
       - DISIPLINES=*
       # LITE: reducción de workers PHP-FPM
       - PHP_FPM_PM_MAX_CHILDREN=5
@@ -210,6 +210,28 @@ services:
   # ===========================================================================
   # LITE: Se eliminó el servicio thehive.es (ahorra 1.5 GB)
   # TheHive ahora usa el Elasticsearch de Wazuh Indexer con índice dedicado "thehive"
+  # NOTA: TheHive 5.5 sigue requiriendo Cassandra (Scalligraph/JanusGraph) -
+  # por eso se reincorpora cassandra.thehive al perfil lite.
+  cassandra.thehive:
+    image: cassandra:4.1
+    container_name: taxfisco-cassandra
+    hostname: cassandra-thehive
+    networks:
+      soc-net:
+        ipv4_address: 10.22.0.31
+    environment:
+      - CASSANDRA_CLUSTER_NAME=thehive-cluster
+      - CASSANDRA_DC=datacenter1
+      - CASSANDRA_ENDPOINT_SNITCH=GossipingPropertyFileSnitch
+      - HEAP_NEWSIZE=128M
+      - MAX_HEAP_SIZE=1G
+      - CASSANDRA_NUM_TOKENS=16
+    volumes:
+      - cassandra_data:/var/lib/cassandra
+    logging: *default-logging
+    restart: unless-stopped
+    mem_limit: 1.2g
+
   thehive:
     image: strangebee/thehive:5.5
     container_name: taxfisco-thehive
@@ -221,7 +243,23 @@ services:
       - "9000:9000/tcp"   # TheHive API
     environment:
       - THEHIVE_SECRET=${THEHIVE_SECRET:-TheHive_SecretKey_2024}
+      - TH_SECRET=${THEHIVE_SECRET:-TheHive_SecretKey_2024}
+      - TH_CQL_HOSTNAMES=cassandra.thehive
+      - TH_CQL_USERNAME=
+      - TH_CQL_PASSWORD=
+      - TH_CQL_KEYSPACE=thehive
+      - TH_CQL_DATACENTER=datacenter1
+      - TH_ELASTICSEARCH_HOSTNAMES=wazuh.indexer
+      - TH_ELASTICSEARCH_INDEX=thehive
+      - TH_ELASTICSEARCH_USERNAME=admin
+      - TH_ELASTICSEARCH_PASSWORD=admin
+      - TH_INDEX_BACKEND=elasticsearch
+      - TH_STORAGE_DIRECTORY=/var/lib/thehive/files
+      - TH_NO_CONFIG_SECRET=1
+      - TH_NO_CONFIG_STORAGE=1
+      - TH_NO_CONFIG_CORTEX=1
     depends_on:
+      - cassandra.thehive
       - cortex
       - wazuh.indexer    # LITE: depende de wazuh.indexer (no de thehive.es)
     volumes:
@@ -257,18 +295,20 @@ services:
     networks:
       soc-net:
         ipv4_address: 10.22.0.40
+        aliases:
+          - shuffle-backend
     ports:
-      - "3001:5000/tcp"   # Shuffle UI
-      - "3443:3443/tcp"   # Orborus worker
+      - "3443:3443/tcp"   # Orborus worker (UI va por shuffle.frontend en 3001)
     environment:
       - SHUFFLE_APP_SHUFFLE_ORBORUS=orborus
       - SHUFFLE_APP_DB_LOCATION=db
       - SHUFFLE_DB_LOCATION=shuffle.db
       # LITE: workers reducidos
       - SHUFFLE_WORKER_AMOUNT=2
-      # Disable internal OpenSearch (use only PostgreSQL via shuffle.db)
-      - SHUFFLE_OPENSEARCH_URL=
-      - SHUFFLE_ELASTIC_URL=
+      # OpenSearch apunta al proxy HTTP de Wazuh (con alias shuffle-opensearch)
+      # El proxy requiere auth basica (admin:admin = default wazuh)
+      - SHUFFLE_OPENSEARCH_URL=http://admin:admin@shuffle-opensearch:9200
+      - SHUFFLE_ELASTIC_URL=http://admin:admin@shuffle-opensearch:9200
       - DATABASE_URL=sqlite:///opt/shuffle/shuffle.db
     depends_on:
       - shuffle.db
@@ -286,8 +326,10 @@ services:
     networks:
       soc-net:
         ipv4_address: 10.22.0.41
+    ports:
+      - "3001:80/tcp"   # UI expuesta en 3001 (nginx del frontend escucha en 80)
     environment:
-      - BACKEND_URL=http://shuffle:5000
+      - BACKEND_URL=http://shuffle:5001
     depends_on:
       - shuffle
     logging: *default-logging
@@ -385,27 +427,32 @@ services:
     restart: unless-stopped
     mem_limit: 384m  # LITE: era 512m
 
-  dionaea:
-    image: dinotools/dionaea:latest
-    container_name: taxfisco-dionaea
-    hostname: dionaea
-    networks:
-      honeypot-net:
-        ipv4_address: 10.21.0.11
-      dmz-net:
-        ipv4_address: 10.20.0.51
-    ports:
-      - "1446:445/tcp"    # SMB - remapped (445/1445 reserved by Windows host)
-      - "2122:21/tcp"      # FTP - remapped (2121 was held by old container)
-      - "14333:1433/tcp"  # MSSQL - remapped
-      - "5060:5060/udp"   # SIP
-      - "5060:5060/tcp"
-    volumes:
-      - dionaea_data:/opt/dionaea/var
-      - ./config/dionaea/dionaea.cfg:/opt/dionaea/etc/dionaea/dionaea.cfg:ro
-    logging: *default-logging
-    restart: unless-stopped
-    mem_limit: 256m  # LITE: reduced further to avoid OOM on small hosts
+  # dionaea: DESHABILITADO - las imágenes públicas de dionaea (dinotools, cowrie,
+  # amazedostrich, etc.) tienen bugs (libpython3.so faltante, símbolos
+  # indefinidos, version mismatch). SMB/FTP/MSSQL/SIP ya están cubiertos
+  # por opencanary. Para reactivarlo, construir desde source.
+  #
+  # dionaea:
+  #   image: cowrie/dionaea:latest
+  #   container_name: taxfisco-dionaea
+  #   hostname: dionaea
+  #   networks:
+  #     honeypot-net:
+  #       ipv4_address: 10.21.0.11
+  #     dmz-net:
+  #       ipv4_address: 10.20.0.51
+  #   ports:
+  #     - "1446:445/tcp"    # SMB - remapped (445/1445 reserved by Windows host)
+  #     - "2122:21/tcp"     # FTP - remapped (2121 was held by old container)
+  #     - "14333:1433/tcp"  # MSSQL - remapped
+  #     - "5060:5060/udp"   # SIP
+  #     - "5060:5060/tcp"
+  #   volumes:
+  #     - dionaea_data:/opt/dionaea/var
+  #     - ./config/dionaea/dionaea.cfg:/opt/dionaea/etc/dionaea/dionaea.cfg:ro
+  #   logging: *default-logging
+  #   restart: unless-stopped
+  #   mem_limit: 256m
 
   opencanary:
     image: thinkst/opencanary:latest
@@ -451,6 +498,27 @@ services:
     logging: *default-logging
     restart: unless-stopped
     mem_limit: 192m  # LITE: era 256m
+
+  # ===========================================================================
+  # HTTP PROXY FOR WAZUH INDEXER (used by TheHive / JanusGraph)
+  # Translates HTTPS Wazuh (9200) to HTTP for clients that don't do SSL.
+  # ===========================================================================
+  wazuh-indexer-proxy:
+    image: nginx:1.27-alpine
+    container_name: taxfisco-wazuh-indexer-proxy
+    hostname: wazuh-indexer-proxy
+    networks:
+      soc-net:
+        ipv4_address: 10.22.0.13
+        aliases:
+          - shuffle-opensearch  # Alias para que Shuffle encuentre el proxy
+    volumes:
+      - ./config/wazuh/indexer-proxy.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - wazuh.indexer
+    logging: *default-logging
+    restart: unless-stopped
+    mem_limit: 64m
 
   # ===========================================================================
   # DMZ NETWORK - DECOY API TRIBUTARIA (REDUCIDO)
@@ -588,6 +656,7 @@ services:
       - ZEEK_IFACE=eth0
     volumes:
       - ./config/zeek/local.zeek:/usr/local/zeek/share/zeek/site/local.zeek:ro
+      - ./config/zeek/taxfisco-notice.zeek:/usr/local/zeek/share/zeek/site/taxfisco-notice.zeek:ro
       - zeek_logs:/var/log/zeek
     command: ["bash", "-c", "zeek -i eth0 local"]
     logging: *default-logging
@@ -659,6 +728,7 @@ volumes:
   misp_config:
   misp_db_data:
   thehive_data:
+  cassandra_data:
   cortex_data:
   shuffle_data:
   shuffle_db_data:
@@ -666,7 +736,6 @@ volumes:
   velociraptor_logs:
   grafana_data:
   cowrie_data:
-  dionaea_data:
   opencanary_data:
   heralding_data:
   decoy_api_data:

@@ -1,0 +1,263 @@
+# TaxFisco Research Lab — Verification Report
+
+> Resultados de la verificación funcional de los servicios del lab.
+> Ejecutado con `scripts/verify-services.sh` (read-only, sin tráfico a honeypots).
+
+## Resumen
+
+| # | Servicio | Tipo | Resultado esperado |
+|---|----------|------|---------------------|
+| 0 | Pre-flight (containers) | Infra | 25/25 corriendo (sin dionaea) |
+| 1 | Wazuh Indexer (vía proxy) | SIEM | `status: green` o `yellow` |
+| 2 | Wazuh Manager | SIEM | lista agentes (vacía OK) |
+| 3 | Wazuh Dashboard | Web UI | HTTP 200 o 302 en `https://localhost:1443` |
+| 4 | TheHive login | IRP | JSON con `access_token` |
+| 5 | TheHive API | IRP | Lista de casos (puede estar vacía) |
+| 6 | MISP getVersion | TI | JSON con campo `version` |
+| 7 | Shuffle verify | SOAR | JSON con `success: true` |
+| 8 | Cortex health | Enrichment | `OK` o `{"status":"OK"}` |
+| 9 | Grafana health | Dashboard | `ok` o `{"database":"ok"}` |
+| 10 | Velociraptor health | DFIR | `OK` |
+| 11 | Decoy API login | Decoy | JSON con `access_token` |
+| 12 | Decoy API endpoint | Decoy | Lista de contribuyentes (puede estar vacía) |
+| 13 | Decoy Portal login | Decoy | HTTP 200 o 302 |
+| 14 | Decoy Portal admin | Decoy | Página "Site administration" |
+| 15 | Cassandra | DB | Versión 4.1.x |
+| 16 | Postgres fiscal | DB | Tabla `contribuyentes` existe |
+
+**Total: 17 verificaciones.**
+
+---
+
+## Cómo correr
+
+```bash
+# Desde la raiz del repo
+bash scripts/verify-services.sh
+
+# Exit codes:
+#   0 = todos pasaron
+#   1 = al menos uno fallo
+```
+
+## Salida esperada
+
+```
+== Pre-flight (containers up) ==
+  [PASS] Containers running (25/25)
+
+== Wazuh Stack ==
+  [PASS] Wazuh Indexer health
+  [PASS] Wazuh Manager agents
+  [PASS] Wazuh Dashboard reachable
+
+== TheHive ==
+  [PASS] TheHive login
+  [PASS] TheHive API (list cases)
+
+== MISP ==
+  [PASS] MISP getVersion
+
+== Shuffle ==
+  [PASS] Shuffle verify
+
+== Cortex ==
+  [PASS] Cortex health
+
+== Grafana ==
+  [PASS] Grafana health
+
+== Velociraptor ==
+  [PASS] Velociraptor health
+
+== Decoy API (FastAPI) ==
+  [PASS] Decoy API login
+  [PASS] Decoy API protected endpoint
+
+== Decoy Portal (Django) ==
+  [PASS] Decoy Portal login
+  [PASS] Decoy Portal admin
+
+== Databases ==
+  [PASS] Cassandra reachable
+  [PASS] Postgres fiscal tables
+
+===================================================================
+  Total: 17 PASS | 0 FAIL / 17
+===================================================================
+  OK - todos los servicios funcionan.
+```
+
+---
+
+## Credenciales usadas por el script
+
+| Servicio | Usuario | Password (default) | Override en .env |
+|----------|---------|-------------------|------------------|
+| Wazuh Indexer | `admin` | `admin` | `WAZUH_INDEXER_PASSWORD` |
+| Wazuh Dashboard | `admin` | (ver logs wazuh.manager) | — |
+| TheHive | `admin@thehive.local` | `secret` | `THEHIVE_USER`/`THEHIVE_PASS` |
+| MISP | `admin@admin.test` | `admin` | `MISP_USER`/`MISP_PASS` |
+| Grafana | `admin` | `Grafana_2024!` | `GRAFANA_PASSWORD` |
+| Decoy API | `admin` | `admin` | `DECOY_USER`/`DECOY_PASS` |
+| Decoy Portal | `admin` | `admin` | `DJANGO_USER`/`DJANGO_PASS` |
+| Postgres fiscal | `fiscal` | `FiscalDB_2024!` | `POSTGRES_PASSWORD` |
+
+El script lee de `.env` si existe. Si no, usa los defaults arriba.
+
+---
+
+## Si un test falla
+
+1. **Identificar el contenedor afectado**:
+   ```bash
+   docker compose ps
+   ```
+
+2. **Ver logs del servicio**:
+   ```bash
+   docker logs <container> --tail 100
+   ```
+
+3. **Casos comunes**:
+
+   | Síntoma | Diagnóstico |
+   |---------|-------------|
+   | TheHive 500 / "Organization not found" | Pre-crear índice `thehive_global` (ver `docs/decisiones-ram-16gb.md`) |
+   | MISP 500 / "table not found" | Cargar schema: `docker exec -i taxfisco-misp-core mysql -u misp misp < /var/www/MISP/INSTALL/MYSQL.sql` |
+   | MISP nginx "cannot load certificate" | Generar certs: `docker exec -u root taxfisco-misp-core openssl req -x509 ...` |
+   | Wazuh Dashboard "ECONNREFUSED 127.0.0.1:9200" | Reaplicar config: `docker cp od.yml taxfisco-wazuh-dashboard:.../opensearch_dashboards.yml` |
+   | Wazuh Indexer 401 | `securityadmin.sh` no se ha corrido desde el último reinicio |
+   | Shuffle 404 | Verificar que `shuffle.frontend` tiene `ports:` en compose |
+   | Cassandra connect refused | `docker logs taxfisco-cassandra` — esperar ~60s al primer arranque |
+
+4. **Re-ejecutar**:
+   ```bash
+   bash scripts/verify-services.sh
+   ```
+
+---
+
+## Workarounds de runtime (no persistentes)
+
+Algunos servicios requieren fixes que se pierden tras `docker compose
+up -d --force-recreate` o un reinicio completo. Documentamos aquí los
+más importantes para que sepas reaplicarlos rápido.
+
+### Wazuh Dashboard config (crítico tras recreate)
+
+La imagen `wazuh/wazuh-dashboard` sobrescribe su config en cada
+container start con `opensearch.hosts: ["https://localhost:9200"]`,
+que NO resuelve dentro del contenedor. El dashboard intenta hablar con
+localhost y muere con `ECONNREFUSED 127.0.0.1:9200`.
+
+**Fix** (3 comandos, ~10s):
+```bash
+cat > /tmp/od.yml <<'EOF'
+server.host: "0.0.0.0"
+server.name: "wazuh-dashboard"
+opensearch.hosts: ["https://10.22.0.11:9200"]
+opensearch.ssl.verificationMode: none
+opensearch.username: "kibanaserver"
+opensearch.password: "kibanaserver"
+opensearch.requestTimeout: 30000
+opensearch.shardTimeout: 30000
+server.ssl.enabled: true
+server.ssl.certificate: "/etc/wazuh-dashboard/certs/dashboard.pem"
+server.ssl.key: "/etc/wazuh-dashboard/certs/dashboard-key.pem"
+EOF
+docker cp /tmp/od.yml taxfisco-wazuh-dashboard:/usr/share/wazuh-dashboard/config/opensearch_dashboards.yml
+docker exec -u root taxfisco-wazuh-dashboard \
+  bash -c "chown wazuh-dashboard:wazuh-dashboard /usr/share/wazuh-dashboard/config/opensearch_dashboards.yml && chmod 660 /usr/share/wazuh-dashboard/config/opensearch_dashboards.yml"
+docker compose restart wazuh.dashboard
+```
+
+Por eso `config/wazuh/dashboard/` está en `.gitignore` — no es
+commiteable de forma reproducible (cada clone debe reaplicarlo).
+
+### MISP SSL certs y DB schema (primer arranque)
+
+La imagen `coolacid/misp-docker` no genera certs SSL ni inicializa
+la DB en runtime. Solo se hace en la primera ejecución (donde
+`/data/` persiste). Si borras el volumen `misp_data`, reaplica:
+
+```bash
+# Certs SSL
+docker exec -u root taxfisco-misp-core bash -c \
+  "openssl req -x509 -newkey rsa:2048 -keyout /etc/nginx/certs/key.pem \
+   -out /etc/nginx/certs/cert.pem -days 365 -nodes -subj '/CN=misp.local' && \
+   chmod 600 /etc/nginx/certs/key.pem && chmod 644 /etc/nginx/certs/cert.pem"
+
+# DB schema
+docker exec taxfisco-misp-core bash -c \
+  "MYSQL_PWD='ChangeMe_MISP_DB_2024!' mysql -u misp misp < /var/www/MISP/INSTALL/MYSQL.sql"
+
+# baseurl
+docker exec -u root taxfisco-misp-core sed -i \
+  "s|'baseurl' => 'https:'|'baseurl' => 'https://localhost:8443'|" \
+  /var/www/MISP/app/Config/config.php
+
+# Reiniciar nginx
+docker exec -u root taxfisco-misp-core nginx -s reload
+```
+
+### Wazuh Indexer security index (tras recrear volumen)
+
+Tras `docker compose down -v` se borra la config de seguridad
+(interna users, roles, etc). Para reinicializar:
+
+```bash
+docker exec -i taxfisco-wazuh-indexer bash -c \
+  "cd /usr/share/wazuh-indexer/plugins/opensearch-security/tools && \
+   JAVA_HOME=/usr/share/wazuh-indexer/jdk PATH=/usr/share/wazuh-indexer/jdk/bin:\$PATH \
+   ./securityadmin.sh -cd /usr/share/wazuh-indexer/opensearch-security/ -icl -nhnv \
+   -cacert /etc/wazuh-indexer/certs/root-ca.pem \
+   -cert /etc/wazuh-indexer/certs/admin.pem \
+   -key /etc/wazuh-indexer/certs/admin-key.pem \
+   -h wazuh.indexer"
+```
+
+### TheHive indices en Wazuh Indexer (primer arranque de TheHive)
+
+TheHive no crea automáticamente los índices `thehive` y `thehive_global`
+en Wazuh. Si reinicias solo TheHive, pre-crea:
+
+```bash
+docker run --rm --network taxfisco-soc curlimages/curl -sk -u admin:admin \
+  -X PUT "http://wazuh-indexer-proxy:9200/thehive" \
+  -H 'Content-Type: application/json' -d '{}'
+
+docker run --rm --network taxfisco-soc curlimages/curl -sk -u admin:admin \
+  -X PUT "http://wazuh-indexer-proxy:9200/thehive_global" \
+  -H 'Content-Type: application/json' -d '{}'
+```
+
+---
+
+## Puertos del lab (post-fix)
+
+| Servicio | Host | Container |
+|----------|------|-----------|
+| Wazuh Dashboard | `https://localhost:1443` | `5601/tcp` (SSL) |
+| TheHive | `http://localhost:9000` | `9000/tcp` |
+| MISP | `https://localhost:8443` | `443/tcp` |
+| Shuffle | `http://localhost:3001` | `80/tcp` (frontend) |
+| Grafana | `http://localhost:3000` | `3000/tcp` |
+| Cortex | `http://localhost:9001` | `9001/tcp` |
+| Velociraptor | `https://localhost:8889` | `8889/tcp` |
+| Decoy API | `http://localhost:8090` | `8000/tcp` |
+| Decoy Portal | `http://localhost:8890` | `8000/tcp` |
+| Cowrie SSH | `localhost:2225` | `2222/tcp` |
+| OpenCanary HTTP | `localhost:8081` | `80/tcp` |
+| Heralding Telnet | `localhost:23` | `23/tcp` |
+
+> El 443 original fue cambiado a 1443 por restricciones de red institucional.
+
+---
+
+## Lo que NO verifica este script
+
+- Tráfico contra honeypots (de propósito — usar `make attacks` o `make S01..S10`)
+- Generación de KPIs (usar `make analysis`)
+- Alertas en cascada (Wazuh → TheHive → Shuffle)
+- Persistencia tras `docker compose restart`
