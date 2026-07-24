@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" width="200" height="60">
+  <defs>
+    <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#0F4C81"/>
+      <stop offset="100%" style="stop-color:#0a3a64"/>
+    </linearGradient>
+  </defs>
+  <!-- Balanza fiscal (escudo estilizado) -->
+  <g transform="translate(8, 8)">
+    <rect x="4" y="2" width="36" height="40" rx="6" fill="url(#g1)"/>
+    <circle cx="22" cy="20" r="9" fill="none" stroke="#D4A437" stroke-width="2"/>
+    <line x1="22" y1="20" x2="22" y2="11" stroke="#D4A437" stroke-width="2"/>
+    <line x1="13" y1="20" x2="31" y2="20" stroke="#D4A437" stroke-width="2"/>
+    <line x1="22" y1="29" x2="22" y2="36" stroke="#D4A437" stroke-width="2"/>
+    <circle cx="22" cy="20" r="1.5" fill="#D4A437"/>
+    <rect x="14" y="34" width="16" height="3" fill="#D4A437"/>
+  </g>
+  <!-- Texto TaxFisco -->
+  <text x="58" y="38" font-family="Inter, system-ui, sans-serif" font-size="26" font-weight="700" fill="#0F4C81" letter-spacing="-0.5">Tax<tspan fill="#D4A437">Fisco</tspan></text>
+</svg>

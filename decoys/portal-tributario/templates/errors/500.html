@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Error interno — TaxFisco{% endblock %}
+
+{% block content %}
+<div class="txf-text-center" style="padding: 4rem 1rem;">
+  <div style="font-size: 5rem; font-weight: 800; color: var(--color-danger); margin-bottom: 0.5rem;">500</div>
+  <h1 style="margin: 0 0 1rem 0;">Error interno del servidor</h1>
+  <p style="color: var(--color-text-muted); margin-bottom: 2rem;">Ocurrió un error inesperado. Nuestro equipo técnico ha sido notificado. Intente nuevamente en unos minutos.</p>
+  <a href="{% url 'public_home' %}" class="txf-btn txf-btn-primary">Volver al inicio</a>
+</div>
+{% endblock %}

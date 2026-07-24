@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block title %}Panel de contribuyente — TaxFisco{% endblock %}
+
+{% block content %}
+<div class="txf-flex txf-flex-between txf-mb-4">
+  <div>
+    <h1 style="margin: 0; font-size: 1.75rem;">Bienvenido, Contribuyente {{ user_nit }}</h1>
+    <p style="margin: 0.25rem 0 0 0; color: var(--color-text-muted);">NIT: <strong>{{ user_nit }}</strong></p>
+  </div>
+  <span class="txf-badge txf-badge-success">Activo</span>
+</div>
+
+<div class="txf-grid txf-grid-3 txf-mb-4">
+  <div class="txf-stat">
+    <span class="txf-stat-label">Declaraciones 2024</span>
+    <span class="txf-stat-value">12</span>
+    <span class="txf-stat-trend">+2 vs. 2023</span>
+  </div>
+  <div class="txf-stat">
+    <span class="txf-stat-label">Facturas emitidas</span>
+    <span class="txf-stat-value">847</span>
+    <span class="txf-stat-trend">+18% mes</span>
+  </div>
+  <div class="txf-stat">
+    <span class="txf-stat-label">Saldo a favor</span>
+    <span class="txf-stat-value" style="color: var(--color-success);">Bs. 3.450</span>
+    <span class="txf-stat-trend">Próximo vencimiento: 28/12</span>
+  </div>
+</div>
+
+<section class="txf-section">
+  <div class="txf-flex txf-flex-between txf-mb-2">
+    <h2 class="txf-section-title" style="margin: 0;">Últimas declaraciones</h2>
+    <a href="{% url 'declaraciones:nueva' %}" class="txf-btn txf-btn-outline txf-btn-sm">Ver todas</a>
+  </div>
+  <table class="txf-table">
+    <thead>
+      <tr>
+        <th>Periodo</th>
+        <th>Tipo</th>
+        <th>Monto</th>
+        <th>Estado</th>
+        <th>Fecha</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for d in ultimas_declaraciones %}
+      <tr>
+        <td>{{ d.periodo }}</td>
+        <td>{{ d.tipo }}</td>
+        <td>{{ d.monto }}</td>
+        <td><span class="txf-badge txf-badge-{{ d.estado_class }}">{{ d.estado }}</span></td>
+        <td>{{ d.fecha }}</td>
+      </tr>
+      {% empty %}
+      <tr><td colspan="5" style="text-align: center; color: var(--color-text-muted); padding: 2rem;">No hay declaraciones registradas.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+
+<section class="txf-section">
+  <div class="txf-flex txf-flex-between txf-mb-2">
+    <h2 class="txf-section-title" style="margin: 0;">Acciones rápidas</h2>
+  </div>
+  <div class="txf-grid txf-grid-3">
+    <a href="{% url 'declaraciones:nueva' %}" class="txf-card txf-card-hover" style="text-decoration: none; color: inherit;">
+      <h3 style="margin: 0 0 0.5rem 0; font-size: 1rem;">Nueva declaración</h3>
+      <p style="margin: 0; color: var(--color-text-muted); font-size: 0.9rem;">Presente su declaración de impuestos en línea.</p>
+    </a>
+    <a href="{% url 'public_facturacion' %}" class="txf-card txf-card-hover" style="text-decoration: none; color: inherit;">
+      <h3 style="margin: 0 0 0.5rem 0; font-size: 1rem;">Gestionar facturas</h3>
+      <p style="margin: 0; color: var(--color-text-muted); font-size: 0.9rem;">Consulte y descargue sus facturas electrónicas.</p>
+    </a>
+    <a href="{% url 'public_consulta_nit' %}" class="txf-card txf-card-hover" style="text-decoration: none; color: inherit;">
+      <h3 style="margin: 0 0 0.5rem 0; font-size: 1rem;">Verificar NIT</h3>
+      <p style="margin: 0; color: var(--color-text-muted); font-size: 0.9rem;">Consulte el estado tributario de un NIT.</p>
+    </a>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Página no encontrada — TaxFisco{% endblock %}
+
+{% block content %}
+<div class="txf-text-center" style="padding: 4rem 1rem;">
+  <div style="font-size: 5rem; font-weight: 800; color: var(--color-primary); margin-bottom: 0.5rem;">404</div>
+  <h1 style="margin: 0 0 1rem 0;">Página no encontrada</h1>
+  <p style="color: var(--color-text-muted); margin-bottom: 2rem;">La URL solicitada no existe o fue movida. Verifique la dirección e intente nuevamente.</p>
+  <a href="{% url 'public_home' %}" class="txf-btn txf-btn-primary">Volver al inicio</a>
+</div>
+{% endblock %}

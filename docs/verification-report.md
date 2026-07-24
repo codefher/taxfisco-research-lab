@@ -90,18 +90,26 @@ bash scripts/verify-services.sh
 
 ---
 
-## Credenciales usadas por el script
+## Credenciales verificadas (estado actual del lab)
 
-| Servicio | Usuario | Password (default) | Override en .env |
-|----------|---------|-------------------|------------------|
-| Wazuh Indexer | `admin` | `admin` | `WAZUH_INDEXER_PASSWORD` |
-| Wazuh Dashboard | `admin` | (ver logs wazuh.manager) | — |
-| TheHive | `admin@thehive.local` | `secret` | `THEHIVE_USER`/`THEHIVE_PASS` |
-| MISP | `admin@admin.test` | `admin` | `MISP_USER`/`MISP_PASS` |
-| Grafana | `admin` | `Grafana_2024!` | `GRAFANA_PASSWORD` |
-| Decoy API | `admin` | `admin` | `DECOY_USER`/`DECOY_PASS` |
-| Decoy Portal | `admin` | `admin` | `DJANGO_USER`/`DJANGO_PASS` |
-| Postgres fiscal | `fiscal` | `FiscalDB_2024!` | `POSTGRES_PASSWORD` |
+> **Importante**: el dashboard valida contra OpenSearch, no contra la API de Wazuh.
+
+| Servicio | Usuario | Password | Override en .env | Notas |
+|----------|---------|----------|------------------|-------|
+| **Wazuh Dashboard** ⭐ | `admin` | `ChangeMe_Grafana_2024!` (ver `.env`) | `WAZUH_DASHBOARD_PASSWORD` (NO existe, se autogenera al primer arranque) | Login contra OpenSearch Indexer, no contra la API |
+| **Wazuh Manager API** | `wazuh` | `wazuh` (default Wazuh 4.10) | — | Solo accesible via `docker exec` (puerto 55000 interno) |
+| **Wazuh Indexer API** | `admin` | `admin` (default Wazuh 4.10) | `WAZUH_INDEXER_PASSWORD` | Backend del dashboard |
+| **TheHive** | `admin@thehive.local` | `secret` (default TheHive 5.5) | `THEHIVE_USER` / `THEHIVE_PASS` | |
+| **MISP** | `admin@admin.test` | `admin` | `MISP_USER` / `MISP_PASS` | Usuario creado manualmente (ver workarounds) |
+| **Grafana** ⭐ | `admin` | `ChangeMe_Grafana_2024!` | `GRAFANA_PASSWORD` | Si falla, ver sección de fix |
+| **Cortex** | (sin auth) | — | — | Setup inicial al primer login |
+| **Shuffle** | (setup inicial) | — | — | Wizard GUI en primer ingreso |
+| **Velociraptor** | (wizard GUI) | — | — | Crear admin en primer acceso |
+| **Decoy API** | (sin auth) | — | — | Endpoints públicos |
+| **Decoy Portal (público)** | (registro libre) | (cualquiera) | — | Login con NIT/email |
+| **Decoy Portal (admin Django)** | `admin` | `admin` | `DJANGO_SUPERUSER_*` (creado via `createsuperuser`) | |
+| **Postgres fiscal** | `fiscal` | `FiscalDB_2024!` | `POSTGRES_PASSWORD` | Solo accesible via `docker exec` |
+| **MISP DB** | `root` | `ChangeMe_MISP_Root_2024!` | `MISP_DB_ROOT_PASSWORD` | Solo accesible via `docker exec` |
 
 El script lee de `.env` si existe. Si no, usa los defaults arriba.
 
@@ -130,6 +138,7 @@ El script lee de `.env` si existe. Si no, usa los defaults arriba.
    | Wazuh Indexer 401 | `securityadmin.sh` no se ha corrido desde el último reinicio |
    | Shuffle 404 | Verificar que `shuffle.frontend` tiene `ports:` en compose |
    | Cassandra connect refused | `docker logs taxfisco-cassandra` — esperar ~60s al primer arranque |
+   | **Grafana login "Invalid username or password"** | La DB tiene un password cacheado que no coincide con `GF_SECURITY_ADMIN_PASSWORD`. Reset: `docker compose stop grafana && docker run --rm -v taxfisco-research-lab-lite_grafana_data:/data alpine rm -f /data/grafana.db /data/grafana.db-journal && docker compose up -d --force-recreate --no-deps grafana`. Los dashboards custom se reaplican automáticamente via provisioning. |
 
 4. **Re-ejecutar**:
    ```bash

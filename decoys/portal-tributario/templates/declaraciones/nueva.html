@@ -1,66 +1,55 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>TaxFisco Research Lab - DECOY</title>
-    <style>
-        body { font-family: 'Courier New', monospace; margin: 40px; background: #f4f4f4; }
-        .header { background: #2c3e50; color: white; padding: 20px; border-radius: 5px; }
-        .warning { background: #e74c3c; color: white; padding: 15px; margin: 20px 0; border-radius: 5px; }
-        .form-section { background: white; padding: 20px; border-radius: 5px; margin: 20px 0; }
-        input, textarea, select { padding: 8px; margin: 5px 0; width: 100%; box-sizing: border-box; }
-        button { padding: 10px 20px; background: #2c3e50; color: white; border: none; cursor: pointer; }
-        .badge { display: inline-block; background: #c0392b; color: white; padding: 3px 8px; border-radius: 3px; font-size: 0.8em; }
-    </style>
-</head>
-<body>
-    <div class="header">
-        <h1>TaxFisco Research Lab <span class="badge">DECOY</span></h1>
-        <p>Sistema de Declaración Jurada - Portal de Contribuyentes</p>
+{% extends "base.html" %}
+{% block title %}Nueva Declaración Jurada — TaxFisco{% endblock %}
+
+{% block content %}
+<div class="txf-mb-4">
+  <h1 style="margin: 0; font-size: 1.75rem;">Nueva Declaración Jurada</h1>
+  <p style="margin: 0.5rem 0 0 0; color: var(--color-text-muted);">Complete el formulario para presentar su declaración. Recuerde que este es un portal de investigación.</p>
+</div>
+
+<div class="txf-card txf-mb-4">
+  <h2 style="margin: 0 0 1rem 0; font-size: 1.1rem;">Datos de la declaración</h2>
+  <form method="POST">
+    {% csrf_token %}
+    <div class="txf-form-group">
+      <label class="txf-label" for="nit">NIT del Contribuyente</label>
+      <input type="text" id="nit" name="nit" class="txf-input" required pattern="\d{7,12}">
     </div>
-
-    <div class="warning">
-        <strong>ADVERTENCIA ACADÉMICA:</strong> Este portal es un honeypot para investigación de tesis.
-        Toda interacción es registrada y analizada con fines educativos.
+    <div class="txf-grid-cols-2">
+      <div class="txf-form-group">
+        <label class="txf-label" for="periodo">Período (YYYY-MM)</label>
+        <input type="text" id="periodo" name="periodo" class="txf-input" required pattern="\d{4}-\d{2}" placeholder="2024-11">
+      </div>
+      <div class="txf-form-group">
+        <label class="txf-label" for="tipo">Tipo de Declaración</label>
+        <select id="tipo" name="tipo" class="txf-select">
+          <option>IVA</option>
+          <option>IT</option>
+          <option>IUE</option>
+          <option>RC-IVA</option>
+        </select>
+      </div>
     </div>
-
-    <div class="form-section">
-        <h2>Nueva Declaración Jurada</h2>
-        <form method="POST">
-            {% csrf_token %}
-            <label>NIT del Contribuyente:</label>
-            <input type="text" name="nit" required>
-
-            <label>Período (YYYY-MM):</label>
-            <input type="text" name="periodo" pattern="\d{4}-\d{2}" required>
-
-            <label>Tipo de Declaración:</label>
-            <select name="tipo">
-                <option>IVA</option>
-                <option>IT</option>
-                <option>IUE</option>
-                <option>RC-IVA</option>
-            </select>
-
-            <label>Descripción (campo vulnerable a XSS stored - intencional):</label>
-            <textarea name="descripcion" rows="4"></textarea>
-
-            <button type="submit">Enviar Declaración</button>
-        </form>
+    <div class="txf-form-group">
+      <label class="txf-label" for="descripcion">Descripción (campo honeypot — todas las entradas se registran)</label>
+      <textarea id="descripcion" name="descripcion" class="txf-textarea" rows="4" placeholder="Detalle de la declaración..."></textarea>
     </div>
+    <button type="submit" class="txf-btn txf-btn-primary">Enviar Declaración</button>
+  </form>
+</div>
 
-    <div class="form-section">
-        <h2>Endpoints de Investigación (vulnerables intencionalmente)</h2>
-        <ul>
-            <li><a href="/vuln/">/vuln/</a> - Índice de vulnerabilidades</li>
-            <li><a href="/vuln/sqli-login/">/vuln/sqli-login/</a> - T1190 SQL Injection</li>
-            <li><a href="/vuln/xss/?name=Test">/vuln/xss/?name=Test</a> - T1059.007 XSS</li>
-            <li><a href="/vuln/lfi/?file=/etc/passwd">/vuln/lfi/</a> - T1083 LFI</li>
-            <li><a href="/vuln/priv-esc/">/vuln/priv-esc/</a> - T1078 Privilege Escalation</li>
-            <li><a href="/vuln/data-export/">/vuln/data-export/</a> - T1530 Data Export</li>
-            <li><a href="/vuln/cmd-injection/?host=8.8.8.8">/vuln/cmd-injection/</a> - T1059 Command Injection</li>
-            <li><a href="/contribuyentes/buscar/?nit=1234567">/contribuyentes/buscar/</a> - T1190 SQLi (buscar)</li>
-        </ul>
-    </div>
-</body>
-</html>
+<div class="txf-card">
+  <h2 style="margin: 0 0 0.75rem 0; font-size: 1.1rem;">Endpoints de Investigación (vulnerables intencionalmente)</h2>
+  <p style="margin: 0 0 0.75rem 0; color: var(--color-text-muted); font-size: 0.9rem;">Estos endpoints exponen vulnerabilidades controladas con fines de investigación (mapping ATT&amp;CK). Úselos solo en entornos autorizados.</p>
+  <ul style="margin: 0; padding-left: 1.25rem; line-height: 1.8;">
+    <li><a href="/vuln/" style="color: var(--color-primary);">/vuln/</a> — Índice de vulnerabilidades</li>
+    <li><a href="/vuln/sqli-login/" style="color: var(--color-primary);">/vuln/sqli-login/</a> — T1190 SQL Injection</li>
+    <li><a href="/vuln/xss/?name=Test" style="color: var(--color-primary);">/vuln/xss/</a> — T1059.007 XSS</li>
+    <li><a href="/vuln/lfi/?file=/etc/passwd" style="color: var(--color-primary);">/vuln/lfi/</a> — T1083 LFI</li>
+    <li><a href="/vuln/priv-esc/" style="color: var(--color-primary);">/vuln/priv-esc/</a> — T1078 Privilege Escalation</li>
+    <li><a href="/vuln/data-export/" style="color: var(--color-primary);">/vuln/data-export/</a> — T1530 Data Export</li>
+    <li><a href="/vuln/cmd-injection/?host=8.8.8.8" style="color: var(--color-primary);">/vuln/cmd-injection/</a> — T1059 Command Injection</li>
+    <li><a href="/contribuyentes/buscar/?nit=1234567" style="color: var(--color-primary);">/contribuyentes/buscar/</a> — T1190 SQLi (búsqueda)</li>
+  </ul>
+</div>
+{% endblock %}

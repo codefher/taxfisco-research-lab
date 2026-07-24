@@ -25,6 +25,39 @@ Plataforma integrada de **Detección, Engaño, Monitoreo y Respuesta a Incidente
 - **Optimizado para 16 GB de RAM** + 8 GB de swap
 - **100% open source**, reproducible en menos de 30 minutos
 
+## 📸 Visual Tour
+
+Los decoys del lab están diseñados con look moderno **fintech/govtech**
+para que las capturas de pantalla y la documentación se vean profesionales.
+A continuación, las principales pantallas:
+
+### Portal de contribuyente (Django)
+
+| Landing | Login | Consulta de NIT |
+|---|---|---|
+| ![Home](./docs/screenshots/home.png) | ![Login](./docs/screenshots/login.png) | ![Consulta NIT](./docs/screenshots/consulta-nit.png) |
+
+| Declaración Jurada | Dashboard (requiere login) |
+|---|---|
+| ![Declaraciones](./docs/screenshots/declaraciones.png) | ![Dashboard](./docs/screenshots/dashboard.png) |
+
+### API REST (FastAPI con Swagger UI)
+
+![API Docs](./docs/screenshots/api-docs.png)
+
+Swagger UI con tema TaxFisco (paleta azul corporativo + dorado acento),
+19 endpoints documentados, 7 grupos (contribuyentes, declaraciones, facturas,
+auth, admin, reportes, health) y branding "TaxFisco" en el header.
+
+### Características del branding
+
+- **Paleta**: azul `#0F4C81` (corporativo) + dorado `#D4A437` (acento)
+- **Tipografía**: Inter via Google Fonts
+- **Logo**: SVG inline (balanza fiscal estilizada)
+- **Framework CSS**: Tailwind v3 via CDN
+- **Idioma**: Español (es-bo)
+- **Templates**: 8 páginas Django (base, home, login, register, dashboard, consulta-ni, facturacion, errores)
+
 ## 🏗️ Stack
 
 | Capa | Tecnología |

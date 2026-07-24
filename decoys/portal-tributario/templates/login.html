@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}Iniciar sesión — TaxFisco{% endblock %}
+
+{% block content %}
+<div class="txf-auth-wrapper">
+  <div class="txf-auth-card">
+    <div class="txf-auth-logo">
+      <img src="/static/img/logo.svg" alt="TaxFisco" style="height: 48px;">
+    </div>
+    <h1 class="txf-auth-title">Iniciar sesión</h1>
+    <p class="txf-auth-subtitle">Acceda a su panel de contribuyente</p>
+
+    <form method="post" novalidate>
+      {% csrf_token %}
+      {% if form.non_field_errors %}
+        <div class="txf-alert txf-alert-error txf-mb-2">
+          {% for error in form.non_field_errors %}<span>{{ error }}</span>{% endfor %}
+        </div>
+      {% endif %}
+
+      <div class="txf-form-group">
+        <label class="txf-label" for="{{ form.username.id_for_label }}">NIT o correo electrónico</label>
+        {{ form.username }}
+        {% if form.username.errors %}<div class="txf-error">{{ form.username.errors.0 }}</div>{% endif %}
+      </div>
+
+      <div class="txf-form-group">
+        <label class="txf-label" for="{{ form.password.id_for_label }}">Contraseña</label>
+        {{ form.password }}
+        {% if form.password.errors %}<div class="txf-error">{{ form.password.errors.0 }}</div>{% endif %}
+      </div>
+
+      <div class="txf-flex txf-flex-between txf-mb-2" style="font-size: 0.875rem;">
+        <label style="display: flex; align-items: center; gap: 0.5rem;">
+          <input type="checkbox" name="remember" style="width: auto;">
+          <span>Recordarme</span>
+        </label>
+        <a href="#" style="color: var(--color-primary); text-decoration: none;">¿Olvidó su contraseña?</a>
+      </div>
+
+      <button type="submit" class="txf-btn txf-btn-primary txf-btn-block">Iniciar sesión</button>
+    </form>
+
+    <div class="txf-divider">o</div>
+
+    <a href="{% url 'public_register' %}" class="txf-btn txf-btn-outline txf-btn-block">Crear cuenta nueva</a>
+
+    <div class="txf-auth-footer">
+      ¿Necesita ayuda? <a href="#">Contacte a la mesa de ayuda</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

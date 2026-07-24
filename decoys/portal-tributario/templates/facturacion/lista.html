@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Facturación — TaxFisco{% endblock %}
+
+{% block content %}
+<div class="txf-flex txf-flex-between txf-mb-4">
+  <div>
+    <h1 style="margin: 0; font-size: 1.75rem;">Facturación</h1>
+    <p style="margin: 0.5rem 0 0 0; color: var(--color-text-muted);">Consulte y gestione sus facturas electrónicas.</p>
+  </div>
+  <a href="#" class="txf-btn txf-btn-primary">Nueva factura</a>
+</div>
+
+{% if not user.is_authenticated %}
+<div class="txf-alert txf-alert-info txf-mb-3">
+  <span><a href="{% url 'public_login' %}" style="color: var(--color-primary); font-weight: 600;">Inicie sesión</a> para ver sus facturas personales. A continuación se muestran ejemplos públicos.</span>
+</div>
+{% endif %}
+
+<table class="txf-table">
+  <thead>
+    <tr>
+      <th>CUF</th>
+      <th>Fecha</th>
+      <th>Receptor</th>
+      <th>Monto</th>
+      <th>Estado</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for f in facturas %}
+    <tr>
+      <td><code style="font-family: monospace; font-size: 0.85rem;">{{ f.cuf }}</code></td>
+      <td>{{ f.fecha }}</td>
+      <td>{{ f.receptor }}</td>
+      <td>{{ f.monto }}</td>
+      <td><span class="txf-badge txf-badge-{{ f.estado_class }}">{{ f.estado }}</span></td>
+      <td><a href="#" style="color: var(--color-primary); text-decoration: none; font-size: 0.875rem;">Ver detalle</a></td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="6" style="text-align: center; color: var(--color-text-muted); padding: 2rem;">No hay facturas para mostrar.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

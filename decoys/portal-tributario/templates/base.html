@@ -1,0 +1,96 @@
+{% load static %}<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}TaxFisco — Portal de Servicios Tributarios{% endblock %}</title>
+  <link rel="icon" type="image/svg+xml" href="{% static 'img/favicon.svg' %}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="{% static 'css/taxfisco.css' %}">
+  {% block extra_head %}{% endblock %}
+</head>
+<body>
+  <header class="txf-navbar">
+    <div class="txf-navbar-inner">
+      <a href="{% url 'public_home' %}" class="txf-logo">
+        <img src="{% static 'img/logo.svg' %}" alt="TaxFisco">
+      </a>
+      <nav>
+        <ul class="txf-nav-links">
+          <li><a href="{% url 'public_home' %}">Inicio</a></li>
+          <li><a href="{% url 'public_consulta_nit' %}">Consultar NIT</a></li>
+          <li><a href="{% url 'declaraciones:nueva' %}">Declaraciones</a></li>
+          <li><a href="{% url 'public_facturacion' %}">Facturación</a></li>
+        </ul>
+      </nav>
+      <div class="txf-nav-user">
+        {% if user.is_authenticated %}
+          <a href="{% url 'public_dashboard' %}">{{ user.username }}</a>
+          <a href="{% url 'public_logout' %}" class="txf-btn txf-btn-outline txf-btn-sm">Salir</a>
+        {% else %}
+          <a href="{% url 'public_login' %}" class="txf-btn txf-btn-outline txf-btn-sm">Iniciar sesión</a>
+        {% endif %}
+      </div>
+    </div>
+  </header>
+
+  {% if messages %}
+  <div class="txf-messages">
+    {% for message in messages %}
+      <div class="txf-alert txf-alert-{{ message.tags|default:'info' }}">
+        <span>{{ message }}</span>
+      </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <main>
+    {% if show_decoy_banner %}
+    <div class="txf-decoy-banner">
+      <span class="txf-badge txf-badge-decoy">Decoy</span>
+      <span><strong>Aviso de investigación:</strong> Este portal es un sistema trampa (honeypot) del TaxFisco Research Lab. Toda interacción es monitoreada y registrada con fines académicos.</span>
+    </div>
+    {% endif %}
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="txf-footer">
+    <div class="txf-footer-inner">
+      <div>
+        <h4>TaxFisco Research Lab</h4>
+        <p style="margin: 0; line-height: 1.5;">Plataforma experimental de detección, engaño y respuesta a incidentes en servicios fiscales.</p>
+      </div>
+      <div>
+        <h4>Servicios</h4>
+        <a href="{% url 'public_consulta_nit' %}">Consulta de NIT</a>
+        <a href="{% url 'declaraciones:nueva' %}">Declaración Jurada</a>
+        <a href="{% url 'public_facturacion' %}">Facturación</a>
+        <a href="/vuln/">Estado de cuenta</a>
+      </div>
+      <div>
+        <h4>Institucional</h4>
+        <a href="#">Marco normativo</a>
+        <a href="#">Seguridad de la información</a>
+        <a href="#">Política de privacidad</a>
+        <a href="#">Términos de uso</a>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <a href="#">Mesa de ayuda</a>
+        <a href="#">Atención al contribuyente</a>
+        <a href="#">Reportar vulnerabilidad</a>
+        <a href="#">Oficinas</a>
+      </div>
+    </div>
+    <div class="txf-footer-bottom">
+      <span>© 2024 TaxFisco — Todos los derechos reservados</span>
+      <span>Versión 2.4.1 · {{ request.get_host }}</span>
+    </div>
+  </footer>
+
+  {% block extra_js %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block title %}Crear cuenta — TaxFisco{% endblock %}
+
+{% block content %}
+<div class="txf-auth-wrapper">
+  <div class="txf-auth-card">
+    <div class="txf-auth-logo">
+      <img src="/static/img/logo.svg" alt="TaxFisco" style="height: 48px;">
+    </div>
+    <h1 class="txf-auth-title">Crear cuenta de contribuyente</h1>
+    <p class="txf-auth-subtitle">Regístrese para acceder a los servicios en línea</p>
+
+    <form method="post" novalidate>
+      {% csrf_token %}
+      {% if form.non_field_errors %}
+        <div class="txf-alert txf-alert-error txf-mb-2">
+          {% for error in form.non_field_errors %}<span>{{ error }}</span>{% endfor %}
+        </div>
+      {% endif %}
+
+      <div class="txf-form-group">
+        <label class="txf-label" for="{{ form.nit.id_for_label }}">NIT</label>
+        {{ form.nit }}
+        <small style="color: var(--color-text-muted); font-size: 0.8rem;">Número de Identificación Tributaria (7-12 dígitos)</small>
+        {% if form.nit.errors %}<div class="txf-error">{{ form.nit.errors.0 }}</div>{% endif %}
+      </div>
+
+      <div class="txf-form-group">
+        <label class="txf-label" for="{{ form.razon_social.id_for_label }}">Razón Social</label>
+        {{ form.razon_social }}
+        {% if form.razon_social.errors %}<div class="txf-error">{{ form.razon_social.errors.0 }}</div>{% endif %}
+      </div>
+
+      <div class="txf-form-group">
+        <label class="txf-label" for="{{ form.email.id_for_label }}">Correo electrónico</label>
+        {{ form.email }}
+        {% if form.email.errors %}<div class="txf-error">{{ form.email.errors.0 }}</div>{% endif %}
+      </div>
+
+      <div class="txf-form-group">
+        <label class="txf-label" for="{{ form.password1.id_for_label }}">Contraseña</label>
+        {{ form.password1 }}
+        <small style="color: var(--color-text-muted); font-size: 0.8rem;">Mínimo 10 caracteres, incluir mayúsculas y números</small>
+        {% if form.password1.errors %}<div class="txf-error">{{ form.password1.errors.0 }}</div>{% endif %}
+      </div>
+
+      <div class="txf-form-group">
+        <label class="txf-label" for="{{ form.password2.id_for_label }}">Confirmar contraseña</label>
+        {{ form.password2 }}
+        {% if form.password2.errors %}<div class="txf-error">{{ form.password2.errors.0 }}</div>{% endif %}
+      </div>
+
+      <label style="display: flex; gap: 0.5rem; align-items: flex-start; margin: 1.25rem 0; font-size: 0.85rem;">
+        <input type="checkbox" name="terms" required style="width: auto; margin-top: 0.2rem;">
+        <span>Acepto los <a href="#" style="color: var(--color-primary);">Términos de Uso</a> y la <a href="#" style="color: var(--color-primary);">Política de Privacidad</a> de TaxFisco.</span>
+      </label>
+
+      <button type="submit" class="txf-btn txf-btn-primary txf-btn-block">Crear cuenta</button>
+    </form>
+
+    <div class="txf-auth-footer">
+      ¿Ya tiene cuenta? <a href="{% url 'public_login' %}">Iniciar sesión</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

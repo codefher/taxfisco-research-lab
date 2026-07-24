@@ -32,6 +32,7 @@ from typing import Optional, List
 from fastapi import FastAPI, Request, Response, HTTPException, Depends, Header
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 import uvicorn
 
@@ -70,13 +71,179 @@ from endpoints import (  # noqa: E402
 # App initialization
 # ============================================================================
 
+DESCRIPTION = """
+## API de Servicios Tributarios — TaxFisco Research Lab
+
+Esta es una **API honeypot (decoy)** que simula los servicios electrónicos
+de un ente tributario genérico. Su propósito es **únicamente académico**,
+en el marco de la tesis de maestría sobre gestión de incidentes en
+servicios fiscales.
+
+### 🎯 Características
+
+- **19 endpoints** que simulan operaciones tributarias reales
+- **Instrumentación MITRE ATT&CK** automática en cada request
+- **Detección de payloads sospechosos** (SQLi, XSS, command injection)
+- **Logging de ataques** a `attacks.json` para análisis posterior
+- **Tokens de engaño** plantados para identificar atacantes reales
+
+### ⚠️ Aviso de honeypot
+
+Toda interacción con esta API es **monitoreada y registrada**. Los
+endpoints `/api/v1/admin/*` contienen vulnerabilidades controladas
+(inyectadas a propósito) para capturar TTPs reales de atacantes.
+
+### 🔍 Endpoints principales
+
+| Recurso | Método | Descripción |
+|---|---|---|
+| `/api/v1/contribuyentes/{nit}` | GET | Consulta de contribuyente por NIT |
+| `/api/v1/declaraciones` | POST | Declaración jurada de impuestos |
+| `/api/v1/facturas/{cuf}` | GET | Consulta de factura electrónica |
+| `/api/v1/auth/login` | POST | Autenticación (honeypot) |
+| `/api/v1/admin/users` | GET | Lista de usuarios (vulnerable) |
+| `/api/v1/reportes` | GET | Reportes financieros |
+
+### 📚 Documentación
+
+- **Swagger UI**: `/docs` (esta página)
+- **OpenAPI JSON**: `/openapi.json`
+- **Repositorio**: TaxFisco Research Lab
+"""
+
+TAX_FISCO_LOGO_SVG = """
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" width="200" height="60" style="margin-bottom: 8px;">
+  <defs>
+    <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#0F4C81"/>
+      <stop offset="100%" style="stop-color:#0a3a64"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(8, 8)">
+    <rect x="4" y="2" width="36" height="40" rx="6" fill="url(#g1)"/>
+    <circle cx="22" cy="20" r="9" fill="none" stroke="#D4A437" stroke-width="2"/>
+    <line x1="22" y1="20" x2="22" y2="11" stroke="#D4A437" stroke-width="2"/>
+    <line x1="13" y1="20" x2="31" y2="20" stroke="#D4A437" stroke-width="2"/>
+    <line x1="22" y1="29" x2="22" y2="36" stroke="#D4A437" stroke-width="2"/>
+    <circle cx="22" cy="20" r="1.5" fill="#D4A437"/>
+    <rect x="14" y="34" width="16" height="3" fill="#D4A437"/>
+  </g>
+  <text x="58" y="38" font-family="Inter, system-ui, sans-serif" font-size="26" font-weight="700" fill="#0F4C81" letter-spacing="-0.5">Tax<tspan fill="#D4A437">Fisco</tspan></text>
+</svg>
+"""
+
+CUSTOM_SWAGGER_CSS = f"""
+<style>
+  .swagger-ui .topbar {{ display: none; }}
+  .swagger-ui .info {{ background: #f8fafc; padding: 1.5rem; border-radius: 0.5rem; }}
+  .swagger-ui .info .title {{ color: #0F4C81 !important; font-size: 2rem; }}
+  .swagger-ui .scheme-container {{ background: #0F4C81; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0; }}
+  .swagger-ui .opblock-tag {{ background: #0F4C81 !important; color: white !important; border-radius: 0.25rem; padding: 0.5rem 1rem; font-size: 1.1rem; }}
+  .swagger-ui .opblock {{ border-radius: 0.5rem; box-shadow: 0 1px 3px rgba(15, 76, 129, 0.1); margin-bottom: 1rem; }}
+  .swagger-ui .opblock.opblock-get {{ border-color: #0F4C81; }}
+  .swagger-ui .opblock.opblock-post {{ border-color: #D4A437; }}
+  .swagger-ui .opblock.opblock-delete {{ border-color: #ef4444; }}
+  .swagger-ui .btn.execute {{ background: #0F4C81 !important; color: white !important; border-color: #0F4C81 !important; }}
+  .swagger-ui .btn.execute:hover {{ background: #0a3a64 !important; }}
+  .swagger-ui table thead tr th {{ background: #f1f5f9 !important; color: #0f172a !important; }}
+  .swagger-ui .markdown p, .swagger-ui .markdown li {{ color: #0f172a; line-height: 1.6; }}
+  .swagger-ui .markdown table {{ border-collapse: collapse; margin: 1rem 0; }}
+  .swagger-ui .markdown table th, .swagger-ui .markdown table td {{ border: 1px solid #e2e8f0; padding: 0.5rem 0.75rem; text-align: left; }}
+  .swagger-ui .markdown table th {{ background: #f1f5f9; font-weight: 600; }}
+  .swagger-ui .info__logo {{
+    display: block !important;
+    margin: 0 auto 1rem auto !important;
+    text-align: center !important;
+  }}
+  .txf-logo-header {{
+    text-align: center;
+    padding: 1.5rem 0 0 0;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    border-bottom: 3px solid #D4A437;
+  }}
+</style>
+"""
+
+CUSTOM_SWAGGER_HTML = f"""
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="icon" type="image/svg+xml" href="/static/img/favicon.svg">
+  {CUSTOM_SWAGGER_CSS}
+</head>
+<body>
+  <div class="txf-logo-header">
+    {TAX_FISCO_LOGO_SVG}
+  </div>
+  <div id="swagger-ui"></div>
+</body>
+</html>
+"""
+
 app = FastAPI(
-    title="TaxFisco Decoy API",
-    description="Decoy API for TaxFisco Research Lab - Honeypot Thesis",
-    version="1.0.0",
+    title="TaxFisco — API de Servicios Tributarios",
+    description=DESCRIPTION,
+    version="2.0.0",
     docs_url="/docs",
     redoc_url=None,
+    swagger_ui_parameters={
+        "customSiteTitle": "TaxFisco API — Documentación",
+        "defaultModelsExpandDepth": -1,
+        "docExpansion": "list",
+        "filter": True,
+        "syntaxHighlight.theme": "nord",
+        "tryItOutEnabled": True,
+        "persistAuthorization": True,
+    },
+    contact={
+        "name": "TaxFisco Research Lab",
+        "url": "https://github.com/codefher/taxfisco-research-lab",
+    },
+    license_info={
+        "name": "MIT (Research use only)",
+        "url": "https://opensource.org/licenses/MIT",
+    },
+    openapi_tags=[
+        {
+            "name": "contribuyentes",
+            "description": "Operaciones de consulta y modificación de contribuyentes",
+        },
+        {
+            "name": "declaraciones",
+            "description": "Declaraciones juradas de impuestos",
+        },
+        {
+            "name": "facturas",
+            "description": "Facturación electrónica",
+        },
+        {
+            "name": "auth",
+            "description": "Autenticación y gestión de sesiones",
+        },
+        {
+            "name": "admin",
+            "description": "⚠️ Endpoints administrativos (honeypot — vulnerables)",
+        },
+        {
+            "name": "reportes",
+            "description": "Reportes financieros y fiscales",
+        },
+        {
+            "name": "health",
+            "description": "Healthchecks y metadata del servicio",
+        },
+    ],
 )
+
+# Inyectar HTML/CSS custom en Swagger UI
+app.swagger_ui_html = CUSTOM_SWAGGER_HTML
+
+# Servir archivos estáticos (logo, favicon) para el Swagger UI
+import os
+STATIC_DIR = Path(__file__).parent / "static"
+STATIC_DIR.mkdir(parents=True, exist_ok=True)
+if STATIC_DIR.exists():
+    app.mount("/static", StaticFiles(directory=str(STATIC_DIR)), name="static")
 
 app.add_middleware(
     CORSMiddleware,

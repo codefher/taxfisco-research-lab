@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block title %}Consulta de NIT — TaxFisco{% endblock %}
+
+{% block content %}
+<div class="txf-mb-4">
+  <h1 style="margin: 0; font-size: 1.75rem;">Consulta de Contribuyente</h1>
+  <p style="margin: 0.5rem 0 0 0; color: var(--color-text-muted);">Verifique la situación fiscal de cualquier contribuyente ingresando el NIT.</p>
+</div>
+
+<div class="txf-card txf-mb-4">
+  <form method="get" class="txf-flex" style="gap: 0.75rem; align-items: flex-end;">
+    <div style="flex: 1;">
+      <label class="txf-label" for="nit">Número de Identificación Tributaria (NIT)</label>
+      <input type="text" id="nit" name="nit" class="txf-input" placeholder="Ej: 12345678" value="{{ nit_query }}" minlength="7" maxlength="12" pattern="[0-9]+" autofocus>
+    </div>
+    <button type="submit" class="txf-btn txf-btn-primary">Consultar</button>
+  </form>
+</div>
+
+{% if error %}
+<div class="txf-alert txf-alert-error txf-mb-3">
+  <span><strong>Error:</strong> {{ error }}</span>
+</div>
+{% endif %}
+
+{% if resultado %}
+<div class="txf-card txf-mb-3">
+  <div class="txf-flex txf-flex-between txf-mb-3">
+    <h2 style="margin: 0; font-size: 1.25rem;">Datos del contribuyente</h2>
+    <span class="txf-badge txf-badge-{{ resultado.estado_class }}">{{ resultado.estado }}</span>
+  </div>
+
+  <div class="txf-grid txf-grid-2">
+    <div>
+      <div class="txf-mb-3">
+        <div class="txf-text-muted" style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.025em;">NIT</div>
+        <div style="font-weight: 600; font-size: 1.1rem;">{{ resultado.nit }}</div>
+      </div>
+      <div class="txf-mb-3">
+        <div class="txf-text-muted" style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.025em;">Razón Social</div>
+        <div style="font-weight: 600;">{{ resultado.razon_social }}</div>
+      </div>
+      <div class="txf-mb-3">
+        <div class="txf-text-muted" style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.025em;">Tipo</div>
+        <div>{{ resultado.tipo }}</div>
+      </div>
+      <div>
+        <div class="txf-text-muted" style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.025em;">Actividad económica</div>
+        <div>{{ resultado.actividad }}</div>
+      </div>
+    </div>
+    <div>
+      <div class="txf-mb-3">
+        <div class="txf-text-muted" style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.025em;">Domicilio fiscal</div>
+        <div>{{ resultado.domicilio }}</div>
+      </div>
+      <div class="txf-mb-3">
+        <div class="txf-text-muted" style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.025em;">Fecha de inscripción</div>
+        <div>{{ resultado.fecha_inscripcion }}</div>
+      </div>
+      <div>
+        <div class="txf-text-muted" style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.025em;">Última actualización</div>
+        <div>{{ resultado.ultima_actualizacion }}</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="txf-alert txf-alert-info">
+  <span><strong>¿Desea ver el detalle completo de declaraciones y facturas?</strong> Inicie sesión con su NIT y contraseña para acceder a su panel de contribuyente.</span>
+</div>
+{% endif %}
+{% endblock %}
