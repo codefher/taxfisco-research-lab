@@ -152,6 +152,25 @@ make analysis
 | [docs/limitaciones.md](docs/limitaciones.md) | Limitaciones reconocidas |
 | [docs/quick-start.md](docs/quick-start.md) | Inicio rápido |
 
+## 🔐 Credenciales y setup post-instalación
+
+Después de `make lite-up`, ejecuta **una sola vez**:
+
+```bash
+bash scripts/setup-credentials.sh
+```
+
+Esto crea automáticamente:
+- Superuser Django (`admin` / `admin`) para el Decoy Portal
+- Usuario MISP (`admin@admin.test` / `admin`) + API key
+- Verifica/reset de Grafana
+- Pre-crea índices `thehive` y `thehive_global` en Wazuh Indexer
+- Reaplica config del Wazuh Dashboard
+
+El script es **idempotente** (se puede correr varias veces sin fallar). Tarda ~30 segundos.
+
+**Tabla completa de credenciales** (Wazuh, TheHive, MISP, Grafana, decoys, etc.) en [`docs/credentials.md`](./docs/credentials.md).
+
 ## 🔧 Comandos útiles (Makefile)
 
 ```bash
