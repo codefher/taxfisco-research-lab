@@ -264,6 +264,38 @@ docker run --rm --network taxfisco-soc curlimages/curl -sk -u admin:admin \
 
 ---
 
+## ⚠️ Limitación conocida: TheHive 5.5 Platinum Trial
+
+Al primer arranque, TheHive 5.5 activa una **licencia Platinum Enterprise de 15 días
+de trial**. Esto produce un banner rojo arriba de la UI diciendo *"Esta instancia
+utiliza una Platinum Licencia para Trial de propósito, y expirará en 15 días"*.
+
+**No es un problema real**:
+- ✅ Core functionality (case management, APIs, Cortex, observables) sigue 100%
+- ❌ Solo banner visual + funciones enterprise (SSO, multi-tenancy avanzado)
+
+**Soluciones** (de la más a la menos recomendada):
+
+1. **No hacer nada** (más simple). 15 días desde el primer `make lite-up` es suficiente
+   para defender la tesis. El lab se levanta en <30 min.
+
+2. **Solicitar licencia académica gratuita** a StrangeBee (1 semana aprobación):
+   https://github.com/StrangeBee-Corp/talk-to-us/issues/new
+
+3. **Downgradear a TheHive 4.1.4** (última community final, sin trial). Requiere:
+   - Cambiar `image: strangebee/thehive:5.5` → `thehiveproject/thehive:4.1.4-2`
+   - Las APIs son compatibles (cambia `/api/case/` por `/api/case`)
+   - `cassandra.thehive` y `wazuh-indexer-proxy` siguen igual
+
+4. **Suprimir el banner via userscript** (cosmético, no recomendado). En el browser:
+   ```js
+   document.querySelectorAll('div[role="alert"]').forEach(e => e.style.display='none');
+   ```
+
+**Verificado en este lab**: 15 días desde `2026-07-24` (primer arranque).
+
+---
+
 ## Lo que NO verifica este script
 
 - Tráfico contra honeypots (de propósito — usar `make attacks` o `make S01..S10`)

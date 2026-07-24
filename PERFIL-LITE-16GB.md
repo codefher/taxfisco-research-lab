@@ -212,6 +212,28 @@ Si necesitas liberar RAM en orden de criticidad (menos crítico primero):
 | 12 | Wazuh Manager | 1536 | **NO, es el SIEM central** |
 | 13 (más crítico) | Wazuh Indexer | 1024 | **NO, sin él no funciona nada** |
 
+## ⚠️ Limitación conocida: TheHive 5.5 Platinum Trial
+
+TheHive 5.5 viene con una **licencia Platinum Enterprise de 15 días de trial** que se
+activa al primer arranque del contenedor. Esto produce un banner rojo arriba
+de la UI que dice *"Esta instancia utiliza una Platinum Licencia para Trial de
+propósito, y expirará en 15 días"`.
+
+**Impacto**:
+- ❌ Solo banner UI (no afecta backend)
+- ✅ Case management, APIs REST, Cortex integration, observables: **siguen funcionando al 100%**
+- ❌ Funcionalidades enterprise (SSO, multi-tenancy avanzado, reporting avanzado) requieren licencia
+
+**Para tu defensa de tesis**:
+- 15 días desde el primer `make lite-up` es suficiente para levantar el lab y demostrar
+- Si necesitas más tiempo: solicitar licencia académica gratuita a StrangeBee (https://github.com/StrangeBee-Corp/talk-to-us/issues/new) — 1 semana de aprobación
+- Alternativa: downgradear a TheHive 4.1.4 (community final), pero requiere cambios al compose
+
+**Workaround para eliminar el banner** (sin licencia válida):
+- El banner es cosmético. Se puede ocultar via CSS con userscript pero no es necesario.
+
+Ver `docs/verification-report.md` para más detalles.
+
 ```bash
 # Detener un servicio temporalmente
 docker compose stop velocraptor
