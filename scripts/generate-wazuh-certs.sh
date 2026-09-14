@@ -22,7 +22,7 @@
 
 set -e
 
-CERTS_DIR="/mnt/f/Maestria/laboratorio/lab-1-lite/config/wazuh/certs"
+CERTS_DIR="$(cd "$(dirname "$0")/.." && pwd)/config/wazuh/certs"
 DAYS_VALID=3650
 COUNTRY="BO"
 STATE="LP"
@@ -49,28 +49,47 @@ openssl req -x509 -new -nodes -key root-ca.key -sha256 -days $DAYS_VALID \
 cp root-ca.pem root-ca-manager.pem
 echo "  ✓ Root CA"
 
-# Helper para generar cert firmado por Root CA
+# Helper para generar cert firmado por Root CA con SAN
 gen_cert() {
     local name=$1
     local cn=$2
+    shift 2
+    local sans="$@"
     openssl genrsa -out "${name}-key.pem" 2048 2>/dev/null
     openssl req -new -key "${name}-key.pem" -out "${name}.csr" \
         -subj "/C=$COUNTRY/ST=$STATE/L=$LOCALITY/O=$ORG/OU=$OU/CN=$cn" 2>/dev/null
-    openssl x509 -req -in "${name}.csr" -CA root-ca.pem -CAkey root-ca.key \
-        -CAcreateserial -out "${name}.pem" -days $DAYS_VALID -sha256 2>/dev/null
-    rm -f "${name}.csr"
+
+    if [ -n "$sans" ]; then
+        local san_line="subjectAltName=DNS:${cn}"
+        for s in $sans; do
+            san_line="${san_line},DNS:${s}"
+        done
+        printf "subjectAltName=DNS:%s" "$cn" > "${name}.ext"
+        for s in $sans; do
+            printf ",DNS:%s" "$s" >> "${name}.ext"
+        done
+        printf "\n" >> "${name}.ext"
+        openssl x509 -req -in "${name}.csr" -CA root-ca.pem -CAkey root-ca.key \
+            -CAcreateserial -out "${name}.pem" -days $DAYS_VALID -sha256 \
+            -extfile "${name}.ext" 2>/dev/null
+    else
+        openssl x509 -req -in "${name}.csr" -CA root-ca.pem -CAkey root-ca.key \
+            -CAcreateserial -out "${name}.pem" -days $DAYS_VALID -sha256 2>/dev/null
+    fi
+    rm -f "${name}.csr" "${name}.ext"
 }
 
 # -----------------------------------------------------------------------------
 # 2. Certs por servicio (formato 4.10: nombre.pem + nombre-key.pem)
+#    SANs incluyen nombre DNS del servicio (wazuh.indexer) y hostname del container
 # -----------------------------------------------------------------------------
-gen_cert "indexer"  "wazuh-indexer"
+gen_cert "indexer"  "wazuh-indexer" "wazuh.indexer" "localhost"
 echo "  ✓ indexer cert (indexer.pem + indexer-key.pem)"
 
-gen_cert "dashboard" "wazuh-dashboard"
+gen_cert "dashboard" "wazuh-dashboard" "wazuh.dashboard" "localhost"
 echo "  ✓ dashboard cert (dashboard.pem + dashboard-key.pem)"
 
-gen_cert "wazuh"     "wazuh-manager"
+gen_cert "wazuh"     "wazuh-manager" "wazuh.manager" "localhost"
 echo "  ✓ wazuh cert (wazuh.pem + wazuh-key.pem)"
 
 gen_cert "admin"     "admin"

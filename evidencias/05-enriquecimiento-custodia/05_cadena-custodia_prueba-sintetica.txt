@@ -1,0 +1,11 @@
+fer@taxfisco:~/taxfisco-research-lab$ ls -la attack-scenarios/S03-bruteforce-ssh/evidencia/; echo; echo "start_time: $(cat attack-scenarios/S03-bruteforce-ssh/evidencia/start_time.txt)"; echo "end_time:   $(cat attack-scenarios/S03-bruteforce-ssh/evidencia/end_time.txt)"
+total 24
+drwxr-xr-x 2 root root 4096 jul 25 10:28 .
+drwxrwxr-x 3 fer  fer  4096 jul 25 10:26 ..
+-rw-r--r-- 1 root root   17 jul 25 10:27 end_time.txt
+-rw-r--r-- 1 root root  213 jul 25 10:28 hydra_ssh.txt
+-rw-r--r-- 1 root root  533 jul 25 10:31 resultados.json
+-rw-r--r-- 1 root root   17 jul 25 10:26 start_time.txt
+
+start_time: 20260725T142642Z
+end_time:   20260725T142714Z

@@ -1,0 +1,142 @@
+{
+  "metadata": {
+    "generated_at": "2026-07-25T14:31:35.280183Z",
+    "framework": "MITRE ATT&CK Enterprise v15",
+    "scenarios_analyzed": 10
+  },
+  "coverage": {
+    "techniques_implemented": [
+      "T1048.003",
+      "T1059",
+      "T1059.004",
+      "T1059.006",
+      "T1059.007",
+      "T1078",
+      "T1078.001",
+      "T1083",
+      "T1105",
+      "T1110.001",
+      "T1110.004",
+      "T1190",
+      "T1213",
+      "T1530",
+      "T1595",
+      "T1595.002",
+      "T1595.003"
+    ],
+    "techniques_implemented_count": 17,
+    "techniques_detected": [
+      "T1048.003",
+      "T1059.004",
+      "T1059.007",
+      "T1078",
+      "T1105",
+      "T1110.001",
+      "T1110.004",
+      "T1190",
+      "T1595",
+      "T1595.002"
+    ],
+    "techniques_detected_count": 10,
+    "techniques_main_count": 7,
+    "tactics_implemented": [
+      "Collection",
+      "Command and Control",
+      "Credential Access",
+      "Discovery",
+      "Execution",
+      "Exfiltration",
+      "Initial Access",
+      "Reconnaissance"
+    ],
+    "tactics_detected": [
+      "Command and Control",
+      "Credential Access",
+      "Execution",
+      "Exfiltration",
+      "Initial Access",
+      "Reconnaissance"
+    ],
+    "tactics_detected_count": 6,
+    "tactics_total_reference": 14,
+    "techniques_implemented_coverage_pct": 58.82352941176471,
+    "tactics_implemented_coverage_pct": 42.857142857142854
+  },
+  "matrix": {
+    "Reconnaissance": [
+      "T1595",
+      "T1595.002"
+    ],
+    "Credential Access": [
+      "T1110.001",
+      "T1110.004"
+    ],
+    "Initial Access": [
+      "T1078",
+      "T1190"
+    ],
+    "Execution": [
+      "T1059.004",
+      "T1059.007"
+    ],
+    "Command and Control": [
+      "T1105"
+    ],
+    "Exfiltration": [
+      "T1048.003"
+    ]
+  },
+  "technique_to_scenarios": {
+    "T1595": [
+      "S01-reconocimiento"
+    ],
+    "T1595.002": [
+      "S02-escaneo-web"
+    ],
+    "T1110.001": [
+      "S03-bruteforce-ssh"
+    ],
+    "T1190": [
+      "S04-sql-injection"
+    ],
+    "T1110.004": [
+      "S05-credential-stuffing"
+    ],
+    "T1059.007": [
+      "S06-xss"
+    ],
+    "T1078": [
+      "S07-api-abuse"
+    ],
+    "T1105": [
+      "S08-malware-drop"
+    ],
+    "T1059.004": [
+      "S09-reverse-shell"
+    ],
+    "T1048.003": [
+      "S10-exfiltracion-dns"
+    ]
+  },
+  "gap_analysis": {
+    "implemented_but_not_detected": [
+      "T1059",
+      "T1059.006",
+      "T1078.001",
+      "T1083",
+      "T1213",
+      "T1530",
+      "T1595.003"
+    ],
+    "tactics_not_covered": [
+      "Collection",
+      "Defense Evasion",
+      "Discovery",
+      "Impact",
+      "Lateral Movement",
+      "Persistence",
+      "Privilege Escalation",
+      "Resource Development"
+    ]
+  }
+}

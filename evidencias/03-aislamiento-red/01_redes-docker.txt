@@ -1,0 +1,6 @@
+fer@taxfisco:~/taxfisco-research-lab$ docker network ls --filter name=taxfisco
+NETWORK ID     NAME                DRIVER    SCOPE
+262501e5bcd6   taxfisco-dmz        bridge    local
+fb4eccca1289   taxfisco-honeypot   bridge    local
+536846310c1c   taxfisco-ids        bridge    local
+617234083c37   taxfisco-soc        bridge    local

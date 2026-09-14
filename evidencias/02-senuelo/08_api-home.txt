@@ -1,0 +1,15 @@
+fer@taxfisco:~/taxfisco-research-lab$ curl -s http://localhost:8090/ | python3 -m json.tool
+{
+    "service": "TaxFisco Decoy API",
+    "version": "1.0.0",
+    "description": "Decoy API for honeypot research thesis",
+    "endpoints": [
+        "/api/v1/contribuyentes/{nit}",
+        "/api/v1/declaraciones",
+        "/api/v1/facturas/{cuf}",
+        "/api/v1/auth/login",
+        "/api/v1/admin/users",
+        "/api/v1/reportes"
+    ],
+    "deception_markers": []
+}

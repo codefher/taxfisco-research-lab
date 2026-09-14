@@ -10,27 +10,33 @@
           "thresholds": {
             "mode": "absolute",
             "steps": [
-              {"color": "green", "value": null}
+              {"color": "green", "value": null},
+              {"color": "yellow", "value": 100},
+              {"color": "red", "value": 500}
             ]
           },
-          "unit": "s"
+          "unit": "none"
         }
       },
       "gridPos": {"h": 8, "w": 8, "x": 0, "y": 0},
       "id": 1,
       "options": {
-        "colorMode": "value",
+        "colorMode": "background",
         "graphMode": "area",
         "orientation": "horizontal",
-        "reduceOptions": {"calcs": ["mean"], "fields": "", "values": false}
+        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false}
       },
       "targets": [
         {
-          "query": "data.mttd:* | avg data.mttd",
+          "datasource": "WazuhIndexer",
+          "query": "source=wazuh-alerts-* | stats count() as Total",
+          "queryType": "PPL",
+          "format": "table",
+          "timeField": "timestamp",
           "refId": "A"
         }
       ],
-      "title": "MTTD - Mean Time To Detect (s)",
+      "title": "Total Alerts Indexed",
       "type": "stat"
     },
     {
@@ -44,7 +50,8 @@
               {"color": "green", "value": null}
             ]
           },
-          "unit": "s"
+          "unit": "none",
+          "decimals": 2
         }
       },
       "gridPos": {"h": 8, "w": 8, "x": 8, "y": 0},
@@ -53,30 +60,33 @@
         "colorMode": "value",
         "graphMode": "area",
         "orientation": "horizontal",
-        "reduceOptions": {"calcs": ["mean"], "fields": "", "values": false}
+        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false}
       },
       "targets": [
         {
-          "query": "data.mttr:* | avg data.mttr",
+          "datasource": "WazuhIndexer",
+          "query": "source=wazuh-alerts-* | stats avg(rule.level) as AvgLevel",
+          "queryType": "PPL",
+          "format": "table",
+          "timeField": "timestamp",
           "refId": "A"
         }
       ],
-      "title": "MTTR - Mean Time To Respond (s)",
+      "title": "Average Alert Level",
       "type": "stat"
     },
     {
-      "datasource": "TheHive",
+      "datasource": "WazuhIndexer",
       "fieldConfig": {
         "defaults": {
           "color": {"mode": "thresholds"},
           "thresholds": {
             "mode": "absolute",
             "steps": [
-              {"color": "green", "value": null},
-              {"color": "yellow", "value": 10},
-              {"color": "red", "value": 30}
+              {"color": "green", "value": null}
             ]
-          }
+          },
+          "unit": "none"
         }
       },
       "gridPos": {"h": 8, "w": 8, "x": 16, "y": 0},
@@ -89,49 +99,73 @@
       },
       "targets": [
         {
-          "query": "_type:case | count",
+          "datasource": "WazuhIndexer",
+          "query": "source=wazuh-alerts-* | stats max(rule.level) as MaxLevel",
+          "queryType": "PPL",
+          "format": "table",
+          "timeField": "timestamp",
           "refId": "A"
         }
       ],
-      "title": "Open Cases in TheHive",
+      "title": "Max Alert Level",
       "type": "stat"
     },
     {
       "datasource": "WazuhIndexer",
       "fieldConfig": {
         "defaults": {
-          "color": {"mode": "thresholds"},
+          "color": {"mode": "palette-classic"},
           "unit": "none"
         }
       },
       "gridPos": {"h": 8, "w": 12, "x": 0, "y": 8},
       "id": 4,
+      "options": {
+        "displayMode": "gradient",
+        "orientation": "horizontal",
+        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": true},
+        "showUnfilled": true
+      },
       "targets": [
         {
-          "query": "data.mitre.tactic:* | aggregate by data.mitre.tactic",
+          "datasource": "WazuhIndexer",
+          "query": "source=wazuh-alerts-* | eval sev = if(rule.level >= 10, 'Critica', if(rule.level >= 7, 'Alta', if(rule.level >= 4, 'Media', 'Baja'))) | stats count() as Total by sev | sort - Total",
+          "queryType": "PPL",
+          "format": "table",
+          "timeField": "timestamp",
           "refId": "A"
         }
       ],
-      "title": "ATT&CK Tactics Detected",
+      "title": "Alerts by Severity",
       "type": "bargauge"
     },
     {
       "datasource": "WazuhIndexer",
       "fieldConfig": {
         "defaults": {
-          "color": {"mode": "thresholds"},
+          "color": {"mode": "palette-classic"},
           "unit": "none"
         }
       },
       "gridPos": {"h": 8, "w": 12, "x": 12, "y": 8},
       "id": 5,
+      "options": {
+        "displayMode": "gradient",
+        "orientation": "horizontal",
+        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": true},
+        "showUnfilled": true
+      },
       "targets": [
         {
-          "query": "data.mitre.id:* | aggregate by data.mitre.id",
+          "datasource": "WazuhIndexer",
+          "query": "source=wazuh-alerts-* | stats count() as Total by rule.id | sort - Total | head 10",
+          "queryType": "PPL",
+          "format": "table",
+          "timeField": "timestamp",
           "refId": "A"
         }
       ],
-      "title": "ATT&CK Techniques Detected",
+      "title": "Alerts by Rule ID",
       "type": "bargauge"
     }
   ],
@@ -139,8 +173,8 @@
   "schemaVersion": 39,
   "tags": ["taxfisco", "kpi"],
   "templating": {"list": []},
-  "time": {"from": "now-30d", "to": "now"},
+  "time": {"from": "now-90d", "to": "now"},
   "title": "TaxFisco - KPIs (MTTD, MTTR, Coverage)",
   "uid": "taxfisco-kpis",
-  "version": 1
+  "version": 3
 }

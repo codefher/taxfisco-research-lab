@@ -28,3 +28,7 @@ network.publish_host: 0.0.0.0
 
 # Performance tuning
 indices.query.bool.max_clause_count: 1024
+
+# Compatibilidad con filebeat 7.10 (Elasticsearch 7.x) y Wazuh 4.10
+# Habilita el uso de _type en bulk indexing
+compatibility.override_main_response_version: true

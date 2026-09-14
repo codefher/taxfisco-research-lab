@@ -1,0 +1,43 @@
+fer@taxfisco:~/taxfisco-research-lab$ python3 -m json.tool --no-ensure-ascii < evidencias/07-metricas/09_iso27035-compliance.json | head -42
+{
+    "metadata": {
+        "generated_at": "2026-07-25T14:31:35.302671Z",
+        "frameworks": [
+            "ISO/IEC 27035-1:2023",
+            "ISO/IEC 27001:2022"
+        ],
+        "thesis": "Metodología Honeypot para la Gestión de Incidentes en Servicios Fiscales"
+    },
+    "iso_27035": {
+        "phases": {
+            "Phase 1": {
+                "name": "Plan and Prepare",
+                "description": "Políticas, recursos, equipo, plan de respuesta",
+                "evidence_in_lab": [
+                    "Wazuh pre-configurado",
+                    "TheHive templates",
+                    "Shuffle playbooks (workflows)",
+                    "Velociraptor hunts pre-construidos",
+                    "Suricata ruleset custom"
+                ]
+            },
+            "Phase 2": {
+                "name": "Detection and Reporting",
+                "description": "Detección de eventos de seguridad y reporte",
+                "evidence_in_lab": [
+                    "Wazuh correlation rules",
+                    "Suricata signatures",
+                    "Zeek NDR logs",
+                    "Honeypot logs (Cowrie, Dionaea, OpenCanary)",
+                    "Decoy API/Portal instrumentados"
+                ]
+            },
+            "Phase 3": {
+                "name": "Assessment and Decision",
+                "description": "Análisis, clasificación, priorización",
+                "evidence_in_lab": [
+                    "TheHive case management",
+                    "Cortex analyzers (VT, AbuseIPDB)",
+                    "MISP threat intel correlation",
+                    "Shuffle enrichment workflows"
+                ]

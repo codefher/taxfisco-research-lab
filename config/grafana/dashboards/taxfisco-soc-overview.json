@@ -39,11 +39,15 @@
       "pluginVersion": "11.2.0",
       "targets": [
         {
-          "query": "rule.id:1002*",
+          "datasource": "WazuhIndexer",
+          "query": "source=wazuh-alerts-* | stats count() as Total",
+          "queryType": "PPL",
+          "format": "table",
+          "timeField": "timestamp",
           "refId": "A"
         }
       ],
-      "title": "Total ATT&CK Alerts",
+      "title": "Total Alerts",
       "type": "stat"
     },
     {
@@ -53,21 +57,25 @@
           "color": {"mode": "palette-classic"}
         }
       },
-      "gridPos": {"h": 8, "w": 12, "x": 6, "y": 0},
+      "gridPos": {"h": 8, "w": 6, "x": 6, "y": 0},
       "id": 2,
       "options": {
         "displayLabels": ["name", "percent"],
         "legend": {"displayMode": "list", "placement": "right", "showLegend": true},
         "pieType": "donut",
-        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false}
+        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": true}
       },
       "targets": [
         {
-          "query": "data.mitre.id:* | aggregate by data.mitre.id",
+          "datasource": "WazuhIndexer",
+          "query": "source=wazuh-alerts-* | eval sev = if(rule.level >= 10, 'Critica', if(rule.level >= 7, 'Alta', if(rule.level >= 4, 'Media', 'Baja'))) | stats count() as Total by sev | sort - Total",
+          "queryType": "PPL",
+          "format": "table",
+          "timeField": "timestamp",
           "refId": "A"
         }
       ],
-      "title": "ATT&CK Techniques Distribution",
+      "title": "Alert Distribution by Severity",
       "type": "piechart"
     },
     {
@@ -79,12 +87,12 @@
             "mode": "absolute",
             "steps": [
               {"color": "green", "value": null},
-              {"color": "red", "value": 80}
+              {"color": "red", "value": 1}
             ]
           }
         }
       },
-      "gridPos": {"h": 8, "w": 6, "x": 18, "y": 0},
+      "gridPos": {"h": 8, "w": 6, "x": 12, "y": 0},
       "id": 3,
       "options": {
         "colorMode": "background",
@@ -95,11 +103,52 @@
       },
       "targets": [
         {
-          "query": "data.mitre.tactic:Initial Access | count",
+          "datasource": "WazuhIndexer",
+          "query": "source=wazuh-alerts-* | where rule.level > 5 | stats count() as Total",
+          "queryType": "PPL",
+          "format": "table",
+          "timeField": "timestamp",
           "refId": "A"
         }
       ],
-      "title": "Initial Access Attempts",
+      "title": "High Severity Alerts",
+      "type": "stat"
+    },
+    {
+      "datasource": "WazuhIndexer",
+      "fieldConfig": {
+        "defaults": {
+          "color": {"mode": "thresholds"},
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {"color": "green", "value": null}
+            ]
+          },
+          "decimals": 2
+        }
+      },
+      "gridPos": {"h": 8, "w": 6, "x": 18, "y": 0},
+      "id": 4,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "horizontal",
+        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
+        "textMode": "auto"
+      },
+      "targets": [
+        {
+          "datasource": "WazuhIndexer",
+          "query": "source=wazuh-alerts-* | stats avg(rule.level) as AvgLevel",
+          "queryType": "PPL",
+          "format": "table",
+          "timeField": "timestamp",
+          "refId": "A"
+        }
+      ],
+      "title": "Average Alert Level",
       "type": "stat"
     },
     {
@@ -129,93 +178,95 @@
         }
       },
       "gridPos": {"h": 8, "w": 24, "x": 0, "y": 8},
-      "id": 4,
+      "id": 5,
       "options": {
         "legend": {"calcs": [], "displayMode": "list", "placement": "bottom", "showLegend": true},
         "tooltip": {"mode": "single", "sort": "none"}
       },
       "targets": [
         {
-          "query": "data.mitre.tactic:* | aggregate by data.mitre.tactic, hour",
+          "datasource": "WazuhIndexer",
+          "query": "source=wazuh-alerts-* | stats count() as Total by span(timestamp, 1d)",
+          "queryType": "PPL",
+          "format": "table",
+          "timeField": "timestamp",
           "refId": "A"
         }
       ],
-      "title": "ATT&CK Tactics Over Time",
+      "title": "Alerts Over Time",
       "type": "timeseries"
-    },
-    {
-      "datasource": "TheHive",
-      "fieldConfig": {
-        "defaults": {
-          "color": {"mode": "thresholds"},
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {"color": "green", "value": null},
-              {"color": "yellow", "value": 5},
-              {"color": "red", "value": 15}
-            ]
-          }
-        }
-      },
-      "gridPos": {"h": 8, "w": 12, "x": 0, "y": 16},
-      "id": 5,
-      "options": {
-        "displayLabels": ["name"],
-        "pieType": "pie",
-        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false}
-      },
-      "targets": [
-        {
-          "query": "_source.case.severity:* | aggregate by _source.case.severity",
-          "refId": "A"
-        }
-      ],
-      "title": "TheHive Cases by Severity",
-      "type": "piechart"
     },
     {
       "datasource": "WazuhIndexer",
       "fieldConfig": {
         "defaults": {
-          "color": {"mode": "thresholds"},
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {"color": "green", "value": null}
+          "color": {"mode": "palette-classic"}
+        },
+        "overrides": [
+          {
+            "matcher": {"id": "byName", "options": "rule.description"},
+            "properties": [
+              {"id": "custom.width", "value": 820}
+            ]
+          },
+          {
+            "matcher": {"id": "byName", "options": "Total"},
+            "properties": [
+              {"id": "custom.width", "value": 80}
             ]
           }
-        }
+        ]
       },
-      "gridPos": {"h": 8, "w": 12, "x": 12, "y": 16},
+      "gridPos": {"h": 11, "w": 15, "x": 0, "y": 16},
       "id": 6,
       "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "center",
-        "orientation": "horizontal",
-        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
-        "textMode": "auto"
+        "cellHeight": "sm",
+        "showHeader": true,
+        "footer": {"show": false}
       },
       "targets": [
         {
-          "query": "agent.name:* | aggregate by agent.name",
+          "datasource": "WazuhIndexer",
+          "query": "source=wazuh-alerts-* | stats count() as Total by rule.description | sort - Total | head 10",
+          "queryType": "PPL",
+          "format": "table",
+          "timeField": "timestamp",
           "refId": "A"
         }
       ],
-      "title": "Active Agents (Wazuh)",
-      "type": "stat"
+      "title": "Top Alert Types",
+      "type": "table"
+    },
+    {
+      "datasource": "WazuhIndexer",
+      "gridPos": {"h": 11, "w": 9, "x": 15, "y": 16},
+      "id": 7,
+      "options": {
+        "showHeader": true
+      },
+      "targets": [
+        {
+          "datasource": "WazuhIndexer",
+          "query": "source=wazuh-alerts-* | stats count() as Total by agent.name | sort - Total",
+          "queryType": "PPL",
+          "format": "table",
+          "timeField": "timestamp",
+          "refId": "A"
+        }
+      ],
+      "title": "Alerts by Agent",
+      "type": "table"
     }
   ],
   "refresh": "10s",
   "schemaVersion": 39,
   "tags": ["taxfisco", "honeypot", "soc"],
   "templating": {"list": []},
-  "time": {"from": "now-24h", "to": "now"},
+  "time": {"from": "now-90d", "to": "now"},
   "timepicker": {},
   "timezone": "browser",
   "title": "TaxFisco SOC - Honeypot Overview",
   "uid": "taxfisco-soc-main",
-  "version": 1,
+  "version": 3,
   "weekStart": ""
 }

@@ -1,0 +1,58 @@
+fer@taxfisco:~/taxfisco-research-lab$ sed -n '/^networks:/,$p' docker-compose.yml
+networks:
+  dmz-net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.20.0.0/24
+    name: taxfisco-dmz
+
+  honeypot-net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.21.0.0/24
+    name: taxfisco-honeypot
+
+  soc-net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.22.0.0/24
+    name: taxfisco-soc
+
+  ids-net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.23.0.0/24
+    name: taxfisco-ids
+
+# =============================================================================
+# VOLUMES (sin thehive_es_data)
+# =============================================================================
+volumes:
+  wazuh_manager_data:
+  wazuh_indexer_data:
+  wazuh_dashboard_data:
+  misp_data:
+  misp_config:
+  misp_db_data:
+  thehive_data:
+  cassandra_data:
+  cortex_data:
+  shuffle_data:
+  shuffle_db_data:
+  velociraptor_data:
+  velociraptor_logs:
+  grafana_data:
+  cowrie_data:
+  opencanary_data:
+  heralding_data:
+  decoy_api_data:
+  decoy_api_logs:
+  decoy_portal_data:
+  decoy_portal_logs:
+  postgres_data:
+  suricata_logs:
+  zeek_logs:

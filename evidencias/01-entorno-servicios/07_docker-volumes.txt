@@ -1,0 +1,26 @@
+fer@taxfisco:~/taxfisco-research-lab$ docker volume ls --format 'table {{.Name}}\t{{.Driver}}' | grep -E 'DRIVER|taxfisco-research-lab-lite'
+VOLUME NAME                                                        DRIVER
+taxfisco-research-lab-lite_cassandra_data                          local
+taxfisco-research-lab-lite_cortex_data                             local
+taxfisco-research-lab-lite_cowrie_data                             local
+taxfisco-research-lab-lite_decoy_api_data                          local
+taxfisco-research-lab-lite_decoy_api_logs                          local
+taxfisco-research-lab-lite_decoy_portal_data                       local
+taxfisco-research-lab-lite_decoy_portal_logs                       local
+taxfisco-research-lab-lite_grafana_data                            local
+taxfisco-research-lab-lite_heralding_data                          local
+taxfisco-research-lab-lite_misp_config                             local
+taxfisco-research-lab-lite_misp_data                               local
+taxfisco-research-lab-lite_misp_db_data                            local
+taxfisco-research-lab-lite_opencanary_data                         local
+taxfisco-research-lab-lite_postgres_data                           local
+taxfisco-research-lab-lite_shuffle_data                            local
+taxfisco-research-lab-lite_shuffle_db_data                         local
+taxfisco-research-lab-lite_suricata_logs                           local
+taxfisco-research-lab-lite_thehive_data                            local
+taxfisco-research-lab-lite_velociraptor_data                       local
+taxfisco-research-lab-lite_velociraptor_logs                       local
+taxfisco-research-lab-lite_wazuh_dashboard_data                    local
+taxfisco-research-lab-lite_wazuh_indexer_data                      local
+taxfisco-research-lab-lite_wazuh_manager_data                      local
+taxfisco-research-lab-lite_zeek_logs                               local

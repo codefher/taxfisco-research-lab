@@ -1,0 +1,31 @@
+fer@taxfisco:~/taxfisco-research-lab$ docker logs taxfisco-opencanary --tail 30 2>&1
+This could either be a previously started instance of your application or a
+different application entirely. To start a new one, either run it in some other
+directory, or use the --pidfile and --logfile parameters to avoid clashes.
+
+Another twistd server is running, PID 9
+
+This could either be a previously started instance of your application or a
+different application entirely. To start a new one, either run it in some other
+directory, or use the --pidfile and --logfile parameters to avoid clashes.
+
+Removing stale pidfile /var/run/opencanaryd.pid
+** We hope you enjoy using OpenCanary. For more open source Canary goodness, head over to canarytokens.org. **
+[-] Using config file: /etc/opencanaryd/opencanary.conf
+2026-07-25 15:06:30,467 [WARNING] taxfisco-opencanary: {"dst_host": "", "dst_port": -1, "local_time": "2026-07-25 15:06:30.467377", "local_time_adjusted": "2026-07-25 15:06:30.467436", "logdata": {"msg": {"logdata": "Canary running!!!"}}, "logtype": 1001, "node_id": "taxfisco-opencanary", "src_host": "", "src_port": -1, "utc_time": "2026-07-25 15:06:30.467426"}
+2026-07-25T15:06:29+0000 [-] Removing stale pidfile /var/run/opencanaryd.pid
+2026-07-25T15:06:29+0000 [-] Loading /opencanary/.venv/bin/opencanary.tac...
+2026-07-25T15:06:30+0000 [-] Loaded.
+2026-07-25T15:06:30+0000 [twisted.scripts._twistd_unix.UnixAppLogger#info] twistd 26.4.0 (/opencanary/.venv/bin/python 3.10.20) starting up.
+2026-07-25T15:06:30+0000 [twisted.scripts._twistd_unix.UnixAppLogger#info] reactor class: twisted.internet.epollreactor.EPollReactor.
+2026-07-25T15:06:30+0000 [-] set uid/gid 65534/65534
+Removing stale pidfile /var/run/opencanaryd.pid
+** We hope you enjoy using OpenCanary. For more open source Canary goodness, head over to canarytokens.org. **
+[-] Using config file: /etc/opencanaryd/opencanary.conf
+2026-09-10 01:04:29,412 [WARNING] taxfisco-opencanary: {"dst_host": "", "dst_port": -1, "local_time": "2026-09-10 01:04:29.412000", "local_time_adjusted": "2026-09-10 01:04:29.412060", "logdata": {"msg": {"logdata": "Canary running!!!"}}, "logtype": 1001, "node_id": "taxfisco-opencanary", "src_host": "", "src_port": -1, "utc_time": "2026-09-10 01:04:29.412051"}
+2026-09-10T01:04:28+0000 [-] Removing stale pidfile /var/run/opencanaryd.pid
+2026-09-10T01:04:28+0000 [-] Loading /opencanary/.venv/bin/opencanary.tac...
+2026-09-10T01:04:29+0000 [-] Loaded.
+2026-09-10T01:04:29+0000 [twisted.scripts._twistd_unix.UnixAppLogger#info] twistd 26.4.0 (/opencanary/.venv/bin/python 3.10.20) starting up.
+2026-09-10T01:04:29+0000 [twisted.scripts._twistd_unix.UnixAppLogger#info] reactor class: twisted.internet.epollreactor.EPollReactor.
+2026-09-10T01:04:29+0000 [-] set uid/gid 65534/65534

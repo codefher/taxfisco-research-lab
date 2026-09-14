@@ -120,6 +120,8 @@ services:
     depends_on:
       - wazuh.indexer
     volumes:
+      - ./config/wazuh/dashboard/opensearch_dashboards.yml:/usr/share/wazuh-dashboard/config/opensearch_dashboards.yml:ro
+      - ./config/wazuh/certs:/etc/wazuh-dashboard/certs:ro
       - wazuh_dashboard_data:/var/lib/wazuh-dashboard
       - ./config/wazuh/dashboard:/wazuh-dashboard/app/plugins/main/wazuh/public/assets:ro
       - ./config/wazuh/certs:/etc/wazuh-dashboard/certs:ro
@@ -165,6 +167,17 @@ services:
     logging: *default-logging
     restart: unless-stopped
     mem_limit: 1g  # LITE: era 1.5g
+
+  misp.redis:
+    image: redis:7-alpine
+    container_name: taxfisco-misp-redis
+    hostname: misp.redis
+    networks:
+      soc-net:
+        ipv4_address: 10.22.0.50
+    logging: *default-logging
+    restart: unless-stopped
+    mem_limit: 128m
 
   misp.db:
     image: mysql:8.0
@@ -252,7 +265,7 @@ services:
       - TH_ELASTICSEARCH_HOSTNAMES=wazuh.indexer
       - TH_ELASTICSEARCH_INDEX=thehive
       - TH_ELASTICSEARCH_USERNAME=admin
-      - TH_ELASTICSEARCH_PASSWORD=admin
+      - TH_ELASTICSEARCH_PASSWORD=Admin1234!
       - TH_INDEX_BACKEND=elasticsearch
       - TH_STORAGE_DIRECTORY=/var/lib/thehive/files
       - TH_NO_CONFIG_SECRET=1
@@ -307,8 +320,8 @@ services:
       - SHUFFLE_WORKER_AMOUNT=2
       # OpenSearch apunta al proxy HTTP de Wazuh (con alias shuffle-opensearch)
       # El proxy requiere auth basica (admin:admin = default wazuh)
-      - SHUFFLE_OPENSEARCH_URL=http://admin:admin@shuffle-opensearch:9200
-      - SHUFFLE_ELASTIC_URL=http://admin:admin@shuffle-opensearch:9200
+      - SHUFFLE_OPENSEARCH_URL=http://admin:Admin1234!@shuffle-opensearch:9200
+      - SHUFFLE_ELASTIC_URL=http://admin:Admin1234!@shuffle-opensearch:9200
       - DATABASE_URL=sqlite:///opt/shuffle/shuffle.db
     depends_on:
       - shuffle.db
@@ -362,7 +375,7 @@ services:
     hostname: velociraptor
     networks:
       soc-net:
-        ipv4_address: 10.22.0.50
+        ipv4_address: 10.22.0.33
     ports:
       - "8889:8889/tcp"   # Velociraptor GUI
       - "8000:8000/tcp"   # Frontend
@@ -682,7 +695,8 @@ services:
     tty: true
     command: /bin/bash
     volumes:
-      - ./attack-scenarios:/root/attack-scenarios:ro
+      - ./attack-scenarios:/root/attack-scenarios
+      - ./analysis:/root/analysis
     logging: *default-logging
     restart: "no"
     mem_limit: 1g  # LITE: era 2g

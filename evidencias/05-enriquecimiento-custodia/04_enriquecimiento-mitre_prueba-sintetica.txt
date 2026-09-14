@@ -1,0 +1,23 @@
+fer@taxfisco:~/taxfisco-research-lab$ python3 -m json.tool attack-scenarios/S03-bruteforce-ssh/evidencia/resultados.json
+{
+    "scenario": "S03-bruteforce-ssh",
+    "technique_id": "T1110.001",
+    "technique_name": "Password Guessing",
+    "tactic": "Credential Access",
+    "timestamp_start": "20260725T142642Z",
+    "timestamp_end": "20260725T142714Z",
+    "tools_used": [
+        "hydra"
+    ],
+    "targets_scanned": [
+        "172.20.0.50:2222"
+    ],
+    "evidence_files": [
+        "hydra_ssh.txt"
+    ],
+    "expected_detection": [
+        "Wazuh rule 5712 (SSH brute force)",
+        "Cowrie honeypot log"
+    ],
+    "iso27035_phase": "Detection and Reporting (Phase 2), Assessment (Phase 3)"
+}

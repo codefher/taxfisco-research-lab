@@ -13,10 +13,10 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 EVIDENCE_DIR="$SCRIPT_DIR/evidencia"
 mkdir -p "$EVIDENCE_DIR"
 
-DECOY_API="172.20.0.20"
-DECOY_PORTAL="172.20.0.21"
-HONEYPOT_COWRIE="172.20.0.50"
-ATTACKER_IP="172.20.0.99"
+DECOY_API="10.20.0.20"
+DECOY_PORTAL="10.20.0.21"
+HONEYPOT_COWRIE="10.20.0.50"
+ATTACKER_IP="10.20.0.99"
 TIMESTAMP=$(date -u +"%Y%m%dT%H%M%SZ")
 
 echo "=========================================="
@@ -28,8 +28,8 @@ echo "=========================================="
 echo "$TIMESTAMP" > "$EVIDENCE_DIR/start_time.txt"
 
 # 1. Network sweep de la DMZ
-echo "[*] Fase 1: Network sweep DMZ (172.20.0.0/24)"
-nmap -sn 172.20.0.0/24 -oN "$EVIDENCE_DIR/nmap_ping_sweep.txt" 2>/dev/null
+echo "[*] Fase 1: Network sweep DMZ (10.20.0.0/24)"
+nmap -sn 10.20.0.0/24 -oN "$EVIDENCE_DIR/nmap_ping_sweep.txt" 2>/dev/null
 
 # 2. Service scan contra decoys
 echo "[*] Fase 2: Service scan"

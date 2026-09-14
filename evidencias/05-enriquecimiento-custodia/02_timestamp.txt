@@ -1,0 +1,4 @@
+fer@taxfisco:~/taxfisco-research-lab$ date -Iseconds; echo; date '+%A %d %B %Y %H:%M:%S %Z'
+2026-09-14T01:16:19-04:00
+
+lunes 14 septiembre 2026 01:16:19 -04

@@ -9,15 +9,19 @@
       "options": {
         "columnStyles": {"text": {"wrap": false}},
         "showHeader": true,
-        "sortBy": [{"displayName": "Time", "desc": true}]
+        "sortBy": [{"displayName": "timestamp", "desc": true}]
       },
       "targets": [
         {
-          "query": "rule.id:1002* | sort by @timestamp desc | limit 50",
+          "datasource": "WazuhIndexer",
+          "query": "source=wazuh-alerts-* | sort - timestamp | head 50 | fields timestamp, rule.id, rule.description, rule.level, agent.name",
+          "queryType": "PPL",
+          "format": "table",
+          "timeField": "timestamp",
           "refId": "A"
         }
       ],
-      "title": "Recent ATT&CK Alerts (Last 50)",
+      "title": "Recent Alerts (Last 50)",
       "type": "table"
     },
     {
@@ -28,20 +32,31 @@
           "thresholds": {
             "mode": "absolute",
             "steps": [
-              {"color": "green", "value": null}
+              {"color": "green", "value": null},
+              {"color": "yellow", "value": 100},
+              {"color": "red", "value": 500}
             ]
           }
         }
       },
       "gridPos": {"h": 6, "w": 8, "x": 0, "y": 10},
       "id": 2,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false}
+      },
       "targets": [
         {
-          "query": "rule.id:100210 | stats count by srcip",
+          "datasource": "WazuhIndexer",
+          "query": "source=wazuh-alerts-* | stats count() as Total",
+          "queryType": "PPL",
+          "format": "table",
+          "timeField": "timestamp",
           "refId": "A"
         }
       ],
-      "title": "SSH Brute Force Sources",
+      "title": "Total Alerts",
       "type": "stat"
     },
     {
@@ -60,35 +75,84 @@
       },
       "gridPos": {"h": 6, "w": 8, "x": 8, "y": 10},
       "id": 3,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false}
+      },
       "targets": [
         {
-          "query": "rule.id:100230 | count",
+          "datasource": "WazuhIndexer",
+          "query": "source=wazuh-alerts-* | where rule.level > 5 | stats count() as Total",
+          "queryType": "PPL",
+          "format": "table",
+          "timeField": "timestamp",
           "refId": "A"
         }
       ],
-      "title": "Malware Samples Captured (Dionaea)",
+      "title": "High Severity Alerts (level > 5)",
       "type": "stat"
     },
     {
       "datasource": "WazuhIndexer",
-      "fieldPos": {"h": 6, "w": 8, "x": 16, "y": 10},
+      "fieldConfig": {
+        "defaults": {
+          "color": {"mode": "thresholds"},
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {"color": "green", "value": null}
+            ]
+          }
+        }
+      },
+      "gridPos": {"h": 6, "w": 8, "x": 16, "y": 10},
       "id": 4,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false}
+      },
       "targets": [
         {
-          "query": "rule.id:100200 | count",
+          "datasource": "WazuhIndexer",
+          "query": "source=wazuh-alerts-* | stats max(rule.level) as MaxLevel",
+          "queryType": "PPL",
+          "format": "table",
+          "timeField": "timestamp",
           "refId": "A"
         }
       ],
-      "title": "SQL Injection Attempts (T1190)",
+      "title": "Max Alert Level",
       "type": "stat"
+    },
+    {
+      "datasource": "WazuhIndexer",
+      "gridPos": {"h": 10, "w": 24, "x": 0, "y": 16},
+      "id": 5,
+      "options": {
+        "showHeader": true
+      },
+      "targets": [
+        {
+          "datasource": "WazuhIndexer",
+          "query": "source=wazuh-alerts-* | stats count() as Total by rule.description | sort - Total | head 20",
+          "queryType": "PPL",
+          "format": "table",
+          "timeField": "timestamp",
+          "refId": "A"
+        }
+      ],
+      "title": "Top Alert Types",
+      "type": "table"
     }
   ],
   "refresh": "10s",
   "schemaVersion": 39,
   "tags": ["taxfisco", "honeypot", "alerts"],
   "templating": {"list": []},
-  "time": {"from": "now-7d", "to": "now"},
+  "time": {"from": "now-90d", "to": "now"},
   "title": "TaxFisco - Detailed Alerts",
   "uid": "taxfisco-detailed",
-  "version": 1
+  "version": 2
 }

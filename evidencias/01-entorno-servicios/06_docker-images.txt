@@ -1,0 +1,25 @@
+fer@taxfisco:~/taxfisco-research-lab$ docker compose config --images | sort -u | xargs -n1 docker image ls --format '{{.Repository}}:{{.Tag}}\t{{.Size}}'
+cassandra:4.1	336MB
+coolacid/misp-docker:core-latest	1.7GB
+coolacid/misp-docker:modules-latest	906MB
+cowrie/cowrie:latest	282MB
+dtagdevsec/heralding:24.04.1	122MB
+ghcr.io/shuffle/shuffle-backend:latest	131MB
+ghcr.io/shuffle/shuffle-frontend:latest	182MB
+grafana/grafana:11.2.0	478MB
+jasonish/suricata:7.0	512MB
+kalilinux/kali-rolling:latest	120MB
+mysql:8.0	799MB
+nginx:1.27-alpine	48.2MB
+postgres:15-alpine	292MB
+redis:7-alpine	39.1MB
+strangebee/thehive:5.5	893MB
+taxfisco/decoy-api:latest	419MB
+taxfisco/decoy-portal:latest	366MB
+taxfisco/wazuh-indexer:4.10.4-lite	1.44GB
+thehiveproject/cortex:4.1.0	1.07GB
+thinkst/opencanary:latest	1.18GB
+wazuh/wazuh-dashboard:4.10.4	1.26GB
+wazuh/wazuh-manager:4.10.4	1.51GB
+wlambert/velociraptor:latest	413MB
+zeek/zeek:6.0	546MB

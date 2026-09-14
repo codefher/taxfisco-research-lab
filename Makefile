@@ -142,8 +142,8 @@ attacks:
 	docker compose exec attacker bash /root/attack-scenarios/run_all.sh
 
 analysis:
-	@echo "=== Generando análisis de KPIs ==="
-	docker compose exec attacker python3 /root/analysis/kpi_calculator.py
+	@echo "=== Generando análisis de KPIs (datos reales) ==="
+	KPI_OUTPUT=evidencias/07-metricas/07_kpi-report.json python3 analysis/kpi_calculator.py
 	docker compose exec attacker python3 /root/analysis/mitre_coverage.py
 	docker compose exec attacker python3 /root/analysis/iso27035_mapping.py
 

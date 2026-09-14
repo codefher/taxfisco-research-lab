@@ -1,0 +1,27 @@
+fer@taxfisco:~/taxfisco-research-lab$ docker logs taxfisco-cowrie 2>&1 | grep -E 'trying auth|login attempt|10.20.0.99' | tail -26
+2026-07-25T14:28:23+0000 [HoneyPotSSHTransport,4,10.20.0.99] Remote SSH version: SSH-2.0-libssh_0.12.0
+2026-07-25T14:28:23+0000 [HoneyPotSSHTransport,5,10.20.0.99] Remote SSH version: SSH-2.0-libssh_0.12.0
+2026-07-25T14:28:23+0000 [HoneyPotSSHTransport,2,10.20.0.99] SSH client hassh fingerprint: 015322ee8471fa8338c558a918183b11
+2026-07-25T14:28:23+0000 [HoneyPotSSHTransport,3,10.20.0.99] SSH client hassh fingerprint: 015322ee8471fa8338c558a918183b11
+2026-07-25T14:28:23+0000 [HoneyPotSSHTransport,4,10.20.0.99] SSH client hassh fingerprint: 015322ee8471fa8338c558a918183b11
+2026-07-25T14:28:23+0000 [HoneyPotSSHTransport,5,10.20.0.99] SSH client hassh fingerprint: 015322ee8471fa8338c558a918183b11
+2026-07-25T14:28:23+0000 [cowrie.ssh.userauth.HoneyPotSSHUserAuthServer#debug] b'root' trying auth b'none'
+2026-07-25T14:28:23+0000 [cowrie.ssh.userauth.HoneyPotSSHUserAuthServer#debug] b'root' trying auth b'none'
+2026-07-25T14:28:23+0000 [cowrie.ssh.userauth.HoneyPotSSHUserAuthServer#debug] b'root' trying auth b'password'
+2026-07-25T14:28:23+0000 [HoneyPotSSHTransport,2,10.20.0.99] login attempt [b'root'/b''] succeeded
+2026-07-25T14:28:23+0000 [HoneyPotSSHTransport,2,10.20.0.99] Initialized emulated server as architecture: linux-x64-lsb
+2026-07-25T14:28:23+0000 [cowrie.ssh.userauth.HoneyPotSSHUserAuthServer#debug] b'root' trying auth b'password'
+2026-07-25T14:28:23+0000 [HoneyPotSSHTransport,5,10.20.0.99] login attempt [b'root'/b'admin'] succeeded
+2026-07-25T14:28:23+0000 [HoneyPotSSHTransport,5,10.20.0.99] Initialized emulated server as architecture: linux-x64-lsb
+2026-07-25T14:28:23+0000 [cowrie.ssh.userauth.HoneyPotSSHUserAuthServer#debug] b'root' trying auth b'none'
+2026-07-25T14:28:23+0000 [cowrie.ssh.userauth.HoneyPotSSHUserAuthServer#debug] b'root' trying auth b'none'
+2026-07-25T14:28:23+0000 [HoneyPotSSHTransport,5,10.20.0.99] avatar root logging out
+2026-07-25T14:28:23+0000 [HoneyPotSSHTransport,5,10.20.0.99] Connection lost after 62 milliseconds
+2026-07-25T14:28:23+0000 [HoneyPotSSHTransport,4,10.20.0.99] Connection lost after 63 milliseconds
+2026-07-25T14:28:23+0000 [HoneyPotSSHTransport,2,10.20.0.99] avatar root logging out
+2026-07-25T14:28:23+0000 [HoneyPotSSHTransport,2,10.20.0.99] Connection lost after 64 milliseconds
+2026-07-25T14:28:23+0000 [HoneyPotSSHTransport,3,10.20.0.99] Connection lost after 64 milliseconds
+2026-07-25T14:30:23+0000 [cowrie.ssh.factory.CowrieSSHFactory] New connection: 10.20.0.99:32906 (10.20.0.50:2222) [session: f8acd5dc6719]
+2026-07-25T14:30:23+0000 [HoneyPotSSHTransport,6,10.20.0.99] Remote SSH version: SSH-2.0-OpenSSH_8.4p1
+2026-07-25T14:30:24+0000 [HoneyPotSSHTransport,6,10.20.0.99] [SERVER] - Disconnecting with error, code 2 reason: b'bad packet length 1970168173'
+2026-07-25T14:30:24+0000 [HoneyPotSSHTransport,6,10.20.0.99] Connection lost after 1000 milliseconds

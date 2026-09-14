@@ -1,0 +1,12 @@
+fer@taxfisco:~/taxfisco-research-lab$ docker network ls --format 'table {{.ID}}\t{{.Name}}\t{{.Driver}}\t{{.Scope}}'
+NETWORK ID     NAME                                      DRIVER    SCOPE
+5b7a8ff8070b   affiliation-application-network-backend   bridge    local
+80dce1481f7d   bridge                                    bridge    local
+996494c0d1d7   host                                      host      local
+b72398b8a5d9   none                                      null      local
+8956de612b3b   postgres-compose_default                  bridge    local
+af770c3fc715   restapi-folk-payments_default             bridge    local
+262501e5bcd6   taxfisco-dmz                              bridge    local
+fb4eccca1289   taxfisco-honeypot                         bridge    local
+536846310c1c   taxfisco-ids                              bridge    local
+617234083c37   taxfisco-soc                              bridge    local
