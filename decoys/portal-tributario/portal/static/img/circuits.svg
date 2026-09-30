@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <g id="n"><circle r="3.4" fill="#1C5568"/></g>
+    <g id="h"><circle r="2.2" fill="#1C5568"/></g>
+  </defs>
+
+  <g fill="none" stroke="#1C5568" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+
+    <!-- Circuitos superiores -->
+    <path d="M0 34 H44 L64 54 H118"/>
+    <path d="M0 62 H26 L40 76 H92 L112 96 H150"/>
+    <path d="M400 28 H352 L332 48 H288"/>
+    <path d="M400 58 H372 L356 74 H310 L296 88 H250"/>
+    <path d="M96 0 V18 L112 34 H168"/>
+    <path d="M300 0 V22 L284 38 H232"/>
+
+    <!-- Circuitos laterales -->
+    <path d="M22 0 V60 L42 80 V150 L26 166 V228"/>
+    <path d="M378 0 V70 L356 92 V168 L376 188 V250"/>
+    <path d="M0 300 H56 L74 282 H130"/>
+    <path d="M400 296 H344 L326 278 H272"/>
+
+    <!-- Circuitos inferiores -->
+    <path d="M0 350 H70 L88 368 H150"/>
+    <path d="M400 344 H336 L318 362 H258"/>
+    <path d="M150 400 V366 L166 350 H214"/>
+    <path d="M252 400 V372 L268 356 H312"/>
+    <path d="M0 190 H40 L58 208 H110"/>
+    <path d="M400 186 H362 L344 204 H296"/>
+
+    <!-- Anillos decorativos -->
+    <circle cx="52" cy="238" r="17"/>
+    <circle cx="52" cy="238" r="7"/>
+    <circle cx="352" cy="322" r="13"/>
+    <circle cx="352" cy="322" r="5"/>
+    <circle cx="34" cy="126" r="9"/>
+    <circle cx="366" cy="128" r="9"/>
+  </g>
+
+  <!-- Nodos -->
+  <use href="#n" x="44" y="34"/><use href="#h" x="26" y="62"/><use href="#h" x="96" y="76"/>
+  <use href="#n" x="118" y="54"/><use href="#h" x="150" y="96"/><use href="#n" x="288" y="48"/>
+  <use href="#h" x="332" y="48"/><use href="#h" x="250" y="88"/><use href="#h" x="22" y="100"/>
+  <use href="#h" x="42" y="150"/><use href="#n" x="26" y="166"/><use href="#h" x="356" y="92"/>
+  <use href="#n" x="376" y="188"/><use href="#h" x="130" y="282"/><use href="#h" x="272" y="278"/>
+  <use href="#n" x="70" y="350"/><use href="#h" x="258" y="362"/><use href="#n" x="312" y="356"/>
+  <use href="#h" x="110" y="208"/><use href="#h" x="296" y="204"/>
+  <use href="#h" x="168" y="34"/><use href="#h" x="232" y="38"/><use href="#h" x="166" y="350"/>
+  <use href="#h" x="268" y="356"/>
+
+  <!-- Detalle: series de pines -->
+  <g fill="#1C5568">
+    <rect x="62" y="20" width="2.6" height="8" rx="1.3"/>
+    <rect x="67" y="20" width="2.6" height="8" rx="1.3"/>
+    <rect x="72" y="20" width="2.6" height="8" rx="1.3"/>
+    <rect x="322" y="404" width="2.6" height="8" rx="1.3"/>
+    <rect x="327" y="404" width="2.6" height="8" rx="1.3"/>
+    <rect x="332" y="404" width="2.6" height="8" rx="1.3"/>
+    <rect x="16" y="258" width="8" height="2.6" rx="1.3"/>
+    <rect x="16" y="263" width="8" height="2.6" rx="1.3"/>
+    <rect x="376" y="286" width="8" height="2.6" rx="1.3"/>
+    <rect x="376" y="291" width="8" height="2.6" rx="1.3"/>
+  </g>
+
+  <!-- Chevrons -->
+  <g fill="#1C5568" opacity="0.85">
+    <path d="M186 46 l8 5 -8 5 z"/><path d="M198 46 l8 5 -8 5 z"/><path d="M210 46 l8 5 -8 5 z"/>
+  </g>
+
+  <!-- Trazo tenue de fondo -->
+  <g stroke="#164A5A" stroke-width="1" fill="none" opacity="0.5">
+    <path d="M0 140 H200 L240 180 H400"/>
+    <path d="M0 268 H120 L160 228 H280"/>
+  </g>
+</svg>

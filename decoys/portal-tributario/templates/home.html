@@ -1,70 +1,95 @@
 {% extends "base.html" %}
 {% load static %}
-{% block title %}Inicio — Servicio Nacional de Impuestos{% endblock %}
+{% block title %}Impuestos Nacionales{% endblock %}
 
 {% block content %}
-<section class="txf-hero">
-  <h1>Servicio Nacional de Impuestos</h1>
-  <p>El portal oficial de servicios tributarios electrónicos.<br>
-     Realice sus trámites fiscales de forma rápida, segura y desde cualquier lugar.</p>
-  <div class="txf-hero-cta">
-    <a href="{% url 'public_consulta_nit' %}" class="txf-btn txf-btn-accent">
-      Consultar NIT
-    </a>
-    <a href="{% url 'public_login' %}" class="txf-btn txf-btn-outline" style="background: rgba(255,255,255,0.1); color: white; border-color: rgba(255,255,255,0.4);">
-      Iniciar sesión
-    </a>
+<section class="txf-hero-inst">
+  <div class="txf-hero-inst-logo">
+    <img src="{% static 'img/marca-horizontal.png' %}" alt="Impuestos Nacionales">
   </div>
+  <p class="txf-hero-inst-tagline">Una nueva <em>Administración Tributaria</em><br>está en marcha</p>
+  <p class="txf-hero-inst-sub">Realice sus trámites fiscales de forma rápida, segura y desde cualquier lugar.</p>
 </section>
 
-<section class="txf-section">
-  <h2 class="txf-section-title">Servicios en línea</h2>
-  <div class="txf-grid txf-grid-3">
-    <a href="{% url 'public_consulta_nit' %}" class="txf-card txf-card-hover" style="text-decoration: none; color: inherit;">
-      <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
-        <div style="width: 40px; height: 40px; background: var(--color-primary); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700;">N</div>
-        <h3 style="margin: 0; font-size: 1.1rem;">Consulta de NIT</h3>
-      </div>
-      <p style="margin: 0; color: var(--color-text-muted); font-size: 0.95rem;">Verifique la situación fiscal de cualquier contribuyente ingresando el NIT.</p>
-    </a>
-    <a href="{% url 'declaraciones:nueva' %}" class="txf-card txf-card-hover" style="text-decoration: none; color: inherit;">
-      <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
-        <div style="width: 40px; height: 40px; background: var(--color-accent); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; color: var(--color-primary-d); font-weight: 700;">D</div>
-        <h3 style="margin: 0; font-size: 1.1rem;">Declaración Jurada</h3>
-      </div>
-      <p style="margin: 0; color: var(--color-text-muted); font-size: 0.95rem;">Presente su declaración de impuestos de forma rápida y segura.</p>
-    </a>
-    <a href="{% url 'public_facturacion' %}" class="txf-card txf-card-hover" style="text-decoration: none; color: inherit;">
-      <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
-        <div style="width: 40px; height: 40px; background: var(--color-success); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700;">F</div>
-        <h3 style="margin: 0; font-size: 1.1rem;">Facturación</h3>
-      </div>
-      <p style="margin: 0; color: var(--color-text-muted); font-size: 0.95rem;">Consulte y gestione sus facturas electrónicas emitidas.</p>
-    </a>
-  </div>
-</section>
+<div class="txf-section-flanked"><h2>Servicios</h2></div>
 
-<section class="txf-section">
-  <h2 class="txf-section-title">Avisos importantes</h2>
-  <div class="txf-grid txf-grid-2">
-    <article class="txf-card">
-      <span class="txf-badge txf-badge-warning">Plazo</span>
-      <h3 style="margin: 0.5rem 0; font-size: 1.05rem;">Declaración del IVA — Segundo semestre 2024</h3>
-      <p style="margin: 0; color: var(--color-text-muted); font-size: 0.9rem;">Vence el 28 de diciembre. Presente su declaración para evitar multas.</p>
-      <p style="margin: 0.5rem 0 0 0; font-size: 0.8rem; color: var(--color-text-muted);">Publicado: 15 de noviembre de 2024</p>
-    </article>
-    <article class="txf-card">
-      <span class="txf-badge txf-badge-info">Sistema</span>
-      <h3 style="margin: 0.5rem 0; font-size: 1.05rem;">Mantenimiento programado</h3>
-      <p style="margin: 0; color: var(--color-text-muted); font-size: 0.9rem;">El portal no estará disponible el sábado 23 de 02:00 a 06:00 (UTC-4).</p>
-      <p style="margin: 0.5rem 0 0 0; font-size: 0.8rem; color: var(--color-text-muted);">Publicado: 10 de noviembre de 2024</p>
-    </article>
-  </div>
-</section>
+<div class="txf-service-grid">
+  <a href="{% url 'public_consulta_nit' %}" class="txf-service">
+    <div class="txf-service-circle">
+      <svg viewBox="0 0 64 64" fill="none" stroke="#00A5A9" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 16 L12 6 L34 6"/>
+        <circle cx="44" cy="6" r="2.5"/><circle cx="52" cy="6" r="2.5"/>
+        <path d="M12 24 L12 14 L28 14"/>
+        <path d="M12 32 L12 22 L24 22"/>
+        <path d="M12 40 L12 30 L20 30"/>
+        <path d="M22 50 H42 L50 42 V26"/>
+        <path d="M50 26 L44 32"/><path d="M50 26 L44 20"/>
+        <circle cx="42" cy="50" r="2.5"/>
+      </svg>
+    </div>
+    <b>Oficina Virtual</b>
+    <span>Tributaria</span>
+  </a>
 
-<section class="txf-section">
-  <div class="txf-alert txf-alert-warning" style="margin-bottom: 1.5rem;">
-    <span><strong>Recordatorio de seguridad:</strong> El Servicio Nacional de Impuestos nunca solicitará contraseñas ni códigos por correo electrónico o teléfono. Verifique siempre que esté en un sitio oficial antes de ingresar credenciales.</span>
+  <a href="{% url 'declaraciones:nueva' %}" class="txf-service">
+    <div class="txf-service-circle">
+      <svg viewBox="0 0 64 64" fill="none" stroke="#00A5A9" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="18" y="8" width="28" height="40" rx="2"/>
+        <path d="M18 16 H46"/><path d="M18 24 H38"/>
+        <circle cx="32" cy="36" r="6"/>
+        <path d="M32 30 V36 L35 38"/>
+        <path d="M26 52 H38"/>
+      </svg>
+    </div>
+    <b>Repositorio</b>
+    <span>Normativa<br>Tributaria</span>
+  </a>
+
+  <a href="{% url 'public_dashboard' %}" class="txf-service">
+    <div class="txf-service-circle">
+      <svg viewBox="0 0 64 64" fill="none" stroke="#00A5A9" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="24" cy="20" r="7"/>
+        <path d="M11 50 C11 40 17 34 24 34 C31 34 37 40 37 50"/>
+        <rect x="36" y="30" width="20" height="14" rx="2"/>
+        <path d="M46 44 V50"/>
+      </svg>
+    </div>
+    <b>Servicios</b>
+    <span>al Ciudadano</span>
+  </a>
+
+  <a href="#" class="txf-service">
+    <div class="txf-service-circle">
+      <svg viewBox="0 0 64 64" fill="none" stroke="#00A5A9" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M40 10 C40 4 34 4 34 10 C34 16 44 20 44 30 C44 40 38 44 32 44 C26 44 20 40 20 30 L26 34 C26 39 29 40 32 40 C35 40 38 38 38 30 C38 22 30 18 30 10 C30 4 36 4 36 10 Z" fill="none"/>
+        <path d="M24 48 L32 54 L40 48"/>
+      </svg>
+    </div>
+    <b>Tranca Cero</b>
+    <span>Reporta tu<br>tranca</span>
+  </a>
+</div>
+
+<div class="txf-section-flanked" style="margin-top:3.5rem;"><h2>Avisos importantes</h2></div>
+
+<div class="txf-grid txf-grid-2">
+  <div class="txf-card">
+    <span class="txf-badge txf-badge-warning">PLAZO</span>
+    <h3 style="margin:0.75rem 0 0.4rem;font-size:1.1rem;">Declaración del IVA — Segundo semestre 2024</h3>
+    <p style="margin:0;color:var(--color-text-muted);font-size:0.92rem;">Vence el 28 de diciembre. Presente su declaración para evitar multas.</p>
+    <p style="margin:0.6rem 0 0;color:var(--color-text-muted);font-size:0.82rem;">Publicado: 15 de noviembre de 2024</p>
   </div>
-</section>
+  <div class="txf-card">
+    <span class="txf-badge txf-badge-info">SISTEMA</span>
+    <h3 style="margin:0.75rem 0 0.4rem;font-size:1.1rem;">Mantenimiento programado</h3>
+    <p style="margin:0;color:var(--color-text-muted);font-size:0.92rem;">El portal no estará disponible el sábado 23 de 02:00 a 06:00 (UTC-4).</p>
+    <p style="margin:0.6rem 0 0;color:var(--color-text-muted);font-size:0.82rem;">Publicado: 10 de noviembre de 2024</p>
+  </div>
+</div>
+
+<div class="txf-alert txf-alert-warning" style="margin-top:1.5rem;">
+  <span><strong>Recordatorio de seguridad:</strong> Impuestos Nacionales nunca solicitará contraseñas
+  ni códigos por correo electrónico o teléfono. Verifique siempre que esté en un sitio oficial
+  antes de ingresar credenciales.</span>
+</div>
 {% endblock %}

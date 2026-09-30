@@ -3,35 +3,47 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{% block title %}Impuestos Nacionales{% endblock %}</title>
+  <title>{% block title %}Oficina Virtual Tributaria{% endblock %}</title>
   <link rel="icon" type="image/svg+xml" href="{% static 'img/favicon.svg' %}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{% static 'css/sin.css' %}">
   {% block extra_head %}{% endblock %}
 </head>
 <body>
 
 <div class="txf-launcher">
+
+  <!-- Encabezado de la plataforma -->
+  <div class="txf-launcher-brandtop">
+    <svg width="46" height="46" viewBox="0 0 46 46" fill="none" aria-hidden="true">
+      <path d="M3 8 H17 V38 H3 Z" fill="#00BAC2"/>
+      <path d="M21 8 H35 V38 H21 Z" fill="#00BAC2" opacity="0.65"/>
+      <g stroke="#02C7A1" stroke-width="1.8" stroke-linecap="round">
+        <path d="M17 16 H21"/><path d="M17 23 H21"/><path d="M17 30 H21"/>
+      </g>
+      <g fill="#02C7A1"><circle cx="21" cy="16" r="1.8"/><circle cx="21" cy="23" r="1.8"/><circle cx="21" cy="30" r="1.8"/></g>
+    </svg>
+    <div class="txf-launcher-brandtop-text">
+      <b>Oficina Virtual</b>
+      <span>Tributaria</span>
+    </div>
+  </div>
+
+  <!-- Tarjeta de acceso -->
   <div class="txf-launcher-card">
 
-    <div class="txf-launcher-brand">
-      <img src="/static/img/logo.svg" alt="Servicio Nacional de Impuestos">
-      <div class="txf-launcher-brand-text">
-        <b>Impuestos Nacionales</b>
-        <span>Servicio Nacional de Impuestos</span>
-      </div>
+    <div class="txf-launcher-brandtop">
+      <img src="{% static 'img/marca-horizontal.png' %}" alt="Impuestos Nacionales"
+           style="height:44px;filter:brightness(0) invert(1);">
     </div>
 
     {% if auth_stage == "credentials" %}
     <h1 class="txf-launcher-title">Iniciar sesión</h1>
-    <p class="txf-launcher-subtitle">
-      Acceda a los servicios en línea del Servicio Nacional de Impuestos con su NIT y contraseña.
-    </p>
 
     {% if form.non_field_errors %}
-      <div class="txf-launcher-alert txf-launcher-alert-error">
+      <div class="txf-launcher-alert">
         <span>&#9888;</span>
         <span>{% for error in form.non_field_errors %}{{ error }}{% endfor %}</span>
       </div>
@@ -42,49 +54,78 @@
       <input type="hidden" name="stage" value="credentials">
 
       <div class="txf-launcher-field">
-        <label for="{{ form.username.id_for_label }}">NIT o correo electrónico</label>
-        <input type="text" id="{{ form.username.id_for_label }}" name="username"
-               class="txf-launcher-input" value="{{ form.username.value|default:'' }}"
-               autocomplete="username" placeholder="Ej: 1234567 o usuario@ejemplo.bo" required>
-        {% if form.username.errors %}<div class="txf-error">{{ form.username.errors.0 }}</div>{% endif %}
+        <label for="{{ form.username.id_for_label }}">NIT / CUR / CI</label>
+        <div class="txf-launcher-fieldwrap">
+          <input type="text" id="{{ form.username.id_for_label }}" name="username"
+                 class="txf-launcher-input" value="{{ form.username.value|default:'' }}"
+                 autocomplete="username" placeholder="Ejm: 123456-1X o 123456-78" required>
+          <span class="txf-launcher-fieldicon">
+            <svg width="19" height="19" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+              <circle cx="10" cy="6" r="3.2"/><path d="M3.5 17c0-3.6 2.9-5.5 6.5-5.5s6.5 1.9 6.5 5.5"/>
+            </svg>
+          </span>
+        </div>
+        <button type="button" class="txf-launcher-helpbtn" title="Ayuda">?</button>
       </div>
 
       <div class="txf-launcher-field">
-        <label for="{{ form.password.id_for_label }}">Contraseña</label>
-        <input type="password" id="{{ form.password.id_for_label }}" name="password"
-               class="txf-launcher-input" autocomplete="current-password"
-               placeholder="••••••••" required>
-        {% if form.password.errors %}<div class="txf-error">{{ form.password.errors.0 }}</div>{% endif %}
+        <label for="id_email">CORREO ELECTRÓNICO</label>
+        <div class="txf-launcher-fieldwrap">
+          <input type="email" id="id_email" name="email" class="txf-launcher-input"
+                 autocomplete="email" placeholder="Ejm: usuario@correo.com">
+          <span class="txf-launcher-fieldicon">
+            <svg width="19" height="19" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+              <rect x="2" y="4" width="16" height="12" rx="2"/><path d="M2.5 5.5 10 11l7.5-5.5"/>
+            </svg>
+          </span>
+        </div>
       </div>
 
-      <div class="txf-launcher-row">
-        <label class="txf-launcher-check">
-          <input type="checkbox" name="remember" style="width:auto;">
-          <span>Recordarme</span>
-        </label>
-        <a class="txf-launcher-link" href="#">¿Olvidó su contraseña?</a>
+      <div class="txf-launcher-field">
+        <label for="{{ form.password.id_for_label }}">CONTRASEÑA</label>
+        <div class="txf-launcher-fieldwrap">
+          <input type="password" id="{{ form.password.id_for_label }}" name="password"
+                 class="txf-launcher-input" autocomplete="current-password"
+                 placeholder="••••••••" required>
+          <span class="txf-launcher-fieldicon">
+            <svg width="19" height="19" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+              <path d="M2 10s3-5 8-5 8 5 8 5-3 5-8 5-8-5-8-5z"/><circle cx="10" cy="10" r="2.2"/>
+              <path d="M3 17 17 3"/>
+            </svg>
+          </span>
+        </div>
+        <button type="button" class="txf-launcher-helpbtn" title="Ayuda">?</button>
       </div>
 
-      <button type="submit" class="txf-launcher-btn">Continuar</button>
+      <button type="submit" class="txf-launcher-btn">INGRESAR</button>
     </form>
 
-    <div class="txf-launcher-divider">o</div>
-
-    <a href="{% url 'public_register' %}" class="txf-launcher-btn txf-launcher-btn-outline"
-       style="display:flex;align-items:center;justify-content:center;text-decoration:none;">
-      Crear cuenta nueva
-    </a>
+    <div class="txf-launcher-row">
+      <a href="#" class="txf-launcher-pill">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+          <rect x="3" y="7" width="10" height="7" rx="1.5"/><path d="M5.5 7V5a2.5 2.5 0 0 1 5 0v2"/>
+        </svg>
+        Olvidé mi contraseña
+      </a>
+      <a href="{% url 'public_register' %}" class="txf-launcher-pill">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+          <circle cx="6" cy="5.5" r="2.5"/><path d="M1.5 13.5c0-2.5 2-4 4.5-4s4.5 1.5 4.5 4"/>
+          <path d="M11 5v6M8 8h6"/>
+        </svg>
+        Regístrarme como Ciudadano
+      </a>
+    </div>
 
     {% elif auth_stage == "otp" %}
     <div class="txf-launcher-step"><b>2</b> Verificación en dos pasos</div>
     <h1 class="txf-launcher-title">Código de verificación</h1>
-    <p class="txf-launcher-subtitle">
-      Ingrese el código de 6 dígitos generado para su dispositivo
-      <strong>{{ otp_target }}</strong>. El código es válido por 5 minutos.
+
+    <p style="margin:-0.9rem 0 1.4rem;text-align:center;font-size:0.85rem;color:#6E93A6;">
+      Ingrese el código de 6 dígitos generado para su dispositivo <strong>{{ otp_target }}</strong>.
     </p>
 
     {% if otp_error %}
-      <div class="txf-launcher-alert txf-launcher-alert-error">
+      <div class="txf-launcher-alert">
         <span>&#9888;</span>
         <span>{{ otp_error }}</span>
       </div>
@@ -95,32 +136,61 @@
       <input type="hidden" name="stage" value="otp">
 
       <div class="txf-launcher-field">
-        <label for="otp_code">Código de verificación</label>
-        <input type="text" id="otp_code" name="otp_code" class="txf-launcher-input"
-               inputmode="numeric" pattern="\d{6}" maxlength="6"
-               autocomplete="one-time-code" placeholder="000000" required>
+        <label for="otp_code">CÓDIGO DE VERIFICACIÓN</label>
+        <div class="txf-launcher-fieldwrap">
+          <input type="text" id="otp_code" name="otp_code"
+                 class="txf-launcher-input txf-launcher-otp-input"
+                 inputmode="numeric" pattern="\d{6}" maxlength="6"
+                 autocomplete="one-time-code" placeholder="000000" required>
+        </div>
       </div>
 
-      <button type="submit" class="txf-launcher-btn">Verificar</button>
+      <button type="submit" class="txf-launcher-btn">INGRESAR</button>
     </form>
 
-    <div class="txf-launcher-row" style="margin:1rem 0 0;">
-      <a class="txf-launcher-link" href="{% url 'public_login' %}">Volver</a>
-      <a class="txf-launcher-link" href="#">Reenviar código</a>
+    <div class="txf-launcher-row">
+      <a href="{% url 'public_login' %}" class="txf-launcher-pill">Volver</a>
+      <a href="#" class="txf-launcher-pill">Reenviar código</a>
     </div>
 
     {% elif auth_stage == "success" %}
     <div class="txf-launcher-step"><b>2</b> Verificación en dos pasos</div>
     <h1 class="txf-launcher-title">Verificación completada</h1>
-    <p class="txf-launcher-subtitle">
+    <p style="margin:-0.9rem 0 1rem;text-align:center;font-size:0.85rem;color:#6E93A6;">
       Acceso concedido. Redirigiendo a su panel de contribuyente…
     </p>
     {% endif %}
-
-    <div class="txf-launcher-help">
-      ¿Necesita ayuda? <a class="txf-launcher-link" href="#">Contacte a la mesa de ayuda</a>
-    </div>
   </div>
+
+  <!-- Redes oficiales -->
+  <div class="txf-launcher-social">
+    <a href="#" title="Facebook" aria-label="Facebook">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M14 9V7.2c0-.8.2-1.2 1.4-1.2H17V3h-2.6C11.4 3 10.4 4.5 10.4 7v2H8v3h2.4v9H14v-9h2.6l.4-3H14z"/>
+      </svg>
+    </a>
+    <a href="#" title="X" aria-label="X">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M17.5 3h3l-6.6 7.5L21.7 21h-5.9l-4.6-6-5.3 6H2.7l7-8L2.5 3h6l4.2 5.5L17.5 3zm-1 16.2h1.7L7.6 4.7H5.8l10.7 14.5z"/>
+      </svg>
+    </a>
+    <a href="#" title="Instagram" aria-label="Instagram">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+        <rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/>
+      </svg>
+    </a>
+    <a href="#" title="TikTok" aria-label="TikTok">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M16.5 3c.3 2.2 1.8 3.8 4 4.1v2.9c-1.5 0-2.9-.5-4-1.4v5.7c0 3.4-2.4 5.7-5.4 5.7A5.2 5.2 0 0 1 5.9 14c0-3 2.4-5.4 5.5-5.3v3c-1.4-.2-2.6.8-2.6 2.2 0 1.3 1 2.3 2.3 2.3 1.4 0 2.4-1 2.4-2.5V3h3z"/>
+      </svg>
+    </a>
+    <a href="#" title="YouTube" aria-label="YouTube">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M22 8.2s-.2-1.5-.8-2.1c-.7-.8-1.6-.8-2-.9C16.5 5 12 5 12 5s-4.5 0-7.2.2c-.4.1-1.3.1-2 .9C2.2 6.7 2 8.2 2 8.2S1.8 10 1.8 11.7v1.6C1.8 15 2 16.8 2 16.8s.2 1.5.8 2.1c.7.8 1.7.7 2.1.8 1.5.1 6.1.2 6.1.2s4.5 0 7.2-.2c.4-.1 1.3-.1 2-.9.6-.6.8-2.1.8-2.1s.2-1.8.2-3.5v-1.6c0-1.7-.2-3.5-.2-3.5zM9.9 14.2V8.4l5.4 2.9-5.4 2.9z"/>
+      </svg>
+    </a>
+  </div>
+
 </div>
 
 </body>

@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{% block title %}Servicio Nacional de Impuestos{% endblock %}</title>
+  <title>{% block title %}Impuestos Nacionales{% endblock %}</title>
   <meta name="description" content="Administración Tributaria">
   <link rel="icon" type="image/svg+xml" href="{% static 'img/favicon.svg' %}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="{% static 'css/sin.css' %}">
   {% block extra_head %}{% endblock %}
@@ -16,77 +16,34 @@
 <body>
 
   <!-- ===================================================================
-       Barra superior: sitio oficial del Estado Plurinacional de Bolivia
-       =================================================================== -->
-  <div class="txf-gobbar">
-    <div class="txf-gobbar-inner">
-      <button class="txf-gobbar-flag" type="button" data-bs-toggle="collapse"
-              data-bs-target="#gob-info" aria-expanded="false" aria-controls="gob-info">
-        <svg width="22" height="15" viewBox="0 0 22 15" aria-hidden="true">
-          <rect width="22" height="5" y="0" fill="#D52B1E"/>
-          <rect width="22" height="5" y="5" fill="#F9E300"/>
-          <rect width="22" height="5" y="10" fill="#007934"/>
-        </svg>
-        <span>Sitio oficial del Estado Plurinacional de Bolivia</span>
-      </button>
-
-      <div class="txf-gobbar-tools">
-        <form class="txf-gobbar-search" role="search" method="get" action="/">
-          <input type="search" name="s" aria-label="Buscar" placeholder="Buscar…">
-          <button type="submit" aria-label="Buscar">
-            <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-              <path d="M11.7 10.3a6.5 6.5 0 1 0-1.4 1.4l3.5 3.5 1.4-1.4-3.5-3.5zM7 12a5 5 0 1 1 0-10 5 5 0 0 1 0 10z"/>
-            </svg>
-          </button>
-        </form>
-        <button class="txf-gobbar-btn" type="button" id="theme-toggle" aria-label="Cambiar tema">
-          <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-            <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1.5a.75.75 0 0 1 .75.75v1a.75.75 0 0 1-1.5 0v-1A.75.75 0 0 1 8 12.5zm0-11a.75.75 0 0 1 .75.75v1a.75.75 0 0 1-1.5 0v-1A.75.75 0 0 1 8 1.5zM2.5 8a.75.75 0 0 1-.75.75h-1a.75.75 0 0 1 0-1.5h1A.75.75 0 0 1 2.5 8zm12 0a.75.75 0 0 1-.75.75h-1a.75.75 0 0 1 0-1.5h1A.75.75 0 0 1 14.5 8zM4.1 2.6a.75.75 0 0 1 1.06 1.06L4.7 4.1A.75.75 0 0 1 3.64 3.04L4.1 2.6zm7.14 7.14a.75.75 0 0 1 1.06 1.06l-.46.46a.75.75 0 0 1-1.06-1.06l.46-.46zm1.06-7.14a.75.75 0 0 1-1.06 1.06l-.46.46A.75.75 0 0 1 9.72 3.06l.46-.46a.75.75 0 0 1 1.06 1.06zM4.7 11.3a.75.75 0 0 1-1.06 1.06l-.46-.46a.75.75 0 0 1 1.06-1.06l.46.46z"/>
-          </svg>
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <div class="txf-gobinfo" id="gob-info">
-    <div class="txf-gobinfo-inner">
-      <div class="txf-gobinfo-item">
-        <span class="txf-gobinfo-icon">&#127970;</span>
-        <div>
-          <b>Uso de .gob.bo</b>
-          <p>Los portales oficiales del Estado Plurinacional de Bolivia emplean el dominio
-             .gob.bo de forma exclusiva.</p>
-        </div>
-      </div>
-      <div class="txf-gobinfo-item">
-        <span class="txf-gobinfo-icon">&#128274;</span>
-        <div>
-          <b>Uso de https://</b>
-          <p>Los portales oficiales incorporan en sus direcciones el protocolo https:// y
-             muestran un candado en la barra de dirección del navegador. Esto significa que
-             está conectado a un dominio de manera segura.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ===================================================================
        Cabecera institucional
        =================================================================== -->
   <header class="txf-header">
     <div class="txf-header-inner">
       <a class="txf-header-brand" href="{% url 'public_home' %}">
-        <img src="{% static 'img/logo.svg' %}" alt="Servicio Nacional de Impuestos">
+        <img src="{% static 'img/marca-horizontal.png' %}" alt="Impuestos Nacionales">
       </a>
-      <div class="txf-header-title">
-        <h1>Servicio Nacional de Impuestos</h1>
-        <p>Administración Tributaria — Estado Plurinacional de Bolivia</p>
-      </div>
-      <div class="txf-header-state">
-        <img src="{% static 'img/estado.svg' %}" alt="Estado Plurinacional de Bolivia">
+
+      <div class="txf-header-tools">
+        <form class="txf-header-search" role="search" method="get" action="/">
+          <input type="search" name="s" aria-label="Buscar" placeholder="Buscar…">
+          <button type="submit" aria-label="Buscar">
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+              <path d="M11.7 10.3a6.5 6.5 0 1 0-1.4 1.4l3.5 3.5 1.4-1.4-3.5-3.5zM7 12a5 5 0 1 1 0-10 5 5 0 0 1 0 10z"/>
+            </svg>
+          </button>
+        </form>
+        <button class="txf-icon-btn" type="button" id="theme-toggle" aria-label="Cambiar tema">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+            <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1.5a.75.75 0 0 1 .75.75v1a.75.75 0 0 1-1.5 0v-1A.75.75 0 0 1 8 12.5zm0-11a.75.75 0 0 1 .75.75v1a.75.75 0 0 1-1.5 0v-1A.75.75 0 0 1 8 1.5zM2.5 8a.75.75 0 0 1-.75.75h-1a.75.75 0 0 1 0-1.5h1A.75.75 0 0 1 2.5 8zm12 0a.75.75 0 0 1-.75.75h-1a.75.75 0 0 1 0-1.5h1A.75.75 0 0 1 14.5 8zM4.1 2.6a.75.75 0 0 1 1.06 1.06L4.7 4.1A.75.75 0 0 1 3.64 3.04L4.1 2.6zm7.14 7.14a.75.75 0 0 1 1.06 1.06l-.46.46a.75.75 0 0 1-1.06-1.06l.46-.46zm1.06-7.14a.75.75 0 0 1-1.06 1.06l-.46.46A.75.75 0 0 1 9.72 3.06l.46-.46a.75.75 0 0 1 1.06 1.06zM4.7 11.3a.75.75 0 0 1-1.06 1.06l-.46-.46a.75.75 0 0 1 1.06-1.06l.46.46z"/>
+          </svg>
+        </button>
+        <img class="txf-header-state" src="{% static 'img/estado.png' %}" alt="Escudo del Estado Plurinacional de Bolivia">
       </div>
     </div>
   </header>
+
+  <div class="txf-tealbar"></div>
 
   <!-- ===================================================================
        Navegacion principal
@@ -94,7 +51,7 @@
   <nav class="txf-mainnav" aria-label="Navegacion principal">
     <div class="txf-mainnav-inner">
       <div class="txf-mainnav-item">
-        <a class="txf-mainnav-link" href="#">Institucional</a>
+        <a class="txf-mainnav-link" href="#">Institucional <span aria-hidden="true">▾</span></a>
         <div class="txf-mainnav-dropdown">
           <a href="#">Misión, Visión, Valores y Principios de la Entidad</a>
           <a href="#">Reseña Histórica</a>
@@ -104,28 +61,56 @@
           <a href="#">Información financiera</a>
           <a href="#">Contrataciones</a>
           <a href="#">Informes de auditoría</a>
-          <a href="#">Marco Normativo</a>
         </div>
       </div>
       <div class="txf-mainnav-item">
-        <a class="txf-mainnav-link" href="#">Servicio al Contribuyente</a>
+        <a class="txf-mainnav-link" href="#">Servicio al Contribuyente <span aria-hidden="true">▾</span></a>
         <div class="txf-mainnav-dropdown">
           <a href="{% url 'public_consulta_nit' %}">Consulta de NIT</a>
           <a href="{% url 'declaraciones:nueva' %}">Declaración Jurada</a>
           <a href="{% url 'public_facturacion' %}">Facturación electrónica</a>
           <a href="#">Calendario Tributario</a>
           <a href="#">Verificar fiscalizadores</a>
-          <a href="#">NIT pendientes de pago en el SIN</a>
+          <a href="#">NIT pendientes de pago</a>
           <a href="#">Información Ley N° 1448</a>
-          <a href="#">Subasta de Bienes</a>
+          <a href="#">Oficina Virtual Tributaria</a>
         </div>
       </div>
       <div class="txf-mainnav-item">
-        <a class="txf-mainnav-link" href="#">Noticias</a>
+        <a class="txf-mainnav-link" href="#">Recursos Humanos <span aria-hidden="true">▾</span></a>
+        <div class="txf-mainnav-dropdown">
+          <a href="#">Concurso deméritos</a>
+          <a href="#">Capacitación</a>
+          <a href="#">Estructura organizacional</a>
+          <a href="#">Remuneraciones</a>
+        </div>
       </div>
       <div class="txf-mainnav-item">
-        <a class="txf-mainnav-link" href="#">Contacto</a>
+        <a class="txf-mainnav-link" href="#">Normativa Tributaria <span aria-hidden="true">▾</span></a>
+        <div class="txf-mainnav-dropdown">
+          <a href="#">Código Tributario</a>
+          <a href="#">Leyes y Decretos</a>
+          <a href="#">Gacetas Oficiales</a>
+          <a href="#">Resoluciones Administrativas</a>
+        </div>
       </div>
+      <div class="txf-mainnav-item">
+        <a class="txf-mainnav-link" href="#">Comunicación <span aria-hidden="true">▾</span></a>
+        <div class="txf-mainnav-dropdown">
+          <a href="#">Noticias</a>
+          <a href="#">Campañas</a>
+          <a href="#">Comunicados</a>
+        </div>
+      </div>
+      <div class="txf-mainnav-item">
+        <a class="txf-mainnav-link" href="#">Contacto <span aria-hidden="true">▾</span></a>
+        <div class="txf-mainnav-dropdown">
+          <a href="#">Mesa de ayuda</a>
+          <a href="#">Directorio de oficinas</a>
+          <a href="#">Canales de atención</a>
+        </div>
+      </div>
+
       <div class="txf-mainnav-session">
         {% if user.is_authenticated %}
           <a class="txf-mainnav-link" href="{% url 'public_dashboard' %}">Mi cuenta ({{ user.username }})</a>
@@ -138,14 +123,10 @@
   </nav>
 
   {% if messages %}
-  <div class="txf-messages">
-    <div style="max-width:1200px;margin:0 auto;padding:1rem 1.5rem 0;">
-      {% for message in messages %}
-        <div class="txf-alert txf-alert-{{ message.tags|default:'info' }}">
-          <span>{{ message }}</span>
-        </div>
-      {% endfor %}
-    </div>
+  <div style="max-width:1240px;margin:0 auto;padding:1rem 1.5rem 0;">
+    {% for message in messages %}
+      <div class="txf-alert txf-alert-{{ message.tags|default:'info' }}"><span>{{ message }}</span></div>
+    {% endfor %}
   </div>
   {% endif %}
 
@@ -156,9 +137,9 @@
   <footer class="txf-footer">
     <div class="txf-footer-inner">
       <div>
-        <h4>Servicio Nacional de Impuestos</h4>
-        <p style="margin: 0; line-height: 1.5;">Administración Tributaria. Gestión de
-           contribuyentes, declaraciones juradas y facturación electrónica.</p>
+        <img class="txf-footer-logo" src="{% static 'img/marca-horizontal.png' %}" alt="Impuestos Nacionales" style="height:52px;margin-bottom:0.9rem;">
+        <p style="margin:0;line-height:1.5;">Administración Tributaria. Gestión de contribuyentes,
+           declaraciones juradas y facturación electrónica.</p>
       </div>
       <div>
         <h4>Servicio al Contribuyente</h4>
@@ -184,23 +165,13 @@
       </div>
     </div>
     <div class="txf-footer-bottom">
-      <span>© 2024 Servicio Nacional de Impuestos — Todos los derechos reservados</span>
+      <span>© 2024 Impuestos Nacionales — Todos los derechos reservados</span>
       <span>Versión 2.4.1 · {{ request.get_host }}</span>
     </div>
   </footer>
 
   <script>
     (function () {
-      // Panel informativo del Estado Plurinacional
-      var info = document.getElementById('gob-info');
-      var flag = document.querySelector('.txf-gobbar-flag');
-      if (flag && info) {
-        flag.addEventListener('click', function () {
-          info.classList.toggle('open');
-          flag.setAttribute('aria-expanded', info.classList.contains('open') ? 'true' : 'false');
-        });
-      }
-      // Tema claro / oscuro
       var toggle = document.getElementById('theme-toggle');
       if (toggle) {
         toggle.addEventListener('click', function () {
