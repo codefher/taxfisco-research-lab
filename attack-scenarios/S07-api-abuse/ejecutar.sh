@@ -30,7 +30,8 @@ done
 # 2. Admin endpoint access (T1078 - Valid Accounts)
 echo "[*] Fase 2: Admin endpoint enumeration"
 for endpoint in users config logs system/passwd; do
-    curl -s "$DECOY_API/api/v1/admin/$endpoint" -o "$EVIDENCE_DIR/admin_$endpoint.json"
+    safe=$(echo "$endpoint" | tr '/' '_')
+    curl -s "$DECOY_API/api/v1/admin/$endpoint" -o "$EVIDENCE_DIR/admin_$safe.json"
 done
 
 # 3. Mass-assignment attempt on declaración jurada

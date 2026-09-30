@@ -1,4 +1,4 @@
-# TaxFisco Research Lab
+# SIN Research Lab
 
 > **Laboratorio experimental de honeypots y plataforma SOC open source**
 > para la tesis de maestría: *"Metodología Honeypot para la Gestión de
@@ -13,7 +13,7 @@
 
 ## 📋 Descripción
 
-Plataforma integrada de **Detección, Engaño, Monitoreo y Respuesta a Incidentes** que simula un ente tributario genérico ("TaxFisco Research Lab"). Implementa una arquitectura SOC completa open source con honeypots, SIEM, SOAR, Threat Intelligence y DFIR.
+Plataforma integrada de **Detección, Engaño, Monitoreo y Respuesta a Incidentes** que simula un ente tributario genérico ("SIN Research Lab"). Implementa una arquitectura SOC completa open source con honeypots, SIEM, SOAR, Threat Intelligence y DFIR.
 
 ## 🎯 Características principales
 
@@ -45,9 +45,9 @@ A continuación, las principales pantallas:
 
 ![API Docs](./docs/screenshots/api-docs.png)
 
-Swagger UI con tema TaxFisco (paleta azul corporativo + dorado acento),
+Swagger UI con tema SIN (paleta azul corporativo + dorado acento),
 19 endpoints documentados, 7 grupos (contribuyentes, declaraciones, facturas,
-auth, admin, reportes, health) y branding "TaxFisco" en el header.
+auth, admin, reportes, health) y branding "SIN" en el header.
 
 ### Características del branding
 
@@ -88,8 +88,8 @@ auth, admin, reportes, health) y branding "TaxFisco" en el header.
 
 ```bash
 # 1. Clonar el repositorio
-git clone https://github.com/codefher/taxfisco-research-lab.git
-cd taxfisco-research-lab
+git clone https://github.com/codefher/sin-research-lab.git
+cd sin-research-lab
 
 # 2. Configurar entorno
 cp .env.example .env
@@ -191,7 +191,7 @@ make stats          # Uso de recursos (CPU/RAM)
 ## 🏛️ Estructura del proyecto
 
 ```
-taxfisco-research-lab/
+sin-research-lab/
 ├── docker-compose.yml          # Orquestador maestro
 ├── .env.example                # Variables de entorno (plantilla)
 ├── Makefile                    # Comandos simplificados
@@ -298,11 +298,11 @@ Los dos labs renombran sus artefactos Docker para poder coexistir sin colisiones
 
 | Artefacto | Prototipo I | Prototipo II |
 |---|---|---|
-| `name:` (proyecto compose) | `taxfisco-research-lab-lite` | `sin-research-lab` |
-| Redes | `taxfisco-dmz`, `taxfisco-honeypot`, `taxfisco-ids`, `taxfisco-soc` | `sin-dmz`, `sin-honeypot`, `sin-ids`, `sin-soc` |
-| Volúmenes | `taxfisco-research-lab-lite_*` | `sin-research-lab_*` |
-| Imágenes propias | `taxfisco/decoy-portal`, `taxfisco/decoy-api` | `sin/decoy-portal`, `sin/decoy-api` |
-| Contenedores | `taxfisco-*` | `sin-*` |
+| `name:` (proyecto compose) | `sin-research-lab-lite` | `sin-research-lab` |
+| Redes | `sin-dmz`, `sin-honeypot`, `sin-ids`, `sin-soc` | `sin-dmz`, `sin-honeypot`, `sin-ids`, `sin-soc` |
+| Volúmenes | `sin-research-lab-lite_*` | `sin-research-lab_*` |
+| Imágenes propias | `sin/decoy-portal`, `sin/decoy-api` | `sin/decoy-portal`, `sin/decoy-api` |
+| Contenedores | `sin-*` | `sin-*` |
 
 Los puertos del host usan un **offset `+10000`** en el P2 para que no choquen si ambos
 corren simultáneamente. Por ejemplo: Grafana `3000` → `13000`, API `8090` → `18090`,
@@ -332,7 +332,7 @@ Este es un repositorio de tesis académica. Las mejoras, extensiones y reportes 
 ## 📧 Contacto
 
 - GitHub: [@codefher](https://github.com/codefher)
-- Issues: [GitHub Issues](https://github.com/codefher/taxfisco-research-lab/issues)
+- Issues: [GitHub Issues](https://github.com/codefher/sin-research-lab/issues)
 
 ## ⭐ Si este proyecto te fue útil, considera darle una estrella
 

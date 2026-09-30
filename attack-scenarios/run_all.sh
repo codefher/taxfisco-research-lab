@@ -1,6 +1,6 @@
 #!/bin/bash
 # ============================================================================
-# Master execution script - TaxFisco Research Lab
+# Master execution script - SIN Research Lab
 # Ejecuta los 10 escenarios secuencialmente y genera todos los análisis
 # ============================================================================
 
@@ -20,7 +20,7 @@ YELLOW='\033[1;33m'
 NC='\033[0m'
 
 echo -e "${YELLOW}========================================${NC}"
-echo -e "${YELLOW}TaxFisco Research Lab - Master Execution${NC}"
+echo -e "${YELLOW}SIN Research Lab - Master Execution${NC}"
 echo -e "${YELLOW}========================================${NC}"
 
 # Verificar que estamos en el contenedor atacante
@@ -47,7 +47,7 @@ SCENARIOS=(
 )
 
 EXEC_LOG="$RESULTS_DIR/execution_log.txt"
-echo "TaxFisco - Master Execution Log" > $EXEC_LOG
+echo "SIN - Master Execution Log" > $EXEC_LOG
 echo "Started: $(date -u +"%Y-%m-%dT%H:%M:%SZ")" >> $EXEC_LOG
 
 for SCENARIO in "${SCENARIOS[@]}"; do

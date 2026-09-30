@@ -4,6 +4,12 @@ network.host: 0.0.0.0
 discovery.type: single-node
 bootstrap.memory_lock: false
 
+# Persistencia: el volumen esta montado en /var/lib/wazuh-indexer.
+# Sin esto, OpenSearch usa <home>/data (efimero) y se pierden los indices
+# de TheHive/Cortex/Shuffle al recrear el contenedor.
+path.data: /var/lib/wazuh-indexer
+path.logs: /var/log/wazuh-indexer
+
 # Wazuh Indexer 4.10 con SSL habilitado (single-node lab)
 plugins.security.ssl.http.enabled: true
 plugins.security.ssl.http.pemcert_filepath: /etc/wazuh-indexer/certs/indexer.pem
@@ -16,7 +22,7 @@ plugins.security.ssl.transport.pemtrustedcas_filepath: /etc/wazuh-indexer/certs/
 
 # Admin user (canonical subject format from generated admin.pem cert)
 plugins.security.authcz.admin_dn:
-  - "CN=admin,OU=Lab,O=TaxFisco,L=LaPaz,ST=LP,C=BO"
+  - "CN=admin,OU=Lab,O=SIN,L=LaPaz,ST=LP,C=BO"
 
 # Auditoria deshabilitada para simplificar el lab
 plugins.security.audit.type: internal_opensearch

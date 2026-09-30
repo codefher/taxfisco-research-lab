@@ -1,6 +1,6 @@
 #!/bin/bash
 # =============================================================================
-# Setup Swap 8 GB - TaxFisco Research Lab LITE
+# Setup Swap 8 GB - SIN Research Lab LITE
 # =============================================================================
 # Crea 8 GB de swap en el host Linux. Necesario para el perfil lite de 16 GB
 # para tener margen cuando hay picos de uso de memoria.

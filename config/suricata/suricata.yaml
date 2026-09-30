@@ -1,6 +1,6 @@
 %YAML 1.1
 ---
-# Suricata configuration for TaxFisco Research Lab
+# Suricata configuration for SIN Research Lab
 # Detección de amenazas a nivel de red (NIDS)
 
 vars:

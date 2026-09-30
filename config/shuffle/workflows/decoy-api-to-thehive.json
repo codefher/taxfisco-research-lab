@@ -42,7 +42,7 @@
         "value": "${action-1.source_ip}",
         "type": "ip-dst",
         "category": "Network activity",
-        "comment": "Detected attacking TaxFisco decoy with ${action-1.attack_technique_id}"
+        "comment": "Detected attacking SIN decoy with ${action-1.attack_technique_id}"
       }
     },
     {

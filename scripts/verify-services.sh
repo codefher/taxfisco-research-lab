@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # =============================================================================
-# TaxFisco Research Lab - Functional Verification Script
+# SIN Research Lab - Functional Verification Script
 # =============================================================================
 # Ejecuta 13 health checks funcionales (read-only) sobre los servicios
 # del lab. NO genera trafico contra los honeypots.

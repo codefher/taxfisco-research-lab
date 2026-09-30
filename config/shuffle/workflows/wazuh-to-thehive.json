@@ -68,7 +68,7 @@
       "app": "TheHive",
       "action": "create_case",
       "parameters": {
-        "title": "TaxFisco Alert: ${action-1.rule_description}",
+        "title": "SIN Alert: ${action-1.rule_description}",
         "description": "Automated case from Wazuh alert. ATT&CK: ${action-1.mitre_id}",
         "severity": "${action-1.alert_level}",
         "tlp": "AMBER",
@@ -95,7 +95,7 @@
       "action": "send_email",
       "parameters": {
         "to": ["soc@sin.local"],
-        "subject": "[TaxFisco] New Incident: ${action-1.rule_description}",
+        "subject": "[SIN] New Incident: ${action-1.rule_description}",
         "body": "Case ID: ${action-6.case_id}\nSeverity: ${action-1.alert_level}\nATT&CK: ${action-1.mitre_id}\nIP: ${action-2.src_ip}"
       }
     }

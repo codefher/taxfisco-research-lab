@@ -12,7 +12,7 @@ EVIDENCE_DIR="$SCRIPT_DIR/evidencia"
 mkdir -p "$EVIDENCE_DIR"
 
 # DNS exfil patterns will be generated against arbitrary attacker-controlled domain
-EXFIL_DOMAIN="attacker-data-leak.taxfisco-exfil.xyz"
+EXFIL_DOMAIN="attacker-data-leak.sin-exfil.xyz"
 TIMESTAMP=$(date -u +"%Y%m%dT%H%M%SZ")
 
 echo "=========================================="

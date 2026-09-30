@@ -1,6 +1,6 @@
 #!/bin/bash
 # =============================================================================
-# Setup Wazuh Index for TheHive - TaxFisco Research Lab LITE
+# Setup Wazuh Index for TheHive - SIN Research Lab LITE
 # =============================================================================
 # En el perfil lite, TheHive y Cortex usan el mismo Elasticsearch de Wazuh.
 # Este script crea el índice "thehive" en Wazuh Indexer para evitar conflictos.

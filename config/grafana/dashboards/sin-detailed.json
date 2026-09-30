@@ -152,7 +152,7 @@
   "tags": ["sin", "honeypot", "alerts"],
   "templating": {"list": []},
   "time": {"from": "now-90d", "to": "now"},
-  "title": "TaxFisco - Detailed Alerts",
+  "title": "SIN - Detailed Alerts",
   "uid": "sin-detailed",
   "version": 2
 }

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # =============================================================================
-# TaxFisco Research Lab - Setup Manual Credentials + Fresh-Install Fixes
+# SIN Research Lab - Setup Manual Credentials + Fresh-Install Fixes
 # =============================================================================
 # Aplica credenciales que se crean MANUALMENTE dentro de los contenedores
 # (no estan en .env). Tambien aplica fixes de primer arranque (MISP DB

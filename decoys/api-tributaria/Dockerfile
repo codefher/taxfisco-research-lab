@@ -1,6 +1,6 @@
 FROM python:3.12-slim
 
-LABEL maintainer="TaxFisco Research Lab"
+LABEL maintainer="SIN Research Lab"
 LABEL description="Decoy API Tributaria with ATT&CK instrumentation"
 LABEL thesis="Metodología Honeypot para la Gestión de Incidentes en Servicios Fiscales"
 

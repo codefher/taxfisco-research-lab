@@ -1,6 +1,6 @@
 # PERFIL LITE 16 GB - Guía Operativa
 
-> Documento de operación específico para el perfil lite del laboratorio TaxFisco Research Lab.
+> Documento de operación específico para el perfil lite del laboratorio SIN Research Lab.
 > Lee esto antes de levantar el lab si tienes 16 GB de RAM.
 
 ## 📊 Configuración aplicada para 16 GB de RAM
@@ -70,11 +70,11 @@ docker compose version
 ```bash
 cd ~
 # Si está en USB
-cp -r /media/usb/lab-1-lite ~/taxfisco-lite
+cp -r /media/usb/lab-1-lite ~/sin-lite
 
 # Si está en GitHub
-git clone https://github.com/TU_USUARIO/taxfisco-lite.git ~/taxfisco-lite
-cd ~/taxfisco-lite
+git clone https://github.com/TU_USUARIO/sin-lite.git ~/sin-lite
+cd ~/sin-lite
 ```
 
 ### Paso 5: Configurar entorno
@@ -156,7 +156,7 @@ Síntoma: Wazuh Dashboard muestra "OpenSearch not available"
 
 ```bash
 # 1. Esperar más (puede tomar 2-3 minutos la primera vez)
-docker logs -f taxfisco-wazuh-indexer
+docker logs -f sin-wazuh-indexer
 
 # 2. Si no arranca, reiniciar
 docker compose restart wazuh.indexer
@@ -173,7 +173,7 @@ curl -k https://localhost:9200
 make thehive-setup
 
 # Si sigue fallando, ver logs
-docker logs taxfisco-thehive | tail -50
+docker logs sin-thehive | tail -50
 ```
 
 ## 📊 Comandos de monitoreo

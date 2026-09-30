@@ -27,7 +27,7 @@ DAYS_VALID=3650
 COUNTRY="BO"
 STATE="LP"
 LOCALITY="LaPaz"
-ORG="TaxFisco"
+ORG="SIN"
 OU="Lab"
 
 # Limpiar certs antiguos
@@ -43,7 +43,7 @@ echo "=== Generando certificados Wazuh 4.10.x (formato -key.pem) ==="
 openssl genrsa -out root-ca.key 2048 2>/dev/null
 openssl req -x509 -new -nodes -key root-ca.key -sha256 -days $DAYS_VALID \
     -out root-ca.pem \
-    -subj "/C=$COUNTRY/ST=$STATE/L=$LOCALITY/O=$ORG/OU=$OU/CN=TaxFisco-RootCA" 2>/dev/null
+    -subj "/C=$COUNTRY/ST=$STATE/L=$LOCALITY/O=$ORG/OU=$OU/CN=SIN-RootCA" 2>/dev/null
 
 # Para el manager (que verifica al indexer)
 cp root-ca.pem root-ca-manager.pem

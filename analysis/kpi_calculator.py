@@ -1,5 +1,5 @@
 """
-KPI Calculator - TaxFisco Research Lab
+KPI Calculator - SIN Research Lab
 =======================================
 
 Calcula los KPIs de la tesis a partir de DATOS REALES:
@@ -455,7 +455,7 @@ def generate_full_report() -> Dict:
         "metadata": {
             "report_generated_at": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
             "thesis": "Metodología Honeypot para la Gestión de Incidentes en Servicios Fiscales",
-            "lab": "TaxFisco Research Lab",
+            "lab": "SIN Research Lab",
             "version": "2.0.0",
             "method": "MTTD medido desde eventos reales (decoy-api + cowrie) vs inicio de escenario",
         },
@@ -500,7 +500,7 @@ def generate_full_report() -> Dict:
 
 def print_summary(report: Dict) -> None:
     print("=" * 80)
-    print("TaxFisco Research Lab - KPI Report")
+    print("SIN Research Lab - KPI Report")
     print("=" * 80)
     print(f"Generated: {report['metadata']['report_generated_at']}")
     print()

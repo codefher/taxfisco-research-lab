@@ -1,5 +1,5 @@
 """
-ISO 27035-1:2023 Compliance Mapping for TaxFisco Research Lab
+ISO 27035-1:2023 Compliance Mapping for SIN Research Lab
 =============================================================
 
 Mapea los escenarios de ataque a las fases de gestión de incidentes

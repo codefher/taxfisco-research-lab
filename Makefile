@@ -1,4 +1,4 @@
-# TaxFisco Research Lab - Makefile (16 GB RAM Profile)
+# SIN Research Lab - Makefile (16 GB RAM Profile)
 # Simplifica las operaciones comunes del laboratorio principal
 #
 # Este es el perfil LITE principal del laboratorio, optimizado para
@@ -19,7 +19,7 @@
         swap-setup thehive-setup
 
 help:
-	@echo "TaxFisco Research Lab - LITE EDITION (16 GB) - Comandos disponibles:"
+	@echo "SIN Research Lab - LITE EDITION (16 GB) - Comandos disponibles:"
 	@echo ""
 	@echo "  Instalación (perfil lite):"
 	@echo "    make install         - Configurar entorno (.env)"

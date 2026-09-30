@@ -265,7 +265,7 @@
   "time": {"from": "now-90d", "to": "now"},
   "timepicker": {},
   "timezone": "browser",
-  "title": "TaxFisco SOC - Honeypot Overview",
+  "title": "SIN SOC - Honeypot Overview",
   "uid": "sin-soc-main",
   "version": 3,
   "weekStart": ""

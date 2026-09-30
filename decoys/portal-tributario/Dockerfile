@@ -1,6 +1,6 @@
 FROM python:3.12-slim
 
-LABEL maintainer="TaxFisco Research Lab"
+LABEL maintainer="SIN Research Lab"
 LABEL description="Decoy Portal Tributario with intentional vulnerabilities for honeypot research"
 
 ENV PYTHONDONTWRITEBYTECODE=1
