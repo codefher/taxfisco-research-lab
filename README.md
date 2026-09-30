@@ -247,6 +247,68 @@ taxfisco-research-lab/
 └── tesis/                      # Borradores de capítulos
 ```
 
+## 🧬 Estrategia de versionado (Prototipos I y II)
+
+Este repositorio contiene **dos prototipos** de la tesis, developed sobre el mismo
+historial de Git. La carpeta local se llama `tesis-honeypot-lab` (nombre neutro) pero
+**el remoto y la URL de Git no cambian** respecto al Prototipo I.
+
+### Ramas
+
+| Rama | Contenido | Estado |
+|---|---|---|
+| `main` | Tronco. Estado aprobado del Prototipo I. | Congelada |
+| `prototipo-1-entidad-homologada` | Copia congelada del P1 aprobado por la tutora. | Congelada |
+| `prototipo-2-sin` | **Rama de trabajo del Prototipo II** (contexto SIN Bolivia). | Activa |
+
+### Tags
+
+| Tag | Significado |
+|---|---|
+| `v1.0-prototipo-1` | Estado aprobado del Prototipo I (entidad homologada). |
+| `v2.0-it1` | Prototipo II v1.0, listo para ejecutar (iteración 1). |
+| `v2.1-it2` | Prototipo II con mejoras de la iteración 2. |
+
+### Reconstruir el Prototipo I
+
+El Prototipo I se reconstruye **exactamente** desde `main` + el tag `v1.0-prototipo-1`:
+
+```bash
+git checkout v1.0-prototipo-1      # congela el P1
+# o
+git checkout prototipo-1-entidad-homologada
+```
+
+No se reescribe el historial en ninguna circunstancia: no hay rebase, no hay force-push,
+no se borran commits ni tags.
+
+### Convención de commits
+
+En el Prototipo II todos los commits llevan el prefijo `[P2]`, por ejemplo:
+
+```
+[P2] clean: carpeta evidencias vacia para nuevo prototipo
+[P2] infra: artefactos docker renombrados a prefijo sin
+[P2] rebrand: portal SIN, login estilo OIDC
+```
+
+### Levantar ambos prototipos a la vez (opcional)
+
+Los dos labs renombran sus artefactos Docker para poder coexistir sin colisiones:
+
+| Artefacto | Prototipo I | Prototipo II |
+|---|---|---|
+| `name:` (proyecto compose) | `taxfisco-research-lab-lite` | `sin-research-lab` |
+| Redes | `taxfisco-dmz`, `taxfisco-honeypot`, `taxfisco-ids`, `taxfisco-soc` | `sin-dmz`, `sin-honeypot`, `sin-ids`, `sin-soc` |
+| Volúmenes | `taxfisco-research-lab-lite_*` | `sin-research-lab_*` |
+| Imágenes propias | `taxfisco/decoy-portal`, `taxfisco/decoy-api` | `sin/decoy-portal`, `sin/decoy-api` |
+| Contenedores | `taxfisco-*` | `sin-*` |
+
+Los puertos del host usan un **offset `+10000`** en el P2 para que no choquen si ambos
+corren simultáneamente. Por ejemplo: Grafana `3000` → `13000`, API `8090` → `18090`,
+Portal `8890` → `18890`, Wazuh Dashboard `1443` → `11443`, MISP `8443` → `18443`.
+El detalle completo de puertos está en `docs/`.
+
 ## 🎓 Tesis
 
 **Título**: Metodología Honeypot para la Gestión de Incidentes en Servicios Fiscales conforme a Normas Internacionales
