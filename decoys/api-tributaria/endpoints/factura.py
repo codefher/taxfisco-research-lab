@@ -12,7 +12,7 @@ Vulnerable a:
 import logging
 from fastapi import APIRouter, Path
 
-logger = logging.getLogger("decoy-api.facturas")
+logger = logging.getLogger("sin-api.facturas")
 
 router = APIRouter()
 
@@ -27,7 +27,6 @@ async def get_factura(cuf: str = Path(..., min_length=20, max_length=30)):
         "nit_receptor": "10987654321",
         "monto": 1234.56,
         "fecha_emision": "2024-12-15",
-        "_deception": True,
     }
 
 
@@ -39,5 +38,4 @@ async def list_facturas(limit: int = 10):
             {"cuf": f"CUF-2024-12-{i:016d}", "monto": 100.0 * i}
             for i in range(min(limit, 50))
         ],
-        "_deception": True,
     }

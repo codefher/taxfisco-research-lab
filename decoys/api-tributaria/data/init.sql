@@ -1,5 +1,6 @@
 -- =============================================================================
--- Synthetic Fiscal Data for TaxFisco Research Lab
+-- Datos fiscales de ejemplo. Contribuyentes, NIT y CUF ficticios.
+-- Ningun registro corresponde a un contribuyente real.
 -- =============================================================================
 -- Datos sintéticos NO REALES - Solo para honeypot research
 -- =============================================================================
@@ -30,7 +31,7 @@ CREATE TABLE IF NOT EXISTS declaraciones_juradas (
 
 CREATE TABLE IF NOT EXISTS facturas (
     id SERIAL PRIMARY KEY,
-    cuf VARCHAR(30) UNIQUE NOT NULL,
+    cuf VARCHAR(55) UNIQUE NOT NULL,
     nit_emisor VARCHAR(20) REFERENCES contribuyentes(nit),
     nit_receptor VARCHAR(20) REFERENCES contribuyentes(nit),
     monto DECIMAL(15, 2) NOT NULL,
@@ -51,16 +52,16 @@ CREATE TABLE IF NOT EXISTS sesiones_activas (
 
 -- Insertar contribuyentes sintéticos
 INSERT INTO contribuyentes (nit, razon_social, tipo_persona, estado, domicilio_fiscal) VALUES
-    ('10234567891', 'Constructora Andina S.A. (DECOY)', 'JURIDICA', 'ACTIVO', '{"departamento": "La Paz", "zona": "Zona 1"}'),
-    ('10987654321', 'Servicios Financieros del Sur (DECOY)', 'JURIDICA', 'ACTIVO', '{"departamento": "Santa Cruz", "zona": "Zona 2"}'),
-    ('11456789012', 'Distribuidora Lopez S.R.L. (DECOY)', 'JURIDICA', 'ACTIVO', '{"departamento": "Cochabamba", "zona": "Zona 3"}'),
-    ('12345678901', 'Importadora Boliviana S.A. (DECOY)', 'JURIDICA', 'ACTIVO', '{"departamento": "La Paz", "zona": "Zona 1"}'),
-    ('13141516171', 'Consultoria Estrategica Global (DECOY)', 'JURIDICA', 'ACTIVO', '{"departamento": "Santa Cruz", "zona": "Zona 2"}'),
-    ('18192021222', 'Industrias Manufactureras del Norte (DECOY)', 'JURIDICA', 'ACTIVO', '{"departamento": "Cochabamba", "zona": "Zona 3"}'),
-    ('10000001001', 'Agropecuaria San Miguel Ltda. (DECOY)', 'JURIDICA', 'INACTIVO', '{"departamento": "Tarija", "zona": "Zona 4"}'),
-    ('10000002002', 'Transportes Rapidos del Sur (DECOY)', 'JURIDICA', 'ACTIVO', '{"departamento": "Oruro", "zona": "Zona 5"}'),
-    ('10000003003', 'Comercializadora Andina S.A. (DECOY)', 'JURIDICA', 'ACTIVO', '{"departamento": "Potosi", "zona": "Zona 6"}'),
-    ('10000004004', 'Farmacia Central Ltda. (DECOY)', 'JURIDICA', 'ACTIVO', '{"departamento": "Chuquisaca", "zona": "Zona 7"}')
+    ('10234567891', 'CONSTRUCTORA ANDINA S.A.', 'JURIDICA', 'ACTIVO', '{"departamento": "La Paz", "zona": "Zona 1"}'),
+    ('10987654321', 'SERVICIOS FINANCIEROS DEL SUR S.A.', 'JURIDICA', 'ACTIVO', '{"departamento": "Santa Cruz", "zona": "Zona 2"}'),
+    ('11456789012', 'DISTRIBUIDORA LOPEZ S.R.L.', 'JURIDICA', 'ACTIVO', '{"departamento": "Cochabamba", "zona": "Zona 3"}'),
+    ('12345678901', 'IMPORTADORA BOLIVIANA S.A.', 'JURIDICA', 'ACTIVO', '{"departamento": "La Paz", "zona": "Zona 1"}'),
+    ('13141516171', 'CONSULTORIA ESTRATEGICA GLOBAL S.R.L.', 'JURIDICA', 'ACTIVO', '{"departamento": "Santa Cruz", "zona": "Zona 2"}'),
+    ('18192021222', 'INDUSTRIAS MANUFACTURERAS DEL NORTE S.A.', 'JURIDICA', 'ACTIVO', '{"departamento": "Cochabamba", "zona": "Zona 3"}'),
+    ('10000001001', 'AGROPECUARIA SAN MIGUEL LTDA.', 'JURIDICA', 'INACTIVO', '{"departamento": "Tarija", "zona": "Zona 4"}'),
+    ('10000002002', 'TRANSPORTES RAPIDOS DEL SUR S.R.L.', 'JURIDICA', 'ACTIVO', '{"departamento": "Oruro", "zona": "Zona 5"}'),
+    ('10000003003', 'COMERCIALIZADORA ANDINA S.A.', 'JURIDICA', 'ACTIVO', '{"departamento": "Potosi", "zona": "Zona 6"}'),
+    ('10000004004', 'FARMACIA CENTRAL LTDA.', 'JURIDICA', 'ACTIVO', '{"departamento": "Chuquisaca", "zona": "Zona 7"}')
 ON CONFLICT (nit) DO NOTHING;
 
 -- Insertar declaraciones
@@ -74,11 +75,11 @@ ON CONFLICT (id_declaracion) DO NOTHING;
 
 -- Insertar facturas
 INSERT INTO facturas (cuf, nit_emisor, nit_receptor, monto, fecha_emision) VALUES
-    ('CUF-2024-12-0000000001', '10234567891', '10987654321', 4500.00, '2024-12-01'),
-    ('CUF-2024-12-0000000002', '10987654321', '11456789012', 12300.50, '2024-12-05'),
-    ('CUF-2024-12-0000000003', '11456789012', '12345678901', 8900.00, '2024-12-10'),
-    ('CUF-2024-12-0000000004', '10234567891', '13141516171', 56000.00, '2024-12-12'),
-    ('CUF-2024-12-0000000005', '12345678901', '18192021222', 3400.00, '2024-12-14')
+    ('1234567890123456789012345678901234567890123456789012340', '10234567891', '10987654321', 4500.00, '2024-12-01'),
+    ('2234567890123456789012345678901234567890123456789012340', '10987654321', '11456789012', 12300.50, '2024-12-05'),
+    ('3234567890123456789012345678901234567890123456789012340', '11456789012', '12345678901', 8900.00, '2024-12-10'),
+    ('4234567890123456789012345678901234567890123456789012340', '10234567891', '13141516171', 56000.00, '2024-12-12'),
+    ('5234567890123456789012345678901234567890123456789012340', '12345678901', '18192021222', 3400.00, '2024-12-14')
 ON CONFLICT (cuf) DO NOTHING;
 
 -- Crear índices

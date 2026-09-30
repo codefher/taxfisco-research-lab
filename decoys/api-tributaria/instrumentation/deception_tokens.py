@@ -59,7 +59,6 @@ class DeceptionTokens:
             "type": "aws_key",
             "access_key_id": access,
             "secret_access_key": secret,
-            "_warning": "DECOY - This key is monitored. Use will trigger alert.",
             "deployed_at": datetime.utcnow().isoformat() + "Z",
         }
         self.deployed_markers.append(marker["access_key_id"])
@@ -69,25 +68,23 @@ class DeceptionTokens:
         """Connection string a base de datos ficticia."""
         return {
             "type": "db_connection",
-            "host": "db-backup-internal.taxfisco.local",
+            "host": "db-respaldo-interno.sin.local",
             "port": 5432,
-            "database": "taxfisco_financial_prod",
+            "database": "sin_fiscal_prod",
             "user": "backup_admin",
             "password": "Bkp_" + "".join(random.choices(string.ascii_letters + string.digits, k=12)),
-            "_warning": "DECOY - This connection is monitored.",
         }
 
     def generate_api_token(self) -> Dict[str, str]:
         """API token falso."""
         return {
             "type": "api_token",
-            "service": "taxfisco-internal-api",
+            "service": "sin-internal-api",
             "token": "tk_" + hashlib.sha256(str(random.random()).encode()).hexdigest()[:32],
             "scopes": ["read:contribuyentes", "read:facturas", "write:declaraciones"],
-            "_warning": "DECOY - Token usage is logged.",
         }
 
-    def generate_fake_export(self) -> Dict[str, Any]:
+    def generate_export(self) -> Dict[str, Any]:
         """Export señuelo de datos fiscales."""
         return {
             "export_id": "EXP-" + str(random.randint(100000, 999999)),
@@ -104,43 +101,41 @@ class DeceptionTokens:
             ],
             "facturas_sample": [
                 {
-                    "cuf": "CUF-" + "".join(random.choices(string.digits, k=20)),
+                    "cuf": "".join(random.choices(string.digits, k=55)),
                     "monto": round(random.uniform(100, 50000), 2),
                     "fecha": (datetime.utcnow() - timedelta(days=random.randint(0, 365))).isoformat(),
                 }
                 for _ in range(20)
             ],
-            "_warning": "This is a DECOY export. Real data is in a separate, secured system.",
         }
 
-    def generate_fake_credentials(self, role: str = "admin") -> Dict[str, str]:
+    def generate_credentials(self, role: str = "admin") -> Dict[str, str]:
         """Credenciales embebidas falsas."""
-        fake_users = {
+        cuentas = {
             "admin": ("admin_prod", "Adm1n_Pr0d_2024!"),
             "backup": ("backup_usr", "Bkp_2024_F1n4nc!"),
             "auditor": ("auditor_ext", "4ud1t0r_2024*"),
             "developer": ("dev_jr", "D3v_2024_Pr0y3ct0!"),
         }
-        user, pwd = fake_users.get(role, fake_users["admin"])
+        user, pwd = cuentas.get(role, cuentas["admin"])
         return {
             "type": "credentials",
             "username": user,
             "password": pwd,
             "role": role,
-            "_warning": "DECOY credentials. Usage triggers immediate alert.",
         }
 
     def generate_session_cookie(self) -> str:
         """Cookie de sesión falsa pero con aspecto legítimo."""
         token = hashlib.sha256(str(random.random()).encode()).hexdigest()
-        return f"TAX_SESSION={token}; Path=/; HttpOnly; SameSite=Strict"
+        return f"SIN_SESSION={token}; Path=/; HttpOnly; SameSite=Strict"
 
     def generate_jwt_token(self) -> str:
         """JWT falso con claims realistas."""
         import base64
         header = base64.urlsafe_b64encode(b'{"alg":"HS256","typ":"JWT"}').rstrip(b"=").decode()
         payload_data = {
-            "sub": "admin@taxfisco.local",
+            "sub": "admin@sin.local",
             "name": "Administrator",
             "role": "superadmin",
             "iat": int(datetime.utcnow().timestamp()),
@@ -158,5 +153,4 @@ class DeceptionTokens:
             "filename": "declaraciones_juradas_2024_interno.docx",
             "canary_token": "canary-token-" + hashlib.sha256(str(random.random()).encode()).hexdigest()[:16],
             "drop_location_hint": "/var/backups/financial/2024/",
-            "_warning": "This document contains an embedded canary token.",
         }

@@ -15,7 +15,7 @@ import logging
 from fastapi import APIRouter
 from datetime import datetime
 
-logger = logging.getLogger("decoy-api.reportes")
+logger = logging.getLogger("sin-api.reportes")
 
 router = APIRouter()
 
@@ -28,7 +28,6 @@ async def recaudacion_mensual(anio: int = 2024):
         "por_mes": [
             {"mes": i, "monto": 350_000_000.0 + i * 5_000_000} for i in range(1, 13)
         ],
-        "_deception": True,
     }
 
 
@@ -40,7 +39,6 @@ async def top_contribuyentes(limit: int = 100):
             {"ranking": i, "nit": f"1000000{i:02d}", "monto_aportado": 50_000_000 - i * 1000}
             for i in range(1, limit + 1)
         ],
-        "_deception": True,
     }
 
 
@@ -49,5 +47,4 @@ async def facturas_vencidas():
     return {
         "total_vencidas": 12_583,
         "monto_total_vencido": 234_582_341.89,
-        "_deception": True,
     }

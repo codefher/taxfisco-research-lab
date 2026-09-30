@@ -17,7 +17,7 @@ from pydantic import BaseModel, Field
 from typing import List, Optional
 from datetime import datetime
 
-logger = logging.getLogger("decoy-api.declaraciones")
+logger = logging.getLogger("sin-api.declaraciones")
 
 router = APIRouter()
 
@@ -39,18 +39,15 @@ class DeclaracionRequest(BaseModel):
 @router.post("/")
 async def crear_declaracion(request: Request, decl: DeclaracionRequest):
     """
-    Crear nueva declaración jurada.
-    *** ENDPOINT DECOY - Vulnerable a mass-assignment y manipulación ***
+    Crear nueva declaración jurada de impuestos.
     """
     return {
-        "id_declaracion": f"DJ-{datetime.utcnow().strftime('%Y%m%d%H%M%S')}-DECOY",
+        "id_declaracion": f"DJ-{datetime.utcnow().strftime('%Y%m%d%H%M%S')}",
         "estado": "RECIBIDA",
         "nit": decl.nit_contribuyente,
         "periodo": decl.periodo,
         "monto_total": sum(l.monto for l in decl.lineas),
         "timestamp_recepcion": datetime.utcnow().isoformat() + "Z",
-        "_deception": True,
-        "_note": "Declaración almacenada en honeypot - no se procesó realmente",
     }
 
 
@@ -62,13 +59,12 @@ async def get_declaracion(id_declaracion: str):
         "estado": "PROCESADA",
         "monto_pagado": 12345.67,
         "fecha_procesamiento": datetime.utcnow().isoformat() + "Z",
-        "_deception": True,
     }
 
 
 @router.get("/")
 async def list_declaraciones(limit: int = 10):
-    """Lista declaraciones recientes (endpoint trampa)."""
+    """Lista las declaraciones juradas más recientes."""
     return {
         "total": 12_584_392,
         "items": [
@@ -80,5 +76,4 @@ async def list_declaraciones(limit: int = 10):
             }
             for i in range(min(limit, 50))
         ],
-        "_deception": True,
     }

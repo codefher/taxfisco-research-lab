@@ -1,5 +1,5 @@
 """
-TaxFisco Decoy API - Main Application
+API de Servicios Tributarios - Aplicacion principal
 =====================================
 
 Decoy API REST que simula una API tributaria real con instrumentación
@@ -12,7 +12,7 @@ de MITRE ATT&CK. Cada interacción maliciosa se registra con:
   - payload sospechoso
   - nivel de amenaza (TLP:AMBER)
 
-Endpoints fiscales simulados (TaxFisco Research Lab):
+Endpoints de servicios tributarios:
   - /api/v1/contribuyentes/{nit}  - Consulta de contribuyente
   - /api/v1/declaraciones         - Declaración jurada (POST)
   - /api/v1/facturas/{cuf}        - Consulta de factura
@@ -30,7 +30,7 @@ from pathlib import Path
 from typing import Optional, List
 
 from fastapi import FastAPI, Request, Response, HTTPException, Depends, Header
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, HTMLResponse
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
@@ -51,7 +51,7 @@ logging.basicConfig(
         logging.StreamHandler(sys.stdout),
     ],
 )
-logger = logging.getLogger("decoy-api")
+logger = logging.getLogger("sin-api")
 
 # Path para importar módulos locales
 sys.path.insert(0, str(Path(__file__).parent))
@@ -72,103 +72,102 @@ from endpoints import (  # noqa: E402
 # ============================================================================
 
 DESCRIPTION = """
-## API de Servicios Tributarios — TaxFisco Research Lab
+## API de Servicios Tributarios — Impuestos Nacionales
 
-Esta es una **API honeypot (decoy)** que simula los servicios electrónicos
-de un ente tributario genérico. Su propósito es **únicamente académico**,
-en el marco de la tesis de maestría sobre gestión de incidentes en
-servicios fiscales.
+API de servicios electrónicos del Servicio Nacional de Impuestos.
+Expone las operaciones tributarias de uso frecuente para contribuyentes
+y agentes de pago.
 
-### 🎯 Características
+### Características
 
-- **19 endpoints** que simulan operaciones tributarias reales
-- **Instrumentación MITRE ATT&CK** automática en cada request
-- **Detección de payloads sospechosos** (SQLi, XSS, command injection)
-- **Logging de ataques** a `attacks.json` para análisis posterior
-- **Tokens de engaño** plantados para identificar atacantes reales
+- **20 endpoints** de operación tributaria y administrativa
+- Respuestas en JSON con la estructura normalizada del servicio
+- Autenticación por NIT y contraseña con segundo factor
+- Documentación interactiva con ejecución de pruebas desde el navegador
 
-### ⚠️ Aviso de honeypot
-
-Toda interacción con esta API es **monitoreada y registrada**. Los
-endpoints `/api/v1/admin/*` contienen vulnerabilidades controladas
-(inyectadas a propósito) para capturar TTPs reales de atacantes.
-
-### 🔍 Endpoints principales
+### Endpoints principales
 
 | Recurso | Método | Descripción |
 |---|---|---|
 | `/api/v1/contribuyentes/{nit}` | GET | Consulta de contribuyente por NIT |
 | `/api/v1/declaraciones` | POST | Declaración jurada de impuestos |
 | `/api/v1/facturas/{cuf}` | GET | Consulta de factura electrónica |
-| `/api/v1/auth/login` | POST | Autenticación (honeypot) |
-| `/api/v1/admin/users` | GET | Lista de usuarios (vulnerable) |
+| `/api/v1/auth/login` | POST | Autenticación del contribuyente |
+| `/api/v1/admin/users` | GET | Directorio de usuarios internos |
 | `/api/v1/reportes` | GET | Reportes financieros |
 
-### 📚 Documentación
+### Documentación
 
 - **Swagger UI**: `/docs` (esta página)
 - **OpenAPI JSON**: `/openapi.json`
-- **Repositorio**: TaxFisco Research Lab
 """
 
 TAX_FISCO_LOGO_SVG = """
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" width="200" height="60" style="margin-bottom: 8px;">
-  <defs>
-    <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" style="stop-color:#0F4C81"/>
-      <stop offset="100%" style="stop-color:#0a3a64"/>
-    </linearGradient>
-  </defs>
-  <g transform="translate(8, 8)">
-    <rect x="4" y="2" width="36" height="40" rx="6" fill="url(#g1)"/>
-    <circle cx="22" cy="20" r="9" fill="none" stroke="#D4A437" stroke-width="2"/>
-    <line x1="22" y1="20" x2="22" y2="11" stroke="#D4A437" stroke-width="2"/>
-    <line x1="13" y1="20" x2="31" y2="20" stroke="#D4A437" stroke-width="2"/>
-    <line x1="22" y1="29" x2="22" y2="36" stroke="#D4A437" stroke-width="2"/>
-    <circle cx="22" cy="20" r="1.5" fill="#D4A437"/>
-    <rect x="14" y="34" width="16" height="3" fill="#D4A437"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 92" width="300" height="92"
+     style="margin-bottom: 8px;">
+  <g>
+    <path d="M8 26 L52 16 V80 L8 70 Z" fill="#003055"/>
+    <path d="M60 14 L104 4 V68 L60 78 Z" fill="#00BAC2"/>
+    <g stroke="#00BAC2" stroke-width="2.4" stroke-linecap="round" fill="none">
+      <path d="M36 34 H60"/><path d="M36 44 H60"/><path d="M36 54 H60"/>
+    </g>
+    <g fill="#00BAC2">
+      <circle cx="60" cy="34" r="3.2"/><circle cx="60" cy="44" r="3.2"/><circle cx="60" cy="54" r="3.2"/>
+    </g>
   </g>
-  <text x="58" y="38" font-family="Inter, system-ui, sans-serif" font-size="26" font-weight="700" fill="#0F4C81" letter-spacing="-0.5">Tax<tspan fill="#D4A437">Fisco</tspan></text>
+  <g font-family="Montserrat, system-ui, sans-serif" fill="#003055" font-weight="700">
+    <text x="116" y="42" font-size="33" letter-spacing="-0.3">Impuestos</text>
+    <text x="116" y="77" font-size="33" letter-spacing="-0.3">Nacionales</text>
+  </g>
 </svg>
 """
 
-CUSTOM_SWAGGER_CSS = f"""
+CUSTOM_SWAGGER_CSS = """
 <style>
-  .swagger-ui .topbar {{ display: none; }}
-  .swagger-ui .info {{ background: #f8fafc; padding: 1.5rem; border-radius: 0.5rem; }}
-  .swagger-ui .info .title {{ color: #0F4C81 !important; font-size: 2rem; }}
-  .swagger-ui .scheme-container {{ background: #0F4C81; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0; }}
-  .swagger-ui .opblock-tag {{ background: #0F4C81 !important; color: white !important; border-radius: 0.25rem; padding: 0.5rem 1rem; font-size: 1.1rem; }}
-  .swagger-ui .opblock {{ border-radius: 0.5rem; box-shadow: 0 1px 3px rgba(15, 76, 129, 0.1); margin-bottom: 1rem; }}
-  .swagger-ui .opblock.opblock-get {{ border-color: #0F4C81; }}
-  .swagger-ui .opblock.opblock-post {{ border-color: #D4A437; }}
-  .swagger-ui .opblock.opblock-delete {{ border-color: #ef4444; }}
-  .swagger-ui .btn.execute {{ background: #0F4C81 !important; color: white !important; border-color: #0F4C81 !important; }}
-  .swagger-ui .btn.execute:hover {{ background: #0a3a64 !important; }}
-  .swagger-ui table thead tr th {{ background: #f1f5f9 !important; color: #0f172a !important; }}
-  .swagger-ui .markdown p, .swagger-ui .markdown li {{ color: #0f172a; line-height: 1.6; }}
-  .swagger-ui .markdown table {{ border-collapse: collapse; margin: 1rem 0; }}
-  .swagger-ui .markdown table th, .swagger-ui .markdown table td {{ border: 1px solid #e2e8f0; padding: 0.5rem 0.75rem; text-align: left; }}
-  .swagger-ui .markdown table th {{ background: #f1f5f9; font-weight: 600; }}
-  .swagger-ui .info__logo {{
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+  body { font-family: 'Montserrat', system-ui, sans-serif; }
+
+  .swagger-ui .topbar { display: none; }
+  .swagger-ui .info { background: #ffffff; padding: 1.5rem; border-radius: 0.5rem; }
+  .swagger-ui .info .title { color: #003055 !important; font-size: 2rem; font-family: 'Montserrat', sans-serif; }
+  .swagger-ui .scheme-container { background: #003055; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0; }
+  .swagger-ui .opblock-tag { background: #003055 !important; color: white !important; border-radius: 0.25rem; padding: 0.5rem 1rem; font-size: 1.1rem; }
+  .swagger-ui .opblock { border-radius: 0.5rem; box-shadow: 0 1px 3px rgba(0, 48, 85, 0.1); margin-bottom: 1rem; }
+  .swagger-ui .opblock.opblock-get { border-color: #00BAC2; }
+  .swagger-ui .opblock.opblock-post { border-color: #003055; }
+  .swagger-ui .opblock.opblock-delete { border-color: #D22229; }
+  .swagger-ui .btn.execute { background: #003055 !important; color: white !important; border-color: #003055 !important; }
+  .swagger-ui .btn.execute:hover { background: #00233D !important; }
+  .swagger-ui table thead tr th { background: #F4F7F9 !important; color: #343A40 !important; }
+  .swagger-ui .markdown p, .swagger-ui .markdown li { color: #343A40; line-height: 1.6; }
+  .swagger-ui .markdown h2, .swagger-ui .markdown h3 { color: #003055; }
+  .swagger-ui .markdown table { border-collapse: collapse; margin: 1rem 0; }
+  .swagger-ui .markdown table th, .swagger-ui .markdown table td { border: 1px solid #DEE2E6; padding: 0.5rem 0.75rem; text-align: left; }
+  .swagger-ui .markdown table th { background: #F4F7F9; font-weight: 600; }
+  .swagger-ui .info__logo {
     display: block !important;
     margin: 0 auto 1rem auto !important;
     text-align: center !important;
-  }}
-  .txf-logo-header {{
+  }
+  .txf-logo-header {
     text-align: center;
     padding: 1.5rem 0 0 0;
-    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-    border-bottom: 3px solid #D4A437;
-  }}
+    background: linear-gradient(135deg, #ffffff 0%, #F4F7F9 100%);
+    border-bottom: 22px solid #00A5A9;
+  }
 </style>
 """
 
 CUSTOM_SWAGGER_HTML = f"""
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-  <link rel="icon" type="image/svg+xml" href="/static/img/favicon.svg">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui.css">
+  <link rel="shortcut icon" type="image/svg+xml" href="/static/img/favicon.svg">
+  <title>Impuestos Nacionales — API</title>
   {CUSTOM_SWAGGER_CSS}
 </head>
 <body>
@@ -176,18 +175,35 @@ CUSTOM_SWAGGER_HTML = f"""
     {TAX_FISCO_LOGO_SVG}
   </div>
   <div id="swagger-ui"></div>
+  <script src="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui-bundle.js"></script>
+  <script>
+    const ui = SwaggerUIBundle({{
+      url: '/openapi.json',
+      dom_id: "#swagger-ui",
+      layout: "BaseLayout",
+      deepLinking: true,
+      showExtensions: true,
+      showCommonExtensions: true,
+      defaultModelsExpandDepth: -1,
+      docExpansion: "list",
+      filter: true,
+      tryItOutEnabled: true,
+      persistAuthorization: true,
+      presets: [SwaggerUIBundle.presets.apis, SwaggerUIBundle.SwaggerUIStandalonePreset]
+    }});
+  </script>
 </body>
 </html>
 """
 
 app = FastAPI(
-    title="TaxFisco — API de Servicios Tributarios",
+    title="Impuestos Nacionales — API de Servicios Tributarios",
     description=DESCRIPTION,
     version="2.0.0",
     docs_url="/docs",
     redoc_url=None,
     swagger_ui_parameters={
-        "customSiteTitle": "TaxFisco API — Documentación",
+        "customSiteTitle": "Impuestos Nacionales — API",
         "defaultModelsExpandDepth": -1,
         "docExpansion": "list",
         "filter": True,
@@ -196,8 +212,8 @@ app = FastAPI(
         "persistAuthorization": True,
     },
     contact={
-        "name": "TaxFisco Research Lab",
-        "url": "https://github.com/codefher/taxfisco-research-lab",
+        "name": "Servicio Nacional de Impuestos",
+        "url": "https://www.impuestos.gob.bo/",
     },
     license_info={
         "name": "MIT (Research use only)",
@@ -222,7 +238,7 @@ app = FastAPI(
         },
         {
             "name": "admin",
-            "description": "⚠️ Endpoints administrativos (honeypot — vulnerables)",
+            "description": "Endpoints administrativos internos",
         },
         {
             "name": "reportes",
@@ -235,8 +251,18 @@ app = FastAPI(
     ],
 )
 
-# Inyectar HTML/CSS custom en Swagger UI
-app.swagger_ui_html = CUSTOM_SWAGGER_HTML
+# La documentacion se sirve desde una ruta propia para poder inyectar la
+# cabecera institucional: asignar app.swagger_ui_html ya no surte efecto
+# porque el HTML queda capturado al registrarse la ruta.
+app.router.routes = [
+    r for r in app.router.routes if getattr(r, "path", None) != "/docs"
+]
+
+
+@app.get("/docs", include_in_schema=False)
+async def swagger_ui_html():
+    """Documentacion interactiva de la API."""
+    return HTMLResponse(CUSTOM_SWAGGER_HTML)
 
 # Servir archivos estáticos (logo, favicon) para el Swagger UI
 import os
@@ -312,9 +338,7 @@ async def capture_all_requests(request: Request, call_next):
     # Procesar request
     response = await call_next(request)
 
-    # Añadir header de identificación (deception marker)
-    response.headers["X-TaxFisco-Env"] = "decoy-research-lab"
-    response.headers["X-Powered-By"] = "TaxFisco/1.0"
+    response.headers["X-Powered-By"] = "Impuestos-Nacionales/2.0"
 
     return response
 
@@ -325,15 +349,15 @@ async def capture_all_requests(request: Request, call_next):
 
 @app.get("/health")
 async def health():
-    return {"status": "healthy", "service": "taxfisco-decoy-api", "version": "1.0.0"}
+    return {"status": "healthy", "service": "sin-api", "version": "2.0.0"}
 
 
 @app.get("/")
 async def root():
     return {
-        "service": "TaxFisco Decoy API",
-        "version": "1.0.0",
-        "description": "Decoy API for honeypot research thesis",
+        "service": "API de Servicios Tributarios",
+        "institucion": "Impuestos Nacionales",
+        "version": "2.0.0",
         "endpoints": [
             "/api/v1/contribuyentes/{nit}",
             "/api/v1/declaraciones",
@@ -342,7 +366,6 @@ async def root():
             "/api/v1/admin/users",
             "/api/v1/reportes",
         ],
-        "deception_markers": deception_tokens.list_active_markers(),
     }
 
 
@@ -364,7 +387,7 @@ app.include_router(reportes.router, prefix="/api/v1/reportes", tags=["reportes"]
 
 @app.get("/api/v1/admin/export-all")
 async def export_all_data():
-    """Endpoint trampa. Acceder aquí es un ATT&CK T1530 (Data from Cloud Storage Object)."""
+    """Exportación masiva de registros de contribuyentes."""
     attack_logger.log_attack(AttackEvent(
         timestamp=datetime.utcnow().isoformat() + "Z",
         source_ip="0.0.0.0",
@@ -377,18 +400,16 @@ async def export_all_data():
         attack_technique_name="Data from Cloud Storage Object",
         attack_tactic="Collection",
         severity="HIGH",
-        description="Attacker accessed decoy admin export endpoint - bait triggered",
+        description="Acceso al endpoint administrativo de exportación masiva",
         tlp="RED",
     ))
     return JSONResponse(
         status_code=200,
         content={
-            "_warning": "This is a decoy endpoint. Access has been logged.",
-            "fake_data": {
-                "total_contribuyentes": 1_247_893,
-                "total_recaudado_2024": "B$ 4_287_392_115.50",
-                "sample_data": deception_tokens.generate_fake_export(),
-            },
+            "total_contribuyentes": 1_247_893,
+            "total_recaudado_2024": "B$ 4_287_392_115.50",
+            "export_data": deception_tokens.generate_export(),
+            "generated_at": "2024-12-15 08:42:11",
         },
     )
 

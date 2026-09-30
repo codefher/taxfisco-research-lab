@@ -1,5 +1,5 @@
 """
-Test básico del Decoy API
+Pruebas basicas de la instrumentacion de deteccion
 """
 import sys
 sys.path.insert(0, "/app")
