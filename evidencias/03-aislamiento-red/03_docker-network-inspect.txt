@@ -1,5 +1,0 @@
-fer@taxfisco:~/taxfisco-research-lab$ docker network inspect taxfisco-dmz taxfisco-honeypot taxfisco-ids taxfisco-soc --format '{{.Name}} | driver={{.Driver}} | scope={{.Scope}} | internal={{.Internal}} | subnet={{range .IPAM.Config}}{{.Subnet}}{{end}} | contenedores={{len .Containers}}'
-taxfisco-dmz | driver=bridge | scope=local | internal=false | subnet=10.20.0.0/24 | contenedores=6
-taxfisco-honeypot | driver=bridge | scope=local | internal=false | subnet=10.21.0.0/24 | contenedores=3
-taxfisco-ids | driver=bridge | scope=local | internal=false | subnet=10.23.0.0/24 | contenedores=2
-taxfisco-soc | driver=bridge | scope=local | internal=false | subnet=10.22.0.0/24 | contenedores=19

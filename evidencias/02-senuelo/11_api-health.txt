@@ -1,6 +1,0 @@
-fer@taxfisco:~/taxfisco-research-lab$ curl -s http://localhost:8090/health | python3 -m json.tool
-{
-    "status": "healthy",
-    "service": "taxfisco-decoy-api",
-    "version": "1.0.0"
-}
