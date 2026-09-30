@@ -64,6 +64,10 @@ services:
     networks:
       soc-net:
         ipv4_address: 10.22.0.10
+        # El plugin de Wazuh del dashboard resuelve la API por el nombre
+        # corto 'wazuh' (wazuh.yml), no por el hostname del servicio.
+        aliases:
+          - wazuh
     ports:
       - "1514:1514/udp"   # agent enrollment
       - "1514:1514/tcp"   # agent communication
@@ -295,9 +299,15 @@ services:
         ipv4_address: 10.22.0.32
     ports:
       - "9001:9001/tcp"   # Cortex API
+    environment:
+      # La conexion con el indice se declara en application.conf. El
+      # entrypoint intentaria anexar una URI con credenciales embebidas,
+      # que el cliente elastic4s interpreta como nombre de host.
+      - no_config_es=1
     volumes:
       - cortex_data:/var/lib/cortex
-      - ./config/cortex/application.conf:/etc/cortex/application.conf:ro
+      # Sin ':ro': el entrypoint necesita anexar la configuracion del indice.
+      - ./config/cortex/application.conf:/etc/cortex/application.conf
     logging: *default-logging
     restart: unless-stopped
     mem_limit: 384m  # LITE: era 512m
@@ -318,14 +328,20 @@ services:
       - "3443:3443/tcp"   # Orborus worker (UI va por shuffle.frontend en 3001)
     environment:
       - SHUFFLE_APP_SHUFFLE_ORBORUS=orborus
-      - SHUFFLE_APP_DB_LOCATION=db
+      - SHUFFLE_APP_DB_LOCATION=shuffle.db
       - SHUFFLE_DB_LOCATION=shuffle.db
       # LITE: workers reducidos
       - SHUFFLE_WORKER_AMOUNT=2
+      # Usuario administrador que Shuffle crea en el primer arranque. Sin
+      # estas variables la organizacion queda sin usuario y el acceso falla
+      # con 'Failed getting org'.
+      - SHUFFLE_DEFAULT_USERNAME=admin
+      - SHUFFLE_DEFAULT_PASSWORD=${SHUFFLE_DEFAULT_PASSWORD:-Shuffle_Admin_2024!}
+      - SHUFFLE_DEFAULT_APIKEY=shuffle-lab-api-key-2024
       # OpenSearch apunta al proxy HTTP de Wazuh (con alias shuffle-opensearch)
       # El proxy requiere auth basica (admin:admin = default wazuh)
-      - SHUFFLE_OPENSEARCH_URL=http://admin:Admin1234!@shuffle-opensearch:9200
-      - SHUFFLE_ELASTIC_URL=http://admin:Admin1234!@shuffle-opensearch:9200
+      - SHUFFLE_OPENSEARCH_URL=http://admin:admin@wazuh-indexer-proxy:9200
+      - SHUFFLE_ELASTIC_URL=http://admin:admin@wazuh-indexer-proxy:9200
       - DATABASE_URL=sqlite:///opt/shuffle/shuffle.db
     depends_on:
       - shuffle.db
