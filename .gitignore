@@ -75,9 +75,10 @@ attack-scenarios/*/resultados.json
 # --- Certs SSL (artefactos generados por openssl, no reproducibles) ---
 *.srl
 
-# --- Wazuh Dashboard config (se reaplica via docker cp en runtime,
-#     porque la imagen wazuh/wazuh-dashboard sobrescribe su config
-#     en cada recreate. No es commiteable de forma reproducible) ---
+# --- Wazuh Dashboard config
+#     La copia de referencia (config/wazuh/opensearch_dashboards.yml) SI se
+#     versiona: es la que monta el compose. Lo que se ignora es el directorio
+#     antiguo propiedad de root, que quedó en desuso. ---
 config/wazuh/dashboard/
 
 # --- Variables de entorno de la herramienta ---

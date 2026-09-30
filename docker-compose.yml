@@ -120,7 +120,7 @@ services:
     depends_on:
       - wazuh.indexer
     volumes:
-      - ./config/wazuh/dashboard/opensearch_dashboards.yml:/usr/share/wazuh-dashboard/config/opensearch_dashboards.yml:ro
+      - ./config/wazuh/opensearch_dashboards.yml:/usr/share/wazuh-dashboard/config/opensearch_dashboards.yml:ro
       - ./config/wazuh/certs:/etc/wazuh-dashboard/certs:ro
       - wazuh_dashboard_data:/var/lib/wazuh-dashboard
       - ./config/wazuh/dashboard:/wazuh-dashboard/app/plugins/main/wazuh/public/assets:ro
@@ -175,6 +175,10 @@ services:
     networks:
       soc-net:
         ipv4_address: 10.22.0.50
+        # MISP resuelve su Redis por el nombre corto "redis" (config.php
+        # redis_host y ZeroMQ_redis_host), no por el hostname del servicio.
+        aliases:
+          - redis
     logging: *default-logging
     restart: unless-stopped
     mem_limit: 128m
@@ -265,7 +269,7 @@ services:
       - TH_ELASTICSEARCH_HOSTNAMES=wazuh.indexer
       - TH_ELASTICSEARCH_INDEX=thehive
       - TH_ELASTICSEARCH_USERNAME=admin
-      - TH_ELASTICSEARCH_PASSWORD=Admin1234!
+      - TH_ELASTICSEARCH_PASSWORD=${WAZUH_INDEXER_PASSWORD:-admin}
       - TH_INDEX_BACKEND=elasticsearch
       - TH_STORAGE_DIRECTORY=/var/lib/thehive/files
       - TH_NO_CONFIG_SECRET=1

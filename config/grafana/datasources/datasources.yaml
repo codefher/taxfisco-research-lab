@@ -11,7 +11,7 @@ datasources:
     basicAuth: true
     basicAuthUser: admin
     secureJsonData:
-      basicAuthPassword: Admin1234!
+      basicAuthPassword: admin   # clave real del indice Wazuh (securityadmin -icl)
     jsonData:
       flavor: "opensearch"
       version: "1.2.0"

@@ -124,8 +124,6 @@ TAX_FISCO_LOGO_SVG = """
 
 CUSTOM_SWAGGER_CSS = """
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
-
   body { font-family: 'Montserrat', system-ui, sans-serif; }
 
   .swagger-ui .topbar { display: none; }
@@ -165,7 +163,7 @@ CUSTOM_SWAGGER_HTML = f"""
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui.css">
+  <link type="text/css" rel="stylesheet" href="/static/swagger/swagger-ui.css">
   <link rel="shortcut icon" type="image/svg+xml" href="/static/img/favicon.svg">
   <title>Impuestos Nacionales — API</title>
   {CUSTOM_SWAGGER_CSS}
@@ -175,7 +173,7 @@ CUSTOM_SWAGGER_HTML = f"""
     {TAX_FISCO_LOGO_SVG}
   </div>
   <div id="swagger-ui"></div>
-  <script src="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui-bundle.js"></script>
+  <script src="/static/swagger/swagger-ui-bundle.js"></script>
   <script>
     const ui = SwaggerUIBundle({{
       url: '/openapi.json',

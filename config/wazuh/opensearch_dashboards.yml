@@ -1,0 +1,27 @@
+# =============================================================================
+# Wazuh Dashboard -> conexion con el indice
+# =============================================================================
+server.host: '0.0.0.0'
+server.name: 'wazuh-dashboard'
+
+# El indice expone su API por el proxy, que es quien autentica con el
+# administrador de seguridad.
+opensearch.hosts: ['http://wazuh-indexer-proxy:9200']
+# El proxy publica la API en HTTP plano y reenvia al indice por HTTPS,
+# de modo que la verificacion de certificado no aplica en este tramo.
+opensearch.ssl.verificationMode: none
+
+# Credenciales del administrador del indice. Sin estas el dashboard responde
+# 503 porque la peticion al indice sale sin autenticar.
+opensearch.username: 'admin'
+opensearch.password: 'admin'
+
+opensearch.requestTimeout: 30000
+opensearch.shardTimeout: 30000
+
+uiSettings.overrides.defaultRoute: /app/wazuh
+
+server.ssl.enabled: true
+server.ssl.key: '/etc/wazuh-dashboard/certs/dashboard-key.pem'
+server.ssl.certificate: '/etc/wazuh-dashboard/certs/dashboard.pem'
+opensearch.ssl.certificateAuthorities: ['/etc/wazuh-dashboard/certs/root-ca.pem']
