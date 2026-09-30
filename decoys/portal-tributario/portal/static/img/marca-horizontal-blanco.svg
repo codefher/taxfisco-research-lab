@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Marca "Impuestos Nacionales" version blanca para fondos oscuros.
+     Paneles inclinados con perspectiva, al igual que la marca de color. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 96" width="300" height="96" role="img" aria-label="Impuestos Nacionales">
+  <defs>
+    <linearGradient id="panelTeal" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#22E4E8"/>
+      <stop offset="100%" stop-color="#00A9B0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Panel izquierdo blanco, inclinado -->
+  <path d="M8 26 L52 16 V80 L8 70 Z" fill="#FFFFFF"/>
+  <!-- Panel derecho turquesa, inclinado -->
+  <path d="M60 14 L104 4 V68 L60 78 Z" fill="url(#panelTeal)"/>
+
+  <!-- Filas de circuito entre los paneles -->
+  <g stroke="#22E4E8" stroke-width="2.4" stroke-linecap="round">
+    <path d="M36 34 H60"/><path d="M36 44 H60"/><path d="M36 54 H60"/>
+  </g>
+  <g fill="#22E4E8">
+    <circle cx="60" cy="34" r="3.2"/><circle cx="60" cy="44" r="3.2"/><circle cx="60" cy="54" r="3.2"/>
+  </g>
+
+  <g font-family="Montserrat, system-ui, sans-serif" fill="#FFFFFF" font-weight="700">
+    <text x="116" y="42" font-size="33" letter-spacing="-0.3">Impuestos</text>
+    <text x="116" y="77" font-size="33" letter-spacing="-0.3">Nacionales</text>
+  </g>
+</svg>

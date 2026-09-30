@@ -16,13 +16,16 @@
   --color-accent-d:   #00A5A9;
 
   /* Fondo de la plataforma SIAT */
-  --color-launcher-bg:   #082B39;
-  --color-launcher-bg-2: #123C44;
-  --color-launcher-card: #012332;
+  --color-launcher-bg:   #052736;
+  --color-launcher-bg-2: #0B313D;
+  --color-launcher-card: #0B313D;
   --color-launcher-input:#163543;
-  --color-launcher-line: #1C5568;
-  --color-action:        #003BA8;
+  --color-launcher-line: #1E4A5C;
+  --color-launcher-icon: #3F5864;
+  --color-launcher-text: #E6E9EB;
+  --color-launcher-cyan: #00D9E4;
   --color-btn:           #02C7A1;
+  --color-btn-border:    #02B092;
 
   --color-success:    #00A65A;
   --color-warning:    #ffa600;
@@ -697,8 +700,8 @@ main { max-width: 1240px; margin: 0 auto; padding: 2rem 1.5rem 3rem; }
   background-image:
     url("../img/circuits.svg"),
     linear-gradient(160deg, var(--color-launcher-bg) 0%, var(--color-launcher-bg-2) 100%);
-  background-size: 560px 560px, cover;
-  background-repeat: repeat, no-repeat;
+  background-size: 1180px 1180px, cover;
+  background-repeat: no-repeat, no-repeat;
   background-position: center, center;
   background-blend-mode: normal, normal;
   padding: 2.5rem 1.25rem 1.5rem;
@@ -710,38 +713,39 @@ main { max-width: 1240px; margin: 0 auto; padding: 2rem 1.5rem 3rem; }
   gap: 0.85rem;
   margin-bottom: 1.75rem;
 }
-.txf-launcher-brandtop img { height: 54px; width: auto; }
+.txf-launcher-brandtop img { height: 50px; width: auto; }
 .txf-launcher-brandtop-text { line-height: 1.25; }
 .txf-launcher-brandtop-text b { display: block; font-size: 1.15rem; color: var(--color-teal-l); font-weight: 700; }
-.txf-launcher-brandtop-text span { display: block; font-size: 1rem; color: #fff; font-weight: 400; }
+.txf-launcher-brandtop-text span { display: block; font-size: 1.3rem; color: #FFFFFF; font-weight: 500; line-height: 1.3; }
 
 .txf-launcher-card {
   position: relative;
   background: var(--color-launcher-card);
-  border: 1px solid var(--color-green);
+  border: 1.5px solid var(--color-btn-border);
   border-radius: 22px;
-  box-shadow: 0 0 26px rgba(2, 199, 161, 0.55), 0 0 60px rgba(2, 199, 161, 0.22);
+  box-shadow: 0 0 18px rgba(2, 176, 146, 0.45), 0 0 48px rgba(2, 176, 146, 0.18);
   width: 100%;
-  max-width: 30rem;
-  padding: 2rem 2.25rem 2.25rem;
+  max-width: 34rem;
+  padding: 2.1rem 2.4rem 2.3rem;
   margin-bottom: 1.5rem;
 }
 .txf-launcher-card .txf-launcher-brandtop { margin-bottom: 1.25rem; justify-content: center; }
 .txf-launcher-title {
   margin: 0 0 1.5rem;
   text-align: center;
-  font-size: 1.4rem;
+  font-size: 1.45rem;
   font-weight: 700;
-  color: var(--color-action);
+  color: var(--color-launcher-text);
+  margin-bottom: 1.75rem;
 }
 .txf-launcher-field { margin-bottom: 1.15rem; position: relative; }
 .txf-launcher-field label {
   display: block;
-  font-size: 0.78rem;
-  font-weight: 700;
-  color: #FFFFFF;
-  margin-bottom: 0.4rem;
-  letter-spacing: 0.02em;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #C7D6DC;
+  margin-bottom: 0.45rem;
+  letter-spacing: 0.04em;
 }
 .txf-launcher-fieldwrap { position: relative; display: flex; align-items: center; }
 .txf-launcher-input {
@@ -761,24 +765,27 @@ main { max-width: 1240px; margin: 0 auto; padding: 2rem 1.5rem 3rem; }
 .txf-launcher-fieldicon {
   position: absolute;
   right: 0.85rem;
-  color: #6E93A6;
+  color: var(--color-launcher-icon);
   display: inline-flex;
   pointer-events: none;
 }
 .txf-launcher-helpbtn {
   position: absolute;
-  right: -1.4rem;
-  top: -0.9rem;
-  width: 20px; height: 20px;
+  right: -0.15rem;
+  top: -1.15rem;
+  width: 21px; height: 21px;
   border-radius: 50%;
-  background: var(--color-action);
-  color: #fff;
-  border: 0;
-  font-size: 0.7rem;
+  background: transparent;
+  color: var(--color-launcher-cyan);
+  border: 1.6px solid var(--color-launcher-cyan);
+  font-size: 0.72rem;
   font-weight: 700;
+  line-height: 1;
   display: flex; align-items: center; justify-content: center;
   cursor: pointer;
+  padding: 0;
 }
+.txf-launcher-helpbtn:hover { background: rgba(34, 228, 232, 0.14); }
 .txf-launcher-btn {
   width: 100%;
   height: 46px;
@@ -807,13 +814,14 @@ main { max-width: 1240px; margin: 0 auto; padding: 2rem 1.5rem 3rem; }
   gap: 0.45rem;
   padding: 0.45rem 0.8rem;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid var(--color-launcher-line);
-  color: #CFE7EE;
+  background: #01303B;
+  border: 1px solid rgba(30, 74, 92, 0.7);
+  color: #DCEAF0;
   text-decoration: none;
-  font-size: 0.78rem;
+  font-size: 0.8rem;
   white-space: nowrap;
 }
+.txf-launcher-pill svg { color: var(--color-launcher-cyan); }
 .txf-launcher-pill:hover { background: rgba(255,255,255,0.12); color: #fff; }
 .txf-launcher-alert {
   display: flex;
@@ -855,10 +863,12 @@ main { max-width: 1240px; margin: 0 auto; padding: 2rem 1.5rem 3rem; }
   justify-content: center;
   width: 30px; height: 30px;
   border-radius: 6px;
-  background: rgba(255,255,255,0.08);
-  color: #CFE7EE;
+  background: #FFFFFF;
+  color: #062937;
+  border-radius: 6px;
 }
-.txf-launcher-social a:hover { background: rgba(255,255,255,0.18); }
+.txf-launcher-social a:hover { background: #E6E9EB; }
+.txf-launcher-social svg { width: 100%; height: 100%; }
 
 /* --- Logotipo legible sobre el pie institucional --- */
-.txf-footer-logo { filter: brightness(0) invert(1); opacity: 0.95; }
+.txf-footer-logo { opacity: 0.96; }

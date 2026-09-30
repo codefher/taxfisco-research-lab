@@ -1,76 +1,123 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400" preserveAspectRatio="xMidYMid slice">
+<!-- Patron de circuitos del fondo de la plataforma SIAT: trazos finos, arcos
+     amplios, anillos punteados, series de pines y chevrons. Transparente. -->
+<svg xmlns="http://www.w3.org/2000/svg" opacity="0.72" viewBox="0 0 1200 1200" width="1200" height="1200" preserveAspectRatio="xMidYMid slice">
   <defs>
-    <g id="n"><circle r="3.4" fill="#1C5568"/></g>
-    <g id="h"><circle r="2.2" fill="#1C5568"/></g>
+    <g id="n"><circle r="5.5" fill="#6E97A8"/></g>
+    <g id="s"><circle r="3.4" fill="#6E97A8"/></g>
+    <g id="ring" fill="none" stroke="#6E97A8" stroke-width="1.4" stroke-dasharray="2 9" stroke-linecap="round">
+      <circle cx="0" cy="0" r="60"/>
+    </g>
   </defs>
 
-  <g fill="none" stroke="#1C5568" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+  <g fill="none" stroke="#6E97A8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
 
-    <!-- Circuitos superiores -->
-    <path d="M0 34 H44 L64 54 H118"/>
-    <path d="M0 62 H26 L40 76 H92 L112 96 H150"/>
-    <path d="M400 28 H352 L332 48 H288"/>
-    <path d="M400 58 H372 L356 74 H310 L296 88 H250"/>
-    <path d="M96 0 V18 L112 34 H168"/>
-    <path d="M300 0 V22 L284 38 H232"/>
+    <!-- ===== Trazados superiores con angulos de 45 grados ===== -->
+    <path d="M120 40 H220 L300 120 H400"/>
+    <path d="M40 140 H150 L230 220 H330"/>
+    <path d="M1080 60 H990 L920 130 H820"/>
+    <path d="M1160 160 H1060 L990 230 H880"/>
+    <path d="M180 0 V70 L240 130"/>
+    <path d="M840 0 V80 L790 130"/>
 
-    <!-- Circuitos laterales -->
-    <path d="M22 0 V60 L42 80 V150 L26 166 V228"/>
-    <path d="M378 0 V70 L356 92 V168 L376 188 V250"/>
-    <path d="M0 300 H56 L74 282 H130"/>
-    <path d="M400 296 H344 L326 278 H272"/>
+    <!-- ===== Retornos verticales en los laterales ===== -->
+    <path d="M60 0 V200 L100 240 V360"/>
+    <path d="M1150 0 V220 L1110 260 V390"/>
+    <path d="M20 420 H120 L180 480 H280"/>
+    <path d="M1180 440 H1090 L1030 500 H930"/>
 
-    <!-- Circuitos inferiores -->
-    <path d="M0 350 H70 L88 368 H150"/>
-    <path d="M400 344 H336 L318 362 H258"/>
-    <path d="M150 400 V366 L166 350 H214"/>
-    <path d="M252 400 V372 L268 356 H312"/>
-    <path d="M0 190 H40 L58 208 H110"/>
-    <path d="M400 186 H362 L344 204 H296"/>
+    <!-- ===== Gran arco inferior izquierdo ===== -->
+    <path d="M150 640 A230 230 0 0 1 300 880 L340 920"/>
+    <path d="M230 700 A150 150 0 0 1 330 800"/>
+    <path d="M120 520 A320 320 0 0 1 300 860"/>
 
-    <!-- Anillos decorativos -->
-    <circle cx="52" cy="238" r="17"/>
-    <circle cx="52" cy="238" r="7"/>
-    <circle cx="352" cy="322" r="13"/>
-    <circle cx="352" cy="322" r="5"/>
-    <circle cx="34" cy="126" r="9"/>
-    <circle cx="366" cy="128" r="9"/>
+    <!-- ===== Gran arco derecho ===== -->
+    <path d="M1050 470 A240 240 0 0 1 900 700 L860 740 H760"/>
+    <path d="M1120 430 A300 300 0 0 1 930 720 L890 760 H800"/>
+    <path d="M1080 620 L1000 700 L1080 780"/>
+
+    <!-- ===== Trazados inferiores ===== -->
+    <path d="M60 1060 H200 L260 1120 H360"/>
+    <path d="M1140 1020 H1000 L940 1080 H850"/>
+    <path d="M480 1200 V1100 L540 1040 H640"/>
+    <path d="M700 1200 V1110 L760 1050 H860"/>
+    <path d="M300 900 H420 L470 950 H570"/>
+
+    <!-- ===== Diagonales ===== -->
+    <path d="M560 300 L610 350 L560 400 L610 450"/>
+    <path d="M420 860 L470 910 L420 960"/>
+    <path d="M900 220 L950 270 L900 320"/>
   </g>
 
-  <!-- Nodos -->
-  <use href="#n" x="44" y="34"/><use href="#h" x="26" y="62"/><use href="#h" x="96" y="76"/>
-  <use href="#n" x="118" y="54"/><use href="#h" x="150" y="96"/><use href="#n" x="288" y="48"/>
-  <use href="#h" x="332" y="48"/><use href="#h" x="250" y="88"/><use href="#h" x="22" y="100"/>
-  <use href="#h" x="42" y="150"/><use href="#n" x="26" y="166"/><use href="#h" x="356" y="92"/>
-  <use href="#n" x="376" y="188"/><use href="#h" x="130" y="282"/><use href="#h" x="272" y="278"/>
-  <use href="#n" x="70" y="350"/><use href="#h" x="258" y="362"/><use href="#n" x="312" y="356"/>
-  <use href="#h" x="110" y="208"/><use href="#h" x="296" y="204"/>
-  <use href="#h" x="168" y="34"/><use href="#h" x="232" y="38"/><use href="#h" x="166" y="350"/>
-  <use href="#h" x="268" y="356"/>
+  <!-- ===== Anillos concentricos ===== -->
+  <g fill="none" stroke="#6E97A8" stroke-width="1.6">
+    <circle cx="250" cy="240" r="34"/><circle cx="250" cy="240" r="13"/>
+    <circle cx="1000" cy="300" r="26"/><circle cx="1000" cy="300" r="9"/>
+    <circle cx="380" cy="900" r="42"/><circle cx="380" cy="900" r="16"/>
+    <circle cx="1050" cy="1000" r="34"/><circle cx="1050" cy="1000" r="12"/>
+    <circle cx="700" cy="700" r="20"/><circle cx="700" cy="700" r="7"/>
+  </g>
+  <use href="#ring" x="250" y="240"/>
+  <use href="#ring" x="380" y="900"/>
+  <use href="#ring" x="1050" y="1000"/>
 
-  <!-- Detalle: series de pines -->
-  <g fill="#1C5568">
-    <rect x="62" y="20" width="2.6" height="8" rx="1.3"/>
-    <rect x="67" y="20" width="2.6" height="8" rx="1.3"/>
-    <rect x="72" y="20" width="2.6" height="8" rx="1.3"/>
-    <rect x="322" y="404" width="2.6" height="8" rx="1.3"/>
-    <rect x="327" y="404" width="2.6" height="8" rx="1.3"/>
-    <rect x="332" y="404" width="2.6" height="8" rx="1.3"/>
-    <rect x="16" y="258" width="8" height="2.6" rx="1.3"/>
-    <rect x="16" y="263" width="8" height="2.6" rx="1.3"/>
-    <rect x="376" y="286" width="8" height="2.6" rx="1.3"/>
-    <rect x="376" y="291" width="8" height="2.6" rx="1.3"/>
+  <!-- ===== Nodos en los angulos ===== -->
+  <use href="#n" x="220" y="40"/><use href="#s" x="150" y="140"/><use href="#n" x="300" y="120"/>
+  <use href="#n" x="990" y="60"/><use href="#s" x="1060" y="160"/><use href="#n" x="920" y="130"/>
+  <use href="#n" x="240" y="130"/><use href="#n" x="790" y="130"/><use href="#n" x="100" y="240"/>
+  <use href="#n" x="1110" y="260"/><use href="#n" x="180" y="480"/><use href="#n" x="1030" y="500"/>
+  <use href="#n" x="300" y="880"/><use href="#n" x="860" y="740"/><use href="#s" x="760" y="740"/>
+  <use href="#n" x="200" y="1060"/><use href="#s" x="850" y="1080"/><use href="#n" x="540" y="1040"/>
+  <use href="#n" x="760" y="1050"/><use href="#n" x="470" y="950"/>
+
+  <!-- ===== Chevrons ===== -->
+  <g fill="#6E97A8">
+    <path d="M96 300 l11 7 -11 7 z"/><path d="M112 300 l11 7 -11 7 z"/><path d="M128 300 l11 7 -11 7 z"/>
+    <path d="M1040 210 l11 7 -11 7 z"/><path d="M1056 210 l11 7 -11 7 z"/><path d="M1072 210 l11 7 -11 7 z"/>
+    <path d="M420 560 l11 7 -11 7 z"/><path d="M436 560 l11 7 -11 7 z"/>
+    <path d="M760 880 l11 7 -11 7 z"/><path d="M776 880 l11 7 -11 7 z"/><path d="M792 880 l11 7 -11 7 z"/>
+    <path d="M320 1060 l11 7 -11 7 z"/><path d="M336 1060 l11 7 -11 7 z"/>
+    <path d="M1000 380 l-11 7 11 7 z"/><path d="M1016 380 l-11 7 11 7 z"/><path d="M1032 380 l-11 7 11 7 z"/>
   </g>
 
-  <!-- Chevrons -->
-  <g fill="#1C5568" opacity="0.85">
-    <path d="M186 46 l8 5 -8 5 z"/><path d="M198 46 l8 5 -8 5 z"/><path d="M210 46 l8 5 -8 5 z"/>
+  <!-- ===== Flechas de sentido ===== -->
+  <g stroke="#6E97A8" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M180 190 H240 V230"/><path d="M232 224 l8 6 -8 6"/>
+    <path d="M960 760 H900 V800"/><path d="M908 794 l-8 6 8 6"/>
+    <path d="M660 120 H720 V160"/><path d="M712 154 l8 6 -8 6"/>
   </g>
 
-  <!-- Trazo tenue de fondo -->
-  <g stroke="#164A5A" stroke-width="1" fill="none" opacity="0.5">
-    <path d="M0 140 H200 L240 180 H400"/>
-    <path d="M0 268 H120 L160 228 H280"/>
+  <!-- ===== Series de pines ===== -->
+  <g fill="#6E97A8">
+    <rect x="330" y="20" width="5" height="14" rx="2.5"/>
+    <rect x="339" y="20" width="5" height="14" rx="2.5"/>
+    <rect x="348" y="20" width="5" height="14" rx="2.5"/>
+    <rect x="357" y="20" width="5" height="14" rx="2.5"/>
+
+    <rect x="1180" y="300" width="14" height="5" rx="2.5"/>
+    <rect x="1180" y="309" width="14" height="5" rx="2.5"/>
+    <rect x="1180" y="318" width="14" height="5" rx="2.5"/>
+
+    <rect x="0" y="520" width="14" height="5" rx="2.5"/>
+    <rect x="0" y="529" width="14" height="5" rx="2.5"/>
+
+    <rect x="820" y="1180" width="5" height="14" rx="2.5"/>
+    <rect x="829" y="1180" width="5" height="14" rx="2.5"/>
+    <rect x="838" y="1180" width="5" height="14" rx="2.5"/>
+    <rect x="847" y="1180" width="5" height="14" rx="2.5"/>
+
+    <rect x="0" y="960" width="14" height="5" rx="2.5"/>
+    <rect x="0" y="969" width="14" height="5" rx="2.5"/>
+    <rect x="0" y="978" width="14" height="5" rx="2.5"/>
+  </g>
+
+  <!-- ===== Lineas tenues de fondo ===== -->
+  <g stroke="#3C6C7E" stroke-width="1" fill="none" opacity="0.45">
+    <path d="M0 700 H180 L260 620 H480"/>
+    <path d="M1200 760 H1040 L960 680"/>
+    <path d="M380 0 V120 L440 180"/>
+    <path d="M880 1200 V1080 L820 1020"/>
+    <path d="M0 380 L120 500 L120 640"/>
+    <path d="M1200 120 L1100 220 L1100 360"/>
   </g>
 </svg>
