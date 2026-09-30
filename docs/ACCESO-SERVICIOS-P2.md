@@ -22,6 +22,11 @@ anfitrión.
 | Wazuh Dashboard | https://localhost:1443 | `admin` | `admin` |
 | Velociraptor | https://localhost:8889 | `admin` | `Admin1234!` |
 
+> **Velociraptor** usa autenticación HTTP Basic: al abrir la URL el
+> navegador pedirá usuario y contraseña. Los comandos de API requieren
+> además el encabezado `Referer`, por lo que conviene usar la interfaz
+> web en lugar de `curl` para las operaciones.
+
 ## API de MISP
 
 La clave de API se generó durante el aprovisionamiento y quedó registrada
