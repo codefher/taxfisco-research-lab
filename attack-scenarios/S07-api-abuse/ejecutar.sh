@@ -11,7 +11,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 EVIDENCE_DIR="$SCRIPT_DIR/evidencia"
 mkdir -p "$EVIDENCE_DIR"
 
-DECOY_API="http://172.20.0.20:8000"
+DECOY_API="http://10.20.0.20:8000"
 TIMESTAMP=$(date -u +"%Y%m%dT%H%M%SZ")
 
 echo "=========================================="

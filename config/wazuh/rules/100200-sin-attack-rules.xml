@@ -1,145 +1,95 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <!--
-  Wazuh Rules - TaxFisco Research Lab
-  Reglas personalizadas para detección de TTPs ATT&CK en honeypots fiscales
+  Wazuh Rules - TaxFisco Research Lab (Prototipo II)
+  Reglas de deteccion mapeadas a MITRE ATT&CK.
+
+  La regla nativa 86601 procesa las alertas de Suricata que llegan por
+  eve.json. Las reglas de este archivo anaden contexto ATT&CK segun la
+  firma que disparo.
 -->
 
 <group name="sin,">
 
-  <!-- SQL Injection en endpoints fiscales -->
-  <rule id="100200" level="12" frequency="2" timeframe="60">
-    <if_matched_sid>31100</if_matched_sid>
-    <same_field>srcip</same_field>
-    <description>SQL Injection activity detected from $(srcip) - ATT&CK T1190</description>
-    <mitre>
-      <id>T1190</id>
-      <tactic>Initial Access</tactic>
-      <technique>Exploit Public-Facing Application</technique>
-    </mitre>
-  </rule>
+  <!-- ======================================================================
+       Detecciones derivadas de Suricata (NIDS)
+       ====================================================================== -->
 
-  <!-- XSS detectado -->
-  <rule id="100201" level="10">
-    <if_sid>31100</if_sid>
-    <match>script|javascript|onerror|onload</match>
-    <description>XSS payload detected from $(srcip) - ATT&CK T1059.007</description>
-    <mitre>
-      <id>T1059.007</id>
-      <tactic>Execution</tactic>
-      <technique>JavaScript</technique>
-    </mitre>
-  </rule>
-
-  <!-- LFI / Path Traversal -->
-  <rule id="100202" level="12">
-    <if_sid>31100</if_sid>
-    <match>/etc/passwd|/etc/shadow|\.\./\.\./|\\windows\\</match>
-    <description>Path traversal / LFI attempt from $(srcip) - ATT&CK T1083</description>
+  <!-- LFI / lectura de /etc/passwd -->
+  <rule id="100200" level="12">
+    <if_sid>86601</if_sid>
+    <field name="alert.signature_id">2024030</field>
+    <description>Suricata: intento de lectura de /etc/passwd desde $(src_ip) - ATT&CK T1083</description>
     <mitre>
       <id>T1083</id>
-      <tactic>Discovery</tactic>
-      <technique>File and Directory Discovery</technique>
     </mitre>
   </rule>
 
-  <!-- API Abuse - acceso a endpoints administrativos -->
-  <rule id="100203" level="10">
-    <if_sid>31100</if_sid>
-    <match>/api/v1/admin|/api/v1/users|/api/v1/config</match>
-    <description>Administrative API endpoint access from $(srcip) - ATT&CK T1078</description>
+  <!-- Path traversal -->
+  <rule id="100201" level="12">
+    <if_sid>86601</if_sid>
+    <field name="alert.signature_id">2024031</field>
+    <description>Suricata: path traversal desde $(src_ip) - ATT&CK T1083</description>
     <mitre>
-      <id>T1078</id>
-      <tactic>Initial Access</tactic>
-      <technique>Valid Accounts</technique>
+      <id>T1083</id>
     </mitre>
   </rule>
 
-  <!-- Brute Force SSH en Cowrie -->
-  <rule id="100210" level="10" frequency="5" timeframe="120">
-    <if_matched_sid>5710</if_matched_sid>
-    <same_field>srcip</same_field>
-    <description>SSH brute force attempt on honeypot from $(srcip) - ATT&CK T1110.001</description>
-    <mitre>
-      <id>T1110.001</id>
-      <tactic>Credential Access</tactic>
-      <technique>Password Guessing</technique>
-    </mitre>
-  </rule>
-
-  <!-- Honeypot interaction: Cowrie session established -->
-  <rule id="100220" level="8">
-    <if_sid>5715</if_sid>
-    <description>Successful login on Cowrie honeypot from $(srcip) - ATT&CK T1078.001</description>
-    <mitre>
-      <id>T1078.001</id>
-      <tactic>Initial Access</tactic>
-      <technique>Default Accounts</technique>
-    </mitre>
-  </rule>
-
-  <!-- Dionaea - malware drop -->
-  <rule id="100230" level="14">
-    <if_sid>60200</if_sid>
-    <description>Malware binary captured by Dionaea honeypot from $(srcip) - ATT&CK T1105</description>
-    <mitre>
-      <id>T1105</id>
-      <tactic>Command and Control</tactic>
-      <technique>Ingress Tool Transfer</technique>
-    </mitre>
-  </rule>
-
-  <!-- OpenCanary - credential stuffing -->
-  <rule id="100240" level="10" frequency="10" timeframe="60">
-    <if_matched_sid>99901</if_matched_sid>
-    <same_field>srcip</same_field>
-    <description>Credential stuffing attempt on OpenCanary from $(srcip) - ATT&CK T1110.004</description>
-    <mitre>
-      <id>T1110.004</id>
-      <tactic>Credential Access</tactic>
-      <technique>Credential Stuffing</technique>
-    </mitre>
-  </rule>
-
-  <!-- Reconocimiento con Nmap/Nikto -->
-  <rule id="100250" level="6">
-    <if_sid>31100</if_sid>
-    <match>nmap|nikto|sqlmap|masscan|metasploit|nuclei|gobuster|ffuf</match>
-    <description>Reconnaissance tool detected from $(srcip) - ATT&CK T1595</description>
+  <!-- SQLMap -->
+  <rule id="100202" level="10">
+    <if_sid>86601</if_sid>
+    <field name="alert.signature_id">2024002</field>
+    <description>Suricata: escaneo con SQLMap desde $(src_ip) - ATT&CK T1595</description>
     <mitre>
       <id>T1595</id>
-      <tactic>Reconnaissance</tactic>
-      <technique>Active Scanning</technique>
     </mitre>
   </rule>
 
-  <!-- Suricata critical alerts -->
-  <rule id="100260" level="14">
-    <if_sid>20101</if_sid>
-    <description>Suricata HIGH severity alert - $(alert.signature) - ATT&CK T1190</description>
+  <!-- Acceso a endpoint administrativo del decoy -->
+  <rule id="100203" level="10">
+    <if_sid>86601</if_sid>
+    <field name="alert.signature_id">2024050</field>
+    <description>Suricata: acceso a endpoint administrativo del decoy desde $(src_ip) - ATT&CK T1078</description>
+    <mitre>
+      <id>T1078</id>
+    </mitre>
+  </rule>
+
+  <!-- Exportacion masiva de datos -->
+  <rule id="100204" level="12">
+    <if_sid>86601</if_sid>
+    <field name="alert.signature_id">2024051</field>
+    <description>Suricata: exportacion masiva de datos del decoy desde $(src_ip) - ATT&CK T1530</description>
+    <mitre>
+      <id>T1530</id>
+    </mitre>
+  </rule>
+
+  <!-- Command injection -->
+  <rule id="100205" level="12">
+    <if_sid>86601</if_sid>
+    <field name="alert.signature_id">2024040</field>
+    <description>Suricata: command injection desde $(src_ip) - ATT&CK T1059</description>
+    <mitre>
+      <id>T1059</id>
+    </mitre>
+  </rule>
+
+  <!-- Regla generica: alerta de Suricata de alta severidad -->
+  <rule id="100260" level="12">
+    <if_sid>86601</if_sid>
+    <field name="alert.severity">1</field>
+    <description>Suricata: alerta de alta severidad - $(alert.signature)</description>
     <mitre>
       <id>T1190</id>
-      <tactic>Initial Access</tactic>
-      <technique>Exploit Public-Facing Application</technique>
     </mitre>
   </rule>
 
-  <!-- DNS exfiltration patterns -->
-  <rule id="100270" level="12">
-    <if_sid>31100</if_sid>
-    <match>dnscat|iodine|txt-record|base32|base64</match>
-    <description>Possible DNS tunneling from $(srcip) - ATT&CK T1048.003</description>
-    <mitre>
-      <id>T1048.003</id>
-      <tactic>Exfiltration</tactic>
-      <technique>Exfiltration Over Unencrypted Non-C2 Protocol</technique>
-    </mitre>
-  </rule>
+  <!-- ======================================================================
+       Interaccion con el decoy (marcador en logs de aplicacion)
+       ====================================================================== -->
 
-  <!-- Decoy API / Decoy Portal access marker -->
   <rule id="100280" level="5">
-    <if_sid>31100</if_sid>
     <match>X-TaxFisco-Env: decoy</match>
-    <description>Decoy service interaction recorded from $(srcip)</description>
+    <description>Interaccion con servicio decoy registrada</description>
   </rule>
 
 </group>

@@ -33,8 +33,8 @@ alert http any any -> $HOME_NET any (msg:"TAX-FISCO LFI - ../../ traversal"; flo
 # ============================================================================
 # Command Injection
 # ============================================================================
-alert http any any -> $HOME_NET any (msg:"TAX-FISCO Command Injection - shell metachars"; flow:to_server,established; content:"|3B|"; classtype:web-application-attack; sid:2024040; rev:1; metadata:mitre_technique_id T1059;)  # ; in hex
-alert http any any -> $HOME_NET any (msg:"TAX-FISCO Command Injection - pipe to bash"; flow:to_server,established; content:"|"; content:"/bin/bash"; distance:0; classtype:web-application-attack; sid:2024041; rev:1; metadata:mitre_technique_id T1059;)
+alert http any any -> $HOME_NET any (msg:"TAX-FISCO Command Injection - shell metachars"; flow:to_server,established; content:"|3B|"; classtype:web-application-attack; sid:2024040; rev:1; metadata:mitre_technique_id T1059;)
+alert http any any -> $HOME_NET any (msg:"TAX-FISCO Command Injection - pipe to bash"; flow:to_server,established; content:"|7C|"; content:"/bin/bash"; distance:0; classtype:web-application-attack; sid:2024041; rev:1; metadata:mitre_technique_id T1059;)
 
 # ============================================================================
 # Decoy API Triggers

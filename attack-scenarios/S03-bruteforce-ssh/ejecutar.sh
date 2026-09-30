@@ -3,7 +3,7 @@
 # Escenario S03: Brute Force SSH (T1110.001)
 # ============================================================================
 # Herramientas: hydra
-# Target: Cowrie SSH honeypot (172.20.0.50:2222)
+# Target: Cowrie SSH honeypot (10.20.0.50:2222)
 # ============================================================================
 
 set -e
@@ -11,7 +11,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 EVIDENCE_DIR="$SCRIPT_DIR/evidencia"
 mkdir -p "$EVIDENCE_DIR"
 
-HONEYPOT_HOST="172.20.0.50"
+HONEYPOT_HOST="10.20.0.50"
 HONEYPOT_PORT="2222"
 WORDLIST="/usr/share/wordlists/rockyou.txt"
 TIMESTAMP=$(date -u +"%Y%m%dT%H%M%SZ")

