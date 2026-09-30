@@ -687,7 +687,8 @@ main { max-width: 1240px; margin: 0 auto; padding: 2rem 1.5rem 3rem; }
 }
 
 /* =============================================================================
-   PLATAFORMA SIAT - VISTA DE ACCESO (fondo de circuitos)
+   PLATAFORMA SIAT - VISTA DE ACCESO
+   Valores tomados del tema real login-siat (login.impuestos.gob.bo)
    ============================================================================= */
 .txf-launcher {
   min-height: 100vh;
@@ -695,180 +696,242 @@ main { max-width: 1240px; margin: 0 auto; padding: 2rem 1.5rem 3rem; }
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: var(--color-launcher-bg);
-  background-color: var(--color-launcher-bg);
+  background-color: #052736;
   background-image:
     url("../img/circuits.svg"),
-    linear-gradient(160deg, var(--color-launcher-bg) 0%, var(--color-launcher-bg-2) 100%);
-  background-size: 1180px 1180px, cover;
+    linear-gradient(160deg, #052736 0%, #0B313D 100%);
+  background-size: 1100px 1100px, cover;
   background-repeat: no-repeat, no-repeat;
   background-position: center, center;
-  background-blend-mode: normal, normal;
-  padding: 2.5rem 1.25rem 1.5rem;
-  font-family: var(--font-launcher);
+  padding: 24px 16px;
+  font-family: "DM Sans", sans-serif;
 }
+
+/* --- Logotipo de la plataforma (encabezado) --- */
 .txf-launcher-brandtop {
   display: flex;
   align-items: center;
-  gap: 0.85rem;
-  margin-bottom: 1.75rem;
+  justify-content: center;
+  margin-bottom: 24px;
 }
-.txf-launcher-brandtop img { height: 50px; width: auto; }
-.txf-launcher-brandtop-text { line-height: 1.25; }
-.txf-launcher-brandtop-text b { display: block; font-size: 1.15rem; color: var(--color-teal-l); font-weight: 700; }
-.txf-launcher-brandtop-text span { display: block; font-size: 1.3rem; color: #FFFFFF; font-weight: 500; line-height: 1.3; }
-
-.txf-launcher-card {
-  position: relative;
-  background: var(--color-launcher-card);
-  border: 1.5px solid var(--color-btn-border);
-  border-radius: 22px;
-  box-shadow: 0 0 18px rgba(2, 176, 146, 0.45), 0 0 48px rgba(2, 176, 146, 0.18);
-  width: 100%;
-  max-width: 34rem;
-  padding: 2.1rem 2.4rem 2.3rem;
-  margin-bottom: 1.5rem;
-}
-.txf-launcher-card .txf-launcher-brandtop { margin-bottom: 1.25rem; justify-content: center; }
-.txf-launcher-title {
-  margin: 0 0 1.5rem;
-  text-align: center;
-  font-size: 1.45rem;
-  font-weight: 700;
-  color: var(--color-launcher-text);
-  margin-bottom: 1.75rem;
-}
-.txf-launcher-field { margin-bottom: 1.15rem; position: relative; }
-.txf-launcher-field label {
-  display: block;
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: #C7D6DC;
-  margin-bottom: 0.45rem;
-  letter-spacing: 0.04em;
-}
-.txf-launcher-fieldwrap { position: relative; display: flex; align-items: center; }
-.txf-launcher-input {
-  width: 100%;
-  height: 44px;
-  padding: 0 2.75rem 0 0.9rem;
-  font: inherit;
-  font-size: 0.92rem;
-  color: #fff;
-  background: var(--color-launcher-input);
-  border: 1px solid var(--color-launcher-line);
-  border-radius: 10px;
-  outline: none;
-}
-.txf-launcher-input::placeholder { color: rgba(255,255,255,0.35); }
-.txf-launcher-input:focus { border-color: var(--color-teal); box-shadow: 0 0 0 2px rgba(0,186,194,0.35); }
-.txf-launcher-fieldicon {
-  position: absolute;
-  right: 0.85rem;
-  color: var(--color-launcher-icon);
-  display: inline-flex;
+.txf-launcher-brandtop img {
+  width: clamp(180px, 45vw, 350px);
+  max-width: 100%;
+  height: auto;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-user-drag: none;
   pointer-events: none;
 }
-.txf-launcher-helpbtn {
-  position: absolute;
-  right: -0.15rem;
-  top: -1.15rem;
-  width: 21px; height: 21px;
-  border-radius: 50%;
-  background: transparent;
-  color: var(--color-launcher-cyan);
-  border: 1.6px solid var(--color-launcher-cyan);
-  font-size: 0.72rem;
-  font-weight: 700;
-  line-height: 1;
-  display: flex; align-items: center; justify-content: center;
-  cursor: pointer;
-  padding: 0;
+
+/* --- Tarjeta de acceso --- */
+.txf-launcher-card {
+  background-color: #012332;
+  border: 2px solid rgba(3, 240, 189, 0.69);
+  border-radius: 30px;
+  box-shadow: 0 0 8px rgba(3, 240, 187, 0.35),
+              0 0 18px rgba(3, 240, 187, 0.2),
+              inset 0 0 60px rgba(3, 240, 187, 0.04);
+  width: 100%;
+  max-width: 33.5rem;
+  padding: 20px 16px;
+  margin-bottom: 20px;
 }
-.txf-launcher-helpbtn:hover { background: rgba(34, 228, 232, 0.14); }
+.txf-launcher-card .txf-launcher-brandtop { margin-bottom: 10px; }
+.txf-launcher-card .txf-launcher-brandtop img { width: clamp(140px, 40vw, 250px); }
+
+/* --- Titulo --- */
+.txf-launcher-title {
+  font-size: clamp(18px, 5vw, 27px);
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.9);
+  letter-spacing: -0.3px;
+  text-align: center;
+  margin: clamp(10px, 3vw, 14px) 0 14px;
+}
+
+/* --- Campos --- */
+.txf-launcher-field { margin-bottom: 4px; }
+.txf-launcher-labelrow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+.txf-launcher-field label {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.63);
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+  margin: 0;
+}
+.txf-launcher-fieldwrap { display: flex; align-items: center; position: relative; }
+.txf-launcher-input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.082);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 12px 44px 12px 14px;
+  color: #fff;
+  font-family: inherit;
+  font-size: 14px;
+  outline: 0;
+  box-sizing: border-box;
+  transition: border-color .2s, background .2s, box-shadow .2s;
+}
+.txf-launcher-input::placeholder { color: rgba(255, 255, 255, 0.45); }
+.txf-launcher-input:focus {
+  border-color: #03f0bb;
+  background: rgba(3, 240, 187, 0.04);
+  box-shadow: 0 0 0 3px rgba(3, 240, 187, 0.1);
+}
+.txf-launcher-input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #163543 inset !important;
+  box-shadow: 0 0 0 1000px #163543 inset !important;
+  -webkit-text-fill-color: #ffffff !important;
+  caret-color: #ffffff !important;
+}
+.txf-launcher-fieldicon {
+  position: absolute;
+  right: 13px;
+  color: rgba(255, 255, 255, 0.2);
+  pointer-events: none;
+  display: inline-flex;
+  transition: color .2s;
+}
+.txf-launcher-input:focus ~ .txf-launcher-fieldicon { color: #03f0bb; }
+
+/* --- Icono de ayuda --- */
+.txf-launcher-helpbtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border: 0;
+  background: 0 0;
+  padding: 0;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.25);
+  transition: color .2s;
+}
+.txf-launcher-helpbtn:hover { color: #03f0bb; }
+.txf-launcher-helpbtn img { width: 17px; height: 17px; }
+
+/* --- Boton principal --- */
 .txf-launcher-btn {
   width: 100%;
-  height: 46px;
-  border: 0;
-  border-radius: 10px;
-  background: linear-gradient(90deg, var(--color-green) 0%, #02B08F 100%);
+  background-color: rgba(3, 240, 189, 0.8);
   color: #012332;
-  font: inherit;
-  font-size: 0.95rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
+  border: 0;
+  border-radius: 6px;
+  margin: 10px 0;
+  min-height: 40px;
+  padding: 0 16px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
   cursor: pointer;
-  margin-top: 0.5rem;
+  transition: .25s;
+  box-shadow: 0 0 8px rgba(3, 240, 189, 0.2);
 }
-.txf-launcher-btn:hover { filter: brightness(1.08); }
+.txf-launcher-btn:hover {
+  background-color: rgba(3, 240, 189, 0.85);
+  transform: translateY(-2px);
+  box-shadow: 0 0 10px rgba(3, 240, 187, 0.35), 0 4px 12px rgba(3, 240, 187, 0.2);
+}
+.txf-launcher-btn:active { transform: translateY(0); }
+.txf-launcher-btn:focus-visible { outline: 2px solid #03f0bd; outline-offset: 2px; }
+
+/* --- Chips de enlace --- */
 .txf-launcher-row {
   display: flex;
-  gap: 0.6rem;
-  margin-top: 1.25rem;
+  flex-direction: row;
+  align-items: center;
   justify-content: center;
+  gap: 15px;
   flex-wrap: wrap;
+  margin-top: 0;
 }
 .txf-launcher-pill {
   display: inline-flex;
   align-items: center;
-  gap: 0.45rem;
-  padding: 0.45rem 0.8rem;
+  gap: 6px;
+  padding: 7px 16px;
+  background: rgba(3, 240, 187, 0.06);
+  border: 0;
   border-radius: 999px;
-  background: #01303B;
-  border: 1px solid rgba(30, 74, 92, 0.7);
-  color: #DCEAF0;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 13px;
+  font-weight: 500;
   text-decoration: none;
-  font-size: 0.8rem;
-  white-space: nowrap;
+  cursor: pointer;
+  font-family: inherit;
+  transition: .22s;
 }
-.txf-launcher-pill svg { color: var(--color-launcher-cyan); }
-.txf-launcher-pill:hover { background: rgba(255,255,255,0.12); color: #fff; }
+.txf-launcher-pill:hover { background: rgba(3, 240, 187, 0.13); color: #fff; }
+.txf-launcher-pill svg { width: 17px; height: 17px; opacity: .75; }
+
+/* --- Separador --- */
+.txf-launcher-divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #7a9aa0;
+  font-size: 12px;
+  margin: 14px 0;
+}
+.txf-launcher-divider::before,
+.txf-launcher-divider::after { content: ""; flex: 1; height: 1px; background: #1e4a52; }
+.txf-launcher-divider span { padding: 0 12px; white-space: nowrap; }
+
+/* --- Mensajes de error --- */
 .txf-launcher-alert {
   display: flex;
-  gap: 0.5rem;
-  padding: 0.7rem 0.85rem;
-  border-radius: 8px;
-  font-size: 0.82rem;
-  line-height: 1.4;
-  margin-bottom: 1.1rem;
-  background: rgba(210, 34, 41, 0.16);
-  color: #FFC9CB;
-  border: 1px solid rgba(210, 34, 41, 0.4);
+  gap: 4px;
+  font-size: 11px;
+  color: rgba(239, 68, 68, 0.8);
+  margin-top: 4px;
+  min-height: 18px;
+  align-items: center;
 }
 .txf-launcher-step {
   display: flex; align-items: center; gap: 0.5rem; justify-content: center;
-  font-size: 0.72rem; color: #6E93A6; margin-bottom: 0.75rem;
-  text-transform: uppercase; letter-spacing: 0.08em;
+  font-size: 12px; color: #7a9aa0; margin-bottom: 6px;
+  text-transform: uppercase; letter-spacing: 0.7px;
 }
 .txf-launcher-step b {
   display: inline-flex; align-items: center; justify-content: center;
   width: 20px; height: 20px; border-radius: 50%;
-  background: var(--color-green); color: #012332; font-size: 0.7rem; font-weight: 700;
+  background: #03f0bd; color: #012332; font-size: 0.7rem; font-weight: 700;
 }
-.txf-launcher-otp-input {
-  text-align: center;
-  letter-spacing: 0.5em;
-  font-size: 1.15rem;
-  padding-right: 0.9rem;
-}
+.txf-launcher-otp-input { text-align: center; letter-spacing: 0.45em; font-size: 16px; }
+
+/* --- Redes oficiales --- */
 .txf-launcher-social {
   display: flex;
-  gap: 1.1rem;
+  justify-content: center;
   align-items: center;
-  margin-top: 0.5rem;
+  gap: 20px;
 }
 .txf-launcher-social a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 30px; height: 30px;
-  border-radius: 6px;
-  background: #FFFFFF;
-  color: #062937;
-  border-radius: 6px;
+  cursor: pointer;
+  transition: .9s;
+  color: inherit;
 }
-.txf-launcher-social a:hover { background: #E6E9EB; }
-.txf-launcher-social svg { width: 100%; height: 100%; }
-
-/* --- Logotipo legible sobre el pie institucional --- */
-.txf-footer-logo { opacity: 0.96; }
+.txf-launcher-social a:hover { transform: scale(1.2); }
+.txf-launcher-social a {
+  width: 34px;
+  height: 34px;
+  background: #ffffff;
+  color: #0d2b3d;
+  border-radius: 7px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.txf-launcher-social img,
+.txf-launcher-social svg { width: 20px; height: 20px; }
