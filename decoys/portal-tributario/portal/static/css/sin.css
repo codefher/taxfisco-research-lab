@@ -747,11 +747,25 @@ main { max-width: 1240px; margin: 0 auto; padding: 2rem 1.5rem 3rem; }
   color: rgba(255, 255, 255, 0.9);
   letter-spacing: -0.3px;
   text-align: center;
-  margin: clamp(10px, 3vw, 14px) 0 14px;
+  margin: clamp(10px, 3vw, 14px) 0 10px;
 }
 
-/* --- Campos --- */
-.txf-launcher-field { margin-bottom: 4px; }
+/* --- Campos ---
+   La separacion entre campos no viene de un margen: el tema original
+   reserva bajo cada campo una linea de error de 18 px de alto
+   (.ovt-error-msg) que se oculta cuando no hay mensaje. */
+.txf-launcher-field { margin-bottom: 6px; }
+.txf-launcher-errmsg {
+  visibility: hidden;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 20px;
+  margin-top: 4px;
+  font-size: 11px;
+  color: rgba(239, 68, 68, 0.8);
+}
+.txf-launcher-errmsg.visible { visibility: visible; }
 .txf-launcher-labelrow {
   display: flex;
   align-items: center;
