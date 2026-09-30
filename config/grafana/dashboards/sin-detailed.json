@@ -149,10 +149,10 @@
   ],
   "refresh": "10s",
   "schemaVersion": 39,
-  "tags": ["taxfisco", "honeypot", "alerts"],
+  "tags": ["sin", "honeypot", "alerts"],
   "templating": {"list": []},
   "time": {"from": "now-90d", "to": "now"},
   "title": "TaxFisco - Detailed Alerts",
-  "uid": "taxfisco-detailed",
+  "uid": "sin-detailed",
   "version": 2
 }

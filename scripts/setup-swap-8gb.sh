@@ -63,8 +63,8 @@ fi
 
 # Configurar swappiness (preferencia por RAM)
 sysctl vm.swappiness=$SWAPPINESS
-if ! grep -q "vm.swappiness" /etc/sysctl.d/99-taxfisco-swap.conf 2>/dev/null; then
-    echo "vm.swappiness=$SWAPPINESS" > /etc/sysctl.d/99-taxfisco-swap.conf
+if ! grep -q "vm.swappiness" /etc/sysctl.d/99-sin-swap.conf 2>/dev/null; then
+    echo "vm.swappiness=$SWAPPINESS" > /etc/sysctl.d/99-sin-swap.conf
     echo -e "${GREEN}[OK] Swappiness configurado a $SWAPPINESS en sysctl${NC}"
 fi
 

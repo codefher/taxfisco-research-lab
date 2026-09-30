@@ -171,10 +171,10 @@
   ],
   "refresh": "30s",
   "schemaVersion": 39,
-  "tags": ["taxfisco", "kpi"],
+  "tags": ["sin", "kpi"],
   "templating": {"list": []},
   "time": {"from": "now-90d", "to": "now"},
   "title": "TaxFisco - KPIs (MTTD, MTTR, Coverage)",
-  "uid": "taxfisco-kpis",
+  "uid": "sin-kpis",
   "version": 3
 }

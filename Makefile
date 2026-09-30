@@ -130,7 +130,7 @@ logs:
 status:
 	@echo "=== Health checks ==="
 	@for svc in wazuh.manager wazuh.dashboard thehive misp.core shuffle velociraptor grafana decoy.api; do \
-		state=$$(docker inspect --format='{{.State.Health.Status}}' taxfisco-$$svc 2>/dev/null || echo "no-healthcheck"); \
+		state=$$(docker inspect --format='{{.State.Health.Status}}' sin-$$svc 2>/dev/null || echo "no-healthcheck"); \
 		echo "  $$svc: $$state"; \
 	done
 
@@ -208,7 +208,7 @@ backup:
 	mkdir -p ./backups/$(shell date +%Y%m%d-%H%M%S)
 	@BACKUP_DIR=./backups/$(shell date +%Y%m%d-%H%M%S); \
 	mkdir -p $$BACKUP_DIR; \
-	docker compose exec -T postgres.fiscal pg_dump -U fiscal taxfisco > $$BACKUP_DIR/postgres.sql; \
+	docker compose exec -T postgres.fiscal pg_dump -U fiscal sin_fiscal > $$BACKUP_DIR/postgres.sql; \
 	docker compose exec -T decoy.api cat /var/log/decoy-api/attacks.json > $$BACKUP_DIR/attacks.json 2>/dev/null || true; \
 	tar -czf $$BACKUP_DIR/wazuh-logs.tar.gz -C config/wazuh . 2>/dev/null || true; \
 	echo "[OK] Backup guardado en: $$BACKUP_DIR"

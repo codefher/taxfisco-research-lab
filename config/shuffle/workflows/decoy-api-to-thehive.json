@@ -1,5 +1,5 @@
 {
-  "id": "taxfisco-decoy-api-to-thehive",
+  "id": "sin-decoy-api-to-thehive",
   "name": "Decoy API ATT&CK Detection to TheHive",
   "description": "Workflow que recibe alertas de la Decoy API cuando se detecta una TTP ATT&CK",
   "trigger": {
@@ -30,7 +30,7 @@
         "description": "Technique: ${action-1.attack_technique_id}\nTactic: ${action-1.attack_tactic}\nSeverity: ${action-1.severity}\nSource IP: ${action-1.source_ip}\nEndpoint: ${action-1.endpoint}\nDescription: ${action-1.description}",
         "severity": "${action-1.severity}",
         "tlp": "${action-1.tlp}",
-        "tags": ["decoy-api", "taxfisco", "${action-1.attack_tactic}", "${action-1.attack_technique_id}"]
+        "tags": ["decoy-api", "sin", "${action-1.attack_tactic}", "${action-1.attack_technique_id}"]
       }
     },
     {

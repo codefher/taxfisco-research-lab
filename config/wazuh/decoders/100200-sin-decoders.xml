@@ -4,11 +4,11 @@
   Decoders personalizados para honeypots fiscales
 -->
 
-<decoder name="taxfisco-decoy-api">
+<decoder name="sin-decoy-api">
   <program_name>decoy-api</program_name>
 </decoder>
 
-<decoder name="taxfisco-decoy-portal">
+<decoder name="sin-decoy-portal">
   <program_name>decoy-portal</program_name>
 </decoder>
 

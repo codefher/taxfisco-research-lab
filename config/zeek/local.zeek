@@ -1,4 +1,4 @@
-# Zeek local configuration for TaxFisco Research Lab
+# Zeek local configuration for SIN Research Lab
 
 @load base/frameworks/cluster
 @load base/frameworks/logging
@@ -18,10 +18,10 @@
 @load policy/misc/loaded-scripts
 # Note: detect-bruteforcing / detect-unencrypted-passwords not available
 # in this Zeek 6.0 image; bruteforce is detected via notice framework
-# in taxfisco-notice.zeek below.
+# in sin-notice.zeek below.
 
-# Custom scripts for TaxFisco
-@load /usr/local/zeek/share/zeek/site/taxfisco-notice.zeek
+# Custom scripts for SIN
+@load /usr/local/zeek/share/zeek/site/sin-notice.zeek
 
 # Tune defaults
 redef ignore_checksums = T;

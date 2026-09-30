@@ -36,9 +36,9 @@ REPO_DIR = Path(__file__).resolve().parent.parent
 
 ATTACK_SCENARIOS_DIR = Path(os.environ.get("ATTACK_SCENARIOS_DIR", REPO_DIR / "attack-scenarios"))
 DECOY_API_LOG = Path(os.environ.get("DECOY_API_LOG", "/var/log/decoy-api/attacks.json"))
-DECOY_CONTAINER = os.environ.get("DECOY_CONTAINER", "taxfisco-decoy-api")
-COWRIE_CONTAINER = os.environ.get("COWRIE_CONTAINER", "taxfisco-cowrie")
-PORTAL_CONTAINER = os.environ.get("PORTAL_CONTAINER", "taxfisco-decoy-portal")
+DECOY_CONTAINER = os.environ.get("DECOY_CONTAINER", "sin-decoy-api")
+COWRIE_CONTAINER = os.environ.get("COWRIE_CONTAINER", "sin-cowrie")
+PORTAL_CONTAINER = os.environ.get("PORTAL_CONTAINER", "sin-decoy-portal")
 DEFAULT_ATTACKER_IP = os.environ.get("ATTACKER_IP", "10.20.0.99")
 OUTPUT = Path(os.environ.get("KPI_OUTPUT", REPO_DIR / "analysis" / "kpi_report.json"))
 

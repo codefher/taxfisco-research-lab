@@ -1,5 +1,5 @@
 {
-  "id": "taxfisco-wazuh-to-thehive",
+  "id": "sin-wazuh-to-thehive",
   "name": "Wazuh Alert to TheHive Case Creation",
   "description": "Workflow que recibe alertas de Wazuh via webhook, enriquece con Cortex y MISP, y crea caso en TheHive",
   "trigger": {
@@ -72,7 +72,7 @@
         "description": "Automated case from Wazuh alert. ATT&CK: ${action-1.mitre_id}",
         "severity": "${action-1.alert_level}",
         "tlp": "AMBER",
-        "tags": ["taxfisco", "honeypot", "${action-1.mitre_tactic}"]
+        "tags": ["sin", "honeypot", "${action-1.mitre_tactic}"]
       }
     },
     {
@@ -94,7 +94,7 @@
       "app": "Email",
       "action": "send_email",
       "parameters": {
-        "to": ["soc@taxfisco.local"],
+        "to": ["soc@sin.local"],
         "subject": "[TaxFisco] New Incident: ${action-1.rule_description}",
         "body": "Case ID: ${action-6.case_id}\nSeverity: ${action-1.alert_level}\nATT&CK: ${action-1.mitre_id}\nIP: ${action-2.src_ip}"
       }

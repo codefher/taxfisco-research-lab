@@ -35,15 +35,15 @@ fi
 echo -e "${GREEN}[OK] Wazuh Indexer disponible${NC}"
 
 # Verificar que el contenedor wazuh.indexer está corriendo
-if ! docker ps | grep -q "taxfisco-wazuh-indexer"; then
-    echo -e "${RED}Error: Contenedor taxfisco-wazuh-indexer no está corriendo${NC}"
+if ! docker ps | grep -q "sin-wazuh-indexer"; then
+    echo -e "${RED}Error: Contenedor sin-wazuh-indexer no está corriendo${NC}"
     exit 1
 fi
 
 # Crear el índice thehive con settings optimizados para Wazuh Indexer compartido
 echo "Creando índice '$INDEX_NAME' en Wazuh Indexer..."
 
-docker exec taxfisco-wazuh-indexer bash -c "
+docker exec sin-wazuh-indexer bash -c "
 curl -sk -X PUT 'https://localhost:9200/$INDEX_NAME' \
   -H 'Content-Type: application/json' -d '{
     \"settings\": {
@@ -86,7 +86,7 @@ curl -sk "$WAZUH_INDEXER_HOST_PORT/_cat/indices?v" | head -20
 # Verificar TheHive
 echo ""
 echo -e "${YELLOW}=== Verificando conectividad de TheHive ===${NC}"
-if docker ps | grep -q "taxfisco-thehive"; then
+if docker ps | grep -q "sin-thehive"; then
     sleep 10
     if curl -sk -o /dev/null -w "%{http_code}" "http://localhost:9000/api/v1/query" | grep -qE "200|401|403"; then
         echo -e "${GREEN}[OK] TheHive está respondiendo${NC}"
@@ -104,5 +104,5 @@ echo "TheHive ahora usa el índice '$INDEX_NAME' en el Elasticsearch de Wazuh."
 echo "Cortex también usa el mismo ES con índice 'cortex'."
 echo ""
 echo "Si ves errores en TheHive:"
-echo "  1. docker logs taxfisco-thehive | tail -50"
+echo "  1. docker logs sin-thehive | tail -50"
 echo "  2. docker compose restart thehive"

@@ -4,7 +4,7 @@
   Reglas personalizadas para detección de TTPs ATT&CK en honeypots fiscales
 -->
 
-<group name="taxfisco,">
+<group name="sin,">
 
   <!-- SQL Injection en endpoints fiscales -->
   <rule id="100200" level="12" frequency="2" timeframe="60">

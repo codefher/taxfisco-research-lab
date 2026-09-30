@@ -260,13 +260,13 @@
   ],
   "refresh": "10s",
   "schemaVersion": 39,
-  "tags": ["taxfisco", "honeypot", "soc"],
+  "tags": ["sin", "honeypot", "soc"],
   "templating": {"list": []},
   "time": {"from": "now-90d", "to": "now"},
   "timepicker": {},
   "timezone": "browser",
   "title": "TaxFisco SOC - Honeypot Overview",
-  "uid": "taxfisco-soc-main",
+  "uid": "sin-soc-main",
   "version": 3,
   "weekStart": ""
 }

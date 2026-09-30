@@ -111,30 +111,30 @@ print_header "Pre-flight (containers up)"
 
 # 25 contenedores esperados (sin dionaea, esta deshabilitado)
 EXPECTED_CONTAINERS=(
-    "taxfisco-wazuh-manager"
-    "taxfisco-wazuh-indexer"
-    "taxfisco-wazuh-dashboard"
-    "taxfisco-wazuh-indexer-proxy"
-    "taxfisco-misp-core"
-    "taxfisco-misp-db"
-    "taxfisco-misp-modules"
-    "taxfisco-cassandra"
-    "taxfisco-thehive"
-    "taxfisco-cortex"
-    "taxfisco-shuffle"
-    "taxfisco-shuffle-frontend"
-    "taxfisco-shuffle-db"
-    "taxfisco-velociraptor"
-    "taxfisco-grafana"
-    "taxfisco-cowrie"
-    "taxfisco-opencanary"
-    "taxfisco-heralding"
-    "taxfisco-suricata"
-    "taxfisco-zeek"
-    "taxfisco-decoy-api"
-    "taxfisco-decoy-portal"
-    "taxfisco-postgres"
-    "taxfisco-attacker"
+    "sin-wazuh-manager"
+    "sin-wazuh-indexer"
+    "sin-wazuh-dashboard"
+    "sin-wazuh-indexer-proxy"
+    "sin-misp-core"
+    "sin-misp-db"
+    "sin-misp-modules"
+    "sin-cassandra"
+    "sin-thehive"
+    "sin-cortex"
+    "sin-shuffle"
+    "sin-shuffle-frontend"
+    "sin-shuffle-db"
+    "sin-velociraptor"
+    "sin-grafana"
+    "sin-cowrie"
+    "sin-opencanary"
+    "sin-heralding"
+    "sin-suricata"
+    "sin-zeek"
+    "sin-decoy-api"
+    "sin-decoy-portal"
+    "sin-postgres"
+    "sin-attacker"
 )
 
 CONTAINERS_UP=0
@@ -156,7 +156,7 @@ out=$(curl -sk -u "admin:${WAZUH_INDEXER_PASSWORD:-admin}" \
     "http://localhost:19200/_cluster/health" 2>&1)
 run_test "Wazuh Indexer health" '"status":"green"|"status":"yellow"' "$out"
 
-out=$(docker exec taxfisco-wazuh-manager /var/ossec/bin/agent_control -l 2>&1)
+out=$(docker exec sin-wazuh-manager /var/ossec/bin/agent_control -l 2>&1)
 run_test "Wazuh Manager agents" 'ID:' "$out"
 
 out=$(curl -sk -o /dev/null -w '%{http_code}' "https://localhost:1443" 2>&1)
@@ -301,12 +301,12 @@ rm -f "$cookie_jar"
 
 # --- Test 10: Databases ------------------------------------------------------
 print_header "Databases"
-out=$(docker exec taxfisco-cassandra cqlsh cassandra.thehive 9042 \
+out=$(docker exec sin-cassandra cqlsh cassandra.thehive 9042 \
     -e "SELECT release_version FROM system.local" 2>&1)
 run_test "Cassandra reachable" '^.*4\.1' "$out"
 
-out=$(docker exec taxfisco-postgres env PGPASSWORD="${POSTGRES_PASSWORD:-FiscalDB_2024!}" \
-    psql -U fiscal -d taxfisco -c '\dt' 2>&1)
+out=$(docker exec sin-postgres env PGPASSWORD="${POSTGRES_PASSWORD:-FiscalDB_2024!}" \
+    psql -U fiscal -d sin_fiscal -c '\dt' 2>&1)
 run_test "Postgres fiscal tables" 'contribuyentes' "$out"
 
 # --- Resumen -----------------------------------------------------------------

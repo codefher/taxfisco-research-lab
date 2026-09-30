@@ -42,7 +42,7 @@
 # Ver PERFIL-LITE-16GB.md para la guía operativa detallada.
 # =============================================================================
 
-name: taxfisco-research-lab-lite
+name: sin-research-lab
 
 x-logging: &default-logging
   driver: json-file
@@ -59,7 +59,7 @@ services:
   # ===========================================================================
   wazuh.manager:
     image: wazuh/wazuh-manager:4.10.4
-    container_name: taxfisco-wazuh-manager
+    container_name: sin-wazuh-manager
     hostname: wazuh-manager
     networks:
       soc-net:
@@ -85,8 +85,8 @@ services:
     mem_limit: 1.5g  # LITE: era 2g
 
   wazuh.indexer:
-    image: taxfisco/wazuh-indexer:4.10.4-lite
-    container_name: taxfisco-wazuh-indexer
+    image: sin/wazuh-indexer:4.10.4-lite
+    container_name: sin-wazuh-indexer
     hostname: wazuh-indexer
     networks:
       soc-net:
@@ -107,7 +107,7 @@ services:
 
   wazuh.dashboard:
     image: wazuh/wazuh-dashboard:4.10.4
-    container_name: taxfisco-wazuh-dashboard
+    container_name: sin-wazuh-dashboard
     hostname: wazuh-dashboard
     networks:
       soc-net:
@@ -134,7 +134,7 @@ services:
   # ===========================================================================
   misp.core:
     image: coolacid/misp-docker:core-latest
-    container_name: taxfisco-misp-core
+    container_name: sin-misp-core
     hostname: misp-core
     networks:
       soc-net:
@@ -143,13 +143,13 @@ services:
       - "8443:443/tcp"    # MISP web UI
       - "6666:6666/tcp"   # ZeroMQ
     environment:
-      - HOSTNAME=taxfisco-misp
+      - HOSTNAME=sin-misp
       - BASEURL=https://localhost:8443
       - MYSQL_HOST=misp.db
       - MYSQL_DATABASE=misp
       - MYSQL_USER=misp
       - MYSQL_PASSWORD=${MISP_DB_PASSWORD:-ChangeMe_Strong!}
-      - ADMIN_EMAIL=admin@taxfisco.local
+      - ADMIN_EMAIL=admin@sin.local
       - ADMIN_PASSWORD=${MISP_ADMIN_PASSWORD:-AdminMISP_2024!}
       - DISIPLINES=*
       # LITE: reducción de workers PHP-FPM
@@ -170,7 +170,7 @@ services:
 
   misp.redis:
     image: redis:7-alpine
-    container_name: taxfisco-misp-redis
+    container_name: sin-misp-redis
     hostname: misp.redis
     networks:
       soc-net:
@@ -181,7 +181,7 @@ services:
 
   misp.db:
     image: mysql:8.0
-    container_name: taxfisco-misp-db
+    container_name: sin-misp-db
     hostname: misp-db
     networks:
       soc-net:
@@ -205,13 +205,13 @@ services:
 
   misp.modules:
     image: coolacid/misp-docker:modules-latest
-    container_name: taxfisco-misp-modules
+    container_name: sin-misp-modules
     hostname: misp-modules
     networks:
       soc-net:
         ipv4_address: 10.22.0.22
     environment:
-      - MISP_MODULES_URL=http://taxfisco-misp-modules:6666
+      - MISP_MODULES_URL=http://sin-misp-modules:6666
     depends_on:
       - misp.core
     logging: *default-logging
@@ -227,7 +227,7 @@ services:
   # por eso se reincorpora cassandra.thehive al perfil lite.
   cassandra.thehive:
     image: cassandra:4.1
-    container_name: taxfisco-cassandra
+    container_name: sin-cassandra
     hostname: cassandra-thehive
     networks:
       soc-net:
@@ -247,7 +247,7 @@ services:
 
   thehive:
     image: strangebee/thehive:5.5
-    container_name: taxfisco-thehive
+    container_name: sin-thehive
     hostname: thehive
     networks:
       soc-net:
@@ -284,7 +284,7 @@ services:
 
   cortex:
     image: thehiveproject/cortex:4.1.0
-    container_name: taxfisco-cortex
+    container_name: sin-cortex
     hostname: cortex
     networks:
       soc-net:
@@ -303,7 +303,7 @@ services:
   # ===========================================================================
   shuffle:
     image: ghcr.io/shuffle/shuffle-backend:latest
-    container_name: taxfisco-shuffle
+    container_name: sin-shuffle
     hostname: shuffle
     networks:
       soc-net:
@@ -334,7 +334,7 @@ services:
 
   shuffle.frontend:
     image: ghcr.io/shuffle/shuffle-frontend:latest
-    container_name: taxfisco-shuffle-frontend
+    container_name: sin-shuffle-frontend
     hostname: shuffle-frontend
     networks:
       soc-net:
@@ -351,7 +351,7 @@ services:
 
   shuffle.db:
     image: postgres:15-alpine
-    container_name: taxfisco-shuffle-db
+    container_name: sin-shuffle-db
     hostname: shuffle-db
     networks:
       soc-net:
@@ -371,7 +371,7 @@ services:
   # ===========================================================================
   velociraptor:
     image: wlambert/velociraptor:latest
-    container_name: taxfisco-velociraptor
+    container_name: sin-velociraptor
     hostname: velociraptor
     networks:
       soc-net:
@@ -395,7 +395,7 @@ services:
   # ===========================================================================
   grafana:
     image: grafana/grafana:11.2.0
-    container_name: taxfisco-grafana
+    container_name: sin-grafana
     hostname: grafana
     networks:
       soc-net:
@@ -421,7 +421,7 @@ services:
   # ===========================================================================
   cowrie:
     image: cowrie/cowrie:latest
-    container_name: taxfisco-cowrie
+    container_name: sin-cowrie
     hostname: cowrie
     networks:
       honeypot-net:
@@ -432,7 +432,7 @@ services:
       - "2225:2222/tcp"   # SSH (redirected from 22) - remapped to avoid conflict
       - "2323:2223/tcp"   # Telnet
     environment:
-      - COWRIE_HOSTNAME=taxfisco-portal
+      - COWRIE_HOSTNAME=sin-portal
     volumes:
       - cowrie_data:/cowrie/cowrie-git/var/lib/cowrie
       - ./config/cowrie/cowrie.cfg:/cowrie/cowrie-git/etc/cowrie.cfg.dist:ro
@@ -447,7 +447,7 @@ services:
   #
   # dionaea:
   #   image: cowrie/dionaea:latest
-  #   container_name: taxfisco-dionaea
+  #   container_name: sin-dionaea
   #   hostname: dionaea
   #   networks:
   #     honeypot-net:
@@ -469,7 +469,7 @@ services:
 
   opencanary:
     image: thinkst/opencanary:latest
-    container_name: taxfisco-opencanary
+    container_name: sin-opencanary
     hostname: opencanary
     networks:
       honeypot-net:
@@ -493,7 +493,7 @@ services:
 
   heralding:
     image: dtagdevsec/heralding:24.04.1
-    container_name: taxfisco-heralding
+    container_name: sin-heralding
     hostname: heralding
     user: "0:0"  # Run as root to allow cert generation in /heralding
     networks:
@@ -518,7 +518,7 @@ services:
   # ===========================================================================
   wazuh-indexer-proxy:
     image: nginx:1.27-alpine
-    container_name: taxfisco-wazuh-indexer-proxy
+    container_name: sin-wazuh-indexer-proxy
     hostname: wazuh-indexer-proxy
     networks:
       soc-net:
@@ -542,8 +542,8 @@ services:
     build:
       context: ./decoys/api-tributaria
       dockerfile: Dockerfile
-    image: taxfisco/decoy-api:latest
-    container_name: taxfisco-decoy-api
+    image: sin/decoy-api:latest
+    container_name: sin-decoy-api
     hostname: decoy-api
     networks:
       dmz-net:
@@ -572,8 +572,8 @@ services:
     build:
       context: ./decoys/portal-tributario
       dockerfile: Dockerfile
-    image: taxfisco/decoy-portal:latest
-    container_name: taxfisco-decoy-portal
+    image: sin/decoy-portal:latest
+    container_name: sin-decoy-portal
     hostname: decoy-portal
     networks:
       dmz-net:
@@ -600,7 +600,7 @@ services:
   # ===========================================================================
   postgres.fiscal:
     image: postgres:15-alpine
-    container_name: taxfisco-postgres
+    container_name: sin-postgres
     hostname: postgres-fiscal
     networks:
       dmz-net:
@@ -610,7 +610,7 @@ services:
     environment:
       - POSTGRES_USER=fiscal
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-FiscalDB_2024!}
-      - POSTGRES_DB=taxfisco
+      - POSTGRES_DB=sin_fiscal
     # LITE: configuración reducida
     command:
       - "postgres"
@@ -634,7 +634,7 @@ services:
   # ===========================================================================
   suricata:
     image: jasonish/suricata:7.0
-    container_name: taxfisco-suricata
+    container_name: sin-suricata
     hostname: suricata
     networks:
       ids-net:
@@ -658,7 +658,7 @@ services:
   # ===========================================================================
   zeek:
     image: zeek/zeek:6.0
-    container_name: taxfisco-zeek
+    container_name: sin-zeek
     hostname: zeek
     networks:
       ids-net:
@@ -671,7 +671,7 @@ services:
       - ZEEK_IFACE=eth0
     volumes:
       - ./config/zeek/local.zeek:/usr/local/zeek/share/zeek/site/local.zeek:ro
-      - ./config/zeek/taxfisco-notice.zeek:/usr/local/zeek/share/zeek/site/taxfisco-notice.zeek:ro
+      - ./config/zeek/sin-notice.zeek:/usr/local/zeek/share/zeek/site/sin-notice.zeek:ro
       - zeek_logs:/var/log/zeek
     command: ["bash", "-c", "zeek -i eth0 local"]
     logging: *default-logging
@@ -683,7 +683,7 @@ services:
   # ===========================================================================
   attacker:
     image: kalilinux/kali-rolling
-    container_name: taxfisco-attacker
+    container_name: sin-attacker
     hostname: attacker
     networks:
       dmz-net:
@@ -710,28 +710,28 @@ networks:
     ipam:
       config:
         - subnet: 10.20.0.0/24
-    name: taxfisco-dmz
+    name: sin-dmz
 
   honeypot-net:
     driver: bridge
     ipam:
       config:
         - subnet: 10.21.0.0/24
-    name: taxfisco-honeypot
+    name: sin-honeypot
 
   soc-net:
     driver: bridge
     ipam:
       config:
         - subnet: 10.22.0.0/24
-    name: taxfisco-soc
+    name: sin-soc
 
   ids-net:
     driver: bridge
     ipam:
       config:
         - subnet: 10.23.0.0/24
-    name: taxfisco-ids
+    name: sin-ids
 
 # =============================================================================
 # VOLUMES (sin thehive_es_data)

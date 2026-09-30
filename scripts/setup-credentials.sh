@@ -50,7 +50,7 @@ DJANGO_PORT="${DJANGO_PORT:-8890}"
 # Passwords generados (mismos que usamos en el lab institucional)
 DJANGO_ADMIN_USER="admin"
 DJANGO_ADMIN_PASS="admin"
-DJANGO_ADMIN_EMAIL="admin@taxfisco.local"
+DJANGO_ADMIN_EMAIL="admin@sin.local"
 
 MISP_ADMIN_EMAIL="admin@admin.test"
 MISP_ADMIN_PASS="admin"
@@ -96,7 +96,7 @@ echo "================================================================"
 echo " 1/10 - Esperar Wazuh Indexer healthy"
 echo "================================================================"
 print_info "Esperando que wazuh.indexer responda..."
-if wait_for_container taxfisco-wazuh-indexer; then
+if wait_for_container sin-wazuh-indexer; then
     print_ok "Wazuh Indexer healthy"
 else
     print_fail "Wazuh Indexer no respondio en 60s"
@@ -108,7 +108,7 @@ echo "================================================================"
 echo " 2/10 - Wazuh Indexer security (securityadmin)"
 echo "================================================================"
 print_info "Inicializando Wazuh Indexer security (idempotente)..."
-docker exec -i taxfisco-wazuh-indexer bash -c "
+docker exec -i sin-wazuh-indexer bash -c "
 cd /usr/share/wazuh-indexer/plugins/opensearch-security/tools
 JAVA_HOME=/usr/share/wazuh-indexer/jdk PATH=/usr/share/wazuh-indexer/jdk/bin:\$PATH \
 ./securityadmin.sh -cd /usr/share/wazuh-indexer/opensearch-security/ -icl -nhnv \
@@ -133,11 +133,11 @@ echo "================================================================"
 echo " 3/10 - MISP DB schema (init si no existe)"
 echo "================================================================"
 print_info "Verificando si la DB MISP tiene tablas..."
-TABLE_COUNT=$(docker exec taxfisco-misp-db mysql -u root -p"$MISP_DB_ROOT_PASSWORD" misp -N -e "SELECT COUNT(*) FROM information_schema.tables WHERE table_schema='misp'" 2>/dev/null | tail -1)
+TABLE_COUNT=$(docker exec sin-misp-db mysql -u root -p"$MISP_DB_ROOT_PASSWORD" misp -N -e "SELECT COUNT(*) FROM information_schema.tables WHERE table_schema='misp'" 2>/dev/null | tail -1)
 if [ "$TABLE_COUNT" -lt 10 ] 2>/dev/null; then
     print_info "DB MISP vacia. Corriendo MYSQL.sql..."
-    docker exec -i taxfisco-misp-core bash -c "MYSQL_PWD='$MISP_DB_PASSWORD' mysql -u misp misp < /var/www/MISP/INSTALL/MYSQL.sql" > /tmp/misp_schema.log 2>&1
-    TABLE_COUNT=$(docker exec taxfisco-misp-db mysql -u root -p"$MISP_DB_ROOT_PASSWORD" misp -N -e "SELECT COUNT(*) FROM information_schema.tables WHERE table_schema='misp'" 2>/dev/null | tail -1)
+    docker exec -i sin-misp-core bash -c "MYSQL_PWD='$MISP_DB_PASSWORD' mysql -u misp misp < /var/www/MISP/INSTALL/MYSQL.sql" > /tmp/misp_schema.log 2>&1
+    TABLE_COUNT=$(docker exec sin-misp-db mysql -u root -p"$MISP_DB_ROOT_PASSWORD" misp -N -e "SELECT COUNT(*) FROM information_schema.tables WHERE table_schema='misp'" 2>/dev/null | tail -1)
     if [ "$TABLE_COUNT" -gt 50 ] 2>/dev/null; then
         print_ok "MISP DB inicializada ($TABLE_COUNT tablas)"
     else
@@ -153,16 +153,16 @@ echo "================================================================"
 echo " 4/10 - MISP SSL certs (generar si faltan)"
 echo "================================================================"
 print_info "Verificando certs SSL en MISP nginx..."
-if docker exec taxfisco-misp-core test -f /etc/nginx/certs/cert.pem 2>/dev/null; then
+if docker exec sin-misp-core test -f /etc/nginx/certs/cert.pem 2>/dev/null; then
     print_ok "MISP SSL certs ya existen"
 else
     print_info "Generando certs autofirmados para MISP..."
-    docker exec -u root taxfisco-misp-core bash -c "
+    docker exec -u root sin-misp-core bash -c "
 openssl req -x509 -newkey rsa:2048 -keyout /etc/nginx/certs/key.pem -out /etc/nginx/certs/cert.pem -days 365 -nodes -subj '/CN=misp.local' 2>&1 | tail -1
 chmod 600 /etc/nginx/certs/key.pem
 chmod 644 /etc/nginx/certs/cert.pem
 " > /tmp/misp_certs.log 2>&1
-    if docker exec taxfisco-misp-core test -f /etc/nginx/certs/cert.pem 2>/dev/null; then
+    if docker exec sin-misp-core test -f /etc/nginx/certs/cert.pem 2>/dev/null; then
         print_ok "MISP SSL certs generados"
     else
         print_fail "MISP SSL certs no se pudieron generar"
@@ -171,7 +171,7 @@ fi
 
 # Reiniciar nginx MISP
 print_info "Reiniciando nginx MISP..."
-docker exec -u root taxfisco-misp-core bash -c "supervisorctl restart nginx 2>&1 || pkill -HUP nginx 2>&1" > /tmp/misp_nginx_restart.log 2>&1
+docker exec -u root sin-misp-core bash -c "supervisorctl restart nginx 2>&1 || pkill -HUP nginx 2>&1" > /tmp/misp_nginx_restart.log 2>&1
 sleep 5
 if timeout 5 curl -sk -o /dev/null -w '%{http_code}' https://localhost:8443 | grep -qE '^(200|302)$'; then
     print_ok "MISP nginx respondiendo"
@@ -185,11 +185,11 @@ echo "================================================================"
 echo " 5/10 - MISP baseurl (workaround config)"
 echo "================================================================"
 print_info "Corrigiendo baseurl de MISP (https: -> https://localhost:8443)..."
-CURRENT_BASEURL=$(docker exec taxfisco-misp-core bash -c "grep \"'baseurl'\" /var/www/MISP/app/Config/config.php" 2>/dev/null | head -1)
+CURRENT_BASEURL=$(docker exec sin-misp-core bash -c "grep \"'baseurl'\" /var/www/MISP/app/Config/config.php" 2>/dev/null | head -1)
 if echo "$CURRENT_BASEURL" | grep -q "https://localhost:8443"; then
     print_ok "MISP baseurl ya esta correcto"
 else
-    docker exec -u root taxfisco-misp-core sed -i \
+    docker exec -u root sin-misp-core sed -i \
         "s|'baseurl' => 'https:'|'baseurl' => 'https://localhost:8443'|" \
         /var/www/MISP/app/Config/config.php
     print_ok "MISP baseurl corregido"
@@ -200,8 +200,8 @@ echo ""
 echo "================================================================"
 echo " 6/10 - Django superuser (admin/admin)"
 echo "================================================================"
-print_info "Contenedor: taxfisco-decoy-portal"
-docker exec -i taxfisco-decoy-portal bash -c "
+print_info "Contenedor: sin-decoy-portal"
+docker exec -i sin-decoy-portal bash -c "
   DJANGO_SUPERUSER_USERNAME=$DJANGO_ADMIN_USER \
   DJANGO_SUPERUSER_PASSWORD=$DJANGO_ADMIN_PASS \
   DJANGO_SUPERUSER_EMAIL=$DJANGO_ADMIN_EMAIL \
@@ -215,8 +215,8 @@ echo ""
 echo "================================================================"
 echo " 7/10 - Django migrations"
 echo "================================================================"
-print_info "Corriendo migrate en taxfisco-decoy-portal..."
-docker exec taxfisco-decoy-portal python3 manage.py migrate --noinput > /tmp/django_migrate.log 2>&1
+print_info "Corriendo migrate en sin-decoy-portal..."
+docker exec sin-decoy-portal python3 manage.py migrate --noinput > /tmp/django_migrate.log 2>&1
 if grep -qE "Applying|No migrations to apply" /tmp/django_migrate.log 2>/dev/null; then
     if grep -q "No migrations to apply" /tmp/django_migrate.log; then
         print_ok "Migraciones ya estaban aplicadas (idempotente)"
@@ -233,7 +233,7 @@ echo "================================================================"
 echo " 8/10 - MISP user + API key"
 echo "================================================================"
 print_info "Insertando usuario $MISP_ADMIN_EMAIL en MISP DB..."
-docker exec taxfisco-misp-db mysql -t -u root -p"$MISP_DB_ROOT_PASSWORD" misp > /tmp/misp_setup.log 2>&1 <<SQL
+docker exec sin-misp-db mysql -t -u root -p"$MISP_DB_ROOT_PASSWORD" misp > /tmp/misp_setup.log 2>&1 <<SQL
 INSERT INTO users (email, password, org_id, server_id, role_id, autoalert, invited_by, nids_sid, termsaccepted, change_pw)
 VALUES ('$MISP_ADMIN_EMAIL', '\$2a\$12\$VcCDgh2NDk07JGN0rjGbM.Ad41qVR/YFJcgHp0UGns5JDymv..TOG', 1, 0, 1, 0, 0, 0, 1, 0)
 ON DUPLICATE KEY UPDATE password=VALUES(password), role_id=VALUES(role_id);
@@ -244,10 +244,10 @@ INSERT INTO auth_keys (uuid, authkey, authkey_start, authkey_end, created, expir
 VALUES (UUID(), '$MISP_API_KEY', 'AAAA', 'AAAA', UNIX_TIMESTAMP(), 0, @uid, 'auto-setup')
 ON DUPLICATE KEY UPDATE authkey=VALUES(authkey);
 SQL
-if docker exec taxfisco-misp-db mysql -u root -p"$MISP_DB_ROOT_PASSWORD" misp -e "SELECT COUNT(*) FROM users WHERE email='$MISP_ADMIN_EMAIL' AND role_id=1" 2>/dev/null | grep -q "^1$"; then
+if docker exec sin-misp-db mysql -u root -p"$MISP_DB_ROOT_PASSWORD" misp -e "SELECT COUNT(*) FROM users WHERE email='$MISP_ADMIN_EMAIL' AND role_id=1" 2>/dev/null | grep -q "^1$"; then
     print_ok "Usuario MISP $MISP_ADMIN_EMAIL insertado/actualizado"
     print_info "API key: $MISP_API_KEY"
-    if docker exec taxfisco-misp-db mysql -u root -p"$MISP_DB_ROOT_PASSWORD" misp -e "SELECT COUNT(*) FROM auth_keys WHERE user_id=(SELECT id FROM users WHERE email='$MISP_ADMIN_EMAIL')" 2>/dev/null | grep -q "^1$"; then
+    if docker exec sin-misp-db mysql -u root -p"$MISP_DB_ROOT_PASSWORD" misp -e "SELECT COUNT(*) FROM auth_keys WHERE user_id=(SELECT id FROM users WHERE email='$MISP_ADMIN_EMAIL')" 2>/dev/null | grep -q "^1$"; then
         print_ok "API key MISP insertada"
     else
         print_info "API key MISP ya existe o fallo al insertar"
@@ -262,7 +262,7 @@ echo "================================================================"
 echo " 9/10 - Grafana password"
 echo "================================================================"
 print_info "Aplicando GRAFANA_PASSWORD=$GRAFANA_PASSWORD..."
-docker exec taxfisco-grafana grafana cli admin reset-admin-password "$GRAFANA_PASSWORD" > /tmp/grafana_reset.log 2>&1
+docker exec sin-grafana grafana cli admin reset-admin-password "$GRAFANA_PASSWORD" > /tmp/grafana_reset.log 2>&1
 if grep -q "successfully" /tmp/grafana_reset.log 2>/dev/null; then
     print_ok "Grafana password reseteado a: $GRAFANA_PASSWORD"
 else
@@ -277,13 +277,13 @@ echo "================================================================"
 print_info "Pre-creando indices 'thehive' y 'thehive_global' en Wazuh Indexer..."
 # Usar --network container: para reusar la network del wazuh-indexer-proxy
 # (no dependemos del nombre del network, que cambia segun el proyecto)
-docker run --rm --network container:taxfisco-wazuh-indexer-proxy curlimages/curl -sk -u admin:admin \
+docker run --rm --network container:sin-wazuh-indexer-proxy curlimages/curl -sk -u admin:admin \
     -X PUT "http://wazuh-indexer-proxy:9200/thehive" \
     -H 'Content-Type: application/json' -d '{}' > /tmp/thehive_idx.log 2>&1
-docker run --rm --network container:taxfisco-wazuh-indexer-proxy curlimages/curl -sk -u admin:admin \
+docker run --rm --network container:sin-wazuh-indexer-proxy curlimages/curl -sk -u admin:admin \
     -X PUT "http://wazuh-indexer-proxy:9200/thehive_global" \
     -H 'Content-Type: application/json' -d '{}' > /tmp/thehive_idx.log 2>&1
-docker run --rm --network container:taxfisco-wazuh-indexer-proxy curlimages/curl -sk -u admin:admin \
+docker run --rm --network container:sin-wazuh-indexer-proxy curlimages/curl -sk -u admin:admin \
     "http://wazuh-indexer-proxy:9200/_cat/indices/thehive*?v" 2>&1 | grep thehive > /tmp/thehive_idx.log
 if [ -s /tmp/thehive_idx.log ]; then
     print_ok "Indices TheHive listos"
@@ -306,11 +306,11 @@ server.ssl.enabled: true
 server.ssl.certificate: "/etc/wazuh-dashboard/certs/dashboard.pem"
 server.ssl.key: "/etc/wazuh-dashboard/certs/dashboard-key.pem"
 EOF
-docker cp "$TMPFILE" taxfisco-wazuh-dashboard:/usr/share/wazuh-dashboard/config/opensearch_dashboards.yml 2>&1
-docker exec -u root taxfisco-wazuh-dashboard bash -c \
+docker cp "$TMPFILE" sin-wazuh-dashboard:/usr/share/wazuh-dashboard/config/opensearch_dashboards.yml 2>&1
+docker exec -u root sin-wazuh-dashboard bash -c \
   "chown wazuh-dashboard:wazuh-dashboard /usr/share/wazuh-dashboard/config/opensearch_dashboards.yml && chmod 660 /usr/share/wazuh-dashboard/config/opensearch_dashboards.yml" 2>&1
 rm -f "$TMPFILE"
-if docker exec taxfisco-wazuh-dashboard test -f /usr/share/wazuh-dashboard/config/opensearch_dashboards.yml 2>/dev/null; then
+if docker exec sin-wazuh-dashboard test -f /usr/share/wazuh-dashboard/config/opensearch_dashboards.yml 2>/dev/null; then
     print_ok "Config reaplicado. Reiniciando dashboard..."
     docker compose restart wazuh.dashboard > /dev/null 2>&1
     sleep 5
