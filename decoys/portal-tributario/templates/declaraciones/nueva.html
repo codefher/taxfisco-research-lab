@@ -1,10 +1,10 @@
 {% extends "base.html" %}
-{% block title %}Nueva Declaración Jurada — TaxFisco{% endblock %}
+{% block title %}Nueva Declaración Jurada — Servicio Nacional de Impuestos{% endblock %}
 
 {% block content %}
 <div class="txf-mb-4">
   <h1 style="margin: 0; font-size: 1.75rem;">Nueva Declaración Jurada</h1>
-  <p style="margin: 0.5rem 0 0 0; color: var(--color-text-muted);">Complete el formulario para presentar su declaración. Recuerde que este es un portal de investigación.</p>
+  <p style="margin: 0.5rem 0 0 0; color: var(--color-text-muted);">Complete el formulario para presentar su declaración jurada correspondiente al período indicado.</p>
 </div>
 
 <div class="txf-card txf-mb-4">
@@ -31,25 +31,11 @@
       </div>
     </div>
     <div class="txf-form-group">
-      <label class="txf-label" for="descripcion">Descripción (campo honeypot — todas las entradas se registran)</label>
+      <label class="txf-label" for="descripcion">Descripción</label>
       <textarea id="descripcion" name="descripcion" class="txf-textarea" rows="4" placeholder="Detalle de la declaración..."></textarea>
     </div>
     <button type="submit" class="txf-btn txf-btn-primary">Enviar Declaración</button>
   </form>
 </div>
 
-<div class="txf-card">
-  <h2 style="margin: 0 0 0.75rem 0; font-size: 1.1rem;">Endpoints de Investigación (vulnerables intencionalmente)</h2>
-  <p style="margin: 0 0 0.75rem 0; color: var(--color-text-muted); font-size: 0.9rem;">Estos endpoints exponen vulnerabilidades controladas con fines de investigación (mapping ATT&amp;CK). Úselos solo en entornos autorizados.</p>
-  <ul style="margin: 0; padding-left: 1.25rem; line-height: 1.8;">
-    <li><a href="/vuln/" style="color: var(--color-primary);">/vuln/</a> — Índice de vulnerabilidades</li>
-    <li><a href="/vuln/sqli-login/" style="color: var(--color-primary);">/vuln/sqli-login/</a> — T1190 SQL Injection</li>
-    <li><a href="/vuln/xss/?name=Test" style="color: var(--color-primary);">/vuln/xss/</a> — T1059.007 XSS</li>
-    <li><a href="/vuln/lfi/?file=/etc/passwd" style="color: var(--color-primary);">/vuln/lfi/</a> — T1083 LFI</li>
-    <li><a href="/vuln/priv-esc/" style="color: var(--color-primary);">/vuln/priv-esc/</a> — T1078 Privilege Escalation</li>
-    <li><a href="/vuln/data-export/" style="color: var(--color-primary);">/vuln/data-export/</a> — T1530 Data Export</li>
-    <li><a href="/vuln/cmd-injection/?host=8.8.8.8" style="color: var(--color-primary);">/vuln/cmd-injection/</a> — T1059 Command Injection</li>
-    <li><a href="/contribuyentes/buscar/?nit=1234567" style="color: var(--color-primary);">/contribuyentes/buscar/</a> — T1190 SQLi (búsqueda)</li>
-  </ul>
-</div>
 {% endblock %}

@@ -1,5 +1,5 @@
 """
-URL Configuration for Decoy Portal Tributario
+URL Configuration for Portal de Contribuyentes
 
 Separa:
   - Rutas públicas del contribuyente (NIT, login, dashboard)
@@ -15,15 +15,14 @@ from portal import public_views
 
 
 def health(request):
-    return JsonResponse({"status": "healthy", "service": "taxfisco-decoy-portal"})
+    return JsonResponse({"status": "healthy", "service": "sin-portal"})
 
 
 def root(request):
     return JsonResponse(
         {
-            "service": "TaxFisco Decoy Portal Tributario",
+            "service": "Portal de Contribuyentes - Servicio Nacional de Impuestos",
             "version": "2.0.0",
-            "description": "Decoy portal for honeypot research - intentionally vulnerable",
             "endpoints": [
                 "/ (landing)",
                 "/login/",

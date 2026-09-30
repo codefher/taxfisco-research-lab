@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="SIN">
   <defs>
-    <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" style="stop-color:#0F4C81"/>
-      <stop offset="100%" style="stop-color:#0a3a64"/>
+    <linearGradient id="g" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#5c6359"/>
+      <stop offset="100%" stop-color="#252f21"/>
     </linearGradient>
   </defs>
-  <rect x="8" y="4" width="48" height="56" rx="8" fill="url(#g1)"/>
-  <circle cx="32" cy="28" r="13" fill="none" stroke="#D4A437" stroke-width="3"/>
-  <line x1="32" y1="28" x2="32" y2="15" stroke="#D4A437" stroke-width="3"/>
-  <line x1="19" y1="28" x2="45" y2="28" stroke="#D4A437" stroke-width="3"/>
-  <line x1="32" y1="41" x2="32" y2="51" stroke="#D4A437" stroke-width="3"/>
-  <circle cx="32" cy="28" r="2" fill="#D4A437"/>
-  <rect x="20" y="48" width="24" height="4" fill="#D4A437"/>
+  <rect width="64" height="64" rx="12" fill="url(#g)"/>
+  <circle cx="32" cy="27" r="12" fill="none" stroke="#d8e9d2" stroke-width="3"/>
+  <line x1="32" y1="27" x2="32" y2="15" stroke="#d8e9d2" stroke-width="3"/>
+  <line x1="32" y1="27" x2="20" y2="32" stroke="#d8e9d2" stroke-width="3"/>
+  <line x1="32" y1="27" x2="44" y2="27" stroke="#d8e9d2" stroke-width="3"/>
+  <rect x="20" y="42" width="24" height="4" rx="2" fill="#1b7f79"/>
+  <rect x="20" y="50" width="24" height="4" rx="2" fill="#d8e9d2" opacity="0.7"/>
 </svg>

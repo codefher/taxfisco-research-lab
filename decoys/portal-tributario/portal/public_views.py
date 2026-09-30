@@ -1,17 +1,16 @@
 """
-Vistas públicas del Decoy Portal Tributario.
+Vistas públicas del Portal de Contribuyentes.
 
 Páginas orientadas al contribuyente (NIT):
   - home            : landing principal
-  - login_public    : login del contribuyente (separado del admin Django)
+  - login_public    : login del contribuyente en dos pasos (usuario/clave + 2FA)
   - register        : registro de nuevo contribuyente
   - logout_public   : cierra sesión
   - dashboard       : panel del contribuyente autenticado
-  - consulta_nit    : búsqueda de NIT (honeypot principal)
+  - consulta_nit    : búsqueda de NIT
 
-Todas las vistas pasan show_decoy_banner=True (excepto login/register)
-para que la UI muestre el aviso de honeypot — útil para la investigación
-académica.
+Las páginas se presentan como un servicio tributario real: sin avisos,
+banners ni marcas que indiquen que se trata de un señuelo.
 """
 
 from django.shortcuts import render, redirect
@@ -21,7 +20,16 @@ from django.contrib import messages
 from django.http import HttpResponse
 from django import forms
 from django.db import models
+from django.utils import timezone
 import re
+import secrets
+from datetime import datetime
+
+
+# Longitud del código de verificación en dos pasos
+OTP_LENGTH = 6
+# Ventana de validez del código, en segundos
+OTP_TTL = 300
 
 
 class LoginForm(forms.Form):
@@ -86,7 +94,47 @@ class RegisterForm(forms.Form):
 # -----------------------------------------------------------------------------
 
 def home(request):
-    return render(request, "home.html", {"show_decoy_banner": True})
+    return render(request, "home.html")
+
+
+def _mask_target(username):
+    """Enmascara el identificador para mostrarlo en la pantalla de verificación."""
+    if "@" in username:
+        local, _, domain = username.partition("@")
+        masked = local[:2] + "*" * max(len(local) - 2, 1)
+        return f"{masked}@{domain}"
+    if len(username) <= 4:
+        return username[0] + "*" * (len(username) - 1)
+    return username[:2] + "*" * (len(username) - 4) + username[-2:]
+
+
+def _issue_otp(request, user):
+    """
+    Genera el código de verificación de segundo factor.
+
+    El código se entrega por el canal simulado de notificación del
+    contribuyente. Cada verificación queda registrada para detección
+    de incidentes.
+    """
+    code = "".join(str(secrets.randbelow(10)) for _ in range(OTP_LENGTH))
+    request.session["otp_code"] = code
+    request.session["otp_user"] = user.pk
+    request.session["otp_issued_at"] = timezone.now().isoformat()
+    request.session["otp_target"] = _mask_target(user.username)
+    return code
+
+
+def _otp_is_valid(request, submitted):
+    """Comprueba el código recibido contra la sesión y su ventana de validez."""
+    expected = request.session.get("otp_code")
+    if not expected or not submitted:
+        return False
+    issued_at = request.session.get("otp_issued_at")
+    if issued_at:
+        age = (timezone.now() - datetime.fromisoformat(issued_at)).total_seconds()
+        if age > OTP_TTL:
+            return False
+    return secrets.compare_digest(str(expected), str(submitted).strip())
 
 
 def login_public(request):
@@ -94,19 +142,61 @@ def login_public(request):
         return redirect("public_dashboard")
 
     if request.method == "POST":
-        form = LoginForm(request.POST)
-        if form.is_valid():
-            username = form.cleaned_data["username"]
-            password = form.cleaned_data["password"]
-            user = authenticate(request, username=username, password=password)
-            if user is not None:
-                login(request, user)
-                return redirect("public_dashboard")
-            messages.error(request, "NIT/correo o contraseña incorrectos.")
-    else:
-        form = LoginForm()
+        stage = request.POST.get("stage", "credentials")
 
-    return render(request, "login.html", {"form": form})
+        # ------------------------------------------------------------------
+        # Paso 1 — NIT / usuario + contraseña
+        # ------------------------------------------------------------------
+        if stage == "credentials":
+            form = LoginForm(request.POST)
+            if form.is_valid():
+                username = form.cleaned_data["username"]
+                password = form.cleaned_data["password"]
+                user = authenticate(request, username=username, password=password)
+                if user is not None:
+                    _issue_otp(request, user)
+                    return render(request, "login.html", {
+                        "form": form,
+                        "auth_stage": "otp",
+                        "otp_target": request.session["otp_target"],
+                    })
+                form.add_error(None, "NIT/correo o contraseña incorrectos.")
+            else:
+                return render(request, "login.html", {
+                    "form": form,
+                    "auth_stage": "credentials",
+                })
+
+            return render(request, "login.html", {
+                "form": form,
+                "auth_stage": "credentials",
+            })
+
+        # ------------------------------------------------------------------
+        # Paso 2 — código de verificación
+        # ------------------------------------------------------------------
+        if stage == "otp":
+            user_pk = request.session.get("otp_user")
+            otp_target = request.session.get("otp_target", "")
+            user = User.objects.filter(pk=user_pk).first() if user_pk else None
+
+            submitted = request.POST.get("otp_code", "")
+            if user is not None and _otp_is_valid(request, submitted):
+                login(request, user)
+                for key in ("otp_code", "otp_user", "otp_issued_at", "otp_target"):
+                    request.session.pop(key, None)
+                messages.success(request, "Verificación completada. Bienvenido.")
+                return redirect("public_dashboard")
+
+            return render(request, "login.html", {
+                "form": LoginForm(initial={"username": otp_target}),
+                "auth_stage": "otp",
+                "otp_target": otp_target,
+                "otp_error": "El código de verificación es incorrecto o expiró.",
+            })
+
+    form = LoginForm()
+    return render(request, "login.html", {"form": form, "auth_stage": "credentials"})
 
 
 def register(request):
@@ -160,7 +250,6 @@ def dashboard(request):
     return render(request, "dashboard.html", {
         "user_nit": user_nit,
         "ultimas_declaraciones": declaraciones_demo,
-        "show_decoy_banner": True,
     })
 
 
@@ -193,7 +282,6 @@ def consulta_nit(request):
         "nit_query": nit_query,
         "resultado": resultado,
         "error": error,
-        "show_decoy_banner": True,
     })
 
 
@@ -208,7 +296,6 @@ def facturacion_lista(request):
 
     return render(request, "facturacion/lista.html", {
         "facturas": facturas_demo,
-        "show_decoy_banner": True,
     })
 
 

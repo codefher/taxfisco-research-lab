@@ -123,9 +123,7 @@ class AttackLoggingMiddleware:
             attack_logger.warning(json.dumps(attack_event))
 
         response = self.get_response(request)
-        # Marcar como decoy
-        response["X-TaxFisco-Env"] = "decoy-research-lab"
-        response["X-Powered-By"] = "TaxFisco/1.0"
+        response["X-Powered-By"] = "Django"
         return response
 
     @staticmethod

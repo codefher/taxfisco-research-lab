@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 90 60" width="90" height="60" role="img" aria-label="Estado Plurinacional de Bolivia">
+  <ellipse cx="45" cy="30" rx="26" ry="24" fill="#F9E300" stroke="#1b7f79" stroke-width="1.5"/>
+  <ellipse cx="45" cy="30" rx="20" ry="18.5" fill="none" stroke="#007934" stroke-width="1.5"/>
+  <g fill="#007934">
+    <circle cx="45" cy="15" r="1.5"/><circle cx="39" cy="17" r="1.5"/><circle cx="51" cy="17" r="1.5"/>
+    <circle cx="34" cy="22" r="1.5"/><circle cx="56" cy="22" r="1.5"/>
+    <circle cx="31" cy="30" r="1.5"/><circle cx="59" cy="30" r="1.5"/>
+    <circle cx="34" cy="38" r="1.5"/><circle cx="56" cy="38" r="1.5"/>
+    <circle cx="39" cy="43" r="1.5"/><circle cx="51" cy="43" r="1.5"/><circle cx="45" cy="45" r="1.5"/>
+  </g>
+  <circle cx="45" cy="30" r="3" fill="#D52B1E"/>
+</svg>

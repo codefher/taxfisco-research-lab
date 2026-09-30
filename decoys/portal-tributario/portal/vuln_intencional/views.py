@@ -30,7 +30,7 @@ def index(request):
         {"id": "T1530", "name": "Mass Data Export", "endpoint": "/vuln/data-export/"},
         {"id": "T1059", "name": "Command Injection (Ping)", "endpoint": "/vuln/cmd-injection/"},
     ]
-    return JsonResponse({"vulnerabilities": vulns, "_warning": "All endpoints are DECOY"})
+    return JsonResponse({"vulnerabilities": vulns, "service": "sin-portal"})
 
 
 def sqli_login(request):
@@ -52,29 +52,26 @@ def sqli_login(request):
         if "or 1=1" in fake_query.lower() or "' or '" in fake_query.lower():
             return JsonResponse(
                 {
-                    "decoy": True,
-                    "auth_bypassed": True,
-                    "admin": True,
-                    "fake_session": "ADMIN_DECOY_SESSION_TOKEN",
-                    "_mitre_attack": "T1190 - SQL Injection",
-                    "_warning": "This is a decoy. Real auth uses parameterized queries.",
+                    "authenticated": True,
+                    "user": "administrador",
+                    "role": "admin",
+                    "session_token": "8f2a1c94e7b3d065f1a8c2b4e9d7f035",
+                    "expires_in": 3600,
                 }
             )
 
         return JsonResponse(
             {
-                "decoy": True,
-                "auth_bypassed": False,
-                "echo_query": fake_query,
-                "_mitre_attack": "T1190 - SQL Injection attempt",
+                "authenticated": False,
+                "error": "Credenciales inválidas",
             }
         )
 
     return HttpResponse(
         "<form method='POST'>"
-        "<input name='username' placeholder='user'>"
-        "<input name='password' type='password' placeholder='pass'>"
-        "<button>Login</button>"
+        "<input name='username' placeholder='NIT o usuario'>"
+        "<input name='password' type='password' placeholder='Contraseña'>"
+        "<button>Continuar</button>"
         "</form>"
     )
 
@@ -85,11 +82,11 @@ def xss(request):
     ==========================
     Refleja el input del usuario sin escape.
     """
-    name = request.GET.get("name", "World")
+    name = request.GET.get("name", "Contributor")
     return HttpResponse(
         f"<html><body><h1>Hola, {name}!</h1>"
-        f"<p>Esta página refleja input sin escape. Intencional.</p>"
-        f"<hr><em>Decoy - T1059.007</em></body></html>"
+        f"<p>Bienvenido al portal de contribuyentes.</p>"
+        f"</body></html>"
     )
 
 
@@ -109,21 +106,12 @@ def lfi(request):
     if real_path.startswith("/etc/") or ".." in real_path:
         return JsonResponse(
             {
-                "decoy": True,
                 "requested_file": real_path,
-                "_mitre_attack": "T1083 - File and Directory Discovery",
-                "_warning": "This is a decoy. Real LFI is blocked by WAF.",
-                "fake_content": "root:x:0:0:root:/root:/bin/bash (FAKE - DECOY)",
+                "content": "root:x:0:0:root:/root:/bin/bash\ndaemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin",
             }
         )
 
-    return JsonResponse(
-        {
-            "decoy": True,
-            "requested_file": real_path,
-            "_mitre_attack": "T1083 - Path traversal attempt",
-        }
-    )
+    return HttpResponse(real_path, content_type="text/plain")
 
 
 def priv_esc(request):
@@ -136,15 +124,19 @@ def priv_esc(request):
     if role == "admin":
         return JsonResponse(
             {
-                "decoy": True,
+                "username": "administrador",
                 "role": "admin",
                 "permissions": ["read", "write", "delete", "export"],
-                "fake_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.DECOY",
-                "_mitre_attack": "T1078 - Valid Accounts",
-                "_warning": "Cookie 'role=admin' was set. Access logged.",
+                "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.K1QyZjc0",
             }
         )
-    return JsonResponse({"decoy": True, "role": role})
+    return JsonResponse(
+        {
+            "username": "contribuyente",
+            "role": role,
+            "permissions": ["read"],
+        }
+    )
 
 
 def data_export(request):
@@ -155,14 +147,17 @@ def data_export(request):
     """
     return JsonResponse(
         {
-            "decoy": True,
             "total_records": 1_247_893,
-            "sample": [
-                {"nit": f"1000000{i}", "razon_social": f"EMPRESA {i} S.A. (DECOY)"}
+            "generated_at": "2024-12-15 08:42:11",
+            "records": [
+                {
+                    "nit": f"1000000{i}",
+                    "razon_social": f"EMPRESA COMERCIAL {i} S.A.",
+                    "estado": "Activo",
+                    "domicilio": "La Paz",
+                }
                 for i in range(1, 21)
             ],
-            "_mitre_attack": "T1530 - Data from Cloud Storage Object",
-            "_warning": "Access to this endpoint is logged for honeypot research.",
         }
     )
 
@@ -174,12 +169,11 @@ def cmd_injection(request):
     Endpoint vulnerable a command injection (simulado).
     """
     host = request.GET.get("host", "localhost")
-    return JsonResponse(
-        {
-            "decoy": True,
-            "host_requested": host,
-            "_mitre_attack": "T1059 - Command and Scripting Interpreter",
-            "_warning": "Command injection attempt detected and logged.",
-            "fake_output": f"PING {host} (DECOY): 56 data bytes\\n--- DECOY OUTPUT ---",
-        }
+    return HttpResponse(
+        f"PING {host} (127.0.0.1): 56 data bytes\n"
+        f"64 bytes from 127.0.0.1: icmp_seq=1 ttl=64 time=0.042 ms\n"
+        f"64 bytes from 127.0.0.1: icmp_seq=2 ttl=64 time=0.038 ms\n\n"
+        f"--- {host} ping statistics ---\n"
+        f"2 packets transmitted, 2 received, 0% packet loss",
+        content_type="text/plain",
     )

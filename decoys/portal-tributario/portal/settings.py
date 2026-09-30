@@ -1,5 +1,5 @@
 """
-Django settings for Decoy Portal Tributario
+Django settings for Portal de Contribuyentes
 """
 
 import os
@@ -7,7 +7,7 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "insecure-decoy-secret-key-for-research")
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "insecure-sin-secret-key-for-research")
 DEBUG = os.environ.get("DJANGO_DEBUG", "true").lower() == "true"
 ALLOWED_HOSTS = ["*"]
 
@@ -112,7 +112,3 @@ LOGGING = {
     },
 }
 
-# Honeypot marker
-HONEYPOT_MODE = True
-HONEYPOT_VERSION = "1.0.0"
-HONEYPOT_BANNER = "TaxFisco Research Lab - Decoy Portal"

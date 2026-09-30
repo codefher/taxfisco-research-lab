@@ -1,53 +1,127 @@
-{% extends "base.html" %}
-{% block title %}Iniciar sesión — TaxFisco{% endblock %}
+{% load static %}<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Impuestos Nacionales{% endblock %}</title>
+  <link rel="icon" type="image/svg+xml" href="{% static 'img/favicon.svg' %}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/sin.css' %}">
+  {% block extra_head %}{% endblock %}
+</head>
+<body>
 
-{% block content %}
-<div class="txf-auth-wrapper">
-  <div class="txf-auth-card">
-    <div class="txf-auth-logo">
-      <img src="/static/img/logo.svg" alt="TaxFisco" style="height: 48px;">
+<div class="txf-launcher">
+  <div class="txf-launcher-card">
+
+    <div class="txf-launcher-brand">
+      <img src="/static/img/logo.svg" alt="Servicio Nacional de Impuestos">
+      <div class="txf-launcher-brand-text">
+        <b>Impuestos Nacionales</b>
+        <span>Servicio Nacional de Impuestos</span>
+      </div>
     </div>
-    <h1 class="txf-auth-title">Iniciar sesión</h1>
-    <p class="txf-auth-subtitle">Acceda a su panel de contribuyente</p>
 
-    <form method="post" novalidate>
+    {% if auth_stage == "credentials" %}
+    <h1 class="txf-launcher-title">Iniciar sesión</h1>
+    <p class="txf-launcher-subtitle">
+      Acceda a los servicios en línea del Servicio Nacional de Impuestos con su NIT y contraseña.
+    </p>
+
+    {% if form.non_field_errors %}
+      <div class="txf-launcher-alert txf-launcher-alert-error">
+        <span>&#9888;</span>
+        <span>{% for error in form.non_field_errors %}{{ error }}{% endfor %}</span>
+      </div>
+    {% endif %}
+
+    <form method="post" action="{% url 'public_login' %}" novalidate>
       {% csrf_token %}
-      {% if form.non_field_errors %}
-        <div class="txf-alert txf-alert-error txf-mb-2">
-          {% for error in form.non_field_errors %}<span>{{ error }}</span>{% endfor %}
-        </div>
-      {% endif %}
+      <input type="hidden" name="stage" value="credentials">
 
-      <div class="txf-form-group">
-        <label class="txf-label" for="{{ form.username.id_for_label }}">NIT o correo electrónico</label>
-        {{ form.username }}
+      <div class="txf-launcher-field">
+        <label for="{{ form.username.id_for_label }}">NIT o correo electrónico</label>
+        <input type="text" id="{{ form.username.id_for_label }}" name="username"
+               class="txf-launcher-input" value="{{ form.username.value|default:'' }}"
+               autocomplete="username" placeholder="Ej: 1234567 o usuario@ejemplo.bo" required>
         {% if form.username.errors %}<div class="txf-error">{{ form.username.errors.0 }}</div>{% endif %}
       </div>
 
-      <div class="txf-form-group">
-        <label class="txf-label" for="{{ form.password.id_for_label }}">Contraseña</label>
-        {{ form.password }}
+      <div class="txf-launcher-field">
+        <label for="{{ form.password.id_for_label }}">Contraseña</label>
+        <input type="password" id="{{ form.password.id_for_label }}" name="password"
+               class="txf-launcher-input" autocomplete="current-password"
+               placeholder="••••••••" required>
         {% if form.password.errors %}<div class="txf-error">{{ form.password.errors.0 }}</div>{% endif %}
       </div>
 
-      <div class="txf-flex txf-flex-between txf-mb-2" style="font-size: 0.875rem;">
-        <label style="display: flex; align-items: center; gap: 0.5rem;">
-          <input type="checkbox" name="remember" style="width: auto;">
+      <div class="txf-launcher-row">
+        <label class="txf-launcher-check">
+          <input type="checkbox" name="remember" style="width:auto;">
           <span>Recordarme</span>
         </label>
-        <a href="#" style="color: var(--color-primary); text-decoration: none;">¿Olvidó su contraseña?</a>
+        <a class="txf-launcher-link" href="#">¿Olvidó su contraseña?</a>
       </div>
 
-      <button type="submit" class="txf-btn txf-btn-primary txf-btn-block">Iniciar sesión</button>
+      <button type="submit" class="txf-launcher-btn">Continuar</button>
     </form>
 
-    <div class="txf-divider">o</div>
+    <div class="txf-launcher-divider">o</div>
 
-    <a href="{% url 'public_register' %}" class="txf-btn txf-btn-outline txf-btn-block">Crear cuenta nueva</a>
+    <a href="{% url 'public_register' %}" class="txf-launcher-btn txf-launcher-btn-outline"
+       style="display:flex;align-items:center;justify-content:center;text-decoration:none;">
+      Crear cuenta nueva
+    </a>
 
-    <div class="txf-auth-footer">
-      ¿Necesita ayuda? <a href="#">Contacte a la mesa de ayuda</a>
+    {% elif auth_stage == "otp" %}
+    <div class="txf-launcher-step"><b>2</b> Verificación en dos pasos</div>
+    <h1 class="txf-launcher-title">Código de verificación</h1>
+    <p class="txf-launcher-subtitle">
+      Ingrese el código de 6 dígitos generado para su dispositivo
+      <strong>{{ otp_target }}</strong>. El código es válido por 5 minutos.
+    </p>
+
+    {% if otp_error %}
+      <div class="txf-launcher-alert txf-launcher-alert-error">
+        <span>&#9888;</span>
+        <span>{{ otp_error }}</span>
+      </div>
+    {% endif %}
+
+    <form method="post" action="{% url 'public_login' %}" novalidate>
+      {% csrf_token %}
+      <input type="hidden" name="stage" value="otp">
+
+      <div class="txf-launcher-field">
+        <label for="otp_code">Código de verificación</label>
+        <input type="text" id="otp_code" name="otp_code" class="txf-launcher-input"
+               inputmode="numeric" pattern="\d{6}" maxlength="6"
+               autocomplete="one-time-code" placeholder="000000" required>
+      </div>
+
+      <button type="submit" class="txf-launcher-btn">Verificar</button>
+    </form>
+
+    <div class="txf-launcher-row" style="margin:1rem 0 0;">
+      <a class="txf-launcher-link" href="{% url 'public_login' %}">Volver</a>
+      <a class="txf-launcher-link" href="#">Reenviar código</a>
+    </div>
+
+    {% elif auth_stage == "success" %}
+    <div class="txf-launcher-step"><b>2</b> Verificación en dos pasos</div>
+    <h1 class="txf-launcher-title">Verificación completada</h1>
+    <p class="txf-launcher-subtitle">
+      Acceso concedido. Redirigiendo a su panel de contribuyente…
+    </p>
+    {% endif %}
+
+    <div class="txf-launcher-help">
+      ¿Necesita ayuda? <a class="txf-launcher-link" href="#">Contacte a la mesa de ayuda</a>
     </div>
   </div>
 </div>
-{% endblock %}
+
+</body>
+</html>
