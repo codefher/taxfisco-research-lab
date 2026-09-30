@@ -84,3 +84,6 @@ config/wazuh/dashboard/
 # --- Variables de entorno de la herramienta ---
 .vscode/settings.json
 .idea/workspace.xml
+
+# --- Artefactos de herramientas de navegador ---
+.playwright-cli/

@@ -296,7 +296,9 @@ services:
     mem_limit: 1g  # LITE: era 1.5g
 
   cortex:
-    image: thehiveproject/cortex:4.1.0
+    # Imagen propia: anade python3 + cortexutils + pymisp para el analizador MISP.
+    # Ver docker-images/cortex/Dockerfile.
+    image: sin/cortex:4.1.0-misp
     container_name: sin-cortex
     hostname: cortex
     networks:
@@ -313,6 +315,8 @@ services:
       - cortex_data:/var/lib/cortex
       # Sin ':ro': el entrypoint necesita anexar la configuracion del indice.
       - ./config/cortex/application.conf:/etc/cortex/application.conf
+      # Analizadores locales (Cortex 4.x con job.runner=local).
+      - ./config/cortex/analyzers:/opt/cortex/analyzers
     logging: *default-logging
     restart: unless-stopped
     mem_limit: 384m  # LITE: era 512m
