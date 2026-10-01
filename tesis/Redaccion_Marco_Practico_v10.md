@@ -1793,7 +1793,7 @@ El diseño de la metodología Honeypot articula los principios y decisiones esta
 
 *Nota.* La figura sintetiza el diseño de la metodología desarrollado en la sección 4.2, cuya lectura parte de los cinco principios de fundamentación y los tres planos transversales, continúa con las brechas del diagnóstico y las cinco fases operativas, además de sus actividades y entregables y culmina con las métricas de evaluación. Los arcos superiores representan los bucles F3→F2, F4→F1 y F5→F1, correspondientes a los horizontes táctico, operacional y estratégico. P1–P5 = principios de diseño; D1–D4 = decisiones de diseño; G1–G4 = grupos de brechas del diagnóstico; Inst. = instrumento; F1–F5 = fases de la metodología; OE1 y OE3 = objetivos específicos primero y tercero; SGSI = sistema de gestión de seguridad de la información; IRP = plan de respuesta a incidentes; SIEM = gestión de información y eventos de seguridad; SOAR = orquestación, automatización y respuesta de seguridad; SHA-256 = algoritmo de hash seguro de 256 bits; NTP = protocolo de tiempo de red; WORM = almacenamiento de escritura única y lectura múltiple; ATT&CK = base de conocimiento de tácticas y técnicas adversarias de MITRE; MTTD = tiempo medio de detección; MTTR = tiempo medio de respuesta; IMGI = índice de madurez en gestión de incidentes; IIAM = índice de impacto del aprendizaje y la mejora. Fuente: elaboración propia.
 
-## 4.3 Implementación de la metodología de honeypot para la gestión de incidentes
+## 4.3 Implementación del prototipo I (entidad homologada)
 
 La implementación del prototipo materializa la metodología propuesta para la gestión de incidentes mediante honeypots en servicios fiscales, a partir de los elementos definidos en el diseño metodológico. En esta etapa se configura un entorno controlado que permite poner en práctica los componentes establecidos en la metodología, observar su funcionamiento y generar evidencias que respalden su implementación.
 
@@ -2507,6 +2507,157 @@ Estas lecciones se incorporan al bucle de retroalimentación que el diseño esta
 
 La verificación de la fase confirma que la medición del impacto opera sobre indicadores trazables, con un tiempo medio de detección en el orden de los segundos para la mayor parte de los escenarios, una cobertura de detección sobre diez técnicas de seis tácticas y una correspondencia documentada con el ciclo de incidentes de ISO/IEC 27035. Este resultado verifica las actividades que el diseño metodológico asigna a la fase y cierra el ciclo de la metodología con la evidencia que la mejora continua requiere.
 
+### 4.3.10. Prueba controlada de extremo a extremo
+
+La verificación de la primera instanciación concluye con una prueba controlada de extremo a extremo, que ejerce la cadena completa de la metodología en una secuencia integrada: interacción con el señuelo, captura del evento, enriquecimiento y custodia de la evidencia, correlación con la gestión de incidentes y medición del indicador resultante. La prueba se etiqueta como evento sintético de prueba, dado que la interacción se genera de manera controlada dentro del entorno experimental con el propósito específico de demostrar la operación de la cadena.
+
+*[Pendiente de evidencia: secuencia de capturas CAP-E2E con la interacción, el evento capturado, el caso correlacionado y el indicador medido. Fuente prevista: captura N.º 6 del checklist de evidencia del apartado 4.4.]*
+
+**Figura X**
+
+*Secuencia de la prueba controlada de extremo a extremo*
+
+*[Pendiente: figura con la secuencia CAP-E2E.]*
+
+*Nota.* *[Pendiente: nota de figura con la descripción de la secuencia y su etiqueta de evento sintético de prueba.]*
+
+### 4.3.11. Matriz consolidada de trazabilidad
+
+La matriz consolidada de trazabilidad relaciona cada elemento del diseño metodológico con su implementación, su evidencia y el apartado que la documenta, cerrando la verificación de la primera instanciación.
+
+*[Pendiente de evidencia: tabla consolidada diseño → implementación → evidencia → apartado. Fuente prevista: captura N.º 7 del checklist de evidencia del apartado 4.4.]*
+
+**Tabla X**
+
+*Matriz consolidada de trazabilidad de la primera instanciación*
+
+*[Pendiente: tabla consolidada.]*
+
+*Nota.* *[Pendiente.]*
+
+### 4.3.12. Síntesis de la primera instanciación
+
+La primera instanciación verifica que las catorce categorías funcionales del diseño quedan materializadas en la práctica, con evidencia de operación en las cinco fases de la metodología, de la prueba controlada de extremo a extremo y de la matriz consolidada de trazabilidad. Esta verificación de componentes constituye la base sobre la cual el segundo prototipo evalúa el efecto de la metodología en los indicadores de gestión de incidentes.
+
+*[Pendiente de redacción final: cierre con los conteos de componentes verificados al completar la matriz del 4.3.11.]*
+
+## 4.4 Segundo prototipo: adaptación al contexto del SIN e iteraciones de mejora
+
+### 4.4.1 Propósito, alcance y relación con el prototipo I
+
+El apartado 4.3 documentó la implementación de la metodología en un primer prototipo construido sobre la base de una entidad homologada del rubro de servicios fiscales digitales, con el propósito de verificar que las catorce categorías funcionales del diseño quedan materializadas en la práctica. El presente apartado documenta el segundo prototipo, que replica la misma arquitectura adaptando el señuelo al contexto de un servicio de impuestos nacionales y opera la fase de medición en dos iteraciones consecutivas (preprueba y posprueba), conforme al diseño pre-experimental declarado en el apartado 3.2. La distinción entre la verificación de componentes del primer prototipo y la validación del efecto en el segundo preserva el carácter transferible de la metodología, dado que la operación de las categorías funcionales no depende de la marca ni del contexto institucional del señuelo.
+
+El alcance del presente apartado comprende la adaptación del señuelo al contexto del Servicio de Impuestos Nacionales de Bolivia, la verificación de las fases de despliegue aislado, captura, custodia y correlación en el segundo entorno, y la medición del impacto mediante dos iteraciones de operación con la campaña de escenarios de ataque definida para el laboratorio.
+
+### 4.4.2 Adaptación del señuelo al contexto SIN
+
+El segundo prototipo replica la arquitectura del primero adaptando el contenido y la identidad visual del señuelo al contexto de un portal tributario nacional. La equivalencia entre ambos entornos se resume en la Tabla X, la cual muestra que la única diferencia sustantiva reside en el contenido del señuelo y la denominación de los artefactos del laboratorio.
+
+**Tabla X**
+
+*Equivalencia entre el prototipo I y el prototipo II*
+
+| Elemento | Prototipo I (apartado 4.3) | Prototipo II (apartado 4.4) |
+| --- | --- | --- |
+| Denominación del laboratorio | TaxFisco Research Lab | SIN Research Lab *[pendiente: captura]* |
+| Redes | taxfisco-dmz, taxfisco-honeypot, taxfisco-ids, taxfisco-soc | sin-dmz, sin-honeypot, sin-ids, sin-soc *[pendiente: captura de `docker network ls`]* |
+| Imágenes de señuelo | taxfisco/decoy-portal, taxfisco/decoy-api | sin/decoy-portal, sin/decoy-api *[pendiente: captura de `docker images`]* |
+| Servicios Docker Compose | 25 | 25 idénticos *[pendiente: captura de `docker compose config --services`]* |
+| Contenido del señuelo | Entidad homologada | Portal tributario nacional (contexto SIN) *[pendiente: capturas del portal]* |
+| Rol en la tesis | Verificación de componentes (OE3) | Validación con iteraciones (OE4) |
+
+*Nota.* La tabla relaciona los elementos de infraestructura de ambos prototipos, con remisión a la evidencia de captura que respalda cada elemento del segundo prototipo. La equivalencia de arquitectura sostiene el carácter transferible de la metodología.
+
+### 4.4.3 Verificación del aislamiento y del despliegue
+
+Esta verificación comprueba que el segundo prototipo se despliega en el entorno aislado y que el señuelo resulta alcanzable únicamente desde las redes permitidas, condición que la metodología establece para la fase de despliegue aislado. La comprobación se realiza con la inspección de las cuatro redes del laboratorio y la revisión de las reglas de segmentación.
+
+*[Pendiente de evidencia: capturas de la inspección de redes sin-* y de la verificación de aislamiento. Fuente prevista: capturas N.º 1 y N.º 5 del checklist de evidencia.]*
+
+**Figura X**
+
+*Arquitectura de redes y verificación de aislamiento del segundo prototipo*
+
+*[Pendiente: figura.]*
+
+### 4.4.4 Verificación de captura, custodia y correlación
+
+Esta verificación comprueba que la interacción con el señuelo del segundo prototipo genera eventos capturados, con enriquecimiento, custodia de la evidencia y correlación con la gestión de incidentes, en correspondencia con las fases tres y cuatro de la metodología.
+
+*[Pendiente de evidencia: capturas de eventos del señuelo SIN en el SIEM, del caso correlacionado y de la evidencia con hash de integridad. Fuente prevista: evidencias de la iteración 1.]*
+
+**Figura X**
+
+*Captura, custodia y correlación de eventos del segundo prototipo*
+
+*[Pendiente: figura.]*
+
+### 4.4.5 Medición de la iteración 1 (preprueba)
+
+La primera iteración de la medición constituye la preprueba del diseño pre-experimental y establece la línea base de los indicadores sobre el segundo prototipo. La campaña de escenarios de ataque se ejecuta sobre el laboratorio en contexto SIN y el reporte de indicadores consolida los valores medidos con trazabilidad hasta el escenario y el evento que los origina.
+
+*[Pendiente de evidencia: reporte consolidado de indicadores de la iteración 1 con el MTTD por escenario y la cobertura MITRE ATT&CK. Fuente prevista: captura N.º 8 del checklist de evidencia.]*
+
+**Figura X**
+
+*Reporte de indicadores de la iteración 1*
+
+*[Pendiente: figura.]*
+
+### 4.4.6 Análisis de la iteración 1 y lecciones aprendidas
+
+El análisis de la línea base examina la distribución del tiempo medio de detección por escenario, los escenarios sin detección en el señuelo y las brechas de cobertura del marco de comportamiento adversario. Sobre este análisis se documentan las lecciones aprendidas del ciclo, cada una con su hallazgo, su causa raíz y su evidencia, conforme al ciclo de retroalimentación que la metodología establece entre la medición y el diseño del señuelo.
+
+*[Pendiente de evidencia: tabla de lecciones aprendidas L1–Ln de la iteración 1 con sus causas raíz y los commits que las documentan.]*
+
+**Tabla X**
+
+*Lecciones aprendidas de la iteración 1*
+
+*[Pendiente: tabla.]*
+
+### 4.4.7 Medición de la iteración 2 (posprueba)
+
+La segunda iteración de la medición constituye la posprueba del diseño pre-experimental y se ejecuta tras aplicar las mejoras derivadas de las lecciones aprendidas de la iteración 1. Las mejoras se aplican de modo que cada una cite su lección de origen y quede registrada en el control de versiones del laboratorio, de manera que la posprueba mide el efecto de los cambios sobre los mismos escenarios y los mismos criterios de medición de la preprueba.
+
+*[Pendiente de evidencia: registro de mejoras aplicadas con su lección de origen, y reporte consolidado de indicadores de la iteración 2. Fuente prevista: captura N.º 9 del checklist de evidencia.]*
+
+**Figura X**
+
+*Reporte de indicadores de la iteración 2*
+
+*[Pendiente: figura.]*
+
+### 4.4.8 Comparación de iteraciones y prueba de hipótesis pareada
+
+La comparación entre la preprueba y la posprueba se realiza escenario por escenario sobre los indicadores medidos en ambas iteraciones. La prueba de hipótesis pareada se aplica sobre las diferencias de tiempo medio de detección entre iteraciones, con el nivel de significancia establecido para el estudio, de modo que la conclusión sobre la mejora se sustenta en evidencia estadística y no en la observación aislada de valores.
+
+*[Pendiente de evidencia: tabla comparativa iteración 1 versus iteración 2 por escenario, con el estadístico y el valor p de la prueba pareada. Fuente prevista: captura N.º 10 del checklist de evidencia.]*
+
+**Tabla X**
+
+*Comparación de indicadores entre la iteración 1 y la iteración 2*
+
+*[Pendiente: tabla.]*
+
+### 4.4.9 Evaluación de la hipótesis y de las metas
+
+El resultado de la comparación alimenta la evaluación de la hipótesis de investigación y el cálculo de los índices de impacto que el diseño metodológico compromete. Los valores medidos se confrontan con las metas definidas en la operacionalización de la variable dependiente, de modo que la aceptación o el rechazo de la hipótesis se documenta con trazabilidad hasta la evidencia de las dos iteraciones.
+
+*[Pendiente de evidencia: cálculo de los índices IIAM e IMGI con sus fórmulas y valores medidos, y confrontación con las metas de la Tabla 2 del apartado 1.6.]*
+
+**Tabla X**
+
+*Cumplimiento de metas de la variable dependiente*
+
+*[Pendiente: tabla.]*
+
+### 4.4.10 Síntesis, limitaciones y transferibilidad
+
+La síntesis de la validación resume lo que la operación de dos iteraciones demuestra sobre el efecto de la metodología en los indicadores de gestión de incidentes, con las limitaciones propias del diseño pre-experimental y de la muestra por conveniencia, y con la valoración de la transferibilidad de la metodología a otros contextos institucionales.
+
+*[Pendiente de redacción final: síntesis con los resultados de la prueba pareada y el cumplimiento de metas.]*
+
 # Capítulo V: Conclusiones y Recomendaciones de la Investigación
 
 ## 5.1 Conclusiones
@@ -2518,6 +2669,8 @@ Con respecto al objetivo específico 1: se concluye que [conclusión fundamentad
 Con respecto al objetivo específico 2: se concluye que [conclusión fundamentada en los resultados obtenidos].
 
 Con respecto al objetivo específico 3: se concluye que [conclusión fundamentada en los resultados obtenidos].
+
+Con respecto al objetivo específico 4: se concluye que [conclusión fundamentada en los resultados de la validación con iteraciones del apartado 4.4].
 
 De manera general, la investigación permitió [conclusión global que responde al objetivo general y al problema planteado].
 
