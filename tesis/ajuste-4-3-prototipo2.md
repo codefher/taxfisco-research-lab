@@ -1,38 +1,39 @@
-# Estructura 4.3/4.4 — DECISIÓN v7: 4.3.1 = Prototipo I, 4.3.2 = Prototipo II (definitiva)
+# Estructura 4.3/4.4 — DECISIÓN v8: marco general + 4.3.5 P1 + 4.3.6 P2 (definitiva)
 
-> Documento de planificación. **Decisión del investigador (2026-10-01, v7,
-> definitiva):** el 4.3 se organiza en dos grandes ramas numeradas:
-> - **4.3.1 Implementación del prototipo I (entidad homologada)** — lo ya
->   aprobado por la tutora, renumerado y anidado como 4.3.1.1 a 4.3.1.12.
-> - **4.3.2 Segundo prototipo: adaptación al contexto del SIN e iteraciones
->   de mejora** — con subsecciones numeradas 4.3.2.1 a 4.3.2.7.
-> Reemplaza a v1–v6. Regla de oro: ninguna afirmación nueva sin evidencia.
+> Documento de planificación. **Decisión del investigador (2026-10-01, v8,
+> definitiva):** el 4.3 abre con cuatro apartados generales que conciernen a
+> ambos prototipos (propósito, entorno, plataforma, matriz de trabajo) y
+> después se divide en dos ramas: 4.3.5 Prototipo I (aprobado) y 4.3.6
+> Segundo prototipo con su esquema de iteraciones de mejora.
+> Reemplaza a v1–v7. Regla de oro: ninguna afirmación nueva sin evidencia.
 
 ## 0. Estructura vigente (aplicada al documento maestro v10)
 
 ```
 4.3 Implementación de la metodología de honeypot para la gestión de incidentes
-├── 4.3.1 Implementación del prototipo I (entidad homologada)   APROBADO
-│   ├── 4.3.1.1 Propósito, alcance y línea base
-│   ├── 4.3.1.2 Entorno controlado de implementación
-│   ├── 4.3.1.3 Plataforma tecnológica del prototipo
-│   ├── 4.3.1.4 Matriz de trabajo y criterios de verificación
-│   ├── 4.3.1.5 Fase 1. Diseño del señuelo
-│   ├── 4.3.1.6 Fase 2. Despliegue aislado
-│   ├── 4.3.1.7 Fase 3. Captura, enriquecimiento y custodia
-│   ├── 4.3.1.8 Fase 4. Correlación con gestión de incidentes
-│   ├── 4.3.1.9 Fase 5. Medición y lecciones aprendidas
-│   ├── 4.3.1.10 Prueba controlada de extremo a extremo
-│   ├── 4.3.1.11 Matriz consolidada de trazabilidad
-│   └── 4.3.1.12 Síntesis de la primera instanciación
-└── 4.3.2 Segundo prototipo: adaptación al contexto del SIN e iteraciones
-    ├── 4.3.2.1 Adaptación del señuelo y equivalencia entre prototipos
-    ├── 4.3.2.2 Fase 1. Diseño del señuelo SIN
-    ├── 4.3.2.3 Fase 2. Despliegue aislado
-    ├── 4.3.2.4 Fase 3. Captura, enriquecimiento y custodia
-    ├── 4.3.2.5 Fase 4. Correlación con gestión de incidentes
-    ├── 4.3.2.6 Fase 5. Medición con iteraciones  (remite al 4.4)
-    └── 4.3.2.7 Síntesis del segundo prototipo
+├── 4.3.1 Propósito, alcance y línea base            (general, ambos prototipos)
+├── 4.3.2 Entorno controlado de implementación      (general)
+├── 4.3.3 Plataforma tecnológica del prototipo      (general)
+├── 4.3.4 Matriz de trabajo y criterios de verificación  (general)
+├── 4.3.5 Implementación del prototipo I (entidad homologada)   APROBADO
+│   ├── 4.3.5.1 Fase 1. Diseño del señuelo
+│   ├── 4.3.5.2 Fase 2. Despliegue aislado
+│   ├── 4.3.5.3 Fase 3. Captura, enriquecimiento y custodia
+│   ├── 4.3.5.4 Fase 4. Correlación con gestión de incidentes
+│   ├── 4.3.5.5 Fase 5. Medición y lecciones aprendidas
+│   ├── 4.3.5.6 Prueba controlada de extremo a extremo
+│   ├── 4.3.5.7 Matriz consolidada de trazabilidad
+│   └── 4.3.5.8 Síntesis de la primera instanciación
+└── 4.3.6 Segundo prototipo: adaptación al contexto del SIN e iteraciones de mejora
+    ├── 4.3.6.1 Adaptación del señuelo y equivalencia entre prototipos
+    ├── 4.3.6.2 Esquema de iteraciones de mejora   (NUEVO: preprueba →
+    │   lecciones → mejoras → posprueba; muestras pareadas; remite al 4.4)
+    ├── 4.3.6.3 Fase 1. Diseño del señuelo SIN
+    ├── 4.3.6.4 Fase 2. Despliegue aislado
+    ├── 4.3.6.5 Fase 3. Captura, enriquecimiento y custodia
+    ├── 4.3.6.6 Fase 4. Correlación con gestión de incidentes
+    ├── 4.3.6.7 Fase 5. Medición con iteraciones  (remite a 4.3.6.2 y 4.4)
+    └── 4.3.6.8 Síntesis del segundo prototipo
 
 4.4 Resultados
 ├── 4.4.1 Diseño de la comparación preprueba-posprueba
@@ -54,7 +55,15 @@
   (4.3.13–4.3.16); 4.4 = resultados. Se veía raro la continuación plana.
 - **v6 (descartada):** fases del P2 con subtítulo #### sin número bajo 4.3.13;
   se veía raro que la numeración plana continuara.
-- **v7 (definitiva):** dos ramas numeradas — 4.3.1 Prototipo I (aprobado
+- **v7 (descartada):** dos ramas numeradas — 4.3.1 Prototipo I (aprobado
   anidado como 4.3.1.1–4.3.1.12) y 4.3.2 Segundo prototipo (4.3.2.1–4.3.2.7).
-  Referencias cruzadas renumeradas (4.3.3→4.3.1.3, 4.3.5→4.3.1.5,
-  4.3.11→4.3.1.11).
+  El investigador observó que propósito, entorno, plataforma y matriz son
+  comunes a los dos prototipos y no debían quedar bajo el Prototipo I.
+- **v8 (definitiva):** cuatro apartados generales 4.3.1–4.3.4 (subidos del
+  antiguo 4.3.1.1–4.3.1.4 de la v7, por criterio del investigador) y luego
+  4.3.5 Prototipo I (4.3.5.1–4.3.5.8) y 4.3.6 Segundo prototipo
+  (4.3.6.1–4.3.6.8). Nueva subsección 4.3.6.2 "Esquema de iteraciones de
+  mejora" que demuestra el ciclo preprueba → lecciones → mejoras → posprueba
+  y materializa la diferencia metodológica frente al Prototipo I (muestras
+  pareadas según diseño pre-experimental del 3.2; comparación y Wilcoxon en
+  el 4.4). Referencias cruzadas renumeradas y verificadas sin huérfanas.
