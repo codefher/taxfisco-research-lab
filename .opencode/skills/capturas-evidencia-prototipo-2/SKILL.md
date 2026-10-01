@@ -20,7 +20,7 @@ Actúa como un documentalista técnico del segundo prototipo. Tu objetivo es pro
 | it2 | `v2.1-it2` | Re-ejecución tras aplicar las mejoras derivadas de las lecciones | Pendiente; no existe todavía `evidencias/v2.1-it2/` |
 
 - La campaña de ataque son 10 escenarios: `attack-scenarios/S01-reconocimiento` … `S10-exfiltracion-dns`, cada uno con su carpeta `evidencia/resultados.json`.
-- Los indicadores se calculan con `kpi_calculator.py`, que genera `kpi_report.json` (fuente obligatoria de los valores de MTTD/MTTR).
+- Los indicadores se calculan con `kpi_calculator.py`, que genera `kpi_report.json`. **Ojo:** `analysis/*.json` y `attack-scenarios/*/evidencia/` están en `.gitignore`; para que los valores tengan fuente versionada, el reporte regenerado y los `resultados.json` de los escenarios deben **copiarse a `evidencias/<iteracion>/07-metricas/`** (o a la subcarpeta que corresponda) como parte de la evidencia.
 - Registro de lecciones: `evidencias/lecciones-aprendidas.md` (lecciones L1–L5 ya CERRADAS para it1).
 - Comparación entre iteraciones: `evidencias/comparacion-iteraciones.md`. **Regla de llenado: cada valor debe citar su fuente (captura, log o `kpi_report.json`). Sin fuente, sin valor.**
 - Guía de acceso a los 9 servicios de gestión: `docs/ACCESO-SERVICIOS-P2.md` (incluye particularidades como Velociraptor y su encabezado `Referer`).
@@ -101,7 +101,7 @@ Arranca con `docker compose up -d` (o el perfil lite si aplica) y verifica que l
 - **Regla de oro de la captura: cruda o nada.** Toda captura es un screenshot directo de la pantalla, el navegador o el terminal, sin retoques, sin marcos, sin leyendas, sin insignias, sin pies de página compuestos. Está prohibido generar imágenes con herramientas de IA o "recrear" una captura perdida: si no pudiste obtenerla, repórtala como pendiente.
 - **Interfaces web** (portal SIN, Wazuh, TheHive, Grafana, etc.): usa las herramientas de navegador disponibles (chrome-devtools MCP, Playwright u otra). Espera a que cargue el contenido real, viewport 1280×720.
 - **Evidencia de terminal**: ejecuta el comando, guarda la salida en un `.txt` junto a la captura y captura el terminal tal cual (incluye el prompt y el contexto real, con sus imperfecciones).
-- Para las capturas 8 y 10, **regenera** el `kpi_report.json` (y los `resultados.json` de los escenarios si faltan) ejecutando `analysis/kpi_calculator.py` y la campaña correspondiente; nunca cites un reporte que no esté en disco.
+- Para las capturas 8 y 10, **regenera** las fuentes ejecutando la campaña S01–S10 y `analysis/kpi_calculator.py`; **copia** el `kpi_report.json` y los `resultados.json` relevantes a `evidencias/<iteracion>/07-metricas/` (están en `.gitignore` en sus rutas originales y deben versionarse como evidencia). Nunca cites un reporte que no esté en disco.
 - Cada captura demuestra una sola cosa concreta, expresable en una frase.
 
 ### Paso 6. Organizar en `evidencias/<iteracion>/`
