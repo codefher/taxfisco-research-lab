@@ -1,15 +1,12 @@
-# Estructura 4.3/4.4 — DECISIÓN v5: implementación en 4.3, resultados en 4.4 (definitiva)
+# Estructura 4.3/4.4 — DECISIÓN v6: fases del P2 con escalón jerárquico (definitiva)
 
-> Documento de planificación. **Decisión del investigador (2026-10-01, v5,
-> definitiva):**
-> - **4.3 Implementación de la metodología de honeypot para la gestión de
->   incidentes** — con su título original. Contiene **toda la implementación
->   de ambos prototipos**.
-> - **4.4 Resultados** — solo resultados: comparación preprueba-posprueba,
->   iteraciones, Wilcoxon, hipótesis.
->
-> Reemplaza a v1–v4. Regla de oro: ninguna afirmación nueva sin evidencia;
-> lo pendiente queda marcado como *pendiente* con su captura requerida.
+> Documento de planificación. **Decisión del investigador (2026-10-01, v6,
+> definitiva):** el segundo prototipo recorre las **cinco fases F1–F5** como
+> la primera instanciación, anidadas como subtítulo de cuarto nivel
+> (#### Fase N) dentro del 4.3.13, para dar el escalón visual que separa el
+> bloque del P2 de la numeración plana 4.3.1–4.3.12. Reemplaza a v1–v5.
+> Regla de oro: ninguna afirmación nueva sin evidencia; lo pendiente queda
+> marcado como *pendiente* con su captura requerida.
 
 ## 0. Estructura vigente (aplicada al documento maestro v10)
 
@@ -19,11 +16,14 @@
 ├── 4.3.10 Prueba controlada de extremo a extremo      (NUEVO)
 ├── 4.3.11 Matriz consolidada de trazabilidad          (NUEVO)
 ├── 4.3.12 Síntesis de la primera instanciación        (NUEVO)
-├── 4.3.13 Segunda instanciación: adaptación al contexto SIN
-│          (puente + tabla de equivalencias P1↔P2)
-├── 4.3.14 Verificación del aislamiento y del despliegue
-├── 4.3.15 Verificación de captura, custodia y correlación
-└── 4.3.16 Síntesis de la implementación
+├── 4.3.13 Segunda instanciación: prototipo en contexto SIN
+│   (puente + tabla de equivalencias P1↔P2)
+│   #### Fase 1. Diseño del señuelo SIN
+│   #### Fase 2. Despliegue aislado
+│   #### Fase 3. Captura, enriquecimiento y custodia
+│   #### Fase 4. Correlación con gestión de incidentes
+│   #### Fase 5. Medición con iteraciones  (remite al 4.4)
+└── 4.3.14 Síntesis de la implementación
 
 4.4 Resultados
 ├── 4.4.1 Diseño de la comparación preprueba-posprueba
@@ -35,17 +35,16 @@
 └── 4.4.7 Síntesis de los resultados
 ```
 
-## 1. Lógica de la separación
+## 1. Lógica de la separación y del escalón
 
-- **4.3 = implementación (¿existe y opera?):** ambos prototipos. El 4.3.1–4.3.12
-  verifica las 14 categorías funcionales en el Prototipo I (evidencia
-  aprobada). El 4.3.13–4.3.16 documenta la segunda instanciación: adaptación
-  del señuelo al contexto SIN, tabla de equivalencias, verificación de
-  aislamiento y de captura/custodia/correlación.
-- **4.4 = resultados (¿mejora?):** la medición del efecto con el diseño
-  pre-experimental preprueba-posprueba (3.2): línea base it1, lecciones,
-  posprueba it2, comparación pareada con Wilcoxon, evaluación de la
-  hipótesis y de las metas.
+- **4.3 = implementación (¿existe y opera?):** ambos prototipos recorren las
+  mismas cinco fases, lo cual evidencia transferibilidad (principio P2). Las
+  fases del P2 son compactas y remiten a la evidencia; no duplican la
+  redacción aprobada del 4.3.5–4.3.8.
+- **Escalón ####:** las fases del P2 viven un nivel por debajo del 4.3.13, así
+  el bloque se distingue visualmente sin romper la numeración 4.3.x.
+- **4.4 = resultados (¿mejora?):** preprueba/posprueba, comparación pareada
+  con Wilcoxon, evaluación de la hipótesis y de las metas.
 
 ## 2. Párrafo puente del 4.3.13 (borrador, ya aplicado)
 
@@ -86,5 +85,8 @@
 - **v2 (descartada):** 4.4 separado sin título propio definido.
 - **v3 (descartada):** todo dentro del 4.3 (4.3.10–4.3.21), sin 4.4.
 - **v4 (descartada):** un apartado por prototipo, 4.3 = P1, 4.4 = P2 completo.
-- **v5 (definitiva):** 4.3 = implementación de ambos prototipos (título
-  original restaurado); 4.4 = resultados (iteraciones, Wilcoxon, hipótesis).
+- **v5 (descartada):** 4.3 = implementación de ambos prototipos en plano
+  (4.3.13–4.3.16); 4.4 = resultados. Se veía raro la continuación plana.
+- **v6 (definitiva):** el P2 recorre las cinco fases F1–F5 anidadas con
+  subtítulo de cuarto nivel (#### Fase N) dentro del 4.3.13, que da el
+  escalón visual. Síntesis del P2 en 4.3.14. 4.4 = resultados sin cambios.

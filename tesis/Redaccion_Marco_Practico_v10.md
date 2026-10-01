@@ -2541,11 +2541,11 @@ La primera instanciación verifica que las catorce categorías funcionales del d
 
 *[Pendiente de redacción final: cierre con los conteos de componentes verificados al completar la matriz del 4.3.11.]*
 
-### 4.3.13 Segunda instanciación: adaptación del prototipo al contexto SIN
+### 4.3.13 Segunda instanciación: prototipo en contexto SIN
 
-Los apartados 4.3.1 a 4.3.12 documentaron la primera instanciación de la metodología en un entorno controlado construido sobre la base de una entidad homologada del rubro de servicios fiscales digitales, con el propósito de verificar que las catorce categorías funcionales del diseño quedan materializadas en la práctica. El presente apartado documenta la segunda instanciación, que replica la misma arquitectura adaptando el señuelo al contexto de un servicio de impuestos nacionales. La medición del efecto de la metodología sobre este segundo prototipo, mediante dos iteraciones de operación (preprueba y posprueba) conforme al diseño pre-experimental declarado en el apartado 3.2, se presenta en el apartado 4.4. La distinción entre la verificación de componentes y la validación del efecto preserva el carácter transferible de la metodología, dado que la operación de las categorías funcionales no depende de la marca ni del contexto institucional del señuelo.
+Los apartados 4.3.1 a 4.3.12 documentaron la primera instanciación de la metodología en un entorno controlado construido sobre la base de una entidad homologada del rubro de servicios fiscales digitales, con el propósito de verificar que las catorce categorías funcionales del diseño quedan materializadas en la práctica. El presente apartado documenta la segunda instanciación, que replica la misma arquitectura adaptando el señuelo al contexto de un servicio de impuestos nacionales y recorre las cinco fases de la metodología con la misma estructura de verificación. La medición del efecto de la metodología sobre este segundo prototipo, mediante dos iteraciones de operación (preprueba y posprueba) conforme al diseño pre-experimental declarado en el apartado 3.2, se presenta en el apartado 4.4. La distinción entre la verificación de componentes y la validación del efecto preserva el carácter transferible de la metodología, dado que la operación de las categorías funcionales no depende de la marca ni del contexto institucional del señuelo.
 
-El alcance de la segunda instanciación comprende la adaptación del señuelo al contexto del Servicio de Impuestos Nacionales de Bolivia y la verificación de las fases de despliegue aislado, captura, custodia y correlación en el segundo entorno.
+El alcance de la segunda instanciación comprende la adaptación del señuelo al contexto del Servicio de Impuestos Nacionales de Bolivia y la verificación de las cinco fases en el segundo entorno, documentadas de manera compacta con remisión a la evidencia correspondiente.
 
 El segundo prototipo replica la arquitectura del primero adaptando el contenido y la identidad visual del señuelo al contexto de un portal tributario nacional. La equivalencia entre ambos entornos se resume en la Tabla X, la cual muestra que la única diferencia sustantiva reside en el contenido del señuelo y la denominación de los artefactos del laboratorio.
 
@@ -2553,7 +2553,7 @@ El segundo prototipo replica la arquitectura del primero adaptando el contenido 
 
 *Equivalencia entre el prototipo I y el prototipo II*
 
-| Elemento | Prototipo I (apartado 4.3) | Prototipo II (apartados 4.3.13 a 4.3.16) |
+| Elemento | Prototipo I (apartados 4.3.1 a 4.3.12) | Prototipo II (apartado 4.3.13) |
 | --- | --- | --- |
 | Denominación del laboratorio | TaxFisco Research Lab | SIN Research Lab *[pendiente: captura]* |
 | Redes | taxfisco-dmz, taxfisco-honeypot, taxfisco-ids, taxfisco-soc | sin-dmz, sin-honeypot, sin-ids, sin-soc *[pendiente: captura de `docker network ls`]* |
@@ -2564,9 +2564,21 @@ El segundo prototipo replica la arquitectura del primero adaptando el contenido 
 
 *Nota.* La tabla relaciona los elementos de infraestructura de ambos prototipos, con remisión a la evidencia de captura que respalda cada elemento del segundo prototipo. La equivalencia de arquitectura sostiene el carácter transferible de la metodología.
 
-### 4.3.14 Verificación del aislamiento y del despliegue
+#### Fase 1. Diseño del señuelo SIN
 
-Esta verificación comprueba que el segundo prototipo se despliega en el entorno aislado y que el señuelo resulta alcanzable únicamente desde las redes permitidas, condición que la metodología establece para la fase de despliegue aislado. La comprobación se realiza con la inspección de las cuatro redes del laboratorio y la revisión de las reglas de segmentación.
+La primera fase de la segunda instanciación adapta el diseño del señuelo al contexto del Servicio de Impuestos Nacionales de Bolivia, replicando la experiencia de un portal tributario nacional en sus funciones de consulta, declaración y autenticación. La adaptación conserva los mecanismos de detección instrumentados en la primera instanciación y modifica únicamente el contenido, la identidad visual y los datos simulados, coherentes con el contexto tributario boliviano y sin datos reales de contribuyentes. La configuración técnica de la instrumentación se describe en el apartado 4.3.5, dado que los mecanismos de detección son idénticos en ambas instanciaciones.
+
+*[Pendiente de evidencia: capturas del portal SIN (inicio y acceso) y del contenido adaptado. Fuente prevista: capturas N.º 3 y N.º 4 del checklist de evidencia.]*
+
+**Figura X**
+
+*Señuelo del segundo prototipo: portal tributario nacional*
+
+*[Pendiente: figura.]*
+
+#### Fase 2. Despliegue aislado
+
+La segunda fase verifica que el segundo prototipo se despliega en el entorno aislado y que el señuelo resulta alcanzable únicamente desde las redes permitidas, condición que la metodología establece para esta fase. La comprobación se realiza con la inspección de las cuatro redes del laboratorio y la revisión de las reglas de segmentación.
 
 *[Pendiente de evidencia: capturas de la inspección de redes sin-* y de la verificación de aislamiento. Fuente prevista: capturas N.º 1 y N.º 5 del checklist de evidencia.]*
 
@@ -2576,21 +2588,39 @@ Esta verificación comprueba que el segundo prototipo se despliega en el entorno
 
 *[Pendiente: figura.]*
 
-### 4.3.15 Verificación de captura, custodia y correlación
+#### Fase 3. Captura, enriquecimiento y custodia
 
-Esta verificación comprueba que la interacción con el señuelo del segundo prototipo genera eventos capturados, con enriquecimiento, custodia de la evidencia y correlación con la gestión de incidentes, en correspondencia con las fases tres y cuatro de la metodología.
+La tercera fase verifica que la interacción con el señuelo del segundo prototipo genera eventos capturados, con enriquecimiento, custodia de la evidencia y cálculo de integridad, en correspondencia con la fase homónima de la primera instanciación.
 
-*[Pendiente de evidencia: capturas de eventos del señuelo SIN en el SIEM, del caso correlacionado y de la evidencia con hash de integridad. Fuente prevista: evidencias de la iteración 1.]*
+*[Pendiente de evidencia: capturas de eventos del señuelo SIN en el SIEM y de la evidencia con hash de integridad. Fuente prevista: evidencias de la iteración 1.]*
 
 **Figura X**
 
-*Captura, custodia y correlación de eventos del segundo prototipo*
+*Captura, enriquecimiento y custodia de eventos del segundo prototipo*
 
 *[Pendiente: figura.]*
 
-### 4.3.16 Síntesis de la implementación
+#### Fase 4. Correlación con gestión de incidentes
 
-La implementación de la metodología queda materializada en dos instanciaciones con arquitectura equivalente, la primera orientada a la verificación de las catorce categorías funcionales y la segunda adaptada al contexto de un servicio de impuestos nacionales, con verificación de aislamiento, captura, custodia y correlación. Sobre esta implementación, el apartado 4.4 presenta los resultados de la medición del impacto mediante dos iteraciones de operación.
+La cuarta fase verifica que los eventos capturados se correlacionan con la gestión de incidentes, mediante la generación de casos clasificados y el mapeo a técnicas del marco de comportamiento adversario.
+
+*[Pendiente de evidencia: captura del caso correlacionado a partir de un evento del señuelo SIN. Fuente prevista: evidencias de la iteración 1.]*
+
+**Figura X**
+
+*Correlación de eventos del segundo prototipo con la gestión de incidentes*
+
+*[Pendiente: figura.]*
+
+#### Fase 5. Medición con iteraciones
+
+La quinta fase opera la medición del impacto en dos iteraciones consecutivas sobre el segundo prototipo, conforme al diseño pre-experimental declarado en el apartado 3.2. La primera iteración establece la línea base de los indicadores (preprueba) y la segunda mide el efecto de las mejoras derivadas de las lecciones aprendidas (posprueba). Los resultados de ambas iteraciones y la comparación pareada entre ellas se presentan en el apartado 4.4.
+
+*[Pendiente de evidencia: reportes de indicadores de las iteraciones 1 y 2 y tabla comparativa. Fuente prevista: capturas N.º 8, N.º 9 y N.º 10 del checklist de evidencia.]*
+
+### 4.3.14 Síntesis de la implementación
+
+La implementación de la metodología queda materializada en dos instanciaciones con arquitectura equivalente, la primera orientada a la verificación de las catorce categorías funcionales y la segunda adaptada al contexto de un servicio de impuestos nacionales, con recorrido verificado de las cinco fases. Sobre esta implementación, el apartado 4.4 presenta los resultados de la medición del impacto mediante dos iteraciones de operación.
 
 *[Pendiente de redacción final: cierre con el conteo de funciones verificadas en el segundo prototipo al completar las evidencias pendientes.]*
 
