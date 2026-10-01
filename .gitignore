@@ -87,3 +87,6 @@ config/wazuh/dashboard/
 
 # --- Artefactos de herramientas de navegador ---
 .playwright-cli/
+
+# --- Documento maestro de tesis (binario grande, no versionar) ---
+tesis/*.docx
