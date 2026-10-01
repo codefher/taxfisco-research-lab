@@ -1,6 +1,6 @@
 ---
 name: capturas-evidencia-prototipo-2
-description: "Guía técnica para capturar y organizar la evidencia visual del SEGUNDO prototipo (Prototipo II, laboratorio SIN Research Lab) de este proyecto, un sistema honeypot de gestión de incidentes para servicios fiscales. Úsala cuando el usuario pida capturar las evidencias del prototipo 2 para redactar los apartados 4.3.6 y 4.4 de la tesis: completa los huecos pendientes de la iteración 1 (v2.0-it1, inmutable) o captura la iteración 2 (v2.1-it2, posprueba tras aplicar las lecciones L1–Ln). El agente inspecciona el laboratorio sin modificarlo, levanta los servicios, toma las capturas siguiendo el checklist de 10 capturas mapeado a las secciones de la tesis, las organiza en evidencias/<iteracion>/, actualiza el manifiesto, el registro de lecciones (evidencias/lecciones-aprendidas.md) y la tabla comparativa entre iteraciones (evidencias/comparacion-iteraciones.md), y commitea con prefijo [P2]. Si una captura no puede obtenerse de una ejecución real, se detiene y pregunta. Nunca inventa evidencia."
+description: "Guía técnica para capturar y organizar la evidencia visual del SEGUNDO prototipo (Prototipo II, laboratorio SIN Research Lab) de este proyecto, un sistema honeypot de gestión de incidentes para servicios fiscales. Úsala cuando el usuario pida capturar las evidencias del prototipo 2 para redactar los apartados 4.3.6 y 4.4 de la tesis: completa los huecos pendientes de la iteración 1 (v2.0-it1) o captura la iteración 2 (v2.1-it2, posprueba tras aplicar las lecciones L1–Ln). PRIMERO obligatorio: verificar la autenticidad de toda la evidencia existente (protocolo de verificación en el cuerpo del skill) — la evidencia previa de v2.0-it1 quedó NO VERIFICABLE en la auditoría evidencias/AUDITORIA-v2.0-it1.md. El agente inspecciona el laboratorio sin modificarlo, levanta los servicios, toma capturas CRUDAS de pantalla o terminal (nunca renders estilizados ni imágenes generadas), con .txt de respaldo para terminal, siguiendo el checklist de 10 capturas mapeado a las secciones de la tesis, organiza en evidencias/<iteracion>/, escribe el MANIFIESTO obligatorio, actualiza lecciones y comparación entre iteraciones, y commitea con prefijo [P2]. Si una captura no puede obtenerse de una ejecución real, se detiene y pregunta. Nunca inventa evidencia."
 ---
 
 # Captura y organización de evidencia visual — Prototipo II (laboratorio SIN)
@@ -27,6 +27,20 @@ Actúa como un documentalista técnico del segundo prototipo. Tu objetivo es pro
 - El laboratorio es pesado (25 servicios): existe perfil reducido para máquinas de 16 GB RAM, ver `PERFIL-LITE-16GB.md`.
 - Las evidencias (PNG, txt, md) **sí se versionan en Git** y se commitean con prefijo `[P2]`.
 
+## Protocolo de verificación previa — OBLIGATORIO, SIEMPRE PRIMERO
+
+Antes de proponer o capturar nada, verifica **toda** la evidencia existente desde cero. Esto es lo primordial: una sesión anterior confundió los laboratorios, generó renders en lugar de capturas reales y colapsó sin dejar manifiesto. No des nada por hecho.
+
+1. **Inventaria** cada archivo de `evidencias/` (iteraciones cerradas y abiertas).
+2. **Clasifica su autenticidad**, archivo por archivo:
+   - `REAL`: captura cruda de pantalla/terminal, sin retoques, con fuente verificable. Para terminal, DEBE existir el `.txt` con la salida exacta del comando.
+   - `NO VERIFICABLE`: cualquiera de estas señales — marco decorativo, insignia de versión, leyenda al pie o pie de página compuesto; salida "demasiado limpia"; cita de scripts o rutas que no existen en el repo; ausencia de `.txt` para capturas de terminal; metadatos vacíos con apariencia generada.
+3. **Verifica las fuentes citadas**: si un registro (p. ej. `comparacion-iteraciones.md`) cita `kpi_report.json`, `resultados.json` o un commit como fuente de un valor, comprueba que existan. Si no existen, márcalos como pendientes de regenerar; ningún valor sin fuente viva puede citarse.
+4. **No borres nada**: la evidencia no verificable se reporta y, si el usuario lo decide, se mueve a cuarentena (`_no-verificable/`) o se reemplaza tras una re-captura exitosa.
+5. **Presenta el resultado** de la verificación en tabla (archivo, clasificación, motivo) junto con el plan del Paso 3. La verificación no aprobada bloquea cualquier captura nueva.
+
+Estado conocido a 2026-10-01 (ver `evidencias/AUDITORIA-v2.0-it1.md`): las 33 capturas de `evidencias/v2.0-it1/` están clasificadas como NO VERIFICABLES (renders estilizados, sin `.txt`, sin manifiesto); no existe `kpi_report.json` ni `resultados.json` en los escenarios; faltan las secciones 07, 08 y 09. La misión normal será, por tanto, **re-capturar la iteración 1 completa** y regenerar sus fuentes, salvo instrucción distinta del usuario.
+
 ## Checklist de 10 capturas — contrato con la tesis
 
 Cada captura del plan debe mapear a un número de este checklist y a la sección de la tesis que la cita. Si el plan propone algo fuera del checklist, justifícalo.
@@ -44,7 +58,7 @@ Cada captura del plan debe mapear a un número de este checklist y a la sección
 | 9 | Registro de lecciones aprendidas L1–Ln con su evidencia y commits | `07-metricas/` o raíz de iteración | 4.3.6.6.3, 4.4.3 |
 | 10 | Reporte de indicadores de la iteración 2 y tabla comparativa it1 vs it2 | `07-metricas/` | 4.3.6.6.4, 4.4.4–4.4.5 |
 
-**Importante:** en la iteración 1 solo faltan por capturar las piezas que alimentan las capturas 3, 4, 8 y 9 (la 1, 2, 5, 6 y 7 ya existen en `evidencias/v2.0-it1/` bajo las secciones 01–06). Verifícalo con la reconciliación del Paso 2 antes de proponer nada.
+**Importante:** la auditoría `evidencias/AUDITORIA-v2.0-it1.md` clasificó las 33 capturas existentes de `evidencias/v2.0-it1/` como NO VERIFICABLES. El supuesto de que las capturas 1, 2, 5, 6 y 7 "ya existen" queda anulado hasta que pasen el protocolo de verificación previa; lo más probable es que deban re-capturarse.
 
 ## Principios rectores
 
@@ -60,7 +74,7 @@ Cada captura del plan debe mapear a un número de este checklist y a la sección
 
 ### Paso 0. Fijar el alcance
 Pide o confirma una de dos misiones:
-- **A. Completar evidencia pendiente de it1** (`v2.0-it1`): capturas 3, 4, 8 y 9 del checklist.
+- **A. Re-capturar la iteración 1** (`v2.0-it1`): la evidencia previa quedó NO VERIFICABLE en la auditoría `evidencias/AUDITORIA-v2.0-it1.md`; la misión es regenerar las fuentes (campaña, `kpi_report.json`) y capturar el checklist completo en crudo.
 - **B. Capturar la iteración 2** (`v2.1-it2`): requiere que las mejoras de las lecciones ya estén aplicadas y commiteadas; si el tag `v2.1-it2` no existe, detente y pregunta.
 
 Resuelve tag y hash:
@@ -74,8 +88,8 @@ git describe --tags --exact-match 2>/dev/null || git rev-parse --short HEAD
 - Verifica RAM disponible; si la máquina tiene 16 GB, consulta `PERFIL-LITE-16GB.md` antes de levantar los 25 servicios.
 - Lee `docs/ACCESO-SERVICIOS-P2.md` para URLs, puertos y credenciales de los 9 servicios de gestión.
 
-### Paso 2. Reconciliación con el estado actual
-Inventaría lo que ya existe antes de proponer: recorre `evidencias/v2.0-it1/` y contrasta con el checklist. Presenta una tabla de estado: captura → existe (ruta) / pendiente / bloqueada y por qué.
+### Paso 2. Reconciliación y verificación de autenticidad (bloqueante)
+Aplica el **protocolo de verificación previa** sobre toda la evidencia existente (clasifica cada archivo REAL / NO VERIFICABLE con su motivo, y verifica que las fuentes citadas existan). Después contrasta con el checklist. Presenta dos tablas: (a) verificación de autenticidad, (b) estado del checklist: captura → cubierta por evidencia REAL (ruta) / pendiente / bloqueada y por qué. **Sin esta verificación aprobada no se captura nada.**
 
 ### Paso 3. Plan de capturas y confirmación
 Presenta el plan completo: número de checklist, qué se capturará, qué demuestra (una frase), comando o ruta, nombre de archivo propuesto y sección de la tesis que alimenta. **Espera confirmación. No captures sin plan aprobado.**
@@ -84,9 +98,10 @@ Presenta el plan completo: número de checklist, qué se capturará, qué demues
 Arranca con `docker compose up -d` (o el perfil lite si aplica) y verifica que los servicios respondan antes de capturar. Si algo no arranca, informa el error exacto y pregunta. **Apaga el laboratorio al terminar** (`docker compose down`) salvo que el usuario pida lo contrario.
 
 ### Paso 5. Capturar
+- **Regla de oro de la captura: cruda o nada.** Toda captura es un screenshot directo de la pantalla, el navegador o el terminal, sin retoques, sin marcos, sin leyendas, sin insignias, sin pies de página compuestos. Está prohibido generar imágenes con herramientas de IA o "recrear" una captura perdida: si no pudiste obtenerla, repórtala como pendiente.
 - **Interfaces web** (portal SIN, Wazuh, TheHive, Grafana, etc.): usa las herramientas de navegador disponibles (chrome-devtools MCP, Playwright u otra). Espera a que cargue el contenido real, viewport 1280×720.
-- **Evidencia de terminal**: ejecuta el comando, guarda la salida en un `.txt` junto a la captura y, cuando sea posible, captura también el terminal.
-- Para las capturas 8 y 10, ejecuta la campaña o localiza el `kpi_report.json` ya generado y captúralo junto a la tabla de indicadores.
+- **Evidencia de terminal**: ejecuta el comando, guarda la salida en un `.txt` junto a la captura y captura el terminal tal cual (incluye el prompt y el contexto real, con sus imperfecciones).
+- Para las capturas 8 y 10, **regenera** el `kpi_report.json` (y los `resultados.json` de los escenarios si faltan) ejecutando `analysis/kpi_calculator.py` y la campaña correspondiente; nunca cites un reporte que no esté en disco.
 - Cada captura demuestra una sola cosa concreta, expresable en una frase.
 
 ### Paso 6. Organizar en `evidencias/<iteracion>/`
@@ -124,10 +139,14 @@ Nombra cada archivo `NN_descripcion-corta.png` (correlativo de dos dígitos dent
 ## Lo que nunca debes hacer
 
 - Inventar o retocar capturas, logs o salidas de comandos.
-- Presentar un evento de prueba como real (siempre `_prueba-sintetica`).
+- **Generar imágenes con IA, componer "capturas" estilizadas o añadir marcos, leyendas, insignias o pies de página**: la evidencia es un screenshot crudo o no es evidencia.
+- Dar por buena o citar evidencia previa sin pasar antes el protocolo de verificación de autenticidad.
+- Citar como fuente un archivo (`kpi_report.json`, `resultados.json`, log) que no existe en disco.
+- Presentar un evento de prueba como real (siempre `_prueba-sintetica` en nombre y manifiesto).
 - Modificar código, configuración, decoys o escenarios de ataque sin autorización.
 - Guardar capturas con credenciales, tokens o datos personales reales visibles.
 - Sobrescribir o renombrar evidencia existente de `evidencias/v2.0-it1/`.
 - Aplicar mejoras de la iteración 2 durante una misión de captura.
 - Llenar la tabla comparativa con valores sin fuente.
+- Cerrar la misión sin MANIFIESTO.md de la iteración trabajada.
 - Dejar el laboratorio encendido al terminar sin autorización.

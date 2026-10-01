@@ -4,6 +4,10 @@
 > 4.4.7 (conclusiones por iteración) de la tesis.
 > Regla de llenado: cada valor debe citar su fuente (captura, log o
 > `kpi_report.json` generado por `kpi_calculator.py`). Sin fuente, sin valor.
+> **Auditoría 2026-10-01 (ver AUDITORIA-v2.0-it1.md):** la evidencia visual
+> previa de it1 es NO VERIFICABLE y los `kpi_report.json` no están en el
+> repo; los valores de it1 permanecen aquí solo como referencia interna y
+> no deben citarse en la tesis hasta su re-captura y regeneración.
 
 ## Convención
 
@@ -16,14 +20,14 @@
 
 | Métrica | it1 (v2.0-it1) | it2 (v2.1-it2) | Fuente |
 |---|---|---|---|
-| Escenarios ejecutados | S01–S10 (10/10) | pendiente | evidencias/v2.0-it1/04-captura-eventos |
+| Escenarios ejecutados | S01–S10 (10/10) | pendiente | pendiente de verificar (evidencia previa NO VERIFICABLE, ver AUDITORIA-v2.0-it1.md) |
 | Servicios accesibles | 9/9 | pendiente | commit `b1f9eca` |
-| MTTD S01 | 16.40 s | pendiente | kpi_report.json |
-| MTTD S02 | 7.88 s | pendiente | kpi_report.json |
-| MTTD S05 | 1.05 s | pendiente | kpi_report.json |
-| MTTD S07 | 1.03 s | pendiente | kpi_report.json |
+| MTTD S01 | 16.40 s | pendiente | pendiente de verificar (`kpi_report.json` no localizado en el repo; regenerar) |
+| MTTD S02 | 7.88 s | pendiente | pendiente de verificar (`kpi_report.json` no localizado en el repo; regenerar) |
+| MTTD S05 | 1.05 s | pendiente | pendiente de verificar (`kpi_report.json` no localizado en el repo; regenerar) |
+| MTTD S07 | 1.03 s | pendiente | pendiente de verificar (`kpi_report.json` no localizado en el repo; regenerar) |
 | MTTD S03, S04, S06, S08, S09, S10 | sin detección en el decoy (atacan honeypots u otros servicios) | pendiente | commit `b1f9eca` |
-| MTTR medio | pendiente | pendiente | kpi_report.json |
+| MTTR medio | pendiente | pendiente | pendiente de verificar (`kpi_report.json` no localizado en el repo; regenerar) |
 | Eventos capturados (campaña S01–S10) | 1 evento correlado vía MISP_2_1 | pendiente | commit `7dd41df` |
 | Falsos positivos | pendiente | pendiente | Wazuh/Suricata |
 | Técnicas ATT&CK detectadas | pendiente (mapear desde eventos) | pendiente | TheHive/Cortex |
