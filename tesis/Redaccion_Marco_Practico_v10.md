@@ -1793,7 +1793,7 @@ El diseño de la metodología Honeypot articula los principios y decisiones esta
 
 *Nota.* La figura sintetiza el diseño de la metodología desarrollado en la sección 4.2, cuya lectura parte de los cinco principios de fundamentación y los tres planos transversales, continúa con las brechas del diagnóstico y las cinco fases operativas, además de sus actividades y entregables y culmina con las métricas de evaluación. Los arcos superiores representan los bucles F3→F2, F4→F1 y F5→F1, correspondientes a los horizontes táctico, operacional y estratégico. P1–P5 = principios de diseño; D1–D4 = decisiones de diseño; G1–G4 = grupos de brechas del diagnóstico; Inst. = instrumento; F1–F5 = fases de la metodología; OE1 y OE3 = objetivos específicos primero y tercero; SGSI = sistema de gestión de seguridad de la información; IRP = plan de respuesta a incidentes; SIEM = gestión de información y eventos de seguridad; SOAR = orquestación, automatización y respuesta de seguridad; SHA-256 = algoritmo de hash seguro de 256 bits; NTP = protocolo de tiempo de red; WORM = almacenamiento de escritura única y lectura múltiple; ATT&CK = base de conocimiento de tácticas y técnicas adversarias de MITRE; MTTD = tiempo medio de detección; MTTR = tiempo medio de respuesta; IMGI = índice de madurez en gestión de incidentes; IIAM = índice de impacto del aprendizaje y la mejora. Fuente: elaboración propia.
 
-## 4.3 Implementación del prototipo I (entidad homologada)
+## 4.3 Implementación de la metodología de honeypot para la gestión de incidentes
 
 La implementación del prototipo materializa la metodología propuesta para la gestión de incidentes mediante honeypots en servicios fiscales, a partir de los elementos definidos en el diseño metodológico. En esta etapa se configura un entorno controlado que permite poner en práctica los componentes establecidos en la metodología, observar su funcionamiento y generar evidencias que respalden su implementación.
 
@@ -2541,15 +2541,11 @@ La primera instanciación verifica que las catorce categorías funcionales del d
 
 *[Pendiente de redacción final: cierre con los conteos de componentes verificados al completar la matriz del 4.3.11.]*
 
-## 4.4 Segundo prototipo: adaptación al contexto del SIN e iteraciones de mejora
+### 4.3.13 Segunda instanciación: adaptación del prototipo al contexto SIN
 
-### 4.4.1 Propósito, alcance y relación con el prototipo I
+Los apartados 4.3.1 a 4.3.12 documentaron la primera instanciación de la metodología en un entorno controlado construido sobre la base de una entidad homologada del rubro de servicios fiscales digitales, con el propósito de verificar que las catorce categorías funcionales del diseño quedan materializadas en la práctica. El presente apartado documenta la segunda instanciación, que replica la misma arquitectura adaptando el señuelo al contexto de un servicio de impuestos nacionales. La medición del efecto de la metodología sobre este segundo prototipo, mediante dos iteraciones de operación (preprueba y posprueba) conforme al diseño pre-experimental declarado en el apartado 3.2, se presenta en el apartado 4.4. La distinción entre la verificación de componentes y la validación del efecto preserva el carácter transferible de la metodología, dado que la operación de las categorías funcionales no depende de la marca ni del contexto institucional del señuelo.
 
-El apartado 4.3 documentó la implementación de la metodología en un primer prototipo construido sobre la base de una entidad homologada del rubro de servicios fiscales digitales, con el propósito de verificar que las catorce categorías funcionales del diseño quedan materializadas en la práctica. El presente apartado documenta el segundo prototipo, que replica la misma arquitectura adaptando el señuelo al contexto de un servicio de impuestos nacionales y opera la fase de medición en dos iteraciones consecutivas (preprueba y posprueba), conforme al diseño pre-experimental declarado en el apartado 3.2. La distinción entre la verificación de componentes del primer prototipo y la validación del efecto en el segundo preserva el carácter transferible de la metodología, dado que la operación de las categorías funcionales no depende de la marca ni del contexto institucional del señuelo.
-
-El alcance del presente apartado comprende la adaptación del señuelo al contexto del Servicio de Impuestos Nacionales de Bolivia, la verificación de las fases de despliegue aislado, captura, custodia y correlación en el segundo entorno, y la medición del impacto mediante dos iteraciones de operación con la campaña de escenarios de ataque definida para el laboratorio.
-
-### 4.4.2 Adaptación del señuelo al contexto SIN
+El alcance de la segunda instanciación comprende la adaptación del señuelo al contexto del Servicio de Impuestos Nacionales de Bolivia y la verificación de las fases de despliegue aislado, captura, custodia y correlación en el segundo entorno.
 
 El segundo prototipo replica la arquitectura del primero adaptando el contenido y la identidad visual del señuelo al contexto de un portal tributario nacional. La equivalencia entre ambos entornos se resume en la Tabla X, la cual muestra que la única diferencia sustantiva reside en el contenido del señuelo y la denominación de los artefactos del laboratorio.
 
@@ -2557,7 +2553,7 @@ El segundo prototipo replica la arquitectura del primero adaptando el contenido 
 
 *Equivalencia entre el prototipo I y el prototipo II*
 
-| Elemento | Prototipo I (apartado 4.3) | Prototipo II (apartado 4.4) |
+| Elemento | Prototipo I (apartado 4.3) | Prototipo II (apartados 4.3.13 a 4.3.16) |
 | --- | --- | --- |
 | Denominación del laboratorio | TaxFisco Research Lab | SIN Research Lab *[pendiente: captura]* |
 | Redes | taxfisco-dmz, taxfisco-honeypot, taxfisco-ids, taxfisco-soc | sin-dmz, sin-honeypot, sin-ids, sin-soc *[pendiente: captura de `docker network ls`]* |
@@ -2568,7 +2564,7 @@ El segundo prototipo replica la arquitectura del primero adaptando el contenido 
 
 *Nota.* La tabla relaciona los elementos de infraestructura de ambos prototipos, con remisión a la evidencia de captura que respalda cada elemento del segundo prototipo. La equivalencia de arquitectura sostiene el carácter transferible de la metodología.
 
-### 4.4.3 Verificación del aislamiento y del despliegue
+### 4.3.14 Verificación del aislamiento y del despliegue
 
 Esta verificación comprueba que el segundo prototipo se despliega en el entorno aislado y que el señuelo resulta alcanzable únicamente desde las redes permitidas, condición que la metodología establece para la fase de despliegue aislado. La comprobación se realiza con la inspección de las cuatro redes del laboratorio y la revisión de las reglas de segmentación.
 
@@ -2580,7 +2576,7 @@ Esta verificación comprueba que el segundo prototipo se despliega en el entorno
 
 *[Pendiente: figura.]*
 
-### 4.4.4 Verificación de captura, custodia y correlación
+### 4.3.15 Verificación de captura, custodia y correlación
 
 Esta verificación comprueba que la interacción con el señuelo del segundo prototipo genera eventos capturados, con enriquecimiento, custodia de la evidencia y correlación con la gestión de incidentes, en correspondencia con las fases tres y cuatro de la metodología.
 
@@ -2592,7 +2588,27 @@ Esta verificación comprueba que la interacción con el señuelo del segundo pro
 
 *[Pendiente: figura.]*
 
-### 4.4.5 Medición de la iteración 1 (preprueba)
+### 4.3.16 Síntesis de la implementación
+
+La implementación de la metodología queda materializada en dos instanciaciones con arquitectura equivalente, la primera orientada a la verificación de las catorce categorías funcionales y la segunda adaptada al contexto de un servicio de impuestos nacionales, con verificación de aislamiento, captura, custodia y correlación. Sobre esta implementación, el apartado 4.4 presenta los resultados de la medición del impacto mediante dos iteraciones de operación.
+
+*[Pendiente de redacción final: cierre con el conteo de funciones verificadas en el segundo prototipo al completar las evidencias pendientes.]*
+
+## 4.4 Resultados
+
+### 4.4.1 Diseño de la comparación preprueba-posprueba
+
+La medición del impacto sigue el diseño pre-experimental de preprueba y posprueba sobre un mismo grupo declarado en el apartado 3.2. La preprueba corresponde a la primera iteración de operación del segundo prototipo y establece la línea base de los indicadores, mientras que la posprueba corresponde a la segunda iteración, ejecutada tras aplicar las mejoras derivadas de las lecciones aprendidas. La comparación se realiza escenario por escenario sobre los mismos escenarios de la campaña de ataque y con los mismos criterios de medición, de modo que las dos muestras resultan pareadas.
+
+*[Pendiente de evidencia: tabla de condiciones invariantes entre iteraciones (escenarios, criterios de medición, invariantes de entorno).]*
+
+**Tabla X**
+
+*Condiciones invariantes entre la iteración 1 y la iteración 2*
+
+*[Pendiente: tabla.]*
+
+### 4.4.2 Medición de la iteración 1 (preprueba)
 
 La primera iteración de la medición constituye la preprueba del diseño pre-experimental y establece la línea base de los indicadores sobre el segundo prototipo. La campaña de escenarios de ataque se ejecuta sobre el laboratorio en contexto SIN y el reporte de indicadores consolida los valores medidos con trazabilidad hasta el escenario y el evento que los origina.
 
@@ -2604,7 +2620,7 @@ La primera iteración de la medición constituye la preprueba del diseño pre-ex
 
 *[Pendiente: figura.]*
 
-### 4.4.6 Análisis de la iteración 1 y lecciones aprendidas
+### 4.4.3 Análisis de la iteración 1 y lecciones aprendidas
 
 El análisis de la línea base examina la distribución del tiempo medio de detección por escenario, los escenarios sin detección en el señuelo y las brechas de cobertura del marco de comportamiento adversario. Sobre este análisis se documentan las lecciones aprendidas del ciclo, cada una con su hallazgo, su causa raíz y su evidencia, conforme al ciclo de retroalimentación que la metodología establece entre la medición y el diseño del señuelo.
 
@@ -2616,7 +2632,7 @@ El análisis de la línea base examina la distribución del tiempo medio de dete
 
 *[Pendiente: tabla.]*
 
-### 4.4.7 Medición de la iteración 2 (posprueba)
+### 4.4.4 Medición de la iteración 2 (posprueba)
 
 La segunda iteración de la medición constituye la posprueba del diseño pre-experimental y se ejecuta tras aplicar las mejoras derivadas de las lecciones aprendidas de la iteración 1. Las mejoras se aplican de modo que cada una cite su lección de origen y quede registrada en el control de versiones del laboratorio, de manera que la posprueba mide el efecto de los cambios sobre los mismos escenarios y los mismos criterios de medición de la preprueba.
 
@@ -2628,7 +2644,7 @@ La segunda iteración de la medición constituye la posprueba del diseño pre-ex
 
 *[Pendiente: figura.]*
 
-### 4.4.8 Comparación de iteraciones y prueba de hipótesis pareada
+### 4.4.5 Comparación de iteraciones y prueba de hipótesis pareada
 
 La comparación entre la preprueba y la posprueba se realiza escenario por escenario sobre los indicadores medidos en ambas iteraciones. La prueba de hipótesis pareada se aplica sobre las diferencias de tiempo medio de detección entre iteraciones, con el nivel de significancia establecido para el estudio, de modo que la conclusión sobre la mejora se sustenta en evidencia estadística y no en la observación aislada de valores.
 
@@ -2640,7 +2656,7 @@ La comparación entre la preprueba y la posprueba se realiza escenario por escen
 
 *[Pendiente: tabla.]*
 
-### 4.4.9 Evaluación de la hipótesis y de las metas
+### 4.4.6 Evaluación de la hipótesis y de las metas
 
 El resultado de la comparación alimenta la evaluación de la hipótesis de investigación y el cálculo de los índices de impacto que el diseño metodológico compromete. Los valores medidos se confrontan con las metas definidas en la operacionalización de la variable dependiente, de modo que la aceptación o el rechazo de la hipótesis se documenta con trazabilidad hasta la evidencia de las dos iteraciones.
 
@@ -2652,9 +2668,9 @@ El resultado de la comparación alimenta la evaluación de la hipótesis de inve
 
 *[Pendiente: tabla.]*
 
-### 4.4.10 Síntesis, limitaciones y transferibilidad
+### 4.4.7 Síntesis de los resultados
 
-La síntesis de la validación resume lo que la operación de dos iteraciones demuestra sobre el efecto de la metodología en los indicadores de gestión de incidentes, con las limitaciones propias del diseño pre-experimental y de la muestra por conveniencia, y con la valoración de la transferibilidad de la metodología a otros contextos institucionales.
+La síntesis de los resultados resume lo que la operación de dos iteraciones demuestra sobre el efecto de la metodología en los indicadores de gestión de incidentes, con las limitaciones propias del diseño pre-experimental y de la muestra por conveniencia, y con la valoración de la transferibilidad de la metodología a otros contextos institucionales.
 
 *[Pendiente de redacción final: síntesis con los resultados de la prueba pareada y el cumplimiento de metas.]*
 
