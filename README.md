@@ -143,14 +143,10 @@ make analysis
 | Documento | Descripción |
 |---|---|
 | [PERFIL-LITE-16GB.md](PERFIL-LITE-16GB.md) | Guía operativa del perfil de 16 GB |
-| [docs/arquitectura.md](docs/arquitectura.md) | Arquitectura detallada |
 | [docs/mapeo-iso27035.md](docs/mapeo-iso27035.md) | Mapeo ATT&CK ↔ ISO 27035 |
-| [docs/mapeo-iso27001.md](docs/mapeo-iso27001.md) | Mapeo a controles ISO 27001 |
 | [docs/decisiones-ram-16gb.md](docs/decisiones-ram-16gb.md) | Decisiones arquitectónicas para 16 GB |
-| [docs/threat-model.md](docs/threat-model.md) | Modelo de amenaza |
 | [docs/decision-log.md](docs/decision-log.md) | Log de decisiones (ADR) |
-| [docs/limitaciones.md](docs/limitaciones.md) | Limitaciones reconocidas |
-| [docs/quick-start.md](docs/quick-start.md) | Inicio rápido |
+| [docs/ACCESO-SERVICIOS-P2.md](docs/ACCESO-SERVICIOS-P2.md) | Acceso a los 9 servicios de gestión (URLs y credenciales) |
 
 ## 🔐 Credenciales y setup post-instalación
 
@@ -169,7 +165,7 @@ Esto crea automáticamente:
 
 El script es **idempotente** (se puede correr varias veces sin fallar). Tarda ~30 segundos.
 
-**Tabla completa de credenciales** (Wazuh, TheHive, MISP, Grafana, decoys, etc.) en [`docs/credentials.md`](./docs/credentials.md).
+**Acceso a los servicios** (Wazuh, TheHive, MISP, Grafana, decoys, etc.) en [`docs/ACCESO-SERVICIOS-P2.md`](./docs/ACCESO-SERVICIOS-P2.md).
 
 ## 🔧 Comandos útiles (Makefile)
 

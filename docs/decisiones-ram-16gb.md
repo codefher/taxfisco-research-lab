@@ -7,7 +7,7 @@
 
 ## 1. Contexto
 
-El laboratorio TaxFisco Research Lab se diseñó para ejecutarse en workstations académicas estándar con **16 GB de RAM + 8 GB de swap**, que es el hardware más común en entornos universitarios y de investigación.
+El laboratorio de investigación se diseñó para ejecutarse en workstations académicas estándar con **16 GB de RAM + 8 GB de swap**, que es el hardware más común en entornos universitarios y de investigación.
 
 Se siguieron las recomendaciones mínimas de los proveedores de las herramientas:
 - Wazuh 4.9: mínimo 4 GB de RAM, recomendado 16 GB (funciona en single-node con 1 GB para indexer)
@@ -192,7 +192,7 @@ Estos compromisos están documentados en `PERFIL-LITE-16GB.md` y son **esperable
 | Security Onion | 16 GB | N/A (IDS) | NDR puro |
 | Pariente-Lobo et al. (2024) | 32 GB | 8 tácticas | SOAR académico |
 | Rizvi et al. (2025) | 16 GB | 3 tácticas | SIEM académico |
-| **TaxFisco LITE (esta tesis)** | **16 GB** | **10 tácticas** | **Plataforma SOC completa** |
+| **Laboratorio LITE de esta tesis** | **16 GB** | **10 tácticas** | **Plataforma SOC completa** |
 
 **Conclusión**: El perfil LITE de 16 GB ofrece una cobertura ATT&CK superior a la mayoría de trabajos académicos publicados, manteniendo la completitud de la plataforma SOC.
 
