@@ -2570,21 +2570,7 @@ El segundo prototipo replica la arquitectura del primero adaptando el contenido 
 
 *Nota.* La tabla relaciona los elementos de infraestructura de ambos prototipos, con remisión a la evidencia de captura que respalda cada elemento del segundo prototipo. La equivalencia de arquitectura sostiene el carácter transferible de la metodología.
 
-#### 4.3.6.2 Esquema de iteraciones de mejora
-
-El elemento que diferencia al segundo prototipo de la primera instanciación es el esquema de iteraciones de mejora con el que opera su fase de medición. En lugar de un único ciclo de operación y medición, el segundo prototipo ejecuta dos iteraciones consecutivas que materializan el bucle de retroalimentación que el diseño metodológico establece entre la medición del impacto y el rediseño del señuelo.
-
-La primera iteración (preprueba) opera la campaña completa de escenarios de ataque sobre el prototipo y establece la línea base de los indicadores de detección. El análisis de esa línea base produce un registro de lecciones aprendidas, cada una con su hallazgo, su causa raíz y su evidencia. La segunda iteración (posprueba) se ejecuta tras aplicar al prototipo las mejoras derivadas de esas lecciones, de modo que cada mejora se traza explícitamente a la lección que la origina en el registro de control de versiones del laboratorio.
-
-Las condiciones entre iteraciones se mantienen invariantes, con los mismos escenarios, los mismos criterios de medición y la misma arquitectura, de modo que las dos mediciones constituyen muestras pareadas conforme al diseño pre-experimental declarado en el apartado 3.2, y la comparación entre ellas mide el efecto de las mejoras y no la variación natural de la operación. Los resultados de ambas iteraciones y la prueba estadística sobre sus diferencias se presentan en el apartado 4.4.
-
-**Figura X**
-
-*Esquema de iteraciones de mejora del segundo prototipo*
-
-*[Pendiente: figura con el ciclo preprueba, lecciones aprendidas, mejoras y posprueba.]*
-
-#### 4.3.6.3 Fase 1. Diseño del señuelo SIN
+#### 4.3.6.2 Fase 1. Diseño del señuelo SIN
 
 La primera fase de la segunda instanciación adapta el diseño del señuelo al contexto del Servicio de Impuestos Nacionales de Bolivia, replicando la experiencia de un portal tributario nacional en sus funciones de consulta, declaración y autenticación. La adaptación conserva los mecanismos de detección instrumentados en la primera instanciación y modifica únicamente el contenido, la identidad visual y los datos simulados, coherentes con el contexto tributario boliviano y sin datos reales de contribuyentes. La configuración técnica de la instrumentación se describe en el apartado 4.3.5.1, dado que los mecanismos de detección son idénticos en ambas instanciaciones.
 
@@ -2596,7 +2582,7 @@ La primera fase de la segunda instanciación adapta el diseño del señuelo al c
 
 *[Pendiente: figura.]*
 
-#### 4.3.6.4 Fase 2. Despliegue aislado
+#### 4.3.6.3 Fase 2. Despliegue aislado
 
 La segunda fase verifica que el segundo prototipo se despliega en el entorno aislado y que el señuelo resulta alcanzable únicamente desde las redes permitidas, condición que la metodología establece para esta fase. La comprobación se realiza con la inspección de las cuatro redes del laboratorio y la revisión de las reglas de segmentación.
 
@@ -2608,7 +2594,7 @@ La segunda fase verifica que el segundo prototipo se despliega en el entorno ais
 
 *[Pendiente: figura.]*
 
-#### 4.3.6.5 Fase 3. Captura, enriquecimiento y custodia
+#### 4.3.6.4 Fase 3. Captura, enriquecimiento y custodia
 
 La tercera fase verifica que la interacción con el señuelo del segundo prototipo genera eventos capturados, con enriquecimiento, custodia de la evidencia y cálculo de integridad, en correspondencia con la fase homónima de la primera instanciación.
 
@@ -2620,7 +2606,7 @@ La tercera fase verifica que la interacción con el señuelo del segundo prototi
 
 *[Pendiente: figura.]*
 
-#### 4.3.6.6 Fase 4. Correlación con gestión de incidentes
+#### 4.3.6.5 Fase 4. Correlación con gestión de incidentes
 
 La cuarta fase verifica que los eventos capturados se correlacionan con la gestión de incidentes, mediante la generación de casos clasificados y el mapeo a técnicas del marco de comportamiento adversario.
 
@@ -2632,13 +2618,43 @@ La cuarta fase verifica que los eventos capturados se correlacionan con la gesti
 
 *[Pendiente: figura.]*
 
-#### 4.3.6.7 Fase 5. Medición con iteraciones
+#### 4.3.6.6 Fase 5. Medición con iteraciones de mejora
 
-La quinta fase opera la medición del impacto en dos iteraciones consecutivas sobre el segundo prototipo, conforme al esquema de iteraciones definido en el apartado 4.3.6.2 y al diseño pre-experimental declarado en el apartado 3.2. La primera iteración establece la línea base de los indicadores (preprueba) y la segunda mide el efecto de las mejoras derivadas de las lecciones aprendidas (posprueba). Los resultados de ambas iteraciones y la comparación pareada entre ellas se presentan en el apartado 4.4.
+La quinta fase opera la medición del impacto en dos iteraciones consecutivas sobre el segundo prototipo, conforme al diseño pre-experimental declarado en el apartado 3.2. El elemento que diferencia al segundo prototipo de la primera instanciación es precisamente este esquema de iteraciones, que materializa el bucle de retroalimentación que el diseño metodológico establece entre la medición del impacto y el rediseño del señuelo. Las subsecciones 4.3.6.6.1 a 4.3.6.6.5 documentan el ciclo completo de iteraciones, y los resultados de ambas iteraciones con la comparación pareada entre ellas se presentan en el apartado 4.4.
 
-*[Pendiente de evidencia: reportes de indicadores de las iteraciones 1 y 2 y tabla comparativa. Fuente prevista: capturas N.º 8, N.º 9 y N.º 10 del checklist de evidencia.]*
+##### 4.3.6.6.1 Esquema del ciclo de iteraciones
 
-#### 4.3.6.8 Síntesis del segundo prototipo
+El segundo prototipo ejecuta dos iteraciones consecutivas en lugar de un único ciclo de operación y medición. La primera iteración (preprueba) opera la campaña completa de escenarios de ataque sobre el prototipo y establece la línea base de los indicadores de detección. La segunda iteración (posprueba) se ejecuta tras aplicar al prototipo las mejoras derivadas de las lecciones aprendidas, de modo que cada mejora se traza explícitamente a la lección que la origina en el registro de control de versiones del laboratorio.
+
+**Figura X**
+
+*Esquema de iteraciones de mejora del segundo prototipo*
+
+*[Pendiente: figura con el ciclo preprueba, lecciones aprendidas, mejoras y posprueba.]*
+
+##### 4.3.6.6.2 Iteración 1. Preprueba
+
+La primera iteración opera la campaña de escenarios de ataque sobre el señuelo del segundo prototipo en sus condiciones iniciales y registra la línea base de los indicadores de detección, entre ellos el tiempo medio de detección (MTTD) por escenario. Los valores medidos en esta iteración constituyen la preprueba del diseño pre-experimental y se reportan en el apartado 4.4.2.
+
+*[Pendiente de evidencia: reporte consolidado de indicadores de la iteración 1. Fuente prevista: captura N.º 8 del checklist de evidencia.]*
+
+##### 4.3.6.6.3 Lecciones aprendidas y mejoras aplicadas
+
+El análisis de la línea base produce un registro de lecciones aprendidas, cada una con su hallazgo, su causa raíz y su evidencia. A partir de ese registro se aplican al prototipo las mejoras correspondientes, con trazabilidad explícita entre cada lección y el cambio que la resuelve en el control de versiones del laboratorio. El análisis de la iteración 1 y sus lecciones se presenta en el apartado 4.4.3.
+
+*[Pendiente de evidencia: registro de lecciones aprendidas y trazabilidad de mejoras. Fuente prevista: captura N.º 9 del checklist de evidencia.]*
+
+##### 4.3.6.6.4 Iteración 2. Posprueba
+
+La segunda iteración repite la campaña de escenarios bajo las mismas condiciones de operación y mide el efecto de las mejoras aplicadas, de modo que la comparación con la línea base mida el efecto de las mejoras y no la variación natural de la operación. Los valores medidos en esta iteración constituyen la posprueba y se reportan en el apartado 4.4.4.
+
+*[Pendiente de evidencia: reporte consolidado de indicadores de la iteración 2. Fuente prevista: captura N.º 10 del checklist de evidencia.]*
+
+##### 4.3.6.6.5 Condiciones invariantes entre iteraciones
+
+Las condiciones entre iteraciones se mantienen invariantes, con los mismos escenarios, los mismos criterios de medición y la misma arquitectura, de modo que las dos mediciones constituyen muestras pareadas conforme al diseño pre-experimental declarado en el apartado 3.2. La tabla de condiciones invariantes y el diseño detallado de la comparación se presentan en el apartado 4.4.1, y la comparación pareada con su prueba estadística en el apartado 4.4.5.
+
+#### 4.3.6.7 Síntesis del segundo prototipo
 
 La implementación de la metodología queda materializada en dos instanciaciones con arquitectura equivalente, la primera orientada a la verificación de las catorce categorías funcionales y la segunda adaptada al contexto de un servicio de impuestos nacionales, con recorrido verificado de las cinco fases. Sobre esta implementación, el apartado 4.4 presenta los resultados de la medición del impacto mediante dos iteraciones de operación.
 
