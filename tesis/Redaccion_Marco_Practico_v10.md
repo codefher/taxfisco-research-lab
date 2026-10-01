@@ -1801,7 +1801,11 @@ El desarrollo de esta etapa mantiene correspondencia con los elementos definidos
 
 La metodología establece catorce categorías funcionales distribuidas entre las cinco fases, de acuerdo con las funciones que requiere cada etapa, estas categorías comprenden la identificación del activo, la configuración del señuelo, la definición del perfil del atacante, el aislamiento de red, la preparación del entorno controlado, la captura y enriquecimiento de eventos, la custodia de la evidencia, la normalización, la correlación con tickets, el mapeo con MITRE ATT&CK, el cálculo del tiempo medio de detección (MTTD), el cálculo del índice de impacto del aprendizaje y la mejora (IIAM) y el reporte de lecciones aprendidas.
 
-### 4.3.1 Propósito, alcance y línea base
+### 4.3.1 Implementación del prototipo I (entidad homologada)
+
+Los apartados 4.3.1.1 a 4.3.1.12 documentan la implementación de la metodología en el primer prototipo, construido sobre la base de una entidad homologada del rubro de servicios fiscales digitales.
+
+#### 4.3.1.1 Propósito, alcance y línea base
 
 El propósito de esta etapa consiste en materializar la metodología propuesta dentro de un entorno controlado, de manera que sus componentes puedan ser implementados, observados y verificados de acuerdo con las funciones definidas durante el diseño. Esta implementación se orienta al cumplimiento del tercer objetivo específico (OE3) de la investigación, relacionado con la implementación de la metodología de honeypot en un entorno controlado para su aplicación en la gestión de incidentes.
 
@@ -1815,11 +1819,11 @@ Entre las funciones previstas se encuentran la identificación del activo, la co
 
 La trazabilidad constituye el criterio utilizado para relacionar cada elemento definido en el diseño con su correspondiente implementación y evidencia, bajo este criterio cada fase debe mantener su vínculo con la brecha diagnosticada, la norma internacional que respalda su ejecución y el indicador utilizado para su medición. Esta relación permite verificar que la implementación mantiene correspondencia con el diseño metodológico y evita incorporar como resultado elementos que no cuentan con respaldo suficiente.
 
-### 4.3.2 Entorno controlado de implementación
+#### 4.3.1.2 Entorno controlado de implementación
 
 La implementación se desarrolla en un entorno experimental denominado *TaxFisco Research Lab*, utilizado como espacio controlado para materializar el prototipo de la metodología Honeypot. En este entorno se integran los componentes necesarios para representar servicios señuelo, observar las interacciones generadas, registrar los eventos y proporcionar capacidades de análisis y gestión de incidentes. La denominación utilizada en la infraestructura permite identificar de manera conjunta los recursos que forman parte del laboratorio de investigación.
 
-El entorno se construye mediante contenedores que permiten organizar los diferentes componentes del prototipo como servicios independientes. Esta organización facilita la separación de las funciones que intervienen en la metodología y permite establecer diferentes segmentos de comunicación según el propósito de cada componente. La descripción detallada de los servicios tecnológicos que conforman esta infraestructura se presenta posteriormente en el apartado 4.3.3.
+El entorno se construye mediante contenedores que permiten organizar los diferentes componentes del prototipo como servicios independientes. Esta organización facilita la separación de las funciones que intervienen en la metodología y permite establecer diferentes segmentos de comunicación según el propósito de cada componente. La descripción detallada de los servicios tecnológicos que conforman esta infraestructura se presenta posteriormente en el apartado 4.3.1.3.
 
 A nivel de red, el entorno se organiza mediante cuatro segmentos virtuales denominados *taxfisco-dmz*, *taxfisco-honeypot*, *taxfisco-ids* y *taxfisco-soc*. Cada segmento dispone de un rango de direcciones independiente y agrupa componentes de acuerdo con su función dentro del prototipo. Esta distribución constituye la base sobre la cual se implementan las funciones de interacción con los señuelos, observación del tráfico y gestión de la información generada.
 
@@ -1835,9 +1839,9 @@ Figura X
 
 Como se observa en la Figura X, el laboratorio presenta una organización diferenciada de sus componentes mediante cuatro segmentos de red. *taxfisco-dmz* concentra servicios relacionados con la zona de servicios señuelo, *taxfisco-honeypot* agrupa componentes destinados a la interacción con los señuelos, *taxfisco-ids* concentra los servicios de observación del tráfico y *taxfisco-soc* reúne los componentes destinados al procesamiento y gestión de la información.
 
-La distribución de las redes permite organizar los componentes del laboratorio de acuerdo con las funciones que cumplen dentro del prototipo, la red *taxfisco-ids* concentra Suricata y Zeek para las funciones relacionadas con la observación del tráfico, mientras que *taxfisco-soc* reúne herramientas como Wazuh, TheHive, Cortex, MISP, Shuffle y Grafana para el procesamiento, análisis, gestión y visualización de la información generada. La descripción de cada componente, su función dentro del prototipo y su relación con las categorías funcionales definidas en la metodología se presenta en el apartado 4.3.3.
+La distribución de las redes permite organizar los componentes del laboratorio de acuerdo con las funciones que cumplen dentro del prototipo, la red *taxfisco-ids* concentra Suricata y Zeek para las funciones relacionadas con la observación del tráfico, mientras que *taxfisco-soc* reúne herramientas como Wazuh, TheHive, Cortex, MISP, Shuffle y Grafana para el procesamiento, análisis, gestión y visualización de la información generada. La descripción de cada componente, su función dentro del prototipo y su relación con las categorías funcionales definidas en la metodología se presenta en el apartado 4.3.1.3.
 
-### 4.3.3 Plataforma tecnológica del prototipo
+#### 4.3.1.3 Plataforma tecnológica del prototipo
 
 La plataforma tecnológica constituye la materialización concreta de las categorías funcionales definidas en la metodología propuesta, su implementación utiliza servicios desplegados mediante contenedores, organizados de acuerdo con las funciones requeridas por el entorno experimental. La plataforma integra componentes destinados al funcionamiento de los señuelos, captura de eventos, análisis de información, gestión de incidentes, almacenamiento y visualización.
 
@@ -1905,7 +1909,7 @@ La distribución de los componentes permite organizar la plataforma de acuerdo c
 
 La evidencia presentada en este apartado permite establecer la composición tecnológica del prototipo a partir de los servicios definidos, las imágenes utilizadas y los mecanismos de almacenamiento persistente, la comprobación específica del funcionamiento de cada categoría funcional se realiza en las fases siguientes, donde cada componente se analiza de acuerdo con la función que desempeña dentro del proceso metodológico.
 
-### 4.3.4 Matriz de trabajo y criterios de verificación
+#### 4.3.1.4 Matriz de trabajo y criterios de verificación
 
 La implementación de la metodología requiere una forma ordenada de comprobar que las funciones definidas en el diseño se encuentran materializadas en el entorno experimental, para este propósito se establece una matriz de trabajo que relaciona cada fase con las funciones que deben comprobarse, el elemento que debe ser observado y la evidencia necesaria para respaldar su estado de implementación.
 
@@ -1937,7 +1941,7 @@ Tabla X
 
 Cada evidencia se identifica de acuerdo con la fase y la función que respalda, de manera que su incorporación mantiene una relación directa con el elemento que se pretende comprobar este criterio permite conservar la trazabilidad entre el diseño metodológico, la implementación técnica y la evidencia obtenida, evitando atribuir a una captura información que no puede demostrarse a partir de su contenido.
 
-### 4.3.5. Fase 1. Diseño del señuelo
+#### 4.3.1.5 Fase 1. Diseño del señuelo
 
 La primera fase prepara el señuelo que se utiliza en el prototipo, su propósito es representar un servicio tributario dentro del entorno controlado y establecer las condiciones necesarias para registrar las interacciones que se producen con este servicio. El diseño de esta fase contempla las cinco decisiones definidas en la metodología, relacionadas con la identificación del activo, el nivel de interacción, el contenido, los mecanismos de detección y el perfil del atacante.
 
@@ -2037,7 +2041,7 @@ Nota. Respuesta del recurso de estado de decoy.api durante la verificación del 
 
 La fase de diseño del señuelo establece el activo que se representa, las funciones que ofrece el servicio, los mecanismos previstos para registrar las interacciones y las técnicas consideradas para definir el perfil del atacante. Con estos elementos definidos, la implementación continúa con el despliegue aislado, etapa en la que el señuelo se integra en las redes establecidas para el entorno controlado.
 
-### 4.3.6. Fase 2. Despliegue aislado
+#### 4.3.1.6 Fase 2. Despliegue aislado
 
 La segunda fase de la implementación materializa el despliegue aislado que el diseño metodológico estructura en cinco actividades, las cuales comprenden el aislamiento de la red de producción, la segmentación interna del entorno del señuelo, el despliegue de los servicios, la verificación de los controles y la documentación del resultado. Esta fase responde a una condición crítica de la metodología, dado que el señuelo solo cumple su función si el adversario que interactúa con él no puede alcanzar los sistemas productivos ni la infraestructura de gestión, por lo cual la verificación del aislamiento constituye la evidencia central que esta sección documenta. El contenido de la sección presenta primero la verificación de la segmentación de la red y después la comprobación de los servicios desplegados, de modo que la evidencia siga el mismo orden en el que el diseño ejecuta estas actividades.
 
@@ -2159,7 +2163,7 @@ Figura 10
 
 La verificación de la fase confirma que la segmentación de la red opera según el diseño y que los servicios del segmento de operación se encuentran desplegados, con lo cual el entorno controlado queda establecido bajo las condiciones que la metodología exige para la captura de eventos. Cada comprobación queda registrada como evidencia dentro de la documentación del despliegue, de modo que la trazabilidad de la fase se conserva para las etapas posteriores de la investigación. Con el entorno desplegado, segmentado y verificado, la implementación continúa con la fase de captura, en la cual el señuelo comienza a registrar las interacciones que recibe.
 
-### 4.3.7. Fase 3. Captura, enriquecimiento y custodia
+#### 4.3.1.7 Fase 3. Captura, enriquecimiento y custodia
 
 La tercera fase de la implementación verifica la captura, el enriquecimiento y la custodia de los eventos que las interacciones con el señuelo generan, para lo cual el diseño metodológico estructura cinco actividades relacionadas con la captura de los eventos, el enriquecimiento con contexto, la preservación de la cadena de custodia, la validación de la integridad y la documentación del resultado. La captura de eventos se apoya en seis componentes que observan la actividad del entorno desde distintos puntos de vista, los cuales se describen a continuación junto con su función y su propósito dentro del prototipo, para después presentar la evidencia de su operación durante las pruebas controladas.
 
@@ -2318,7 +2322,7 @@ Figura 24
 
 La verificación de la fase confirma que la captura, el enriquecimiento y la custodia operan como un solo proceso, en el cual los eventos fluyen desde los sensores y los señuelos hacia el punto de recepción, los registros incorporan la identificación de la técnica de MITRE ATT&CK y la correspondencia con las fases de ISO/IEC 27035, y la evidencia queda protegida mediante huellas criptográficas, sellado temporal y verificación de integridad. Este resultado verifica las actividades que el diseño metodológico asigna a la fase y establece la base de registros trazables sobre la cual la correlación con la gestión de incidentes opera. Con la captura, el enriquecimiento y la custodia verificados, la implementación continúa con la fase de correlación, en la cual los eventos se vinculan con los casos de la gestión institucional.
 
-### 4.3.8. Fase 4. Correlación con gestión de incidentes
+#### 4.3.1.8 Fase 4. Correlación con gestión de incidentes
 
 La cuarta fase de la implementación verifica la correlación de los eventos del señuelo con la gestión institucional de incidentes, para lo cual el diseño metodológico estructura cinco actividades relacionadas con la vinculación de los eventos al sistema de gestión, la clasificación por tipo y severidad, la notificación a los responsables, la priorización por impacto y la documentación del resultado. La verificación de esta fase se apoya en cuatro componentes que transforman la actividad observada en los señuelos en casos documentados dentro de la plataforma de gestión, los cuales se describen a continuación junto con su función y su propósito dentro del prototipo.
 
@@ -2383,7 +2387,7 @@ Figura 28
 
 La verificación de la fase confirma la cadena completa de correlación, en la cual un evento capturado por el señuelo se transforma en una alerta estructurada, la alerta origina un caso mediante orquestación automatizada y el caso queda documentado con el mapeo de MITRE ATT&CK y el vínculo a la inteligencia de amenazas. Este resultado verifica las actividades de vinculación, clasificación y documentación que el diseño metodológico asigna a la fase, de modo que la gestión de incidentes opera sobre registros trazables desde su origen hasta su cierre. Con la correlación verificada, la implementación continúa con la fase de medición, en la cual los indicadores de la cadena se calculan sobre los casos registrados.
 
-### 4.3.9. Fase 5. Medición y lecciones aprendidas
+#### 4.3.1.9 Fase 5. Medición y lecciones aprendidas
 
 La quinta fase de la implementación verifica la medición del impacto y las lecciones aprendidas, para lo cual el diseño metodológico estructura cinco actividades relacionadas con la medición del impacto mediante indicadores cuantitativos, la comparación del estado inicial con el estado posterior, la evaluación de la sostenibilidad institucional, la documentación de las lecciones aprendidas y la difusión de los resultados. La medición del prototipo se apoya en cinco componentes que consolidan los indicadores de la cadena y los presentan en tableros y reportes, los cuales se describen a continuación junto con su función y su propósito dentro del prototipo.
 
@@ -2507,7 +2511,7 @@ Estas lecciones se incorporan al bucle de retroalimentación que el diseño esta
 
 La verificación de la fase confirma que la medición del impacto opera sobre indicadores trazables, con un tiempo medio de detección en el orden de los segundos para la mayor parte de los escenarios, una cobertura de detección sobre diez técnicas de seis tácticas y una correspondencia documentada con el ciclo de incidentes de ISO/IEC 27035. Este resultado verifica las actividades que el diseño metodológico asigna a la fase y cierra el ciclo de la metodología con la evidencia que la mejora continua requiere.
 
-### 4.3.10. Prueba controlada de extremo a extremo
+#### 4.3.1.10 Prueba controlada de extremo a extremo
 
 La verificación de la primera instanciación concluye con una prueba controlada de extremo a extremo, que ejerce la cadena completa de la metodología en una secuencia integrada: interacción con el señuelo, captura del evento, enriquecimiento y custodia de la evidencia, correlación con la gestión de incidentes y medición del indicador resultante. La prueba se etiqueta como evento sintético de prueba, dado que la interacción se genera de manera controlada dentro del entorno experimental con el propósito específico de demostrar la operación de la cadena.
 
@@ -2521,7 +2525,7 @@ La verificación de la primera instanciación concluye con una prueba controlada
 
 *Nota.* *[Pendiente: nota de figura con la descripción de la secuencia y su etiqueta de evento sintético de prueba.]*
 
-### 4.3.11. Matriz consolidada de trazabilidad
+#### 4.3.1.11 Matriz consolidada de trazabilidad
 
 La matriz consolidada de trazabilidad relaciona cada elemento del diseño metodológico con su implementación, su evidencia y el apartado que la documenta, cerrando la verificación de la primera instanciación.
 
@@ -2535,17 +2539,19 @@ La matriz consolidada de trazabilidad relaciona cada elemento del diseño metodo
 
 *Nota.* *[Pendiente.]*
 
-### 4.3.12. Síntesis de la primera instanciación
+#### 4.3.1.12 Síntesis de la primera instanciación
 
 La primera instanciación verifica que las catorce categorías funcionales del diseño quedan materializadas en la práctica, con evidencia de operación en las cinco fases de la metodología, de la prueba controlada de extremo a extremo y de la matriz consolidada de trazabilidad. Esta verificación de componentes constituye la base sobre la cual el segundo prototipo evalúa el efecto de la metodología en los indicadores de gestión de incidentes.
 
-*[Pendiente de redacción final: cierre con los conteos de componentes verificados al completar la matriz del 4.3.11.]*
+*[Pendiente de redacción final: cierre con los conteos de componentes verificados al completar la matriz del 4.3.1.11.]*
 
-### 4.3.13 Segunda instanciación: prototipo en contexto SIN
+### 4.3.2 Segundo prototipo: adaptación al contexto del SIN e iteraciones de mejora
 
-Los apartados 4.3.1 a 4.3.12 documentaron la primera instanciación de la metodología en un entorno controlado construido sobre la base de una entidad homologada del rubro de servicios fiscales digitales, con el propósito de verificar que las catorce categorías funcionales del diseño quedan materializadas en la práctica. El presente apartado documenta la segunda instanciación, que replica la misma arquitectura adaptando el señuelo al contexto de un servicio de impuestos nacionales y recorre las cinco fases de la metodología con la misma estructura de verificación. La medición del efecto de la metodología sobre este segundo prototipo, mediante dos iteraciones de operación (preprueba y posprueba) conforme al diseño pre-experimental declarado en el apartado 3.2, se presenta en el apartado 4.4. La distinción entre la verificación de componentes y la validación del efecto preserva el carácter transferible de la metodología, dado que la operación de las categorías funcionales no depende de la marca ni del contexto institucional del señuelo.
+Los apartados 4.3.1.1 a 4.3.1.12 documentaron la primera instanciación de la metodología en un entorno controlado construido sobre la base de una entidad homologada del rubro de servicios fiscales digitales, con el propósito de verificar que las catorce categorías funcionales del diseño quedan materializadas en la práctica. El presente apartado documenta la segunda instanciación, que replica la misma arquitectura adaptando el señuelo al contexto de un servicio de impuestos nacionales y recorre las cinco fases de la metodología con la misma estructura de verificación. La medición del efecto de la metodología sobre este segundo prototipo, mediante dos iteraciones de operación (preprueba y posprueba) conforme al diseño pre-experimental declarado en el apartado 3.2, se presenta en el apartado 4.4. La distinción entre la verificación de componentes y la validación del efecto preserva el carácter transferible de la metodología, dado que la operación de las categorías funcionales no depende de la marca ni del contexto institucional del señuelo.
 
 El alcance de la segunda instanciación comprende la adaptación del señuelo al contexto del Servicio de Impuestos Nacionales de Bolivia y la verificación de las cinco fases en el segundo entorno, documentadas de manera compacta con remisión a la evidencia correspondiente.
+
+#### 4.3.2.1 Adaptación del señuelo y equivalencia entre prototipos
 
 El segundo prototipo replica la arquitectura del primero adaptando el contenido y la identidad visual del señuelo al contexto de un portal tributario nacional. La equivalencia entre ambos entornos se resume en la Tabla X, la cual muestra que la única diferencia sustantiva reside en el contenido del señuelo y la denominación de los artefactos del laboratorio.
 
@@ -2553,7 +2559,7 @@ El segundo prototipo replica la arquitectura del primero adaptando el contenido 
 
 *Equivalencia entre el prototipo I y el prototipo II*
 
-| Elemento | Prototipo I (apartados 4.3.1 a 4.3.12) | Prototipo II (apartado 4.3.13) |
+| Elemento | Prototipo I (apartados 4.3.1.1 a 4.3.1.12) | Prototipo II (apartados 4.3.2.1 a 4.3.2.7) |
 | --- | --- | --- |
 | Denominación del laboratorio | TaxFisco Research Lab | SIN Research Lab *[pendiente: captura]* |
 | Redes | taxfisco-dmz, taxfisco-honeypot, taxfisco-ids, taxfisco-soc | sin-dmz, sin-honeypot, sin-ids, sin-soc *[pendiente: captura de `docker network ls`]* |
@@ -2564,9 +2570,9 @@ El segundo prototipo replica la arquitectura del primero adaptando el contenido 
 
 *Nota.* La tabla relaciona los elementos de infraestructura de ambos prototipos, con remisión a la evidencia de captura que respalda cada elemento del segundo prototipo. La equivalencia de arquitectura sostiene el carácter transferible de la metodología.
 
-#### Fase 1. Diseño del señuelo SIN
+#### 4.3.2.2 Fase 1. Diseño del señuelo SIN
 
-La primera fase de la segunda instanciación adapta el diseño del señuelo al contexto del Servicio de Impuestos Nacionales de Bolivia, replicando la experiencia de un portal tributario nacional en sus funciones de consulta, declaración y autenticación. La adaptación conserva los mecanismos de detección instrumentados en la primera instanciación y modifica únicamente el contenido, la identidad visual y los datos simulados, coherentes con el contexto tributario boliviano y sin datos reales de contribuyentes. La configuración técnica de la instrumentación se describe en el apartado 4.3.5, dado que los mecanismos de detección son idénticos en ambas instanciaciones.
+La primera fase de la segunda instanciación adapta el diseño del señuelo al contexto del Servicio de Impuestos Nacionales de Bolivia, replicando la experiencia de un portal tributario nacional en sus funciones de consulta, declaración y autenticación. La adaptación conserva los mecanismos de detección instrumentados en la primera instanciación y modifica únicamente el contenido, la identidad visual y los datos simulados, coherentes con el contexto tributario boliviano y sin datos reales de contribuyentes. La configuración técnica de la instrumentación se describe en el apartado 4.3.1.5, dado que los mecanismos de detección son idénticos en ambas instanciaciones.
 
 *[Pendiente de evidencia: capturas del portal SIN (inicio y acceso) y del contenido adaptado. Fuente prevista: capturas N.º 3 y N.º 4 del checklist de evidencia.]*
 
@@ -2576,7 +2582,7 @@ La primera fase de la segunda instanciación adapta el diseño del señuelo al c
 
 *[Pendiente: figura.]*
 
-#### Fase 2. Despliegue aislado
+#### 4.3.2.3 Fase 2. Despliegue aislado
 
 La segunda fase verifica que el segundo prototipo se despliega en el entorno aislado y que el señuelo resulta alcanzable únicamente desde las redes permitidas, condición que la metodología establece para esta fase. La comprobación se realiza con la inspección de las cuatro redes del laboratorio y la revisión de las reglas de segmentación.
 
@@ -2588,7 +2594,7 @@ La segunda fase verifica que el segundo prototipo se despliega en el entorno ais
 
 *[Pendiente: figura.]*
 
-#### Fase 3. Captura, enriquecimiento y custodia
+#### 4.3.2.4 Fase 3. Captura, enriquecimiento y custodia
 
 La tercera fase verifica que la interacción con el señuelo del segundo prototipo genera eventos capturados, con enriquecimiento, custodia de la evidencia y cálculo de integridad, en correspondencia con la fase homónima de la primera instanciación.
 
@@ -2600,7 +2606,7 @@ La tercera fase verifica que la interacción con el señuelo del segundo prototi
 
 *[Pendiente: figura.]*
 
-#### Fase 4. Correlación con gestión de incidentes
+#### 4.3.2.5 Fase 4. Correlación con gestión de incidentes
 
 La cuarta fase verifica que los eventos capturados se correlacionan con la gestión de incidentes, mediante la generación de casos clasificados y el mapeo a técnicas del marco de comportamiento adversario.
 
@@ -2612,13 +2618,13 @@ La cuarta fase verifica que los eventos capturados se correlacionan con la gesti
 
 *[Pendiente: figura.]*
 
-#### Fase 5. Medición con iteraciones
+#### 4.3.2.6 Fase 5. Medición con iteraciones
 
 La quinta fase opera la medición del impacto en dos iteraciones consecutivas sobre el segundo prototipo, conforme al diseño pre-experimental declarado en el apartado 3.2. La primera iteración establece la línea base de los indicadores (preprueba) y la segunda mide el efecto de las mejoras derivadas de las lecciones aprendidas (posprueba). Los resultados de ambas iteraciones y la comparación pareada entre ellas se presentan en el apartado 4.4.
 
 *[Pendiente de evidencia: reportes de indicadores de las iteraciones 1 y 2 y tabla comparativa. Fuente prevista: capturas N.º 8, N.º 9 y N.º 10 del checklist de evidencia.]*
 
-### 4.3.14 Síntesis de la implementación
+#### 4.3.2.7 Síntesis del segundo prototipo
 
 La implementación de la metodología queda materializada en dos instanciaciones con arquitectura equivalente, la primera orientada a la verificación de las catorce categorías funcionales y la segunda adaptada al contexto de un servicio de impuestos nacionales, con recorrido verificado de las cinco fases. Sobre esta implementación, el apartado 4.4 presenta los resultados de la medición del impacto mediante dos iteraciones de operación.
 
