@@ -7,8 +7,8 @@
 set -e
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-ATTACK_DIR="$SCRIPT_DIR/attack-scenarios"
-ANALYSIS_DIR="$SCRIPT_DIR/analysis"
+ATTACK_DIR="$SCRIPT_DIR"
+ANALYSIS_DIR="/root/analysis"
 RESULTS_DIR="$SCRIPT_DIR/results"
 
 mkdir -p "$RESULTS_DIR"

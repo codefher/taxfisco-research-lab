@@ -1,0 +1,11 @@
+NETWORK ID     NAME                                      DRIVER    SCOPE
+5b7a8ff8070b   affiliation-application-network-backend   bridge    local
+3773ed0d4181   bridge                                    bridge    local
+996494c0d1d7   host                                      host      local
+b72398b8a5d9   none                                      null      local
+8956de612b3b   postgres-compose_default                  bridge    local
+af770c3fc715   restapi-folk-payments_default             bridge    local
+bb29e06ebb07   sin-dmz                                   bridge    local
+3f5bbb69e60c   sin-honeypot                              bridge    local
+7af0c3e9aa5b   sin-ids                                   bridge    local
+d6727d11ab31   sin-soc                                   bridge    local

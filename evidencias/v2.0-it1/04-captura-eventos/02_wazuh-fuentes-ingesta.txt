@@ -1,0 +1,8 @@
+-- /var/log/suricata/eve.json --
+-rw-r--r-- 1 root root 139218450 Oct  3 18:53 /var/log/suricata/eve.json
+-- /var/log/zeek/http.log --
+-rw-r--r-- 1 root root 692292 Oct  3 19:20 /var/log/zeek/http.log
+-- /var/log/zeek/conn.log --
+-rw-r--r-- 1 root root 48955981 Oct  3 19:21 /var/log/zeek/conn.log
+-- /var/log/zeek/dns.log --
+-rw-r--r-- 1 root root 10137 Oct  3 19:11 /var/log/zeek/dns.log

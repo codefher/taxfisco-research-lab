@@ -1,0 +1,47 @@
+=== Hallazgo de captura N.º 6 — Wazuh / Suricata tras la campaña S01–S10 ===
+
+Timestamp: 2026-10-03T23:21Z (post-campaña)
+Origen:    tail -n 100 /var/ossec/logs/alerts/alerts.json + docker inspect
+
+1. Wazuh Manager tiene SOLO 3 alertas tras toda la campaña + reinicios del lab:
+   - 2026-10-03T18:26:30-0400  rule 502  "Wazuh server started"        (level 3)
+   - 2026-10-03T18:55:03-0400  rule 502  "Wazuh server started"        (level 3)
+   - 2026-10-03T18:57:01-0400  rule 592  "Log file size reduced"        (level 8, T1565.001)
+   Ninguna alerta ATT&CK (rules 100200-100299 del SIN) se disparó.
+
+2. Suricata (sin-live) está en crash loop:
+   $ docker ps -a | grep sin-suricata
+   sin-suricata    Restarting (1) 34 seconds ago
+   El entrypoint `/start-sin.sh` no logra mantener Suricata vivo. El eve.json
+   quedó con 173 176 líneas y 139 MB de la sesión previa, pero no se actualiza
+   desde 2026-10-03T22:53:54Z. Suricata opera en network_mode: host (motivo
+   por el que el namespace Docker no muestra al contenedor en sin-ids).
+
+3. Zeek (sin-zeek) SÍ está ingiriendo datos:
+   /var/log/zeek/http.log   692 292 bytes (último evento 19:20:29Z)
+   /var/log/zeek/conn.log  48 955 981 bytes (último evento 19:21:11Z)
+   /var/log/zeek/dns.log      10 137 bytes (último evento 19:11:xxZ)
+   Wazuh los está ingestando vía los `<localfile>` declarados en
+   `config/wazuh/entrypoint/10-sin-localfiles.sh`, pero no hay alertas ATT&CK
+   generadas porque las reglas custom de Zeek→ATT&CK requieren Suricata como
+   upstream, y Suricata está caído.
+
+4. Decoy API (sin-decoy-api) detecta los ataques directamente (no vía Wazuh):
+   - 264 ataques al decoy registrados en /var/log/decoy-api/attacks.json
+   - 1455 requests totales en all_requests.jsonl
+   - Wazuh NO está configurado para leer `/var/log/decoy-api/attacks.json`
+     (ver `config/wazuh/entrypoint/10-sin-localfiles.sh`: solo suricata y zeek)
+   - Por eso el MTTD del kpi_report.json se calcula directamente desde el log
+     del decoy, no desde Wazuh.
+
+Implicación para la tesis (4.4.2):
+- El MTTD refleja la latencia del decoy instrumentado, no la latencia del
+  SIEM central. Esto es coherente con la decisión arquitectónica del
+  Prototipo II: el decoy es la fuente de verdad para MTTD, y el SIEM
+  correlaciona con la fuente de red cuando Suricata/Zeek están vivos.
+- Suricata en crash loop es un bug operativo (no de diseño). Se documenta
+  como antecedente para la iteración 2.
+
+Salida completa de los comandos en:
+- 01_wazuh-alerts-tail.txt (las 3 alertas JSON literales)
+- 02_wazuh-fuentes-ingesta.txt (tamaños y mtimes de las 4 fuentes ingestadas)

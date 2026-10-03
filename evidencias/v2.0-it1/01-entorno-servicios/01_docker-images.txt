@@ -1,0 +1,5 @@
+REPOSITORY                                   TAG              SIZE
+sin/cortex                                   4.1.0-misp       1.12GB
+sin/wazuh-indexer                            4.10.4-lite      1.47GB
+sin/decoy-portal                             latest           367MB
+sin/decoy-api                                latest           422MB

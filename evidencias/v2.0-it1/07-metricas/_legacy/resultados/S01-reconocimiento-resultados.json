@@ -1,0 +1,23 @@
+{
+  "scenario": "S01-reconocimiento",
+  "technique_id": "T1595",
+  "technique_name": "Active Scanning",
+  "tactic": "Reconnaissance",
+  "timestamp_start": "20260930T051118Z",
+  "timestamp_end": "20260930T051145Z",
+  "tools_used": ["nmap"],
+  "targets_scanned": ["10.20.0.20", "10.20.0.21", "10.20.0.50"],
+  "attacker_ip": "10.20.0.99",
+  "evidence_files": [
+    "nmap_ping_sweep.txt",
+    "nmap_decoy_api.txt",
+    "nmap_decoy_portal.txt",
+    "nmap_honeypot.txt",
+    "nmap_os_detection.txt"
+  ],
+  "expected_detection": [
+    "Suricata rule 2024001 (Nmap user agent)",
+    "Wazuh rule 100250 (Recon tool detection)"
+  ],
+  "iso27035_phase": "Detection and Reporting (Phase 2)"
+}

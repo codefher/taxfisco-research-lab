@@ -1,0 +1,259 @@
+{
+  "metadata": {
+    "report_generated_at": "2026-09-30T05:55:06.775483Z",
+    "thesis": "Metodología Honeypot para la Gestión de Incidentes en Servicios Fiscales",
+    "lab": "SIN Research Lab",
+    "version": "2.0.0",
+    "method": "MTTD medido desde eventos reales (decoy-api + cowrie) vs inicio de escenario"
+  },
+  "execution": {
+    "scenarios_executed": 10,
+    "decoy_attacks_recorded": 168,
+    "decoy_requests_recorded": 764,
+    "cowrie_connections_recorded": 15,
+    "portal_requests_recorded": 7426
+  },
+  "kpis": {
+    "MTTD": {
+      "mean": 6.59,
+      "min": 1.028,
+      "max": 16.4,
+      "samples": 4,
+      "unit": "seconds",
+      "status": "medido",
+      "source": "decoy-api + decoy-api (attacker) + decoy-portal",
+      "details": [
+        {
+          "scenario": "S01-reconocimiento",
+          "technique": "T1595",
+          "source": "decoy-api (attacker)",
+          "timestamp_start": "20260930T051118Z",
+          "first_detection": "2026-09-30T05:11:34.399749Z",
+          "mttd_seconds": 16.4
+        },
+        {
+          "scenario": "S02-escaneo-web",
+          "technique": "T1595.002",
+          "source": "decoy-portal",
+          "timestamp_start": "20260930T051151Z",
+          "first_detection": "2026-09-30T05:11:58.881933Z",
+          "mttd_seconds": 7.882
+        },
+        {
+          "scenario": "S03-bruteforce-ssh",
+          "technique": "T1110.001",
+          "source": null,
+          "mttd_seconds": null,
+          "note": "sin evento de deteccion registrado"
+        },
+        {
+          "scenario": "S04-sql-injection",
+          "technique": "T1190",
+          "source": null,
+          "mttd_seconds": null,
+          "note": "sin evento de deteccion registrado"
+        },
+        {
+          "scenario": "S05-credential-stuffing",
+          "technique": "T1110.004",
+          "source": "decoy-api",
+          "timestamp_start": "20260930T051331Z",
+          "first_detection": "2026-09-30T05:13:32.050771Z",
+          "mttd_seconds": 1.051
+        },
+        {
+          "scenario": "S06-xss",
+          "technique": "T1059.007",
+          "source": null,
+          "mttd_seconds": null,
+          "note": "sin evento de deteccion registrado"
+        },
+        {
+          "scenario": "S07-api-abuse",
+          "technique": "T1078",
+          "source": "decoy-api",
+          "timestamp_start": "20260930T051436Z",
+          "first_detection": "2026-09-30T05:14:37.027972Z",
+          "mttd_seconds": 1.028
+        },
+        {
+          "scenario": "S08-malware-drop",
+          "technique": "T1105",
+          "source": null,
+          "mttd_seconds": null,
+          "note": "sin evento de deteccion registrado"
+        },
+        {
+          "scenario": "S09-reverse-shell",
+          "technique": "T1059.004",
+          "source": null,
+          "mttd_seconds": null,
+          "note": "sin evento de deteccion registrado"
+        },
+        {
+          "scenario": "S10-exfiltracion-dns",
+          "technique": "T1048.003",
+          "source": null,
+          "mttd_seconds": null,
+          "note": "sin evento de deteccion registrado"
+        }
+      ]
+    },
+    "MTTR": {
+      "mean": null,
+      "min": null,
+      "max": null,
+      "samples": 0,
+      "unit": "seconds",
+      "status": "no_medido",
+      "note": "MTTR: requiere timestamps de casos/respuesta en TheHive"
+    },
+    "MTTC": {
+      "mean": null,
+      "min": null,
+      "max": null,
+      "samples": 0,
+      "unit": "seconds",
+      "status": "no_medido",
+      "note": "MTTC: requiere timestamps de casos/respuesta en TheHive"
+    },
+    "MTTContain": {
+      "mean": null,
+      "min": null,
+      "max": null,
+      "samples": 0,
+      "unit": "seconds",
+      "status": "no_medido",
+      "note": "MTTContain: requiere timestamps de casos/respuesta en TheHive"
+    }
+  },
+  "evidence": {
+    "files_per_scenario": {
+      "mean": 12.1,
+      "min": 5,
+      "max": 29,
+      "total": 121
+    },
+    "quality_score": {
+      "mean": 100.0,
+      "max": 100,
+      "min": 100,
+      "samples": 10,
+      "scale": "0-100"
+    }
+  },
+  "coverage": {
+    "mitre_attack": {
+      "techniques_detected": [
+        "T1048.003",
+        "T1059.004",
+        "T1059.007",
+        "T1078",
+        "T1105",
+        "T1110.001",
+        "T1110.004",
+        "T1190",
+        "T1595",
+        "T1595.002"
+      ],
+      "techniques_count": 10,
+      "techniques_total_reference": 600,
+      "techniques_coverage_pct": 50.0,
+      "tactics_covered": [
+        "Command and Control",
+        "Credential Access",
+        "Execution",
+        "Exfiltration",
+        "Initial Access",
+        "Reconnaissance"
+      ],
+      "tactics_count": 6
+    },
+    "iso_27035": {
+      "phases": {
+        "Phase 1 - Plan and Prepare": false,
+        "Phase 2 - Detection and Reporting": true,
+        "Phase 3 - Assessment and Decision": false,
+        "Phase 4 - Responses": false,
+        "Phase 5 - Lessons Learned": false
+      },
+      "phases_covered": 1,
+      "phases_total": 5,
+      "coverage_pct": 20.0
+    },
+    "iso_27001": {
+      "A.5.24 Incident management planning": "Wazuh + TheHive + Shuffle workflows",
+      "A.5.25 Assessment of security events": "Wazuh correlation + Cortex analyzers",
+      "A.5.26 Response to incidents": "Shuffle playbooks + Velociraptor",
+      "A.5.27 Learning from incidents": "TheHive postmortem + MISP feedback",
+      "A.5.28 Collection of evidence": "Evidence repo + SHA-256 + WORM",
+      "A.8.16 Monitoring activities": "Wazuh + Suricata + Zeek",
+      "A.8.20 Network security": "Suricata rules + VLAN segmentation",
+      "controls_implemented": 7,
+      "controls_total_relevant": 7,
+      "coverage_pct": 100.0
+    }
+  },
+  "scenario_details": [
+    {
+      "id": "S01-reconocimiento",
+      "technique": "T1595",
+      "tactic": "Reconnaissance",
+      "duration_seconds": 27.0
+    },
+    {
+      "id": "S02-escaneo-web",
+      "technique": "T1595.002",
+      "tactic": "Reconnaissance",
+      "duration_seconds": 0.0
+    },
+    {
+      "id": "S03-bruteforce-ssh",
+      "technique": "T1110.001",
+      "tactic": "Credential Access",
+      "duration_seconds": 7.0
+    },
+    {
+      "id": "S04-sql-injection",
+      "technique": "T1190",
+      "tactic": "Initial Access",
+      "duration_seconds": 93.0
+    },
+    {
+      "id": "S05-credential-stuffing",
+      "technique": "T1110.004",
+      "tactic": "Credential Access",
+      "duration_seconds": 5.0
+    },
+    {
+      "id": "S06-xss",
+      "technique": "T1059.007",
+      "tactic": "Execution",
+      "duration_seconds": 0.0
+    },
+    {
+      "id": "S07-api-abuse",
+      "technique": "T1078",
+      "tactic": "Initial Access",
+      "duration_seconds": 1.0
+    },
+    {
+      "id": "S08-malware-drop",
+      "technique": "T1105",
+      "tactic": "Command and Control",
+      "duration_seconds": 0.0
+    },
+    {
+      "id": "S09-reverse-shell",
+      "technique": "T1059.004",
+      "tactic": "Execution",
+      "duration_seconds": 1.0
+    },
+    {
+      "id": "S10-exfiltracion-dns",
+      "technique": "T1048.003",
+      "tactic": "Exfiltration",
+      "duration_seconds": 9.0
+    }
+  ]
+}

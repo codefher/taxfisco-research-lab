@@ -1,0 +1,22 @@
+{
+  "scenario": "S09-reverse-shell",
+  "technique_id": "T1059.004",
+  "technique_name": "Unix Shell",
+  "tactic": "Execution",
+  "timestamp_start": "20260930T051336Z",
+  "timestamp_end": "20260930T051337Z",
+  "tools_used": ["msfvenom", "sshpass", "ssh"],
+  "target": "10.20.0.50:2222",
+  "evidence_files": [
+    "reverse_shell.sh",
+    "ssh_attempt.log",
+    "payload_hash.txt",
+    "payload_md5.txt"
+  ],
+  "expected_detection": [
+    "Cowrie captures entire session",
+    "Wazuh rule 100220 (successful login)",
+    "Suricata: reverse shell signatures"
+  ],
+  "iso27035_phase": "Detection and Reporting (Phase 2)"
+}

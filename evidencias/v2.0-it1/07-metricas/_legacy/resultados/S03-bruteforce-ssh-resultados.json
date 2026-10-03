@@ -1,0 +1,18 @@
+{
+  "scenario": "S03-bruteforce-ssh",
+  "technique_id": "T1110.001",
+  "technique_name": "Password Guessing",
+  "tactic": "Credential Access",
+  "timestamp_start": "20260930T051151Z",
+  "timestamp_end": "20260930T051158Z",
+  "tools_used": ["hydra"],
+  "target": "10.20.0.50:2222",
+  "users_tested": 8,
+  "passwords_tested": 20,
+  "evidence_files": ["hydra_ssh_results.txt"],
+  "expected_detection": [
+    "Wazuh rule 100210 (SSH brute force)",
+    "Cowrie log entries for each attempt"
+  ],
+  "iso27035_phase": "Detection and Reporting (Phase 2)"
+}

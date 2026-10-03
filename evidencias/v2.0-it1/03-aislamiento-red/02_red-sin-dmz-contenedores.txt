@@ -1,0 +1,1 @@
+sin-decoy-api (10.20.0.20/24) sin-decoy-portal (10.20.0.21/24) sin-heralding (10.20.0.53/24) sin-postgres (10.20.0.30/24) sin-attacker (10.20.0.99/24) sin-cowrie (10.20.0.50/24) sin-opencanary (10.20.0.52/24) 
