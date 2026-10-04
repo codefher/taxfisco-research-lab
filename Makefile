@@ -109,6 +109,10 @@ thehive-setup:
 	@echo "=== Configurando índice TheHive en Wazuh Indexer ==="
 	@bash scripts/setup-wazuh-index-for-thehive.sh
 
+velociraptor-setup:
+	@echo "=== Creando usuario admin de Velociraptor ==="
+	@bash scripts/init-velociraptor-user.sh
+
 up:
 	@echo "=== NOTA: usa 'make lite-up' para el perfil de 16 GB ==="
 	@echo "=== Continuando con docker compose up... ==="

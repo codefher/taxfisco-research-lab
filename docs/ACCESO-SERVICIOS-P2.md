@@ -36,20 +36,27 @@ anfitrión.
 > imagen lo genere sola):
 >
 > ```bash
-> docker exec sin-velociraptor sh -c \
->   'cd /velociraptor && ./velociraptor --config server.config.yaml \
->    user add admin Admin1234! --role administrator'
-> docker restart sin-velociraptor
+> make velociraptor-setup
 > ```
 
 > **Shuffle** mostrará la pantalla de configuración inicial la primera vez
 > (`/adminsetup`): se registra ahí el usuario `admin@shuffle.local` con la
 > contraseña de la tabla y luego se accede por `/login`.
 
-> **MISP**: el acceso documentado es por interfaz web. La clave de API
-> legacy (`authkey` de 40 caracteres en la tabla `users`) es rechazada por
-> MISP 2.4 («API enabled user»); si se requiere API, generar una clave
-> nueva desde *Administration → Auth Keys*.
+> **MISP**: el acceso web usa las credenciales de la tabla. MISP 2.4.177
+> usa *advanced authkeys*: la clave legacy de la tabla `users` es ignorada.
+> La clave de API vigente (creada 2026-10-04, tabla `auth_keys`) es:
+>
+> ```
+> RaKjZFkdXuoXYPIaAJfzOpTj9lAPw4vJNGXm4k5e
+> ```
+>
+> ```bash
+> curl -sk -H "Authorization: RaKjZFkdXuoXYPIaAJfzOpTj9lAPw4vJNGXm4k5e" \
+>   -H "Accept: application/json" https://localhost:8443/users/view/me
+> ```
+>
+> Si se pierde, generar una nueva desde *Administration → Auth Keys*.
 
 ## API de MISP
 
