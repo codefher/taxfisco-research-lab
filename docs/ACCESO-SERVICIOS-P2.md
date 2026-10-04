@@ -4,6 +4,9 @@ Todos los servicios del laboratorio están operativos. Este documento reúne
 las direcciones y credenciales para acceder a cada uno desde el equipo
 anfitrión.
 
+> Credenciales verificadas en ejecución real el 2026-10-04 (login web o API
+> de cada servicio).
+
 > Los certificados son autofirmados: el navegador pedirá aceptar la
 > excepción de seguridad la primera vez. Es esperado en un laboratorio.
 
@@ -18,14 +21,35 @@ anfitrión.
 | MISP | https://localhost:8443 | `admin@admin.test` | `Admin1234!` |
 | TheHive | http://localhost:9000 | `admin@thehive.local` | `secret` |
 | Cortex | http://localhost:9001 | `admin` | `Admin1234!` |
-| Shuffle | http://localhost:3001 | `admin` | `Shuffle_Admin_2024!` |
+| Shuffle | http://localhost:3001 | `admin@shuffle.local` | `Shuffle_Admin_2024!` |
 | Wazuh Dashboard | https://localhost:1443 | `admin` | `admin` |
+| Wazuh Indexer | https://localhost:9200 | `admin` | `admin` |
 | Velociraptor | https://localhost:8889 | `admin` | `Admin1234!` |
 
 > **Velociraptor** usa autenticación HTTP Basic: al abrir la URL el
 > navegador pedirá usuario y contraseña. Los comandos de API requieren
 > además el encabezado `Referer`, por lo que conviene usar la interfaz
 > web en lugar de `curl` para las operaciones.
+>
+> Si se reinician los volúmenes del contenedor, el usuario administrador
+> debe recrearse (el config montado en `docker-compose.yml` impide que la
+> imagen lo genere sola):
+>
+> ```bash
+> docker exec sin-velociraptor sh -c \
+>   'cd /velociraptor && ./velociraptor --config server.config.yaml \
+>    user add admin Admin1234! --role administrator'
+> docker restart sin-velociraptor
+> ```
+
+> **Shuffle** mostrará la pantalla de configuración inicial la primera vez
+> (`/adminsetup`): se registra ahí el usuario `admin@shuffle.local` con la
+> contraseña de la tabla y luego se accede por `/login`.
+
+> **MISP**: el acceso documentado es por interfaz web. La clave de API
+> legacy (`authkey` de 40 caracteres en la tabla `users`) es rechazada por
+> MISP 2.4 («API enabled user»); si se requiere API, generar una clave
+> nueva desde *Administration → Auth Keys*.
 
 ## API de MISP
 
