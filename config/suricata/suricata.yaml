@@ -46,6 +46,18 @@ outputs:
         - ssh
         - stats
 
+  # Salida EVE dedicada a la ingesta del SIEM: unicamente eventos de tipo
+  # alert. eve.json incluye types con objetos anidados muy grandes (stats,
+  # flow, tls) que el decodificador JSON de wazuh-analysisd rechaza con
+  # "Too many fields for JSON decoder". eve.json se conserva integro para
+  # la evidencia de la tesis; Wazuh lee este archivo.
+  - eve-log:
+      enabled: yes
+      filetype: regular
+      filename: alert-events.json
+      types:
+        - alert
+
   - http-log:
       enabled: yes
       filename: http.log

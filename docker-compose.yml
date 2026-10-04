@@ -82,6 +82,8 @@ services:
       # Ingesta de fuentes del laboratorio (Suricata/Zeek) y reglas custom.
       # Se aplica via entrypoint-scripts, que corre antes de wazuh-control start.
       - ./config/wazuh/entrypoint/10-sin-localfiles.sh:/entrypoint-scripts/10-sin-localfiles.sh:ro
+      - ./config/wazuh/entrypoint/20-sin-indexer.sh:/entrypoint-scripts/20-sin-indexer.sh:ro
+      - ./config/wazuh/entrypoint/30-sin-publisher.sh:/entrypoint-scripts/30-sin-publisher.sh:ro
       - suricata_logs:/var/log/suricata:ro
       - zeek_logs:/var/log/zeek:ro
       - /etc/localtime:/etc/localtime:ro
@@ -110,6 +112,15 @@ services:
     volumes:
       - wazuh_indexer_data:/var/lib/wazuh-indexer
       - ./config/wazuh/certs:/etc/wazuh-indexer/certs:ro
+      # opensearch.yml del host: define path.data/path.logs (persistencia),
+      # SSL con los certs generados y el admin_dn del cert admin.pem.
+      # Sin este mount el contenedor usa /usr/share/wazuh-indexer/opensearch.yml
+      # de la imagen, que no tiene path.data (datos efemeros) ni admin_dn.
+      - ./config/wazuh/indexer/opensearch.yml:/usr/share/wazuh-indexer/opensearch.yml:ro
+    ports:
+      # Publicado al host para que scripts/setup-wazuh-index-for-thehive.sh
+      # y las verificaciones manuales puedan consultar el indice.
+      - "9200:9200"
     logging: *default-logging
     restart: unless-stopped
     mem_limit: 2g  # Aumentado desde 1g (host tiene 31GB RAM)
