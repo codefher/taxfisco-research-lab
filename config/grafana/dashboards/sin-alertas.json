@@ -1,29 +1,53 @@
 {
   "uid": "sin-alertas",
   "title": "SIN - Alertas del SIEM (Wazuh)",
-  "tags": ["sin", "prototipo-2", "wazuh"],
+  "tags": [
+    "sin",
+    "prototipo-2",
+    "wazuh"
+  ],
   "timezone": "browser",
   "schemaVersion": 39,
   "version": 1,
   "refresh": "30s",
-  "time": { "from": "now-6h", "to": "now" },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
   "editable": true,
   "panels": [
     {
       "id": 1,
       "type": "stat",
       "title": "Alertas totales indexadas",
-      "datasource": { "type": "elasticsearch", "uid": "WazuhIndexer" },
-      "gridPos": { "h": 5, "w": 6, "x": 0, "y": 0 },
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "WazuhIndexer"
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 0,
+        "y": 0
+      },
       "fieldConfig": {
         "defaults": {
           "unit": "short",
           "thresholds": {
             "mode": "absolute",
             "steps": [
-              { "color": "green", "value": null },
-              { "color": "yellow", "value": 100 },
-              { "color": "red", "value": 500 }
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 100
+              },
+              {
+                "color": "red",
+                "value": 500
+              }
             ]
           }
         },
@@ -33,7 +57,13 @@
         "colorMode": "background",
         "graphMode": "area",
         "textMode": "auto",
-        "reduceOptions": { "calcs": ["sum"], "fields": "", "values": false }
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "fields": "",
+          "values": false
+        }
       },
       "targets": [
         {
@@ -41,13 +71,22 @@
           "datasource": "WazuhIndexer",
           "query": "*",
           "timeField": "@timestamp",
-          "metrics": [{ "type": "count", "id": "1" }],
+          "metrics": [
+            {
+              "type": "count",
+              "id": "1"
+            }
+          ],
           "bucketAggs": [
             {
               "type": "date_histogram",
               "field": "@timestamp",
               "id": "2",
-              "settings": { "interval": "1h", "min_doc_count": 0, "extended_bounds": {} }
+              "settings": {
+                "interval": "1h",
+                "min_doc_count": 0,
+                "extended_bounds": {}
+              }
             }
           ]
         }
@@ -58,17 +97,34 @@
       "type": "stat",
       "title": "Alertas de Suricata (IDS)",
       "description": "Eventos con regla de Suricata o del ruleset custom SIN (excluye SCA/CIS).",
-      "datasource": { "type": "elasticsearch", "uid": "WazuhIndexer" },
-      "gridPos": { "h": 5, "w": 6, "x": 6, "y": 0 },
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "WazuhIndexer"
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 6,
+        "y": 0
+      },
       "fieldConfig": {
         "defaults": {
           "unit": "short",
           "thresholds": {
             "mode": "absolute",
             "steps": [
-              { "color": "green", "value": null },
-              { "color": "yellow", "value": 20 },
-              { "color": "red", "value": 100 }
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 20
+              },
+              {
+                "color": "red",
+                "value": 100
+              }
             ]
           }
         },
@@ -78,7 +134,13 @@
         "colorMode": "value",
         "graphMode": "area",
         "textMode": "auto",
-        "reduceOptions": { "calcs": ["sum"], "fields": "", "values": false }
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "fields": "",
+          "values": false
+        }
       },
       "targets": [
         {
@@ -86,13 +148,22 @@
           "datasource": "WazuhIndexer",
           "query": "rule.groups: (suricata OR sin OR ids)",
           "timeField": "@timestamp",
-          "metrics": [{ "type": "count", "id": "1" }],
+          "metrics": [
+            {
+              "type": "count",
+              "id": "1"
+            }
+          ],
           "bucketAggs": [
             {
               "type": "date_histogram",
               "field": "@timestamp",
               "id": "2",
-              "settings": { "interval": "1h", "min_doc_count": 0, "extended_bounds": {} }
+              "settings": {
+                "interval": "1h",
+                "min_doc_count": 0,
+                "extended_bounds": {}
+              }
             }
           ]
         }
@@ -102,17 +173,34 @@
       "id": 3,
       "type": "stat",
       "title": "Severidad critica (nivel >= 10)",
-      "datasource": { "type": "elasticsearch", "uid": "WazuhIndexer" },
-      "gridPos": { "h": 5, "w": 6, "x": 12, "y": 0 },
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "WazuhIndexer"
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 12,
+        "y": 0
+      },
       "fieldConfig": {
         "defaults": {
           "unit": "short",
           "thresholds": {
             "mode": "absolute",
             "steps": [
-              { "color": "green", "value": null },
-              { "color": "orange", "value": 1 },
-              { "color": "red", "value": 10 }
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 1
+              },
+              {
+                "color": "red",
+                "value": 10
+              }
             ]
           }
         },
@@ -122,7 +210,13 @@
         "colorMode": "background",
         "graphMode": "none",
         "textMode": "auto",
-        "reduceOptions": { "calcs": ["sum"], "fields": "", "values": false }
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "fields": "",
+          "values": false
+        }
       },
       "targets": [
         {
@@ -130,13 +224,22 @@
           "datasource": "WazuhIndexer",
           "query": "rule.level: >=10",
           "timeField": "@timestamp",
-          "metrics": [{ "type": "count", "id": "1" }],
+          "metrics": [
+            {
+              "type": "count",
+              "id": "1"
+            }
+          ],
           "bucketAggs": [
             {
               "type": "date_histogram",
               "field": "@timestamp",
               "id": "2",
-              "settings": { "interval": "1h", "min_doc_count": 0, "extended_bounds": {} }
+              "settings": {
+                "interval": "1h",
+                "min_doc_count": 0,
+                "extended_bounds": {}
+              }
             }
           ]
         }
@@ -146,8 +249,16 @@
       "id": 4,
       "type": "stat",
       "title": "Nivel medio de alerta",
-      "datasource": { "type": "elasticsearch", "uid": "WazuhIndexer" },
-      "gridPos": { "h": 5, "w": 6, "x": 18, "y": 0 },
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "WazuhIndexer"
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 18,
+        "y": 0
+      },
       "fieldConfig": {
         "defaults": {
           "unit": "none",
@@ -155,9 +266,18 @@
           "thresholds": {
             "mode": "absolute",
             "steps": [
-              { "color": "green", "value": null },
-              { "color": "yellow", "value": 5 },
-              { "color": "red", "value": 8 }
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 5
+              },
+              {
+                "color": "red",
+                "value": 8
+              }
             ]
           }
         },
@@ -167,7 +287,13 @@
         "colorMode": "value",
         "graphMode": "area",
         "textMode": "auto",
-        "reduceOptions": { "calcs": ["mean"], "fields": "", "values": false }
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        }
       },
       "targets": [
         {
@@ -175,13 +301,23 @@
           "datasource": "WazuhIndexer",
           "query": "*",
           "timeField": "@timestamp",
-          "metrics": [{ "type": "avg", "field": "rule.level", "id": "1" }],
+          "metrics": [
+            {
+              "type": "avg",
+              "field": "rule.level",
+              "id": "1"
+            }
+          ],
           "bucketAggs": [
             {
               "type": "date_histogram",
               "field": "@timestamp",
               "id": "2",
-              "settings": { "interval": "1h", "min_doc_count": 0, "extended_bounds": {} }
+              "settings": {
+                "interval": "1h",
+                "min_doc_count": 0,
+                "extended_bounds": {}
+              }
             }
           ]
         }
@@ -191,18 +327,39 @@
       "id": 5,
       "type": "timeseries",
       "title": "Alertas del SIEM en el tiempo",
-      "datasource": { "type": "elasticsearch", "uid": "WazuhIndexer" },
-      "gridPos": { "h": 8, "w": 16, "x": 0, "y": 5 },
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "WazuhIndexer"
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 16,
+        "x": 0,
+        "y": 5
+      },
       "fieldConfig": {
         "defaults": {
           "unit": "short",
-          "custom": { "fillOpacity": 10, "lineWidth": 1, "showPoints": "never" }
+          "custom": {
+            "fillOpacity": 10,
+            "lineWidth": 1,
+            "showPoints": "never"
+          }
         },
         "overrides": []
       },
       "options": {
-        "legend": { "displayMode": "list", "placement": "bottom", "calcs": ["sum"] },
-        "tooltip": { "mode": "multi", "sort": "desc" }
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "calcs": [
+            "sum"
+          ]
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
       },
       "targets": [
         {
@@ -210,13 +367,22 @@
           "datasource": "WazuhIndexer",
           "query": "*",
           "timeField": "@timestamp",
-          "metrics": [{ "type": "count", "id": "1" }],
+          "metrics": [
+            {
+              "type": "count",
+              "id": "1"
+            }
+          ],
           "bucketAggs": [
             {
               "type": "date_histogram",
               "field": "@timestamp",
               "id": "2",
-              "settings": { "interval": "5m", "min_doc_count": 0, "extended_bounds": {} }
+              "settings": {
+                "interval": "5m",
+                "min_doc_count": 0,
+                "extended_bounds": {}
+              }
             }
           ]
         },
@@ -225,13 +391,22 @@
           "datasource": "WazuhIndexer",
           "query": "rule.groups: (suricata OR sin OR ids)",
           "timeField": "@timestamp",
-          "metrics": [{ "type": "count", "id": "1" }],
+          "metrics": [
+            {
+              "type": "count",
+              "id": "1"
+            }
+          ],
           "bucketAggs": [
             {
               "type": "date_histogram",
               "field": "@timestamp",
               "id": "2",
-              "settings": { "interval": "5m", "min_doc_count": 0, "extended_bounds": {} }
+              "settings": {
+                "interval": "5m",
+                "min_doc_count": 0,
+                "extended_bounds": {}
+              }
             }
           ]
         }
@@ -242,17 +417,34 @@
       "type": "bargauge",
       "title": "Alertas por severidad",
       "description": "Consultas Lucene por rango de rule.level. Se usan filtros en lugar de una agregacion terms porque el datasource elasticsearch de Grafana 11 genera 'order: {}' en los terms, que OpenSearch 2.19 rechaza con 400.",
-      "datasource": { "type": "elasticsearch", "uid": "WazuhIndexer" },
-      "gridPos": { "h": 8, "w": 8, "x": 16, "y": 5 },
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "WazuhIndexer"
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 16,
+        "y": 5
+      },
       "fieldConfig": {
         "defaults": {
           "unit": "short",
           "thresholds": {
             "mode": "absolute",
             "steps": [
-              { "color": "green", "value": null },
-              { "color": "yellow", "value": 1 },
-              { "color": "red", "value": 10 }
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 1
+              },
+              {
+                "color": "red",
+                "value": 10
+              }
             ]
           }
         },
@@ -263,7 +455,13 @@
         "orientation": "horizontal",
         "showUnfilled": true,
         "valueMode": "color",
-        "reduceOptions": { "calcs": ["sum"], "fields": "", "values": false }
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "fields": "",
+          "values": false
+        }
       },
       "targets": [
         {
@@ -271,13 +469,22 @@
           "datasource": "WazuhIndexer",
           "query": "rule.level: >=10",
           "timeField": "@timestamp",
-          "metrics": [{ "type": "count", "id": "1" }],
+          "metrics": [
+            {
+              "type": "count",
+              "id": "1"
+            }
+          ],
           "bucketAggs": [
             {
               "type": "date_histogram",
               "field": "@timestamp",
               "id": "2",
-              "settings": { "interval": "1h", "min_doc_count": 0, "extended_bounds": {} }
+              "settings": {
+                "interval": "1h",
+                "min_doc_count": 0,
+                "extended_bounds": {}
+              }
             }
           ]
         },
@@ -286,13 +493,22 @@
           "datasource": "WazuhIndexer",
           "query": "rule.level: [7 TO 9]",
           "timeField": "@timestamp",
-          "metrics": [{ "type": "count", "id": "1" }],
+          "metrics": [
+            {
+              "type": "count",
+              "id": "1"
+            }
+          ],
           "bucketAggs": [
             {
               "type": "date_histogram",
               "field": "@timestamp",
               "id": "2",
-              "settings": { "interval": "1h", "min_doc_count": 0, "extended_bounds": {} }
+              "settings": {
+                "interval": "1h",
+                "min_doc_count": 0,
+                "extended_bounds": {}
+              }
             }
           ]
         },
@@ -301,13 +517,22 @@
           "datasource": "WazuhIndexer",
           "query": "rule.level: [4 TO 6]",
           "timeField": "@timestamp",
-          "metrics": [{ "type": "count", "id": "1" }],
+          "metrics": [
+            {
+              "type": "count",
+              "id": "1"
+            }
+          ],
           "bucketAggs": [
             {
               "type": "date_histogram",
               "field": "@timestamp",
               "id": "2",
-              "settings": { "interval": "1h", "min_doc_count": 0, "extended_bounds": {} }
+              "settings": {
+                "interval": "1h",
+                "min_doc_count": 0,
+                "extended_bounds": {}
+              }
             }
           ]
         },
@@ -316,13 +541,22 @@
           "datasource": "WazuhIndexer",
           "query": "rule.level: [0 TO 3]",
           "timeField": "@timestamp",
-          "metrics": [{ "type": "count", "id": "1" }],
+          "metrics": [
+            {
+              "type": "count",
+              "id": "1"
+            }
+          ],
           "bucketAggs": [
             {
               "type": "date_histogram",
               "field": "@timestamp",
               "id": "2",
-              "settings": { "interval": "1h", "min_doc_count": 0, "extended_bounds": {} }
+              "settings": {
+                "interval": "1h",
+                "min_doc_count": 0,
+                "extended_bounds": {}
+              }
             }
           ]
         }
@@ -330,30 +564,67 @@
     },
     {
       "id": 7,
-      "type": "table",
-      "title": "Ultimas alertas del SIEM",
+      "type": "logs",
+      "title": "Alertas IDS del SIEM (registro)",
       "description": "Documentos crudos del indice wazuh-alerts, ordenados por fecha descendente.",
-      "datasource": { "type": "elasticsearch", "uid": "WazuhIndexer" },
-      "gridPos": { "h": 12, "w": 24, "x": 0, "y": 13 },
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "WazuhIndexer"
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 24,
+        "x": 0,
+        "y": 13
+      },
       "fieldConfig": {
         "defaults": {},
         "overrides": [
           {
-            "matcher": { "id": "byName", "options": "rule.level" },
-            "properties": [{ "id": "custom.width", "value": 90 }]
+            "matcher": {
+              "id": "byName",
+              "options": "rule.level"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 90
+              }
+            ]
           }
         ]
       },
-      "options": { "showHeader": true, "cellHeight": "sm", "footer": { "show": false } },
+      "options": {
+        "showTime": true,
+        "showLabels": false,
+        "showCommon": false,
+        "wrapLogMessage": true,
+        "prettifyLogMessage": false,
+        "enableLogDetails": true,
+        "dedupStrategy": "none",
+        "sortOrder": "Descending"
+      },
       "targets": [
         {
           "refId": "A",
           "datasource": "WazuhIndexer",
           "query": "rule.groups: (suricata OR sin OR ids)",
           "timeField": "@timestamp",
-          "metrics": [{ "type": "raw_documents", "id": "1" }],
+          "metrics": [
+            {
+              "type": "logs",
+              "id": "1"
+            }
+          ],
           "bucketAggs": [],
-          "sort": [{ "@timestamp": { "order": "desc", "unmapped_type": "date" } }]
+          "sort": [
+            {
+              "@timestamp": {
+                "order": "desc",
+                "unmapped_type": "date"
+              }
+            }
+          ]
         }
       ]
     }

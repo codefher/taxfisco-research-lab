@@ -113,6 +113,10 @@ velociraptor-setup:
 	@echo "=== Creando usuario admin de Velociraptor ==="
 	@bash scripts/init-velociraptor-user.sh
 
+ids-reset:
+	@echo "=== Reiniciando la ingesta IDS de Suricata ==="
+	@bash scripts/reset-ids-offset.sh
+
 up:
 	@echo "=== NOTA: usa 'make lite-up' para el perfil de 16 GB ==="
 	@echo "=== Continuando con docker compose up... ==="
