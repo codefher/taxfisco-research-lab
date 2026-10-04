@@ -8,22 +8,26 @@ bootstrap.memory_lock: false
 path.data: /var/lib/wazuh-indexer
 path.logs: /var/log/wazuh-indexer
 
-# Wazuh Indexer 4.10 con SSL habilitado (single-node lab)
+# Wazuh Indexer 4.10 con SSL habilitado (single-node lab).
+# Los nombres de archivo siguen el formato que emite scripts/generate-wazuh-certs.sh
+# (<rol>-key.pem y <rol>.pem), NO <rol>.key.
 plugins.security.ssl.http.enabled: true
 plugins.security.ssl.http.pemcert_filepath: /etc/wazuh-indexer/certs/indexer.pem
-plugins.security.ssl.http.pemkey_filepath: /etc/wazuh-indexer/certs/indexer.key
+plugins.security.ssl.http.pemkey_filepath: /etc/wazuh-indexer/certs/indexer-key.pem
 plugins.security.ssl.http.pemtrustedcas_filepath: /etc/wazuh-indexer/certs/root-ca.pem
 plugins.security.ssl.transport.enabled: true
 plugins.security.ssl.transport.pemcert_filepath: /etc/wazuh-indexer/certs/indexer.pem
-plugins.security.ssl.transport.pemkey_filepath: /etc/wazuh-indexer/certs/indexer.key
+plugins.security.ssl.transport.pemkey_filepath: /etc/wazuh-indexer/certs/indexer-key.pem
 plugins.security.ssl.transport.pemtrustedcas_filepath: /etc/wazuh-indexer/certs/root-ca.pem
 
-# Admin user (CN debe coincidir con el cert admin.pem)
+# Admin user (CN debe coincidir con el cert admin.pem generado por
+# scripts/generate-wazuh-certs.sh: CN=admin,OU=Lab,O=SIN,L=LaPaz,ST=LP,C=BO)
 plugins.security.authcz.admin_dn:
   - "CN=admin,OU=Lab,O=SIN,L=LaPaz,ST=LP,C=BO"
 
-# Auditoria deshabilitada para simplificar el lab
-plugins.security.audit.type: internal_opensearch
+# Auditoria: deshabilitada para simplificar el lab (sin impacto en el
+# funcionamiento del SIEM ni de los analisis de la tesis).
+plugins.security.audit.type: none
 
 # Network
 http.port: 9200

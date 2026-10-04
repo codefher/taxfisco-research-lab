@@ -1,19 +1,17 @@
-$ python3 /tmp/q_alertas.py
+$ python3 analysis/q_alertas.py
 
-Alertas del SIEM derivadas del senuelo: 10000
+Alertas del SIEM derivadas del senuelo: 33967
 
-NIVEL   ALERTAS   DESCRIPCION
-12      33923     por nivel de regla
-3       44        por nivel de regla
+NIVEL   ALERTAS     DESCRIPCION
+12      33923       por nivel de regla
+3       44          por nivel de regla
 
-TECNICA MITRE   ALERTAS   DESCRIPCION
-T1190           26932     Suricata: alerta de alta severidad - SIN SQLMap scan detec
-T1190           5173      Suricata: alerta de alta severidad - SIN SQL Injection - s
-T1190           488       Suricata: alerta de alta severidad - SIN SQL Injection - i
--               468       Suricata: path traversal desde 10.20.0.99 - ATT&CK T1083
--               356       Suricata: alerta de alta severidad - SIN XSS - script tag
-T1190           344       Suricata: alerta de alta severidad - SIN SQL Injection - U
--               60        Suricata: alerta de alta severidad - SIN XSS - javascript:
-T1595           40        Suricata: Alert - SIN Nmap scan detected
-T1190           39        Suricata: alerta de alta severidad - SIN SQL Injection - O
--               24        Suricata: alerta de alta severidad - SIN Decoy Admin endpo
+TECNICA       ALERTAS   DESCRIPCION
+T1190         26932     Suricata: alerta de alta severidad - SIN SQLMap scan det
+T1190         5173      Suricata: alerta de alta severidad - SIN SQL Injection -
+T1190         488       Suricata: alerta de alta severidad - SIN SQL Injection -
+T1083         468       Suricata: path traversal desde 10.20.0.99 - ATT&CK T1083
+T1190         356       Suricata: alerta de alta severidad - SIN XSS - script ta
+T1190         344       Suricata: alerta de alta severidad - SIN SQL Injection -
+T1190         60        Suricata: alerta de alta severidad - SIN XSS - javascrip
+sin tecnica   40        Suricata: Alert - SIN Nmap scan detected
