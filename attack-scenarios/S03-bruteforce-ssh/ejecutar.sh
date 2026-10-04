@@ -65,7 +65,7 @@ fi
 
 # 1. Brute force SSH
 echo "[*] Fase 1: Hydra SSH brute force contra Cowrie"
-hydra -L /tmp/users.txt -P /tmp/passwords.txt -t 4 -f \
+timeout 150 hydra -L /tmp/users.txt -P /tmp/passwords.txt -t 4 -f \
     ssh://$HONEYPOT_HOST:$HONEYPOT_PORT \
     -o "$EVIDENCE_DIR/hydra_ssh_results.txt" 2>/dev/null || true
 

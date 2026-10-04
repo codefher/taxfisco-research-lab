@@ -78,6 +78,7 @@ cat > "$EVIDENCE_DIR/resultados.json" <<EOF
   "timestamp_start": "$TIMESTAMP",
   "timestamp_end": "$END_TIME",
   "tools_used": ["curl", "python3"],
+  "targets_scanned": ["$DECOY_API/api/v1/admin/export-all", "$DECOY_API/api/v1/contribuyentes/"],
   "sub_techniques": [
     "T1078.001 Default Accounts",
     "T1213 Data from Information Repositories",

@@ -29,7 +29,7 @@ gobuster dir -u "$DECOY_PORTAL" -w /usr/share/wordlists/dirb/common.txt \
 
 # 2. Nikto web scanner
 echo "[*] Fase 2: Nikto scan"
-nikto -h "$DECOY_PORTAL" -o "$EVIDENCE_DIR/nikto_portal.txt" 2>/dev/null || true
+timeout 150 nikto -h "$DECOY_PORTAL" -o "$EVIDENCE_DIR/nikto_portal.txt" 2>/dev/null || true
 
 # 3. Dirb
 echo "[*] Fase 3: Dirb scan"

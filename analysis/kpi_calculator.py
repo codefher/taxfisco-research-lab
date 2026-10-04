@@ -39,6 +39,8 @@ DECOY_API_LOG = Path(os.environ.get("DECOY_API_LOG", "/var/log/decoy-api/attacks
 DECOY_CONTAINER = os.environ.get("DECOY_CONTAINER", "sin-decoy-api")
 COWRIE_CONTAINER = os.environ.get("COWRIE_CONTAINER", "sin-cowrie")
 PORTAL_CONTAINER = os.environ.get("PORTAL_CONTAINER", "sin-decoy-portal")
+OPENCANARY_CONTAINER = os.environ.get("OPENCANARY_CONTAINER", "sin-opencanary")
+ZEEK_CONTAINER = os.environ.get("ZEEK_CONTAINER", "sin-zeek")
 DEFAULT_ATTACKER_IP = os.environ.get("ATTACKER_IP", "10.20.0.99")
 OUTPUT = Path(os.environ.get("KPI_OUTPUT", REPO_DIR / "analysis" / "kpi_report.json"))
 
@@ -119,6 +121,61 @@ def load_cowrie_connections() -> List[Tuple[datetime, str]]:
     return conns
 
 
+def load_opencanary_alerts() -> List[Tuple[datetime, str]]:
+    """Alertas de OpenCanary (honeypot de ficheros y FTP) registradas en sus
+    logs JSON: (utc_time, host destino).
+
+    Cierra el hueco de S08: el escenario depositaba un fichero EICAR en
+    OpenCanary y el evento existia, pero ninguna fuente de deteccion lo leia.
+    """
+    txt = _run(["docker", "logs", OPENCANARY_CONTAINER])
+    out = []
+    for line in txt.splitlines():
+        line = line.strip()
+        if not line.startswith("{"):
+            continue
+        try:
+            d = json.loads(line)
+        except json.JSONDecodeError:
+            continue
+        marca = d.get("utc_time")
+        if not marca:
+            continue
+        try:
+            out.append((datetime.strptime(marca, "%Y-%m-%d %H:%M:%S.%f")
+                        .replace(tzinfo=timezone.utc), d.get("dst_host", "")))
+        except ValueError:
+            continue
+    return sorted(out, key=lambda x: x[0])
+
+
+def load_zeek_dns() -> List[Tuple[datetime, str]]:
+    """Consultas DNS registradas por Zeek: (momento, query).
+
+    Cierra el hueco de S10: la exfiltracion por tunel DNS se observa en Zeek,
+    pero ninguna fuente de deteccion la tenia en cuenta.
+    """
+    txt = _run(["docker", "exec", ZEEK_CONTAINER, "cat", "/var/log/zeek/dns.log"])
+    out = []
+    for line in txt.splitlines():
+        line = line.strip()
+        if not line:
+            continue
+        try:
+            d = json.loads(line)
+        except json.JSONDecodeError:
+            continue
+        ts = d.get("ts")
+        if not ts:
+            continue
+        try:
+            out.append((datetime.fromtimestamp(float(ts), tz=timezone.utc),
+                        str(d.get("query", ""))))
+        except (TypeError, ValueError, OSError):
+            continue
+    return sorted(out, key=lambda x: x[0])
+
+
 def load_decoy_api_attacks(log_file: Path) -> List[Dict]:
     """Compatibilidad con la firma original."""
     return load_decoy_events()
@@ -144,10 +201,36 @@ def load_decoy_requests() -> List[Dict]:
     return reqs
 
 
+def scenario_targets(scenario: Dict) -> list:
+    """Objetivos del escenario.
+
+    Correccion de la leccion L11: los scripts de escenario escriben la clave
+    "targets", mientras que el calculadorHistorically leia "targets_scanned".
+    Como la clave nunca coincidio, allowed_sources() devolvia el conjunto vacio
+    y la deteccion por ventana del escenario no se aplicaba nunca, lo que dejaba
+    seis escenarios sin MTTD aunque el senuelo hubiera registrado el ataque.
+    Ninguno de los diez escenarios usaba el mismo nombre: S01 y S02
+    escribian "targets_scanned", S04 "targets", S03, S05 y S09 "target", y
+    S06, S07, S08 y S10 no lo guardaban. Se aceptan las tres variantes y, si
+    no hay ninguna, se devuelve la lista vacia en lugar de fallar.
+    """
+    for clave in ("targets_scanned", "targets", "target"):
+        valor = scenario.get(clave)
+        if not valor:
+            continue
+        # S03, S05 y S09 lo escriben como cadena suelta ("10.20.0.50:2222");
+        # sin envolverla en lista, list() la desharia en caracteres y la
+        # comparacion de allowed_sources() dejaria de encontrar la IP.
+        if isinstance(valor, str):
+            return [valor]
+        return list(valor)
+    return []
+
+
 def scenario_target_paths(scenario: Dict) -> List[str]:
     """Extrae los paths de los objetivos tipo URL (http://host:puerto/path)."""
     paths = []
-    for t in scenario.get("targets_scanned", []) or []:
+    for t in scenario_targets(scenario):
         m = re.match(r"^https?://[^/]+(/.*)?$", str(t))
         if m and m.group(1):
             paths.append(m.group(1).rstrip("/"))
@@ -179,7 +262,7 @@ def load_portal_requests() -> List[Tuple[datetime, str]]:
 
 def allowed_sources(scenario: Dict) -> set:
     """Fuentes de deteccion plausibles segun los objetivos del escenario."""
-    targets = " ".join(str(t) for t in (scenario.get("targets_scanned") or []))
+    targets = " ".join(str(t) for t in scenario_targets(scenario))
     allowed = set()
     if "10.20.0.20" in targets or "172.20.0.20" in targets:
         allowed.add("decoy-api")
@@ -187,6 +270,11 @@ def allowed_sources(scenario: Dict) -> set:
         allowed.add("decoy-portal")
     if "10.20.0.50" in targets or "172.20.0.50" in targets or ":2222" in targets:
         allowed.add("cowrie")
+    # OpenCanary (honeypot de ficheros) y destinos DNS observados por Zeek.
+    if "10.20.0.52" in targets or "172.20.0.52" in targets:
+        allowed.add("opencanary")
+    if "dns://" in targets or re.search(r"\b[a-z0-9.-]+\.[a-z]{2,}\b", targets):
+        allowed.add("zeek-dns")
     return allowed
 
 
@@ -200,7 +288,9 @@ def calculate_mttd(scenarios: List[Dict],
                    decoy_events: Optional[List[Dict]] = None,
                    cowrie_conns: Optional[List[Tuple[datetime, str]]] = None,
                    decoy_requests: Optional[List[Dict]] = None,
-                   portal_requests: Optional[List[datetime]] = None) -> Dict:
+                   portal_requests: Optional[List[datetime]] = None,
+    opencanary_alerts: Optional[List[Tuple[datetime, str]]] = None,
+    zeek_dns: Optional[List[Tuple[datetime, str]]] = None) -> Dict:
     """
     MTTD real por escenario = (primer evento de deteccion) - (inicio del escenario).
 
@@ -215,6 +305,9 @@ def calculate_mttd(scenarios: List[Dict],
     cowrie_conns = cowrie_conns if cowrie_conns is not None else load_cowrie_connections()
     decoy_requests = decoy_requests if decoy_requests is not None else load_decoy_requests()
     portal_requests = portal_requests if portal_requests is not None else load_portal_requests()
+    opencanary_alerts = (opencanary_alerts if opencanary_alerts is not None
+                         else load_opencanary_alerts())
+    zeek_dns = zeek_dns if zeek_dns is not None else load_zeek_dns()
 
     deltas: List[float] = []
     details = []
@@ -281,6 +374,14 @@ def calculate_mttd(scenarios: List[Dict],
                 for ts, _ in cowrie_conns:
                     if start <= ts <= window_end:
                         candidates.append((ts, "cowrie"))
+            if "opencanary" in allowed:
+                for ts, _host in opencanary_alerts:
+                    if start <= ts <= window_end:
+                        candidates.append((ts, "opencanary"))
+            if "zeek-dns" in allowed:
+                for ts, _q in zeek_dns:
+                    if start <= ts <= window_end:
+                        candidates.append((ts, "zeek-dns"))
 
         if candidates:
             first, source = min(candidates, key=lambda c: c[0])

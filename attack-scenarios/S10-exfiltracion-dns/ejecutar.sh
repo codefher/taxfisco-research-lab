@@ -70,6 +70,7 @@ cat > "$EVIDENCE_DIR/resultados.json" <<EOF
   "timestamp_start": "$TIMESTAMP",
   "timestamp_end": "$END_TIME",
   "tools_used": ["dig", "curl", "openssl"],
+  "targets_scanned": ["dns://$EXFIL_DOMAIN"],
   "protocols": ["DNS", "HTTP"],
   "evidence_files": [
     "dns_exfil.log",

@@ -62,6 +62,7 @@ cat > "$EVIDENCE_DIR/resultados.json" <<EOF
   "timestamp_start": "$TIMESTAMP",
   "timestamp_end": "$END_TIME",
   "tools_used": ["curl"],
+  "targets_scanned": ["$DECOY_PORTAL/contribuyentes/buscar/?q=XSS_TEST"],
   "payloads_tested": [
     "<script>alert</script>",
     "<img onerror>",

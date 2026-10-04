@@ -20,40 +20,55 @@
 
 | Métrica | it1 (v2.0-it1) | it2 (v2.1-it2) | Fuente |
 |---|---|---|---|
-| Escenarios ejecutados | 10 de 10 | pendiente | `07-metricas/kpi_report.json` (`execution.scenarios_executed`) |
-| Servicios accesibles | 25 contenedores en ejecución | pendiente | `01-entorno-servicios/01_docker-compose-ps` |
-| MTTD S01 | 16,85 s | pendiente | `07-metricas/kpi_report.json` |
-| MTTD S02 | 1,21 s | pendiente | `07-metricas/kpi_report.json` |
-| MTTD S05 | 1,73 s | pendiente | `07-metricas/kpi_report.json` |
-| MTTD S07 | 1,06 s | pendiente | `07-metricas/kpi_report.json` |
-| MTTD S03, S04, S06, S08, S09, S10 | sin detección (0 muestras) | pendiente | `07-metricas/kpi_report.json` |
-| MTTD medio | 5,22 s (4 muestras; mín 1,06 / máx 16,85) | pendiente | `07-metricas/kpi_report.json` |
-| MTTR / MTTC / MTTContain | n/d (0 muestras) | pendiente | `07-metricas/kpi_report.json` |
-| Eventos capturados (campaña S01–S10) | 11 eventos IDS en el último ciclo | pendiente | `04-captura-eventos/03_sensores-ndr-suricata-zeek` |
-| Alertas Wazuh generadas | 28 alertas IDS; 434 totales en el índice | pendiente | `04-captura-eventos/02_grafana-dashboard-siem` |
-| Técnicas ATT&CK implementadas | 17 | pendiente | `07-metricas/mitre_coverage.json` |
-| Técnicas ATT&CK detectadas | 10 | pendiente | `07-metricas/mitre_coverage.json` |
-| Tácticas ATT&CK cubiertas | 6 | pendiente | `07-metricas/kpi_report.json` (`coverage`) |
-| Cobertura ISO 27035 (fases) | 5 de 5 fases con evidencia | pendiente | `07-metricas/iso27035_compliance.json` |
-| Reglas IDS propias disparadas | 4 (sid 2024001, 2024010, 2024011, 2024012) | pendiente | `04-captura-eventos/03_sensores-ndr-suricata-zeek` |
-| Hash de custodia de la evidencia | SHA-256 `68f39b01…7f855c` | pendiente | `05-enriquecimiento-custodia/01_custodia-hash-sha256` |
-| Falsos positivos | no medido | pendiente | requiere revisión manual de `04-captura-eventos/` |
-| IMGI | no medido en it1 | pendiente | validación OE4 |
-| IIAM | no medido en it1 | pendiente | validación OE4 |
+| Escenarios ejecutados | 10 de 10 | 10 de 10 | `07-metricas/kpi_report.json` |
+| Escenarios con MTTD medido | 4 de 10 | **10 de 10** | `07-metricas/kpi_report.json` |
+| Servicios accesibles | 25 contenedores | 25 contenedores | `01-entorno-servicios/01_docker-compose-ps` |
+| MTTD S01 | 16,85 s | 15,91 s | `07-metricas/kpi_report.json` |
+| MTTD S02 | 1,21 s | 1,09 s | `07-metricas/kpi_report.json` |
+| MTTD S03 | sin detección | 0,00 s (cowrie) | `07-metricas/kpi_report.json` |
+| MTTD S04 | sin detección | 0,14 s (decoy-portal) | `07-metricas/kpi_report.json` |
+| MTTD S05 | 1,73 s | 1,15 s | `07-metricas/kpi_report.json` |
+| MTTD S06 | sin detección | 0,46 s (decoy-portal) | `07-metricas/kpi_report.json` |
+| MTTD S07 | 1,06 s | 0,26 s | `07-metricas/kpi_report.json` |
+| MTTD S08 | sin detección | 0,56 s (opencanary) | `07-metricas/kpi_report.json` |
+| MTTD S09 | sin detección | 0,00 s (cowrie) | `07-metricas/kpi_report.json` |
+| MTTD S10 | sin detección | 0,65 s (zeek-dns) | `07-metricas/kpi_report.json` |
+| MTTD medio | 5,22 s (4 muestras) | **2,02 s (10 muestras)** | `07-metricas/kpi_report.json` |
+| MTTD mínimo / máximo | 1,06 s / 16,85 s | 0,00 s / 15,91 s | `07-metricas/kpi_report.json` |
+| MTTR / MTTC / MTTContain | n/d (0 muestras) | n/d (0 muestras) | requiere casos de TheHive con marcas de tiempo |
+| Técnicas ATT&CK implementadas | 17 | 17 | `07-metricas/mitre_coverage.json` |
+| Técnicas ATT&CK detectadas | 10 | 10 | `07-metricas/kpi_report.json` |
+| Cobertura ISO 27035 (fases) | 5 de 5 | 5 de 5 | `07-metricas/iso27035_compliance.json` |
+| Reglas IDS propias disparadas | 4 | 4 | `04-captura-eventos/` |
+| Hash de custodia de la evidencia | SHA-256 registrado | SHA-256 registrado | `05-enriquecimiento-custodia/` |
+| Falsos positivos | no medido | no medido | requiere revisión manual |
+| IMGI | no medido | no medido | validación OE4 |
+| IIAM | no medido | no medido | validación OE4 |
 
-### Lectura de la tabla
+### Lectura de la comparación
 
-Dos filas exigen explicación al redactar, porque son límites de la medición y no
-defectos de la captura:
+La diferencia entre it1 e it2 **no está en la detección, sino en la medición**.
+Las tres lecciones que cerramos en it2 (L11, L13, L14) no Vinieron a
+mejorar el laboratory: el señuelo ya registraba los ataques desde it1. Lo que
+estaba roto era el instrumento que los medía:
 
-- **MTTD con 4 muestras de 10 escenarios.** S03, S04, S06, S08, S09 y S10 no
-  dejaron registro detectable en el señuelo. El valor medio de 5,22 s describe
-  los cuatro escenarios que el señuelo sí instrumentó, no la campaña completa.
-- **MTTR, MTTC y MTTContain sin muestras.** El cálculo los emite porque
-  requieren marcas de tiempo de casos y de respuesta que el laboratorio no
-  registra. Con la vista de casos de TheHive inaccesible (ver
-  `v2.0-it1/MANIFIESTO.md`, limitación 2), no hay forma de medirlos en it1 sin
-  instrumentar el registro de incidentes.
+- **L11**: el calculador nunca lograba saber a qué señuelo atribuir una
+  detección, porque leía una clave que ningún escenario escribía con ese
+  nombre. Seis escenarios quedaban como "sin detección" aunque el evento
+  estuviera registrado.
+- **L13**: S09 anunciaba una captura en Cowrie que nunca ocurrió, porque
+  `sshpass` no estaba instalado y el escenario no lo comprobaba.
+- **L14**: los eventos de OpenCanary y del DNS de Zeek existían pero ninguna
+  fuente de detección los leía.
+
+Consecuencia metodológica: **la media de MTTD de it1 (5,22 s) no es comparable
+con la de it2 (2,02 s)**, porque it1 media cuatro escenarios y it2 mide diez.
+La comparación válida es la de cada escenario por separado (columna a columna),
+que sí es pareada. Para la comparación de medias con la prueba de Wilcoxon
+habría que recalcular it1 con el instrumento corregido y volver a ejecutar la
+campaña de it1; mientras tanto, la tabla de MTTD por escenario es la que
+sostiene el argumento.
+
 
 ## Cambios aplicados entre iteraciones
 

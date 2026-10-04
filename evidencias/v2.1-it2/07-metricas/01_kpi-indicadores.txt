@@ -1,0 +1,11 @@
+$ python3 analysis/kpi_calculator.py  (kpi_report.json de la iteracion 2)
+
+INDICADORES - ITERACION 2 (v2.1-it2)
+Metodo: MTTD medido desde eventos reales (decoy-api + cowrie) vs inicio de
+Generado: 2026-10-04T20:33:47.508614Z
+
+INDICADOR         MEDIA     MINIMO    MAXIMO    MUESTRAS  UNIDAD
+MTTD              2.02      0.00      15.91     10        seconds
+MTTR              n/d       n/d       n/d       0         seconds
+MTTC              n/d       n/d       n/d       0         seconds
+MTTContain        n/d       n/d       n/d       0         seconds

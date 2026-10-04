@@ -62,7 +62,35 @@ autofeeding.
 | L8 | Wazuh Dashboard carga el shell pero no renderiza las vistas; la imagen local parece incompleta y la descarga posterior se corta | ABIERTA | Se sustituyó por Grafana para la visualización del SIEM |
 | L9 | TheHive 5.5 redirige toda ruta a `/administration/organisations` por su estado de licencia en prueba | ABIERTA | Impide la vista de casos y la medición de MTTR |
 | L10 | `sin-ids` (10.23.0.0/24) está declarada en el compose pero nunca se crea | ABIERTA | Suricata y Zeek corren en `network_mode: host`; en ejecución hay 3 segmentos, no 4 |
-| L11 | Seis escenarios (S03, S04, S06, S08, S09, S10) no dejan MTTD | ABIERTA | Requeriría instrumentar el registro del señuelo para esos vectores |
+| L11 | Seis escenarios no dejan MTTD | ABIERTA  CERRADA en it2 | Resuelta en it2: el calculador leia `targets_scanned` y ningun escenario usaba ese nombre |
+| L12 | La campaña S01–S10 se bloqueaba en S04 | ABIERTA  CERRADA en it2 | sqlmap, hydra y nikto se ejecutaban sin limite de tiempo |
+| L13 | S09 informaba "Cowrie capturó los intentos" sin que hubiera conexion | ABIERTA  CERRADA en it2 | sshpass no estaba instalado y el escenario no lo comprobaba |
+| L14 | S08 depositaba el fichero en OpenCanary y S10 exfiltraba por DNS, sin fuente que lo leyera | ABIERTA  CERRADA en it2 | El calculador no tenia fuentes para OpenCanary ni para el DNS de Zeek |
+
+## Lecciones cerradas en la iteración 2 (v2.1-it2)
+
+Estas cuatro eran el alcance de it2. Todas con la misma estructura de la
+plantilla y con el commit que las aplica.
+
+| ID | Fase | Hallazgo | Causa raíz | Mejora aplicada | Estado |
+|----|------|----------|------------|-----------------|--------|
+| L11 | F5 | Seis escenarios (S03, S04, S06, S08, S09, S10) quedaban como "sin deteccion" pese a que el señuelo sí registró el ataque | El calculador leía la clave `targets_scanned` para saber a qué señuelo atribuir la detección, pero S01 y S02 la escribían con ese nombre, S04 usaba `targets`, S03, S05 y S09 usaban `target` (como cadena) y S06, S07, S08 y S10 no la guardaban. `allowed_sources()` devolvía siempre el conjunto vacío y la detección por ventana no llegaba a aplicarse | `scenario_targets()` acepta las tres variantes, envuelve los valores de tipo cadena en lista y los cuatro escenarios sin objetivo lo declaran | CERRADA |
+| L12 | F2 | La campaña se quedaba bloqueada en S04 y no llegaba a los escenarios siguientes | `sqlmap --level=3 --risk=2`, `hydra` y `nikto` se ejecutaban sin límite de tiempo | `timeout 180` en los dos sqlmap, `timeout 150` en hydra y nikto, más `--timeout=10` en sqlmap | CERRADA |
+| L13 | F2 | S09 imprimía "[OK] Cowrie capturó los intentos" sin que hubiera conexión alguna | `sshpass` no estaba instalado en el contenedor atacante; el `|| true` del script ocultaba el fallo y el mensaje final no lo comprobaba | Se comprueba la herramienta al inicio y el cierre distingue `[OK]` de `[PARCIAL]`; además se instaló `sshpass` y `gobuster` | CERRADA |
+| L14 | F3 | S08 (depósito de fichero en OpenCanary) y S10 (exfiltración por DNS) nunca podían detectarse | El calculador solo consultaba el log de ataques del decoy-api, las peticiones del portal y las conexiones de Cowrie; no existía fuente para OpenCanary ni para el DNS de Zeek, pese a que ambos registraban los eventos | `load_opencanary_alerts()` y `load_zeek_dns()` como fuentes de detección, con sus salidas en `allowed_sources()` | CERRADA |
+
+### Efecto combinado sobre la medición
+
+| | it1 | it2 |
+|---|---|---|
+| Escenarios con MTTD medido | 4 de 10 | **10 de 10** |
+| MTTD medio | 5,22 s | 2,02 s |
+| MTTD mínimo / máximo | 1,06 s / 16,85 s | 0,00 s / 15,91 s |
+
+Las tres lecciones de instrumentación (L11, L13, L14) no mejoraron la
+detección: **la detección ya funcionaba desde it1**. Lo que estaba roto era el
+instrumento que la medía. Por eso la media baja: it1 medía solo los cuatro
+escenarios que el calculador conseguía atribuir, y it2 mide los diez.
 
 ## Nota sobre el reset
 

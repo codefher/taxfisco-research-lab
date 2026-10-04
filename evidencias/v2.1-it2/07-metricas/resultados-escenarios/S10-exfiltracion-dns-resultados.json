@@ -1,0 +1,21 @@
+{
+  "scenario": "S10-exfiltracion-dns",
+  "technique_id": "T1048.003",
+  "technique_name": "Exfiltration Over Unencrypted Non-C2 Protocol",
+  "tactic": "Exfiltration",
+  "timestamp_start": "20261004T203334Z",
+  "timestamp_end": "20261004T203342Z",
+  "tools_used": ["dig", "curl", "openssl"],
+  "targets_scanned": ["dns://attacker-data-leak.sin-exfil.xyz"],
+  "protocols": ["DNS", "HTTP"],
+  "evidence_files": [
+    "dns_exfil.log",
+    "http_exfil.log"
+  ],
+  "expected_detection": [
+    "Zeek dns.log (high entropy subdomains)",
+    "Suricata ET DNS over HTTPS / TXT anomalies",
+    "Wazuh rule 100270 (DNS tunneling)"
+  ],
+  "iso27035_phase": "Detection and Reporting (Phase 2)"
+}
