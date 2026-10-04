@@ -1,0 +1,9 @@
+{
+  "figura": "02_s08-detectado-por-opencanary.png",
+  "fuente_txt": "02_s08-detectado-por-opencanary.txt",
+  "sha256_txt": "44e5afff558fe0b4923017deb47c2c751ac5d9963734544da6b05732afffa6b2",
+  "lineas_txt": 4,
+  "lineas_dibujadas": 4,
+  "texto_identico": true,
+  "generado_por": "scripts/render-terminal.py"
+}

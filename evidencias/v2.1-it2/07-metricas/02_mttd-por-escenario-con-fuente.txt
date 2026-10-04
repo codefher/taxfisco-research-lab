@@ -1,0 +1,17 @@
+$ python3 -c 'detalle de MTTD por escenario de analysis/kpi_calculator.py'
+
+MTTD POR ESCENARIO CON SU FUENTE DE DETECCION (iteracion 2)
+
+ESCENARIO                 TECNICA      MTTD (s)   FUENTE DE DETECCION
+S01-reconocimiento        T1595        15.91      decoy-api (attacker)
+S02-escaneo-web           T1595.002    1.09       decoy-portal
+S03-bruteforce-ssh        T1110.001    0.00       cowrie
+S04-sql-injection         T1190        0.14       decoy-portal
+S05-credential-stuffing   T1110.004    1.15       decoy-api
+S06-xss                   T1059.007    0.46       decoy-portal
+S07-api-abuse             T1078        0.26       decoy-api
+S08-malware-drop          T1105        0.56       opencanary
+S09-reverse-shell         T1059.004    0.00       cowrie
+S10-exfiltracion-dns      T1048.003    0.65       zeek-dns
+
+Escenarios con MTTD medido: 10 de 10

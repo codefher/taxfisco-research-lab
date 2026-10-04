@@ -1,9 +1,0 @@
-{
-  "figura": "02_kpi-mtfd-por-escenario.png",
-  "fuente_txt": "02_kpi-mtfd-por-escenario.txt",
-  "sha256_txt": "591bdf434fba85f0d1f741b4a86d1abe8e0555cb0641712ff371a991aafeb203",
-  "lineas_txt": 15,
-  "lineas_dibujadas": 15,
-  "texto_identico": true,
-  "generado_por": "scripts/render-terminal.py"
-}

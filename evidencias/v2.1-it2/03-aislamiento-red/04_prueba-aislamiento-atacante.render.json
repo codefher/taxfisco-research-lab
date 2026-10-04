@@ -1,0 +1,9 @@
+{
+  "figura": "04_prueba-aislamiento-atacante.png",
+  "fuente_txt": "04_prueba-aislamiento-atacante.txt",
+  "sha256_txt": "7e9858eb65d425263867ce74f70962ea52f2c8ca912653b8c5e4e37df48a8640",
+  "lineas_txt": 9,
+  "lineas_dibujadas": 9,
+  "texto_identico": true,
+  "generado_por": "scripts/render-terminal.py"
+}

@@ -1,0 +1,9 @@
+{
+  "figura": "03_mejora-it1-vs-it2.png",
+  "fuente_txt": "03_mejora-it1-vs-it2.txt",
+  "sha256_txt": "9a3a63bccceffb7e573f6a3c49ac752d2c1a1d5d4f38a567ebefd01aeae04800",
+  "lineas_txt": 19,
+  "lineas_dibujadas": 19,
+  "texto_identico": true,
+  "generado_por": "scripts/render-terminal.py"
+}

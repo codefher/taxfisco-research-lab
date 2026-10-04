@@ -1,0 +1,9 @@
+{
+  "figura": "01_s09-capturado-por-cowrie.png",
+  "fuente_txt": "01_s09-capturado-por-cowrie.txt",
+  "sha256_txt": "f68bf4b5959257323d7f140b92daf6b9d265d613868b87a9cc107542470000e5",
+  "lineas_txt": 4,
+  "lineas_dibujadas": 4,
+  "texto_identico": true,
+  "generado_por": "scripts/render-terminal.py"
+}

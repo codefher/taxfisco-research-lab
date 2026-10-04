@@ -1,0 +1,9 @@
+{
+  "figura": "01_wazuh-alertas-ids.png",
+  "fuente_txt": "01_wazuh-alertas-ids.txt",
+  "sha256_txt": "56403c36038d3718ad6df3577fe23e4dad5feefc7195b689f1172b8cad791e42",
+  "lineas_txt": 19,
+  "lineas_dibujadas": 19,
+  "texto_identico": true,
+  "generado_por": "scripts/render-terminal.py"
+}

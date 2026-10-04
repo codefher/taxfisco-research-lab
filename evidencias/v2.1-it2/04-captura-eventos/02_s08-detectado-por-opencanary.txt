@@ -1,0 +1,4 @@
+$ docker logs sin-opencanary 2>&1 | tail -2
+
+{"dst_host": "10.20.0.52", "dst_port": 21, "local_time": "2026-10-04 20:33:34.562452", "local_time_adjusted": "2026-10-04 20:33:34.562468", "logdata": {"PASSWORD": "anonymous", "USERNAME": "anonymous"}, "logtype": 2000, "node_id": "sin-opencanary", "src_host": "10.20.0.99", "src_port": 44058, "utc_time": "2026-10-04 20:33:34.562462"}
+2026-10-04T20:33:34+0000 [twisted.python.log#info] "10.20.0.99" - - [04/Oct/2026:20:33:34 +0000] "PUT /upload/eicar_via_http.com HTTP/1.1" 404 277 "-" "curl/8.21.0"

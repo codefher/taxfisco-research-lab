@@ -1,0 +1,9 @@
+{
+  "figura": "03_s10-exfiltracion-dns-vista-por-zeek.png",
+  "fuente_txt": "03_s10-exfiltracion-dns-vista-por-zeek.txt",
+  "sha256_txt": "0f5c5162b8e0e73309a7d3b63b0958ab95e9dd5926e3a2a355595a1e9e30333d",
+  "lineas_txt": 4,
+  "lineas_dibujadas": 4,
+  "texto_identico": true,
+  "generado_por": "scripts/render-terminal.py"
+}

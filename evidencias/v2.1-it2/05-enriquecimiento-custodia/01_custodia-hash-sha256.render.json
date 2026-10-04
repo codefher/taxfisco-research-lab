@@ -1,0 +1,9 @@
+{
+  "figura": "01_custodia-hash-sha256.png",
+  "fuente_txt": "01_custodia-hash-sha256.txt",
+  "sha256_txt": "45c3d79c0b2d22a7777e8c9bb5813d06985c797c12b3adcdf23b1140039c443c",
+  "lineas_txt": 4,
+  "lineas_dibujadas": 4,
+  "texto_identico": true,
+  "generado_por": "scripts/render-terminal.py"
+}

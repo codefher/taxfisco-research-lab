@@ -62,7 +62,7 @@ def lineas_del_txt(ruta_txt):
 
 def main():
     base = sys.argv[1] if len(sys.argv) > 1 else os.path.join(RAIZ, "evidencias", "v2.0-it1")
-    htmls = sorted(glob.glob(os.path.join(base, "*", "*.html")))
+    htmls = sorted(glob.glob(os.path.join(base, "**", "*.html"), recursive=True))
     if not htmls:
         print("No hay figuras compuestas que verificar en", base)
         return 0

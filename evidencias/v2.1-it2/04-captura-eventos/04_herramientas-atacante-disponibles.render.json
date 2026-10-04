@@ -1,0 +1,9 @@
+{
+  "figura": "04_herramientas-atacante-disponibles.png",
+  "fuente_txt": "04_herramientas-atacante-disponibles.txt",
+  "sha256_txt": "269fd6908338436122ade66952212ad549631d1c9cffc9b7f0e5c748572bbe48",
+  "lineas_txt": 12,
+  "lineas_dibujadas": 12,
+  "texto_identico": true,
+  "generado_por": "scripts/render-terminal.py"
+}

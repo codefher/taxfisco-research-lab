@@ -1,0 +1,4 @@
+$ docker exec sin-zeek sh -c 'grep sin-exfil /var/log/zeek/dns.log | tail -2'
+
+{"ts":1791146022.177229,"uid":"C2qiZx4wKTFhtoAYRe","id.orig_h":"10.20.0.99","id.orig_p":57700,"id.resp_h":"8.8.8.8","id.resp_p":53,"proto":"udp","trans_id":49344,"query":"chunk9_13042293b8fe29a5.attacker-data-leak.sin-exfil.xyz","qclass":1,"qclass_name":"C_INTERNET","qtype":16,"qtype_name":"TXT","rcode":3,"rcode_name":"NXDOMAIN","AA":false,"TC":false,"RD":true,"RA":false,"Z":2,"rejected":false}
+{"ts":1791146022.542747,"uid":"CRBtGI3sgsl0lh2Y52","id.orig_h":"10.20.0.99","id.orig_p":33257,"id.resp_h":"8.8.8.8","id.resp_p":53,"proto":"udp","trans_id":42955,"query":"chunk10_21a351bbb9534551.attacker-data-leak.sin-exfil.xyz","qclass":1,"qclass_name":"C_INTERNET","qtype":16,"qtype_name":"TXT","rcode":3,"rcode_name":"NXDOMAIN","AA":false,"TC":false,"RD":true,"RA":false,"Z":2,"rejected":false}

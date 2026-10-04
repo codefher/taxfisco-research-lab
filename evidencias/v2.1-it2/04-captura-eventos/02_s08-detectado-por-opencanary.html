@@ -1,0 +1,27 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><style>
+  * { box-sizing: border-box; }
+  body { margin:0; background:#0f1116; }
+  .win { display:inline-block; background:#0f1116; border:1px solid #2a2f3a;
+         border-radius:9px; overflow:hidden; }
+  .barra { background:#1b1e26; padding:11px 14px; display:flex;
+            align-items:center; gap:8px; }
+  .barra i { width:12px; height:12px; border-radius:50%; display:inline-block; }
+  .p1 { background:#ed6a5e; } .p2 { background:#f5bf4f; } .p3 { background:#62c554; }
+  .cuerpo { padding:16px 20px 20px; font-family:"DejaVu Sans Mono", "Noto Sans Mono", monospace;
+             font-size:14.5px; line-height:1.62; color:#d7dbe3;
+             white-space:pre; letter-spacing:0; }
+  .l { min-height:1.62em; }
+  .prompt { color:#7ee78f; font-weight:700; }
+  .bin { color:#f2f4f8; font-weight:700; }
+  .flag { color:#8cd2f5; font-weight:700; }
+  .val { color:#c6adff; font-weight:700; }
+  .cab { color:#9fd3f0; font-weight:700; }
+  .ok { color:#7ee78f; }
+  .aviso { color:#f5bf4f; }
+  .err { color:#f08282; }
+  .num { color:#a8c8f0; }
+  .hueco { color:#0f1116; }
+</style></head>
+<body><div class="win"><div class="barra"><i class="p1"></i><i class="p2"></i><i class="p3"></i></div>
+<div class="cuerpo" id="c"><div class="l cmd"><span class="prompt">$ </span>docker logs sin<span class="flag">-opencanary</span> 2&gt;&amp;1 | tail <span class="flag">-2</span></div><div class="l">&nbsp;</div><div class="l">{"dst_host": "10.20.0.52", "dst_port": 21, "local_time": "2026-10-04 20:33:34.562452", "local_time_adjusted": "2026-10-04 20:33:34.562468", "logdata": {"PASSWORD": "anonymous", "USERNAME": "anonymous"}, "logtype": 2000, "node_id": "sin-opencanary", "src_host": "10.20.0.99", "src_port": 44058, "utc_time": "2026-10-04 20:33:34.562462"}</div><div class="l">2026-10-04T20:33:34+0000 [twisted.python.log#info] "10.20.0.99" - - [04/Oct/2026:20:33:34 +0000] "PUT /upload/eicar_via_http.com HTTP/1.1" 404 277 "-" "curl/8.21.0"</div></div></div></body></html>

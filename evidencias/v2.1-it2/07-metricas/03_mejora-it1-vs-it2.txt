@@ -1,0 +1,19 @@
+$ python3 -c 'comparacion de kpi_report.json de it1 e it2'
+
+MEJORA DE LA ITERACION 2: MTTD medido en los 10 escenarios
+
+ESCENARIO                 it1               it2               
+--------------------------------------------------------------
+S01-reconocimiento        16.85             15.91             
+S02-escaneo-web           1.21              1.09              
+S03-bruteforce-ssh        sin deteccion     0.00                <- recuperado
+S04-sql-injection         sin deteccion     0.14                <- recuperado
+S05-credential-stuffing   1.73              1.15              
+S06-xss                   sin deteccion     0.46                <- recuperado
+S07-api-abuse             1.06              0.26              
+S08-malware-drop          sin deteccion     0.56                <- recuperado
+S09-reverse-shell         sin deteccion     0.00                <- recuperado
+S10-exfiltracion-dns      sin deteccion     0.65                <- recuperado
+
+Escenarios con medicion:  it1 4/10    ->    it2 10/10
+MTTD medio:              it1 5.22s (n=4)    ->    it2 2.02s (n=10)

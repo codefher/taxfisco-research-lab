@@ -1,0 +1,5 @@
+$ docker logs sin-cowrie 2>&1 | tail -3
+
+2026-10-04T20:30:56+0000 [HoneyPotSSHTransport,37,10.20.0.99] avatar root logging out
+2026-10-04T20:30:56+0000 [cowrie.ssh.transport.HoneyPotSSHTransport#info] connection lost
+2026-10-04T20:30:56+0000 [HoneyPotSSHTransport,37,10.20.0.99] Connection lost after 147 milliseconds

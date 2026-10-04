@@ -1,0 +1,3 @@
+$ grep -c 'OK. Escenario' /tmp/it2.log | sed 's/^/escenarios completados en la iteracion 2: /'
+
+escenarios completados en la iteracion 2: 10

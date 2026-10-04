@@ -1,0 +1,27 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><style>
+  * { box-sizing: border-box; }
+  body { margin:0; background:#0f1116; }
+  .win { display:inline-block; background:#0f1116; border:1px solid #2a2f3a;
+         border-radius:9px; overflow:hidden; }
+  .barra { background:#1b1e26; padding:11px 14px; display:flex;
+            align-items:center; gap:8px; }
+  .barra i { width:12px; height:12px; border-radius:50%; display:inline-block; }
+  .p1 { background:#ed6a5e; } .p2 { background:#f5bf4f; } .p3 { background:#62c554; }
+  .cuerpo { padding:16px 20px 20px; font-family:"DejaVu Sans Mono", "Noto Sans Mono", monospace;
+             font-size:14.5px; line-height:1.62; color:#d7dbe3;
+             white-space:pre; letter-spacing:0; }
+  .l { min-height:1.62em; }
+  .prompt { color:#7ee78f; font-weight:700; }
+  .bin { color:#f2f4f8; font-weight:700; }
+  .flag { color:#8cd2f5; font-weight:700; }
+  .val { color:#c6adff; font-weight:700; }
+  .cab { color:#9fd3f0; font-weight:700; }
+  .ok { color:#7ee78f; }
+  .aviso { color:#f5bf4f; }
+  .err { color:#f08282; }
+  .num { color:#a8c8f0; }
+  .hueco { color:#0f1116; }
+</style></head>
+<body><div class="win"><div class="barra"><i class="p1"></i><i class="p2"></i><i class="p3"></i></div>
+<div class="cuerpo" id="c"><div class="l cmd"><span class="prompt">$ </span>python3 <span class="flag">-c</span> <span class="val">'comparacion de kpi_report.json de it1 e it2'</span></div><div class="l">&nbsp;</div><div class="l">MEJORA DE LA ITERACION 2: MTTD medido en los 10 escenarios</div><div class="l">&nbsp;</div><div class="l"><span class="">ESCENARIO</span><span class="hueco">                 </span>it1               it2</div><div class="l">--------------------------------------------------------------</div><div class="l"><span class="">S01-reconocimiento</span><span class="hueco">        </span>16.85             15.91</div><div class="l"><span class="">S02-escaneo-web</span><span class="hueco">           </span>1.21              1.09</div><div class="l"><span class="">S03-bruteforce-ssh</span><span class="hueco">        </span>sin deteccion     0.00                &lt;- recuperado</div><div class="l"><span class="">S04-sql-injection</span><span class="hueco">         </span>sin deteccion     0.14                &lt;- recuperado</div><div class="l"><span class="">S05-credential-stuffing</span><span class="hueco">   </span>1.73              1.15</div><div class="l"><span class="">S06-xss</span><span class="hueco">                   </span>sin deteccion     0.46                &lt;- recuperado</div><div class="l"><span class="">S07-api-abuse</span><span class="hueco">             </span>1.06              0.26</div><div class="l"><span class="">S08-malware-drop</span><span class="hueco">          </span>sin deteccion     0.56                &lt;- recuperado</div><div class="l"><span class="">S09-reverse-shell</span><span class="hueco">         </span>sin deteccion     0.00                &lt;- recuperado</div><div class="l"><span class="">S10-exfiltracion-dns</span><span class="hueco">      </span>sin deteccion     0.65                &lt;- recuperado</div><div class="l">&nbsp;</div><div class="l"><span class="">Escenarios con medicion:</span><span class="hueco">  </span>it1 4/10    -&gt;    it2 10/10</div><div class="l"><span class="">MTTD medio:</span><span class="hueco">              </span>it1 5.22s (n=4)    -&gt;    it2 2.02s (n=10)</div></div></div></body></html>

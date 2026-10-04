@@ -1,0 +1,27 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><style>
+  * { box-sizing: border-box; }
+  body { margin:0; background:#0f1116; }
+  .win { display:inline-block; background:#0f1116; border:1px solid #2a2f3a;
+         border-radius:9px; overflow:hidden; }
+  .barra { background:#1b1e26; padding:11px 14px; display:flex;
+            align-items:center; gap:8px; }
+  .barra i { width:12px; height:12px; border-radius:50%; display:inline-block; }
+  .p1 { background:#ed6a5e; } .p2 { background:#f5bf4f; } .p3 { background:#62c554; }
+  .cuerpo { padding:16px 20px 20px; font-family:"DejaVu Sans Mono", "Noto Sans Mono", monospace;
+             font-size:14.5px; line-height:1.62; color:#d7dbe3;
+             white-space:pre; letter-spacing:0; }
+  .l { min-height:1.62em; }
+  .prompt { color:#7ee78f; font-weight:700; }
+  .bin { color:#f2f4f8; font-weight:700; }
+  .flag { color:#8cd2f5; font-weight:700; }
+  .val { color:#c6adff; font-weight:700; }
+  .cab { color:#9fd3f0; font-weight:700; }
+  .ok { color:#7ee78f; }
+  .aviso { color:#f5bf4f; }
+  .err { color:#f08282; }
+  .num { color:#a8c8f0; }
+  .hueco { color:#0f1116; }
+</style></head>
+<body><div class="win"><div class="barra"><i class="p1"></i><i class="p2"></i><i class="p3"></i></div>
+<div class="cuerpo" id="c"><div class="l cmd"><span class="prompt">$ </span>python3 /tmp/ndr.py</div><div class="l">&nbsp;</div><div class="l">SENSORES DE DETECCION (NIDS/NDR) DEL SEGMENTO sin-dmz</div><div class="l">&nbsp;</div><div class="l">Suricata - eventos totales capturados : 9083</div><div class="l"><span class="">Suricata - alertas de intruscion</span><span class="hueco">      </span>: 9083</div><div class="l">&nbsp;</div><div class="l">Reglas del ruleset propio (sin-custom.rules) que dispararon:</div><div class="l">  sid 2024002   sev 1   x7250 SIN SQLMap scan detected</div><div class="l">  sid 2024012   sev 1   x1355 SIN SQL Injection - sleep()</div><div class="l">  sid 2024013   sev 1   x129  SIN SQL Injection - information_schema</div><div class="l">  sid 2024031   sev 1   x117  SIN LFI - ../../ traversal</div><div class="l">  sid 2024010   sev 1   x92   SIN SQL Injection - UNION SELECT</div><div class="l">  sid 2024020   sev 1   x89   SIN XSS - script tag</div><div class="l">  sid 2024021   sev 1   x15   SIN XSS - javascript: URI</div><div class="l">  sid 2024050   sev 1   x12   SIN Decoy Admin endpoint accessed</div><div class="l">&nbsp;</div><div class="l"><span class="">Zeek - conexiones</span><span class="hueco">            </span>: 794726</div><div class="l"><span class="">Zeek - peticiones HTTP</span><span class="hueco">       </span>: 19392</div><div class="l"><span class="">Zeek - consultas DNS</span><span class="hueco">         </span>: 2605</div><div class="l">Zeek - archivos transferidos : 31901</div></div></div></body></html>

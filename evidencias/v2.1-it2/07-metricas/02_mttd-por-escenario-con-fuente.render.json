@@ -1,0 +1,9 @@
+{
+  "figura": "02_mttd-por-escenario-con-fuente.png",
+  "fuente_txt": "02_mttd-por-escenario-con-fuente.txt",
+  "sha256_txt": "ad77bbbe0a6b34fcf913096dfcacbfb9f909f9d045f63353fe54a4527cb90a29",
+  "lineas_txt": 17,
+  "lineas_dibujadas": 17,
+  "texto_identico": true,
+  "generado_por": "scripts/render-terminal.py"
+}

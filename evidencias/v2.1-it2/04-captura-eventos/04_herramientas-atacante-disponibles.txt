@@ -1,0 +1,12 @@
+$ docker exec sin-attacker sh -c 'for t in nmap hydra sqlmap nikto dig sshpass gobuster nc curl python3; do printf "%-12s %s\n" $t "$(command -v $t || echo AUSENTE)"; done'
+
+nmap         /usr/bin/nmap
+hydra        /usr/bin/hydra
+sqlmap       /usr/bin/sqlmap
+nikto        /usr/bin/nikto
+dig          /usr/bin/dig
+sshpass      /usr/bin/sshpass
+gobuster     /usr/bin/gobuster
+nc           /usr/bin/nc
+curl         /usr/bin/curl
+python3      /usr/bin/python3

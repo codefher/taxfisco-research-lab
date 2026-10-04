@@ -1,0 +1,9 @@
+{
+  "figura": "02_campana-s01-s10-completada.png",
+  "fuente_txt": "02_campana-s01-s10-completada.txt",
+  "sha256_txt": "9dafca11c53cc32b4cb21222990c07b647e217d9dd59578c43b7d99b68bbc179",
+  "lineas_txt": 3,
+  "lineas_dibujadas": 3,
+  "texto_identico": true,
+  "generado_por": "scripts/render-terminal.py"
+}

@@ -1,0 +1,4 @@
+$ docker logs -t sin-cowrie 2>&1 | grep 'New connection' | tail -2
+
+2026-10-04T20:30:55.781111377Z 2026-10-04T20:30:55+0000 [cowrie.ssh.factory.CowrieSSHFactory] New connection: 10.20.0.99:36048 (10.20.0.50:2222) [session: d7f3fcab8423]
+2026-10-04T20:30:55.944422807Z 2026-10-04T20:30:55+0000 [cowrie.ssh.factory.CowrieSSHFactory] New connection: 10.20.0.99:36056 (10.20.0.50:2222) [session: 86abaf1f01b8]
