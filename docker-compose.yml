@@ -137,6 +137,20 @@ services:
     environment:
       - WAZUH_DASHBOARD_VERSION=4.10.4
       - OPENSEARCH_HOSTS=["https://10.22.0.11:9200"]
+      # El entrypoint de la imagen vuelca estas variables en el keystore, que
+      # tiene prioridad sobre opensearch_dashboards.yml. Sin ellas usa
+      # kibanaserver:kibanaserver y la autenticacion contra el indice falla
+      # ("Authentication Exception") y la app /app/wazuh no llega a registrarse.
+      - DASHBOARD_USERNAME=admin
+      - DASHBOARD_PASSWORD=admin
+      # Host real del wazuh-manager en soc-net. El valor por defecto de la
+      # imagen es "https://wazuh", que no resuelve (getaddrinfo EAI_AGAIN).
+      - WAZUH_API_URL=https://wazuh-manager
+      - WAZUH_API_USERNAME=wazuh-wui
+      - WAZUH_API_PASSWORD=wazuh-wui
+      # PATTERN es obligatorio: sin valor el plugin no registra la app y
+      # /app/wazuh responde "Application Not Found".
+      - PATTERN=wazuh-alerts-*
     depends_on:
       - wazuh.indexer
     volumes:

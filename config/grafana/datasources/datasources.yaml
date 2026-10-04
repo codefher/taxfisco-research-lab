@@ -1,11 +1,22 @@
 apiVersion: 1
 
+# Datasources provisionados del Prototipo II (laboratorio SIN).
+#
+# Correcciones aplicadas tras verificar la ejecucion real (2026-10-04):
+#   - Wazuh Indexer: estaba en http://10.22.0.13:9200. El indice real esta en
+#     10.22.0.11 y SOLO habla TLS, de ahi el https y tlsSkipVerify (cert
+#     autofirmado del laboratorio).
+#   - TheHive: estaba en http://10.22.0.31:9200, que no existe. TheHive no
+#     tiene Elasticsearch propio: indexa en el mismo Wazuh Indexer, indice
+#     thehive_global, asi que apunta al mismo host con database thehive*.
+#   - MISP: 10.22.0.21 es misp-db (correcto). La password se escribe en claro
+#     porque el provisioning de Grafana no expande ${MISP_DB_PASSWORD}.
 datasources:
   - name: WazuhIndexer
-    type: grafana-opensearch-datasource
+    type: elasticsearch
     access: proxy
-    url: http://10.22.0.13:9200
-    database: "wazuh-alerts-*"
+    url: https://10.22.0.11:9200
+    database: "wazuh-alerts*"
     isDefault: true
     editable: true
     basicAuth: true
@@ -13,23 +24,28 @@ datasources:
     secureJsonData:
       basicAuthPassword: admin   # clave real del indice Wazuh (securityadmin -icl)
     jsonData:
-      flavor: "opensearch"
-      version: "1.2.0"
-      timeField: "timestamp"
-      tlsMode: "disable"
+      esVersion: "2.19.5"
+      timeField: "@timestamp"
+      tlsSkipVerify: true
       authEnabled: true
       timeInterval: "1s"
 
   - name: TheHive
     type: elasticsearch
     access: proxy
-    url: http://10.22.0.31:9200
+    url: https://10.22.0.11:9200
     database: "thehive*"
     editable: true
+    basicAuth: true
+    basicAuthUser: admin
+    secureJsonData:
+      basicAuthPassword: admin
     jsonData:
+      esVersion: "2.19.5"
       timeField: "_source.createdAt"
-      esVersion: "7.10.2"
-      tlsMode: "disable"
+      tlsSkipVerify: true
+      authEnabled: true
+      timeInterval: "1s"
 
   - name: MISP
     type: mysql
@@ -38,12 +54,6 @@ datasources:
     database: misp
     user: misp
     secureJsonData:
-      password: ${MISP_DB_PASSWORD}
+      password: ChangeMe_Strong!
     jsonData:
       timeField: "timestamp"
-
-  - name: Prometheus
-    type: prometheus
-    access: proxy
-    url: http://prometheus:9090
-    editable: true

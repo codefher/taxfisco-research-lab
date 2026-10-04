@@ -19,7 +19,7 @@ opensearch.password: 'admin'
 opensearch.requestTimeout: 30000
 opensearch.shardTimeout: 30000
 
-uiSettings.overrides.defaultRoute: /app/wazuh
+uiSettings.overrides.defaultRoute: /app/data-explorer/discover
 
 server.ssl.enabled: true
 server.ssl.key: '/etc/wazuh-dashboard/certs/dashboard-key.pem'
