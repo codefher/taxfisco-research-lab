@@ -41,12 +41,14 @@ filebeat.inputs:
     enabled: true
     paths:
       - $PLACEHOLDER
-output.elasticsearch:
-  hosts: ['https://wazuh.indexer:9200']
-  username: 'admin'
-  password: 'admin'
-  ssl.verification_mode: none
+# Salida a consola en vez de Elasticsearch: con output.elasticsearch filebeat
+# 7.10.2 entra en panic al negociar TLS contra OpenSearch 2.19 y sale con
+# codigo 2, lo que hace que s6 termine el contenedor entero. Como el input esta
+# vacio, la salida no produce nada.
+output.console:
+  pretty: false
 logging.metrics.enabled: false
+logging.level: error
 YAML
     chown root:wazuh "$FB" 2>/dev/null || true
     chmod 640 "$FB" 2>/dev/null || true

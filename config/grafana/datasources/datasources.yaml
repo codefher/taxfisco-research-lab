@@ -24,7 +24,7 @@ datasources:
     secureJsonData:
       basicAuthPassword: admin   # clave real del indice Wazuh (securityadmin -icl)
     jsonData:
-      esVersion: "2.19.5"
+      esVersion: "7.10.2"
       timeField: "@timestamp"
       tlsSkipVerify: true
       authEnabled: true
@@ -41,7 +41,7 @@ datasources:
     secureJsonData:
       basicAuthPassword: admin
     jsonData:
-      esVersion: "2.19.5"
+      esVersion: "7.10.2"
       timeField: "_source.createdAt"
       tlsSkipVerify: true
       authEnabled: true

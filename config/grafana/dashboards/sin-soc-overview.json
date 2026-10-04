@@ -12,39 +12,77 @@
       "datasource": "WazuhIndexer",
       "fieldConfig": {
         "defaults": {
-          "color": {"mode": "thresholds"},
+          "color": {
+            "mode": "thresholds"
+          },
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
-              {"color": "green", "value": null},
-              {"color": "yellow", "value": 100},
-              {"color": "red", "value": 500}
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 100
+              },
+              {
+                "color": "red",
+                "value": 500
+              }
             ]
           },
           "unit": "short"
         },
         "overrides": []
       },
-      "gridPos": {"h": 8, "w": 6, "x": 0, "y": 0},
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 0,
+        "y": 0
+      },
       "id": 1,
       "options": {
         "colorMode": "background",
         "graphMode": "area",
         "justifyMode": "auto",
         "orientation": "auto",
-        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "fields": "",
+          "values": false
+        },
         "textMode": "auto"
       },
       "pluginVersion": "11.2.0",
       "targets": [
         {
           "datasource": "WazuhIndexer",
-          "query": "source=wazuh-alerts-* | stats count() as Total",
-          "queryType": "PPL",
-          "format": "table",
-          "timeField": "timestamp",
-          "refId": "A"
+          "refId": "A",
+          "query": "*",
+          "timeField": "@timestamp",
+          "metrics": [
+            {
+              "type": "count",
+              "id": "1"
+            }
+          ],
+          "bucketAggs": [
+            {
+              "type": "date_histogram",
+              "field": "@timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "1d",
+                "min_doc_count": 0,
+                "extended_bounds": {}
+              }
+            }
+          ]
         }
       ],
       "title": "Total Alerts",
@@ -54,25 +92,63 @@
       "datasource": "WazuhIndexer",
       "fieldConfig": {
         "defaults": {
-          "color": {"mode": "palette-classic"}
+          "color": {
+            "mode": "palette-classic"
+          }
         }
       },
-      "gridPos": {"h": 8, "w": 6, "x": 6, "y": 0},
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 6,
+        "y": 0
+      },
       "id": 2,
       "options": {
-        "displayLabels": ["name", "percent"],
-        "legend": {"displayMode": "list", "placement": "right", "showLegend": true},
+        "displayLabels": [
+          "name",
+          "percent"
+        ],
+        "legend": {
+          "displayMode": "list",
+          "placement": "right",
+          "showLegend": true
+        },
         "pieType": "donut",
-        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": true}
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": true
+        }
       },
       "targets": [
         {
           "datasource": "WazuhIndexer",
-          "query": "source=wazuh-alerts-* | eval sev = if(rule.level >= 10, 'Critica', if(rule.level >= 7, 'Alta', if(rule.level >= 4, 'Media', 'Baja'))) | stats count() as Total by sev | sort - Total",
-          "queryType": "PPL",
-          "format": "table",
-          "timeField": "timestamp",
-          "refId": "A"
+          "refId": "A",
+          "query": "*",
+          "timeField": "@timestamp",
+          "metrics": [
+            {
+              "type": "count",
+              "id": "1"
+            }
+          ],
+          "bucketAggs": [
+            {
+              "type": "terms",
+              "field": "sev",
+              "id": "2",
+              "settings": {
+                "min_doc_count": 1,
+                "order": {
+                  "_count": "desc"
+                },
+                "size": 10
+              }
+            }
+          ]
         }
       ],
       "title": "Alert Distribution by Severity",
@@ -82,33 +158,68 @@
       "datasource": "WazuhIndexer",
       "fieldConfig": {
         "defaults": {
-          "color": {"mode": "thresholds"},
+          "color": {
+            "mode": "thresholds"
+          },
           "thresholds": {
             "mode": "absolute",
             "steps": [
-              {"color": "green", "value": null},
-              {"color": "red", "value": 1}
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 1
+              }
             ]
           }
         }
       },
-      "gridPos": {"h": 8, "w": 6, "x": 12, "y": 0},
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 12,
+        "y": 0
+      },
       "id": 3,
       "options": {
         "colorMode": "background",
         "graphMode": "area",
         "orientation": "horizontal",
-        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "fields": "",
+          "values": false
+        },
         "textMode": "value_and_name"
       },
       "targets": [
         {
           "datasource": "WazuhIndexer",
-          "query": "source=wazuh-alerts-* | where rule.level > 5 | stats count() as Total",
-          "queryType": "PPL",
-          "format": "table",
-          "timeField": "timestamp",
-          "refId": "A"
+          "refId": "A",
+          "query": "rule.level:>5.0",
+          "timeField": "@timestamp",
+          "metrics": [
+            {
+              "type": "count",
+              "id": "1"
+            }
+          ],
+          "bucketAggs": [
+            {
+              "type": "date_histogram",
+              "field": "@timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "1d",
+                "min_doc_count": 0,
+                "extended_bounds": {}
+              }
+            }
+          ]
         }
       ],
       "title": "High Severity Alerts",
@@ -118,34 +229,67 @@
       "datasource": "WazuhIndexer",
       "fieldConfig": {
         "defaults": {
-          "color": {"mode": "thresholds"},
+          "color": {
+            "mode": "thresholds"
+          },
           "thresholds": {
             "mode": "absolute",
             "steps": [
-              {"color": "green", "value": null}
+              {
+                "color": "green",
+                "value": null
+              }
             ]
           },
           "decimals": 2
         }
       },
-      "gridPos": {"h": 8, "w": 6, "x": 18, "y": 0},
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 18,
+        "y": 0
+      },
       "id": 4,
       "options": {
         "colorMode": "value",
         "graphMode": "area",
         "justifyMode": "center",
         "orientation": "horizontal",
-        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
         "textMode": "auto"
       },
       "targets": [
         {
           "datasource": "WazuhIndexer",
-          "query": "source=wazuh-alerts-* | stats avg(rule.level) as AvgLevel",
-          "queryType": "PPL",
-          "format": "table",
-          "timeField": "timestamp",
-          "refId": "A"
+          "refId": "A",
+          "query": "*",
+          "timeField": "@timestamp",
+          "metrics": [
+            {
+              "type": "avg",
+              "field": "rule.level",
+              "id": "1"
+            }
+          ],
+          "bucketAggs": [
+            {
+              "type": "date_histogram",
+              "field": "@timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "1d",
+                "min_doc_count": 0,
+                "extended_bounds": {}
+              }
+            }
+          ]
         }
       ],
       "title": "Average Alert Level",
@@ -155,7 +299,9 @@
       "datasource": "WazuhIndexer",
       "fieldConfig": {
         "defaults": {
-          "color": {"mode": "palette-classic"},
+          "color": {
+            "mode": "palette-classic"
+          },
           "custom": {
             "axisCenteredZero": false,
             "axisColorMode": "text",
@@ -165,32 +311,72 @@
             "drawStyle": "line",
             "fillOpacity": 20,
             "gradientMode": "none",
-            "hideFrom": {"legend": false, "tooltip": false, "viz": false},
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
             "lineInterpolation": "smooth",
             "lineWidth": 2,
             "pointSize": 5,
-            "scaleDistribution": {"type": "linear"},
+            "scaleDistribution": {
+              "type": "linear"
+            },
             "showPoints": "never",
             "spanNulls": false,
-            "stacking": {"group": "A", "mode": "none"},
-            "thresholdsStyle": {"mode": "off"}
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
           }
         }
       },
-      "gridPos": {"h": 8, "w": 24, "x": 0, "y": 8},
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 8
+      },
       "id": 5,
       "options": {
-        "legend": {"calcs": [], "displayMode": "list", "placement": "bottom", "showLegend": true},
-        "tooltip": {"mode": "single", "sort": "none"}
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
       },
       "targets": [
         {
           "datasource": "WazuhIndexer",
-          "query": "source=wazuh-alerts-* | stats count() as Total by span(timestamp, 1d)",
-          "queryType": "PPL",
-          "format": "table",
-          "timeField": "timestamp",
-          "refId": "A"
+          "refId": "A",
+          "query": "*",
+          "timeField": "@timestamp",
+          "metrics": [
+            {
+              "type": "count",
+              "id": "1"
+            }
+          ],
+          "bucketAggs": [
+            {
+              "type": "date_histogram",
+              "field": "@timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "1d",
+                "min_doc_count": 0,
+                "extended_bounds": {}
+              }
+            }
+          ]
         }
       ],
       "title": "Alerts Over Time",
@@ -200,38 +386,77 @@
       "datasource": "WazuhIndexer",
       "fieldConfig": {
         "defaults": {
-          "color": {"mode": "palette-classic"}
+          "color": {
+            "mode": "palette-classic"
+          }
         },
         "overrides": [
           {
-            "matcher": {"id": "byName", "options": "rule.description"},
+            "matcher": {
+              "id": "byName",
+              "options": "rule.description"
+            },
             "properties": [
-              {"id": "custom.width", "value": 820}
+              {
+                "id": "custom.width",
+                "value": 820
+              }
             ]
           },
           {
-            "matcher": {"id": "byName", "options": "Total"},
+            "matcher": {
+              "id": "byName",
+              "options": "Total"
+            },
             "properties": [
-              {"id": "custom.width", "value": 80}
+              {
+                "id": "custom.width",
+                "value": 80
+              }
             ]
           }
         ]
       },
-      "gridPos": {"h": 11, "w": 15, "x": 0, "y": 16},
+      "gridPos": {
+        "h": 11,
+        "w": 15,
+        "x": 0,
+        "y": 16
+      },
       "id": 6,
       "options": {
         "cellHeight": "sm",
         "showHeader": true,
-        "footer": {"show": false}
+        "footer": {
+          "show": false
+        }
       },
       "targets": [
         {
           "datasource": "WazuhIndexer",
-          "query": "source=wazuh-alerts-* | stats count() as Total by rule.description | sort - Total | head 10",
-          "queryType": "PPL",
-          "format": "table",
-          "timeField": "timestamp",
-          "refId": "A"
+          "refId": "A",
+          "query": "*",
+          "timeField": "@timestamp",
+          "metrics": [
+            {
+              "type": "count",
+              "id": "1"
+            }
+          ],
+          "bucketAggs": [
+            {
+              "type": "terms",
+              "field": "rule.description.keyword",
+              "id": "2",
+              "settings": {
+                "min_doc_count": 1,
+                "order": {
+                  "_count": "desc"
+                },
+                "size": 10
+              }
+            }
+          ]
         }
       ],
       "title": "Top Alert Types",
@@ -239,7 +464,12 @@
     },
     {
       "datasource": "WazuhIndexer",
-      "gridPos": {"h": 11, "w": 9, "x": 15, "y": 16},
+      "gridPos": {
+        "h": 11,
+        "w": 9,
+        "x": 15,
+        "y": 16
+      },
       "id": 7,
       "options": {
         "showHeader": true
@@ -247,11 +477,29 @@
       "targets": [
         {
           "datasource": "WazuhIndexer",
-          "query": "source=wazuh-alerts-* | stats count() as Total by agent.name | sort - Total",
-          "queryType": "PPL",
-          "format": "table",
-          "timeField": "timestamp",
-          "refId": "A"
+          "refId": "A",
+          "query": "*",
+          "timeField": "@timestamp",
+          "metrics": [
+            {
+              "type": "count",
+              "id": "1"
+            }
+          ],
+          "bucketAggs": [
+            {
+              "type": "terms",
+              "field": "agent.name",
+              "id": "2",
+              "settings": {
+                "min_doc_count": 1,
+                "order": {
+                  "_count": "desc"
+                },
+                "size": 10
+              }
+            }
+          ]
         }
       ],
       "title": "Alerts by Agent",
@@ -260,9 +508,18 @@
   ],
   "refresh": "10s",
   "schemaVersion": 39,
-  "tags": ["sin", "honeypot", "soc"],
-  "templating": {"list": []},
-  "time": {"from": "now-90d", "to": "now"},
+  "tags": [
+    "sin",
+    "honeypot",
+    "soc"
+  ],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-90d",
+    "to": "now"
+  },
   "timepicker": {},
   "timezone": "browser",
   "title": "SIN SOC - Honeypot Overview",

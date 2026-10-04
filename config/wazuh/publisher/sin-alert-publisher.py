@@ -90,12 +90,20 @@ def ensure_index():
             "mappings": {
                 "properties": {
                     "timestamp": {"type": "date"},
+                    "@timestamp": {"type": "date"},
                     "rule": {
                         "properties": {
                             "level": {"type": "integer"},
-                            "description": {"type": "text"},
+                            "description": {
+                                "type": "text",
+                                # Subcampo keyword para poder agregar en Grafana:
+                                # OpenSearch rechaza con 400 losTerms sobre un
+                                # campo text (fielddata deshabilitado).
+                                "fields": {"keyword": {"type": "keyword", "ignore_above": 512}},
+                            },
                             "id": {"type": "keyword"},
                             "groups": {"type": "keyword"},
+                            "sev": {"type": "keyword"},
                             "mitre": {
                                 "properties": {
                                     "id": {"type": "keyword"},
@@ -162,11 +170,42 @@ def collect(offset):
     return events, offset
 
 
+def severity(level):
+    """Etiqueta de severidad derivada de rule.level.
+
+    Los dashboards del laboratorio (config/grafana/dashboards/*.json) agregan
+    por un campo "sev" que en los ficheros originales de Grafana se calculaba
+    con PPL (eval sev = if(rule.level >= 10, 'Critica', ...)). Como el
+    datasource disponible en Grafana 11 habla consultas de Elasticsearch y no
+    PPL, el campo se calcula aqui al publicar.
+    """
+    try:
+        level = int(level)
+    except (TypeError, ValueError):
+        return "Desconocida"
+    if level >= 10:
+        return "Critica"
+    if level >= 7:
+        return "Alta"
+    if level >= 4:
+        return "Media"
+    return "Baja"
+
+
 def publish(events):
     if not events:
         return True
     lines = []
     for ev in events:
+        rule = ev.get("rule")
+        if isinstance(rule, dict):
+            rule["sev"] = severity(rule.get("level"))
+            ev = dict(ev)
+            ev["rule"] = rule
+        # Wazuh escribe la fecha en "timestamp"; el indice, el index pattern y
+        # los dashboards de Grafana usan "@timestamp" como campo temporal.
+        if "@timestamp" not in ev and ev.get("timestamp"):
+            ev["@timestamp"] = ev["timestamp"]
         lines.append(json.dumps({"index": {"_index": INDEX}}))
         lines.append(json.dumps(ev))
     body = ("\n".join(lines) + "\n").encode()
