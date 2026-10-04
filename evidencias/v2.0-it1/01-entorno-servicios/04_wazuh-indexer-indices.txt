@@ -1,7 +1,7 @@
-$ curl -sk -u admin:admin 'https://localhost:9200/_cat/indices/wazuh-*/?h=index,docs.count&s=index'
+$ curl -s -u admin:admin 'https://localhost:9200/_cat/indices/wazuh-*/?h=index,docs.count&s=index'
 
-wazuh-alerts                               34449
-wazuh-archives                                 0
-wazuh-monitoring-2026.40w                      0
-wazuh-states-vulnerabilities-wazuh-manager     0
-wazuh-statistics-2026.40w                    172
+wazuh-alerts                               417
+wazuh-archives                               0
+wazuh-monitoring-2026.40w                    0
+wazuh-states-vulnerabilities-wazuh-manager   0
+wazuh-statistics-2026.40w                  106

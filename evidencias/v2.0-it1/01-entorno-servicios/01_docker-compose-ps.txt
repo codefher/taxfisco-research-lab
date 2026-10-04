@@ -1,28 +1,28 @@
 $ docker compose ps --format 'table {{.Name}}\t{{.Status}}'
 
 NAME                      STATUS
-sin-attacker              Up 10 hours
-sin-cassandra             Up 18 hours
-sin-cortex                Up 18 hours
-sin-cowrie                Up 18 hours
-sin-decoy-api             Up 18 hours (healthy)
-sin-decoy-portal          Up 18 hours (healthy)
-sin-grafana               Up 6 hours
-sin-heralding             Up 18 hours
-sin-misp-core             Up 18 hours
-sin-misp-db               Up 18 hours
-sin-misp-modules          Up 18 hours
-sin-misp-redis            Up 18 hours
-sin-opencanary            Up 18 hours
-sin-postgres              Up 18 hours
-sin-shuffle               Up 18 hours
-sin-shuffle-db            Up 18 hours
-sin-shuffle-frontend      Up 18 hours
-sin-suricata              Up 9 hours
-sin-thehive               Up 18 hours
-sin-velociraptor          Up 18 hours
-sin-wazuh-dashboard       Up 7 hours
-sin-wazuh-indexer         Up 10 hours
-sin-wazuh-indexer-proxy   Up 18 hours
-sin-wazuh-manager         Up 27 seconds
-sin-zeek                  Up 18 hours
+sin-attacker              Up 5 hours
+sin-cassandra             Up 13 hours
+sin-cortex                Up 13 hours
+sin-cowrie                Up 13 hours
+sin-decoy-api             Up 13 hours (healthy)
+sin-decoy-portal          Up 13 hours (healthy)
+sin-grafana               Up 48 minutes
+sin-heralding             Up 13 hours
+sin-misp-core             Up 13 hours
+sin-misp-db               Up 13 hours
+sin-misp-modules          Up 13 hours
+sin-misp-redis            Up 13 hours
+sin-opencanary            Up 13 hours
+sin-postgres              Up 13 hours
+sin-shuffle               Up 13 hours
+sin-shuffle-db            Up 13 hours
+sin-shuffle-frontend      Up 13 hours
+sin-suricata              Up 5 hours
+sin-thehive               Up 13 hours
+sin-velociraptor          Up 13 hours
+sin-wazuh-dashboard       Up 2 hours
+sin-wazuh-indexer         Up 5 hours
+sin-wazuh-indexer-proxy   Up 13 hours
+sin-wazuh-manager         Up About a minute
+sin-zeek                  Up 13 hours
