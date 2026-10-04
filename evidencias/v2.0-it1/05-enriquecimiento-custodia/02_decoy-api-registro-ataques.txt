@@ -1,0 +1,3 @@
+$ docker exec sin-decoy-api sh -c 'wc -l /var/log/decoy-api/attacks.json 2>/dev/null || echo 0'
+
+54 /var/log/decoy-api/attacks.json

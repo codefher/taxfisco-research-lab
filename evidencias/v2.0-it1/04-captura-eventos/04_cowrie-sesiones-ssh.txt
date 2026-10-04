@@ -1,0 +1,5 @@
+$ docker logs sin-cowrie 2>&1 | tail -3
+
+2026-10-04T15:26:42+0000 [HoneyPotSSHTransport,4,10.20.0.99] Connection lost after 54 milliseconds
+2026-10-04T15:26:42+0000 [cowrie.ssh.transport.HoneyPotSSHTransport#info] connection lost
+2026-10-04T15:26:42+0000 [HoneyPotSSHTransport,6,10.20.0.99] Connection lost after 53 milliseconds

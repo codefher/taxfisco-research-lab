@@ -1,0 +1,3 @@
+$ docker network inspect sin-soc --format '{{.Name}} | subnet={{range .IPAM.Config}}{{.Subnet}}{{end}} | gateway={{range .IPAM.Config}}{{.Gateway}}{{end}} | contenedores={{len .Containers}}'
+
+sin-soc | subnet=10.22.0.0/24 | gateway=10.22.0.1 | contenedores=19

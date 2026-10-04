@@ -1,0 +1,6 @@
+$ docker network ls --filter name=sin-
+
+NETWORK ID     NAME           DRIVER    SCOPE
+976b84407bc2   sin-dmz        bridge    local
+7093b0c8744f   sin-honeypot   bridge    local
+db0a0740b79e   sin-soc        bridge    local

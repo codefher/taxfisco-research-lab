@@ -1,0 +1,9 @@
+$ docker exec sin-attacker bash /tmp/iso.sh
+
+OBJETIVO                           RED        RESULTADO
+portal SENUELO (10.20.0.21:8000)   sin-dmz    ALCANZABLE
+api SENUELO (10.20.0.20:8000)      sin-dmz    ALCANZABLE
+wazuh-indexer (10.22.0.11:9200)    sin-soc    BLOQUEADO
+thehive (10.22.0.30:9000)          sin-soc    BLOQUEADO
+wazuh-dashboard (10.22.0.12:1443)  sin-soc    BLOQUEADO
+misp (10.22.0.20:8443)             sin-soc    BLOQUEADO

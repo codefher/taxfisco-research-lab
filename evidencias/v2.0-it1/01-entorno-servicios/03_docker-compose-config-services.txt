@@ -1,0 +1,27 @@
+$ docker compose config --services
+
+cowrie
+suricata
+cassandra.thehive
+cortex
+wazuh.indexer
+thehive
+wazuh-indexer-proxy
+postgres.fiscal
+decoy.portal
+misp.db
+misp.core
+misp.redis
+wazuh.dashboard
+zeek
+attacker
+grafana
+heralding
+opencanary
+shuffle.db
+shuffle
+decoy.api
+misp.modules
+shuffle.frontend
+velociraptor
+wazuh.manager

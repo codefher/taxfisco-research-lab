@@ -1,0 +1,6 @@
+$ docker images | grep -E 'sin/|REPOSITORY'
+
+sin/cortex:4.1.0-misp                               80ca1d0443fa       1.12GB             0B   U    
+sin/decoy-api:latest                                734e04921943        422MB             0B   U    
+sin/decoy-portal:latest                             fb92d016a6da        367MB             0B   U    
+sin/wazuh-indexer:4.10.4-lite                       ee7aff26b214       1.47GB             0B   U    

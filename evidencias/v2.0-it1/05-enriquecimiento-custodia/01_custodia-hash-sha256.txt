@@ -1,0 +1,4 @@
+$ docker exec sin-suricata sh -c 'ls -l /var/log/suricata/eve.json; sha256sum /var/log/suricata/eve.json'
+
+-rw-r--r-- 1 root root 211705973 Oct  4 18:02 /var/log/suricata/eve.json
+68f39b0153e4508fd30556b7ea98b82b0a7a7772c8efd78854a47460bd7f855c  /var/log/suricata/eve.json

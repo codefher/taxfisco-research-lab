@@ -1,0 +1,17 @@
+$ python3 /tmp/ndr.py
+
+SENSORES DE DETECCION (NIDS/NDR) DEL SEGMENTO sin-dmz
+
+Suricata - eventos totales capturados : 11
+Suricata - alertas de intruscion      : 11
+
+Reglas del ruleset propio (sin-custom.rules) que dispararon:
+  sid 2024001   sev 2   x4    SIN Nmap scan detected
+  sid 2024010   sev 1   x4    SIN SQL Injection - UNION SELECT
+  sid 2024011   sev 1   x2    SIN SQL Injection - OR 1=1
+  sid 2024012   sev 1   x1    SIN SQL Injection - sleep()
+
+Zeek - conexiones            : 265375
+Zeek - peticiones HTTP       : 6034
+Zeek - consultas DNS         : 1653
+Zeek - archivos transferidos : 9133

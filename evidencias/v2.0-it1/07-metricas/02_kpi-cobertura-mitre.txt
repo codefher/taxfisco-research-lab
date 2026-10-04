@@ -1,0 +1,16 @@
+$ python3 -c 'lectura de analysis/kpi_report.json'
+
+COBERTURA MITRE ATT&CK - ITERACION 1 (campana S01-S10)
+
+ESCENARIO                 TECNICA MITRE   TACTICA           DURACION (s)
+S01-reconocimiento        T1595           Reconnaissance    27.0
+S02-escaneo-web           T1595.002       Reconnaissance    42.0
+S03-bruteforce-ssh        T1110.001       Credential Acces  5.0
+S04-sql-injection         T1190           Initial Access    90.0
+S05-credential-stuffing   T1110.004       Credential Acces  5.0
+S06-xss                   T1059.007       Execution         0.0
+S07-api-abuse             T1078           Initial Access    1.0
+S08-malware-drop          T1105           Command and Cont  0.0
+S09-reverse-shell         T1059.004       Execution         0.0
+S10-exfiltracion-dns      T1048.003       Exfiltration      8.0
+
