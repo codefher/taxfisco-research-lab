@@ -98,9 +98,12 @@ Presenta el plan completo: número de checklist, qué se capturará, qué demues
 Arranca con `docker compose up -d` (o el perfil lite si aplica) y verifica que los servicios respondan antes de capturar. Si algo no arranca, informa el error exacto y pregunta. **Apaga el laboratorio al terminar** (`docker compose down`) salvo que el usuario pida lo contrario.
 
 ### Paso 5. Capturar
-- **Regla de oro de la captura: cruda o nada.** Toda captura es un screenshot directo de la pantalla, el navegador o el terminal, sin retoques, sin marcos, sin leyendas, sin insignias, sin pies de página compuestos. Está prohibido generar imágenes con herramientas de IA o "recrear" una captura perdida: si no pudiste obtenerla, repórtala como pendiente.
-- **Interfaces web** (portal SIN, Wazuh, TheHive, Grafana, etc.): usa las herramientas de navegador disponibles (chrome-devtools MCP, Playwright u otra). Espera a que cargue el contenido real, viewport 1280×720.
-- **Evidencia de terminal**: ejecuta el comando, guarda la salida en un `.txt` junto a la captura y captura el terminal tal cual (incluye el prompt y el contexto real, con sus imperfecciones).
+- **Interfaces web: captura directa y sin procesamiento.** Toda figura de navegador (portal SIN, Wazuh, TheHive, Grafana) es un screenshot literal de la ventana, con viewport 1280×720. Espera a que cargue el contenido real. No seProcesses, no se anotan, no se recomponen.
+- **Terminal: registro de salida renderizado desde el `.txt` real (decisión del 2026-10-04).** El proyecto intentó durante varias sesiones capturar la terminal con `xfce4-terminal` (con pty, y por `xwd` sobre el id de la ventana X) y el resultado siempre era o la ventana equivocada —porque `xfce4-terminal` reutiliza la instancia del servidor y abre una pestaña en la terminal ya abierta— o el comando a medio teclear por el retardo del eco. A la vista del usuario el proceso se alargaba mucho y la evidencia no avanzaba. Por eso las figuras de terminal se generan **renderizando el fichero de texto con la salida real del comando**, mediante `scripts/fig.sh` → `scripts/render-terminal.py`.
+  - **Condición de validez:** el `.txt` contiene el comando literal y su salida real sin editar, y se versiona junto a la figura. Es la fuente verificable.
+  - **Redacción obligatoria:** en el pie de figura y en el MANIFIESTO, la figura se describe como *registro de salida de terminal*, **nunca** como "captura de pantalla".
+  - La captura de pantalla directa del terminal sigue siendo válida si sale bien a la primera; si searda, se usa el registro renderizado y se hace constar en el MANIFIESTO.
+- **Sigue prohibido generar contenido con IA.** No se fabrican pantallas, logs, datos ni resultados; no se inventa una salida que no ocurrió; no se "recrea" una captura perdida. Si no se puede obtener, se reporta como pendiente.
 - Para las capturas 8 y 10, **regenera** las fuentes ejecutando la campaña S01–S10 y `analysis/kpi_calculator.py`; **copia** el `kpi_report.json` y los `resultados.json` relevantes a `evidencias/<iteracion>/07-metricas/` (están en `.gitignore` en sus rutas originales y deben versionarse como evidencia). Nunca cites un reporte que no esté en disco.
 - Cada captura demuestra una sola cosa concreta, expresable en una frase.
 
@@ -139,7 +142,9 @@ Nombra cada archivo `NN_descripcion-corta.png` (correlativo de dos dígitos dent
 ## Lo que nunca debes hacer
 
 - Inventar o retocar capturas, logs o salidas de comandos.
-- **Generar imágenes con IA, componer "capturas" estilizadas o añadir marcos, leyendas, insignias o pies de página**: la evidencia es un screenshot crudo o no es evidencia.
+- **Generar imágenes con IA, componer capturas a partir de datos inventados, o añadir marcos, leyendas o insignias.** El texto de una figura de terminal debe ser la salida real del comando; el color y el formato son presentación, el contenido no se toca.
+- **Describir como "captura de pantalla" una figura que es un registro renderizado.** Si es registro, se dice registro, y se cita su `.txt` como fuente.
+- Editar el `.txt` de una figura para que quede más presentable: el `.txt` es la evidencia.
 - Dar por buena o citar evidencia previa sin pasar antes el protocolo de verificación de autenticidad.
 - Citar como fuente un archivo (`kpi_report.json`, `resultados.json`, log) que no existe en disco.
 - Presentar un evento de prueba como real (siempre `_prueba-sintetica` en nombre y manifiesto).
