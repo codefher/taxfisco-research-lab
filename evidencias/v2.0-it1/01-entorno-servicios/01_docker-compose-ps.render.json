@@ -1,0 +1,9 @@
+{
+  "figura": "01_docker-compose-ps.png",
+  "fuente_txt": "01_docker-compose-ps.txt",
+  "sha256_txt": "ef789153fb3f5ae7da30c6afa12684ce27fef799085cc97449f4f7308c381cad",
+  "lineas_txt": 28,
+  "lineas_dibujadas": 28,
+  "texto_identico": true,
+  "generado_por": "scripts/render-terminal.py"
+}

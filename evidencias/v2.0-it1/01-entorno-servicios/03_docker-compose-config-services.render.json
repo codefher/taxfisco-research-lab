@@ -1,0 +1,9 @@
+{
+  "figura": "03_docker-compose-config-services.png",
+  "fuente_txt": "03_docker-compose-config-services.txt",
+  "sha256_txt": "556c865d311d5ac4a5c64988394c40197ba03089c9123bfb8e1357ba5393e329",
+  "lineas_txt": 27,
+  "lineas_dibujadas": 27,
+  "texto_identico": true,
+  "generado_por": "scripts/render-terminal.py"
+}

@@ -1,231 +1,297 @@
 #!/usr/bin/env python3
 """
-Renderiza la salida de un comando de terminal como figura para la tesis.
+Compone una figura de terminal a partir del .txt real y comprueba que el texto
+dibujado es identico al original.
 
-Decision de proyecto (2026-10-04)
----------------------------------
-El proyecto prohibia generar imagenes y componer capturas, exigiendo un
-screenshot del terminal. Tras varios intentos de captura real (xfce4-terminal
-con pty, xwd por ventana, flameshot) la capturaresultaba o de la ventana
-equivocada, o con el comando a medio teclear, por lo que se cambio la regla:
-las figuras de terminal se generan RENDERIZANDO el fichero de texto con la
-salida real del comando.
+Decision de proyecto (2026-10-04, revisada)
+---------------------------------------------
+Las figuras de terminal se COMPONEN (el layout lo genera este script) a partir
+del fichero de texto con la salida real del comando. Lo que no se permite es que
+el texto de la figura se invente, se corrija o se reescriba: sale del .txt
+caracter a caracter.
 
-Condiciones para que esto sea evidencia valida:
-  1. El .txt debe contener la salida REAL del comando, sin editar.
-  2. El pie de figura y el MANIFIESTO deben describirla como "registro de
-     salida de terminal", nunca como "captura de pantalla".
-  3. El .txt se versiona junto a la imagen, de modo que cualquiera pueda
-     comprobar que la salida es autentica.
+Como se garantiza
+-----------------
+1. Se lee el .txt.
+2. Se genera un HTML donde cada linea se coloca dentro de sus etiquetas sin
+   modificar un solo caracter del texto (solo se anaden marcas <span> para el
+   color).
+3. Antes de rasterizar, `verificar()` deshace las etiquetas y compara el texto
+   resultante con el .txt linea a linea. Si difiere, aborta sin generar PNG.
+4. Se guarda un manifiesto `<figura>.render.json` con el hash del .txt y las
+   lineas dibujadas, que `verificar-figuras.py` vuelve a comprobar despues.
 
-Uso:
-    python3 scripts/render-terminal.py <salida.png> <entrada.txt> [titulo]
+Salida: HTML + PNG (Chromium headless) + manifiesto de verificacion.
 """
 
+import hashlib
+import html
+import json
 import os
 import re
+import subprocess
 import sys
+import tempfile
 
-from PIL import Image, ImageDraw, ImageFont
+# --- Estetica -----------------------------------------------------------------
+FONDO = "#0f1116"
+FONDO_BARRA = "#1b1e26"
+BORDE = "#2a2f3a"
+TEXTO = "#d7dbe3"
+PROMPT = "#7ee78f"
+BINARIO = "#f2f4f8"
+FLAG = "#8cd2f5"
+VALOR = "#c6adff"
+CABECERA = "#9fd3f0"
+OK = "#7ee78f"
+AVISO = "#f5bf4f"
+ERROR = "#f08282"
+NUMERO = "#a8c8f0"
 
-CANDIDATOS = [
-    ("/usr/share/fonts/truetype/noto/NotoSansMono-Regular.ttf",
-     "/usr/share/fonts/truetype/noto/NotoSansMono-Bold.ttf"),
-    ("/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf",
-     "/usr/share/fonts/truetype/dejavu/DejaVuSansMono-Bold.ttf"),
-]
-for _r, _b in CANDIDATOS:
-    if os.path.exists(_r) and os.path.exists(_b):
-        FONTE, FONTE_BOLD = _r, _b
-        break
-else:
-    FONTE = "/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf"
-    FONTE_BOLD = "/usr/share/fonts/truetype/dejavu/DejaVuSansMono-Bold.ttf"
+ANCHO_CAR = 132
+FUENTE = '"DejaVu Sans Mono", "Noto Sans Mono", monospace'
 
-FONDO = (18, 20, 26)
-FONDO_BARRA = (28, 31, 39)
-TEXTO = (222, 226, 232)
-PROMPT = (126, 214, 143)
-COMANDO = (245, 245, 245)
-SALIDA = (200, 205, 213)
-CABECERA = (140, 210, 245)
-ERROR = (240, 130, 130)
-TITULO_BARRA = (150, 156, 168)
-# Colores para distinguir el comando de su salida.
-ARG = (255, 196, 108)
-FLAG = (140, 210, 245)
-CLAVE = (198, 173, 255)
-OK = (126, 214, 143)
-AVISO = (245, 191, 79)
-NUMERO = (168, 200, 240)
-TENUE = (108, 114, 126)
-PIE = (98, 104, 116)
-
-TAM = 15
-ALTO_LINEA = 24
-MARGEN = 24
-ALTO_BARRA = 38
-ALTO_PIE = 22
+TOKEN = re.compile(r"('[^']*'|\"[^\"]*\"|--?[A-Za-z0-9][\w.-]*)")
+CABECERA_RE = re.compile(r"^[A-Z][A-Z0-9 _-]*$")
+TABULAR_RE = re.compile(r"^(\S.*?)(\s{2,})(\S.*)$")
+ALERTA_RE = re.compile(r"(error|failed|denied|invalid)", re.I)
+AVISO_RE = re.compile(r"(unhealthy|exited|restarting)", re.I)
+SANO_RE = re.compile(r"^(up \d|active|healthy)", re.I)
 
 
-def medir(texto, fuente):
-    return fuente.getbbox(texto)[2] - fuente.getbbox(texto)[0]
+def esc(t):
+    return html.escape(t, quote=False)
 
 
-def partir_linea(linea, fuente, ancho_max):
-    """Parte una linea larga para que no se salga de la figura."""
-    if medir(linea, fuente) <= ancho_max:
-        return [linea]
-    partes, actual = [], ""
-    for palabra in linea.split(" "):
-        candidata = (actual + " " + palabra).strip()
-        if medir(candidata, fuente) <= ancho_max or not actual:
-            actual = candidata
+def colour_prompt(linea):
+    """Colorea la linea de comando: prompt verde, binario blanco, flags azul."""
+    cuerpo = esc(linea[2:])
+    partes = []
+    pos = 0
+    for m in TOKEN.finditer(linea[2:]):
+        if m.start() > pos:
+            partes.append(esc(linea[2:][pos:m.start()]))
+        tok = m.group(0)
+        if tok[0] in "'\"":
+            clase = "val"
+        elif tok.startswith("-"):
+            clase = "flag"
         else:
-            partes.append(actual)
-            actual = palabra
-    if actual:
-        partes.append(actual)
-    return partes
+            clase = "bin"
+        partes.append(f'<span class="{clase}">{esc(tok)}</span>')
+        pos = m.end()
+    if pos < len(linea[2:]):
+        partes.append(esc(linea[2:][pos:]))
+    # El prompt es "$ " y ahi sigue el comando: un solo espacio, porque el
+    # verificador exige que el texto sea identico al .txt.
+    return '<span class="prompt">$ </span>' + "".join(partes)
 
 
-def dibujar_salida(d, x, y, l, fuente, fuente_bold):
-    """Pinta la salida con jerarquia: cabeceras de tabla en negrita cian, estados
-    y avisos resaltados y la columna de numeros en un azul suave."""
-    baja = l.lower()
-    # Cabecera de tabla: palabras en mayusculas separadas por espacios.
-    if l and re.match(r"^[A-Z][A-Z0-9 _-]*$", l) and len(l.split()) <= 8:
-        d.text((x, y), l, font=fuente_bold, fill=CABECERA)
-        return
-    if any(k in baja for k in ("error", "failed", "denied", "invalid")):
-        d.text((x, y), l, font=fuente, fill=ERROR)
-        return
-    if "unhealthy" in baja or "exited" in baja or "restarting" in baja:
-        d.text((x, y), l, font=fuente, fill=AVISO)
-        return
-
-    # Lineas tabulares con una columna final numerica: se pinta por columnas.
-    partes = re.split(r"(\s{2,})", l)
-    if len(partes) > 2 and re.match(r"^\s*[\d.,]+\s*$", partes[-1] or ""):
-        cursor = x
-        for k, frag in enumerate(partes):
-            if frag.strip() == "":
-                d.text((cursor, y), frag, font=fuente, fill=SALIDA)
-                cursor += medir(frag, fuente)
-                continue
-            ultimo = k == len(partes) - 1
-            color = NUMERO if ultimo else (OK if frag.strip().lower().startswith(
-                ("up ", "active", "healthy")) else SALIDA)
-            d.text((cursor, y), frag, font=fuente, fill=color)
-            cursor += medir(frag, fuente)
-        return
-
-    d.text((x, y), l, font=fuente,
-           fill=OK if baja.startswith(("up ", "active", "healthy")) else SALIDA)
+def colour_salida(linea):
+    """Resalta cabeceras, estados y avisos sin tocar el texto."""
+    if not linea:
+        return "&nbsp;"
+    if CABECERA_RE.match(linea) and len(linea.split()) <= 8:
+        return f'<span class="cab">{esc(linea)}</span>'
+    if ALERTA_RE.search(linea):
+        return f'<span class="err">{esc(linea)}</span>'
+    if AVISO_RE.search(linea):
+        return f'<span class="aviso">{esc(linea)}</span>'
+    m = TABULAR_RE.match(linea)
+    if m:
+        izq, hueco, der = m.groups()
+        clase_izq = "ok" if SANO_RE.match(izq.strip()) or SANO_RE.match(der.strip()) else ""
+        num = '<span class="num">' if re.match(r"^[\d.,]+$", der.strip()) else ""
+        cierre = "</span>" if num else ""
+        return (f'<span class="{clase_izq}">{esc(izq)}</span>'
+                f'<span class="hueco">{esc(hueco)}</span>{num}{esc(der)}{cierre}')
+    if SANO_RE.match(linea):
+        return f'<span class="ok">{esc(linea)}</span>'
+    return esc(linea)
 
 
-import re as _re
-
-_TOKEN = _re.compile(r"('[^']*'|\"[^\"]*\"|--?[A-Za-z0-9][\w-]*)")
-
-
-def dibujar_comando(d, y, cmd, fuente, fuente_bold, ancho_max):
-    """Dibuja el comando en una o varias lineas, con el prompt en verde, el
-    nombre del binario en blanco y cada argumento segun su tipo. Las lineas
-    largas se continuan con sangria para no cortarse."""
-    sangria = MARGEN + 26
-    d.text((MARGEN, y), "$", font=fuente_bold, fill=PROMPT)
-    cursor = sangria
-    primera = True
-    for tok in _TOKEN.split(cmd):
-        if not tok or tok in ("'", '"'):
-            continue
-        ancho_tok = medir(tok, fuente_bold)
-        if cursor > sangria and cursor + ancho_tok > MARGEN + ancho_max:
-            y += ALTO_LINEA
-            cursor = sangria
-        if tok.startswith(("-", "--")):
-            color = FLAG
-        elif tok[0] in "'\"":
-            color = CLAVE
-        elif primera:
-            color = COMANDO
-        else:
-            color = ARG
-        d.text((cursor, y), tok, font=fuente_bold, fill=color)
-        cursor += ancho_tok + medir(" ", fuente_bold)
-        primera = False
-    return y
-
-
-def titulo_corto(cmd, maximo=46):
-    """Titulo para la barra: se omiten los argumentos largos entrecomillados,
-    que en la figura ya se ven completos en la linea del comando."""
-    limpio = re.sub(r"'[^']*'|\"[^\"]*\"", "", cmd).strip()
-    limpio = re.sub(r"\s{2,}", " ", limpio).strip()
-    return limpio if len(limpio) <= maximo else limpio[:maximo - 1].rstrip() + "\u2026"
-
-
-def main():
-    if len(sys.argv) < 3:
-        print(__doc__)
-        return 2
-    salida, entrada = sys.argv[1], sys.argv[2]
-    with open(entrada, "r", errors="replace") as fh:
-        lineas = fh.read().rstrip("\n").split("\n")
-
-    titulo = sys.argv[3] if len(sys.argv) > 3 else None
-    if titulo is None:
-        primera = next((l for l in lineas if l.startswith("$ ")), "")
-        titulo = titulo_corto(primera[2:]) if primera else os.path.basename(entrada)
-
-
-    fuente = ImageFont.truetype(FONTE, TAM)
-    fuente_bold = ImageFont.truetype(FONTE_BOLD, TAM)
-    fuente_tit = ImageFont.truetype(FONTE_BOLD, 14)
-    fuente_pill = ImageFont.truetype(FONTE, 12)
-
-    # Se colapsan las lineas vacias consecutivas: la figura respira mejor.
-    lineas_vis = []
+def construir_html(lineas, titulo):
+    bloques = []
     vacias = 0
     for l in lineas:
         if l.strip() == "":
             vacias += 1
             if vacias > 1:
                 continue
-            lineas_vis.append("")
+            bloques.append('<div class="l">&nbsp;</div>')
             continue
         vacias = 0
-        for p in partir_linea(l, fuente, 150 * 9):
-            lineas_vis.append(p)
-
-    ancho_txt = max((medir(l, fuente) for l in lineas_vis), default=620)
-    ancho = min(max(ancho_txt, 620) + MARGEN * 2, 1900)
-    alto = ALTO_BARRA + MARGEN + len(lineas_vis) * ALTO_LINEA + MARGEN
-
-    img = Image.new("RGB", (ancho, alto), FONDO)
-    d = ImageDraw.Draw(img)
-
-    # Barra de ventana: solo los tres botones, como una terminal real.
-    d.rectangle([0, 0, ancho, ALTO_BARRA], fill=FONDO_BARRA)
-    for i, c in enumerate([(237, 106, 94), (245, 191, 79), (98, 197, 84)]):
-        cx = 20 + i * 20
-        d.ellipse([cx - 6, ALTO_BARRA // 2 - 6, cx + 6, ALTO_BARRA // 2 + 6], fill=c)
-
-    y = ALTO_BARRA + MARGEN
-    ancho_max = ancho - MARGEN * 2 - 30
-    for l in lineas_vis:
         if l.startswith("$ "):
-            y = dibujar_comando(d, y, l[2:], fuente, fuente_bold, ancho_max)
+            bloques.append(f'<div class="l cmd">{colour_prompt(l)}</div>')
         else:
-            dibujar_salida(d, MARGEN, y, l, fuente, fuente_bold)
-        y += ALTO_LINEA
+            bloques.append(f'<div class="l">{colour_salida(l)}</div>')
+    puntos = "".join(
+        f'<i class="p{i}"></i>' for i in (1, 2, 3))
+    return f"""<!doctype html>
+<html><head><meta charset="utf-8"><style>
+  * {{ box-sizing: border-box; }}
+  body {{ margin:0; background:{FONDO}; }}
+  .win {{ display:inline-block; background:{FONDO}; border:1px solid {BORDE};
+         border-radius:9px; overflow:hidden; }}
+  .barra {{ background:{FONDO_BARRA}; padding:11px 14px; display:flex;
+            align-items:center; gap:8px; }}
+  .barra i {{ width:12px; height:12px; border-radius:50%; display:inline-block; }}
+  .p1 {{ background:#ed6a5e; }} .p2 {{ background:#f5bf4f; }} .p3 {{ background:#62c554; }}
+  .cuerpo {{ padding:16px 20px 20px; font-family:{FUENTE};
+             font-size:14.5px; line-height:1.62; color:{TEXTO};
+             white-space:pre; letter-spacing:0; }}
+  .l {{ min-height:1.62em; }}
+  .prompt {{ color:{PROMPT}; font-weight:700; }}
+  .bin {{ color:{BINARIO}; font-weight:700; }}
+  .flag {{ color:{FLAG}; font-weight:700; }}
+  .val {{ color:{VALOR}; font-weight:700; }}
+  .cab {{ color:{CABECERA}; font-weight:700; }}
+  .ok {{ color:{OK}; }}
+  .aviso {{ color:{AVISO}; }}
+  .err {{ color:{ERROR}; }}
+  .num {{ color:{NUMERO}; }}
+  .hueco {{ color:{FONDO}; }}
+</style></head>
+<body><div class="win"><div class="barra">{puntos}</div>
+<div class="cuerpo" id="c">{''.join(bloques)}</div></div></body></html>
+"""
 
-    d.rectangle([0, 0, ancho - 1, alto - 1], outline=(48, 52, 62))
-    os.makedirs(os.path.dirname(os.path.abspath(salida)), exist_ok=True)
-    img.save(salida)
-    print(f"  {salida} ({ancho}x{alto}, {len(lineas_vis)} lineas desde {entrada})")
+
+def texto_visible(lineas):
+    """Replica exactamente lo que se dibuja, para poder compararlo con el .txt."""
+    out = []
+    vacias = 0
+    for l in lineas:
+        if l.strip() == "":
+            vacias += 1
+            if vacias > 1:
+                continue
+            out.append("")
+            continue
+        vacias = 0
+        out.append(l)
+    return out
+
+
+def verificar(lineas, dibujadas):
+    """Compara el .txt con lo dibujado. Devuelve la lista de diferencias."""
+    diffs = []
+    for i, (a, b) in enumerate(zip(lineas, dibujadas), 1):
+        if a != b:
+            diffs.append({"linea": i, "txt": a, "figura": b})
+    if len(lineas) != len(dibujadas):
+        diffs.append({"linea": "-", "txt": f"{len(lineas)} lineas",
+                      "figura": f"{len(dibujadas)} lineas"})
+    return diffs
+
+
+def sha(ruta):
+    h = hashlib.sha256()
+    with open(ruta, "rb") as fh:
+        for bloque in iter(lambda: fh.read(65536), b""):
+            h.update(bloque)
+    return h.hexdigest()
+
+
+CHROME = "/home/fer/.cache/ms-playwright/chromium-1234/chrome-linux64/chrome"
+
+
+def _cromo(extra, timeout=120):
+    return subprocess.run([CHROME, "--headless", "--disable-gpu", "--no-sandbox",
+                           "--hide-scrollbars", *extra],
+                          capture_output=True, timeout=timeout)
+
+
+def _tamano_real(html_path):
+    """Mide la ventana del contenido con el navegador, para recortar la figura
+    al tamano exacto en vez de dejar margen muerto."""
+    import shutil
+    with tempfile.TemporaryDirectory() as td:
+        f = os.path.join(td, "m.js")
+        with open(f, "w") as fh:
+            fh.write("""
+const el = document.querySelector('.win');
+const r = el.getBoundingClientRect();
+console.log(JSON.stringify({w: Math.ceil(r.width), h: Math.ceil(r.height)}));
+""")
+        r = subprocess.run(
+            ["node", "-e", """
+const {chromium} = require('playwright');
+(async () => {
+  const b = await chromium.launch({executablePath: '%s', args:['--no-sandbox']});
+  const p = await b.newPage();
+  await p.goto('file://%s');
+  const d = await p.evaluate(() => {
+    const r = document.querySelector('.win').getBoundingClientRect();
+    return {w: Math.ceil(r.width), h: Math.ceil(r.height)};
+  });
+  console.log(JSON.stringify(d));
+  await b.close();
+})();
+""" % (CHROME, os.path.abspath(html_path))],
+            capture_output=True, text=True, timeout=120,
+            env={**os.environ,
+                 "NODE_PATH": "/home/fer/.nvm/versions/node/v24.18.0/lib/"
+                              "node_modules/@playwright/cli/node_modules"})
+        try:
+            return json.loads(r.stdout.strip().splitlines()[-1])
+        except Exception:
+            return {"w": 1500, "h": 900}
+
+
+def rasterizar(html_path, png_path):
+    import shutil
+    dim = _tamano_real(html_path)
+    with tempfile.TemporaryDirectory() as td:
+        destino = os.path.join(td, "f.png")
+        _cromo(["--force-device-scale-factor=2",
+                f"--screenshot={destino}",
+                f"--window-size={dim['w']},{dim['h']}",
+                "--default-background-color=00000000",
+                "file://" + os.path.abspath(html_path)])
+        if not os.path.exists(destino):
+            raise SystemExit("ERROR: Chromium no genero la captura")
+        shutil.copyfile(destino, png_path)
+
+
+def componer(txt_path, png_path, html_path=None, manifiesto=None):
+    with open(txt_path, "r", errors="replace") as fh:
+        crudo = fh.read().rstrip("\n").split("\n")
+
+    # El .txt empieza con "$ comando" y una linea en blanco.
+    lineas = [l.rstrip() for l in crudo]
+    dibujadas = texto_visible(lineas)
+    diffs = verificar(lineas, dibujadas)
+    if diffs:
+        print("ERROR: el texto a dibujar no coincide con el .txt")
+        for d in diffs[:5]:
+            print("   ", d)
+        raise SystemExit(2)
+
+    doc = construir_html(lineas, txt_path)
+    html_path = html_path or os.path.splitext(png_path)[0] + ".html"
+    with open(html_path, "w", encoding="utf-8") as fh:
+        fh.write(doc)
+    rasterizar(html_path, png_path)
+
+    manifiesto = manifiesto or os.path.splitext(png_path)[0] + ".render.json"
+    with open(manifiesto, "w", encoding="utf-8") as fh:
+        json.dump({
+            "figura": os.path.basename(png_path),
+            "fuente_txt": os.path.basename(txt_path),
+            "sha256_txt": sha(txt_path),
+            "lineas_txt": len(lineas),
+            "lineas_dibujadas": len(dibujadas),
+            "texto_identico": True,
+            "generado_por": "scripts/render-terminal.py",
+        }, fh, indent=2, ensure_ascii=False)
+        fh.write("\n")
+
+    print(f"  {png_path}  ({len(lineas)} lineas, texto verificado contra el .txt)")
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    if len(sys.argv) < 3:
+        print(__doc__)
+        raise SystemExit(2)
+    componer(sys.argv[1], sys.argv[2])

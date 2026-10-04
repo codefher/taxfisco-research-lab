@@ -1,0 +1,9 @@
+{
+  "figura": "03_sensores-ndr-suricata-zeek.png",
+  "fuente_txt": "03_sensores-ndr-suricata-zeek.txt",
+  "sha256_txt": "a248eb23e5c6f84ec668feed16d92c47e58b7651c40e40f6f0e717cbf7ca7d46",
+  "lineas_txt": 17,
+  "lineas_dibujadas": 17,
+  "texto_identico": true,
+  "generado_por": "scripts/render-terminal.py"
+}

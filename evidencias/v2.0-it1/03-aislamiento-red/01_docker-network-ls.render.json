@@ -1,0 +1,9 @@
+{
+  "figura": "01_docker-network-ls.png",
+  "fuente_txt": "01_docker-network-ls.txt",
+  "sha256_txt": "7e821d023044e974649459e26c67219b4ff26f138bb3da528d69ba2f04bc0a45",
+  "lineas_txt": 6,
+  "lineas_dibujadas": 6,
+  "texto_identico": true,
+  "generado_por": "scripts/render-terminal.py"
+}

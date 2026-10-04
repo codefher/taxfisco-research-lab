@@ -1,0 +1,9 @@
+{
+  "figura": "04_cowrie-sesiones-ssh.png",
+  "fuente_txt": "04_cowrie-sesiones-ssh.txt",
+  "sha256_txt": "c130be611a9621c49ba6852821e272e51d9a03b51273844a6747beb1eb3f935d",
+  "lineas_txt": 5,
+  "lineas_dibujadas": 5,
+  "texto_identico": true,
+  "generado_por": "scripts/render-terminal.py"
+}

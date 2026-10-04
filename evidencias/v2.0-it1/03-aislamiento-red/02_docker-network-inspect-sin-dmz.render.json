@@ -1,0 +1,9 @@
+{
+  "figura": "02_docker-network-inspect-sin-dmz.png",
+  "fuente_txt": "02_docker-network-inspect-sin-dmz.txt",
+  "sha256_txt": "8da5d7b78ad6daf8f2c99878d923e78cbd05232d6f618c2ceb39a7b13a87f927",
+  "lineas_txt": 3,
+  "lineas_dibujadas": 3,
+  "texto_identico": true,
+  "generado_por": "scripts/render-terminal.py"
+}

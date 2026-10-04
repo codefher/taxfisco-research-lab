@@ -1,0 +1,27 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><style>
+  * { box-sizing: border-box; }
+  body { margin:0; background:#0f1116; }
+  .win { display:inline-block; background:#0f1116; border:1px solid #2a2f3a;
+         border-radius:9px; overflow:hidden; }
+  .barra { background:#1b1e26; padding:11px 14px; display:flex;
+            align-items:center; gap:8px; }
+  .barra i { width:12px; height:12px; border-radius:50%; display:inline-block; }
+  .p1 { background:#ed6a5e; } .p2 { background:#f5bf4f; } .p3 { background:#62c554; }
+  .cuerpo { padding:16px 20px 20px; font-family:"DejaVu Sans Mono", "Noto Sans Mono", monospace;
+             font-size:14.5px; line-height:1.62; color:#d7dbe3;
+             white-space:pre; letter-spacing:0; }
+  .l { min-height:1.62em; }
+  .prompt { color:#7ee78f; font-weight:700; }
+  .bin { color:#f2f4f8; font-weight:700; }
+  .flag { color:#8cd2f5; font-weight:700; }
+  .val { color:#c6adff; font-weight:700; }
+  .cab { color:#9fd3f0; font-weight:700; }
+  .ok { color:#7ee78f; }
+  .aviso { color:#f5bf4f; }
+  .err { color:#f08282; }
+  .num { color:#a8c8f0; }
+  .hueco { color:#0f1116; }
+</style></head>
+<body><div class="win"><div class="barra"><i class="p1"></i><i class="p2"></i><i class="p3"></i></div>
+<div class="cuerpo" id="c"><div class="l cmd"><span class="prompt">$ </span>docker compose ps <span class="flag">--format</span> <span class="val">'table {{.Name}}\t{{.Status}}'</span></div><div class="l">&nbsp;</div><div class="l"><span class="cab">NAME                      STATUS</span></div><div class="l"><span class="ok">sin-attacker</span><span class="hueco">              </span>Up 5 hours</div><div class="l"><span class="ok">sin-cassandra</span><span class="hueco">             </span>Up 13 hours</div><div class="l"><span class="ok">sin-cortex</span><span class="hueco">                </span>Up 13 hours</div><div class="l"><span class="ok">sin-cowrie</span><span class="hueco">                </span>Up 13 hours</div><div class="l"><span class="ok">sin-decoy-api</span><span class="hueco">             </span>Up 13 hours (healthy)</div><div class="l"><span class="ok">sin-decoy-portal</span><span class="hueco">          </span>Up 13 hours (healthy)</div><div class="l"><span class="ok">sin-grafana</span><span class="hueco">               </span>Up 48 minutes</div><div class="l"><span class="ok">sin-heralding</span><span class="hueco">             </span>Up 13 hours</div><div class="l"><span class="ok">sin-misp-core</span><span class="hueco">             </span>Up 13 hours</div><div class="l"><span class="ok">sin-misp-db</span><span class="hueco">               </span>Up 13 hours</div><div class="l"><span class="ok">sin-misp-modules</span><span class="hueco">          </span>Up 13 hours</div><div class="l"><span class="ok">sin-misp-redis</span><span class="hueco">            </span>Up 13 hours</div><div class="l"><span class="ok">sin-opencanary</span><span class="hueco">            </span>Up 13 hours</div><div class="l"><span class="ok">sin-postgres</span><span class="hueco">              </span>Up 13 hours</div><div class="l"><span class="ok">sin-shuffle</span><span class="hueco">               </span>Up 13 hours</div><div class="l"><span class="ok">sin-shuffle-db</span><span class="hueco">            </span>Up 13 hours</div><div class="l"><span class="ok">sin-shuffle-frontend</span><span class="hueco">      </span>Up 13 hours</div><div class="l"><span class="ok">sin-suricata</span><span class="hueco">              </span>Up 5 hours</div><div class="l"><span class="ok">sin-thehive</span><span class="hueco">               </span>Up 13 hours</div><div class="l"><span class="ok">sin-velociraptor</span><span class="hueco">          </span>Up 13 hours</div><div class="l"><span class="ok">sin-wazuh-dashboard</span><span class="hueco">       </span>Up 2 hours</div><div class="l"><span class="ok">sin-wazuh-indexer</span><span class="hueco">         </span>Up 5 hours</div><div class="l"><span class="ok">sin-wazuh-indexer-proxy</span><span class="hueco">   </span>Up 13 hours</div><div class="l"><span class="">sin-wazuh-manager</span><span class="hueco">         </span>Up About a minute</div><div class="l"><span class="ok">sin-zeek</span><span class="hueco">                  </span>Up 13 hours</div></div></div></body></html>

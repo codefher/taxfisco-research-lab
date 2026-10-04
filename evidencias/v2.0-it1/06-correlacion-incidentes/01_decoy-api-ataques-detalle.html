@@ -1,0 +1,27 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><style>
+  * { box-sizing: border-box; }
+  body { margin:0; background:#0f1116; }
+  .win { display:inline-block; background:#0f1116; border:1px solid #2a2f3a;
+         border-radius:9px; overflow:hidden; }
+  .barra { background:#1b1e26; padding:11px 14px; display:flex;
+            align-items:center; gap:8px; }
+  .barra i { width:12px; height:12px; border-radius:50%; display:inline-block; }
+  .p1 { background:#ed6a5e; } .p2 { background:#f5bf4f; } .p3 { background:#62c554; }
+  .cuerpo { padding:16px 20px 20px; font-family:"DejaVu Sans Mono", "Noto Sans Mono", monospace;
+             font-size:14.5px; line-height:1.62; color:#d7dbe3;
+             white-space:pre; letter-spacing:0; }
+  .l { min-height:1.62em; }
+  .prompt { color:#7ee78f; font-weight:700; }
+  .bin { color:#f2f4f8; font-weight:700; }
+  .flag { color:#8cd2f5; font-weight:700; }
+  .val { color:#c6adff; font-weight:700; }
+  .cab { color:#9fd3f0; font-weight:700; }
+  .ok { color:#7ee78f; }
+  .aviso { color:#f5bf4f; }
+  .err { color:#f08282; }
+  .num { color:#a8c8f0; }
+  .hueco { color:#0f1116; }
+</style></head>
+<body><div class="win"><div class="barra"><i class="p1"></i><i class="p2"></i><i class="p3"></i></div>
+<div class="cuerpo" id="c"><div class="l cmd"><span class="prompt">$ </span>docker exec sin<span class="flag">-decoy-api</span> sh <span class="flag">-c</span> <span class="val">'tail -4 /var/log/decoy-api/attacks.json 2&gt;/dev/null'</span></div><div class="l">&nbsp;</div><div class="l">{"timestamp": "2026-10-04T15:28:31.116554Z", "source_ip": "10.20.0.99", "user_agent": "curl/8.21.0", "method": "GET", "endpoint": "/api/v1/admin/export-all", "query": {}, "body": "", "attack_technique_id": "T1078", "attack_technique_name": "Valid Accounts", "attack_tactic": "Persistence, Initial Access, Defense Evasion, Privilege Escalation", "severity": "MEDIUM", "description": "Administrative endpoint access: /api/v1/admin/export-all", "tlp": "AMBER"}</div><div class="l">{"timestamp": "2026-10-04T15:28:31.117248Z", "source_ip": "0.0.0.0", "user_agent": "unknown", "method": "GET", "endpoint": "/api/v1/admin/export-all", "query": {}, "body": "", "attack_technique_id": "T1530", "attack_technique_name": "Data from Cloud Storage Object", "attack_tactic": "Collection", "severity": "HIGH", "description": "Acceso al endpoint administrativo de exportaci\u00f3n masiva", "tlp": "RED"}</div><div class="l">{"timestamp": "2026-10-04T15:28:31.125817Z", "source_ip": "10.20.0.99", "user_agent": "curl/8.21.0", "method": "POST", "endpoint": "/api/v1/auth/login", "query": {}, "body": "{\"username\":\"admin\",\"password\":\"admin\"}", "attack_technique_id": "T1110.004", "attack_technique_name": "Credential Stuffing", "attack_tactic": "Credential Access", "severity": "HIGH", "description": "Login attempt detected (monitor for stuffing patterns)", "tlp": "AMBER"}</div><div class="l">{"timestamp": "2026-10-04T15:28:31.157417Z", "source_ip": "10.20.0.99", "user_agent": "curl/8.21.0", "method": "GET", "endpoint": "/api/v1/admin/users", "query": {}, "body": "", "attack_technique_id": "T1078", "attack_technique_name": "Valid Accounts", "attack_tactic": "Persistence, Initial Access, Defense Evasion, Privilege Escalation", "severity": "MEDIUM", "description": "Administrative endpoint access: /api/v1/admin/users", "tlp": "AMBER"}</div></div></div></body></html>

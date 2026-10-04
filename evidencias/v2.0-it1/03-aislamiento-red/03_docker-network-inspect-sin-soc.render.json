@@ -1,0 +1,9 @@
+{
+  "figura": "03_docker-network-inspect-sin-soc.png",
+  "fuente_txt": "03_docker-network-inspect-sin-soc.txt",
+  "sha256_txt": "1796cb0734aaaa356908a5f41d005fcc60c8b82232e47e490ad555a7f2cab5ac",
+  "lineas_txt": 3,
+  "lineas_dibujadas": 3,
+  "texto_identico": true,
+  "generado_por": "scripts/render-terminal.py"
+}

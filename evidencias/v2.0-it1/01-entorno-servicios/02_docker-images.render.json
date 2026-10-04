@@ -1,0 +1,9 @@
+{
+  "figura": "02_docker-images.png",
+  "fuente_txt": "02_docker-images.txt",
+  "sha256_txt": "1297c275cc6c10e086cf9591ece4835bffab452ee4db3ea86f28c863e796f1a8",
+  "lineas_txt": 6,
+  "lineas_dibujadas": 6,
+  "texto_identico": true,
+  "generado_por": "scripts/render-terminal.py"
+}

@@ -1,0 +1,9 @@
+{
+  "figura": "01_decoy-api-ataques-detalle.png",
+  "fuente_txt": "01_decoy-api-ataques-detalle.txt",
+  "sha256_txt": "a267007446113a8670024d3aae57d5406d640974bd17a7f1dd1732e75148128e",
+  "lineas_txt": 6,
+  "lineas_dibujadas": 6,
+  "texto_identico": true,
+  "generado_por": "scripts/render-terminal.py"
+}

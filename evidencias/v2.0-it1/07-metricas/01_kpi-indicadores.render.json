@@ -1,0 +1,9 @@
+{
+  "figura": "01_kpi-indicadores.png",
+  "fuente_txt": "01_kpi-indicadores.txt",
+  "sha256_txt": "323a4c4b3e7ef8a812d1ea1047ad3624c63abf3905826aabf745561eb8210dde",
+  "lineas_txt": 11,
+  "lineas_dibujadas": 11,
+  "texto_identico": true,
+  "generado_por": "scripts/render-terminal.py"
+}

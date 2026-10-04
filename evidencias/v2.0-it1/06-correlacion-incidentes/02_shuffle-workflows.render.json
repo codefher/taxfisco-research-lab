@@ -1,0 +1,9 @@
+{
+  "figura": "02_shuffle-workflows.png",
+  "fuente_txt": "02_shuffle-workflows.txt",
+  "sha256_txt": "cc7b70b5ff31b03a0ecae0fb764e309392334ca8746431dccc77bf71dfe24860",
+  "lineas_txt": 3,
+  "lineas_dibujadas": 3,
+  "texto_identico": true,
+  "generado_por": "scripts/render-terminal.py"
+}

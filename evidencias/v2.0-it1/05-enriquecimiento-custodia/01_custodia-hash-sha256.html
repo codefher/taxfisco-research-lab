@@ -1,0 +1,27 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><style>
+  * { box-sizing: border-box; }
+  body { margin:0; background:#0f1116; }
+  .win { display:inline-block; background:#0f1116; border:1px solid #2a2f3a;
+         border-radius:9px; overflow:hidden; }
+  .barra { background:#1b1e26; padding:11px 14px; display:flex;
+            align-items:center; gap:8px; }
+  .barra i { width:12px; height:12px; border-radius:50%; display:inline-block; }
+  .p1 { background:#ed6a5e; } .p2 { background:#f5bf4f; } .p3 { background:#62c554; }
+  .cuerpo { padding:16px 20px 20px; font-family:"DejaVu Sans Mono", "Noto Sans Mono", monospace;
+             font-size:14.5px; line-height:1.62; color:#d7dbe3;
+             white-space:pre; letter-spacing:0; }
+  .l { min-height:1.62em; }
+  .prompt { color:#7ee78f; font-weight:700; }
+  .bin { color:#f2f4f8; font-weight:700; }
+  .flag { color:#8cd2f5; font-weight:700; }
+  .val { color:#c6adff; font-weight:700; }
+  .cab { color:#9fd3f0; font-weight:700; }
+  .ok { color:#7ee78f; }
+  .aviso { color:#f5bf4f; }
+  .err { color:#f08282; }
+  .num { color:#a8c8f0; }
+  .hueco { color:#0f1116; }
+</style></head>
+<body><div class="win"><div class="barra"><i class="p1"></i><i class="p2"></i><i class="p3"></i></div>
+<div class="cuerpo" id="c"><div class="l cmd"><span class="prompt">$ </span>docker exec sin<span class="flag">-suricata</span> sh <span class="flag">-c</span> <span class="val">'ls -l /var/log/suricata/eve.json; sha256sum /var/log/suricata/eve.json'</span></div><div class="l">&nbsp;</div><div class="l"><span class="">-rw-r--r-- 1 root root 211705973 Oct</span><span class="hueco">  </span>4 18:02 /var/log/suricata/eve.json</div><div class="l"><span class="">68f39b0153e4508fd30556b7ea98b82b0a7a7772c8efd78854a47460bd7f855c</span><span class="hueco">  </span>/var/log/suricata/eve.json</div></div></div></body></html>

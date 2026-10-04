@@ -1,0 +1,9 @@
+{
+  "figura": "04_wazuh-indexer-indices.png",
+  "fuente_txt": "04_wazuh-indexer-indices.txt",
+  "sha256_txt": "50b756e563651d3bbcc9f9a84fc73279df042bee8a6d0626bba3b114b30ee531",
+  "lineas_txt": 7,
+  "lineas_dibujadas": 7,
+  "texto_identico": true,
+  "generado_por": "scripts/render-terminal.py"
+}
