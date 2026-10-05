@@ -110,7 +110,15 @@ def colour_salida(linea):
     return esc(linea)
 
 
-def construir_html(lineas, titulo):
+def construir_html(lineas, titulo, ancho=None):
+    """Compone el HTML de la figura.
+
+    `ancho` (px) activa el ajuste de linea del terminal. Es un cambio de
+    DISEÑO, no de contenido: los caracteres del .txt no se tocan, lo que
+    cambia es que una linea larga se reparte en varias lineas visuales igual
+    que lo haria un terminal de verdad. Es lo que evita que una figura con un
+    comando largo quede en una tira horizontal ilegible al meterla en Word.
+    """
     bloques = []
     vacias = 0
     for l in lineas:
@@ -127,6 +135,21 @@ def construir_html(lineas, titulo):
             bloques.append(f'<div class="l">{colour_salida(l)}</div>')
     puntos = "".join(
         f'<i class="p{i}"></i>' for i in (1, 2, 3))
+    # Ajuste de linea: `pre-wrap` reparte una linea larga en varias lineas
+    # visuales sin alterar ni un caracter del texto. El ancho se fija en
+    # columnas (ch) para que el punto de corte caiga siempre en un caracter
+    # de la fuente monoespaciada, nunca a mitad de glifo.
+    if ancho:
+        # Sangria francesa: la primera linea de cada registro queda a la
+        # izquierda y las lineas de continuacion se sangran. Asi se distingue
+        # de un vistazo donde acaba un registro y empieza el siguiente, que es
+        # justo lo que se pierde al partir un JSON largo en varias lineas.
+        envolver = (f"white-space:pre-wrap; overflow-wrap:anywhere; "
+                    f"width:{ancho}ch;")
+        sangria = "padding-left:2ch; text-indent:-2ch;"
+    else:
+        envolver = "white-space:pre;"
+        sangria = ""
     return f"""<!doctype html>
 <html><head><meta charset="utf-8"><style>
   * {{ box-sizing: border-box; }}
@@ -139,8 +162,8 @@ def construir_html(lineas, titulo):
   .p1 {{ background:#ed6a5e; }} .p2 {{ background:#f5bf4f; }} .p3 {{ background:#62c554; }}
   .cuerpo {{ padding:16px 20px 20px; font-family:{FUENTE};
              font-size:14.5px; line-height:1.62; color:{TEXTO};
-             white-space:pre; letter-spacing:0; }}
-  .l {{ min-height:1.62em; }}
+             letter-spacing:0; {envolver} }}
+  .l {{ min-height:1.62em; {sangria} }}
   .prompt {{ color:{PROMPT}; font-weight:700; }}
   .bin {{ color:{BINARIO}; font-weight:700; }}
   .flag {{ color:{FLAG}; font-weight:700; }}
@@ -186,14 +209,30 @@ def verificar(lineas, dibujadas):
 
 
 def sha(ruta):
+    """SHA-256 del .txt con los saltos de linea normalizados a LF.
+
+    Por que se normaliza
+    -------------------
+    Git convierte LF a CRLF al importar en Windows si core.autocrlf esta
+    activo, de modo que el mismo .txt tiene bytes distintos en cada sistema y
+    el hash crudo dejaria de ser la firma de la fuente verificable. Normalizar
+    a LF hace que el manifiesto.signa el MISMO valor en Windows y en Linux, que
+    es donde se ejecuta el laboratorio y donde se comprueba la evidencia.
+    """
     h = hashlib.sha256()
     with open(ruta, "rb") as fh:
-        for bloque in iter(lambda: fh.read(65536), b""):
-            h.update(bloque)
+        datos = fh.read()
+    h.update(datos.replace(b"\r\n", b"\n"))
     return h.hexdigest()
 
 
 CHROME = "/home/fer/.cache/ms-playwright/chromium-1234/chrome-linux64/chrome"
+RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+RENDER_WIN = os.path.join(RAIZ, "scripts", "render-terminal-win.mjs")
+
+
+def _es_windows():
+    return os.name == "nt"
 
 
 def _cromo(extra, timeout=120):
@@ -218,7 +257,7 @@ console.log(JSON.stringify({w: Math.ceil(r.width), h: Math.ceil(r.height)}));
             ["node", "-e", """
 const {chromium} = require('playwright');
 (async () => {
-  const b = await chromium.launch({executablePath: '%s', args:['--no-sandbox']});
+  const b = await chromium.launch({executablePath: '%s'}, args:['--no-sandbox']});
   const p = await b.newPage();
   await p.goto('file://%s');
   const d = await p.evaluate(() => {
@@ -241,6 +280,19 @@ const {chromium} = require('playwright');
 
 def rasterizar(html_path, png_path):
     import shutil
+    # En Windows no hay Playwright ni la ruta de Chromium de Linux: se delega
+    # la medicion y la captura en render-terminal-win.mjs, que usa el Chrome o
+    # el Edge ya instalados. Produce el mismo PNG que la ruta de Linux.
+    if _es_windows():
+        r = subprocess.run(["node", RENDER_WIN, html_path, png_path, "2"],
+                           capture_output=True, text=True, timeout=180)
+        if r.returncode != 0:
+            raise SystemExit("ERROR: la rasterizacion fallo: "
+                             + (r.stderr or r.stdout).strip())
+        if not os.path.exists(png_path):
+            raise SystemExit("ERROR: no se genero el PNG")
+        print("  " + (r.stdout or "").strip())
+        return
     dim = _tamano_real(html_path)
     with tempfile.TemporaryDirectory() as td:
         destino = os.path.join(td, "f.png")
@@ -254,7 +306,7 @@ def rasterizar(html_path, png_path):
         shutil.copyfile(destino, png_path)
 
 
-def componer(txt_path, png_path, html_path=None, manifiesto=None):
+def componer(txt_path, png_path, html_path=None, manifiesto=None, ancho=None):
     with open(txt_path, "r", errors="replace") as fh:
         crudo = fh.read().rstrip("\n").split("\n")
 
@@ -268,7 +320,7 @@ def componer(txt_path, png_path, html_path=None, manifiesto=None):
             print("   ", d)
         raise SystemExit(2)
 
-    doc = construir_html(lineas, txt_path)
+    doc = construir_html(lineas, txt_path, ancho=ancho)
     html_path = html_path or os.path.splitext(png_path)[0] + ".html"
     with open(html_path, "w", encoding="utf-8") as fh:
         fh.write(doc)
@@ -283,15 +335,26 @@ def componer(txt_path, png_path, html_path=None, manifiesto=None):
             "lineas_txt": len(lineas),
             "lineas_dibujadas": len(dibujadas),
             "texto_identico": True,
+            "ancho_columnas": ancho,
             "generado_por": "scripts/render-terminal.py",
         }, fh, indent=2, ensure_ascii=False)
         fh.write("\n")
 
-    print(f"  {png_path}  ({len(lineas)} lineas, texto verificado contra el .txt)")
+    print(f"  {png_path}  ({len(lineas)} lineas, texto verificado contra el .txt"
+          + (f", ajuste de linea a {ancho} columnas" if ancho else "") + ")")
 
 
 if __name__ == "__main__":
-    if len(sys.argv) < 3:
+    args = sys.argv[1:]
+    ancho = None
+    if "--ancho" in args:
+        i = args.index("--ancho")
+        try:
+            ancho = int(args[i + 1])
+        except (IndexError, ValueError):
+            raise SystemExit("ERROR: --ancho necesita un numero de columnas")
+        del args[i:i + 2]
+    if len(args) < 2:
         print(__doc__)
         raise SystemExit(2)
-    componer(sys.argv[1], sys.argv[2])
+    componer(args[0], args[1], ancho=ancho)
