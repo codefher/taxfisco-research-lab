@@ -11,7 +11,7 @@ fichero `.txt` con la salida real del comando, que es la fuente verificable.
 
 | Subcarpeta | N.º | Contenido |
 |---|---|---|
-| `01-entorno-servicios/` | 4 | Contenedores, imágenes propias, servicios declarados e índices del SIEM |
+| `01-entorno-servicios/` | 9 | Contenedores, imágenes propias, servicios declarados, índices del SIEM y las consolas de MISP, Velociraptor, Shuffle, TheHive y Cortex |
 | `02-senuelo/` | 5 | Portal SIN: inicio, acceso por NIT, verificación en dos pasos, alta y panel |
 | `03-aislamiento-red/` | 4 | Redes `sin-*`, subredes y prueba de segmentación desde el atacante |
 | `04-captura-eventos/` | 4 | Alertas del SIEM con MITRE, panel, reglas IDS y logs NDR |
@@ -19,7 +19,7 @@ fichero `.txt` con la salida real del comando, que es la fuente verificable.
 | `06-correlacion-incidentes/` | 2 | Ataques con técnica MITRE y disponibilidad del SOAR |
 | `07-metricas/` | 2 + JSON | Indicadores y cobertura; incluye los JSON fuente |
 
-**Total: 23 figuras** (18 registros de terminal + 5 capturas de navegador).
+**Total: 28 figuras** (18 registros de terminal + 10 capturas de navegador).
 
 ## Iteración 2 (`v2.1-it2`)
 
@@ -107,6 +107,8 @@ trámite.
 | L9 | TheHive 5.5 redirige toda ruta a su página de organizaciones por el estado de licencia en prueba | Impide la vista de casos y, con ella, medir MTTR, MTTC y MTTContain |
 | L10 | La red `sin-ids` (10.23.0.0/24) está declarada pero no se crea, porque Suricata y Zeek corren en `network_mode: host` | En ejecución hay tres segmentos, no cuatro como describe el capítulo |
 | L11 | Cerrada en it2: seis escenarios no tenían MTTD medido | Resuelta: 10 de 10 escenarios con MTTD |
+| — | MISP desplegado pero sin ningún evento: nada alimenta la plataforma de inteligencia | Los IOCs de la campaña no se exportan desde Wazuh |
+| — | Cortex desplegado pero sin usuario inicial: la imagen no permite crearlo | Su API responde `user init not found` y su interfaz muestra el error |
 
 ## Estado del laboratorio al cierre
 
@@ -117,4 +119,5 @@ trámite.
 | Servicios de gestión autenticados | 7 de 7 responden 200 |
 | Campaña de ataque | 10 de 10 escenarios ejecutados |
 | Escenarios con MTTD medido | 10 de 10 |
-| Figuras verificadas contra su fuente | it1 17/17, it2 16/16 |
+| Figuras de terminal verificadas contra su fuente | it1 17/17, it2 16/16 |
+| Consolas de las plataformas | 5 capturadas (MISP, Velociraptor, Shuffle, TheHive, Cortex) |

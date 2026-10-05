@@ -30,6 +30,11 @@ capturas directas del navegador, sin procesamiento.
 | Figura | N.º checklist | Qué demuestra | Fuente | Sección de tesis |
 |---|---|---|---|---|
 | `01-entorno-servicios/01_docker-compose-ps` | 2 | Los 25 contenedores en ejecución | `docker compose ps` | 4.3.6.1 |
+| `01-entorno-servicios/05_misp-eventos` | 2 | Consola de MISP autenticada | navegador | 4.3.6.1 |
+| `01-entorno-servicios/06_velociraptor-consola` | 2 | Consola DFIR de Velociraptor | navegador | 4.3.6.1 |
+| `01-entorno-servicios/07_shuffle-workflows` | 2 | Catálogo de workflows del SOAR | navegador | 4.3.6.1 |
+| `01-entorno-servicios/08_thehive-organizaciones` | 2 | Estado que bloquea TheHive (limitación 2) | navegador | 4.3.6.1 |
+| `01-entorno-servicios/09_cortex-sin-inicializar` | 2 | Cortex desplegado sin usuario inicial (limitación 6) | navegador | 4.3.6.1 |
 | `01-entorno-servicios/02_docker-images` | 2 | Imágenes propias `sin/decoy-portal` y `sin/decoy-api` | `docker images` | 4.3.6.1 |
 | `01-entorno-servicios/03_docker-compose-config-services` | 2 | Los 25 servicios declarados | `docker compose config --services` | 4.3.6.1 |
 | `01-entorno-servicios/04_wazuh-indexer-indices` | 2 | El SIEM indexando alertas | `_cat/indices` del indexer | 4.3.6.4 |
