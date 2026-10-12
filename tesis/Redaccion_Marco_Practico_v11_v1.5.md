@@ -38,229 +38,243 @@ Octubre, 2026
 
 # Índice
 
-[Dedicatoria ii](#_Toc240296729)
+[Dedicatoria ii](#_Toc242091167)
 
-[Agradecimientos iii](#_Toc240296730)
+[Agradecimientos iii](#_Toc242091168)
 
-[Resumen iv](#_Toc240296731)
+[Resumen iv](#_Toc242091169)
 
-[Índice v](#_Toc240296732)
+[Índice v](#_Toc242091170)
 
-[Índice de Tablas, Cuadros y Gráficos ix](#_Toc240296733)
+[Índice de Tablas, Cuadros y Gráficos ix](#_Toc242091171)
 
-[Introducción 1](#_Toc240296734)
+[Introducción 1](#_Toc242091172)
 
-[Capítulo I: Aspectos Generales 2](#_Toc240296735)
+[Capítulo I: Aspectos Generales 2](#_Toc242091173)
 
-[1.1 Antecedentes 2](#_Toc240296736)
+[1.1 Antecedentes 2](#_Toc242091174)
 
-[1.2 Planteamiento del Problema 3](#_Toc240296737)
+[1.2 Planteamiento del Problema 3](#_Toc242091175)
 
-[1.2.1 Formulación del Problema de Investigación 4](#_Toc240296738)
+[1.2.1 Formulación del Problema de Investigación 4](#_Toc242091176)
 
-[1.3 Objetivo General y Específicos de la Investigación 4](#_Toc240296739)
+[1.3 Objetivo General y Específicos de la Investigación 4](#_Toc242091177)
 
-[1.3.1 Objetivo General 4](#_Toc240296740)
+[1.3.1 Objetivo General 4](#_Toc242091178)
 
-[1.3.2 Objetivos Específicos 4](#_Toc240296741)
+[1.3.2 Objetivos Específicos 4](#_Toc242091179)
 
-[1.4 Resultados de la Investigación 4](#_Toc240296742)
+[1.4 Resultados de la Investigación 4](#_Toc242091180)
 
-[1.5 Planteamiento de la Hipótesis 5](#_Toc240296743)
+[1.5 Planteamiento de la Hipótesis 5](#_Toc242091181)
 
-[1.6 Operacionalización de Variables 6](#_Toc240296744)
+[1.6 Operacionalización de Variables 6](#_Toc242091182)
 
-[Capítulo II: Marco Teórico 10](#_Toc240296745)
+[Capítulo II: Marco Teórico 10](#_Toc242091183)
 
-[2.1 Marco Conceptual 10](#_Toc240296746)
+[2.1 Marco Conceptual 10](#_Toc242091184)
 
-[2.1.1 Detección y gestión de eventos de seguridad 10](#_Toc240296747)
+[2.1.1 Detección y gestión de eventos de seguridad 10](#_Toc242091185)
 
-[2.1.1.1 Evento e incidente de seguridad 10](#_Toc240296748)
+[2.1.1.1 Evento e incidente de seguridad 10](#_Toc242091186)
 
-[2.1.1.2 Ciclo de vida del incidente 11](#_Toc240296749)
+[2.1.1.2 Ciclo de vida del incidente 11](#_Toc242091187)
 
-[2.1.1.3 Indicadores MTTD y MTTR 12](#_Toc240296750)
+[2.1.1.3 Indicadores MTTD y MTTR 12](#_Toc242091188)
 
-[2.1.1.4 Evidencia forense y cadena de custodia 13](#_Toc240296751)
+[2.1.1.4 Evidencia forense y cadena de custodia 13](#_Toc242091189)
 
-[2.1.2 El servicio fiscal digital como sector de aplicación 13](#_Toc240296752)
+[2.1.2 El servicio fiscal digital como sector de aplicación 13](#_Toc242091190)
 
-[2.1.2.1 Definición de servicio fiscal digital 14](#_Toc240296753)
+[2.1.2.1 Definición de servicio fiscal digital 14](#_Toc242091191)
 
-[2.1.2.2 Tributaria 3.0 14](#_Toc240296754)
+[2.1.2.2 Tributaria 3.0 14](#_Toc242091192)
 
-[2.1.2.3 Modelo de Madurez de la Transformación Digital 15](#_Toc240296755)
+[2.1.2.3 Modelo de Madurez de la Transformación Digital 15](#_Toc242091193)
 
-[2.1.2.4 Contexto institucional boliviano 16](#_Toc240296756)
+[2.1.2.4 Contexto institucional boliviano 16](#_Toc242091194)
 
-[2.1.2.5 Índice de madurez en ciberseguridad fiscal 17](#_Toc240296757)
+[2.1.2.5 Índice de madurez en ciberseguridad fiscal 17](#_Toc242091195)
 
-[2.1.3 Conceptos operativos de detección 18](#_Toc240296758)
+[2.1.3 Conceptos operativos de detección 18](#_Toc242091196)
 
-[2.1.3.1 Marco MITRE ATT&CK 18](#_Toc240296759)
+[2.1.3.1 Marco MITRE ATT&CK 18](#_Toc242091197)
 
-[2.1.3.2 Ciberdecepción 19](#_Toc240296760)
+[2.1.3.2 Ciberdecepción 19](#_Toc242091198)
 
-[2.1.3.3 Honeypots 20](#_Toc240296761)
+[2.1.3.3 Honeypots 20](#_Toc242091199)
 
-[2.1.3.4 Honeytokens, honeynets y sensores de engaño 21](#_Toc240296762)
+[2.1.3.4 Honeytokens, honeynets y sensores de engaño 21](#_Toc242091200)
 
-[2.1.3.5 Detección, evidencia y mejora continua 22](#_Toc240296763)
+[2.1.3.5 Detección, evidencia y mejora continua 22](#_Toc242091201)
 
-[2.2 Marco Referencial 22](#_Toc240296764)
+[2.2 Marco Referencial 22](#_Toc242091202)
 
-[2.2.1 Teoría general de riesgo y resiliencia en ciberseguridad 23](#_Toc240296765)
+[2.2.1 Teoría general de riesgo y resiliencia en ciberseguridad 23](#_Toc242091203)
 
-[2.2.1.1 Origen y fundamento de la teoría 23](#_Toc240296766)
+[2.2.1.1 Origen y fundamento de la teoría 23](#_Toc242091204)
 
-[2.2.1.2 Ciclo de gestión del riesgo 24](#_Toc240296767)
+[2.2.1.2 Ciclo de gestión del riesgo 24](#_Toc242091205)
 
-[2.2.1.3 Capacidades de la resiliencia organizacional 25](#_Toc240296768)
+[2.2.1.3 Capacidades de la resiliencia organizacional 25](#_Toc242091206)
 
-[2.2.1.4 Articulación riesgo–resiliencia 26](#_Toc240296769)
+[2.2.1.4 Articulación riesgo–resiliencia 26](#_Toc242091207)
 
-[2.2.1.5 Criterios de evaluación teórica 26](#_Toc240296770)
+[2.2.1.5 Criterios de evaluación teórica 26](#_Toc242091208)
 
-[2.2.2 Teoría sustantiva de modelos de madurez en ciberseguridad tributaria 28](#_Toc240296771)
+[2.2.2 Teoría sustantiva de modelos de madurez en ciberseguridad tributaria 28](#_Toc242091209)
 
-[2.2.2.1 Fundamento de los modelos de madurez 28](#_Toc240296772)
+[2.2.2.1 Fundamento de los modelos de madurez 28](#_Toc242091210)
 
-[2.3 Marco Legal 29](#_Toc240296773)
+[2.3 Marco Legal 29](#_Toc242091211)
 
-[Capítulo III: Metodología de la Investigación 30](#_Toc240296774)
+[Capítulo III: Metodología de la Investigación 30](#_Toc242091212)
 
-[3.1 Métodos de Investigación 30](#_Toc240296775)
+[3.1 Métodos de Investigación 30](#_Toc242091213)
 
-[3.2 Tipo de Investigación 31](#_Toc240296776)
+[3.2 Tipo de Investigación 31](#_Toc242091214)
 
-[3.3 Universo o Población de Estudio 33](#_Toc240296777)
+[3.3 Universo o Población de Estudio 33](#_Toc242091215)
 
-[3.3.1 Determinación y Elección de la Muestra 34](#_Toc240296778)
+[3.3.1 Determinación y Elección de la Muestra 34](#_Toc242091216)
 
-[3.4 Sujetos Vinculados a la Población 36](#_Toc240296779)
+[3.4 Sujetos Vinculados a la Población 36](#_Toc242091217)
 
-[3.5 Fuentes y Diseño de los Instrumentos de Relevamiento de Información 37](#_Toc240296780)
+[3.5 Fuentes y Diseño de los Instrumentos de Relevamiento de Información 37](#_Toc242091218)
 
-[3.5.1 Fuentes de la Investigación 37](#_Toc240296781)
+[3.5.1 Fuentes de la Investigación 37](#_Toc242091219)
 
-[3.5.2 Diseño de los Instrumentos de Relevamiento de Información 40](#_Toc240296782)
+[3.5.2 Diseño de los Instrumentos de Relevamiento de Información 40](#_Toc242091220)
 
-[3.5.2.1 Descripción del Instrumento de Diagnóstico 41](#_Toc240296783)
+[3.5.2.1 Descripción del Instrumento de Diagnóstico 41](#_Toc242091221)
 
-[3.5.2.2 Validez del Instrumento 48](#_Toc240296784)
+[3.5.2.2 Validez del Instrumento 48](#_Toc242091222)
 
-[3.5.2.3 Confiabilidad del Instrumento 56](#_Toc240296785)
+[3.5.2.3 Confiabilidad del Instrumento 56](#_Toc242091223)
 
-[3.6 Procesamiento y Análisis de la Información 63](#_Toc240296786)
+[3.6 Procesamiento y Análisis de la Información 63](#_Toc242091224)
 
-[Capítulo IV: Marco Práctico 64](#_Toc240296787)
+[Capítulo IV: Marco Práctico 64](#_Toc242091225)
 
-[4.1 Análisis de la situación actual 64](#_Toc240296788)
+[4.1 Análisis de la situación actual 64](#_Toc242091226)
 
-[4.1.1 Análisis de la normativa 64](#_Toc240296789)
+[4.1.1 Análisis de la normativa 64](#_Toc242091227)
 
-[4.1.1.1 Criterio de selección de las normas 65](#_Toc240296790)
+[4.1.1.1 Criterio de selección de las normas 65](#_Toc242091228)
 
-[4.1.1.2 Normas de gestión de incidentes 66](#_Toc240296791)
+[4.1.1.2 Normas de gestión de incidentes 66](#_Toc242091229)
 
-[4.1.1.3 Norma marco de seguridad de la información 68](#_Toc240296792)
+[4.1.1.3 Norma marco de seguridad de la información 68](#_Toc242091230)
 
-[4.1.1.4 Normas de evidencia digital y forense 69](#_Toc240296793)
+[4.1.1.4 Normas de evidencia digital y forense 69](#_Toc242091231)
 
-[4.1.1.5 Norma de gestión de riesgos 70](#_Toc240296794)
+[4.1.1.5 Norma de gestión de riesgos 70](#_Toc242091232)
 
-[4.1.1.6 Marco de comportamiento adversario 70](#_Toc240296795)
+[4.1.1.6 Marco de comportamiento adversario 70](#_Toc242091233)
 
-[4.1.1.7 Benchmarks operativos y modelos de madurez 71](#_Toc240296796)
+[4.1.1.7 Benchmarks operativos y modelos de madurez 71](#_Toc242091234)
 
-[4.1.2 Aplicación del instrumento 74](#_Toc240296797)
+[4.1.2 Aplicación del instrumento 74](#_Toc242091235)
 
-[4.1.2.1 Aplicación a la muestra de diagnóstico 75](#_Toc240296798)
+[4.1.2.1 Aplicación a la muestra de diagnóstico 75](#_Toc242091236)
 
-[4.1.2.2 Confiabilidad del instrumento 76](#_Toc240296799)
+[4.1.2.2 Confiabilidad del instrumento 76](#_Toc242091237)
 
-[4.1.2.3 Resultados por instrumento 77](#_Toc240296800)
+[4.1.2.3 Resultados por instrumento 77](#_Toc242091238)
 
-[4.1.2.4 Resultados por grupo temático 80](#_Toc240296801)
+[4.1.2.4 Resultados por grupo temático 80](#_Toc242091239)
 
-[4.1.2.5 Resultado global de madurez 82](#_Toc240296802)
+[4.1.2.5 Resultado global de madurez 82](#_Toc242091240)
 
-[4.1.3 Diagnóstico situacional 83](#_Toc240296803)
+[4.1.3 Diagnóstico situacional 83](#_Toc242091241)
 
-[4.1.3.1 Brechas en gestión de incidentes 84](#_Toc240296804)
+[4.1.3.1 Brechas en gestión de incidentes 84](#_Toc242091242)
 
-[4.1.3.2 Brechas en evidencias y respaldo 85](#_Toc240296805)
+[4.1.3.2 Brechas en evidencias y respaldo 85](#_Toc242091243)
 
-[4.1.3.3 Brechas en controles técnicos 86](#_Toc240296806)
+[4.1.3.3 Brechas en controles técnicos 86](#_Toc242091244)
 
-[4.1.3.4 Brechas en gestión organizacional y mejora 87](#_Toc240296807)
+[4.1.3.4 Brechas en gestión organizacional y mejora 87](#_Toc242091245)
 
-[4.1.3.5 Caracterización del estado actual 88](#_Toc240296808)
+[4.1.3.5 Caracterización del estado actual 88](#_Toc242091246)
 
-[4.1.3.6 Matriz de trazabilidad 90](#_Toc240296809)
+[4.1.3.6 Matriz de trazabilidad 90](#_Toc242091247)
 
-[4.2 Diseño de la metodología de honeypot para la gestión de incidentes en los servicios fiscales 93](#_Toc240296810)
+[4.2 Diseño de la metodología de honeypot para la gestión de incidentes en los servicios fiscales 93](#_Toc242091248)
 
-[4.2.1 Fundamentación del diseño metodológico 93](#_Toc240296811)
+[4.2.1 Fundamentación del diseño metodológico 93](#_Toc242091249)
 
-[4.2.1.1 Principios de diseño de la metodología Honeypot 94](#_Toc240296812)
+[4.2.1.1 Principios de diseño de la metodología Honeypot 94](#_Toc242091250)
 
-[4.2.1.2 Atención integral de los hallazgos del diagnóstico 98](#_Toc240296813)
+[4.2.1.2 Atención integral de los hallazgos del diagnóstico 98](#_Toc242091251)
 
-[4.2.1.3 Decisiones de diseño asumidas por la metodología Honeypot 105](#_Toc240296814)
+[4.2.1.3 Decisiones de diseño asumidas por la metodología Honeypot 105](#_Toc242091252)
 
-[4.2.2 Arquitectura general de la metodología 107](#_Toc240296815)
+[4.2.2 Arquitectura general de la metodología 107](#_Toc242091253)
 
-[4.2.2.1 Estructura secuencial de las cinco fases y sus bucles de retroalimentación 109](#_Toc240296816)
+[4.2.2.1 Estructura secuencial de las cinco fases y sus bucles de retroalimentación 109](#_Toc242091254)
 
-[4.2.2.2 Planos transversales de la metodología y categorías funcionales de tecnología 110](#_Toc240296817)
+[4.2.2.2 Planos transversales de la metodología y categorías funcionales de tecnología 110](#_Toc242091255)
 
-[4.2.2.3 Trazabilidad metodológica de las cinco fases 113](#_Toc240296818)
+[4.2.2.3 Trazabilidad metodológica de las cinco fases 113](#_Toc242091256)
 
-[4.2.2.4 Prerrequisitos de la organización y transferibilidad de la metodología 115](#_Toc240296819)
+[4.2.2.4 Prerrequisitos de la organización y transferibilidad de la metodología 115](#_Toc242091257)
 
-[4.2.2.5 Justificación metodológica de las cinco actividades por fase 117](#_Toc240296820)
+[4.2.2.5 Justificación metodológica de las cinco actividades por fase 117](#_Toc242091258)
 
-[4.2.3 Fase 1. Diseño del señuelo 122](#_Toc240296821)
+[4.2.3 Fase 1. Diseño del señuelo 122](#_Toc242091259)
 
-[4.2.4 Fase 2. Despliegue aislado 128](#_Toc240296822)
+[4.2.4 Fase 2. Despliegue aislado 128](#_Toc242091260)
 
-[4.2.5 Fase 3. Captura, enriquecimiento y custodia 132](#_Toc240296823)
+[4.2.5 Fase 3. Captura, enriquecimiento y custodia 132](#_Toc242091261)
 
-[4.2.6 Fase 4. Correlación con gestión de incidentes 137](#_Toc240296824)
+[4.2.6 Fase 4. Correlación con gestión de incidentes 137](#_Toc242091262)
 
-[4.2.7 Fase 5. Medición de impacto y lecciones aprendidas 142](#_Toc240296825)
+[4.2.7 Fase 5. Medición de impacto y lecciones aprendidas 142](#_Toc242091263)
 
-[4.3 Implementación de la metodología de honeypot para la gestión de incidentes 148](#_Toc240296826)
+[2.8 Síntesis del diseño de la metodología Honeypot 148](#_Toc242091264)
 
-[4.3.1 Propósito, alcance y línea base 150](#_Toc240296827)
+[4.3 Implementación de la metodología de honeypot para la gestión de incidentes 149](#_Toc242091265)
 
-[4.3.2 Entorno controlado de implementación 151](#_Toc240296828)
+[4.3.1 Propósito, alcance y línea base 150](#_Toc242091266)
 
-[4.3.3 Plataforma tecnológica del prototipo 154](#_Toc240296829)
+[4.3.2 Entorno controlado de implementación 151](#_Toc242091267)
 
-[Capítulo V: Conclusiones y Recomendaciones de la Investigación 159](#_Toc240296830)
+[4.3.3 Plataforma tecnológica del prototipo 154](#_Toc242091268)
 
-[5.1 Conclusiones 171](#_Toc240296831)
+[4.3.4 Matriz de trabajo y criterios de verificación 159](#_Toc242091269)
 
-[5.2 Recomendaciones 171](#_Toc240296832)
+[4.3.5. Fase 1. Diseño del señuelo 162](#_Toc242091270)
 
-[Anexos 173](#_Toc240296833)
+[4.3.6. Fase 2. Despliegue aislado 170](#_Toc242091271)
 
-[Anexo A: [Nombre del Primer Anexo] 173](#_Toc240296834)
+[4.3.7. Fase 3. Captura, enriquecimiento y custodia 181](#_Toc242091272)
 
-[Anexo B: [Nombre del Segundo Anexo] 173](#_Toc240296835)
+[4.3.8. Fase 4. Correlación con gestión de incidentes 196](#_Toc242091273)
 
-[Glosario 174](#_Toc240296836)
+[4.3.9. Fase 5. Medición y lecciones aprendidas 201](#_Toc242091274)
 
-[Apéndice 175](#_Toc240296837)
+[Capítulo V: Conclusiones y Recomendaciones de la Investigación 213](#_Toc242091275)
 
-[Apéndice A: Instrumento de Recolección de Datos 175](#_Toc240296838)
+[5.1 Conclusiones 213](#_Toc242091276)
 
-[Apéndice B: Consentimiento Informado 175](#_Toc240296839)
+[5.2 Recomendaciones 213](#_Toc242091277)
 
-[Bibliografía 176](#_Toc240296840)
+[Anexos 215](#_Toc242091278)
+
+[Anexo A: [Nombre del Primer Anexo] 215](#_Toc242091279)
+
+[Anexo B: [Nombre del Segundo Anexo] 215](#_Toc242091280)
+
+[Glosario 216](#_Toc242091281)
+
+[Apéndice 217](#_Toc242091282)
+
+[Apéndice A: Instrumento de Recolección de Datos 217](#_Toc242091283)
+
+[Apéndice B: Consentimiento Informado 217](#_Toc242091284)
+
+[Bibliografía 218](#_Toc242091285)
 
 # Índice de Tablas, Cuadros y Gráficos
 
@@ -1159,7 +1173,7 @@ El cálculo del porcentaje de cumplimiento se ejecuta instrumento por instrument
 | G4 | 13 | Capacitación y cobertura | 3 | 47,78 | Básico |
 | G4 | 14 | Métricas y mejora continua | 3 | 53,89 | Gestionado |
 
-*Nota.* Cálculo del porcentaje sobre el promedio de los puntajes individuales de los 30 respondentes para cada instrumento. Niveles de madurez según los cortes definidos en la ficha técnica del instrumento: Inicial 0–25 %, Básico 26–50 %, Gestionado 51–75 %, Optimizado 76–100 %. Elaboración propia, 2026.
+*Nota.* Cálculo del porcentaje sobre el promedio de los puntajes individuales de los 30 respondentes para cada instrumento. Niveles de madurez según los cortes definidos en la ficha técnica del instrumento: Inicial de 0 % a menos de 26 %, Básico de 26 % a menos de 51 %, Gestionado de 51 % a menos de 76 % y Optimizado de 76 % a 100 %. Elaboración propia, 2026.
 
 La lectura de la tabla revela una distribución concentrada en una franja estrecha. Ningún instrumento alcanza el nivel Optimizado y ninguno descende al nivel Inicial. Los catorce valores oscilan entre 47,78 % y 58,33 %, lo cual sitúa al proceso completo dentro del corredor que separa el final del nivel Básico del comienzo del nivel Gestionado. Esa estrechez del rango es, por sí misma, una característica del diagnóstico. Las instituciones no presentan dominios donde la madurez se haya consolidado claramente ni dominios donde la operación esté ausente, sino un patrón sostenido de cumplimiento parcial.
 
@@ -1939,8 +1953,6 @@ Cada evidencia se identifica de acuerdo con la fase y la función que respalda, 
 
 ### 4.3.5 Implementación del prototipo I (entidad homologada)
 
-Los apartados 4.3.5.1 a 4.3.5.8 documentan la implementación de la metodología en el primer prototipo, construido sobre la base de una entidad homologada del rubro de servicios fiscales digitales.
-
 #### 4.3.5.1 Fase 1. Diseño del señuelo
 
 La primera fase prepara el señuelo que se utiliza en el prototipo, su propósito es representar un servicio tributario dentro del entorno controlado y establecer las condiciones necesarias para registrar las interacciones que se producen con este servicio. El diseño de esta fase contempla las cinco decisiones definidas en la metodología, relacionadas con la identificación del activo, el nivel de interacción, el contenido, los mecanismos de detección y el perfil del atacante.
@@ -2511,234 +2523,370 @@ Estas lecciones se incorporan al bucle de retroalimentación que el diseño esta
 
 La verificación de la fase confirma que la medición del impacto opera sobre indicadores trazables, con un tiempo medio de detección en el orden de los segundos para la mayor parte de los escenarios, una cobertura de detección sobre diez técnicas de seis tácticas y una correspondencia documentada con el ciclo de incidentes de ISO/IEC 27035. Este resultado verifica las actividades que el diseño metodológico asigna a la fase y cierra el ciclo de la metodología con la evidencia que la mejora continua requiere.
 
-#### 4.3.5.6 Prueba controlada de extremo a extremo
-
-La verificación de la primera instanciación concluye con una prueba controlada de extremo a extremo, que ejerce la cadena completa de la metodología en una secuencia integrada: interacción con el señuelo, captura del evento, enriquecimiento y custodia de la evidencia, correlación con la gestión de incidentes y medición del indicador resultante. La prueba se etiqueta como evento sintético de prueba, dado que la interacción se genera de manera controlada dentro del entorno experimental con el propósito específico de demostrar la operación de la cadena.
-
-*[Pendiente de evidencia: secuencia de capturas CAP-E2E con la interacción, el evento capturado, el caso correlacionado y el indicador medido. Fuente prevista: captura N.º 6 del checklist de evidencia del apartado 4.4.]*
-
-**Figura X**
-
-*Secuencia de la prueba controlada de extremo a extremo*
-
-*[Pendiente: figura con la secuencia CAP-E2E.]*
-
-*Nota.* *[Pendiente: nota de figura con la descripción de la secuencia y su etiqueta de evento sintético de prueba.]*
-
-#### 4.3.5.7 Matriz consolidada de trazabilidad
-
-La matriz consolidada de trazabilidad relaciona cada elemento del diseño metodológico con su implementación, su evidencia y el apartado que la documenta, cerrando la verificación de la primera instanciación.
-
-*[Pendiente de evidencia: tabla consolidada diseño → implementación → evidencia → apartado. Fuente prevista: captura N.º 7 del checklist de evidencia del apartado 4.4.]*
-
-**Tabla X**
-
-*Matriz consolidada de trazabilidad de la primera instanciación*
-
-*[Pendiente: tabla consolidada.]*
-
-*Nota.* *[Pendiente.]*
-
-#### 4.3.5.8 Síntesis de la primera instanciación
-
-La primera instanciación verifica que las catorce categorías funcionales del diseño quedan materializadas en la práctica, con evidencia de operación en las cinco fases de la metodología, de la prueba controlada de extremo a extremo y de la matriz consolidada de trazabilidad. Esta verificación de componentes constituye la base sobre la cual el segundo prototipo evalúa el efecto de la metodología en los indicadores de gestión de incidentes.
-
-*[Pendiente de redacción final: cierre con los conteos de componentes verificados al completar la matriz del 4.3.5.7.]*
-
 ### 4.3.6 Segundo prototipo: adaptación al contexto del SIN e iteraciones de mejora
 
-Los apartados 4.3.5.1 a 4.3.5.8 documentaron la primera instanciación de la metodología en un entorno controlado construido sobre la base de una entidad homologada del rubro de servicios fiscales digitales, con el propósito de verificar que las catorce categorías funcionales del diseño quedan materializadas en la práctica. El presente apartado documenta la segunda instanciación, que replica la misma arquitectura adaptando el señuelo al contexto de un servicio de impuestos nacionales y recorre las cinco fases de la metodología con la misma estructura de verificación. La medición del efecto de la metodología sobre este segundo prototipo, mediante dos iteraciones de operación (preprueba y posprueba) conforme al diseño pre-experimental declarado en el apartado 3.2, se presenta en el apartado 4.4. La distinción entre la verificación de componentes y la validación del efecto preserva el carácter transferible de la metodología, dado que la operación de las categorías funcionales no depende de la marca ni del contexto institucional del señuelo.
+Los apartados 4.3.5.1 a 4.3.5.8 documentan la primera implementación de la metodología, construida sobre una entidad homologada del rubro de servicios fiscales digitales y orientada a comprobar que las catorce categorías funcionales del diseño se materializan en la práctica. El presente apartado registra la segunda implementación, que conserva la arquitectura del primer prototipo y adapta el señuelo al contexto de un servicio nacional de impuestos, con el fin de recorrer las cinco fases de la metodología bajo la misma estructura de verificación.
 
-El alcance de la segunda instanciación comprende la adaptación del señuelo al contexto del Servicio de Impuestos Nacionales de Bolivia y la verificación de las cinco fases en el segundo entorno, documentadas de manera compacta con remisión a la evidencia correspondiente.
+La segunda implementación incorpora un elemento que la primera no contempla, pues organiza la operación en dos iteraciones consecutivas que se ajustan al esquema de comparación antes y después declarado en el apartado 3.2. La primera iteración establece la línea base de los indicadores de detección y la segunda mide el efecto de las mejoras que se desprenden de las lecciones aprendidas durante esa línea base. El apartado 4.3.6.6 desarrolla ese ciclo de iteraciones, mientras que el apartado 4.4 presenta los resultados de ambas mediciones y su comparación. Cada fase de este apartado documenta la primera ejecución, salvo donde se indica expresamente que la evidencia procede de la segunda.
+
+La separación entre verificar componentes y medir el efecto responde a una razón práctica, dado que la operación de las categorías funcionales no depende ni de la marca del señuelo ni de su contexto institucional, por lo que ambas implementaciones someten a prueba la misma arquitectura. Lo que distingue a la segunda implementación es que somete el conjunto de categorías funcionales a dos ciclos de operación medidos, con lo cual los datos que se recogen en dos oportunidades permiten contrastar la estabilidad del comportamiento del señuelo.
+
+El alcance de la segunda implementación comprende la adaptación del señuelo al contexto del Servicio de Impuestos Nacionales de Bolivia y la verificación de las cinco fases en el segundo entorno, procesos que se documentan de manera compacta con remisión a la evidencia que los respalda.
 
 #### 4.3.6.1 Adaptación del señuelo y equivalencia entre prototipos
 
-El segundo prototipo replica la arquitectura del primero adaptando el contenido y la identidad visual del señuelo al contexto de un portal tributario nacional. La equivalencia entre ambos entornos se resume en la Tabla X, la cual muestra que la única diferencia sustantiva reside en el contenido del señuelo y la denominación de los artefactos del laboratorio.
+La adaptación del señuelo al segundo contexto institucional conserva la arquitectura del primer prototipo, de modo que ambas implementaciones comparten el mismo armazón tecnológico y difieren únicamente en el contenido que el ejercicio admite. La Tabla 5 contrasta los elementos de infraestructura de los dos prototipos y muestra, en cada fila, el elemento comparado y su denominación en cada implementación. Esa disposición permite comprobar que la equivalencia se sostiene en los planos que la metodología declara comunes, al tiempo que deja explícitos los puntos en los que el segundo prototipo se aparta del primero.
 
-**Tabla X**
+Tabla 5 *Equivalencia entre el prototipo I y el prototipo II*
 
-*Equivalencia entre el prototipo I y el prototipo II*
-
-| Elemento | Prototipo I (apartado 4.3.5) | Prototipo II (apartado 4.3.6) |
+|  |  |  |
 | --- | --- | --- |
-| Denominación del laboratorio | TaxFisco Research Lab | SIN Research Lab *[pendiente: captura]* |
-| Redes | taxfisco-dmz, taxfisco-honeypot, taxfisco-ids, taxfisco-soc | sin-dmz, sin-honeypot, sin-ids, sin-soc *[pendiente: captura de `docker network ls`]* |
-| Imágenes de señuelo | taxfisco/decoy-portal, taxfisco/decoy-api | sin/decoy-portal, sin/decoy-api *[pendiente: captura de `docker images`]* |
-| Servicios Docker Compose | 25 | 25 idénticos *[pendiente: captura de `docker compose config --services`]* |
-| Contenido del señuelo | Entidad homologada | Portal tributario nacional (contexto SIN) *[pendiente: capturas del portal]* |
+| **Elemento** | **Prototipo I (apartado 4.3.5)** | **Prototipo II (apartado 4.3.6)** |
+| Denominación del laboratorio | TaxFisco Research Lab | SIN Research Lab |
+| Redes | taxfisco-dmz, taxfisco-honeypot, taxfisco-ids, taxfisco-soc | sin-dmz, sin-honeypot y sin-soc, con sin-ids |
+| Imágenes de señuelo | taxfisco/decoy-portal, taxfisco/decoy-api | sin/decoy-portal, sin/decoy-api, sin/cortex y sin/wazuh-indexer |
+| Servicios Docker Compose | 25 | 25 idénticos |
+| Contenido del señuelo | Entidad homologada | Portal tributario nacional (contexto SIN) |
 | Rol en la tesis | Verificación de componentes (OE3) | Validación con iteraciones (OE4) |
 
-*Nota.* La tabla relaciona los elementos de infraestructura de ambos prototipos, con remisión a la evidencia de captura que respalda cada elemento del segundo prototipo. La equivalencia de arquitectura sostiene el carácter transferible de la metodología.
+*Nota.* La tabla relaciona los elementos de infraestructura de ambos prototipos, con remisión a la evidencia de captura que respalda cada elemento del segundo prototipo. La equivalencia de arquitectura sostiene el carácter transferible de la metodología. La diferencia en el número de redes no obedece al diseño, pues el segmento sin-ids permanece declarado en la composición mientras los servicios de detección de red operan en modo host, de modo que en ejecución existen tres segmentos y la verificación de aislamiento se practica sobre ellos. Esa circunstancia tampoco altera la equivalencia de las categorías funcionales, que no dependen del número de segmentos.
 
 #### 4.3.6.2 Fase 1. Diseño del señuelo SIN
 
-La primera fase de la segunda instanciación adapta el diseño del señuelo al contexto del Servicio de Impuestos Nacionales de Bolivia, replicando la experiencia de un portal tributario nacional en sus funciones de consulta, declaración y autenticación. La adaptación conserva los mecanismos de detección instrumentados en la primera instanciación y modifica únicamente el contenido, la identidad visual y los datos simulados, coherentes con el contexto tributario boliviano y sin datos reales de contribuyentes. La configuración técnica de la instrumentación se describe en el apartado 4.3.5.1, dado que los mecanismos de detección son idénticos en ambas instanciaciones.
+La primera fase del segundo prototipo adapta el diseño del señuelo al contexto del Servicio de Impuestos Nacionales de Bolivia, replicando la experiencia de un portal tributario nacional en sus funciones de consulta, declaración y autenticación. El señuelo conserva los mecanismos de detección instrumentados en el primer prototipo, de modo que la modificación se limita al contenido, la identidad visual y los datos simulados, todos coherentes con el contexto tributario boliviano y ajenos a los datos reales de contribuyentes. La configuración técnica de esa instrumentación se describe en el apartado 4.3.5.1, pues los mecanismos de detección que sustentan los dos prototipos son idénticos y no requieren adaptación adicional.
 
-*[Pendiente de evidencia: capturas del portal SIN (inicio y acceso) y del contenido adaptado. Fuente prevista: capturas N.º 3 y N.º 4 del checklist de evidencia.]*
+El señuelo reproduce el recorrido de un contribuyente que accede al portal, se autentica, completa la verificación en dos pasos e ingresa al panel. La Figura 39 presenta la pantalla de inicio del portal, con la identidad institucional del servicio y el acceso por número de identificación tributaria.
 
-**Figura X**
+Figura 39 *Pantalla de inicio del señuelo del segundo prototipo: portal tributario nacional*
 
-*Señuelo del segundo prototipo: portal tributario nacional*
+![](data:image/png;base64...)
 
-*[Pendiente: figura.]*
+*Nota.* Captura directa del portal del señuelo, la pantalla presenta la identidad del servicio tributario y el punto de entrada al acceso, sin ningún dato real de contribuyentes.
+
+El acceso se realiza mediante número de identificación tributaria, con la credencial de verificación en dos pasos que reproduce el procedimiento de autenticación del servicio real. El segundo factor se solicita una vez validada la identificación, de modo que un intento contrario queda registrado como un evento con la técnica asociada, tal como dispone la metodología para la fase de señalización del atacante.
+
+Figura 40a*Solicitud del número de identificación tributaria en el acceso al señuelo*
+
+![](data:image/png;base64...)
+
+*Nota.* Captura directa del portal del señuelo en el paso de autenticación, el recorrido en dos pasos aporta dos puntos de señalización por intento fallido, lo que incrementa la probabilidad de detección de un ataque de fuerza bruta o de relleno de credenciales frente al señuelo del primer prototipo.
+
+Figura 40b *Solicitud del segundo factor de verificación en el acceso al señuelo*
+
+![](data:image/png;base64...)
+
+*Nota*. Captura directa del segundo paso del acceso, donde el sistema solicita el código de verificación en dos pasos después de validar la identificación, este segundo factor aporta un punto de señalización adicional por intento, lo que incrementa la probabilidad de detección de un ataque de fuerza bruta o de relleno de credenciales frente al señuelo del primer prototipo.
+
+Una vez superado el acceso, el contribuyente ingresa al panel e introduce en él los datos de la declaración, el panel ofrece las funciones de consulta y declaración exigidas por el diseño para replicar la superficie de ataque del servicio y cada petición se registra en el señuelo con su marca temporal, lo que constituye la fuente de eventos para el cálculo del tiempo medio de detección en la fase de medición.
+
+Figura 41a *Formulario de declaración en el panel del señuelo del segundo prototipo*
+
+![](data:image/png;base64...)
+
+*Nota.* Captura directa del formulario de declaración, que reproduce la función de presentación de la declaración del servicio tributario. Cada petición atendida queda registrada por el señuelo como evento con instante de generación, fuente que la fase de medición utiliza para el cálculo del tiempo de detección.
+
+Figura 41b *Panel principal del contribuyente en el señuelo del segundo prototipo*
+
+![](data:image/png;base64...)
+
+*Nota.* Captura directa del panel al que accede el contribuyente tras completar la autenticación, donde se muestran las funciones de consulta y declaración del servicio tributario. El acceso a este panel queda registrado con la técnica asociada al evento de autenticación.
+
+El alcance del ejercicio se cierra con el perfil del atacante, que determina qué superficie ofrece el señuelo y qué técnicas puede ejecutar quien lo explora; el contenedor atacante incorpora desde el inicio de la campaña las diez herramientas habituales de reconocimiento y de explotación, con el escáner de red, la herramienta de fuerza bruta, el inyector de consultas, el escáner web, el cliente de acceso remoto y el resolvedor de nombres, entre otras.
+
+Figura 41c
+
+*Herramientas disponibles en el contenedor atacante durante la campaña*
+
+![](data:image/png;base64...)
+
+*Nota.* Relación de las herramientas disponibles en el contenedor atacante al inicio de la campaña; la comprobación se ejecuta sobre el propio contenedor y devuelve la ruta de cada herramienta, lo que documenta que el perfil está completo desde el comienzo y que ningún escenario depende de una herramienta ausente. Fuente: entorno de servicios, iteración 2.
 
 #### 4.3.6.3 Fase 2. Despliegue aislado
 
-La segunda fase verifica que el segundo prototipo se despliega en el entorno aislado y que el señuelo resulta alcanzable únicamente desde las redes permitidas, condición que la metodología establece para esta fase. La comprobación se realiza con la inspección de las cuatro redes del laboratorio y la revisión de las reglas de segmentación.
+La segunda fase verifica que el segundo prototipo se despliega en el entorno aislado y que el señuelo resulta alcanzable únicamente desde las redes permitidas, condición que la metodología establece para esta fase. La comprobación se practica sobre la inspección de los segmentos del laboratorio y sobre una prueba de alcanzabilidad ejecutada desde el contenedor atacante, de modo que la evidencia demuestra el aislamiento de la superficie expuesta respecto de la cadena de detección.
 
-*[Pendiente de evidencia: capturas de la inspección de redes sin-* y de la verificación de aislamiento. Fuente prevista: capturas N.º 1 y N.º 5 del checklist de evidencia.]*
+La Figura 42 presenta la relación de redes del laboratorio, en ejecución existen tres segmentos efectivos, entre los que figuran *sin-dmz*, que aloja el señuelo y la superficie expuesta; *sin-honeypot*, que aísla los emuladores de servicio; y *sin-soc*, que hospeda la cadena de detección, el correlacionador y las plataformas de gestión. La composición declara además un segmento *sin-ids* destinado a los sensores de red, aunque ese segmento no llega a instanciarse porque Suricata y Zeek operan en modo host y no precisan segmento propio. Esa diferencia entre lo declarado y lo ejecutado no altera la equivalencia de las categorías funcionales, que no dependen del número de segmentos.
 
-**Figura X**
+Figura 42 *Segmentos de red en ejecución en el laboratorio del segundo prototipo*
 
-*Arquitectura de redes y verificación de aislamiento del segundo prototipo*
+![](data:image/png;base64...)
 
-*[Pendiente: figura.]*
+*Nota.* Registro de salida del listado de redes del laboratorio filtrado por el prefijo del segundo prototipo. Se observan los tres segmentos efectivamente instanciados. El segmento sin-ids figura declarado en la composición del laboratorio pero no en ejecución, dado que los servicios de detección de red operan en modo host. Fuente: Aislamiento de red, iteración 1.
+
+La configuración de los dos segmentos que sostienen la separación aparece en las Figuras 43a y 43b; el segmento expuesto declara la dirección 10.20.0.0/24 con su puerta de enlace, y en él residen el señuelo y su superficie de servicios. El segmento de operaciones de seguridad declara la dirección 10.22.0.0/24 y aloja diecinueve contenedores, entre ellos la cadena de detección, el correlacionador y las plataformas de gestión.
+
+Figura 43a
+
+*Dirección y puerta de enlace del segmento expuesto que aloja el señuelo*
+
+![](data:image/png;base64...)
+
+*Nota.* Registro de salida de la inspección del segmento expuesto, que muestra su nombre, la dirección de red que declara y su puerta de enlace; en este segmento residen el señuelo, la interfaz de servicios y el emulador de acceso remoto. Fuente: Aislamiento de red, iteración 1.
+
+Figura 43b
+
+*Dirección, puerta de enlace y población del segmento de operaciones de seguridad*
+
+![](data:image/png;base64...)
+
+*Nota.* Registro de salida de la inspección del segmento de operaciones de seguridad, que muestra su nombre, la dirección de red que declara, su puerta de enlace y el número de contenedores conectados. En este segmento residen la cadena de detección, el correlacionador y las plataformas de gestión, ninguno de ellos alcanzable desde el segmento expuesto. Fuente: Aislamiento de red, iteración 1.
+
+La segmentación efectiva se complementa con la verificación de que el señuelo resulta alcanzable desde el atacante, mientras que la red de operaciones no lo es, la Figura 44 presenta la prueba de aislamiento ejecutada desde el contenedor atacante, desde el que alcanza los servicios señuelo del segmento expuesto y obtiene respuesta de rechazo al intentar sondear la red de operaciones, lo que demuestra que la separación entre la superficie expuesta y la cadena de detección se sostiene en ejecución.
+
+Figura 44 *Prueba de aislamiento ejecutada desde el atacante: alcanza el señuelo y no alcanza la red de operaciones*
+
+![](data:image/png;base64...)
+
+*Nota.* Registro de salida de la prueba de aislamiento de red desde el contenedor atacante, el atacante obtiene respuesta del señuelo en el segmento expuesto y no logra alcanzar los servicios de la red de operaciones, lo que verifica el aislamiento exigido por la fase.
 
 #### 4.3.6.4 Fase 3. Captura, enriquecimiento y custodia
 
-La tercera fase verifica que la interacción con el señuelo del segundo prototipo genera eventos capturados, con enriquecimiento, custodia de la evidencia y cálculo de integridad, en correspondencia con la fase homónima de la primera instanciación.
+La tercera fase comprueba que la interacción con el señuelo del segundo prototipo genera eventos que la cadena de captura registra, enriquece con la clasificación de la técnica, custodia como evidencia y somete a un cálculo de integridad, en los mismos términos que la tercera fase del primer prototipo. La captura opera en dos niveles, pues los servicios que componen el señuelo registran por sí mismos la interacción y le asignan, en ese instante, la técnica correspondiente según el marco de comportamiento adversario, mientras que los sensores de red y el emulador de acceso remoto aportan registros independientes de esa misma actividad.
 
-*[Pendiente de evidencia: capturas de eventos del señuelo SIN en el SIEM y de la evidencia con hash de integridad. Fuente prevista: evidencias de la iteración 1.]*
+La Figura 45 presenta las alertas que la cadena de detección indexa en la plataforma de gestión, cada una de las cuales conserva su origen, la técnica asociada en el momento de la captura y su nivel de severidad. El instante de generación de cada alerta resulta determinante, pues constituye el punto de partida del cálculo del tiempo medio de detección que la fase de medición aplica sobre las alertas registradas.
 
-**Figura X**
+Figura 45 *Alertas capturadas por la cadena de detección con su técnica y su origen*
 
-*Captura, enriquecimiento y custodia de eventos del segundo prototipo*
+![](data:image/png;base64...)
 
-*[Pendiente: figura.]*
+*Nota*. Registro de salida de las alertas indexadas por la plataforma de gestión, cada alerta conserva su origen, la técnica del marco de comportamiento adversario asociada en el momento de la captura y el instante de generación, que constituye el punto de partida del cálculo del tiempo medio de detección.
+
+La segunda ejecución corrobora esa captura heterogénea con tres registros que muestran que cada escenario lo detecta un componente distinto de la cadena; uno de ellos lo detecta el emulador de acceso remoto, que registra dos conexiones consecutivas separadas por menos de un segundo, como se aprecia en la Figura 46a. Otro lo detecta el honeypot de ficheros, que registra un intento de acceso anónimo seguido del depósito de un fichero de prueba, como muestra la Figura 46b. El tercero lo detecta el sensor de red, que observa la exfiltración como un conjunto de consultas de nombres que transportan los fragmentos del dato, como se aprecia en la Figura 46c.
+
+Figura 46a
+
+*Conexiones capturadas por el emulador de acceso remoto*
+
+![](data:image/png;base64...)
+
+*Nota.* Registro de salida del emulador de acceso remoto en el que se observan dos conexiones consecutivas desde el atacante hacia el señuelo, con una diferencia inferior a un segundo entre ambas. Este componente aparece como fuente de detección en el detalle de la Figura 54. Fuente: Captura de eventos, iteración 2.
+
+Figura 46b
+
+*Depósito de un fichero de prueba registrado por el honeypot de ficheros*
+
+*![](data:image/png;base64...)*
+
+*Nota.* Registro de salida del honeypot de ficheros, que documenta un intento de acceso con credenciales anónimas seguido del envío de un fichero de prueba hacia el punto de carga del señuelo. Este componente aparece como fuente de detección en el detalle de la Figura 54. Fuente: Captura de eventos, iteración 2.
+
+Figura 46c
+
+*Consultas de nombres observadas por el sensor de red*
+
+![](data:image/png;base64...)
+
+*Nota.* Registro de salida del sensor de red en el que se observan las consultas de nombres que transportan los fragmentos del dato exfiltrado; el contenido viaja como registro de consulta hacia un nombre bajo control del atacante, de modo que la exfiltración resulta visible para la cadena de detección, aunque no se produzca por un canal propio del señuelo. Este componente aparece como fuente de detección en el detalle de la Figura 54. Fuente: Captura de eventos, iteración 2.
+
+El enriquecimiento de esta segunda implementación se aplica en el momento de la captura, cuando cada evento se registra ya clasificado con su técnica del marco de comportamiento adversario, su nivel de amenaza y el contexto de la operación que lo origina. Esa clasificación operativa permite que la cadena de detección indexe el evento con campos consultables desde el primer momento, lo que sostiene tanto el cálculo del tiempo medio de detección de la fase de medición como el mapeo posterior con la gestión de incidentes.
+
+La custodia de la evidencia se verifica mediante el sellado de los archivos del laboratorio con huella criptográfica, de modo que la integridad del conjunto pueda comprobarse después sin depender de la memoria del operador. La Figura 47 presenta el registro de custodia, en el que cada archivo figura con su huella SHA-256 y con el instante de sellado y cuyo listado documenta además el orden temporal de los eventos del laboratorio.
+
+Figura 47 *Registro de custodia de la evidencia del segundo prototipo con huella SHA-256*
+
+![](data:image/png;base64...)
+
+*Nota.* Registro de salida de la cadena de custodia. El listado documenta la huella SHA-256 de los archivos de evidencia del laboratorio y la marca temporal del sellado, lo que permite verificar la integridad del conjunto y ordenar los eventos en el tiempo.
 
 #### 4.3.6.5 Fase 4. Correlación con gestión de incidentes
 
-La cuarta fase verifica que los eventos capturados se correlacionan con la gestión de incidentes, mediante la generación de casos clasificados y el mapeo a técnicas del marco de comportamiento adversario.
+La cuarta fase verifica que los eventos capturados se correlacionan con la gestión de incidentes, para lo cual clasifica cada evento según la técnica del comportamiento adversario y comprueba la disponibilidad del flujo de orquestación que los enlaza con la plataforma de gestión. El señuelo registra cada ataque con la técnica asociada, el nivel de amenaza y la clasificación de la información, de modo que cada evento queda clasificado en el momento de su captura.
 
-*[Pendiente de evidencia: captura del caso correlacionado a partir de un evento del señuelo SIN. Fuente prevista: evidencias de la iteración 1.]*
+La Figura 48 presenta ese registro de ataques, en el que se observa la correspondencia entre la actividad registrada y la técnica del marco de comportamiento adversario que la metodología exige para cada caso. Cada entrada conserva además la clasificación de información, lo que permite distinguir los registros de información sensible de los demás sin depender de una inspección posterior de los eventos.
 
-**Figura X**
+Figura 48 *Registro de ataques al señuelo con su técnica, su táctica y su nivel de clasificación*
 
-*Correlación de eventos del segundo prototipo con la gestión de incidentes*
+![](data:image/png;base64...)
 
-*[Pendiente: figura.]*
+*Nota.* Registro de salida de los ataques registrados por el señuelo, cada entrada conserva la técnica y la táctica del marco de comportamiento adversario, el nivel de severidad y la clasificación de información, lo que verifica la correlación del evento con la taxonomía de referencia.
 
-#### 4.3.6.6 Fase 5. Medición con iteraciones de mejora
+El flujo de orquestación que enlaza la alerta con el gestor de incidentes se encuentra configurado y disponible, su definición constituye la evidencia de que la correlación entre ambos opera de forma automática en el entorno. La Figura 49 presenta ese flujo configurado, que recibe la alerta y ejecuta la acción que invoca la interfaz de la plataforma de gestión, sin que el operador intervenga en ninguna de las dos operaciones.
 
-La quinta fase opera la medición del impacto en dos iteraciones consecutivas sobre el segundo prototipo, conforme al diseño pre-experimental declarado en el apartado 3.2. El elemento que diferencia al segundo prototipo de la primera instanciación es precisamente este esquema de iteraciones, que materializa el bucle de retroalimentación que el diseño metodológico establece entre la medición del impacto y el rediseño del señuelo. Las subsecciones 4.3.6.6.1 a 4.3.6.6.5 documentan el ciclo completo de iteraciones, y los resultados de ambas iteraciones con la comparación pareada entre ellas se presentan en el apartado 4.4.
+Figura 49 *Flujo de orquestación que enlaza la alerta con la gestión de incidentes*
 
-##### 4.3.6.6.1 Esquema del ciclo de iteraciones
+![](data:image/png;base64...)
 
-El segundo prototipo ejecuta dos iteraciones consecutivas en lugar de un único ciclo de operación y medición. La primera iteración (preprueba) opera la campaña completa de escenarios de ataque sobre el prototipo y establece la línea base de los indicadores de detección. La segunda iteración (posprueba) se ejecuta tras aplicar al prototipo las mejoras derivadas de las lecciones aprendidas, de modo que cada mejora se traza explícitamente a la lección que la origina en el registro de control de versiones del laboratorio.
+*Nota.* Registro de salida del flujo de orquestación configurado en la plataforma de respuesta, el flujo recibe la alerta y ejecuta la acción que invoca la interfaz de la plataforma de gestión de incidentes, lo que verifica que la correlación se ejecuta de forma automática y sin intervención del operador.
 
-**Figura X**
+#### 4.3.6.6 Fase 5. Medición con iteraciones de mejora
 
-*Esquema de iteraciones de mejora del segundo prototipo*
+La quinta fase comprueba si la metodología funciona, y para ello ejecuta el laboratorio dos veces en lugar de una, de manera que la primera opere sin cambios y sirva de línea base, mientras la segunda se aplica tras las correcciones que la primera reveló, lo que permite atribuir a estas el cambio observado en la comparación. Este esquema de iteraciones distingue al segundo prototipo de la primera implementación y organiza el trabajo como un ciclo en el que la medición de cada ejecución produce las correcciones que se aplican en la siguiente. Las subsecciones 4.3.6.6.1 a 4.3.6.6.6 documentan el ciclo completo, mientras los resultados de ambas iteraciones y su comparación pareada se presentan en el apartado 4.4.
 
-*[Pendiente: figura con el ciclo preprueba, lecciones aprendidas, mejoras y posprueba.]*
+##### 4.3.6.6.1 Esquema del ciclo de iteraciones
+
+El ciclo que vincula ambas iteraciones es el bucle de retroalimentación que la figura síntesis de la sección 4.2 representa con las flechas que parten de la medición y regresan a las fases anteriores. En ese recorrido, cada lección de la primera ejecución origina una mejora que se aplica al despliegue aislado, a la cadena de captura y custodia o al instrumental de la medición, mientras el diseño del señuelo se mantiene invariante entre iteraciones por no registrar hallazgos en esa fase. El registro de lecciones aprendidas conserva, para cada una de ellas, el hallazgo, su causa raíz y el cambio que la resolvió.
 
 ##### 4.3.6.6.2 Iteración 1. Preprueba
 
-La primera iteración opera la campaña de escenarios de ataque sobre el señuelo del segundo prototipo en sus condiciones iniciales y registra la línea base de los indicadores de detección, entre ellos el tiempo medio de detección (MTTD) por escenario. Los valores medidos en esta iteración constituyen la preprueba del diseño pre-experimental y se reportan en el apartado 4.4.2.
+La primera iteración opera la campaña de diez escenarios de ataque sobre el señuelo del segundo prototipo en sus condiciones iniciales; el señuelo registra 54 ataques, 725 peticiones a la interfaz de servicios, 7 conexiones capturadas por el emulador de acceso remoto y 15 765 peticiones al portal del señuelo.
 
-*[Pendiente de evidencia: reporte consolidado de indicadores de la iteración 1. Fuente prevista: captura N.º 8 del checklist de evidencia.]*
+La campaña se compone de diez escenarios, cada uno asociado a una técnica distinta del marco de comportamiento adversario y la Tabla 6 los presenta con la técnica y la táctica correspondientes, de manera que la comparación entre iteraciones se apoye en un conjunto de ataques fijo y conocido.
+
+Tabla 6
+
+*Escenarios de la campaña con su técnica y su táctica del marco de comportamiento adversario*
+
+|  |  |  |  |
+| --- | --- | --- | --- |
+| **Escenario** | **Descripción del ataque** | **Técnica** | **Táctica** |
+| S01 | Reconocimiento activo del segmento del señuelo | T1595 | Reconocimiento |
+| S02 | Escaneo web de servicios publicados | T1595.002 | Reconocimiento |
+| S03 | Fuerza bruta de credenciales por acceso remoto | T1110.001 | Acceso a credenciales |
+| S04 | Inyección SQL contra el portal del señuelo | T1190 | Acceso inicial |
+| S05 | Suplantación de credenciales en la interfaz de servicios | T1110.004 | Acceso a credenciales |
+| S06 | Ejecución de scripts en el portal del señuelo | T1059.007 | Ejecución |
+| S07 | Abuso de credenciales válidas en la interfaz de servicios | T1078 | Acceso inicial |
+| S08 | Depósito de un fichero en el honeypot de ficheros | T1105 | Mando y control |
+| S09 | Ejecución de comandos mediante shell remoto | T1059.004 | Ejecución |
+| S10 | Exfiltración de datos mediante consultas de nombres | T1048.003 | Exfiltración |
+
+*Nota.* La campaña comprende diez escenarios que cubren seis tácticas del marco de comportamiento adversario y diez técnicas distintas; los códigos de la columna de técnicas corresponden a los identificadores del marco y las denominaciones de la columna de tácticas se presentan en español. Todos los escenarios se ejecutan contra el mismo señuelo dentro de una sola campaña, lo que permite que la comparación entre iteraciones mida el tiempo de detección y no el tiempo de ejecución del ataque.
+
+La Figura 50 añade a esa relación la duración de cada escenario, que oscila entre cero y noventa segundos y determina la ventana de oportunidad en la que la detección puede producirse. Esa duración se mantiene constante entre iteraciones, de modo que la comparación de los tiempos de detección se apoya en un intervalo de exposición idéntico para cada escenario.
+
+Figura 50
+
+*Cobertura del marco de comportamiento adversario con la duración de cada escenario de la campaña*
+
+![](data:image/png;base64...)
+
+Nota. Relación de los diez escenarios de la campaña con su técnica, su táctica y su duración de ejecución; la duración declara el tiempo que cada escenario permanece activo, que va desde cero segundos en los escenarios que no dejan rastro hasta noventa segundos en la inyección de consultas, y establece la ventana dentro de la cual la cadena de detección puede registrar el ataque. Fuente: Métricas, iteración 1.
+
+El tiempo medio de detección de la preprueba se mide en cuatro de los diez escenarios (S01, S02, S05 y S07), con una media de 5,22 segundos, un mínimo de 1,06 segundos y un máximo de 16,85 segundos. Los seis escenarios restantes registran ataques que el señuelo capturó, pero que el paso de atribución no logra asociar a un señuelo concreto, de modo que el indicador no incorpora esas muestras. La comparación entre iteraciones se interpreta escenario por escenario, tal como se desarrolla en el apartado 4.4.3.
+
+La Figura 51 presenta el reporte de indicadores de la primera iteración, con la ejecución de la campaña, los valores del tiempo medio de detección y el recuento de eventos por tipo de fuente.
+
+Figura 51
+
+*Reporte de indicadores de la primera iteración: línea base de la medición*
+
+![](data:image/png;base64...)
+
+*Nota.* Registro de salida del reporte de indicadores de la primera iteración; el reporte documenta la ejecución de los diez escenarios y el tiempo medio de detección con su número de muestras, que corresponde a los escenarios en los que el paso de atribución determina el señuelo asociado a la detección.
 
 ##### 4.3.6.6.3 Lecciones aprendidas y mejoras aplicadas
 
-El análisis de la línea base produce un registro de lecciones aprendidas, cada una con su hallazgo, su causa raíz y su evidencia. A partir de ese registro se aplican al prototipo las mejoras correspondientes, con trazabilidad explícita entre cada lección y el cambio que la resuelve en el control de versiones del laboratorio. El análisis de la iteración 1 y sus lecciones se presenta en el apartado 4.4.3.
+El análisis de la línea base produce un registro de lecciones aprendidas, en el que cada una consigna el hallazgo, su causa raíz y el cambio que lo resolvió; la Tabla 7 documenta las siete lecciones cerradas en la primera iteración y la Tabla 8 las cuatro cerradas en la segunda. Las primeras reparan la cadena que captura y almacena los eventos, de modo que sin ellas no existiría medición, mientras las segundas amplían la cobertura del instrumental que calcula el tiempo de detección.
 
-*[Pendiente de evidencia: registro de lecciones aprendidas y trazabilidad de mejoras. Fuente prevista: captura N.º 9 del checklist de evidencia.]*
+Tabla 7
+
+*Lecciones aprendidas de la primera iteración con su causa raíz, el cambio aplicado y su efecto sobre la medición*
+
+|  |  |  |  |  |  |
+| --- | --- | --- | --- | --- | --- |
+| **ID** | **Fase** | **Qué se observó** | **Por qué ocurrió** | **Qué se cambió** | **Efecto** |
+| L1 | F3 | El gestor no generaba ninguna alerta de los sensores de red | El bloque de configuración que indica qué archivos leer se colocaba fuera de su sitio y dejaba un bloque sobrante que invalidaba el archivo completo | El bloque se coloca dentro de la configuración correcta, con comprobación del formato y copia de seguridad | Se restablece la generación de alertas, que es el punto de partida de toda la cadena |
+| L2 | F3 | Las alertas se generaban pero no llegaban al índice de búsqueda | El componente que las envía incluye un parámetro de versión que el motor de búsqueda de esta versión rechaza | Publicador propio que envía las alertas por lotes sin ese parámetro | Las alertas quedan almacenadas y disponibles para la consulta y los tableros |
+| L3 | F2 | El gestor se reiniciaba cada dos minutos y el laboratorio se caía | Ese mismo componente falla al cifrar la comunicación y el supervisor interpreta la salida como fin del servicio | El componente queda sin función de envío y el publicador asume esa tarea | El laboratorio permanece en ejecución durante toda la campaña |
+| L4 | F3 | El sensor seguía detectando pero el gestor dejaba de emitir alertas al cabo de miles de líneas | El lector recuerda por dónde iba en cada archivo y, como el archivo de alertas no se renueva, las líneas nuevas se ignoran | Procedimiento que trunca el archivo de alertas para obligar al lector a reiniciar y reinicia el análisis | La generación de alertas se mantiene durante toda la campaña |
+| L5 | F5 | Los tableros mostraban ausencia de datos | La versión del generador de consultas pide una ordenación que la versión del motor de búsqueda no admite | Conversión de las consultas a un formato admitido y obtención de las categorías por rangos | Los tableros dejan de mostrar ausencia de datos |
+| L6 | F5 | Los tableros devolvían cero eventos aunque había documentos almacenados | Las alertas llevan un campo de fecha con un nombre distinto del que los tableros consideran como campo de tiempo | El publicador copia ese campo con el nombre esperado y añade el nivel de severidad | Los tableros devuelven los eventos con su nivel de severidad |
+| L7 | F2 | Un fallo puntual en un script de arranque tumbaba el laboratorio completo | Los scripts se detienen en el primer error y esa interrupción se repite en cada reinicio | Los tres scripts restauran la copia de seguridad y terminan correctamente en cualquier caso | Un fallo puntual ya no detiene el laboratorio |
+
+*Nota.* Las siete lecciones comparten una característica relevante para la metodología, ya que el síntoma visible siempre consiste en la ausencia de datos mientras la causa se sitúa en una capa anterior del instrumental. Esa distancia entre el síntoma y la causa es el aprendizaje que registra la fase de medición y fundamenta el tratamiento conjunto del señuelo y del instrumental como un mismo bucle de mejora. Fuente: registro de lecciones aprendidas, iteración 1.
+
+Tabla 8
+
+*Lecciones aprendidas de la segunda iteración con su causa raíz, el cambio aplicado y su efecto medido*
+
+|  |  |  |  |  |  |
+| --- | --- | --- | --- | --- | --- |
+| **ID** | **Fase** | **Qué se observó** | **Por qué ocurrió** | **Qué se cambió** | **Efecto medido** |
+| L11 | F5 | Seis escenarios quedaban sin medición aunque el señuelo había registrado el ataque | El cálculo leía una sola clave para saber a qué señuelo atribuir la detección y cada guion la escribía con un nombre distinto | Se aceptan las tres variantes de clave y los cuatro escenarios sin objetivo la declaran de forma explícita | El tiempo de detección se mide en los diez escenarios en lugar de cuatro |
+| L12 | F2 | La campaña se detenía en el cuarto escenario y no alcanzaba los siguientes | Las herramientas de ataque se ejecutaban sin límite de tiempo | Se fija un límite de tiempo para cada herramienta y para sus opciones de conexión | La campaña recorre los diez escenarios hasta el final |
+| L13 | F2 | El noveno escenario informaba de una captura sin que hubiera conexión alguna | La herramienta de acceso no estaba instalada y el guion ocultaba el fallo con una salida que lo toleraba | Se comprueba la herramienta al inicio y el cierre distingue la ejecución completa de la parcial | El noveno escenario registra su tiempo de detección por el emulador de acceso remoto |
+| L14 | F3 | El octavo y el décimo escenario no podían detectarse | El cálculo solo consultaba el registro del señuelo, las peticiones del portal y las conexiones remotas, sin fuente para el honeypot de ficheros ni para el tráfico de nombres | Se incorporan esas dos fuentes de eventos al cálculo de la detección | El octavo y el décimo escenario pasan a medirse, con 0,56 y 0,65 segundos |
+
+*Nota.* Las cuatro lecciones de la segunda iteración reparan el instrumental y no el señuelo, de modo que ninguna modifica el diseño del activo protegido. Fuente: registro de lecciones aprendidas, iteración 2.
+
+La Figura 52 documenta el efecto de las dos lecciones que restauraron la visualización, ya que el tablero de la plataforma de gestión muestra el volumen de alertas registradas en la medición posterior, su distribución por severidad y el registro detallado del sensor de red.
+
+Figura 52
+
+*Tablero de la plataforma de gestión con las alertas registradas en la medición posterior*
+
+![](data:image/png;base64...)
+
+*Nota.* Captura del tablero de la plataforma de gestión tras la medición posterior, que muestra el volumen de alertas indexadas, su distribución por severidad y el registro de alertas del sensor de red. El tablero opera con datos reales, lo que verifica el efecto de las lecciones que corrigieron el formato de las consultas y el campo temporal de las alertas, recogidas en la Tabla 7. La ventana de consulta corresponde a las últimas veinticuatro horas. Fuente: Captura de eventos, iteración 2.
 
 ##### 4.3.6.6.4 Iteración 2. Posprueba
 
-La segunda iteración repite la campaña de escenarios bajo las mismas condiciones de operación y mide el efecto de las mejoras aplicadas, de modo que la comparación con la línea base mida el efecto de las mejoras y no la variación natural de la operación. Los valores medidos en esta iteración constituyen la posprueba y se reportan en el apartado 4.4.4.
+La segunda iteración repite la campaña bajo las mismas condiciones, lo que permite que la comparación con la línea base mida el efecto de las mejoras y no la variación natural de la operación. El señuelo registra 254 ataques, 1508 peticiones a la interfaz de servicios, 38 conexiones capturadas por el emulador de acceso remoto y 78 186 peticiones al portal.
 
-*[Pendiente de evidencia: reporte consolidado de indicadores de la iteración 2. Fuente prevista: captura N.º 10 del checklist de evidencia.]*
+La Figura 53 presenta el reporte de indicadores de la segunda iteración, con diez escenarios medidos frente a los cuatro de la línea base, mientras la Figura 54 desglosa el tiempo de detección de cada escenario con el componente que lo origina.
 
-##### 4.3.6.6.5 Condiciones invariantes entre iteraciones
+Figura 53
 
-Las condiciones entre iteraciones se mantienen invariantes, con los mismos escenarios, los mismos criterios de medición y la misma arquitectura, de modo que las dos mediciones constituyen muestras pareadas conforme al diseño pre-experimental declarado en el apartado 3.2. La tabla de condiciones invariantes y el diseño detallado de la comparación se presentan en el apartado 4.4.1, y la comparación pareada con su prueba estadística en el apartado 4.4.5.
+*Reporte de indicadores de la segunda iteración: medición posterior a las mejoras*
 
-#### 4.3.6.7 Síntesis del segundo prototipo
+![](data:image/png;base64...)
 
-La implementación de la metodología queda materializada en dos instanciaciones con arquitectura equivalente, la primera orientada a la verificación de las catorce categorías funcionales y la segunda adaptada al contexto de un servicio de impuestos nacionales, con recorrido verificado de las cinco fases. Sobre esta implementación, el apartado 4.4 presenta los resultados de la medición del impacto mediante dos iteraciones de operación.
+*Nota.* Registro de salida del reporte de indicadores de la segunda iteración; el reporte documenta los diez escenarios medidos y el tiempo medio de detección con su mínimo y su máximo.
 
-*[Pendiente de redacción final: cierre con el conteo de funciones verificadas en el segundo prototipo al completar las evidencias pendientes.]*
+Figura 54
 
-## 4.4 Resultados
+*Tiempo de detección de cada escenario de la segunda iteración con su fuente de detección*
 
-### 4.4.1 Diseño de la comparación preprueba-posprueba
+![](data:image/png;base64...)
 
-La medición del impacto sigue el diseño pre-experimental de preprueba y posprueba sobre un mismo grupo declarado en el apartado 3.2. La preprueba corresponde a la primera iteración de operación del segundo prototipo y establece la línea base de los indicadores, mientras que la posprueba corresponde a la segunda iteración, ejecutada tras aplicar las mejoras derivadas de las lecciones aprendidas. La comparación se realiza escenario por escenario sobre los mismos escenarios de la campaña de ataque y con los mismos criterios de medición, de modo que las dos muestras resultan pareadas.
+*Nota.* Detalle del tiempo de detección de los diez escenarios de la segunda iteración, con la técnica asociada y el componente que produce la detección; la columna de fuente muestra que cada escenario lo detecta un componente distinto, entre ellos el emulador de acceso remoto, el portal del señuelo, la interfaz de servicios, el honeypot de ficheros y el sensor de red. Fuente: Métricas, iteración 2.
 
-*[Pendiente de evidencia: tabla de condiciones invariantes entre iteraciones (escenarios, criterios de medición, invariantes de entorno).]*
+El tiempo medio de detección se mide en los diez escenarios de la campaña, frente a los cuatro medidos en la preprueba; esa diferencia de cobertura no procede de una mejor detección, que ya operaba desde la primera iteración, sino de la reparación del instrumental que la mide. Por esa razón la comparación se realiza sobre los cuatro escenarios medidos en ambas iteraciones, y la Tabla 9 presenta esa comparación escenario por escenario.
 
-**Tabla X**
+Tabla 9
 
-*Condiciones invariantes entre la iteración 1 y la iteración 2*
+*Comparación del tiempo de detección entre iteraciones en los cuatro escenarios medidos en ambas*
 
-*[Pendiente: tabla.]*
+|  |  |  |  |  |
+| --- | --- | --- | --- | --- |
+| **Escenario** | **Técnica** | **Primera iteración** | **Segunda iteración** | **Reducción** |
+| S01 Reconocimiento activo | T1595 | 16,85 s | 15,91 s | 5,6 % |
+| S02 Escaneo web | T1595.002 | 1,21 s | 1,09 s | 9,9 % |
+| S05 Suplantación de credenciales | T1110.004 | 1,73 s | 1,15 s | 33,5 % |
+| S07 Abuso de la interfaz de servicios | T1078 | 1,06 s | 0,26 s | 75,5 % |
 
-### 4.4.2 Medición de la iteración 1 (preprueba)
+*Nota.* La comparación se limita a los cuatro escenarios con medición en ambas iteraciones, ya que los seis restantes no producen valor en la preprueba por el motivo que se explica en el apartado 4.4.3. El tiempo de detección se mide como el intervalo entre el inicio del escenario y el primer evento que lo registra. La media de las iteraciones no se compara, porque el número de muestras cambia de cuatro a diez y esa diferencia refleja la cobertura del instrumental más que el desempeño del señuelo. Fuente: Métricas, iteraciones 1 y 2.
 
-La primera iteración de la medición constituye la preprueba del diseño pre-experimental y establece la línea base de los indicadores sobre el segundo prototipo. La campaña de escenarios de ataque se ejecuta sobre el laboratorio en contexto SIN y el reporte de indicadores consolida los valores medidos con trazabilidad hasta el escenario y el evento que los origina.
+La ejecución completa de la campaña se documenta en la Figura 55, que confirma que los diez escenarios se recorren hasta el final tras la limitación del tiempo de ejecución de las herramientas de ataque.
 
-*[Pendiente de evidencia: reporte consolidado de indicadores de la iteración 1 con el MTTD por escenario y la cobertura MITRE ATT&CK. Fuente prevista: captura N.º 8 del checklist de evidencia.]*
+Figura 55
 
-**Figura X**
+*Recuento de escenarios completados en la segunda iteración de la campaña*
 
-*Reporte de indicadores de la iteración 1*
+![](data:image/png;base64...)
 
-*[Pendiente: figura.]*
+*Nota.* Registro del recuento de escenarios completados en la segunda iteración, que documenta que la campaña recorre los diez escenarios hasta el final; este resultado verifica la mejora que limita el tiempo de ejecución de las herramientas de ataque, registrada como L12 en la Tabla 8. Fuente: entorno de servicios, iteración 2.
 
-### 4.4.3 Análisis de la iteración 1 y lecciones aprendidas
+El contraste completo entre las dos iteraciones aparece en la Figura 56, que recorre los diez escenarios de la campaña y marca en qué casos la segunda iteración recuperó una medición que la primera no producía.
 
-El análisis de la línea base examina la distribución del tiempo medio de detección por escenario, los escenarios sin detección en el señuelo y las brechas de cobertura del marco de comportamiento adversario. Sobre este análisis se documentan las lecciones aprendidas del ciclo, cada una con su hallazgo, su causa raíz y su evidencia, conforme al ciclo de retroalimentación que la metodología establece entre la medición y el diseño del señuelo.
+Figura 56
 
-*[Pendiente de evidencia: tabla de lecciones aprendidas L1–Ln de la iteración 1 con sus causas raíz y los commits que las documentan.]*
+*Comparación del tiempo de detección entre la primera y la segunda iteración en los diez escenarios de la campaña*
 
-**Tabla X**
+![](data:image/png;base64...)
 
-*Lecciones aprendidas de la iteración 1*
+*Nota.* Comparación del tiempo de detección de los diez escenarios entre la primera y la segunda iteración; la marca recuperada señala los seis escenarios en los que la primera iteración no produjo medición y la segunda sí, un cambio que se explica por la ampliación de la cobertura del instrumental y no por una diferencia en la detección. El indicador medio aparece en la figura a efectos de referencia, aunque no constituye la base de la comparación porque su número de muestras cambia de cuatro a diez. Fuente: Métricas, iteraciones 1 y 2.
 
-*[Pendiente: tabla.]*
+##### 4.3.6.6.5 Condiciones invariantes entre iteraciones
 
-### 4.4.4 Medición de la iteración 2 (posprueba)
+La comparación entre iteraciones resulta válida solo si todo lo que rodea a la medición permanece igual en las dos ejecuciones, de modo que las diferencias observadas procedan de las correcciones aplicadas y no de un cambio en las condiciones de partida. Se mantienen constantes el señuelo expuesto al atacante, el conjunto de diez escenarios de ataque, los sensores de red y el emulador de acceso remoto que aportan registros independientes, así como el criterio con el que se calcula el tiempo de detección.
 
-La segunda iteración de la medición constituye la posprueba del diseño pre-experimental y se ejecuta tras aplicar las mejoras derivadas de las lecciones aprendidas de la iteración 1. Las mejoras se aplican de modo que cada una cite su lección de origen y quede registrada en el control de versiones del laboratorio, de manera que la posprueba mide el efecto de los cambios sobre los mismos escenarios y los mismos criterios de medición de la preprueba.
+El señuelo no cambia entre ejecuciones porque el registro de lecciones no contiene ningún hallazgo referido a él, de modo que las correcciones recaen sobre la infraestructura del laboratorio y sobre los programas que miden, nunca sobre el activo que se expone al atacante. La tabla que recoge estas condiciones se presenta en el apartado 4.4.1, mientras el resultado de la comparación se expone en el apartado 4.4.5.
 
-*[Pendiente de evidencia: registro de mejoras aplicadas con su lección de origen, y reporte consolidado de indicadores de la iteración 2. Fuente prevista: captura N.º 9 del checklist de evidencia.]*
+##### 4.3.6.6.6 Sostenibilidad y difusión
 
-**Figura X**
+La sostenibilidad se comprueba en dos hechos observables, de los cuales el primero es que el laboratorio permanece en pie durante toda la campaña, ya que los guiones de arranque están preparados para que un fallo puntual no tumbe el conjunto, como documenta la Figura 55 al registrar los diez escenarios ejecutados hasta el final. El segundo hecho es que la medición resulta repetible, puesto que el programa que calcula el tiempo de detección queda corregido y guardado junto al resto del material de la campaña, con lo que cualquiera que ejecute la misma secuencia obtiene los mismos valores.
 
-*Reporte de indicadores de la iteración 2*
+La difusión se comprueba en que el trabajo queda escrito de forma que otro equipo pueda repetirlo, ya que el registro de lecciones aprendidas documenta qué falló, por qué falló y qué se cambió, mientras el repositorio de evidencias conserva la salida de cada comprobación junto al fichero del que procede. Ambos elementos permiten que quien retome el trabajo continúe desde el último punto en que quedó, en lugar de reconstruir desde el principio el camino que recorrió el equipo original.
 
-*[Pendiente: figura.]*
+### 4.3.7 Síntesis comparativa de los dos prototipos
 
-### 4.4.5 Comparación de iteraciones y prueba de hipótesis pareada
+La metodología recibe dos aplicaciones en contextos institucionales distintos, lo que permite separar lo que responde al diseño de lo que responde al lugar donde se instala; la primera aplicación se realiza sobre una entidad homologada del rubro de servicios fiscales digitales, con el objetivo de comprobar que cada componente del sistema funciona por separado. La segunda aplicación se realiza sobre el Servicio de Impuestos Nacionales de Bolivia, en la que la verificación mide cuánto mejora el sistema una vez ajustadas las deficiencias que la campaña anterior deja al descubierto. La Tabla 5 confirma que las dos aplicaciones comparten la misma estructura, lo que hace posible compararlas sin alterar las condiciones de la medición.
 
-La comparación entre la preprueba y la posprueba se realiza escenario por escenario sobre los indicadores medidos en ambas iteraciones. La prueba de hipótesis pareada se aplica sobre las diferencias de tiempo medio de detección entre iteraciones, con el nivel de significancia establecido para el estudio, de modo que la conclusión sobre la mejora se sustenta en evidencia estadística y no en la observación aislada de valores.
+Tres elementos no cambian entre una aplicación y otra, siendo el primero de ellos la estructura conceptual, con sus cinco fases y los criterios que verifican cada una, el segundo es el funcionamiento del laboratorio, porque los dos prototipos ejecutan los mismos veinticinco servicios y calculan el tiempo de detección de la misma forma, el tercero es el señuelo que ve el atacante, que tampoco cambia entre las dos iteraciones del segundo prototipo, dado que el registro de lecciones no contiene ningún hallazgo referido a él. Como ninguno de los tres elementos varía, las diferencias entre las dos iteraciones se atribuyen a los ajustes aplicados en el instrumental de medición y no a un cambio en el material sobre el que se mide.
 
-*[Pendiente de evidencia: tabla comparativa iteración 1 versus iteración 2 por escenario, con el estadístico y el valor p de la prueba pareada. Fuente prevista: captura N.º 10 del checklist de evidencia.]*
+El contenido del señuelo es lo único que cambia al pasar de una institución a otra, porque la identidad institucional, el vocabulario y los datos simulados pasan a responder al contexto tributario boliviano. Junto con ese cambio llegan tres detectores que la primera aplicación no incluye, entre los que figuran un emulador de acceso remoto que registra las sesiones, un archivo trampa que avisa cuando alguien lo consulta y un sensor de red que anota las consultas de nombres de dominio. Los tres responden a las deficiencias que la campaña de la entidad homologada deja al descubierto en el instrumental de medición, razón por la que la segunda campaña registra detección en los diez escenarios mientras la primera solo la registra en cuatro.
 
-**Tabla X**
-
-*Comparación de indicadores entre la iteración 1 y la iteración 2*
-
-*[Pendiente: tabla.]*
-
-### 4.4.6 Evaluación de la hipótesis y de las metas
-
-El resultado de la comparación alimenta la evaluación de la hipótesis de investigación y el cálculo de los índices de impacto que el diseño metodológico compromete. Los valores medidos se confrontan con las metas definidas en la operacionalización de la variable dependiente, de modo que la aceptación o el rechazo de la hipótesis se documenta con trazabilidad hasta la evidencia de las dos iteraciones.
-
-*[Pendiente de evidencia: cálculo de los índices IIAM e IMGI con sus fórmulas y valores medidos, y confrontación con las metas de la Tabla 2 del apartado 1.6.]*
-
-**Tabla X**
-
-*Cumplimiento de metas de la variable dependiente*
-
-*[Pendiente: tabla.]*
-
-### 4.4.7 Síntesis de los resultados
-
-La síntesis de los resultados resume lo que la operación de dos iteraciones demuestra sobre el efecto de la metodología en los indicadores de gestión de incidentes, con las limitaciones propias del diseño pre-experimental y de la muestra por conveniencia, y con la valoración de la transferibilidad de la metodología a otros contextos institucionales.
-
-*[Pendiente de redacción final: síntesis con los resultados de la prueba pareada y el cumplimiento de metas.]*
+Conviene distinguir dos clases de cambio antes de leer los resultados, porque confundirlas lleva a interpretar la comparación de iteraciones como una mejora del sistema cuando en realidad se trata de un ajuste del instrumental. El cambio de institución afecta únicamente al contenido del señuelo, por lo que la estructura metodológica permanece intacta en los dos prototipos. El cambio entre iteraciones afecta únicamente al instrumental de medición, de modo que las diferencias en el tiempo de detección dependen de las correcciones aplicadas a ese instrumental y no de una mejor capacidad de detección del sistema. El apartado 4.3 deja constancia de lo que la metodología construye, mientras el apartado 4.4 comprueba si esa construcción produce una mejora que se pueda medir.
 
 # Capítulo V: Conclusiones y Recomendaciones de la Investigación
 
@@ -2751,8 +2899,6 @@ Con respecto al objetivo específico 1: se concluye que [conclusión fundamentad
 Con respecto al objetivo específico 2: se concluye que [conclusión fundamentada en los resultados obtenidos].
 
 Con respecto al objetivo específico 3: se concluye que [conclusión fundamentada en los resultados obtenidos].
-
-Con respecto al objetivo específico 4: se concluye que [conclusión fundamentada en los resultados de la validación con iteraciones del apartado 4.4].
 
 De manera general, la investigación permitió [conclusión global que responde al objetivo general y al problema planteado].
 
