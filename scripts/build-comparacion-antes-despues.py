@@ -7,6 +7,7 @@ from pathlib import Path
 
 from openpyxl import Workbook
 from openpyxl.styles import PatternFill
+from openpyxl.utils import get_column_letter
 
 BASE = Path(r"F:\Maestria\tesis\taxfisco-research-lab")
 spec = importlib.util.spec_from_file_location(
@@ -15,10 +16,12 @@ sin = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(sin)
 
 DST = (BASE / "instrumentos"
-       / "2026-10-12_Comparacion_Antes_Despues_v02.xlsx")
+       / "2026-10-12_Comparacion_Antes_Despues_v03.xlsx")
 
 LIGHT = sin.LIGHT
 GREEN = sin.GREEN
+F_BB = sin.F_BB
+ANCHOS_PORTADA = [28, 44, 30, 30]
 F_TITLE, F_SUB, F_H, F_B, F_BB, F_SEC = (sin.F_TITLE, sin.F_SUB, sin.F_H,
                                          sin.F_B, sin.F_BB, sin.F_SEC)
 
@@ -146,7 +149,7 @@ SECUENCIA = [
     ("Prototipo II, vuelta 2",
      "Corrección del instrumental y medición completa",
      "Diez escenarios ejecutados. Tiempo de detección medido en los diez, con "
-     "promedio de 2,022 s, mínimo de 0,0 s y máximo de 15,91 s. Cinco fuentes "
+     "promedio de 2,022 s, mínimo de 0,0 s y máximo de 15,91 s. Seis fuentes "
      "de detección.",
      "v2.1-it2/07-metricas/kpi_report.json"),
 ]
@@ -349,13 +352,14 @@ PREGUNTAS = [
 def sh_portada(wb):
     ws = wb.active
     ws.title = "Portada"
-    sin.print_setup(ws, "1:4")
+    for i, w in enumerate(ANCHOS_PORTADA, start=1):
+        ws.column_dimensions[get_column_letter(i)].width = w
     sin.sheet_title(
         ws, "COMPARACIÓN ANTES Y DESPUÉS DEL CICLO DE MEJORA",
         "Cruce del diagnóstico de madurez de la institución con los resultados "
         "de las dos vueltas del Prototipo II y con el registro del Prototipo "
         "I. Todas las cifras proceden de archivos del repositorio.", 4)
-    r = 5
+    r = 6
     filas = [
         ("Objeto del documento",
          "Mostrar en una sola vista que la metodología produjo un cambio "
@@ -365,7 +369,8 @@ def sh_portada(wb):
          "nivel Gestionado y seis subdimensiones en nivel Básico."),
         ("Estado final",
          "Segunda vuelta del Prototipo II, con medición del tiempo de "
-         "detección en los diez escenarios y cinco fuentes de detección."),
+         "detección en los diez escenarios, seis fuentes de registro atribuidas y "
+         "las diez técnicas de la campaña con fuente de detección."),
         ("Regla de presentación",
          "Toda cifra de este libro declara su archivo de origen. Ningún valor "
          "fue estimado ni completado por analogía."),
@@ -383,13 +388,24 @@ def sh_portada(wb):
          "evidencias/INDICE.md.\n"
          "Figura 35 del apartado 4.3.6.7 para los datos del Prototipo I."),
     ]
+    for i, w in enumerate(ANCHOS_PORTADA, start=1):
+        ws.column_dimensions[get_column_letter(i)].width = w
+    for i, w in enumerate(ANCHOS_PORTADA, start=1):
+        ws.column_dimensions[get_column_letter(i)].width = w
     for a, b in filas:
         ws.merge_cells(start_row=r, start_column=2, end_row=r, end_column=4)
         c = ws.cell(row=r, column=2, value=b)
         c.font = F_SUB
         c.alignment = sin.WRAP
-        ws.cell(row=r, column=1, value=a).font = F_B
-        ws.row_dimensions[r].height = sin.est([b], [30, 40, 40, 40], minimum=32)
+        lab = ws.cell(row=r, column=1, value=a)
+        lab.font = F_BB
+        lab.alignment = sin.WRAP
+        lab.fill = PatternFill("solid", fgColor=LIGHT)
+        for col in range(1, 5):
+            ws.cell(row=r, column=col).border = sin.BORDER
+        ws.row_dimensions[r].height = sin.est(
+            [a, b], [ANCHOS_PORTADA[0], sum(ANCHOS_PORTADA[1:])],
+            minimum=30)
         r += 1
     sin.note(ws, r + 1,
              "Las seis brechas del diagnóstico que la metodología atiende "
@@ -408,10 +424,10 @@ def sh_brechas(wb):
         "La medición de 2026 reportó seis subdimensiones en nivel Básico. La "
         "columna de la derecha muestra qué produce hoy el laboratorio para "
         "cada una.", len(widths))
-    sin.header(ws, 4, ["Instr.", "Subdimensión", "Antes (2026)", "Nivel",
+    sin.header(ws, 5, ["Instr.", "Subdimensión", "Antes (2026)", "Nivel",
                        "Qué resuelve el laboratorio", "Fuente del dato",
                        "Fase que lo atiende"], widths)
-    r = 5
+    r = 6
     for v in BRECHAS:
         for i, val in enumerate(v, start=1):
             c = ws.cell(row=r, column=i, value=val)
@@ -420,8 +436,8 @@ def sh_brechas(wb):
         ws.row_dimensions[r].height = sin.est(
             [v[1], v[4], v[5]], widths, minimum=34)
         r += 1
-    ws.auto_filter.ref = f"A4:G{r-1}"
-    ws.freeze_panes = "A5"
+    ws.auto_filter.ref = f"A5:G{r-1}"
+    ws.freeze_panes = "A6"
     sin.note(ws, r + 1,
              "El Instrumento 13 es el único cuya medición corresponde a la "
              "institución, porque la capacitación se evalúa sobre personas y "
@@ -438,10 +454,10 @@ def sh_ciclo(wb):
         "Once indicadores con su valor de partida y su valor final. Los que no "
         "cambian se declaran como constantes, porque forman parte de lo que "
         "el resultado aísla.", len(widths))
-    sin.header(ws, 4, ["Indicador", "Antes", "Después", "Naturaleza del cambio",
+    sin.header(ws, 5, ["Indicador", "Antes", "Después", "Naturaleza del cambio",
                        "Por qué cambia o por qué se mantiene", "Fuente"],
                widths)
-    r = 5
+    r = 6
     for v in INDICADORES:
         for i, val in enumerate(v, start=1):
             c = ws.cell(row=r, column=i, value=val)
@@ -452,8 +468,8 @@ def sh_ciclo(wb):
         ws.row_dimensions[r].height = sin.est(
             [v[0], v[1], v[2], v[4]], widths, minimum=34)
         r += 1
-    ws.auto_filter.ref = f"A4:F{r-1}"
-    ws.freeze_panes = "A5"
+    ws.auto_filter.ref = f"A5:F{r-1}"
+    ws.freeze_panes = "A6"
     sin.note(ws, r + 1,
              "Las reducciones por escenario corresponden a los cuatro casos "
              "comparables, porque son los únicos que conservan el mismo número "
@@ -468,9 +484,9 @@ def sh_secuencia(wb):
         ws, "LA SECUENCIA DE LOS DOS PROTOTIPOS",
         "Los tres momentos del trabajo, con lo que cada uno aportó y con el "
         "archivo donde queda registrado.", len(widths))
-    sin.header(ws, 4, ["Momento", "Qué aporta", "Resultado del momento",
+    sin.header(ws, 5, ["Momento", "Qué aporta", "Resultado del momento",
                        "Fuente"], widths)
-    r = 5
+    r = 6
     for v in SECUENCIA:
         for i, val in enumerate(v, start=1):
             c = ws.cell(row=r, column=i, value=val)
@@ -479,8 +495,8 @@ def sh_secuencia(wb):
         ws.row_dimensions[r].height = sin.est(
             [v[1], v[2], v[3]], widths, minimum=40)
         r += 1
-    ws.auto_filter.ref = f"A4:D{r-1}"
-    ws.freeze_panes = "A5"
+    ws.auto_filter.ref = f"A5:D{r-1}"
+    ws.freeze_panes = "A6"
     sin.note(ws, r + 1,
              "El Prototipo I entrega la regla de medición. El Prototipo II "
              "entrega el laboratorio completo y, en su segunda vuelta, la "
@@ -496,9 +512,9 @@ def sh_fases(wb):
         ws, "QUÉ CAMBIÓ EN CADA FASE DE LA METODOLOGÍA",
         "Una fila por fase de las cinco, con el cambio comprobable que produjo "
         "y el archivo que lo respalda.", len(widths))
-    sin.header(ws, 4, ["Fase", "Nombre de la fase", "Cambio comprobable",
+    sin.header(ws, 5, ["Fase", "Nombre de la fase", "Cambio comprobable",
                        "Fuente"], widths)
-    r = 5
+    r = 6
     for v in FASES:
         for i, val in enumerate(v, start=1):
             c = ws.cell(row=r, column=i, value=val)
@@ -507,8 +523,8 @@ def sh_fases(wb):
         ws.row_dimensions[r].height = sin.est([v[1], v[2], v[3]], widths,
                                               minimum=40)
         r += 1
-    ws.auto_filter.ref = f"A4:D{r-1}"
-    ws.freeze_panes = "A5"
+    ws.auto_filter.ref = f"A5:D{r-1}"
+    ws.freeze_panes = "A6"
     sin.note(ws, r + 1,
              "Las cinco fases quedan verificadas y ninguna actividad carece de "
              "archivo que la respalde.", 4)
@@ -522,9 +538,9 @@ def sh_iso(wb):
         ws, "CÓMO SE LEE LA COBERTURA DE ISO 27035",
         "El mismo archivo reporta dos cifras distintas porque mide dos cosas "
         "distintas. Se presentan las dos con su etiqueta.", len(widths))
-    sin.header(ws, 4, ["Concepto", "Valor", "Archivo y campo", "Qué mide"],
+    sin.header(ws, 5, ["Concepto", "Valor", "Archivo y campo", "Qué mide"],
                widths)
-    r = 5
+    r = 6
     for v in ISO:
         for i, val in enumerate(v, start=1):
             c = ws.cell(row=r, column=i, value=val)
@@ -533,7 +549,7 @@ def sh_iso(wb):
         ws.row_dimensions[r].height = sin.est([v[0], v[2], v[3]], widths,
                                               minimum=40)
         r += 1
-    ws.freeze_panes = "A5"
+    ws.freeze_panes = "A6"
     sin.note(ws, r + 1,
              "Presentar las dos cifras evita que el inventario y la "
              "exercitación se confundan. La cifra que describe el trabajo "
@@ -547,9 +563,9 @@ def sh_preguntas(wb):
     sin.sheet_title(
         ws, "DÓNDE ESTÁ LA RESPUESTA A CADA ENCARGO",
         "Cinco encargos y la hoja de este libro que responde cada uno.", 2)
-    sin.header(ws, 4, ["Encargo", "Dónde se responde y con qué criterio"],
+    sin.header(ws, 5, ["Encargo", "Dónde se responde y con qué criterio"],
                widths)
-    r = 5
+    r = 6
     for a, b in PREGUNTAS:
         ws.cell(row=r, column=1, value=a).font = F_BB
         c = ws.cell(row=r, column=2, value=b)
@@ -557,7 +573,7 @@ def sh_preguntas(wb):
         c.alignment = sin.WRAP
         ws.row_dimensions[r].height = sin.est([b], widths, minimum=32)
         r += 1
-    ws.freeze_panes = "A5"
+    ws.freeze_panes = "A6"
     return ws
 
 
@@ -570,9 +586,9 @@ def sh_clasificacion(wb):
         "está medido y de lo que todavía es una meta. Ninguna afirmación del "
         "capítulo de resultados debe apoyarse en una categoría inferior a la "
         "que le corresponde.", len(widths))
-    sin.header(ws, 4, ["Categoría", "Qué significa", "Qué hay en el Prototipo II",
+    sin.header(ws, 5, ["Categoría", "Qué significa", "Qué hay en el Prototipo II",
                        "Fase", "Qué puede y qué no puede afirmar"], widths)
-    r = 5
+    r = 6
     for v in CLASIFICACION:
         for i, val in enumerate(v, start=1):
             c = ws.cell(row=r, column=i, value=val)
@@ -583,8 +599,8 @@ def sh_clasificacion(wb):
                 c.font = F_BB
         ws.row_dimensions[r].height = sin.est(list(v), widths, minimum=54)
         r += 1
-    ws.auto_filter.ref = f"A4:E{r-1}"
-    ws.freeze_panes = "A5"
+    ws.auto_filter.ref = f"A5:E{r-1}"
+    ws.freeze_panes = "A6"
     sin.note(ws, r + 1,
              "La categoría de meta todavía no demostrada reúne el tiempo "
              "medio de respuesta, el de triaje y el de contención. Los tres "
@@ -602,13 +618,13 @@ def sh_fases12(wb):
         "Doce columnas por fase. Cuando no existe valor de partida o "
         "posterior, la celda lo declara en lugar de completarse.",
         len(widths))
-    sin.header(ws, 4, ["Fase", "Situación inicial o limitación",
+    sin.header(ws, 5, ["Fase", "Situación inicial o limitación",
                        "Función implementada", "Cambio introducido",
                        "Evidencia disponible", "Indicador asociado",
                        "Valor inicial", "Valor posterior", "Mejora absoluta",
                        "Mejora porcentual", "Interpretación del resultado",
                        "Limitaciones de la medición"], widths)
-    r = 5
+    r = 6
     for v in FASES_12:
         for i, val in enumerate(v, start=1):
             c = ws.cell(row=r, column=i, value=val)
@@ -621,14 +637,26 @@ def sh_fases12(wb):
                     c.font = F_BB
         ws.row_dimensions[r].height = sin.est(list(v), widths, minimum=70)
         r += 1
-    ws.auto_filter.ref = f"A4:L{r-1}"
-    ws.freeze_panes = "B5"
+    ws.auto_filter.ref = f"A5:L{r-1}"
+    ws.freeze_panes = "B6"
     sin.note(ws, r + 1,
              "Las fases 1, 2 y 4 no admiten porcentaje de mejora, y la tabla "
              "lo declara en lugar de estimarlo. La Fase 4 presenta valores "
              "nulos en las dos vueltas porque los campos MTTR, MTTC y "
              "MTTContain aparecen sin muestras en ambos reportes.", 12)
     return ws
+
+
+def pulir(ws, desde=6):
+    """Bandeado alterno y borde de cierre, igual que en el libro del SIN."""
+    if ws.title == "Portada":
+        return
+    ncols = ws.max_column
+    for r in range(desde, ws.max_row + 1):
+        if all(ws.cell(row=r, column=c).value in (None, "")
+               for c in range(1, ncols + 1)):
+            continue
+        sin.zebra(ws, r, ncols)
 
 
 def main():
@@ -642,6 +670,9 @@ def main():
     sh_fases(wb)
     sh_iso(wb)
     sh_preguntas(wb)
+    for name in wb.sheetnames:
+        sin.print_setup(wb[name], None if name == "Portada" else "5:5")
+        pulir(wb[name])
     DST.parent.mkdir(parents=True, exist_ok=True)
     wb.save(DST)
     print(f"OK -> {DST}  ({len(wb.sheetnames)} hojas)")

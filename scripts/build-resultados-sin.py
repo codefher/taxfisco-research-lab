@@ -18,7 +18,7 @@ from openpyxl.utils import get_column_letter
 from openpyxl.worksheet.properties import PageSetupProperties
 
 DST = (Path(r"F:\Maestria\tesis\taxfisco-research-lab\instrumentos")
-       / "2026-10-12_Resultados_Prototipo_II_SIN_v07.xlsx")
+       / "2026-10-12_Resultados_Prototipo_II_SIN_v11.xlsx")
 
 NAVY = "1F3864"
 LIGHT = "DCE6F1"
@@ -36,61 +36,154 @@ BORDER = Border(left=thin, right=thin, top=thin, bottom=thin)
 WRAP = Alignment(wrap_text=True, vertical="top")
 WRAP_C = Alignment(wrap_text=True, vertical="center", horizontal="center")
 
-F_TITLE = Font(name="Calibri", size=16, bold=True, color=NAVY)
+F_TITLE = Font(name="Calibri", size=17, bold=True, color=NAVY)
 F_SUB = Font(name="Calibri", size=10, italic=True, color="595959")
 F_H = Font(name="Calibri", size=10, bold=True, color=WHITE)
 F_B = Font(name="Calibri", size=10)
 F_BB = Font(name="Calibri", size=10, bold=True)
 F_SEC = Font(name="Calibri", size=11, bold=True, color=NAVY)
+F_NOTE = Font(name="Calibri", size=9, italic=True, color="404040")
+
+ACCENT = PatternFill("solid", fgColor=NAVY)
+BAND = PatternFill("solid", fgColor="EDF2F8")
+TAB_PALETA = {
+    "Portada": "1F3864", "Resumen": "1F4E79", "Vuelta 1": "2E75B6",
+    "Vuelta 2": "1F6032", "Comparación": "9C6500", "Indicadores": "7030A0",
+    "Dashboards": "C55A11", "Cobertura ATT&CK": "385723",
+    "Lecciones": "833C00", "Aportación por fase": "0F5B8A",
+    "Las seis brechas": "1F3864", "El ciclo completo": "2E75B6",
+    "Secuencia": "0F5B8A", "Clasificación": "7030A0",
+    "Matriz por fases": "1F6032", "Cobertura ISO 27035": "C55A11",
+    "Respuestas": "808080",
+}
 
 
-def print_setup(ws, title_rows=None):
+def sum_width(ws, last_col):
+    total = 0.0
+    for i in range(1, last_col + 1):
+        d = ws.column_dimensions.get(get_column_letter(i))
+        total += (d.width if d and d.width else 10)
+    return total
+
+
+def est(texts, widths, minimum=22, line=13.2):
+    """Altura estimada contando el ajuste de linea real de cada celda."""
+    lines = 1
+    for t, w in zip(texts, widths):
+        if t is None:
+            continue
+        chars = max(6, int(w * 1.12) - 1)
+        n = 0
+        for par in str(t).split("\n"):
+            words = par.split()
+            if not words:
+                n += 1
+                continue
+            cur = 0
+            for word in words:
+                add = len(word) + (1 if cur else 0)
+                if cur + add > chars and cur:
+                    n += 1
+                    cur = len(word)
+                else:
+                    cur += add
+            n += 1
+        lines = max(lines, n)
+    return min(180, max(minimum, lines * line + 5))
+
+
+def print_setup(ws, title_rows=None, tab=None):
+    """Margenes comodos, titulo repetido, encabezado con el nombre de la
+    hoja y pie con numeracion."""
     ws.page_setup.orientation = "landscape"
     ws.page_setup.paperSize = ws.PAPERSIZE_A4
     ws.page_setup.fitToWidth = 1
     ws.page_setup.fitToHeight = 0
     ws.sheet_properties.pageSetUpPr = PageSetupProperties(fitToPage=True)
-    ws.page_margins.left = ws.page_margins.right = 0.4
-    ws.page_margins.top = ws.page_margins.bottom = 0.5
+    ws.page_margins.left = 0.4
+    ws.page_margins.right = 0.4
+    ws.page_margins.top = 0.85
+    ws.page_margins.bottom = 0.7
+    ws.page_margins.header = 0.35
+    ws.page_margins.footer = 0.35
+    ws.oddHeader.left.text = ws.title
+    ws.oddHeader.left.size = 8
+    ws.oddHeader.left.color = "808080"
+    ws.oddHeader.right.text = "Metodología Honeypot para la gestión de incidentes"
+    ws.oddHeader.right.size = 8
+    ws.oddHeader.right.color = "808080"
+    ws.oddFooter.left.text = "Tesis de maestría"
+    ws.oddFooter.left.size = 8
+    ws.oddFooter.left.color = "808080"
+    ws.oddFooter.right.text = "Página &P de &N"
+    ws.oddFooter.right.size = 8
+    ws.oddFooter.right.color = "808080"
+    ws.sheet_properties.tabColor = tab or TAB_PALETA.get(ws.title, NAVY)
     if title_rows:
         ws.print_title_rows = title_rows
 
 
 def sheet_title(ws, title, subtitle, last_col):
+    """Barra de acento, titulo y bajada, con aire por encima y por debajo."""
     ws.sheet_view.showGridLines = False
     ws.merge_cells(start_row=1, start_column=1, end_row=1, end_column=last_col)
-    ws.cell(row=1, column=1, value=title).font = F_TITLE
-    ws.row_dimensions[1].height = 28
+    for i in range(1, last_col + 1):
+        ws.cell(row=1, column=i).fill = ACCENT
+    ws.row_dimensions[1].height = 7
+
     ws.merge_cells(start_row=2, start_column=1, end_row=2, end_column=last_col)
-    ws.cell(row=2, column=1, value=subtitle).font = F_SUB
-    ws.row_dimensions[2].height = 16
+    c = ws.cell(row=2, column=1, value=title)
+    c.font = F_TITLE
+    c.alignment = Alignment(vertical="center", horizontal="left", indent=1)
+    ws.row_dimensions[2].height = 32
+
+    ws.merge_cells(start_row=3, start_column=1, end_row=3, end_column=last_col)
+    s = ws.cell(row=3, column=1, value=subtitle)
+    s.font = F_SUB
+    s.alignment = Alignment(vertical="center", horizontal="left",
+                            wrap_text=True, indent=1)
+    ws.row_dimensions[3].height = max(
+        17, est([subtitle], [sum_width(ws, last_col) * 0.95], minimum=17,
+                line=12))
+    ws.row_dimensions[4].height = 8
 
 
 def header(ws, row, headers, widths):
     for i, (h, w) in enumerate(zip(headers, widths), start=1):
         c = ws.cell(row=row, column=i, value=h)
         c.font = F_H
-        c.fill = PatternFill("solid", fgColor=NAVY)
-        c.alignment = WRAP_C
+        c.fill = ACCENT
+        c.alignment = Alignment(wrap_text=True, vertical="center",
+                                horizontal="left", indent=1)
         c.border = BORDER
         ws.column_dimensions[get_column_letter(i)].width = w
-    ws.row_dimensions[row].height = 32
-
-
-def est(texts, widths, minimum=22):
-    lines = 1
-    for t, w in zip(texts, widths):
-        lines = max(lines, int(len(str(t)) / max(8, w * 1.05)) + 1)
-    return min(140, max(minimum, lines * 13.5))
+    ws.row_dimensions[row].height = est(headers, widths, minimum=28, line=12.5)
 
 
 def note(ws, row, text, last_col):
-    ws.merge_cells(start_row=row, start_column=1, end_row=row, end_column=last_col)
+    """Nota al pie, en cursiva y sobre fondo claro."""
+    ws.merge_cells(start_row=row, start_column=1, end_row=row,
+                   end_column=last_col)
+    for i in range(1, last_col + 1):
+        ws.cell(row=row, column=i).fill = PatternFill("solid", fgColor=LIGHT)
     c = ws.cell(row=row, column=1, value="Nota. " + text)
-    c.font = F_SUB
-    c.alignment = WRAP
-    c.fill = PatternFill("solid", fgColor=LIGHT)
-    ws.row_dimensions[row].height = est([text], [110], minimum=44)
+    c.font = F_NOTE
+    c.alignment = Alignment(wrap_text=True, vertical="top", indent=1)
+    ws.row_dimensions[row].height = est(
+        [text], [sum_width(ws, last_col) * 0.94], minimum=30, line=12)
+
+
+def zebra(ws, r, ncols, skip=()):
+    """Aplica la banda alterna a las celdas que no llevan color propio."""
+    if r % 2 != 0:
+        return
+    for col in range(1, ncols + 1):
+        if col in skip:
+            continue
+        c = ws.cell(row=r, column=col)
+        rgb = getattr(getattr(c.fill, "fgColor", None), "rgb", None)
+        if rgb in (None, "00000000"):
+            c.fill = BAND
 
 
 # --------------------------------------------------------------- DATOS
@@ -201,6 +294,32 @@ TACTICA_TECNICA = {
 }
 
 TRATAMIENTO = {
+    "L1": "La corrección se acepta y el módulo de análisis vuelve a leer las "
+          "rutas. El componente de alerta es requisito de toda la cadena, de "
+          "modo que ninguna otra fase puede verificarse hasta que esta quede "
+          "resuelta.",
+    "L2": "La corrección se acepta y el publicador propio queda como "
+          "componente permanente de la cadena, en lugar del colector que "
+          "fallaba. La indexación pasa a ser una responsabilidad del "
+          "laboratorio y no del componente de terceros.",
+    "L3": "La corrección se acepta y el colector queda sin función de envío. "
+          "La gestión de eventos conserva su función de análisis y pierde la "
+          "de entrega, que asume el publicador propio.",
+    "L4": "La corrección se acepta y el reinicio de la posición de lectura "
+          "pasa a ejecutarse de forma programada. La interrupción del "
+          "análisis se vuelve una operación rutinaria y no una recuperación "
+          "manual.",
+    "L5": "La corrección se acepta y la consulta del panel queda en el "
+          "formato que admite la versión del motor. La conversión se aplica "
+          "al panel y no al dato, de modo que la evidencia conserva su forma "
+          "original.",
+    "L6": "La corrección se acepta y el publicador copia el campo de tiempo "
+          "con el nombre que el panel consulta. El dato original se conserva "
+          "y se añade el campo derivado que la visualización necesita.",
+    "L7": "La corrección se acepta y los tres scripts de arranque terminan en "
+          "cualquier caso. La restauración de la copia de seguridad se "
+          "declara antes de la operación principal, con lo que un fallo "
+          "puntual ya no interrumpe el laboratorio.",
     "L8": "La visualización de indicadores queda a cargo del tablero de "
           "métricas, que es el componente que permanece en la composición. "
           "El tablero nativo del proveedor no se despliega.",
@@ -213,6 +332,21 @@ TRATAMIENTO = {
     "L10": "La composición efectiva del laboratorio se documenta con los tres "
            "segmentos sobre los que corre la verificación de aislamiento. El "
            "segmento declarado sin uso no participa de la ejecución.",
+    "L11": "La corrección se acepta y la función de objetivos reconoce las "
+           "tres variantes de clave. Los escenarios sin objetivo declaran esa "
+           "circunstancia de forma explícita, de modo que la ausencia de "
+           "atribución deja de ser un fallo silencioso.",
+    "L12": "La corrección se acepta y cada herramienta de ataque recibe un "
+           "límite de tiempo. El guion de la campaña deja de depender de que "
+           "ninguna invocación se bloquee.",
+    "L13": "La corrección se acepta y el escenario comprueba la herramienta "
+           "antes de ejecutarse. El cierre del guion informa el resultado "
+           "real, de modo que la captura anunciada y la captura ocurrida "
+           "coinciden.",
+    "L14": "La corrección se acepta y el cálculo incorpora las dos fuentes "
+           "que faltaban. El programa consulta el registro del señuelo, el "
+           "portal, el emulador de acceso remoto, el archivo señuelo y el "
+           "sensor de red.",
 }
 
 CIERRE = {
@@ -442,11 +576,11 @@ def sh_portada(wb):
 def sh_resumen(wb):
     ws = wb.create_sheet("Resumen")
     ws.sheet_view.showGridLines = False
-    widths = [46, 22, 22, 34]
+    widths = [40, 13, 13, 58]
     sheet_title(ws, "RESULTADOS DESTACADOS DEL PROTOTIPO II",
                 "Comparación de las dos vueltas de la misma campaña sobre el "
                 "mismo señuelo.", 4)
-    header(ws, 4, ["Indicador", "Vuelta 1", "Vuelta 2", "Lectura"], widths)
+    header(ws, 5, ["Indicador", "Vuelta 1", "Vuelta 2", "Lectura"], widths)
 
     data = [
         ("Escenarios de la campaña completados", "10 de 10", "10 de 10",
@@ -491,13 +625,16 @@ def sh_resumen(wb):
         ("Lecciones registradas", "7", "7 más",
          "Catorce en total: siete cerradas en la primera vuelta y cuatro en la segunda."),
         ("Lecciones que permanecen abiertas", "0", "0",
-         "Las tres que seguían abiertas se resolvieron y el registro de "
-         "mejora continua queda completo."),
+         "El registro de la primera vuelta cierra sus siete lecciones. Las "
+         "tres que exigieron decisión documentada se resolvieron por escrito "
+         "y el ciclo queda completo con catorce cierres."),
         ("Ciclo de mejora continua cerrado", "No", "Sí",
-         "Ninguna actividad de las cinco fases queda sin verificar."),
+         "Las catorce lecciones tienen cierre. Una de ellas, la L9, lo hace "
+         "con reserva expresa, porque la inspección del caso cerrado "
+         "corresponde a la versión en licencia de prueba de la plataforma."),
     ]
 
-    r = 5
+    r = 6
     for a, b, c_, d in data:
         ws.cell(row=r, column=1, value=a).font = F_B
         for col, v in ((2, b), (3, c_)):
@@ -519,6 +656,9 @@ def sh_resumen(wb):
         if a.startswith("Fuentes"):
             for col in (2, 3):
                 ws.cell(row=r, column=col).fill = PatternFill("solid", fgColor=GREEN)
+        if "con fuente de dete" in a or "con fuente de detec" in a:
+            for col in (2, 3):
+                ws.cell(row=r, column=col).fill = PatternFill("solid", fgColor=GREEN)
         for col in range(1, 5):
             ws.cell(row=r, column=col).border = BORDER
             if col == 1:
@@ -527,10 +667,13 @@ def sh_resumen(wb):
         r += 1
 
     note(ws, r + 1,
-         "Las filas con fondo verde son las dos mejoras medibles de la segunda "
-         "vuelta. La comparación de medias aparece en ámbar porque no es "
-         "defendible: se calcula sobre cuatro y sobre diez mediciones "
-         "respectivamente.", 4)
+         "Las cuatro filas con fondo verde son las mejoras medibles de la "
+         "segunda vuelta: escenarios con medición, fuentes de registro, "
+         "técnicas con fuente de detección y tácticas con fuente de "
+         "detección. La comparación de medias aparece en gris porque no es "
+         "defendible, dado que se calcula sobre cuatro y sobre diez "
+         "mediciones respectivamente. Las filas marcadas como sin cambio "
+         "declaran constantes que sirven de contraste.", 4)
     return ws
 
 
@@ -538,9 +681,9 @@ def sh_iteracion(wb, nombre, datos, subtitulo, colores, notas):
     ws = wb.create_sheet(nombre)
     widths = [10, 30, 15, 24, 40, 20]
     sheet_title(ws, nombre.upper(), subtitulo, len(widths))
-    header(ws, 4, ["Escenario", "Nombre", "Técnica",
+    header(ws, 5, ["Escenario", "Nombre", "Técnica",
                    "Fuente de la detección", "Observación", "Tiempo"], widths)
-    r = 5
+    r = 6
     for sid, nom, tec, tac, dur in SCEN:
         src, val = datos[sid]
         obs = notas[sid]
@@ -578,7 +721,7 @@ def sh_comparacion(wb):
                 "La reducción se calcula sobre los cuatro escenarios medidos en "
                 "ambas vueltas. En los seis restantes se declara qué ocurrió "
                 "realmente y de dónde sale la afirmación.", len(widths))
-    header(ws, 4, ["Escenario", "Nombre", "Técnica",
+    header(ws, 5, ["Escenario", "Nombre", "Técnica",
                    "Vuelta 1", "Vuelta 2", "Diferencia",
                    "Origen del dato", "Qué aporta el cambio"],
            widths)
@@ -630,7 +773,7 @@ def sh_comparacion(wb):
         "S10": "Se incorpora la medición del escenario",
     }
 
-    r = 5
+    r = 6
     n_comp = 0
     for sid, nom, tec, tac, dur in SCEN:
         s1, v1 = IT1[sid]
@@ -678,8 +821,8 @@ def sh_comparacion(wb):
         ws.row_dimensions[r].height = est(vals, widths, minimum=34)
         r += 1
 
-    ws.auto_filter.ref = f"A4:H{r-1}"
-    ws.freeze_panes = "A5"
+    ws.auto_filter.ref = f"A5:H{r-1}"
+    ws.freeze_panes = "A6"
     note(ws, r + 1,
          "Los diez escenarios ofrecen un resultado propio. Cuatro admiten "
          "comparación numérica entre las dos vueltas y los cuatro muestran "
@@ -703,11 +846,11 @@ def sh_tecnicas(wb):
                 "tabla muestra, para cada técnica, la fuente que el reporte "
                 "de indicadores le atribuyó en cada vuelta, de modo que se "
                 "aprecie qué cambió y qué no.", len(widths))
-    header(ws, 4, ["Técnica", "Táctica", "¿La ejerce la campaña?",
+    header(ws, 5, ["Técnica", "Táctica", "¿La ejerce la campaña?",
                    "Escenario", "Fuente en la vuelta 1",
                    "Fuente en la vuelta 2", "Qué significa esta fila"],
            widths)
-    r = 5
+    r = 6
     for t in TECH_IMPL:
         det = t in TECH_DET
         s = next((x for x in SCEN if x[2] == t), None)
@@ -824,10 +967,10 @@ def sh_lecciones(wb):
     sheet_title(ws, "REGISTRO DE LECCIONES APRENDIDAS",
                 "Catorce lecciones registradas, las catorce cerradas. "
                 "Cada cierre declara su resolución y su verificación.", len(widths))
-    header(ws, 4, ["ID", "Fase", "Hallazgo", "Causa raíz",
+    header(ws, 5, ["ID", "Fase", "Hallazgo", "Causa raíz",
                    "Mejora aplicada", "Commit", "Estado",
                    "Resolución adoptada", "Cierre y verificación"], widths)
-    r = 5
+    r = 6
     for lid, fase, hall, causa, mej, commit, estado in LECC:
         abierta = "ABIERTA" in estado
         if abierta:
@@ -837,10 +980,7 @@ def sh_lecciones(wb):
                           "corrección se aplicó y se verificó en la vuelta 2.")
         else:
             commit_txt = commit
-        trat = TRATAMIENTO.get(
-            lid, "La corrección está aplicada y verificada en la vuelta 2. "
-                 "El escenario vuelve a ejecutarse y la evidencia confirma "
-                 "el resultado.")
+        trat = TRATAMIENTO[lid]
         vals = [lid, fase, hall, causa, mej, commit_txt, estado, trat,
                 CIERRE[lid]]
         for col, v in enumerate(vals, start=1):
@@ -861,8 +1001,8 @@ def sh_lecciones(wb):
                 c.fill = PatternFill("solid", fgColor=GREEN)
         ws.row_dimensions[r].height = est(vals, widths, minimum=40)
         r += 1
-    ws.auto_filter.ref = f"A4:I{r-1}"
-    ws.freeze_panes = "C5"
+    ws.auto_filter.ref = f"A5:I{r-1}"
+    ws.freeze_panes = "C6"
     note(ws, r + 1,
          "Las catorce lecciones quedan cerradas. Las once primeras se "
          "cerraron con una corrección aplicada y verificada en la vuelta 2. "
@@ -881,9 +1021,9 @@ def sh_fases(wb):
     sheet_title(ws, "APORTE DE CADA FASE EN EL PROTOTIPO II",
                 "Qué produjo cada fase y qué cambió respecto de la vuelta 1.",
                 len(widths))
-    header(ws, 4, ["Fase", "Resultado de la vuelta 1",
+    header(ws, 5, ["Fase", "Resultado de la vuelta 1",
                    "Qué aportó la vuelta 2", "Efecto sobre la medición"], widths)
-    r = 5
+    r = 6
     for f, a, b, c_ in FASES:
         vals = [f, a, b, c_]
         for col, v in enumerate(vals, start=1):
@@ -1062,10 +1202,10 @@ def sh_indicadores(wb):
                 "Se separan los que se midieron de los que solo se "
                 "declararon, porque un valor declarado no es un resultado.",
                 len(widths))
-    header(ws, 4, ["Indicador", "Estado", "Definición", "Unidad",
+    header(ws, 5, ["Indicador", "Estado", "Definición", "Unidad",
                    "Fuente", "Valores disponibles", "Comparabilidad",
                    "Limitaciones de la medición"], widths)
-    r = 5
+    r = 6
     for v in INDICADOR_CLASE:
         for i, val in enumerate(v, start=1):
             c = ws.cell(row=r, column=i, value=val)
@@ -1079,8 +1219,8 @@ def sh_indicadores(wb):
                               color=GREEN_TXT if medido else AMBER_TXT)
         ws.row_dimensions[r].height = est(list(v), widths, minimum=44)
         r += 1
-    ws.auto_filter.ref = f"A4:H{r-1}"
-    ws.freeze_panes = "A5"
+    ws.auto_filter.ref = f"A5:H{r-1}"
+    ws.freeze_panes = "A6"
     note(ws, r + 1,
          "Ninguno de los indicadores de tiempo de respuesta presenta valor, "
          "porque la campaña no registró las marcas temporales de los casos. "
@@ -1098,11 +1238,11 @@ def sh_dashboards(wb):
                 "puede sostener como evidencia. Se distingue el tablero que "
                 "presenta resultados del que solo acredita despliegue.",
                 len(widths))
-    header(ws, 4, ["Tablero o captura", "Prototipo", "Ubicación en el texto",
+    header(ws, 5, ["Tablero o captura", "Prototipo", "Ubicación en el texto",
                    "Qué presenta", "Fuente de los datos",
                    "Qué permite observar", "Qué interpretación respalda",
                    "Qué le falta para ser evidencia de mejora"], widths)
-    r = 5
+    r = 6
     for v in DASHBOARDS:
         for i, val in enumerate(v, start=1):
             c = ws.cell(row=r, column=i, value=val)
@@ -1110,8 +1250,8 @@ def sh_dashboards(wb):
             c.alignment = WRAP
         ws.row_dimensions[r].height = est(list(v), widths, minimum=52)
         r += 1
-    ws.auto_filter.ref = f"A4:H{r-1}"
-    ws.freeze_panes = "A5"
+    ws.auto_filter.ref = f"A5:H{r-1}"
+    ws.freeze_panes = "A6"
     note(ws, r + 1,
          "Un solo tablero presenta resultados y pertenece a la segunda "
          "vuelta. La captura de la primera vuelta existe en el repositorio "
@@ -1119,6 +1259,30 @@ def sh_dashboards(wb):
          "comparación visual entre las dos vueltas queda pendiente.",
          8)
     return ws
+
+
+def pulir(ws, desde=6):
+    """Bandeado alterno y borde inferior de cierre en las hojas con tabla."""
+    if ws.title == "Portada":
+        return
+    ncols = ws.max_column
+    for r in range(desde, ws.max_row + 1):
+        fila_vacia = all(ws.cell(row=r, column=c).value in (None, "")
+                         for c in range(1, ncols + 1))
+        if fila_vacia:
+            continue
+        zebra(ws, r, ncols)
+    # Cierre visual de la tabla en la ultima fila con contenido.
+    for r in range(ws.max_row, desde - 1, -1):
+        if any(ws.cell(row=r, column=c).value not in (None, "")
+               for c in range(1, ncols + 1)):
+            for c in range(1, ncols + 1):
+                cell = ws.cell(row=r, column=c)
+                cell.border = Border(
+                    left=cell.border.left, right=cell.border.right,
+                    top=cell.border.top,
+                    bottom=Side(style="medium", color=NAVY))
+            break
 
 
 def main():
@@ -1143,8 +1307,9 @@ def main():
     sh_lecciones(wb)
     sh_fases(wb)
     for name in wb.sheetnames:
-        rows = "4:4" if name not in ("Portada",) else None
+        rows = "5:5" if name not in ("Portada",) else None
         print_setup(wb[name], rows)
+        pulir(wb[name])
     DST.parent.mkdir(parents=True, exist_ok=True)
     wb.save(DST)
     print(f"OK -> {DST}  ({len(wb.sheetnames)} hojas)")
