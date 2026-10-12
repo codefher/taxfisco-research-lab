@@ -19,7 +19,7 @@ from openpyxl.worksheet.properties import PageSetupProperties
 BASE = Path(r"F:\Maestria\tesis\taxfisco-research-lab")
 SRC = BASE / "scripts" / "build-matriz-evidencia.py"
 DST = (BASE / "instrumentos"
-       / "2026-10-12_Matriz_Evidencia_Laboratorio_por_Item_v02.xlsx")
+       / "2026-10-12_Matriz_Evidencia_Laboratorio_por_Item_v03.xlsx")
 
 spec = importlib.util.spec_from_file_location("mat", SRC)
 mat = importlib.util.module_from_spec(spec)
@@ -87,6 +87,24 @@ def gap_of(value):
     v = str(value).lower()
     return any(k in v for k in ("no medido", "sin evidencia",
                                 "no aplica", "no calculado"))
+
+
+CLASES = {
+    "medida": "Mejora cuantificada",
+    "declarada": "Declarado, no medido",
+}
+
+# Items cuya evidencia es una declaración de diseño o de configuración y no
+# una medición. Se separan para que la cifra declarada no se lea como resultado.
+DECLARADOS = {(11, 2), (12, 1), (10, 2)}
+
+
+def clase_de(inst, n, valor):
+    if gap_of(valor):
+        return "Meta todavía no demostrada"
+    if (inst, n) in DECLARADOS:
+        return "Declarado, no medido"
+    return "Resultado operativo observado"
 
 
 def print_setup(ws, title_rows=None):
@@ -220,18 +238,20 @@ def sheet_matriz(wb):
 
     headers = ["Instr.", "N.º", "Ítem del instrumento",
                "Evidencia disponible en el laboratorio",
-               "Valor medido", "Estado", "Fuente"]
-    widths = [8, 7, 40, 58, 25, 16, 32]
+               "Valor medido", "Estado", "Clasificación", "Fuente"]
+    widths = [8, 7, 38, 54, 24, 15, 24, 30]
 
-    ws.merge_cells(start_row=1, start_column=1, end_row=1, end_column=7)
+    ws.merge_cells(start_row=1, start_column=1, end_row=1, end_column=8)
     ws["A1"] = "MATRIZ DE EVIDENCIA POR ÍTEM"
     ws["A1"].font = Font(name="Calibri", size=14, bold=True, color=NAVY)
     ws.row_dimensions[1].height = 26
 
-    ws.merge_cells(start_row=2, start_column=1, end_row=2, end_column=7)
+    ws.merge_cells(start_row=2, start_column=1, end_row=2, end_column=8)
     ws["A2"] = ("Cada fila declara un dato verificable del laboratorio y su "
-                "fuente, o declara que el ítem no tiene respaldo medido. "
-                "Las filas en rojo son las que no lo tienen.")
+                "fuente, o declara que el ítem no tiene respaldo medido. La "
+                "columna Estado separa el ítem medido del declarado, y la "
+                "columna Clasificación lo sitúa en una de las cinco "
+                "categorías de evidencia.")
     ws["A2"].font = S_FONT
     ws.row_dimensions[2].height = 16
 
@@ -245,7 +265,8 @@ def sheet_matriz(wb):
         prev = inst
 
         vals = [inst, n, item, ev, val,
-                "Sin evidencia" if empty else "Con evidencia", src]
+                "Sin evidencia" if empty else "Con evidencia",
+                clase_de(inst, n, val), src]
         for col, v in enumerate(vals, start=1):
             c = ws.cell(row=r, column=col, value=v)
             c.font = B_FONT
@@ -261,7 +282,11 @@ def sheet_matriz(wb):
                 c.alignment = WRAP_C
                 c.font = Font(name="Calibri", size=9, bold=True,
                               color=RED_TXT if empty else GREEN_TXT)
-            if col != 5 and col != 6:
+            if col == 7:
+                c.alignment = WRAP_C
+                c.font = Font(name="Calibri", size=9, bold=True,
+                              color="7F6000")
+            if col not in (5, 6, 7):
                 c.fill = PatternFill("solid", fgColor=band)
         ws.row_dimensions[r].height = est_height(
             [item, ev, val, src], [40, 58, 25, 32], minimum=34)
@@ -269,16 +294,18 @@ def sheet_matriz(wb):
 
     last = r - 1
     ws.freeze_panes = "C5"
-    ws.auto_filter.ref = f"A4:G{last}"
+    ws.auto_filter.ref = f"A4:H{last}"
 
     ws.merge_cells(start_row=last + 2, start_column=1,
-                   end_row=last + 2, end_column=7)
+                   end_row=last + 2, end_column=8)
     c = ws.cell(row=last + 2, column=1, value=(
-        "Nota. La columna Estado resume únicamente si existe respaldo medido "
-        "en el laboratorio. Un ítem marcado como Sin evidencia no es un error "
-        "de la investigación: son dimensiones que dependen del proceso "
-        "institucional y no de la infraestructura del señuelo, y su atención "
-        "corresponde al plan institucional."))
+        "Nota. La columna Estado resume si existe respaldo medido. La columna "
+        "Clasificación aplica las cinco categorías de evidencia y separa una "
+        "medición de una declaración de diseño, de modo que una cifra "
+        "declarada no se lea como resultado. Un ítem marcado como Sin evidencia "
+        "no es un error de la investigación: son dimensiones que dependen del "
+        "proceso institucional y no de la infraestructura del señuelo, y su "
+        "atención corresponde a la medición posterior en la institución."))
     c.font = S_FONT
     c.alignment = WRAP
     c.fill = PatternFill("solid", fgColor=LIGHT)
@@ -314,10 +341,13 @@ def sheet_indicadores(wb):
         ("Tiempo medio de detección", "41,598 s", "5,22 s", "2,02 s"),
         ("Tiempo mínimo de detección", "0,141 s", "1,06 s", "0,00 s"),
         ("Tiempo máximo de detección", "260,108 s", "16,85 s", "15,91 s"),
-        ("Fuentes que el cálculo pudo atribuir", "n/d", "2", "5"),
-        ("Técnicas ATT&CK implementadas", "17", "17", "17"),
-        ("Técnicas ATT&CK detectadas", "10", "10", "10"),
-        ("Tácticas ATT&CK cubiertas", "6", "6", "6"),
+        ("Fuentes de registro que el cálculo pudo atribuir", "n/d", "3", "6"),
+        ("Técnicas ATT&CK del inventario del señuelo", "17", "17", "17"),
+        ("Técnicas ATT&CK con fuente de detección", "n/d", "4 de 10",
+         "10 de 10"),
+        ("Tácticas ATT&CK con fuente de detección", "n/d", "3 de 6",
+         "6 de 6"),
+        ("Técnicas ATT&CK que la campaña activa", "n/d", "10", "10"),
         ("Servicios desplegados", "25", "25", "25"),
         ("Campaña completada", "10 de 10", "10 de 10", "10 de 10"),
         ("Fases de ISO/IEC 27035 en el inventario del laboratorio", "5 de 5",
@@ -377,8 +407,9 @@ def sheet_brechas(wb):
 
     ws.merge_cells("A2:F2")
     ws["A2"] = ("La medición de 2026 reportó seis subdimensiones en nivel "
-                "Básico. La metodología atiende tres de forma directa y "
-                "deriva las otras tres al plan institucional.")
+                "Básico. La metodología atiende cinco de ellas de forma "
+                "directa y la sexta, sobre capacitación, se deriva a la "
+                "medición posterior en la institución.")
     ws["A2"].font = S_FONT
 
     header_row(ws, 4, headers, widths)
@@ -386,7 +417,8 @@ def sheet_brechas(wb):
     data = [
         (1, "Detección y registro de eventos", "48,54 %", "Básico",
          "Tiempo medio de detección de 2,02 s en los diez escenarios, con "
-         "cinco fuentes de detección independientes.",
+         "seis fuentes de registro atribuidas y con las diez técnicas de la "
+         "campaña con fuente de detección.",
          "Atendida directamente por la Fase 3"),
         (4, "Lecciones aprendidas y mejora", "49,17 %", "Básico",
          "Catorce lecciones registradas, todas cerradas con resolución "
@@ -402,8 +434,10 @@ def sheet_brechas(wb):
          "gestión.",
          "Atendida por la Fase 2"),
         (10, "Gestión de vulnerabilidades", "50,56 %", "Básico",
-         "Diecisiete técnicas de MITRE ATT&CK implementadas, diez detectadas, "
-         "distribuidas en seis tácticas.",
+         "El inventario del señuelo comprende diecisiete técnicas de MITRE "
+         "ATT&CK. La campaña activa diez de ellas y, tras la corrección del "
+         "instrumental, las diez reciben fuente de detección, distribuidas "
+         "en seis tácticas.",
          "Atendida por las Fases 1 y 3"),
         (13, "Capacitación y cobertura", "47,78 %", "Básico",
          "El laboratorio aporta el soporte técnico de la cobertura, con "

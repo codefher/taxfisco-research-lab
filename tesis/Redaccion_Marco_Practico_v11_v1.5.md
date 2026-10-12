@@ -2741,7 +2741,7 @@ Tabla 6
 
 *Nota.* La campaña comprende diez escenarios que cubren seis tácticas del marco de comportamiento adversario y diez técnicas distintas; los códigos de la columna de técnicas corresponden a los identificadores del marco y las denominaciones de la columna de tácticas se presentan en español. Todos los escenarios se ejecutan contra el mismo señuelo dentro de una sola campaña, lo que permite que la comparación entre iteraciones mida el tiempo de detección y no el tiempo de ejecución del ataque.
 
-La Figura 50 añade a esa relación la duración de cada escenario, que oscila entre cero y noventa segundos y determina la ventana de oportunidad en la que la detección puede producirse. Esa duración se mantiene constante entre iteraciones, de modo que la comparación de los tiempos de detección se apoya en un intervalo de exposición idéntico para cada escenario.
+La Figura 50 añade a esa relación la duración de cada escenario, que oscila entre cero y noventa segundos y determina la ventana de oportunidad en la que la detección puede producirse. Esa duración varía ligeramente entre iteraciones, porque el guion de la campaña la recalcula en cada ejecución, y la Tabla 10 recoge su valor en cada vuelta. La variación no invalida la comparación, dado que la detección de los cuatro escenarios medidos se produce dentro de la ventana en las dos vueltas, y el apartado 4.4.5 explica por qué.
 
 Figura 50
 
@@ -2839,12 +2839,12 @@ Tabla 9
 |  |  |  |  |  |
 | --- | --- | --- | --- | --- |
 | **Escenario** | **Técnica** | **Primera iteración** | **Segunda iteración** | **Reducción** |
-| S01 Reconocimiento activo | T1595 | 16,85 s | 15,91 s | 5,6 % |
-| S02 Escaneo web | T1595.002 | 1,21 s | 1,09 s | 9,9 % |
-| S05 Suplantación de credenciales | T1110.004 | 1,73 s | 1,15 s | 33,5 % |
-| S07 Abuso de la interfaz de servicios | T1078 | 1,06 s | 0,26 s | 75,5 % |
+| S01 Reconocimiento activo | T1595 | 16,851 s | 15,91 s | 5,6 % |
+| S02 Escaneo web | T1595.002 | 1,214 s | 1,095 s | 9,8 % |
+| S05 Suplantación de credenciales | T1110.004 | 1,734 s | 1,145 s | 34,0 % |
+| S07 Abuso de la interfaz de servicios | T1078 | 1,063 s | 0,264 s | 75,2 % |
 
-*Nota.* La comparación se limita a los cuatro escenarios con medición en ambas iteraciones, ya que los seis restantes no producen valor en la preprueba por el motivo que se explica en el apartado 4.4.3. El tiempo de detección se mide como el intervalo entre el inicio del escenario y el primer evento que lo registra. La media de las iteraciones no se compara, porque el número de muestras cambia de cuatro a diez y esa diferencia refleja la cobertura del instrumental más que el desempeño del señuelo. Fuente: Métricas, iteraciones 1 y 2.
+*Nota.* La comparación se limita a los cuatro escenarios con medición en ambas iteraciones, ya que los seis restantes no producen valor en la preprueba por el motivo que se explica en el apartado 4.4.3. El tiempo de detección se mide como el intervalo entre el inicio del escenario y el primer evento que lo registra. La reducción se calcula sobre los valores de origen con tres decimales y no sobre los valores redondeados que la tabla muestra, de modo que un redondeo intermedio no altera el porcentaje. La media de las iteraciones no se compara, porque el número de muestras cambia de cuatro a diez y esa diferencia refleja la cobertura del instrumental más que el desempeño del señuelo. Fuente: Métricas, iteraciones 1 y 2.
 
 La ejecución completa de la campaña se documenta en la Figura 55, que confirma que los diez escenarios se recorren hasta el final tras la limitación del tiempo de ejecución de las herramientas de ataque.
 
@@ -2868,9 +2868,32 @@ Figura 56
 
 ##### 4.3.6.6.5 Condiciones invariantes entre iteraciones
 
-La comparación entre iteraciones resulta válida solo si todo lo que rodea a la medición permanece igual en las dos ejecuciones, de modo que las diferencias observadas procedan de las correcciones aplicadas y no de un cambio en las condiciones de partida. Se mantienen constantes el señuelo expuesto al atacante, el conjunto de diez escenarios de ataque, los sensores de red y el emulador de acceso remoto que aportan registros independientes, así como el criterio con el que se calcula el tiempo de detección.
+La comparación entre iteraciones resulta válida en la medida en que todo lo que rodea a la medición permanece igual en las dos ejecuciones, de modo que las diferencias observadas procedan de las correcciones aplicadas y no de un cambio en las condiciones de partida. Se mantienen constantes el señuelo expuesto al atacante, el conjunto de diez escenarios de ataque, los sensores de red y el emulador de acceso remoto que aportan registros independientes, así como el criterio con el que se calcula el tiempo de detección.
+
+La duración de cada escenario no se mantiene constante, porque el guion de la campaña la recalcula en cada ejecución y devuelve valores próximos pero no idénticos. La Tabla 10 documenta esa variación, que asciende a nueve segundos sobre un total de exposición de ciento setenta y ocho segundos en la preprueba y ciento sesenta y nueve en la posprueba. La variación no altera la comparación por dos razones, dado que la detección de los cuatro escenarios medidos ocurre dentro de la ventana de exposición en ambas vueltas, y que el criterio de cálculo del tiempo de detección sigue siendo el intervalo entre el inicio del escenario y el primer evento que lo registra. El caso del séptimo escenario merece mención aparte, porque su ventana pasa de un segundo a cero y su tiempo de detección se registra en 0,264 segundos, lo que supone que el primer evento coincide con el arranque del escenario.
 
 El señuelo no cambia entre ejecuciones porque el registro de lecciones no contiene ningún hallazgo referido a él, de modo que las correcciones recaen sobre la infraestructura del laboratorio y sobre los programas que miden, nunca sobre el activo que se expone al atacante. La tabla que recoge estas condiciones se presenta en el apartado 4.4.1, mientras el resultado de la comparación se expone en el apartado 4.4.5.
+
+Tabla 10
+
+*Duración de cada escenario de la campaña en las dos iteraciones*
+
+|  |  |  |  |  |
+| --- | --- | --- | --- | --- |
+| **Escenario** | **Técnica** | **Duración en la primera iteración** | **Duración en la segunda iteración** | **Diferencia** |
+| S01 | T1595 | 27 s | 26 s | −1 s |
+| S02 | T1595.002 | 42 s | 37 s | −5 s |
+| S03 | T1110.001 | 5 s | 6 s | +1 s |
+| S04 | T1190 | 90 s | 85 s | −5 s |
+| S05 | T1110.004 | 5 s | 5 s | 0 s |
+| S06 | T1059.007 | 0 s | 0 s | 0 s |
+| S07 | T1078 | 1 s | 0 s | −1 s |
+| S08 | T1105 | 0 s | 0 s | 0 s |
+| S09 | T1059.004 | 0 s | 2 s | +2 s |
+| S10 | T1048.003 | 8 s | 8 s | 0 s |
+| **Total** |  | **178 s** | **169 s** | **−9 s** |
+
+*Nota.* s significa segundos. La duración declara el tiempo que cada escenario permanece activo y determina la ventana dentro de la cual la cadena de detección puede registrar el ataque. Los valores proceden del campo scenario_details de los dos reportes de indicadores. Fuente: Métricas, iteraciones 1 y 2.
 
 ##### 4.3.6.6.6 Sostenibilidad y difusión
 

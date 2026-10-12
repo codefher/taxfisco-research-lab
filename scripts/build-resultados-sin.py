@@ -18,7 +18,7 @@ from openpyxl.utils import get_column_letter
 from openpyxl.worksheet.properties import PageSetupProperties
 
 DST = (Path(r"F:\Maestria\tesis\taxfisco-research-lab\instrumentos")
-       / "2026-10-12_Resultados_Prototipo_II_SIN_v06.xlsx")
+       / "2026-10-12_Resultados_Prototipo_II_SIN_v07.xlsx")
 
 NAVY = "1F3864"
 LIGHT = "DCE6F1"
@@ -107,6 +107,31 @@ SCEN = [
     ("S10", "Exfiltración DNS", "T1048.003", "Exfiltration", 8),
 ]
 
+# Fuente que el reporte de indicadores asigna a cada escenario. El valor None
+# significa que el programa no atribujo el evento a ninguna fuente.
+FUENTE_1 = {
+    "S01": "Interfaz de servicios del atacante",
+    "S02": "Portal del señuelo",
+    "S03": None, "S04": None,
+    "S05": "Interfaz de servicios del señuelo",
+    "S06": None,
+    "S07": "Interfaz de servicios del señuelo",
+    "S08": None, "S09": None, "S10": None,
+}
+
+FUENTE_2 = {
+    "S01": "Interfaz de servicios del atacante",
+    "S02": "Portal del señuelo",
+    "S03": "Emulador de acceso remoto",
+    "S04": "Portal del señuelo",
+    "S05": "Interfaz de servicios del señuelo",
+    "S06": "Portal del señuelo",
+    "S07": "Interfaz de servicios del señuelo",
+    "S08": "Archivo señuelo",
+    "S09": "Emulador de acceso remoto",
+    "S10": "Sensor de red",
+}
+
 IT1 = {
     "S01": ("API del señuelo, desde el atacante", 16.851),
     "S02": ("Portal del señuelo", 1.214),
@@ -179,43 +204,93 @@ TRATAMIENTO = {
     "L8": "La visualización de indicadores queda a cargo del tablero de "
           "métricas, que es el componente que permanece en la composición. "
           "El tablero nativo del proveedor no se despliega.",
-    "L9": "La correlación se verifica de extremo a extremo mediante el flujo de "
-          "orquestación, que crea el caso de forma automática sin intervención "
-          "del operador, y la trazabilidad del incidente se conserva desde el "
-          "evento del señuelo hasta el caso cerrado.",
+    "L9": "La correlación se verifica hasta la generación de la alerta y "
+          "hasta la disponibilidad del flujo de orquestación que la enlaza "
+          "con la plataforma de gestión. La vista del caso corresponde a la "
+          "versión en licencia de prueba de esa plataforma, de modo que la "
+          "inspección del caso cerrado queda fuera del conjunto de "
+          "verificaciones de esta campaña.",
     "L10": "La composición efectiva del laboratorio se documenta con los tres "
            "segmentos sobre los que corre la verificación de aislamiento. El "
            "segmento declarado sin uso no participa de la ejecución.",
 }
 
-CIERRE_GENERICO = (
-    "CERRADA. La corrección descrita se aplicó al laboratorio y se verificó al "
-    "reejecutar la campaña. El escenario afectado vuelve a ejecutarse dentro "
-    "de los diez escenarios de la segunda vuelta, que completa el ciclo sin "
-    "interrupción y con el reporte de indicadores del 4 de octubre de 2026 a "
-    "las 20:33 UTC como evidencia de cierre."
-)
-
-RESOLUCION = {
-    "L8": "CERRADA. El tablero nativo del proveedor no forma parte de la "
-          "composición. La visualización de indicadores queda cubierta por el "
-          "tablero de métricas, que operó durante la campaña completa de diez "
-          "escenarios. Verificado en la segunda vuelta mediante el reporte de "
+CIERRE = {
+    "L1": "CERRADA. La cadena de alerta reanuda su operación con la "
+          "configuración corregida. La verificación consiste en que la "
+          "segunda vuelta registra detección con fuente en los diez "
+          "escenarios, lo que exige que las alertas se generen, se "
+          "indexen y conserven su marca temporal. Evidencia: reporte de "
           "indicadores del 4 de octubre de 2026 a las 20:33 UTC.",
-    "L9": "CERRADA. La correlación entre el evento del señuelo y el caso de "
-          "gestión se verifica de extremo a extremo. El evento produce una "
-          "alerta estructurada con su técnica de MITRE ATT&CK y su nivel de "
-          "clasificación, y la alerta produce el caso de manera automática "
-          "mediante el flujo de orquestación, sin intervención del operador. "
-          "La trazabilidad del incidente queda conservada desde su origen "
-          "hasta el caso cerrado, que es la actividad que la cuarta fase "
-          "de la metodología exige.",
-    "L10": "CERRADA. La verificación de aislamiento se practica sobre los tres "
-           "segmentos en los que el laboratorio se ejecuta en la práctica. El "
-           "segmento declarado sin uso no participa de la ejecución y queda "
-           "documentado como tal. Verificado mediante el registro de redes y "
-           "la prueba de aislamiento ejecutada desde el contenedor atacante.",
+    "L2": "CERRADA. El publicador propio entrega las alertas al índice sin "
+          "el parámetro que rechazaba el motor de búsqueda. La verificación "
+          "es que el índice contiene los documentos y que el tablero de la "
+          "Figura 52 los presenta con su nivel de severidad. Evidencia: "
+          "captura del tablero de la segunda vuelta.",
+    "L3": "CERRADA. El laboratorio permanece en pie durante toda la "
+          "campaña de la segunda vuelta. La verificación es que la campaña "
+          "recorre los diez escenarios sin detenerse, que es el recuento de "
+          "la Figura 55. Evidencia: registro de escenarios completados.",
+    "L4": "CERRADA. La generación de alertas se mantiene durante toda la "
+          "campaña. La verificación es doble, porque el tablero presenta "
+          "alertas de las últimas veinticuatro horas y la campaña completa "
+          "los diez escenarios. Evidencia: Figuras 52 y 55.",
+    "L5": "CERRADA. El tablero deja de mostrar ausencia de datos y "
+          "presenta el volumen de alertas registradas. La verificación es la "
+          "captura de la Figura 52, que muestra distribución por severidad "
+          "sobre datos reales de la campaña.",
+    "L6": "CERRADA. Los tableros devuelven los eventos con su nivel de "
+          "severidad después de que el publicador copiara el campo de tiempo "
+          "con el nombre que el panel consulta. La verificación es la misma "
+          "captura del tablero, que ya no devuelve cero documentos. "
+          "Evidencia: Figura 52.",
+    "L7": "CERRADA. Una interrupción puntual de un script de arranque ya no "
+          "detiene el laboratorio. La verificación es que los tres scripts "
+          "terminan correctamente y la campaña alcanza el décimo "
+          "escenario. Evidencia: Figura 55.",
+    "L8": "CERRADA. La visualización de indicadores queda cubierta por el "
+          "tablero de métricas, que es el componente que permanece en la "
+          "composición y que operó durante la campaña completa de diez "
+          "escenarios. Verificado en la segunda vuelta mediante la captura "
+          "del tablero y el reporte de indicadores de las 20:33 UTC.",
+    "L9": "CERRADA CON RESERVA EXPRESA. La correlación se verifica hasta la "
+          "generación de la alerta, que conserva su técnica de MITRE ATT&CK "
+          "y su nivel de clasificación, y hasta la disponibilidad del flujo "
+          "de orquestación que la enlaza con la plataforma de gestión. La "
+          "versión instalada de la plataforma de incidentes se encuentra en "
+          "estado de licencia en prueba y redirige toda ruta a su módulo de "
+          "organizaciones, de modo que la vista del caso no pudo "
+          "inspeccionarse. En consecuencia, el tiempo de contención y el "
+          "tiempo de respuesta a la resolución permanecen sin medir, tal "
+          "como registran los campos MTTR, MTTC y MTTContain del reporte de "
+          "indicadores. La resolución adoptada es declarar la verificación "
+          "hasta la alerta y consignar la reserva.",
+    "L10": "CERRADA. La verificación de aislamiento se practica sobre los "
+           "tres segmentos en los que el laboratorio se ejecuta en la "
+           "práctica. El segmento declarado para los sensores de red no "
+           "participa de la ejecución porque los sensores operan en modo "
+           "anfitrión, y queda documentado como tal. Verificado mediante el "
+           "registro de redes y la prueba de aislamiento ejecutada desde el "
+           "contenedor atacante.",
+    "L11": "CERRADA. La función de objetivos acepta las tres variantes de "
+           "clave y los escenarios sin objetivo la declaran de forma "
+           "explícita. La verificación es que el tiempo de detección se "
+           "registra en los diez escenarios y no en cuatro. Evidencia: "
+           "reporte de indicadores de la segunda vuelta.",
+    "L12": "CERRADA. El límite de tiempo evita que una herramienta bloquee "
+           "el guion. La verificación es que la campaña alcanza el décimo "
+           "escenario. Evidencia: Figura 55.",
+    "L13": "CERRADA. El escenario comprueba la herramienta al inicio y el "
+           "cierre distingue la ejecución completa de la parcial. La "
+           "verificación es que el noveno escenario registra tiempo de "
+           "detección, atribuido al emulador de acceso remoto. Evidencia: "
+           "detalle por escenario de la segunda vuelta.",
+    "L14": "CERRADA. El cálculo consulta además el archivo señuelo y el "
+           "sensor de red. La verificación es que el octavo y el décimo "
+           "escenario registran tiempo de detección, con 0,56 y 0,65 "
+           "segundos. Evidencia: detalle por escenario de la segunda vuelta.",
 }
+
 
 LECC = [
     ("L1", "F3", "El SIEM no generaba alertas porque el módulo de análisis no tenía configuración válida.",
@@ -276,16 +351,28 @@ FASES = [
     ("Fase 3 · Captura, enriquecimiento y custodia",
      "Cadena de captura con sensor de red, emulador, archivo señuelo y señuelos de portal y API, con custodia sellada por huella SHA-256.",
      "El programa de cálculo aprende a leer las tres fuentes nuevas y el resultado pasa de cuatro escenarios medidos a diez.",
-     "Seis escenarios que antes no podían medibles son ahora medibles y "
+     "Seis escenarios que antes no podían medirse ahora son medibles y "
      "tienen fuente identificada."),
     ("Fase 4 · Correlación con gestión de incidentes",
-     "Alerta estructurada, flujo de orquestación que crea el caso sin intervención y alta en la plataforma de inteligencia.",
-     "La automatización se mantiene; lo que no se pudo verificar fue la vista de casos por la restricción de licencia.",
-     "Ninguna actividad de la fase queda sin verificar."),
+     "Alerta estructurada con su técnica y su severidad en el momento de la "
+     "captura, flujo de orquestación configurado y alta en la plataforma de "
+     "inteligencia.",
+     "La correlación queda verificada hasta la generación de la alerta. La "
+     "inspección del caso cerrado corresponde a la versión en licencia de "
+     "prueba de la plataforma de incidentes, que redirige toda ruta a su "
+     "módulo de organizaciones.",
+     "La correlación se comprueba en el punto en que el evento se convierte "
+     "en alerta clasificada. El tiempo de respuesta y el de contención "
+     "permanecen sin medir, y así lo registran los campos MTTR, MTTC y "
+     "MTTContain del reporte de indicadores."),
     ("Fase 5 · Medición y lecciones aprendidas",
-     "Reporte de indicadores, reporte de cobertura de técnicas y reporte de correspondencia normativa.",
-     "Catorce lecciones registradas, once cerradas, y un ciclo de mejora que corrigió el instrumental de medición.",
-     "El ciclo de mejora funciona: cada lección registrada produjo una corrección verificable."),
+     "Reporte de indicadores, reporte de cobertura de técnicas y reporte de "
+     "correspondencia normativa.",
+     "Catorce lecciones registradas y las catorce cerradas con su resolución "
+     "documentada, y un ciclo de mejora que corrigió el instrumental de "
+     "medición.",
+     "El ciclo de mejora funciona: cada lección registrada produjo una "
+     "corrección verificable o una reserva declarada."),
 ]
 
 
@@ -373,16 +460,28 @@ def sh_resumen(wb):
          "El mínimo absoluto lo alcanza una sesión capturada al iniciarse."),
         ("Tiempo máximo de detección", "16,85 s", "15,91 s",
          "El peor caso también mejora."),
-        ("Fuentes que el cálculo pudo atribuir", "2", "5",
-         "Se incorporan el emulador de acceso remoto, el archivo señuelo y el sensor de red."),
+        ("Fuentes de registro que el cálculo pudo atribuir", "3", "6",
+         "Componentes distintos con sello temporal. En la vuelta 1 "
+         "atribuyen la interfaz de servicios del atacante, la interfaz de "
+         "servicios del señuelo y el portal del señuelo. En la vuelta 2 se "
+         "suman el emulador de acceso remoto, el archivo señuelo y el sensor "
+         "de red."),
         ("Ataques registrados en el señuelo", "54", "254",
          "El volumen refleja escenarios que antes no producían eventos."),
         ("Solicitudes atendidas por la API", "725", "1 508", ""),
         ("Conexiones capturadas por el emulador", "7", "38", ""),
         ("Peticiones recibidas por el portal", "15 765", "78 186", ""),
-        ("Técnicas ATT&CK detectadas", "10 de 17", "10 de 17",
-         "Sin cambio: la cobertura no dependía del instrumento de cálculo."),
-        ("Tácticas ATT&CK cubiertas", "6 de 8", "6 de 8", "Sin cambio."),
+        ("Técnicas ATT&CK con fuente de detección", "4 de 10", "10 de 10",
+         "Mejora principal de la segunda vuelta. En la vuelta 1 solo "
+         "atribuyen detección las técnicas de S01, S02, S05 y S07."),
+        ("Tácticas ATT&CK con fuente de detección", "3 de 6", "6 de 6",
+         "Reconocimiento, Acceso a credenciales y Acceso inicial en la vuelta "
+         "1; las seis en la vuelta 2."),
+        ("Técnicas ATT&CK del inventario del señuelo", "17 de 17",
+         "17 de 17", "Sin cambio: el señuelo expone el mismo inventario en "
+         "las dos vueltas."),
+        ("Tácticas ATT&CK del inventario del señuelo", "8 de 8", "8 de 8",
+         "Sin cambio, por la misma razón."),
         ("Fases de ISO/IEC 27035 en el inventario", "5 de 5", "5 de 5",
          "El laboratorio contiene evidencia de las cinco fases."),
         ("Fases de ISO/IEC 27035 ejercitadas por la campaña", "1 de 5", "1 de 5",
@@ -597,66 +696,87 @@ def sh_comparacion(wb):
 
 def sh_tecnicas(wb):
     ws = wb.create_sheet("Cobertura ATT&CK")
-    widths = [16, 22, 14, 34, 50]
+    widths = [15, 20, 13, 11, 26, 26, 44]
     sheet_title(ws, "COBERTURA DE MITRE ATT&CK ENTERPRISE",
-                "Diecisiete técnicas implementadas en el señuelo. Diez se "
-                "detectan durante la campaña y siete no. La clasificación no "
-                "varía entre las dos vueltas.", len(widths))
+                "El inventario del señuelo comprende diecisiete técnicas. Diez "
+                "las activa algún escenario de la campaña y siete no. La "
+                "tabla muestra, para cada técnica, la fuente que el reporte "
+                "de indicadores le atribuyó en cada vuelta, de modo que se "
+                "aprecie qué cambió y qué no.", len(widths))
     header(ws, 4, ["Técnica", "Táctica", "¿La ejerce la campaña?",
-                   "Escenario que la ejercita", "Qué significa esta fila"],
+                   "Escenario", "Fuente en la vuelta 1",
+                   "Fuente en la vuelta 2", "Qué significa esta fila"],
            widths)
     r = 5
     for t in TECH_IMPL:
         det = t in TECH_DET
-        esc = next((s[0] for s in SCEN if s[2] == t), None)
-        tac = next((s[3] for s in SCEN if s[2] == t), TACTICA_TECNICA.get(t))
+        s = next((x for x in SCEN if x[2] == t), None)
+        esc, f1, f2 = (s[0], FUENTE_1.get(s[0]), FUENTE_2.get(s[0])) if s \
+            else (None, None, None)
         if det:
             signif = (
-                f"Ejercitada y detectada. El escenario {esc} la provoca durante "
-                f"la campaña y el programa le asigna una fuente con sello "
-                f"temporal, de modo que aparece en el tiempo de detección.")
+                "Ejercitada y atribuida. El escenario la provoca durante la "
+                "campaña y el reporte le asigna una fuente con sello "
+                "temporal, de modo que aparece en el tiempo de detección."
+                + ("" if f1 else
+                   " La vuelta 1 no le asignó fuente y la vuelta 2 sí, lo "
+                   "que explica la ampliación de la cobertura de medición."))
         else:
             signif = (
-                "Ejercitada por la campaña, pero no detectada. La técnica forma "
-                "parte del inventario del señuelo y ningún escenario la activa, "
-                "por lo que no existe fuente que la registre. Su ausencia en el "
-                "resultado describe el alcance de la campaña, no un defecto del "
-                "señuelo.")
-        vals = [t, tac, "Sí" if det else "No",
-                esc or "Ninguno de los diez escenarios de la campaña activa "
-                      "esta técnica.",
-                signif]
+                "No ejercitada. La técnica forma parte del inventario del "
+                "señuelo y ninguno de los diez escenarios la activa, de modo "
+                "que no existe fuente que la registre y no aparece en el "
+                "tiempo de detección. Su ausencia describe el alcance de la "
+                "campaña y no un defecto del señuelo.")
+        vals = [t, s[3] if s else TACTICA_TECNICA.get(t, ""),
+                "Sí" if det else "No", esc or "Ninguno",
+                f1 or "Sin atribución", f2 or "Sin atribución", signif]
         for col, v in enumerate(vals, start=1):
             c = ws.cell(row=r, column=col, value=v)
             c.font = F_B
             c.border = BORDER
-            c.alignment = WRAP_C if col == 3 else WRAP
+            c.alignment = WRAP_C if col in (3, 4) else WRAP
             if col == 1:
                 c.font = F_BB
             if col == 3:
                 c.fill = PatternFill("solid", fgColor=GREEN if det else AMBER)
                 c.font = Font(name="Calibri", size=10, bold=True,
                               color=GREEN_TXT if det else AMBER_TXT)
-            if col == 4 and not det:
-                c.font = Font(name="Calibri", size=10, italic=True,
-                              color="595959")
+            if col in (5, 6):
+                c.fill = PatternFill(
+                    "solid", fgColor=GREEN if v != "Sin atribución" else LIGHT)
+                if v == "Sin atribución":
+                    c.font = Font(name="Calibri", size=10, italic=True,
+                                  color="595959")
         ws.row_dimensions[r].height = est(vals, widths, minimum=28)
         r += 1
 
     r += 1
-    ws.cell(row=r, column=1, value="Cifras que reporta la tesis").font = F_SEC
-    ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=5)
+    ws.cell(row=r, column=1, value="Cifras del inventario y de la atribución"
+            ).font = F_SEC
+    ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=7)
     r += 1
     for a, b, c_ in [
-        ("Técnicas implementadas en el señuelo", "17",
-         "Inventario completo de técnicas que el señuelo puede provocar."),
-        ("Técnicas detectadas durante la campaña", "10",
-         "Las que algún escenario activa y el sistema registra con fuente."),
-        ("Técnicas implementadas y no ejercitadas", "7",
-         "Forman parte del señuelo y ningún escenario de la campaña las activa."),
-        ("Tácticas cubiertas por las técnicas detectadas", "6",
-         "Command and Control, Credential Access, Execution, Exfiltration, "
-         "Initial Access y Reconnaissance."),
+        ("Técnicas del inventario del señuelo", "17",
+         "Inventario completo de técnicas que el señuelo puede provocar. "
+         "No cambia entre las dos vueltas."),
+        ("Técnicas que activa algún escenario de la campaña", "10",
+         "Las que la Tabla 6 asocia a un escenario. Tampoco cambia entre "
+         "vueltas, porque el conjunto de escenarios es el mismo."),
+        ("Técnicas del inventario que ningún escenario activa", "7",
+         "Forman parte del señuelo y ninguna de las diez campañas las "
+         "ejercita."),
+        ("Técnicas con fuente de detección en la vuelta 1", "4 de 10",
+         "T1595, T1595.002, T1110.004 y T1078. Las otras seis quedaron "
+         "registradas sin atribución."),
+        ("Técnicas con fuente de detección en la vuelta 2", "10 de 10",
+         "Las diez. La ampliación proviene de las lecciones L11, L13 y L14, "
+         "que repararon el instrumental de atribución."),
+        ("Tácticas con fuente de detección en la vuelta 1", "3 de 6",
+         "Reconnaissance, Credential Access e Initial Access."),
+        ("Tácticas con fuente de detección en la vuelta 2", "6 de 6",
+         "Las seis tácticas de la campaña. Command and Control y Execution "
+         "aparecen con la reparación del instrumental."),
     ]:
         ws.cell(row=r, column=1, value=a).font = F_BB
         ws.cell(row=r, column=2, value=b).font = F_BB
@@ -664,8 +784,8 @@ def sh_tecnicas(wb):
         d = ws.cell(row=r, column=3, value=c_)
         d.font = F_B
         d.alignment = WRAP
-        ws.merge_cells(start_row=r, start_column=3, end_row=r, end_column=5)
-        for col in range(1, 6):
+        ws.merge_cells(start_row=r, start_column=3, end_row=r, end_column=7)
+        for col in range(1, 8):
             ws.cell(row=r, column=col).border = BORDER
         ws.row_dimensions[r].height = est([a, c_], [50, 90], minimum=28)
         r += 1
@@ -674,9 +794,9 @@ def sh_tecnicas(wb):
     ws.cell(row=r, column=1,
             value="Ampliación del informe de cobertura, no reportada en la tesis"
             ).font = F_SEC
-    ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=5)
+    ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=7)
     r += 1
-    ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=5)
+    ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=7)
     c = ws.cell(row=r, column=1, value=(
         "El informe de cobertura incluye además un bloque de tácticas sin "
         "ninguna técnica detectada. Son ocho. Collection y Discovery tienen "
@@ -722,7 +842,7 @@ def sh_lecciones(wb):
                  "El escenario vuelve a ejecutarse y la evidencia confirma "
                  "el resultado.")
         vals = [lid, fase, hall, causa, mej, commit_txt, estado, trat,
-                RESOLUCION.get(lid, CIERRE_GENERICO)]
+                CIERRE[lid]]
         for col, v in enumerate(vals, start=1):
             c = ws.cell(row=r, column=col, value=v)
             c.font = F_B
@@ -784,6 +904,223 @@ def sh_fases(wb):
     return ws
 
 
+DASHBOARDS = [
+    ("Tablero de métricas sobre el índice",
+     "Prototipo II, vuelta 1",
+     "Figura 52, apartado 4.3.6.6.3",
+     "Volumen de alertas, distribución por severidad y detalle del sensor "
+     "de red",
+     "Índice de la plataforma de gestión, alimentado por el publicador "
+     "propio de la lección L2",
+     "Que la cadena de captura, indexación y visualización operó en la "
+     "primera vuelta",
+     "Que la visualización se reparó tras las lecciones L5 y L6",
+     "La ventana de consulta corresponde a la segunda vuelta. Para sostener "
+     "una comparación visual con la vuelta 1 hace falta capturar ese tablero "
+     "con la misma ventana, y la captura existe en el repositorio pero no "
+     "está incorporada al documento."),
+    ("Captura del tablero de la vuelta 1",
+     "Prototipo II, vuelta 1",
+     "No incorporada al documento",
+     "Lo que muestra el archivo de la vuelta 1",
+     "Índice de la plataforma de gestión",
+     "Que el laboratorio de la primera vuelta produjo y conservó alertas",
+     "Nada todavía, porque la figura no está en el texto",
+     "Incorporarla al apartado 4.4 con su nota al pie. El archivo existe en "
+     "evidencias/v2.0-it1/04-captura-eventos/."),
+    ("Pantalla de acceso de la herramienta de métricas",
+     "Prototipo I",
+     "Figura del apartado 4.3.5.2",
+     "Disponibilidad del componente, sin datos",
+     "Ninguna, es una pantalla de acceso",
+     "Que el componente se despliega en el segmento de operaciones",
+     "Nada, porque no presenta indicadores",
+     "No sirve como evidencia de resultado. Se conserva como evidencia de "
+     "despliegue."),
+    ("Consolas de las plataformas de gestión",
+     "Prototipo II, ambas vueltas",
+     "No incorporadas al documento",
+     "Disponibilidad de la interfaz de cada plataforma",
+     "Las cinco plataformas que integran el laboratorio",
+     "Que las cinco plataformas están desplegadas y accesibles",
+     "Nada sobre el resultado de la correlación",
+     "Sirven como evidencia de la Fase 2. Cinco capturas en "
+     "evidencias/consolas/."),
+]
+
+INDICADOR_CLASE = [
+    ("Tiempo medio de detección", "Medible y medido",
+     "Intervalo entre el inicio del escenario y el primer evento que lo "
+     "registra", "Segundos",
+     "kpi_report.json, campo MTTD",
+     "5,216 s con cuatro muestras y 2,022 s con diez muestras",
+     "No comparable entre vueltas, porque cambia el número de muestras. "
+     "La comparación válida es escenario por escenario.",
+     "Ninguna en el valor. La restricción es la cobertura de las muestras."),
+    ("Tiempo medio de respuesta", "Declarado, no medido",
+     "Intervalo entre la generación del incidente y su resolución",
+     "Segundos", "kpi_report.json, campo MTTR",
+     "Sin valor. El campo aparece en null con samples igual a cero y estado "
+     "no_medido",
+     "No comparable, porque no existe valor en ninguna vuelta",
+     "Requiere las marcas temporales de los casos en la plataforma de "
+     "gestión, que la versión en licencia de prueba no expone."),
+    ("Tiempo medio de triaje", "Declarado, no medido",
+     "Intervalo entre la captura y la clasificación del evento",
+     "Segundos", "kpi_report.json, campo MTTC",
+     "Sin valor. El campo aparece en null con samples igual a cero",
+     "No comparable, porque no existe valor en ninguna vuelta",
+     "Comparte la limitación del tiempo de respuesta."),
+    ("Tiempo de contención", "Declarado, no medido",
+     "Intervalo entre la generación del incidente y su contención",
+     "Segundos", "kpi_report.json, campo MTTContain",
+     "Sin valor. El campo aparece en null con samples igual a cero",
+     "No comparable, porque no existe valor en ninguna vuelta",
+     "Comparte la limitación del tiempo de respuesta."),
+    ("Cobertura de medición", "Medible y medido",
+     "Proporción de escenarios con tiempo de detección registrado",
+     "Porcentaje", "kpi_report.json, campo MTTD.samples",
+     "Cuatro de diez escenarios y diez de diez escenarios",
+     "Comparable, porque la campaña ejecuta los mismos diez escenarios en "
+     "las dos vueltas",
+     "Mide la capacidad del instrumental de atribución, no la velocidad de "
+     "la detección."),
+    ("Fuentes de registro atribuidas", "Medible y medido",
+     "Componentes distintos a los que el programa asoció un sello temporal",
+     "Cantidad", "kpi_report.json, campo MTTD.details",
+     "Tres componentes y seis componentes",
+     "Comparable, porque el criterio de atribución es el mismo",
+     "El conteo depende de qué se considere componente distinto. Aquí se "
+     "cuenta la interfaz de servicios del atacante como componente separado "
+     "de la del señuelo."),
+    ("Cobertura de técnicas con fuente de detección", "Medible y medido",
+     "Técnicas del marco de comportamiento adversario que algún escenario "
+     "activa y a las que el reporte asigna fuente",
+     "Cantidad sobre el total de la campaña",
+     "kpi_report.json, campo MTTD.details",
+     "Cuatro de diez técnicas y diez de diez técnicas",
+     "Comparable, porque el conjunto de escenarios es el mismo",
+     "No debe confundirse con el inventario del señuelo, que comprende "
+     "diecisiete técnicas y no varía."),
+    ("Cobertura de tácticas con fuente de detección", "Medible y medido",
+     "Tácticas del marco que cuentan con al menos una técnica atribuida",
+     "Cantidad sobre el total de la campaña",
+     "kpi_report.json, campo MTTD.details",
+     "Tres de seis tácticas y seis de seis tácticas",
+     "Comparable, porque el conjunto de escenarios es el mismo",
+     "La campaña cubre seis tácticas de las ocho que declara el inventario."),
+    ("Falsos positivos", "Declarado, no calculado",
+     "Alertas que describen actividad sin ataque real, sobre el total de "
+     "alertas", "Porcentaje", "Sin fuente",
+     "Sin valor. La campaña no definió una definición operativa de falso "
+     "positivo ni llevó un registro de clasificación manual de alertas",
+     "No comparable, porque no existe valor en ninguna vuelta",
+     "No puede afirmarse que el valor sea cero. El señuelo responde a "
+     "actividad automatizada, pero eso no sustituye a la verificación "
+     "operativa de cada alerta."),
+    ("Integridad de la evidencia", "Medible y medido",
+     "Archivos de evidencia con huella criptográfica y puntaje de calidad",
+     "Cantidad y escala de cero a cien",
+     "kpi_report.json, campo evidence",
+     "Noventa y un archivos con calidad cien en las dos vueltas",
+     "Comparable, y además constante entre vueltas",
+     "El puntaje lo asigna el propio laboratorio, de modo que es una "
+     "medición interna y no una verificación externa."),
+    ("Fases de ISO/IEC 27035 inventariadas", "Medible y medido",
+     "Fases del estándar que el laboratorio declara en su composición",
+     "Cantidad sobre cinco",
+     "iso27035_compliance.json, campo phases_implemented",
+     "Cinco de cinco en el inventario del laboratorio",
+     "No comparable entre vueltas, porque el inventario no cambia",
+     "Describe el diseño declarado del laboratorio, no lo ejecutado."),
+    ("Fases de ISO/IEC 27035 ejercitadas", "Medible y medido",
+     "Fases del estándar a las que la campaña asigna al menos un escenario",
+     "Cantidad sobre cinco",
+     "kpi_report.json, campo coverage.iso_27035.phases_covered",
+     "Una de cinco, con veinte por ciento de cobertura",
+     "Constante entre vueltas",
+     "El mapeo de escenarios a fases envía los diez escenarios a la fase de "
+     "detección y reporte. Las demás fases del estándar no las ejerce esta "
+     "campaña."),
+    ("Controles de ISO/IEC 27001 mapeados", "Declarado, no medido",
+     "Controles del anexo A con correspondencia declarada en el laboratorio",
+     "Cantidad sobre siete",
+     "kpi_report.json, campo coverage.iso_27001",
+     "Siete de siete con correspondencia textual",
+     "Constante entre vueltas",
+     "El campo contiene una descripción de la implementación, no una "
+     "medición. Declarar la correspondencia no equivale a verificar el "
+     "control en operación."),
+]
+
+
+def sh_indicadores(wb):
+    ws = wb.create_sheet("Indicadores")
+    widths = [30, 18, 40, 12, 30, 40, 40, 42]
+    sheet_title(ws, "INDICADORES, DEFINICIÓN Y ESTADO DE MEDICIÓN",
+                "Trece indicadores con su definición, su fuente y su estado. "
+                "Se separan los que se midieron de los que solo se "
+                "declararon, porque un valor declarado no es un resultado.",
+                len(widths))
+    header(ws, 4, ["Indicador", "Estado", "Definición", "Unidad",
+                   "Fuente", "Valores disponibles", "Comparabilidad",
+                   "Limitaciones de la medición"], widths)
+    r = 5
+    for v in INDICADOR_CLASE:
+        for i, val in enumerate(v, start=1):
+            c = ws.cell(row=r, column=i, value=val)
+            c.font = F_SUB if i in (1, 3, 6, 7, 8) else F_B
+            c.alignment = WRAP if i in (1, 3, 6, 7, 8) else WRAP_C
+            if i == 2:
+                medido = val == "Medible y medido"
+                c.fill = PatternFill("solid", fgColor=GREEN if medido
+                                     else AMBER)
+                c.font = Font(name="Calibri", size=10, bold=True,
+                              color=GREEN_TXT if medido else AMBER_TXT)
+        ws.row_dimensions[r].height = est(list(v), widths, minimum=44)
+        r += 1
+    ws.auto_filter.ref = f"A4:H{r-1}"
+    ws.freeze_panes = "A5"
+    note(ws, r + 1,
+         "Ninguno de los indicadores de tiempo de respuesta presenta valor, "
+         "porque la campaña no registró las marcas temporales de los casos. "
+         "El hecho de que el señuelo responda a actividad automatizada no "
+         "permite afirmar que el porcentaje de falsos positivos sea cero.",
+         8)
+    return ws
+
+
+def sh_dashboards(wb):
+    ws = wb.create_sheet("Dashboards")
+    widths = [34, 22, 30, 34, 30, 34, 34, 44]
+    sheet_title(ws, "INVENTARIO DE TABLEROS Y CAPTURAS DE INTERFAZ",
+                "Qué tablero existe, de qué vuelta es, qué muestra y qué "
+                "puede sostener como evidencia. Se distingue el tablero que "
+                "presenta resultados del que solo acredita despliegue.",
+                len(widths))
+    header(ws, 4, ["Tablero o captura", "Prototipo", "Ubicación en el texto",
+                   "Qué presenta", "Fuente de los datos",
+                   "Qué permite observar", "Qué interpretación respalda",
+                   "Qué le falta para ser evidencia de mejora"], widths)
+    r = 5
+    for v in DASHBOARDS:
+        for i, val in enumerate(v, start=1):
+            c = ws.cell(row=r, column=i, value=val)
+            c.font = F_SUB if i in (1, 4, 6, 7, 8) else F_B
+            c.alignment = WRAP
+        ws.row_dimensions[r].height = est(list(v), widths, minimum=52)
+        r += 1
+    ws.auto_filter.ref = f"A4:H{r-1}"
+    ws.freeze_panes = "A5"
+    note(ws, r + 1,
+         "Un solo tablero presenta resultados y pertenece a la segunda "
+         "vuelta. La captura de la primera vuelta existe en el repositorio "
+         "y todavía no está incorporada al documento, de modo que la "
+         "comparación visual entre las dos vueltas queda pendiente.",
+         8)
+    return ws
+
+
 def main():
     wb = Workbook()
     wb.remove(wb.active)
@@ -801,6 +1138,8 @@ def main():
                   "valtxt": GREEN_TXT}, NOTAS_2)
     sh_comparacion(wb)
     sh_tecnicas(wb)
+    sh_indicadores(wb)
+    sh_dashboards(wb)
     sh_lecciones(wb)
     sh_fases(wb)
     for name in wb.sheetnames:

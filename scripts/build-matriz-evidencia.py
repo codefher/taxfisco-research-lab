@@ -30,9 +30,12 @@ GREY, AMBER, GREEN = "D9D9D9", "FFF2CC", "E2EFDA"
 ROWS = [
     (1, 1, "% de eventos con todos los campos mínimos",
      "El señuelo escribe en cada solicitud la hora, el origen, el tipo y el "
-     "identificador de la fuente. El índice del SIEM conserva el documento "
-     "íntegro con su índice de almacenamiento y su identificador.",
-     "100 % por construcción", "Fig. eventos indexados y documento expandido"),
+     "identificador de la fuente. El índice del gestor de eventos conserva el "
+     "documento íntegro con su índice de almacenamiento y su identificador, de "
+     "modo que los cuatro campos mínimos están presentes en todos los "
+     "eventos registrados.",
+     "Cuatro campos en cada evento",
+     "Fig. eventos indexados y documento expandido"),
     (1, 2, "Tiempo promedio del evento a su registro",
      "Tiempo medio de detección sobre los diez escenarios de la campaña de "
      "la segunda vuelta.",
@@ -76,9 +79,9 @@ ROWS = [
      "cada una con su hallazgo, su causa y su corrección.",
      "14 lecciones registradas", "evidencias/lecciones-aprendidas.md"),
     (4, 2, "Acciones correctivas derivadas de incidentes",
-     "Once de las catorce lecciones quedaron cerradas con una corrección "
-     "aplicada. Tres permanecen abiertas.",
-     "11 cerradas, 3 abiertas", "evidencias/lecciones-aprendidas.md"),
+     "Las catorce lecciones quedaron cerradas, cada una con su resolución "
+     "documentada y con el archivo que la verifica.",
+     "14 cerradas", "evidencias/lecciones-aprendidas.md"),
     (4, 3, "% de acciones dentro del plazo comprometido",
      "No medido. El registro documenta qué se corrigió, no el plazo de cada "
      "corrección.",
@@ -154,9 +157,11 @@ ROWS = [
      "continua durante la campaña y alimentan el reporte de cobertura.",
      "Cobertura continua de la campaña", "Fig. alertas de la cadena de detección"),
     (10, 2, "% de vulnerabilidades críticas corregidas en plazo",
-     "El reporte de cobertura distingue diecisiete técnicas implementadas de "
-     "diez efectivamente detectadas, en seis tácticas.",
-     "10 de 17 técnicas detectadas", "07-metricas/mitre_coverage.json"),
+     "La campaña no llevaba un registro de vulnerabilidades con plazo de "
+     "corrección. El reporte de cobertura distingue diecisiete técnicas del "
+     "inventario del señuelo de las diez que la campaña activa y a las que "
+     "asigna fuente de detección, lo que mide cobertura y no plazo.",
+     "No medido", "07-metricas/mitre_coverage.json"),
     (10, 3, "Tiempo medio de corrección por severidad",
      "No medido. La campaña no llevaba un registro de tiempos de corrección "
      "por severidad.",
@@ -167,18 +172,23 @@ ROWS = [
      "horaria, y el cálculo del tiempo de detección se apoya en esas marcas.",
      "Marcas con zona horaria verificadas", "Fig. sello temporal de custodia"),
     (11, 2, "% de registros en repositorio inalterable",
-     "El control de recolección de evidencia de la norma ISO/IEC 27001 se "
-     "declara sobre un repositorio de solo escritura con firma.",
-     "Repositorio inalterable declarado", "iso27035_compliance.json, control A.5.28"),
+     "No medido. El laboratorio declara el control de recolección de evidencia "
+     "de la norma ISO/IEC 27001 sobre un repositorio de solo escritura con "
+     "firma. La declaración documenta la decisión de diseño, no una medición "
+     "del porcentaje de registros que efectivamente salieron a ese "
+     "repositorio.",
+     "No medido", "iso27035_compliance.json, control A.5.28"),
     (11, 3, "Tiempo de retención de los registros operativos",
      "El laboratorio no define una retención en meses para sus registros. Es "
      "una decisión de la institución.",
      "No aplica al laboratorio", "sin política de retención"),
 
     (12, 1, "% de activos críticos con evaluación vigente",
-     "La metodología declara cuatro decisiones de diseño que acotan el "
-     "alcance, la separación, la trazabilidad y la mejora iterativa.",
-     "4 decisiones declaradas", "4.2.1.3 Decisiones de diseño"),
+     "No medido. La metodología declara cuatro decisiones de diseño que acotan "
+     "el alcance, la separación, la trazabilidad y la mejora iterativa. La "
+     "declaración documenta el diseño y no el porcentaje de activos con "
+     "evaluación vigente.",
+     "No medido", "4.2.1.3 Decisiones de diseño"),
     (12, 2, "Reevaluaciones de riesgos sobre activos críticos",
      "No medido. La campaña no llevaba un conteo de reevaluaciones.",
      "No medido", "sin registro"),
@@ -200,14 +210,17 @@ ROWS = [
      "brecha G4-13"),
 
     (14, 1, "Indicadores de seguridad revisados en comité",
-     "El laboratorio produce tres tableros de indicadores y un reporte "
-     "consolidado por campaña. No se constitute un comité de revisión.",
-     "3 tableros y 1 reporte", "Fig. tableros de Grafana y reportes"),
+     "El laboratorio documenta un tablero de métricas y un reporte "
+     "consolidado por campaña. La captura de la primera vuelta existe en el "
+     "repositorio y aún no está incorporada al texto. No se constitute un "
+     "comité de revisión.",
+     "1 tablero en el texto y 1 reporte", "Fig. 52 y reportes por campaña"),
     (14, 2, "% de controles ajustados por las revisiones",
-     "Once lecciones cerradas modificaron controles concretos del laboratorio: "
-     "reglas del detector, publicador de eventos, offset del colector y programa "
-     "de cálculo.",
-     "11 correcciones aplicadas", "evidencias/lecciones-aprendidas.md"),
+     "Las catorce lecciones cerradas modificaron componentes concretos del "
+     "laboratorio: reglas del detector, publicador de eventos, posición de "
+     "lectura del colector, programa de cálculo y los tres scripts de "
+     "arranque.",
+     "14 correcciones aplicadas", "evidencias/lecciones-aprendidas.md"),
     (14, 3, "% de procesos con métricas formalmente definidas",
      "Las cinco fases de la metodología tienen al menos un indicador medido "
      "que se reporta al cierre de cada campaña.",

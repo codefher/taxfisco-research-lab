@@ -15,9 +15,10 @@ sin = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(sin)
 
 DST = (BASE / "instrumentos"
-       / "2026-10-12_Comparacion_Antes_Despues_v01.xlsx")
+       / "2026-10-12_Comparacion_Antes_Despues_v02.xlsx")
 
 LIGHT = sin.LIGHT
+GREEN = sin.GREEN
 F_TITLE, F_SUB, F_H, F_B, F_BB, F_SEC = (sin.F_TITLE, sin.F_SUB, sin.F_H,
                                          sin.F_B, sin.F_BB, sin.F_SEC)
 
@@ -71,11 +72,12 @@ INDICADORES = [
      "La medición deja de depender de que un componente concreto se active y "
      "pasa a registrar los diez escenarios.",
      "kpi_report.json de it1 e it2"),
-    ("Segmentos que aportan una fuente de detección", "2", "5",
+    ("Componentes que aportan una fuente de registro atribuida", "3", "6",
      "Fuentes de detección",
-     "Cowrie, el portal falso, OpenCanary, Zeek y TheHive detectan de manera "
-     "independiente.",
-     "kpi_report.json de it2"),
+     "En la vuelta 1 atribuyen la interfaz de servicios del atacante, la del "
+     "señuelo y el portal. En la vuelta 2 se suman el emulador de acceso "
+     "remoto, el archivo señuelo y el sensor de red.",
+     "kpi_report.json de it1 e it2"),
     ("Tiempo medio de detección del Prototipo II",
      "5,216 s sobre cuatro escenarios", "2,022 s sobre diez escenarios",
      "Comparación válida escenario por escenario",
@@ -102,12 +104,19 @@ INDICADORES = [
      "Constante entre vueltas",
      "La retención se mantuvo estable durante la corrección del instrumental.",
      "evidencias/INDICE.md"),
-    ("Técnicas de MITRE ATT&CK detectadas",
-     "Diez de diecisiete en seis tácticas", "Diez de diecisiete en seis tácticas",
-     "Constante entre vueltas",
-     "La cobertura del señuelo no cambió. La mejora está en el instrumental "
-     "que la observa y no en el señuelo.",
-     "mitre_coverage.json"),
+    ("Técnicas de MITRE ATT&CK con fuente de detección",
+     "Cuatro de diez", "Diez de diez", "Mejora cuantificada",
+     "Las seis técnicas que la vuelta 1 dejó sin atribución, las de los "
+     "escenarios S03, S04, S06, S08, S09 y S10, reciben fuente en la vuelta "
+     "2. El inventario del señuelo no cambia y sigue siendo de diecisiete "
+     "técnicas.",
+     "kpi_report.json de it1 e it2"),
+    ("Tácticas de MITRE ATT&CK con fuente de detección",
+     "Tres de seis", "Seis de seis", "Mejora cuantificada",
+     "La vuelta 1 solo atribuye detección en Reconocimiento, Acceso a "
+     "credenciales y Acceso inicial. La vuelta 2 añade Ejecución, Mando y "
+     "control y Exfiltración.",
+     "kpi_report.json de it1 e it2"),
     ("Madurez global de la institución", "52,70 % en nivel Gestionado",
      "Medición posterior con el instrumento v07",
      "Corresponde a la institución",
@@ -169,15 +178,152 @@ FASES = [
 ]
 
 ISO = [
-    ("Fases de ISO 27035 implementadas en el inventario", "5 de 5",
-     "iso27035_compliance.json, campo phases_implemented",
-     "Describe el diseño declarado de las cinco fases."),
-    ("Fases de ISO 27035 ejercitadas durante la campaña", "2 de 5",
-     "scenario_to_phase_mapping del mismo archivo y kpi_report.json de la "
-     "vuelta 2, que reporta veinte por ciento de fases ejercitadas",
-     "Describe lo que la campaña ejecutó. Los diez escenarios se asignan a "
-     "las Fases 1, 3 y 4 del modelo de la institución, que corresponden a las "
-     "fases de identificación, medición y respuesta."),
+    ("Fases de ISO 27035 declaradas en el inventario del laboratorio",
+     "5 de 5", "iso27035_compliance.json, campo phases_implemented",
+     "Describe el diseño declarado de las cinco fases. Corresponde a "
+     "implementación verificada en el despliegue, no a resultado de la "
+     "campaña."),
+    ("Fases de ISO 27035 ejercitadas por la campaña", "1 de 5",
+     "kpi_report.json de las dos vueltas, campo "
+     "coverage.iso_27035.phases_covered, que reporta veinte por ciento",
+     "Describe lo que la campaña ejecutó. El mapeo de escenarios a fases "
+     "envía los diez escenarios a la fase de detección y reporte, de modo "
+     "que las otras cuatro fases del estándar no las ejerce esta campaña."),
+]
+
+CLASIFICACION = [
+    ("Implementación verificada",
+     "La función está desplegada y se comprobó que opera.",
+     "Tres segmentos en ejecución con la prueba de aislamiento ejecutada "
+     "desde el atacante, y las cinco plataformas de gestión con su consola "
+     "capturada.",
+     "Fase 2",
+     "No aporta reducción por sí sola. Es la condición previa que permite "
+     "medir."),
+    ("Resultado operativo observado",
+     "La función produjo un resultado observable y registrado.",
+     "La campaña ejecuta los diez escenarios en las dos vueltas y el "
+     "laboratorio permanece en pie durante todo el recorrido.",
+     "Fases 2 y 3",
+     "Sostiene que el laboratorio es estable, que es distinto de que sea "
+     "rápido."),
+    ("Mejora cuantificada",
+     "Existe un valor de partida y un valor posterior en la misma unidad.",
+     "Escenarios con medición, de cuatro de diez a diez de diez. Fuentes de "
+     "registro, de tres a seis. Técnicas con fuente de detección, de cuatro "
+     "de diez a diez de diez. Tácticas con fuente, de tres de seis a seis de "
+     "seis. Tiempo de detección, con reducción del 5,6 %, el 9,8 %, el 34,0 % "
+     "y el 75,2 % en los cuatro escenarios comparables.",
+     "Fase 3 y Fase 5",
+     "Es la categoría que sostiene el argumento de mejora y la que debe "
+     "aparecer en el capítulo de resultados."),
+    ("Mejora funcional no cuantificada",
+     "La función cambia y su resultado se observa, pero no hay indicador "
+     "numérico que lo recoja.",
+     "El registro de lecciones pasa de siete documentos a catorce, cada uno "
+     "con causa raíz, cambio aplicado y cierre. Los tableros dejan de "
+     "mostrar ausencia de datos. La campaña alcanza el décimo escenario "
+     "tras la limitación del tiempo de las herramientas.",
+     "Fases 2 y 5",
+     "Puede narrarse pero no puede presentarse como porcentaje."),
+    ("Meta planteada todavía no demostrada",
+     "La metodología la contempla como objetivo y la campaña no la midió.",
+     "El tiempo medio de respuesta, el tiempo de triaje y el tiempo de "
+     "contención aparecen en el reporte de indicadores con valor nulo y "
+     "cero muestras. La inspección del caso cerrado corresponde a la versión "
+     "en licencia de prueba de la plataforma de incidentes.",
+     "Fase 4",
+     "Debe declararse como meta y no como resultado. Es la categoría que "
+     "impide que el capítulo afirme más de lo medido."),
+]
+
+FASES_12 = [
+    ("Fase 1. Diseño del señuelo",
+     "El catálogo de amenazas del primer prototipo queda referenciado y el "
+     "contexto institucional propio de laTAX no está modelado.",
+     "Señuelo del portal tributario con acceso en dos pasos, panel de "
+     "contribuyente y perfil de atacante con diez herramientas.",
+     "El contenido del señuelo pasa de entidad homologada a portal tributario "
+     "nacional y se incorporan tres sensores nuevos.",
+     "docker-compose.yml y las capturas del recorrido de acceso.",
+     "Escenarios ejecutados sobre el señuelo.",
+     "Diez de diez", "Diez de diez", "Sin cambio declarado",
+     "No cuantificable",
+     "El inventario de técnicas del señuelo pasa de diecisiete a "
+     "diecisiete, porque el primer prototipo ya lo tenía. El cambio de esta "
+     "fase es de contenido y de contexto, no de cobertura técnica.",
+     "El número de escenarios no discriminante, porque ambos prototipos "
+     "ejecutan los mismos diez. La fase no tiene indicador propio que la "
+     "distinga."),
+    ("Fase 2. Despliegue aislado",
+     "El laboratorio se cae, la campaña se detiene antes del final y el "
+     "aislamiento solo consta en la configuración.",
+     "Tres segmentos con la cadena de detección aislada del señuelo y "
+     "veinticinco contenedores en ejecución.",
+     "Límite de tiempo en las herramientas de ataque, comprobación de las "
+     "herramientas al inicio y scripts de arranque que restauran la copia de "
+     "seguridad.",
+     "docker-compose.yml, registro de redes y prueba de aislamiento desde el "
+     "contenedor atacante.",
+     "Escenarios completados en la vuelta 2.",
+     "No documentado para la vuelta 1", "Diez de diez", "No cuantificable",
+     "No cuantificable",
+     "La fase produce un cambio funcional verificable, porque el laboratorio "
+     "completa la campaña y el aislamiento se comprueba ejecutando la "
+     "prueba. La vuelta 1 no dejó recuento de escenarios completados, de "
+     "modo que no hay porcentaje.",
+     "Sin valor de partida, porque el registro de la vuelta 1 no consigna "
+     "cuántos escenarios alcanzó antes de detenerse."),
+    ("Fase 3. Captura, enriquecimiento y custodia",
+     "Seis de los diez escenarios registran el ataque pero el programa no "
+     "les asigna fuente, de modo que no producen tiempo de detección.",
+     "Cadena de captura que registra el evento ya clasificado con su técnica "
+     "y su severidad, y custodia sellada con huella SHA-256.",
+     "El programa de cálculo acepta las tres variantes de clave, incorpora "
+     "el archivo señuelo y el sensor de red como fuentes, y comprueba la "
+     "herramienta de cada escenario.",
+     "kpi_report.json de las dos vueltas, Figura 47 y detalle por escenario.",
+     "Escenarios con tiempo de detección registrado.",
+     "Cuatro de diez", "Diez de diez", "Seis escenarios",
+     "150 % más escenarios medidos",
+     "Es la mejora principal de la campaña. Las lecciones L11, L13 y L14 "
+     "reparan el instrumental de atribución, no el señuelo, de modo que la "
+     "diferencia mide la capacidad de medir y no la velocidad de detectar.",
+     "La reducción de las medias globales no es atribuible a esta fase, "
+     "porque se calculan sobre muestras distintas."),
+    ("Fase 4. Correlación con gestión de incidentes",
+     "El evento se clasifica en la captura, pero la correlación con la "
+     "gestión del incidente no llega a verificarse más allá de la alerta.",
+     "Alerta estructurada con técnica y severidad, flujo de orquestación "
+     "configurado y alta en la plataforma de inteligencia.",
+     "Sin cambio entre las dos vueltas. La comprobación se detiene en la "
+     "inspección del caso cerrado.",
+     "Figura 45 con las alertas clasificadas, Figura 49 con el flujo "
+     "configurado y las capturas de las consolas.",
+     "Tiempo de respuesta a la resolución del incidente.",
+     "Sin valor, el campo MTTR aparece en nulo", "Sin valor, el campo "
+     "aparece en nulo", "No calculable", "No calculable",
+     "La correlación se verifica hasta la generación de la alerta "
+     "clasificada. La respuesta y la contención quedan declaradas como metas "
+     "y no como resultados.",
+     "El tiempo de respuesta, el de triaje y el de contención aparecen en "
+     "nulo en los dos reportes de indicadores, con cero muestras."),
+    ("Fase 5. Medición y lecciones aprendidas",
+     "El ciclo de mejora produce siete lecciones y un registro de tableros que "
+     "no alimentan la decisión de la siguiente vuelta.",
+     "Reporte de indicadores, reporte de cobertura de técnicas y reporte de "
+     "correspondencia normativa, todos con su archivo de origen.",
+     "Catorce lecciones registradas con causa raíz, cambio aplicado y cierre "
+     "individual, de las cuales once las aporta la primera vuelta y cuatro "
+     "la segunda.",
+     "lecciones-aprendidas.md y el reporte de indicadores de cada vuelta.",
+     "Lecciones registradas con su cierre documentado.",
+     "Siete", "Catorce", "Siete lecciones adicionales",
+     "100 % más lecciones registradas",
+     "El ciclo de mejora funciona de manera verificable, porque cada lección "
+     "produce una corrección comprobada o una reserva declarada.",
+     "El conteo de lecciones no mide el efecto de las correcciones, que se "
+     "mide en la Fase 3."),
 ]
 
 PREGUNTAS = [
@@ -415,12 +561,84 @@ def sh_preguntas(wb):
     return ws
 
 
+def sh_clasificacion(wb):
+    ws = wb.create_sheet("Clasificación")
+    widths = [34, 44, 70, 18, 46]
+    sin.sheet_title(
+        ws, "CLASIFICACIÓN DE LA EVIDENCIA",
+        "Cinco categorías que separan lo que está implementado de lo que "
+        "está medido y de lo que todavía es una meta. Ninguna afirmación del "
+        "capítulo de resultados debe apoyarse en una categoría inferior a la "
+        "que le corresponde.", len(widths))
+    sin.header(ws, 4, ["Categoría", "Qué significa", "Qué hay en el Prototipo II",
+                       "Fase", "Qué puede y qué no puede afirmar"], widths)
+    r = 5
+    for v in CLASIFICACION:
+        for i, val in enumerate(v, start=1):
+            c = ws.cell(row=r, column=i, value=val)
+            c.font = F_SUB if i in (1, 3, 5) else F_B
+            c.alignment = sin.WRAP
+            if i == 1:
+                c.fill = PatternFill("solid", fgColor=LIGHT)
+                c.font = F_BB
+        ws.row_dimensions[r].height = sin.est(list(v), widths, minimum=54)
+        r += 1
+    ws.auto_filter.ref = f"A4:E{r-1}"
+    ws.freeze_panes = "A5"
+    sin.note(ws, r + 1,
+             "La categoría de meta todavía no demostrada reúne el tiempo "
+             "medio de respuesta, el de triaje y el de contención. Los tres "
+             "aparecen en nulo en los dos reportes de indicadores y "
+             "corresponden a la Fase 4, cuya verificación se detiene en la "
+             "generación de la alerta.", 5)
+    return ws
+
+
+def sh_fases12(wb):
+    ws = wb.create_sheet("Matriz por fases")
+    widths = [26, 42, 42, 42, 32, 30, 22, 22, 20, 22, 50, 46]
+    sin.sheet_title(
+        ws, "MATRIZ DE RESULTADOS POR LAS CINCO FASES",
+        "Doce columnas por fase. Cuando no existe valor de partida o "
+        "posterior, la celda lo declara en lugar de completarse.",
+        len(widths))
+    sin.header(ws, 4, ["Fase", "Situación inicial o limitación",
+                       "Función implementada", "Cambio introducido",
+                       "Evidencia disponible", "Indicador asociado",
+                       "Valor inicial", "Valor posterior", "Mejora absoluta",
+                       "Mejora porcentual", "Interpretación del resultado",
+                       "Limitaciones de la medición"], widths)
+    r = 5
+    for v in FASES_12:
+        for i, val in enumerate(v, start=1):
+            c = ws.cell(row=r, column=i, value=val)
+            c.font = F_SUB if i in (1, 2, 3, 4, 11, 12) else F_B
+            c.alignment = sin.WRAP if i in (1, 2, 3, 4, 11, 12) else sin.WRAP_C
+            if i in (9, 10):
+                txt = str(val)
+                if txt.startswith(("Seis", "Catorce", "150", "100")):
+                    c.fill = PatternFill("solid", fgColor=GREEN)
+                    c.font = F_BB
+        ws.row_dimensions[r].height = sin.est(list(v), widths, minimum=70)
+        r += 1
+    ws.auto_filter.ref = f"A4:L{r-1}"
+    ws.freeze_panes = "B5"
+    sin.note(ws, r + 1,
+             "Las fases 1, 2 y 4 no admiten porcentaje de mejora, y la tabla "
+             "lo declara en lugar de estimarlo. La Fase 4 presenta valores "
+             "nulos en las dos vueltas porque los campos MTTR, MTTC y "
+             "MTTContain aparecen sin muestras en ambos reportes.", 12)
+    return ws
+
+
 def main():
     wb = Workbook()
     sh_portada(wb)
     sh_brechas(wb)
     sh_ciclo(wb)
     sh_secuencia(wb)
+    sh_clasificacion(wb)
+    sh_fases12(wb)
     sh_fases(wb)
     sh_iso(wb)
     sh_preguntas(wb)
