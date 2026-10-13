@@ -18,7 +18,7 @@ from openpyxl.utils import get_column_letter
 from openpyxl.worksheet.properties import PageSetupProperties
 
 DST = (Path(r"F:\Maestria\tesis\taxfisco-research-lab\instrumentos")
-       / "2026-10-12_Resultados_Prototipo_II_SIN_v11.xlsx")
+       / "2026-10-12_Resultados_Prototipo_II_SIN_v12.xlsx")
 
 NAVY = "1F3864"
 LIGHT = "DCE6F1"
@@ -1068,15 +1068,15 @@ DASHBOARDS = [
      "Nada todavía, porque la figura no está en el texto",
      "Incorporarla al apartado 4.4 con su nota al pie. El archivo existe en "
      "evidencias/v2.0-it1/04-captura-eventos/."),
-    ("Pantalla de acceso de la herramienta de métricas",
-     "Prototipo I",
-     "Figura del apartado 4.3.5.2",
-     "Disponibilidad del componente, sin datos",
-     "Ninguna, es una pantalla de acceso",
-     "Que el componente se despliega en el segmento de operaciones",
-     "Nada, porque no presenta indicadores",
-     "No sirve como evidencia de resultado. Se conserva como evidencia de "
-     "despliegue."),
+    ("Consola de una plataforma de gestión",
+     "Prototipo II, ambas vueltas",
+     "No incorporada al documento",
+     "Disponibilidad de la interfaz de la plataforma",
+     "La propia plataforma de gestión",
+     "Que la plataforma está desplegada y accesible en el segmento de "
+     "operaciones",
+     "Que el despliegue de la cadena de gestión se completó",
+     "Acredita despliegue, no resultado. Sirve como evidencia de la Fase 2."),
     ("Consolas de las plataformas de gestión",
      "Prototipo II, ambas vueltas",
      "No incorporadas al documento",

@@ -6,7 +6,7 @@ import importlib.util
 from pathlib import Path
 
 from openpyxl import Workbook
-from openpyxl.styles import PatternFill
+from openpyxl.styles import Alignment, PatternFill
 from openpyxl.utils import get_column_letter
 
 BASE = Path(r"F:\Maestria\tesis\taxfisco-research-lab")
@@ -16,7 +16,7 @@ sin = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(sin)
 
 DST = (BASE / "instrumentos"
-       / "2026-10-12_Comparacion_Antes_Despues_v03.xlsx")
+       / "2026-10-12_Comparacion_Antes_Despues_v05.xlsx")
 
 LIGHT = sin.LIGHT
 GREEN = sin.GREEN
@@ -81,7 +81,7 @@ INDICADORES = [
      "señuelo y el portal. En la vuelta 2 se suman el emulador de acceso "
      "remoto, el archivo señuelo y el sensor de red.",
      "kpi_report.json de it1 e it2"),
-    ("Tiempo medio de detección del Prototipo II",
+    ("Tiempo medio de detección del laboratorio",
      "5,216 s sobre cuatro escenarios", "2,022 s sobre diez escenarios",
      "Comparación válida escenario por escenario",
      "Las medias no son comparables entre vueltas porque cambia el número de "
@@ -135,30 +135,24 @@ SECUENCIA = [
      "en nivel Básico y alfa de Cronbach de 0,869 sobre treinta participantes.",
      "2026-06-25_Calculo_Alfa_Cronbach_Encuesta_v05.xlsx, coincidente con las "
      "Tablas 2 y 3 del apartado 4.1"),
-    ("Prototipo I", "Regla de medición y primer contacto con el señuelo",
-     "Nueve mediciones del tiempo de detección con promedio de 41,598 s, "
-     "mínimo de 0,141 s y máximo de 260,108 s. Cuarenta y seis ataques, "
-     "1.758 solicitudes atendidas por la API, ocho conexiones capturadas y "
-     "8.875 solicitudes del portal.",
-     "Figura 35 del apartado 4.3.6.7"),
     ("Prototipo II, vuelta 1", "Laboratorio completo con medición parcial",
      "Diez escenarios ejecutados. Tiempo de detección medido en cuatro, con "
-     "promedio de 5,216 s. Diecisiete técnicas implementadas y diez detectadas "
-     "en seis tácticas.",
+     "promedio de 5,216 s. Diecisiete técnicas en el inventario del señuelo y "
+     "cuatro con fuente de detección.",
      "v2.0-it1/07-metricas/kpi_report.json"),
     ("Prototipo II, vuelta 2",
      "Corrección del instrumental y medición completa",
      "Diez escenarios ejecutados. Tiempo de detección medido en los diez, con "
      "promedio de 2,022 s, mínimo de 0,0 s y máximo de 15,91 s. Seis fuentes "
-     "de detección.",
+     "de registro atribuidas y diez técnicas con fuente de detección.",
      "v2.1-it2/07-metricas/kpi_report.json"),
 ]
 
 FASES = [
     ("Fase 1", "Identificación y modelado de amenazas",
-     "El catálogo de amenazas deja de estar referenciado. Diecisiete técnicas "
-     "de MITRE ATT&CK quedan implementadas y asignadas a un escenario cada "
-     "una.",
+     "El catálogo de amenazas recibe un escenario por técnica. Diecisiete "
+     "técnicas de MITRE ATT&CK componen el inventario del señuelo y diez de "
+     "ellas las ejercita la campaña.",
      "mitre_coverage.json"),
     ("Fase 2", "Construcción del laboratorio",
      "Seis servicios de señuelo y una plataforma de gestión se despliegan en "
@@ -242,22 +236,25 @@ CLASIFICACION = [
 
 FASES_12 = [
     ("Fase 1. Diseño del señuelo",
-     "El catálogo de amenazas del primer prototipo queda referenciado y el "
-     "contexto institucional propio de laTAX no está modelado.",
+     "El contexto institucional del Servicio de Impuestos Nacionales no está "
+     "modelado y el catálogo de amenazas no tiene un escenario "
+     "asignado por técnica.",
      "Señuelo del portal tributario con acceso en dos pasos, panel de "
      "contribuyente y perfil de atacante con diez herramientas.",
-     "El contenido del señuelo pasa de entidad homologada a portal tributario "
-     "nacional y se incorporan tres sensores nuevos.",
+     "El contenido del señuelo adopta la identidad del portal tributario "
+     "nacional y cada técnica del inventario recibe un escenario que la "
+     "ejercita.",
      "docker-compose.yml y las capturas del recorrido de acceso.",
      "Escenarios ejecutados sobre el señuelo.",
      "Diez de diez", "Diez de diez", "Sin cambio declarado",
      "No cuantificable",
-     "El inventario de técnicas del señuelo pasa de diecisiete a "
-     "diecisiete, porque el primer prototipo ya lo tenía. El cambio de esta "
-     "fase es de contenido y de contexto, no de cobertura técnica.",
-     "El número de escenarios no discriminante, porque ambos prototipos "
-     "ejecutan los mismos diez. La fase no tiene indicador propio que la "
-     "distinga."),
+     "El inventario del señuelo comprende diecisiete técnicas y diez "
+     "tácticas, y la campaña activa diez de ellas. La fase queda "
+     "verificada en componentes y en superficie de ataque, no en "
+     "indicador numérico.",
+     "El número de escenarios se mantiene en diez porque la campaña no "
+     "varía entre las dos vueltas. La fase no tiene indicador propio que "
+     "la distinga entre iteraciones."),
     ("Fase 2. Despliegue aislado",
      "El laboratorio se cae, la campaña se detiene antes del final y el "
      "aislamiento solo consta en la configuración.",
@@ -337,12 +334,13 @@ PREGUNTAS = [
     ("Solo resultados, sin comprobación de hipótesis",
      "Ningún apartado del 4.4 contiene prueba de hipótesis. Toda cifra "
      "proviene de un archivo del repositorio y declara su fuente."),
-    ("Explicar cómo mejoró, los dos prototipos, vender el producto",
-     "Las hojas Secuencia y Las seis brechas, que muestran qué valor deja "
-     "cada prototipo."),
-    ("Análisis del antes y el después de los dos prototipos",
+    ("Explicar cómo mejoró y cuál es el valor del producto",
+     "Las hojas Secuencia y Las seis brechas, que muestran qué deja cada "
+     "vuelta del laboratorio del SIN."),
+    ("Análisis del antes y el después",
      "Las hojas Las seis brechas y El ciclo completo, con el estado de "
-     "partida de la institución y el estado final del laboratorio."),
+     "partida de la institución y el estado final del laboratorio del "
+     "SIN."),
     ("Cómo se comprueba la mejora, cuánto, por qué y qué cambió en cada fase",
      "La hoja El ciclo completo, con la reducción por escenario, y la hoja "
      "Aportación por fase, con el cambio atribuible a cada una."),
@@ -357,8 +355,8 @@ def sh_portada(wb):
     sin.sheet_title(
         ws, "COMPARACIÓN ANTES Y DESPUÉS DEL CICLO DE MEJORA",
         "Cruce del diagnóstico de madurez de la institución con los resultados "
-        "de las dos vueltas del Prototipo II y con el registro del Prototipo "
-        "I. Todas las cifras proceden de archivos del repositorio.", 4)
+        "de las dos vueltas del laboratorio del Servicio de Impuestos "
+        "Nacionales. Todas las cifras proceden de archivos del repositorio.", 4)
     r = 6
     filas = [
         ("Objeto del documento",
@@ -386,7 +384,7 @@ def sh_portada(wb):
          "v2.0-it1/07-metricas/mitre_coverage.json.\n"
          "evidencias/lecciones-aprendidas.md.\n"
          "evidencias/INDICE.md.\n"
-         "Figura 35 del apartado 4.3.6.7 para los datos del Prototipo I."),
+         "evidencias/iso27035_compliance.json."),
     ]
     for i, w in enumerate(ANCHOS_PORTADA, start=1):
         ws.column_dimensions[get_column_letter(i)].width = w
@@ -461,12 +459,12 @@ def sh_ciclo(wb):
     for v in INDICADORES:
         for i, val in enumerate(v, start=1):
             c = ws.cell(row=r, column=i, value=val)
-            c.font = F_SUB if i in (1, 5, 6) else F_B
+            c.font = F_BB if i == 1 else (F_SUB if i in (5, 6) else F_B)
             c.alignment = sin.WRAP if i in (1, 5, 6) else sin.WRAP_C
             if i in (2, 3):
                 c.fill = PatternFill("solid", fgColor=LIGHT)
         ws.row_dimensions[r].height = sin.est(
-            [v[0], v[1], v[2], v[4]], widths, minimum=34)
+            [v[0], v[4]], [widths[0], widths[4]], minimum=26)
         r += 1
     ws.auto_filter.ref = f"A5:F{r-1}"
     ws.freeze_panes = "A6"
@@ -481,9 +479,10 @@ def sh_secuencia(wb):
     ws = wb.create_sheet("Secuencia")
     widths = [30, 34, 66, 46]
     sin.sheet_title(
-        ws, "LA SECUENCIA DE LOS DOS PROTOTIPOS",
-        "Los tres momentos del trabajo, con lo que cada uno aportó y con el "
-        "archivo donde queda registrado.", len(widths))
+        ws, "LA SECUENCIA DEL LABORATORIO DEL SIN",
+        "Los tres momentos del trabajo sobre el mismo señuelo, con lo que "
+        "cada uno aportó y con el archivo donde queda registrado.",
+        len(widths))
     sin.header(ws, 5, ["Momento", "Qué aporta", "Resultado del momento",
                        "Fuente"], widths)
     r = 6
@@ -498,10 +497,10 @@ def sh_secuencia(wb):
     ws.auto_filter.ref = f"A5:D{r-1}"
     ws.freeze_panes = "A6"
     sin.note(ws, r + 1,
-             "El Prototipo I entrega la regla de medición. El Prototipo II "
-             "entrega el laboratorio completo y, en su segunda vuelta, la "
-             "corrección del instrumental que hace posible medir los diez "
-             "escenarios.", 4)
+             "La primera vuelta establece la línea base de los indicadores y la "
+             "segunda mide el efecto de las correcciones que esa línea base "
+             "reveló. Entre las dos queda el ciclo de mejora continua, que es "
+             "lo que distingue a este laboratorio.", 4)
     return ws
 
 
@@ -586,7 +585,7 @@ def sh_clasificacion(wb):
         "está medido y de lo que todavía es una meta. Ninguna afirmación del "
         "capítulo de resultados debe apoyarse en una categoría inferior a la "
         "que le corresponde.", len(widths))
-    sin.header(ws, 5, ["Categoría", "Qué significa", "Qué hay en el Prototipo II",
+    sin.header(ws, 5, ["Categoría", "Qué significa", "Qué hay en el laboratorio del SIN",
                        "Fase", "Qué puede y qué no puede afirmar"], widths)
     r = 6
     for v in CLASIFICACION:
@@ -648,11 +647,27 @@ def sh_fases12(wb):
 
 
 def pulir(ws, desde=6):
-    """Bandeado alterno y borde de cierre, igual que en el libro del SIN."""
-    if ws.title == "Portada":
-        return
+    """Borde y margen interior en todas las celdas con contenido, mas el
+    bandeado alterno. Deja el mismo acabado que el libro del SIN."""
     ncols = ws.max_column
-    for r in range(desde, ws.max_row + 1):
+    for r in range(1, ws.max_row + 1):
+        for col in range(1, ncols + 1):
+            c = ws.cell(row=r, column=col)
+            if c.value in (None, ""):
+                continue
+            # El titulo y la bajada llevan su propio borde inferior.
+            if r in (2, 3) and ws.title != "Portada":
+                continue
+            if c.border is None or c.border.left.style is None:
+                c.border = sin.BORDER
+            al = c.alignment
+            if (al and al.wrap_text and al.horizontal in (None, "general")
+                    and al.indent in (0, None)):
+                c.alignment = Alignment(
+                    horizontal=al.horizontal, vertical=al.vertical,
+                    wrap_text=True, indent=1)
+        if r < desde:
+            continue
         if all(ws.cell(row=r, column=c).value in (None, "")
                for c in range(1, ncols + 1)):
             continue

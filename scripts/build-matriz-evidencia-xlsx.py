@@ -19,7 +19,7 @@ from openpyxl.worksheet.properties import PageSetupProperties
 BASE = Path(r"F:\Maestria\tesis\taxfisco-research-lab")
 SRC = BASE / "scripts" / "build-matriz-evidencia.py"
 DST = (BASE / "instrumentos"
-       / "2026-10-12_Matriz_Evidencia_Laboratorio_por_Item_v03.xlsx")
+       / "2026-10-12_Matriz_Evidencia_Laboratorio_por_Item_v04.xlsx")
 
 spec = importlib.util.spec_from_file_location("mat", SRC)
 mat = importlib.util.module_from_spec(spec)
@@ -318,63 +318,64 @@ def sheet_indicadores(wb):
     ws = wb.create_sheet("Indicadores técnicos")
     ws.sheet_view.showGridLines = False
 
-    headers = ["Indicador", "Prototipo I", "Prototipo II, vuelta 1",
-               "Prototipo II, vuelta 2"]
-    widths = [42, 24, 24, 24]
+    headers = ["Indicador", "Vuelta 1, línea base",
+               "Vuelta 2, medición posterior"]
+    widths = [50, 28, 28]
 
-    ws.merge_cells("A1:D1")
-    ws["A1"] = "INDICADORES TÉCNICOS DE LAS TRES EJECUCIONES"
+    ws.merge_cells("A1:C1")
+    ws["A1"] = "INDICADORES TÉCNICOS DEL LABORATORIO DEL SIN"
     ws["A1"].font = Font(name="Calibri", size=14, bold=True, color=NAVY)
     ws.row_dimensions[1].height = 26
 
-    ws.merge_cells("A2:D2")
-    ws["A2"] = ("Valores extraídos de los reportes de indicadores de cada "
-                "campaña. El valor n/d indica que ese dato no se midió.")
+    ws.merge_cells("A2:C2")
+    ws["A2"] = ("Valores extraídos de los reportes de indicadores de las "
+                "dos vueltas de la campaña. El valor n/d indica que ese "
+                "dato no se midió.")
     ws["A2"].font = S_FONT
 
     header_row(ws, 4, headers, widths)
 
     data = [
-        ("Escenarios de la campaña", "10 de 10", "10 de 10", "10 de 10"),
-        ("Escenarios con tiempo de detección medido", "9 de 10", "4 de 10",
+        ("Escenarios de la campaña", "10 de 10", "10 de 10"),
+        ("Escenarios con tiempo de detección medido", "4 de 10",
          "10 de 10"),
-        ("Tiempo medio de detección", "41,598 s", "5,22 s", "2,02 s"),
-        ("Tiempo mínimo de detección", "0,141 s", "1,06 s", "0,00 s"),
-        ("Tiempo máximo de detección", "260,108 s", "16,85 s", "15,91 s"),
-        ("Fuentes de registro que el cálculo pudo atribuir", "n/d", "3", "6"),
-        ("Técnicas ATT&CK del inventario del señuelo", "17", "17", "17"),
-        ("Técnicas ATT&CK con fuente de detección", "n/d", "4 de 10",
+        ("Tiempo medio de detección", "5,22 s", "2,02 s"),
+        ("Tiempo mínimo de detección", "1,06 s", "0,00 s"),
+        ("Tiempo máximo de detección", "16,85 s", "15,91 s"),
+        ("Fuentes de registro que el cálculo pudo atribuir", "3", "6"),
+        ("Técnicas ATT&CK del inventario del señuelo", "17", "17"),
+        ("Técnicas ATT&CK con fuente de detección", "4 de 10",
          "10 de 10"),
-        ("Tácticas ATT&CK con fuente de detección", "n/d", "3 de 6",
+        ("Tácticas ATT&CK con fuente de detección", "3 de 6",
          "6 de 6"),
-        ("Técnicas ATT&CK que la campaña activa", "n/d", "10", "10"),
-        ("Servicios desplegados", "25", "25", "25"),
-        ("Campaña completada", "10 de 10", "10 de 10", "10 de 10"),
+        ("Técnicas ATT&CK que la campaña activa", "10", "10"),
+        ("Servicios desplegados", "25", "25"),
+        ("Campaña completada", "10 de 10", "10 de 10"),
         ("Fases de ISO/IEC 27035 en el inventario del laboratorio", "5 de 5",
-         "5 de 5", "5 de 5"),
-        ("Fases de ISO/IEC 27035 ejercitadas por la campaña", "no medido",
-         "1 de 5", "1 de 5"),
+         "5 de 5"),
+        ("Fases de ISO/IEC 27035 ejercitadas por la campaña", "1 de 5",
+         "1 de 5"),
     ]
 
     r = 5
-    for a, b, c_, d in data:
+    for a, b, c_ in data:
         ws.cell(row=r, column=1, value=a).font = B_FONT
         ws.cell(row=r, column=1).alignment = WRAP
-        for col, v in ((2, b), (3, c_), (4, d)):
+        for col, v in ((2, b), (3, c_)):
             cc = ws.cell(row=r, column=col, value=v)
             cc.font = BB_FONT
             cc.alignment = Alignment(horizontal="center", vertical="center")
             if "no medido" in v or "n/d" in v:
                 cc.fill = PatternFill("solid", fgColor=RED)
                 cc.font = Font(name="Calibri", size=10, color=RED_TXT)
-        for col in range(1, 5):
+        for col in range(1, 4):
             ws.cell(row=r, column=col).border = BORDER
-        ws.row_dimensions[r].height = est_height([a, b, c_, d], widths,
+        ws.row_dimensions[r].height = est_height([a, b, c_], widths,
                                                 minimum=22)
         r += 1
 
     ws.merge_cells(start_row=r + 1, start_column=1, end_row=r + 1,
-                   end_column=4)
+                   end_column=3)
     c = ws.cell(row=r + 1, column=1, value=(
         "Nota. La segunda vuelta del Prototipo II no modifica el señuelo "
         "expuesto al atacante, el conjunto de escenarios, los sensores de red "
