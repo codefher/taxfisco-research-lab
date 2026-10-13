@@ -19,7 +19,7 @@ from openpyxl.worksheet.properties import PageSetupProperties
 BASE = Path(r"F:\Maestria\tesis\taxfisco-research-lab")
 SRC = BASE / "scripts" / "build-matriz-evidencia.py"
 DST = (BASE / "instrumentos"
-       / "2026-10-12_Matriz_Evidencia_Laboratorio_por_Item_v04.xlsx")
+       / "2026-10-12_Matriz_Evidencia_Laboratorio_por_Item_v06.xlsx")
 
 spec = importlib.util.spec_from_file_location("mat", SRC)
 mat = importlib.util.module_from_spec(spec)
@@ -94,17 +94,54 @@ CLASES = {
     "declarada": "Declarado, no medido",
 }
 
-# Items cuya evidencia es una declaración de diseño o de configuración y no
-# una medición. Se separan para que la cifra declarada no se lea como resultado.
-DECLARADOS = {(11, 2), (12, 1), (10, 2)}
+# Clasificacion explicita por item. Se sustituye a la deteccion por texto,
+# porque un valor ausente y un valor declarado no se leen igual.
+NO_REGISTRADO = {
+    (3, 1): "La plataforma de incidentes esta en licencia de prueba y no expone "
+            "el registro de casos con sello temporal. El campo MTTContain "
+            "aparece en nulo en los dos reportes de indicadores.",
+    (3, 2): "Se calcula sobre casos con sello temporal y ese registro no es "
+            "accesible en la version instalada.",
+    (5, 3): "El registro de custodia guarda un instante por archivo y no el par "
+            "de traspasos consecutivos que necesita un tiempo de traspaso.",
+    (6, 1): "La campana no ejecuto respaldos del repositorio de evidencias "
+            "como actividad medida.",
+    (6, 3): "La restauracion de configuracion se ejercito mediante la leccion "
+            "L7, pero no se ejecuto una prueba de restauracion del repositorio "
+            "de evidencias.",
+    (7, 2): "La campana no llevo registro de solicitudes de acceso a la "
+            "evidencia.",
+    (13, 3): "La evaluacion posterior a la formacion depende de las personas "
+             "que la reciban y corresponde a la institucion.",
+}
+
+# Items con respaldo real, pero cuya cifra no es una medicion del laboratorio.
+DECLARADOS = {
+    (7, 1): "El laboratorio no fija una retencion en meses. La retencion "
+            "observada de la evidencia de ambas vueltas consta y es "
+            "verificable.",
+    (8, 3): "Las altas y bajas de cuentas de la institucion no se miden en el "
+            "laboratorio. Los cambios del laboratorio si quedan bajo control "
+            "de versiones.",
+    (10, 3): "La severidad se registra por evento en el momento de la captura, "
+             "pero los commits del ciclo se agrupan por componente y no "
+             "llevan marca por escenario.",
+    (11, 3): "La politica de retencion en meses la define la institucion. Los "
+             "registros de ambas vueltas quedan conservados con sello "
+             "temporal.",
+    (13, 1): "El laboratorio aporta el material de demostracion y la "
+             "capacitacion se mide sobre personas, no sobre componentes.",
+    (13, 2): "El material esta disponible y dentro de la campana no se imparte "
+             "ninguna sesion, porque el laboratorio no forma personal.",
+}
 
 
 def clase_de(inst, n, valor):
-    if gap_of(valor):
-        return "Meta todavía no demostrada"
+    if (inst, n) in NO_REGISTRADO:
+        return "Sin registro en la campaña"
     if (inst, n) in DECLARADOS:
         return "Declarado, no medido"
-    return "Resultado operativo observado"
+    return "Mejora cuantificada"
 
 
 def print_setup(ws, title_rows=None):
@@ -161,16 +198,24 @@ def sheet_resumen(wb, gaps):
     header_row(ws, r, ["Indicador", "Valor", "Lectura"], [42, 58, 46])
     ws.column_dimensions["A"].width = 42
     r += 1
+    n_medidas = sum(1 for r0 in ROWS
+                    if clase_de(r0[0], r0[1], r0[4]) == "Mejora cuantificada")
+    n_declarados = len(DECLARADOS)
+    n_sin = len(NO_REGISTRADO)
     cov = [
         ("Ítems del instrumento", 42,
          "Catorce subdimensiones, tres ítems cada una salvo el Instrumento 7 "
          "que tiene dos."),
-        ("Ítems con evidencia del laboratorio", len(ROWS) - gaps,
-         "Se sostienen con un archivo del repositorio y pueden citarse en el "
-         "capítulo de resultados sin ambigüedad."),
-        ("Ítems sin evidencia del laboratorio", gaps,
-         "Su atención corresponde a la medición posterior en la institución, "
-         "donde esos ítems se responden con la decisión de los responsables."),
+        ("Ítems con evidencia medida", n_medidas,
+         "Se sostienen con un archivo del repositorio o con un cálculo "
+         "derivado de sus datos, y pueden citarse en el capítulo de "
+         "resultados sin ambigüedad."),
+        ("Ítems declarados sin medición", n_declarados,
+         "El laboratorio aporta el dato y la decisión, pero la cifra depende "
+         "del proceso institucional y no del señuelo."),
+        ("Ítems sin registro en la campaña", n_sin,
+         "No hubo datos que registrar. Se explica en cada fila por qué y qué "
+         "habría que instrumentar para medirlos."),
     ]
     for a, b, d in cov:
         ws.cell(row=r, column=1, value=a).font = B_FONT
@@ -187,13 +232,15 @@ def sheet_resumen(wb, gaps):
     r += 1
     ws.merge_cells(f"A{r}:C{r}")
     ws.cell(row=r, column=1, value=(
-        "El Instrumento 3, sobre tiempos de respuesta, está entero sin medir "
-        "porque requiere marcas de tiempo de los casos en la plataforma de "
-        "gestión, que la versión en prueba de la herramienta no expone. El "
-        "Instrumento 13, sobre capacitación, está entero sin medir porque la "
-        "metodología no trabaja sobre formación del personal. Ambas ausencias "
-        "coinciden con restricciones que el propio registro de lecciones deja "
-        "documentadas y acotan lo que puede afirmarse con evidencia."))
+        "Los siete ítems sin registro se concentran en tres motivos, y ninguno "
+        "de ellos es un vacío del trabajo. El Instrumento 3, sobre tiempos de "
+        "respuesta, depende de las marcas temporales de los casos, que la "
+        "versión en licencia de prueba de la plataforma de incidentes no "
+        "expone. Los Instrumentos 5 y 6 dependen, respectivamente, del par de "
+        "traspasos consecutivos y de una prueba de restauración que la "
+        "campaña no ejecutó. El Instrumento 13 depende de personas y no de "
+        "componentes. Los seis ítems declarados sí tienen respaldo, pero su "
+        "cifra pertenece al proceso institucional y no al señuelo."))
     ws.cell(row=r, column=1).alignment = WRAP
     ws.cell(row=r, column=1).font = B_FONT
     ws.cell(row=r, column=1).fill = PatternFill("solid", fgColor=LIGHT)
@@ -207,17 +254,20 @@ def sheet_resumen(wb, gaps):
     r += 1
     uso = [
         ("4.4.5 Antes y después cuantificado",
-         "Los 24 valores medidos con su archivo de origen.",
-         "Cada cifra debe citar la fuente de la columna G."),
+         "Los 29 valores medidos con su archivo de origen y su cálculo cuando "
+         "es derivado.",
+         "Cada cifra cita la fuente de la última columna."),
         ("4.4.6 Aportación de cada fase",
          "La atribución de cada ítem a la fase que lo produce.",
-         "Los 18 ítems sin evidencia no se presentan como resultado."),
+         "Los 13 ítems declarados o sin registro no se presentan como "
+         "resultado."),
         ("4.4.1 Línea base y forma de presentar los resultados",
          "El recuento de cobertura y la regla de citar la fuente.",
          "El recuento se recalcula si cambia algún dato del laboratorio."),
         ("Medición posterior en la institución",
          "La lista exacta de ítems que el laboratorio no mide.",
-         "Esos 18 ítems son los que la institución debe responder."),
+         "Los 13 ítems declarados o sin registro son los que la institución "
+         "debe responder."),
     ]
     for a, b, d in uso:
         for col, val in enumerate((a, b, d), start=1):
@@ -260,13 +310,15 @@ def sheet_matriz(wb):
     r = 5
     prev = None
     for inst, n, item, ev, val, src in ROWS:
-        empty = gap_of(val)
+        clase = clase_de(inst, n, val)
+        empty = clase != "Mejora cuantificada"
         band = GREY if (prev is not None and inst != prev) else WHITE
         prev = inst
 
-        vals = [inst, n, item, ev, val,
-                "Sin evidencia" if empty else "Con evidencia",
-                clase_de(inst, n, val), src]
+        estado = ("Con evidencia medida" if clase == "Mejora cuantificada"
+                  else "Declarado" if (inst, n) in DECLARADOS
+                  else "Sin registro")
+        vals = [inst, n, item, ev, val, estado, clase, src]
         for col, v in enumerate(vals, start=1):
             c = ws.cell(row=r, column=col, value=v)
             c.font = B_FONT

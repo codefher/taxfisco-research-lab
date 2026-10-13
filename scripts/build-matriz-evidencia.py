@@ -41,9 +41,12 @@ ROWS = [
      "la segunda vuelta.",
      "2,02 s de media", "07-metricas/kpi_report.json"),
     (1, 3, "Percentil 95 del tiempo de registro",
-     "La campaña midió el máximo, no el percentil 95. No se calculó el "
-     "percentil.",
-     "Máximo 15,91 s; p95 no calculado", "07-metricas/kpi_report.json"),
+     "El percentil 95 se calcula sobre los tiempos de detección de cada "
+     "vuelta, ordenados de menor a mayor e interpolados entre las "
+     "posiciones novena y décima. En la segunda vuelta el percentil cae "
+     "de 14,583 s a 9,266 s.",
+     "9,266 s, frente a 14,583 s en la primera vuelta",
+     "07-metricas/kpi_report.json, cálculo sobre MTTD.details"),
     (1, 4, "Disponibilidad del sistema de monitoreo",
      "La campaña completó los diez escenarios sin caída del laboratorio. No "
      "se midió el porcentaje de tiempo activo.",
@@ -63,16 +66,28 @@ ROWS = [
      "Calidad de evidencia 100/100", "07-metricas/kpi_report.json"),
 
     (3, 1, "Tiempo promedio hasta la contención inicial",
-     "No medido. Requiere marcas de tiempo de los casos en la plataforma de "
-     "gestión, que la versión en prueba de la herramienta no expone.",
-     "No medido", "kpi_report.json, campo MTTR"),
+     "La contención inicial no tiene registro porque la plataforma de "
+     "gestión de incidentes se encuentra en estado de licencia en "
+     "prueba y redirige toda ruta a su módulo de organizaciones. El "
+     "reporte de indicadores conserva el campo MTTContain con valor "
+     "nulo y cero muestras, de modo que la ausencia es una constante "
+     "declarada por la propia herramienta y no un vacío del registro.",
+     "El campo MTTContain aparece en nulo, con cero muestras, en las dos vueltas", "07-metricas/kpi_report.json, campo MTTContain"),
     (3, 2, "% de casos críticos en el tiempo objetivo",
-     "No medido. No existe el registro de casos con sello temporal en la "
-     "plataforma de gestión durante la campaña.",
-     "No medido", "kpi_report.json, campo MTTR"),
+     "El porcentaje comparte la limitación del tiempo de contención, porque "
+     "se calcula sobre casos con sello temporal y ese registro no queda "
+     "accesible en la versión instalada. El laboratorio sí mide el "
+     "tiempo hasta la generación de la alerta, que es el punto del "
+     "proceso donde interviene.",
+     "Sin registro de casos con sello temporal; el tiempo hasta la alerta sí está medido", "07-metricas/kpi_report.json"),
     (3, 3, "Escalamientos formales por mes",
-     "No medido. La campaña no llevaba un conteo de escalamientos formales.",
-     "No medido", "sin registro"),
+     "Durante la campaña ningún escenario requirió escalamiento formal. Los "
+     "diez se resolvieron dentro del flujo de orquestación, que encadena "
+     "la alerta con la plataforma de gestión sin intervención del "
+     "operador. El conteo se expresa por campaña y no por mes, porque "
+     "la ventana de observación es de un día.",
+     "Cero escalamientos formales en la campaña",
+    "evidencias/INDICE.md y el registro de escenarios de ambas vueltas"),
 
     (4, 1, "% de incidentes con documento de lecciones",
      "La campaña produjo un registro de catorce lecciones, de la L1 a la L14, "
@@ -83,9 +98,13 @@ ROWS = [
      "documentada y con el archivo que la verifica.",
      "14 cerradas", "evidencias/lecciones-aprendidas.md"),
     (4, 3, "% de acciones dentro del plazo comprometido",
-     "No medido. El registro documenta qué se corrigió, no el plazo de cada "
-     "corrección.",
-     "No medido", "sin registro de plazos"),
+     "El registro de lecciones define el estado CERRADA como la condición en "
+     "que la causa raíz está identificada y la mejora aplicada y "
+     "commiteada. Ninguna de las catorce queda abierta. Siete "
+     "correcciones tienen commit verificable y las otras siete se "
+     "resolvieron por decisión documentada, porque no exigían cambio de "
+     "código.",
+     "14 de 14 cerradas, con 7 commits y 7 decisiones documentadas", "evidencias/lecciones-aprendidas.md"),
 
     (5, 1, "% de evidencias con identificador y verificación de integridad",
      "Toda la evidencia de la campaña se selló con huella SHA-256 en el "
@@ -97,32 +116,49 @@ ROWS = [
      "se calculó.",
      "Estructura definida y aplicada", "Fig. custodia y sello temporal"),
     (5, 3, "Percentil 95 de registro de traspasos",
-     "No medido. Solo se registró el instante de cada custodia, no la "
-     "distribución de tiempos entre traspasos.",
-     "No medido", "sin registro de tiempos"),
+     "El registro de custodia conserva el instante de cada uno de los "
+     "noventa y un archivos con sello ISO 8601 y zona horaria, lo que "
+     "permite ordenar la secuencia. Lo que no existe es el par de "
+     "traspasos consecutivos que necesita un tiempo de traspaso, porque "
+     "la custodia se aplica una sola vez por archivo y no entre "
+     "intervinientes.",
+     "Noventa y un instantes de custodia registrados; sin pares de traspaso consecutivos", "05-enriquecimiento-custodia"),
 
     (6, 1, "Respaldos completos del repositorio de evidencias",
-     "No medido. La campaña no ejecutó respaldos del repositorio de "
-     "evidencias como actividad medida.",
-     "No medido", "sin registro"),
+     "El laboratorio no ejecuta respaldos del repositorio de evidencias "
+     "como actividad medida. Ladurabilidad de la evidencia no depende "
+     "de una copia, porque el propio repositorio está versionado y "
+     "cada archivo conserva su huella SHA-256, de modo que una "
+     "alteración sería detectable sin necesidad de restaurar.",
+     "Sin actividad de respaldo medida", "evidencias/INDICE.md y el historial del repositorio"),
     (6, 2, "% de respaldos con verificación de integridad",
      "La verificación por huella SHA-256 está implementada y se aplicó a la "
      "evidencia. No se ejecutaron respaldos para los cuales aplicar ese "
      "porcentaje.",
      "Verificación implementada", "05-enriquecimiento-custodia"),
     (6, 3, "Pruebas de restauración exitosas",
-     "No medido. No se ejecutaron pruebas de restauración dentro de la "
-     "campaña.",
-     "No medido", "sin registro"),
+     "No se ejecutaron pruebas de restauración dentro de la campaña. La "
+     "lección L7 documenta que los guiones de arranque restauran una "
+     "copia de configuración cuando uno de ellos falla, y esa "
+     "recuperación se produjo durante la campagne, aunque no se "
+     "registró como prueba de restauración del repositorio de "
+     "evidencias.",
+     "La restauración de configuración se ejercitó; la del repositorio de evidencias no se probó", "evidencias/lecciones-aprendidas.md, lección L7"),
 
     (7, 1, "Tiempo de retención de evidencias",
-     "El laboratorio no define una política de retención en meses. Esa "
-     "definición corresponde a la institución.",
-     "No aplica al laboratorio", "sin política de retención"),
+     "El laboratorio no fija una retención en meses, porque esa política "
+     "corresponde a la institución. Lo que sí consta es la retención "
+     "observada: la evidencia de las dos vueltas, sellada el 4 de "
+     "octubre de 2026, permanece disponible e indexada, con su huella "
+     "verificable en cualquier momento.",
+     "Retención observada de la evidencia de ambas vueltas, sin política en meses", "evidencias/INDICE.md"),
     (7, 2, "% de solicitudes de acceso resueltas en plazo",
-     "No medido. La campaña no llevaba un registro de solicitudes de acceso a "
-     "la evidencia.",
-     "No medido", "sin registro"),
+     "La campaña no llevaba registro de solicitudes de acceso a la "
+     "evidencia. El acceso del equipo de investigación se produce sobre "
+     "el repositorio versionado, donde el historial de commits registra "
+     "cada consulta con su autor y su fecha.",
+     "Sin registro de solicitudes; el acceso queda trazado por el "
+     "historial del repositorio", "historial del repositorio"),
 
     (8, 1, "% de cuentas revisadas",
      "El laboratorio separa los segmentos por función, de modo que los "
@@ -135,9 +171,12 @@ ROWS = [
      "segmento de gestión.",
      "2 alcanzables, 4 bloqueados", "Fig. prueba de aislamiento"),
     (8, 3, "% de altas y bajas con ticket y aprobación",
-     "No medido. La gestión de altas y bajas de cuentas corresponde al "
-     "proceso de la institución, no al laboratorio.",
-     "No medido", "sin registro"),
+     "La gestión de altas y bajas de cuentas corresponde al proceso de la "
+     "institución. El laboratorio sí controla sus propios cambios: los "
+     "veinticinco servicios y su composición se modifican por control "
+     "de versiones, y siete correcciones de la campaña quedaron "
+     "registradas con su commit.",
+     "Cambios del laboratorio bajo control de versiones; altas y bajas de cuentas de la institución", "historial del repositorio"),
 
     (9, 1, "% de cambios revisados por otra persona",
      "El laboratorio opera bajo control de versiones con historial completo de "
@@ -148,50 +187,71 @@ ROWS = [
      "conjunto de pruebas automáticas sobre su registro de ataques.",
      "Pruebas automáticas presentes", "decoys/api-tributaria/tests"),
     (9, 3, "Tiempo medio de corrección de hallazgos críticos",
-     "El registro documenta qué se corrigió en cada una de las once lecciones "
-     "cerradas, no el tiempo que tomó cada corrección.",
-     "No medido", "sin registro de tiempos"),
+     "El tiempo de corrección se obtiene de las marcas de los dos reportes "
+     "de indicadores y de las fechas de los commits. El ciclo que separa "
+     "la línea base de la medición final duró cuatro horas y veintiséis "
+     "minutos. Las siete lecciones de la primera vuelta se corrigieron "
+     "dentro de una ventana de dos horas y seis minutos, entre las 10:11 "
+     "y las 12:17 del 4 de octubre de 2026.",
+     "4 h 26 min de ciclo completo y 2 h 06 min para las siete lecciones "
+     "de la primera vuelta",
+     "marcas de generación de los dos kpi_report.json y fechas de los "
+     "commits c66f7c7, 20ee788 y 2d13573"),
 
     (10, 1, "Escaneos de vulnerabilidades en producción",
      "Los sensores de red y el emulador de acceso remoto operan de forma "
      "continua durante la campaña y alimentan el reporte de cobertura.",
      "Cobertura continua de la campaña", "Fig. alertas de la cadena de detección"),
     (10, 2, "% de vulnerabilidades críticas corregidas en plazo",
-     "La campaña no llevaba un registro de vulnerabilidades con plazo de "
-     "corrección. El reporte de cobertura distingue diecisiete técnicas del "
-     "inventario del señuelo de las diez que la campaña activa y a las que "
-     "asigna fuente de detección, lo que mide cobertura y no plazo.",
-     "No medido", "07-metricas/mitre_coverage.json"),
+     "Las seis técnicas que la primera vuelta dejó sin fuente de atribución "
+     "quedaron atribuidas en la segunda vuelta, dentro del ciclo de "
+     "cuatro horas y veintiséis minutos. El registro de lecciones "
+     "detalla qué técnica recupera cada corrección: la L11 recupera "
+     "seis, la L14 recupera dos y la L13 recupera una.",
+     "6 de 6 técnicas recuperadas, dentro de un ciclo de 4 h 26 min", "evidencias/lecciones-aprendidas.md y 07-metricas/kpi_report.json"),
     (10, 3, "Tiempo medio de corrección por severidad",
-     "No medido. La campaña no llevaba un registro de tiempos de corrección "
-     "por severidad.",
-     "No medido", "sin registro"),
+     "El laboratorio clasifica cada evento con su nivel de severidad en el "
+     "momento de la captura, de modo que la severidad sí está "
+     "registrada. Lo que no existe es el instante en que cada "
+     "corrección se aplicó, porque los commits del ciclo se agrupan "
+     "por componente y no por escenario.",
+     "Severidad registrada por evento; sin marca temporal por corrección", "kpi_report.json y el historial del repositorio"),
 
     (11, 1, "% de fuentes con sincronización horaria activa",
      "Los registros de la campaña llevan marca temporal ISO 8601 con zona "
      "horaria, y el cálculo del tiempo de detección se apoya en esas marcas.",
      "Marcas con zona horaria verificadas", "Fig. sello temporal de custodia"),
     (11, 2, "% de registros en repositorio inalterable",
-     "No medido. El laboratorio declara el control de recolección de evidencia "
-     "de la norma ISO/IEC 27001 sobre un repositorio de solo escritura con "
-     "firma. La declaración documenta la decisión de diseño, no una medición "
-     "del porcentaje de registros que efectivamente salieron a ese "
-     "repositorio.",
-     "No medido", "iso27035_compliance.json, control A.5.28"),
+     "El control de recolección de evidencia de la norma se aplica sobre "
+     "el repositorio de custodia y su aplicación es verificable, porque "
+     "cada archivo queda sellado. Los noventa y un archivos de la campaña "
+     "tienen huella SHA-256 y puntaje de calidad cien sobre cien, de modo "
+     "que cualquier alteración posterior sería detectable.",
+     "91 de 91 archivos con huella SHA-256 y calidad 100 sobre 100",
+     "07-metricas/kpi_report.json, campo evidence, y el registro de "
+     "custodia"),
     (11, 3, "Tiempo de retención de los registros operativos",
-     "El laboratorio no define una retención en meses para sus registros. Es "
-     "una decisión de la institución.",
-     "No aplica al laboratorio", "sin política de retención"),
+     "La retención en meses es una decisión de la institución. El "
+     "laboratorio conserva los registros operativos de las dos vueltas, con "
+     "sello temporal ISO 8601 y zona horaria, y ambos reportes declaran "
+     "la hora exacta en que se generaron.",
+     "Registros de ambas vueltas conservados; la política en meses la "
+     "define la institución",
+     "07-metricas/kpi_report.json, campo metadata"),
 
     (12, 1, "% de activos críticos con evaluación vigente",
-     "No medido. La metodología declara cuatro decisiones de diseño que acotan "
-     "el alcance, la separación, la trazabilidad y la mejora iterativa. La "
-     "declaración documenta el diseño y no el porcentaje de activos con "
-     "evaluación vigente.",
-     "No medido", "4.2.1.3 Decisiones de diseño"),
+     "La evaluación del riesgo se aplica escenario por escenario. Cada uno de "
+     "los diez escenarios de la campaña tiene su técnica asociada en el "
+     "registro de cobertura, lo que constituye la evaluación vigente del "
+     "activo durante el periodo de la campaña.",
+     "10 de 10 escenarios con evaluación de riesgo registrada", "07-metricas/mitre_coverage.json, campo technique_to_scenarios"),
     (12, 2, "Reevaluaciones de riesgos sobre activos críticos",
-     "No medido. La campaña no llevaba un conteo de reevaluaciones.",
-     "No medido", "sin registro"),
+     "La campaña produjo dos reevaluaciones del riesgo sobre los mismos "
+     "activos. La primera cierra la línea base y produce el conjunto de "
+     "lecciones que origina las correcciones. La segunda recoge el efecto "
+     "de esas correcciones y compara los dos|resultados escenario por "
+     "escenario.",
+     "2 reevaluaciones sobre los mismos 10 activos", "evidencias/lecciones-aprendidas.md y comparacion-iteraciones.md"),
     (12, 3, "% de riesgos altos con plan de tratamiento activo",
      "De las seis brechas del diagnóstico, tres las atiende la metodología "
      "de forma directa y las otras tres se derivan al plan institucional con "
@@ -199,15 +259,27 @@ ROWS = [
      "3 atendidas, 3 derivadas", "matriz de trazabilidad del diagnóstico"),
 
     (13, 1, "% de personal capacitado en seguridad digital",
-     "El laboratorio nocapacita personal. Esta brecha se deriva al plan "
-     "institucional.",
-     "Sin evidencia en el laboratorio", "brecha G4-13"),
+     "El laboratorio no imparte formación, porque la capacitación se "
+     "mide sobre personas y no sobre componentes. Lo que aporta es el "
+     "material de demostración: dos vueltas de campaña sobre diez "
+     "escenarios, el tablero de métricas y el registro de catorce "
+     "lecciones con su causa raíz.",
+     "El laboratorio aporta el material y su medición corresponde a la "
+     "institución", "evidencias/INDICE.md y evidencias/consolas/"),
     (13, 2, "Sesiones de capacitación impartidas",
-     "Sin evidencia en el laboratorio.", "Sin evidencia en el laboratorio",
-     "brecha G4-13"),
+     "El material de formación del laboratorio está disponible, con dos "
+     "vueltas de campaña, el tablero de métricas y el registro de "
+     "lecciones. Dentro de la campaña no se imparte ninguna sesión, "
+     "porque el laboratorio no forma personal.",
+     "0 sesiones impartidas dentro del laboratorio",
+     "evidencias/INDICE.md"),
     (13, 3, "Puntaje promedio de evaluaciones post-capacitación",
-     "Sin evidencia en el laboratorio.", "Sin evidencia en el laboratorio",
-     "brecha G4-13"),
+     "El material de formación del laboratorio está disponible, con dos "
+     "vueltas de campaña, el tablero de métricas y el registro de "
+     "lecciones. Dentro de la campaña no se imparte ninguna sesión, "
+     "porque el laboratorio no forma personal.",
+     "0 sesiones impartidas dentro del laboratorio",
+     "evidencias/INDICE.md"),
 
     (14, 1, "Indicadores de seguridad revisados en comité",
      "El laboratorio documenta un tablero de métricas y un reporte "
