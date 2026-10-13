@@ -1,0 +1,700 @@
+{
+ "type": "report",
+ "title": "Dashboard de resultados del Prototipo II",
+ "subtitle": "Laboratorio SIN · Capítulo IV, Marco Práctico",
+ "author": "Tesis de maestría · Metodología Honeypot para la Gestión de Incidentes en Servicios Fiscales",
+ "pageSize": "A4",
+ "margins": {
+  "top": 1418,
+  "right": 1418,
+  "bottom": 1418,
+  "left": 1418
+ },
+ "sections": [
+  {
+   "heading": "Alcance del tablero",
+   "level": 1,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "Laboratorio SIN · campaña de diez escenarios ejecutada en dos vueltas de la misma metodología, con las correcciones de la primera aplicadas en la segunda."
+    },
+    {
+     "type": "paragraph",
+     "text": "Nota. Los cuatro indicadores destacados cambian entre la línea base y la medición final. Los cuatro restantes se conservan y sirven de contraste. Cada cifra procede de un archivo de evidencia del repositorio y ninguno es estimado."
+    }
+   ]
+  },
+  {
+   "heading": "1. Indicadores principales",
+   "level": 2,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "Ocho cifras resumen el resultado de la metodología. Las cuatro destacadas en verde son las que cambian entre la línea base y la medición posterior; las demás se conservan y sirven de contraste."
+    },
+    {
+     "type": "image",
+     "path": "F:\\Maestria\\tesis\\taxfisco-research-lab\\.render\\docx-img\\kpi.png",
+     "width": "6.4in",
+     "alt": "Panel de indicadores principales"
+    }
+   ]
+  },
+  {
+   "heading": "2. Antes y después de la medición",
+   "level": 2,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "La metodología transformó el instrumental de medición, no el señuelo. El señuelo ejecutó los mismos diez escenarios en las dos vueltas con las mismas técnicas, de modo que la diferencia entre las columnas corresponde al trabajo de la metodología."
+    },
+    {
+     "type": "image",
+     "path": "F:\\Maestria\\tesis\\taxfisco-research-lab\\.render\\docx-img\\antes.png",
+     "width": "6.4in",
+     "alt": "Cobertura de la medición en la línea base y en la medición final"
+    },
+    {
+     "type": "table",
+     "headers": [
+      "Indicador",
+      "Línea base",
+      "Final",
+      "Δ"
+     ],
+     "rows": [
+      [
+       "Escenarios con tiempo medido",
+       "4",
+       "10",
+       "+6"
+      ],
+      [
+       "Fuentes de registro",
+       "3",
+       "6",
+       "+3"
+      ],
+      [
+       "Técnicas con fuente",
+       "4",
+       "10",
+       "+6"
+      ],
+      [
+       "Tácticas con fuente",
+       "3",
+       "6",
+       "+3"
+      ],
+      [
+       "Escenarios ejecutados",
+       "10",
+       "10",
+       "="
+      ],
+      [
+       "Técnicas del inventario",
+       "17",
+       "17",
+       "="
+      ],
+      [
+       "Archivos de evidencia",
+       "91",
+       "91",
+       "="
+      ],
+      [
+       "Calidad de la evidencia",
+       "100",
+       "100",
+       "="
+      ]
+     ]
+    },
+    {
+     "type": "paragraph",
+     "text": "Las cuatro primeras filas crecen porque el instrumental registra más. Las cuatro últimas no se mueven, y esa es precisamente la prueba de que la diferencia procede de la corrección del instrumental y no de un cambio en el volumen de evidencia ni en el catálogo de amenazas."
+    }
+   ]
+  },
+  {
+   "heading": "3. Tiempo de detección de los cuatro escenarios comparables",
+   "level": 2,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "Son los cuatro escenarios que produjeron medición en las dos vueltas, de modo que conservan el mismo número de muestras y el mismo criterio de cálculo. Los cuatro muestran reducción."
+    },
+    {
+     "type": "image",
+     "path": "F:\\Maestria\\tesis\\taxfisco-research-lab\\.render\\docx-img\\tiempo.png",
+     "width": "6.4in",
+     "alt": "Tiempo de detección de los cuatro escenarios comparables"
+    },
+    {
+     "type": "table",
+     "headers": [
+      "Escenario",
+      "Técnica",
+      "Línea base",
+      "Medición final",
+      "Reducción",
+      "Origen del dato"
+     ],
+     "rows": [
+      [
+       "S01 · Reconocimiento activo",
+       "T1595",
+       "16,851 s",
+       "15,91 s",
+       "5,6 %",
+       "Interfaz de servicios del atacante"
+      ],
+      [
+       "S02 · Escaneo web",
+       "T1595.002",
+       "1,214 s",
+       "1,095 s",
+       "9,8 %",
+       "Portal del señuelo"
+      ],
+      [
+       "S05 · Suplantación de credenciales",
+       "T1110.004",
+       "1,734 s",
+       "1,145 s",
+       "34,0 %",
+       "Interfaz de servicios del señuelo"
+      ],
+      [
+       "S07 · Abuso de la interfaz",
+       "T1078",
+       "1,063 s",
+       "0,264 s",
+       "75,2 %",
+       "Interfaz de servicios del señuelo"
+      ]
+     ]
+    },
+    {
+     "type": "paragraph",
+     "text": "La reducción se calcula sobre los valores de origen con tres decimales, no sobre los valores redondeados de la tabla. La media del percentil 95 baja de 14,58 s a 9,27 s, lo que confirma que la mejora se sostiene en la cola de la distribución y no solo en el promedio."
+    }
+   ]
+  },
+  {
+   "heading": "4. Distribución del tiempo de detección en la medición final",
+   "level": 2,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "Los diez escenarios de la medición posterior. Cada barra indica cuántos escenarios caen en cada tramo de tiempo."
+    },
+    {
+     "type": "image",
+     "path": "F:\\Maestria\\tesis\\taxfisco-research-lab\\.render\\docx-img\\dist.png",
+     "width": "6.4in",
+     "alt": "Distribución del tiempo de detección en la medición final"
+    },
+    {
+     "type": "paragraph",
+     "text": "Ocho de los diez escenarios se detectan por debajo de un segundo. Los dos más lentos, S01 y S02, son los de reconocimiento activo, donde el primer evento del atacante tarda en llegar al señuelo porque la actividad se ejecuta por red."
+    }
+   ]
+  },
+  {
+   "heading": "5. Fuentes que registran la detección",
+   "level": 2,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "Cada escenario es detectado por un componente distinto. La línea base tenía tres componentes y la medición final seis, y esa ampliación es la que devuelve la medición a los seis escenarios que la primera vuelta no tenía."
+    },
+    {
+     "type": "image",
+     "path": "F:\\Maestria\\tesis\\taxfisco-research-lab\\.render\\docx-img\\fuentes.png",
+     "width": "6.4in",
+     "alt": "Fuentes que registran la detección en las dos vueltas"
+    },
+    {
+     "type": "paragraph",
+     "text": "Los tres componentes añadidos durante el ciclo son el emulador de acceso remoto, el archivo señuelo y el sensor de red. Cada uno responde a una lección concreta: L13, L14 y L14 respectivamente."
+    }
+   ]
+  },
+  {
+   "heading": "6. Cobertura de MITRE ATT&CK",
+   "level": 2,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "El inventario del señuelo comprende diecisiete técnicas distribuidas en ocho tácticas. Diez las activa algún escenario de la campaña y todas diez reciben fuente de detección en la medición final."
+    },
+    {
+     "type": "image",
+     "path": "F:\\Maestria\\tesis\\taxfisco-research-lab\\.render\\docx-img\\attack.png",
+     "width": "6.4in",
+     "alt": "Inventario y detección de técnicas de MITRE ATT&CK"
+    },
+    {
+     "type": "table",
+     "headers": [
+      "Técnica",
+      "Táctica",
+      "Escenario",
+      "Fuente en la medición final"
+     ],
+     "rows": [
+      [
+       "T1048.003",
+       "Exfiltration",
+       "S10",
+       "Sensor de red"
+      ],
+      [
+       "T1059",
+       "Execution",
+       "—",
+       "En el inventario, ningún escenario la activa"
+      ],
+      [
+       "T1059.004",
+       "Execution",
+       "S09",
+       "Emulador de acceso remoto"
+      ],
+      [
+       "T1059.006",
+       "Execution",
+       "—",
+       "En el inventario, ningún escenario la activa"
+      ],
+      [
+       "T1059.007",
+       "Execution",
+       "S06",
+       "Portal del señuelo"
+      ],
+      [
+       "T1078",
+       "Initial Access",
+       "S07",
+       "Interfaz de servicios del señuelo"
+      ],
+      [
+       "T1078.001",
+       "Initial Access",
+       "—",
+       "En el inventario, ningún escenario la activa"
+      ],
+      [
+       "T1083",
+       "Discovery",
+       "—",
+       "En el inventario, ningún escenario la activa"
+      ],
+      [
+       "T1105",
+       "Command and Control",
+       "S08",
+       "Archivo señuelo"
+      ],
+      [
+       "T1110.001",
+       "Credential Access",
+       "S03",
+       "Emulador de acceso remoto"
+      ],
+      [
+       "T1110.004",
+       "Credential Access",
+       "S05",
+       "Interfaz de servicios del señuelo"
+      ],
+      [
+       "T1190",
+       "Initial Access",
+       "S04",
+       "Portal del señuelo"
+      ],
+      [
+       "T1213",
+       "Collection",
+       "—",
+       "En el inventario, ningún escenario la activa"
+      ],
+      [
+       "T1530",
+       "Collection",
+       "—",
+       "En el inventario, ningún escenario la activa"
+      ],
+      [
+       "T1595",
+       "Reconnaissance",
+       "S01",
+       "Interfaz de servicios del atacante"
+      ],
+      [
+       "T1595.002",
+       "Reconnaissance",
+       "S02",
+       "Portal del señuelo"
+      ],
+      [
+       "T1595.003",
+       "Reconnaissance",
+       "—",
+       "En el inventario, ningún escenario la activa"
+      ]
+     ]
+    },
+    {
+     "type": "paragraph",
+     "text": "Las siete técnicas que ningún escenario activa permanecen en el inventario del señuelo porque forman parte de su superficie de ataque. Su presencia en el inventario y su ausencia en la medición son dos hechos distintos y el tablero los separa."
+    }
+   ]
+  },
+  {
+   "heading": "7. Ciclo de iteraciones",
+   "level": 2,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "La metodología se aplicó dos veces sobre el mismo señuelo. La primera medición produjo el conjunto de lecciones que originó las correcciones, y la segunda midió el efecto de esas correcciones."
+    },
+    {
+     "type": "image",
+     "path": "F:\\Maestria\\tesis\\taxfisco-research-lab\\.render\\docx-img\\ciclo.png",
+     "width": "6.4in",
+     "alt": "Línea de tiempo del ciclo de corrección"
+    },
+    {
+     "type": "table",
+     "headers": [
+      "Hito",
+      "Momento",
+      "Qué ocurrió",
+      "Evidencia"
+     ],
+     "rows": [
+      [
+       "Medición de la línea base",
+       "4 oct 2026 · 16:07 UTC",
+       "Diez escenarios ejecutados, medición en cuatro de ellos",
+       "Reporte de indicadores de la vuelta 1"
+      ],
+      [
+       "Cadena de alertas y indexación",
+       "4 oct 2026 · 16:08 UTC",
+       "Publicador propio operativo, tablero con datos reales",
+       "Commits 20ee788 y 2d13573"
+      ],
+      [
+       "Registro de lecciones cerrado",
+       "4 oct 2026 · 18:32 UTC",
+       "Catorce lecciones con hallazgo, causa raíz y mejora aplicada",
+       "Registro de lecciones aprendidas"
+      ],
+      [
+       "Medición posterior",
+       "4 oct 2026 · 20:33 UTC",
+       "Diez escenarios ejecutados, medición en los diez",
+       "Reporte de indicadores de la vuelta 2"
+      ],
+      [
+       "Duración total del ciclo",
+       "4 h 26 min",
+       "De la línea base a la medición final",
+       "Marcas de ambos reportes"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "8. Aportación de cada fase de la metodología",
+   "level": 2,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "Cada fase produce un cambio comprobable. La columna de indicador recoge el valor que la fase entrega al resultado final."
+    },
+    {
+     "type": "table",
+     "headers": [
+      "Fase",
+      "Qué aporta",
+      "Indicador",
+      "Línea base",
+      "Final"
+     ],
+     "rows": [
+      [
+       "1 · Diseño del señuelo",
+       "Portal tributario con acceso en dos pasos y un escenario por técnica del marco de comportamiento adversario",
+       "Escenarios ejecutados",
+       "10 de 10",
+       "10 de 10"
+      ],
+      [
+       "2 · Despliegue aislado",
+       "Tres segmentos de red y verificación del aislamiento ejecutada desde el contenedor atacante",
+       "Objetivos alcanzables desde el atacante",
+       "—",
+       "2 de 6 segmentos"
+      ],
+      [
+       "3 · Captura y custodia",
+       "La función de atribución reconoce las tres variantes de clave e incorpora el archivo señuelo y el sensor de red",
+       "Escenarios con medición",
+       "4 de 10",
+       "10 de 10"
+      ],
+      [
+       "4 · Correlación",
+       "La alerta clasificada con su técnica y su severidad encadena con la gestión de incidentes mediante el flujo de orquestación",
+       "Alertas clasificadas con técnica",
+       "10 de 10",
+       "10 de 10"
+      ],
+      [
+       "5 · Medición y mejora",
+       "Catorce lecciones con causa raíz, cambio aplicado y cierre verificado",
+       "Lecciones cerradas",
+       "7",
+       "14"
+      ]
+     ]
+    },
+    {
+     "type": "paragraph",
+     "text": "La fase 3 concentra la mejora cuantificable porque es la que repara el instrumental de atribución. La fase 5 la sostiene, porque es la que produjo las lecciones que dieron origen a esas reparaciones."
+    }
+   ]
+  },
+  {
+   "heading": "9. Registro de lecciones aprendidas",
+   "level": 2,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "Catorce lecciones, todas cerradas. La columna de fase muestra dónde se produjo cada una."
+    },
+    {
+     "type": "image",
+     "path": "F:\\Maestria\\tesis\\taxfisco-research-lab\\.render\\docx-img\\lecciones.png",
+     "width": "6.4in",
+     "alt": "Distribución de las catorce lecciones por fase"
+    },
+    {
+     "type": "table",
+     "headers": [
+      "ID",
+      "Fase",
+      "Hallazgo",
+      "Cierre"
+     ],
+     "rows": [
+      [
+       "L1",
+       "F3",
+       "El módulo de análisis no tenía configuración válida",
+       "cerradaRutas de lectura insertadas en el elemento correcto"
+      ],
+      [
+       "L2",
+       "F3",
+       "Las alertas no llegaban al índice",
+       "cerradaPublicador propio que indexa por HTTP"
+      ],
+      [
+       "L3",
+       "F2",
+       "El gestor se reiniciaba cada dos minutos",
+       "cerradaColector sin función de envío"
+      ],
+      [
+       "L4",
+       "F3",
+       "El motor de red seguía detectando sin alertar",
+       "cerradaReinicio programado de la posición de lectura"
+      ],
+      [
+       "L5",
+       "F5",
+       "Los paneles mostraban ausencia de datos",
+       "cerradaConversión de la consulta al formato admitido"
+      ],
+      [
+       "L6",
+       "F5",
+       "Los paneles devolvían cero con documentos indexados",
+       "cerradaEl publicador copia el campo de tiempo"
+      ],
+      [
+       "L7",
+       "F2",
+       "Un fallo de arranque tumbaba el laboratorio",
+       "cerradaTres scripts que restauran y terminan"
+      ],
+      [
+       "L8",
+       "F3",
+       "El tablero nativo no representaba los datos",
+       "cerradaSustituido por el tablero de métricas"
+      ],
+      [
+       "L9",
+       "F4",
+       "La plataforma redirigía al módulo de organizaciones",
+       "cerradaFlujo de orquestación verificado hasta la alerta"
+      ],
+      [
+       "L10",
+       "F2",
+       "El segmento de sensores no llegaba a crearse",
+       "cerradaComposición efectiva documentada en tres segmentos"
+      ],
+      [
+       "L11",
+       "F5",
+       "Seis escenarios sin fuente de atribución",
+       "cerradaAceptación de las tres variantes de clave"
+      ],
+      [
+       "L12",
+       "F2",
+       "La campaña se detenía en el cuarto escenario",
+       "cerradaLímite de tiempo en las herramientas"
+      ],
+      [
+       "L13",
+       "F2",
+       "Un escenario informaba captura inexistente",
+       "cerradaComprobación de la herramienta al inicio"
+      ],
+      [
+       "L14",
+       "F3",
+       "Dos escenarios sin fuente de detección",
+       "cerradaLectura del archivo señuelo y del sensor de red"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "10. Volumen de actividad de la campaña",
+   "level": 2,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "Registros que el señuelo y los sensores produjeron en cada vuelta. El volumen crece porque los escenarios que antes no generaban evento ahora lo hacen."
+    },
+    {
+     "type": "table",
+     "headers": [
+      "Indicador",
+      "Línea base",
+      "Medición final",
+      "Variación"
+     ],
+     "rows": [
+      [
+       "Ataques registrados en el señuelo",
+       "54",
+       "254",
+       "+370 %"
+      ],
+      [
+       "Solicitudes atendidas por la interfaz de servicios",
+       "725",
+       "1 508",
+       "+108 %"
+      ],
+      [
+       "Conexiones capturadas por el emulador",
+       "7",
+       "38",
+       "+443 %"
+      ],
+      [
+       "Peticiones recibidas por el portal",
+       "15 765",
+       "78 186",
+       "+396 %"
+      ],
+      [
+       "Archivos de evidencia con huella",
+       "91",
+       "91",
+       "Constante"
+      ],
+      [
+       "Calidad de la evidencia verificada",
+       "100 de 100",
+       "100 de 100",
+       "Constante"
+      ]
+     ]
+    },
+    {
+     "type": "paragraph",
+     "text": "El aumento del volumen se explica por la ampliación de la cobertura de medición: los seis escenarios que la línea base dejó sin atribución producen ahora eventos que antes no llegaban a ningún componente de registro."
+    }
+   ]
+  },
+  {
+   "heading": "11. Evidencia visual del tablero de alertas",
+   "level": 2,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "El tablero de alertas del laboratorio en los dos momentos del ciclo. Cada panel conserva su propia ventana temporal, declarada en la esquina superior derecha, porque la cadena de indexación se puso en marcha entre una captura y la otra."
+    },
+    {
+     "type": "image",
+     "path": "F:\\Maestria\\tesis\\taxfisco-research-lab\\.render\\docx-img\\v1.png",
+     "width": "6.4in",
+     "alt": "Tablero de alertas del SIEM en la línea base"
+    },
+    {
+     "type": "paragraph",
+     "text": "Figura 1. Tablero de alertas del SIEM en la línea base, ventana de tres horas. Nota. La serie temporal muestra picos aislados y un nivel medio de alerta de 4,88 sobre cuatrocientas treinta y cuatro alertas indexadas. Fuente: v2.0-it1/04-captura-eventos/02_grafana-dashboard-siem.png."
+    },
+    {
+     "type": "image",
+     "path": "F:\\Maestria\\tesis\\taxfisco-research-lab\\.render\\docx-img\\v2.png",
+     "width": "6.4in",
+     "alt": "Tablero de alertas del SIEM en la medición final"
+    },
+    {
+     "type": "paragraph",
+     "text": "Figura 2. Tablero de alertas del SIEM en la medición final, ventana de veinticuatro horas. Nota. La serie temporal sostiene actividad a lo largo de toda la ventana y el nivel medio de alerta sube a 6,20. Fuente: v2.1-it2/04-captura-eventos/05_grafana-dashboard-siem.png."
+    },
+    {
+     "type": "paragraph",
+     "text": "Los dos paneles documentan el estado del tablero en cada momento del ciclo. La comparación numérica entre las dos vueltas se sostiene en los reportes de indicadores, que comparten escenario, criterio de cálculo y ventana de ejecución. Las ventanas distintas de los paneles se declaran para que el lector no las interprete como una serie homogénea."
+    }
+   ]
+  },
+  {
+   "heading": "Origen de los datos",
+   "level": 2,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "Metodología Honeypot para la Gestión de Incidentes en Servicios Fiscales conforme a Normas Internacionales. Tesis de maestría. Capítulo IV, Marco Práctico. Dashboard de resultados del Prototipo II, ejecutado sobre el contexto del Servicio de Impuestos Nacionales de Bolivia."
+    },
+    {
+     "type": "paragraph",
+     "text": "Toda cifra de este tablero procede de un archivo del repositorio y declara su origen: v2.0-it1/07-metricas/kpi_report.json, v2.1-it2/07-metricas/kpi_report.json, v2.0-it1/07-metricas/mitre_coverage.json, evidencias/lecciones-aprendidas.md, evidencias/INDICE.md y el historial de commits. Ningún valor fue estimado ni completado por analogía. El capítulo de resultados no incluye comprobación de hipótesis."
+    }
+   ]
+  }
+ ]
+}
