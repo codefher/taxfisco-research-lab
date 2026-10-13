@@ -6,6 +6,7 @@ por encima de la biblioteca.
 """
 import json
 import os
+import sys
 
 from docx import Document
 from docx.enum.section import WD_SECTION
@@ -65,6 +66,17 @@ def add_table(doc, head, rows, widths=None):
     t.alignment = WD_TABLE_ALIGNMENT.CENTER
     t.autofit = False
     cell_margins(t)
+
+    if widths:
+        # Diseno fijo: Word y LibreOffice reparten segun la cuadricula, no segun el texto
+        tblPr = t._tbl.tblPr
+        layout = OxmlElement("w:tblLayout")
+        layout.set(qn("w:type"), "fixed")
+        tblPr.append(layout)
+        grid = t._tbl.find(qn("w:tblGrid"))
+        if grid is not None:
+            for gc, w in zip(grid.findall(qn("w:gridCol")), widths):
+                gc.set(qn("w:w"), str(int(w * 567)))  # cm -> twips
 
     hdr = t.rows[0]
     repeat_header(hdr)
@@ -238,9 +250,9 @@ def figure(doc, name, alt, title, note):
 
 
 def section_block(sid, chart=None, chart_alt="", chart_title=None, chart_note=None,
-                  table_widths=None):
+                  table_widths=None, extra_tables=None, heading_level=2):
     s = sec[sid]
-    add_heading(doc, s["heading"], 2)
+    add_heading(doc, s["heading"], heading_level)
     if s["sub"]:
         add_body(doc, s["sub"])
     if chart:
@@ -249,19 +261,67 @@ def section_block(sid, chart=None, chart_alt="", chart_title=None, chart_note=No
         t = s["tables"][0]
         add_table(doc, t["head"], t["rows"], table_widths)
         doc.add_paragraph().paragraph_format.space_after = Pt(4)
+    for t, w in (extra_tables or []):
+        add_table(doc, t["head"], t["rows"], w)
+        doc.add_paragraph().paragraph_format.space_after = Pt(4)
     for n in s["notes"]:
         add_callout(doc, n)
 
 
-# Portada del tablero
-add_heading(doc, "Tablero de resultados del Prototipo II", 1)
-add_body(doc, d["decl"])
-add_callout(doc, "Nota. Los cuatro indicadores destacados cambian entre la "
-                 "línea base y la medición final. Los cuatro restantes se "
-                 "conservan y sirven de contraste. Cada cifra procede de un "
-                 "archivo de evidencia del repositorio y ninguno es estimado.")
+# ---------------------------------------------------------------- portada
+add_heading(doc, "Tablero de resultados", 1)
+add_body(doc, "Resultados del Prototipo II del laboratorio del Servicio de "
+              "Impuestos Nacionales de Bolivia. El tablero presenta el antes, "
+              "que es el diagnóstico de la situación actual, y el después, que "
+              "es la metodología aplicada con sus dos iteraciones verificadas "
+              "en el laboratorio.")
+add_callout(doc, "Nota. Los dos conjuntos de datos se midieron con instrumentos "
+                 "distintos. El antes procede del autoinforme de treinta "
+                 "respondentes del área y el después de la instrumentalización "
+                 "del laboratorio. Todo el tablero enlaza ambos conjuntos por "
+                 "trazabilidad, de modo que ninguna cifra se estima y ninguna se "
+                 "presenta fuera de su contexto.")
 
-# 1
+# ------------------------------------------------- A. El antes
+add_heading(doc, sec["antes-sin"]["heading"], 2)
+add_body(doc, sec["antes-sin"]["sub"])
+figure(doc, "diag.png",
+       "Porcentaje de cumplimiento de los catorce instrumentos del diagnóstico",
+       "Porcentaje de cumplimiento por instrumento, frente a los cortes de madurez.",
+       "Nota. Ordenados de menor a mayor cumplimiento. Seis instrumentos quedan "
+       "en nivel Básico y ocho en nivel Gestionado. Fuente: instrumento de "
+       "madurez aplicado a treinta respondentes, α = 0,869.")
+_t1 = sec["antes-sin"]["tables"][0]
+add_table(doc, _t1["head"], _t1["rows"], [1.6, 1.4, 6.0, 1.5, 2.7, 2.8])
+doc.add_paragraph().paragraph_format.space_after = Pt(6)
+
+figure(doc, "grupos.png", "Madurez por grupo temático del diagnóstico",
+       "Porcentaje de cumplimiento por grupo temático.",
+       "Nota. Los cuatro grupos dentro de una franja de 2,96 puntos "
+       "porcentuales. Fuente: instrumento de madurez, agregación por grupo.")
+_t2 = sec["antes-sin"]["tables"][1]
+add_table(doc, _t2["head"], _t2["rows"], [7.4, 3.4, 3.4])
+doc.add_paragraph().paragraph_format.space_after = Pt(6)
+
+figure(doc, "global.png", "Posición de la madurez global respecto a los cortes",
+       "Posición de la madurez global del proceso institucional.",
+       "Nota. El 52,70 % se ubica 1,70 puntos por encima del corte que separa "
+       "el nivel Gestionado del nivel Básico. Fuente: instrumento de madurez, "
+       "resultado global.")
+add_callout(doc, sec["antes-sin"]["notes"][-1])
+
+# ------------------------------------------------- B. Brechas
+section_block("brechas", "puente.png",
+              "Puente entre el diagnóstico de la situación actual y la evidencia verificada",
+              "Puente entre el diagnóstico y la evidencia del laboratorio.",
+              "Nota. Cada fila enfrenta el valor del diagnóstico al valor "
+              "verificado por la metodología. Los tres últimos indicadores no "
+              "se mueven porque constituyen la base de partida y no de resultado. "
+              "Fuente: apartado 4.1 del marco práctico y reportes de indicadores "
+              "de las dos vueltas.",
+              table_widths=[1.3, 5.2, 1.6, 2.2, 4.1, 1.6])
+
+# ------------------------------------------------- C. Indicadores
 section_block("kpi", "kpi.png", "Panel de los ocho indicadores principales del ciclo",
               "Panel de indicadores principales del ciclo de corrección.",
               "Nota. Los cuatro indicadores destacados cambian entre la línea "
@@ -350,7 +410,7 @@ for t in d["foot"]:
     # Alineado a la izquierda porque contiene rutas largas que la justificacion estira
     add_body(doc, t, align=WD_ALIGN_PARAGRAPH.LEFT)
 
-doc.save(OUT)
-print("Guardado:", OUT)
+doc.save(sys.argv[1] if len(sys.argv) > 1 else OUT)
+print("Guardado:", sys.argv[1] if len(sys.argv) > 1 else OUT)
 print("Figuras:", fig["n"])
 print("Secciones:", len(doc.paragraphs), "parrafos,", len(doc.tables), "tablas")

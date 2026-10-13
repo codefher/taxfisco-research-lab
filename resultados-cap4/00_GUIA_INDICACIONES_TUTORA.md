@@ -183,9 +183,12 @@ Los instrumentos de esta carpeta se dedican exclusivamente al Prototipo II, porq
 
 | Archivo | Contenido | Indicación que atiende |
 | --- | --- | --- |
-| `dashboard-resultados.html` | Tablero navegable de once secciones | 1 |
-| `dashboard-resultados.docx` | Tablero en Word, listo para insertar en el capítulo | 1, 3, 4 y 5 |
-| `dashboard-resultados.pdf` | Versión del tablero para el capítulo | 1, 3 y 4 |
+| `dashboard-resultados_v02.html` | Tablero navegable de trece secciones, con el antes y las seis brechas | 1 y 4 |
+| `dashboard-resultados_v02.docx` | Tablero en Word, con catorce figuras y veintitrés tablas | 1, 3, 4 y 5 |
+| `dashboard-resultados_v02.pdf` | Versión del tablero para el capítulo | 1, 3 y 4 |
+| `dashboard-resultados_v01.html` | Primera versión, solo con el antes y después del laboratorio | 1 |
+| `dashboard-resultados_v01.docx` | Primera versión en Word | 1 |
+| `dashboard-resultados_v01.pdf` | Primera versión en PDF | 1 |
 | `evidencia-visual/tablero-alertas-vuelta-1.png` | Captura del tablero en la línea base | 1 y 4 |
 | `evidencia-visual/tablero-alertas-vuelta-2.png` | Captura del tablero en la medición final | 1 y 4 |
 | `2026-10-12_Resultados_Prototipo_II_SIN_v12.xlsx` | Diez hojas con los indicadores del laboratorio | 1, 3 y 5 |
@@ -209,6 +212,27 @@ La revisión del capítulo detectó cifras que no correspondían con los archivo
 | Reducciones de la tabla 9 | 5,6 / 9,9 / 33,5 / 75,5 % | 5,6 / 9,8 / 34,0 / 75,2 % | Valores de origen con tres decimales |
 
 El inventario de técnicas no cambia. Lo que cambia es la atribución de detección, de modo que ambos hechos se presentan separados en el tablero.
+
+---
+
+## Historial de versiones del tablero
+
+El tablero se entrega en dos versiones para conservar la trazabilidad de cada revisión.
+
+| Versión | Alcance | Archivos |
+| --- | --- | --- |
+| v01 | Antes y después de las dos iteraciones del laboratorio | `dashboard-resultados_v01.html`, `_v01.pdf` y `_v01.docx` |
+| v02 | Añade el diagnóstico institucional como punto de partida y la trazabilidad de las seis brechas | `dashboard-resultados_v02.html`, `_v02.pdf` y `_v02.docx` |
+
+**Qué aporta la v02 sobre la v01**
+
+1. Un apartado inicial con el antes, tomado del apartado 4.1 del marco práctico.
+2. La madurez de los catorce instrumentos sobre los cortes de la ficha técnica.
+3. La madurez por grupo temático y la posición de la madurez global frente a los cortes.
+4. La tabla que enlaza cada una de las seis brechas con la fase que la responde y el indicador verificado.
+5. El gráfico puente que enfrenta el antes diagnosticado con el después verificado.
+
+**Criterio de enlace entre las dos columnas.** El antes y el después se midieron con instrumentos distintos. La columna del antes procede del autoinforme de treinta respondentes, que mide madurez declarada. La columna del después procede de la instrumentalización del laboratorio, que mide ejecución verificada sobre archivos de evidencia. El tablero no superpone ambos conjuntos en un mismo eje porque ese contraste produciría una lectura engañosa. Lo que los enlaza es la trazabilidad, de modo que cada brecha tiene una fase que la responde y un indicador de archivo que la confirma.
 
 ---
 
