@@ -11,13 +11,15 @@ El capítulo de resultados sigue siete apartados. Cada uno responde a una funci�
 
 | Apartado | Función | Contenido |
 | --- | --- | --- |
-| 4.4.1 | Línea base y forma de presentar | Origen de los datos, reglas de comparación y criterios de cálculo |
-| 4.4.2 | Prototipo I | Resultados del primer laboratorio y lectura de su valor |
-| 4.4.3 | Primera vuelta | Diez escenarios, medición en cuatro, catálogo de catorce lecciones |
+| 4.4.1 | Línea base institucional y reglas de presentación | Madurez de los catorce instrumentos, distancia al corte Gestionado y criterio de comparación |
+| 4.4.2 | Resultados del primer prototipo | Indicadores del primer laboratorio con su archivo de origen y lectura de su valor |
+| 4.4.3 | Primera vuelta | Diez escenarios, medición en cuatro, catálogo de siete lecciones |
 | 4.4.4 | Segunda vuelta | Correcciones aplicadas y medición en los diez escenarios |
-| 4.4.5 | Antes y después cuantificado | Comparación escenario por escenario e indicadores de cobertura |
-| 4.4.6 | Aportación por fase | Qué entrega cada fase al resultado final |
-| 4.4.7 | Síntesis | Lectura conjunta del valor del producto |
+| 4.4.5 | Antes y después cuantificado | Indicadores que cambian, indicadores constantes y reducción por escenario |
+| 4.4.6 | Aportación de cada fase y trazabilidad de las brechas | Qué entrega cada fase al resultado y qué indicador verifica cada brecha |
+| 4.4.7 | Síntesis de los resultados | Lectura conjunta del valor del producto y enlace entre el antes y el después |
+
+El apartado 4.4 se incorpora a `tesis/Redaccion_Marco_Practico_v11_v1.5.md` entre el apartado 4.3.7 y el Capítulo V, con las tablas 11 a 19 y las figuras 57 a 59.
 
 La estructura respeta la separación entre el primer y el segundo prototipo, de modo que cada uno conserve su propio apartado y las fases se analicen dentro de cada uno.
 
