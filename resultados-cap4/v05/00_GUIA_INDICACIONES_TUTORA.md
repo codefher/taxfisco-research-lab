@@ -54,7 +54,7 @@ La indicación pide resultados visibles, ordenados y profesionales. El tablero r
 6. Cobertura de MITRE ATT&CK, con inventario y detección separados.
 7. Ciclo de iteraciones, con la línea de tiempo del ciclo de corrección.
 8. Aportación de cada fase de la metodología.
-9. Registro de lecciones aprendidas, con las catorce cerradas.
+9. Registro de lecciones aprendidas, con once cerradas de catorce registradas.
 10. Volumen de actividad de la campaña en las dos vueltas.
 11. Evidencia visual del tablero de alertas, con la captura de cada vuelta.
 
@@ -123,7 +123,8 @@ La comparación válida es escenario por escenario. La media de las dos vueltas 
 | Técnicas con fuente de detección | 4 | 10 | +6 |
 | Tácticas con fuente de detección | 3 | 6 | +3 |
 | Percentil 95 de detección | 14,583 s | 9,266 s | −5,317 s |
-| Lecciones cerradas | 7 | 14 | +7 |
+| Lecciones registradas | 7 | 14 | +7 |
+| Lecciones cerradas con corrección aplicada | 7 | 11 de 14 | +4 |
 
 **Indicadores que se conservan**
 
@@ -159,11 +160,11 @@ La indicación pide datos, indicadores y explicación de por qué se produjo cad
 
 | Fase | Qué aporta | Indicador | Línea base | Final |
 | --- | --- | --- | --- | --- |
-| 1 · Diseño del señuelo | Portal tributario con acceso en dos pasos y un escenario por técnica | Escenarios ejecutados | 10 de 10 | 10 de 10 |
-| 2 · Despliegue aislado | Tres segmentos de red y verificación ejecutada desde el contenedor atacante | Objetivos alcanzables desde el atacante | 2 de 6 | 2 de 6 |
-| 3 · Captura y custodia | Atribución recognize las tres variantes de clave e incorpora archivo señuelo y sensor de red | Escenarios con medición | 4 de 10 | 10 de 10 |
-| 4 · Correlación | Alerta clasificada con técnica y severidad encadenada a la gestión de incidentes | Alertas clasificadas | 10 de 10 | 10 de 10 |
-| 5 · Medición y mejora | Catorce lecciones con causa raíz, cambio aplicado y cierre verificado | Lecciones cerradas | 7 | 14 |
+| 1 · Diseño del señuelo | Construye el activo que se mide, un portal tributario con acceso en dos pasos y un escenario por técnica, de manera que la campaña tenga un denominador fijo de diez escenarios | Escenarios ejecutados | 10 de 10 | 10 de 10 |
+| 2 · Despliegue aislado | Aísla y segmenta el señuelo en tres zonas y verifica el aislamiento desde el propio contenedor atacante, de manera que se pueda demostrar qué queda alcanzable desde fuera | Objetivos alcanzables desde el atacante | 2 de 6 | 2 de 6 |
+| 3 · Captura y custodia | Repara el instrumental de atribución, que es lo que impedía medir, y añade el archivo señuelo y el sensor de red como fuentes, de manera que los seis escenarios que antes no producían medición ahora la producen | Escenarios con medición | 4 de 10 | 10 de 10 |
+| 4 · Correlación | Convierte cada evento capturado en una alerta clasificada con su técnica y su severidad, de manera que el tiempo medido sea el del ciclo completo de gestión y no el de un registro suelto | Alertas clasificadas | 10 de 10 | 10 de 10 |
+| 5 · Medición y mejora | Compara las dos vueltas, registra cada discrepancia con su causa raíz y aplica la corrección antes de la segunda vuelta | Lecciones cerradas con corrección aplicada | 7 | 11 de 14 |
 
 La fase 3 concentra la mejora cuantificable porque repara el instrumental de atribución. La fase 5 la sostiene, porque produce las lecciones que dieron origen a esas reparaciones.
 
@@ -176,7 +177,7 @@ La fase 3 concentra la mejora cuantificable porque repara el instrumental de atr
 | 4 · Correlación | 1 | L9 |
 | 5 · Medición | 3 | L5, L6, L11 |
 
-**Cadena causal que explica el resultado.** La fase 5 produjo catorce lecciones, la fase 3 reparó el instrumental de atribución y la medición posterior confirmó el efecto sobre diez de diez escenarios. El capítulo expone esa cadena en orden, porque explica por qué el resultado es atribuible a la metodología y no al azar de una segunda ejecución.
+**Cadena causal que explica el resultado.** La fase 5 produjo catorce lecciones registradas, de las cuales once quedan cerradas con su corrección aplicada, la fase 3 reparó el instrumental de atribución y la medición posterior confirmó el efecto sobre diez de diez escenarios. El capítulo expone esa cadena en orden, porque explica por qué el resultado es atribuible a la metodología y no al azar de una segunda ejecución.
 
 **Entregable de apoyo.** El libro `2026-10-12_Matriz_Evidencia_Laboratorio_por_Item_v06.xlsx` registra cuarenta y dos ítems, de los cuales veintinueve tienen evidencia medida, seis están declarados y siete tienen su motivo registrado.
 
@@ -246,11 +247,15 @@ El tablero se entrega en dos versiones para conservar la trazabilidad de cada re
 
 1. El 99,09 % del libro oficial en lugar del 99,06 % de la comunicación escrita.
 2. El apartado institucional reescrito con la operación que produce la cifra.
-3. Todo el material reunido en la carpeta `resultados-cap4/v05/`.
+3. Una tabla que declara qué cuenta cada indicador y cuál es su denominador.
+4. Las dos vueltas ancladas con su hora, la de las 16:07 UTC y la de las 20:33 UTC del 4 de octubre de 2026.
+5. El registro de lecciones con causa raíz, corrección aplicada y estado real, que cierra once de las catorce registradas.
+6. La aportación de cada fase redactada como contribución concreta.
+7. Todo el material reunido en la carpeta `resultados-cap4/v05/`.
 
 **Qué aportaba la v03 sobre la v02**
 
-1. Un apartado final con el 99,09 % comunicado por el Servicio de Impuestos Nacionales.
+1. Un apartado final con el 99,09 % que el libro oficial de resultados del Servicio de Impuestos Nacionales calcula.
 2. El gráfico que sitúa esa cifra y la madurez diagnosticada sobre la escala de cortes de la ficha técnica.
 3. La tabla que separa las cuatro fuentes de resultado del capítulo y declara que no comparten escala.
 4. La corrección de dos textos que estaban en inglés y en francés en la v02.

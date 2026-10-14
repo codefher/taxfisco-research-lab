@@ -3075,30 +3075,31 @@ El intervalo que separa las dos vueltas asciende a cuatro horas con veintiséis 
 
 ### 4.4.5 Antes y después cuantificado
 
-La comparación válida entre las dos vueltas es la que se resuelve escenario por escenario, de manera que la Tabla 16 separa los indicadores que cambian de los que se conservan. Los indicadores constantes constituyen el control que hace atribuible la diferencia a la corrección del instrumental, porque un cambio en el volumen de evidencia o en el catálogo de amenazas habría producido una comparación sin control.
+La metodología se aplica dos veces sobre el mismo señuelo, de manera que la comparación de este apartado enfrenta la vuelta 1 y la vuelta 2 y ninguna otra combinación. La vuelta 1 se ejecuta a las 16:07 UTC del 4 de octubre de 2026, antes de aplicar corrección alguna, mientras que la vuelta 2 se ejecuta a las 20:33 UTC del mismo día, después de aplicar las catorce lecciones registradas. Como el señuelo ejecuta los mismos diez escenarios en las dos vueltas, la Tabla 16 separa los indicadores que cambian de los que se conservan. Los indicadores constantes constituyen el control que hace atribuible la diferencia a la corrección del instrumental, porque un cambio en el volumen de evidencia o en el catálogo de amenazas habría producido una comparación sin control.
 
 Tabla 16
 
 *Indicadores que cambian y indicadores que se conservan entre las dos vueltas*
 
-|  |  |  |  |
-| --- | --- | --- | --- |
-| **Indicador** | **Línea base** | **Medición final** | **Diferencia** |
-| Escenarios con tiempo medido | 4 | 10 | +6 |
-| Componentes que registran detección | 3 | 6 | +3 |
-| Técnicas con fuente de detección | 4 | 10 | +6 |
-| Tácticas con fuente de detección | 3 | 6 | +3 |
-| Percentil 95 de detección | 14,583 s | 9,266 s | −5,317 s |
-| Lecciones aprendidas cerradas | 7 | 14 | +7 |
-| Escenarios ejecutados | 10 | 10 | Constante |
-| Técnicas del inventario | 17 | 17 | Constante |
-| Archivos de evidencia | 91 | 91 | Constante |
-| Calidad de la evidencia | 100 de 100 | 100 de 100 | Constante |
-| Fases de ISO/IEC 27035 sustentadas | 1 de 5 | 1 de 5 | Constante |
+|  |  |  |  |  |
+| --- | --- | --- | --- | --- |
+| **Indicador** | **Qué cuenta y su denominador** | **Línea base** | **Medición final** | **Diferencia** |
+| Escenarios con tiempo medido | Escenarios a los que el instrumental atribuye una detección, sobre los diez que ejecuta cada vuelta | 4 | 10 | +6 |
+| Componentes que registran detección | Componentes que dejan un registro legible por el operador, sobre los seis desplegados | 3 | 6 | +3 |
+| Técnicas con fuente de detección | Técnicas que un escenario activa y que reciben fuente, sobre las diez que ejerce la campaña | 4 | 10 | +6 |
+| Tácticas con fuente de detección | Tácticas del marco que cubren esas técnicas, sobre las seis que recorre la campaña | 3 | 6 | +3 |
+| Percentil 95 de detección | Percentil 95 de la distribución de los diez tiempos de cada vuelta | 14,583 s | 9,266 s | −5,317 s |
+| Lecciones registradas | Hallazgos anotados en el registro de la metodología a lo largo de las dos vueltas | 7 | 14 | +7 |
+| Lecciones cerradas con corrección aplicada | Hallazgos con causa raíz identificada y corrección aplicada, sobre las catorce registradas | 7 | 11 de 14 | +4 |
+| Escenarios ejecutados | Escenarios que la campaña lanza, sobre los diez programados | 10 | 10 | Constante |
+| Técnicas del inventario | Técnicas que el señuelo declara, sobre las diecisiete del inventario | 17 | 17 | Constante |
+| Archivos de evidencia | Archivos con huella criptográfica verificada, sobre los capturados | 91 | 91 | Constante |
+| Calidad de la evidencia | Archivos que superan la verificación de integridad, sobre los evaluados | 100 de 100 | 100 de 100 | Constante |
+| Fases de ISO/IEC 27035 sustentadas | Fases del ciclo que la campaña documenta, sobre las cinco de la metodología | 1 de 5 | 1 de 5 | Constante |
 
-*Nota.* La columna de diferencia expresa la variación absoluta entre las dos vueltas. Las cuatro filas marcadas como constantes mantienen el mismo valor en ambas, lo que confirma que la campaña conserva su extensión y que el señuelo no recibe modificaciones entre iteraciones. El número de técnicas con fuente de detección se cuenta sobre el conjunto de técnicas que la campaña ejerce, mientras que el inventario de técnicas implementado en los escenarios permanece en diecisiete. Fuente: reportes de indicadores de ambas iteraciones.
+*Nota.* La segunda columna declara qué cuenta cada indicador y cuál es su denominador, de manera que la forma «10 de 10» se lee como un numerador sobre el total que la campaña ejecuta. La columna de diferencia expresa la variación absoluta entre las dos vueltas. Las cinco filas marcadas como constantes mantienen el mismo valor en ambas. Ese conjunto confirma que la campaña conserva su extensión y que el señuelo no recibe modificaciones entre iteraciones. El número de técnicas con fuente de detección se cuenta sobre el conjunto de técnicas que la campaña ejerce, mientras que el inventario de técnicas implementado en los escenarios permanece en diecisiete. Fuente: reportes de indicadores de ambas iteraciones.
 
-La reducción del percentil 95 de 14,583 a 9,266 segundos constituye la mejora cuantificable más relevante de la medición, porque se calcula sobre el conjunto completo de valores y no sobre una selección de escenarios. La diferencia de 5,317 segundos expresa la mejora en la cola alta de la distribución del tiempo de detección, que es la región donde un incidente permanece sin atender durante más tiempo. Los cuatro indicadores constantes que accompanyan a esta reducción confirman que el cambio proviene de la reparación del instrumental y no de una modificación del activo expuesto.
+La reducción del percentil 95 de 14,583 a 9,266 segundos constituye la mejora cuantificable más relevante de la medición, porque se calcula sobre el conjunto completo de valores y no sobre una selección de escenarios. La diferencia de 5,317 segundos expresa la mejora en la cola alta de la distribución del tiempo de detección, que es la región donde un incidente permanece sin atender durante más tiempo. Los cinco indicadores constantes que acompañan a esta reducción confirman que el cambio proviene de la reparación del instrumental y no de una modificación del activo expuesto.
 
 Figura 58
 
@@ -3123,11 +3124,11 @@ Tabla 17
 |  |  |  |  |
 | --- | --- | --- | --- |
 | **Fase** | **Qué aporta** | **Indicador verificado** | **Valor** |
-| 1 · Diseño del señuelo | Portal tributario con acceso en dos pasos y un escenario por técnica | Escenarios ejecutados | 10 de 10 |
-| 2 · Despliegue aislado | Tres segmentos de red y verificación ejecutada desde el contenedor atacante | Objetivos alcanzables desde el atacante | 2 de 6 |
-| 3 · Captura y custodia | Atribución con tres variantes de clave, archivo señuelo y sensor de red | Escenarios con medición | 10 de 10 |
-| 4 · Correlación | Alerta clasificada con técnica y severidad encadenada a la gestión de incidentes | Alertas clasificadas | 10 de 10 |
-| 5 · Medición y mejora | Catorce lecciones con causa raíz, cambio aplicado y cierre verificado | Lecciones cerradas | 14 |
+| 1 · Diseño del señuelo | Construye el activo que se mide, un portal tributario con acceso en dos pasos y un escenario por técnica, de manera que la campaña tenga un denominador fijo de diez escenarios | Escenarios ejecutados | 10 de 10 |
+| 2 · Despliegue aislado | Aísla y segmenta el señuelo en tres zonas y verifica el aislamiento desde el propio contenedor atacante, de manera que se pueda demostrar qué queda alcanzable desde fuera | Objetivos alcanzables desde el atacante | 2 de 6 |
+| 3 · Captura y custodia | Repara el instrumental de atribución, que es lo que impedía medir. Acepta las tres formas en que un escenario declara su objetivo y añade el archivo señuelo y el sensor de red como fuentes, de manera que los seis escenarios que antes no producían medición ahora la producen | Escenarios con medición | 10 de 10 |
+| 4 · Correlación | Convierte cada evento capturado en una alerta clasificada con su técnica y su severidad, de manera que el tiempo medido sea el del ciclo completo de gestión y no el de un registro suelto | Alertas clasificadas | 10 de 10 |
+| 5 · Medición y mejora | Compara las dos vueltas, registra cada discrepancia con su causa raíz y aplica la corrección antes de la segunda vuelta, de manera que un fallo observado quede convertido en un cambio verificado | Lecciones cerradas con corrección aplicada | 11 de 14 |
 
 *Nota.* La fase 3 concentra la mejora cuantificable porque repara el instrumental de atribución. La fase 5 sostiene ese resultado, ya que produce las lecciones que dieron origen a las reparaciones. Elaboración propia a partir del registro de lecciones aprendidas.
 
@@ -3145,7 +3146,7 @@ Tabla 18
 | 4 · Correlación con gestión de incidentes | 1 | L9 |
 | 5 · Medición y lecciones aprendidas | 3 | L5, L6, L11 |
 
-*Nota.* La fase de diseño del señuelo no registra lecciones, lo que explica que ninguna lección se le atribuya. El total de la tabla suma catorce lecciones, todas ellas cerradas con su causa raíz identificada y su cambio verificado. Fuente: `evidencias/lecciones-aprendidas.md`.
+*Nota.* La fase de diseño del señuelo no registra lecciones, lo que explica que ninguna lección se le atribuya. El total de la tabla suma catorce lecciones registradas, de las cuales once quedan cerradas con su causa raíz identificada y su corrección aplicada, mientras que las tres restantes, L8, L9 y L10, siguen abiertas con una mitigación documentada. Fuente: `evidencias/lecciones-aprendidas.md`.
 
 La trazabilidad enlaza cada una de las seis brechas del diagnóstico institucional con la fase de la metodología que la atiende y con el indicador de archivo que la confirma. La Tabla 19 recorre esa correspondencia y muestra que ninguna de las seis brechas queda sin una fase asignada y sin un indicador verificable.
 
@@ -3156,10 +3157,10 @@ Tabla 19
 |  |  |  |  |
 | --- | --- | --- | --- |
 | **Brecha** | **% antes** | **Fase que la atiende** | **Indicador verificado en el laboratorio** |
-| I13 Capacitación y cobertura | 47,78 | Fase 5 · Medición | Catorce lecciones documentadas con causa raíz y cambio |
+| I13 Capacitación y cobertura | 47,78 | Fase 5 · Medición | Catorce lecciones documentadas con su hallazgo y su estado |
 | I7 Retención y acceso | 47,92 | Fase 3 · Captura y custodia | 91 archivos de evidencia con verificación SHA-256 |
 | I1 Detección y registro | 48,54 | Fase 3 · Captura y custodia | Diez escenarios con tiempo de detección medido |
-| I4 Lecciones aprendidas | 49,17 | Fase 5 · Medición | Catorce lecciones cerradas con su efecto medido |
+| I4 Lecciones aprendidas | 49,17 | Fase 5 · Medición | Once lecciones cerradas con su efecto medido, de catorce registradas |
 | I8 Accesos y mínimo privilegio | 49,72 | Fase 2 · Despliegue aislado | Emulador de acceso remoto con captura de sesiones |
 | I10 Gestión de vulnerabilidades | 50,56 | Fase 2 · Despliegue aislado | Sensor de red con seis fuentes de detección |
 
@@ -3177,7 +3178,7 @@ El reparto de las lecciones según la fase que las produce refuerza la lectura d
 
 ### 4.4.7 Resultado global del libro oficial de la institución
 
-El resultado global de la medición posterior a la aplicación metodológica proviene del libro oficial de resultados que el Servicio de Impuestos Nacionales entrega como respaldo de la intervención. El libro calcula la madurez global como el promedio simple de los catorce instrumentos sobre la matriz de treinta participantes, y ese cálculo arroja 99,0873015873016 %, cifra que redondea a 99,09 %.
+El resultado global de la medición posterior a la aplicación metodológica proviene del libro oficial de resultados que el Servicio de Impuestos Nacionales entrega como respaldo de la intervención. El libro calcula la madurez global como el promedio simple de los catorce instrumentos sobre la matriz de treinta participantes. Ese cálculo arroja 99,0873015873016 %, cifra que redondea a 99,09 %.
 
 El valor se incorpora al capítulo con el carácter de nivel que la institución atribuye a su propio proceso de gestión de incidentes después de la intervención metodológica. El libro sitúa los catorce instrumentos en el nivel Optimizado, con el instrumento 1 en 98,33 % como valor más bajo y los trece restantes entre 98,89 % y 99,17 %, lo que coloca a la institución por encima del corte inferior de 76 % que define ese nivel. La consecuencia interpretativa es relevante, porque la sitúa fuera del corredor de madurez intermedia en el que el diagnóstico del apartado 4.1 había ubicado el proceso.
 
@@ -3215,7 +3216,7 @@ El libro oficial de resultados cierra la trazabilidad externa del capítulo, ya 
 
 Los resultados del capítulo se organizan en tres afirmaciones que la evidencia sostiene de manera directa y que pueden verificarse una por una en los archivos de origen. La primera afirma que la metodología convierte una línea base de cuatro escenarios medidos en diez escenarios medidos, sobre una campaña de diez escenarios cuyo inventario de técnicas se mantiene constante. La segunda afirma que la cobertura de detección pasa de cuatro a diez técnicas y de tres a seis tácticas, sin que el inventario de diecisiete técnicas cambie entre vueltas. La tercera afirma que el ciclo completo de corrección, desde la línea base hasta la medición final, se ejecuta en cuatro horas con veintiséis minutos.
 
-A esas tres afirmaciones se suma la verificación del control que las hace interpretables, la cual confirma que el material sobre el que se mide permanece idéntico entre las dos vueltas. Los cuatro indicadores constantes de la Tabla 16, que abarcan la extensión de la campaña, el inventario de técnicas, el volumen de evidencia y su calidad, confirman que la diferencia entre las dos vueltas proviene de la reparación del instrumental y no de un cambio en el material sobre el que se mide. Esta condición es la que permite afirmar que la metodología produce la mejora que el apartado documenta y no una variación atribuible a las condiciones de ejecución.
+A esas tres afirmaciones se suma la verificación del control que las hace interpretables, la cual confirma que el material sobre el que se mide permanece idéntico entre las dos vueltas. Los cinco indicadores constantes de la Tabla 16, que abarcan la extensión de la campaña, el inventario de técnicas, el volumen de evidencia, su calidad y las fases del ciclo documentadas, confirman que la diferencia entre las dos vueltas proviene de la reparación del instrumental y no de un cambio en el material sobre el que se mide. Esta condición es la que permite afirmar que la metodología produce la mejora que el apartado documenta y no una variación atribuible a las condiciones de ejecución.
 
 El resultado del primer prototipo y el del segundo se complementan sin confundirse, dado que cada uno responde a una pregunta distinta del diseño metodológico. El primero verifica que cada componente de la metodología opera por separado, mientras que el segundo verifica el efecto de la corrección iterativa sobre el contexto institucional real. La Tabla 13 y la Tabla 15 responden a preguntas distintas, la primera sobre el funcionamiento de las piezas y la segunda sobre el efecto del ciclo completo, de manera que ninguna de las dos necesita corrigirse a la otra.
 

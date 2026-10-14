@@ -12,6 +12,9 @@ Esta carpeta reúne la versión vigente del tablero de resultados del capítulo 
 | Distancia respecto del diagnóstico | 46,36 puntos porcentuales | 46,39 puntos porcentuales |
 | Apartado 4.4.7 | Resultado agregado | **Resultado global del libro oficial de la institución** |
 | Gráfico de los 14 instrumentos | Una línea verde de 99,06 % | **Los catorce porcentajes posteriores, en dos carriles con escala propia** |
+| Origen de cada cifra | No se declaraba | **Tabla de ocho indicadores con su numerador, su denominador y su archivo de origen** |
+| Lecciones aprendidas | Catorce, todas cerradas | **Once cerradas de catorce registradas, con causa raíz, corrección y estado** |
+| Aportación de cada fase | Declaraba el entregable | **Redactada como contribución concreta al resultado** |
 | Ubicación | `resultados-cap4/` | `resultados-cap4/v05/` |
 
 ## Contenido
@@ -19,8 +22,7 @@ Esta carpeta reúne la versión vigente del tablero de resultados del capítulo 
 | Archivo | Qué es |
 | --- | --- |
 | `dashboard-resultados_v05.html` | Tablero interactivo, catorce secciones y trece gráficos vectoriales |
-| `dashboard-resultados_v05.docx` | Tablero en Word, diecisiete figuras y veintisiete tablas, formato vertical del capítulo |
-| `dashboard-resultados_v05.pdf` | El mismo tablero en A3 apaisado, trece páginas |
+| `dashboard-resultados_v05.docx` | Tablero en Word, diecisiete figuras y treinta tablas, formato vertical del capítulo |
 | `graficos/instrumentos-antes-despues.html` | Fuente del gráfico de los catorce instrumentos, corregible en el navegador |
 | `graficos/instrumentos-antes-despues.png` | Ese mismo gráfico a 2400 px, que es la Figura 60 del capítulo |
 | `evidencia-institucional/Matriz_pre_post_99_09_alfa_SIN.xlsx` | Libro oficial recibido, archivado sin modificar |
@@ -32,7 +34,7 @@ Esta carpeta reúne la versión vigente del tablero de resultados del capítulo 
 
 - **El capítulo.** `tesis/Redaccion_Marco_Practico_v11_v1.5.md`, apartado 4.4.7 y Figura 60, con el texto y la imagen ya corregidos.
 - **El verificador.** `scripts/verificar-matriz-postest.py`, que recalcula el alfa de Cronbach de cualquier matriz de 30 por 42 que la institución entregue en el futuro.
-- **La reproducción.** Los generadores están en `.render/`: `build-v05.py`, `build-docx-v05.py` y `build-pdf-v05.py`.
+- **La reproducción.** Los generadores están en `.render/`: `build-v05.py`, `build-v05-aclaraciones.py` y `build-docx-v05.py`.
 
 ## Si la institución entrega la matriz real
 

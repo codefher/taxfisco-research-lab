@@ -251,8 +251,8 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
       <tr><td class="n">4</td>
         <td>Revisiones posteriores al incidente no sistemáticas y lecciones sin incorporación documentada al proceso</td>
         <td class="n">49,17 %</td><td>Fase 5 · Medición</td>
-        <td>Lecciones con causa raíz, cambio aplicado y cierre verificado</td>
-        <td class="n"><span class="chip cg">14 de 14</span></td></tr>
+        <td>Lecciones con causa raíz y corrección aplicada</td>
+        <td class="n"><span class="chip cg">11 de 14</span></td></tr>
       <tr><td class="n">7</td>
         <td>Retención efectiva bajo la política y acceso a evidencia histórica sin trazabilidad</td>
         <td class="n">47,92 %</td><td>Fase 3 · Custodia</td>
@@ -298,7 +298,11 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
   <h2>C. Indicadores principales del laboratorio</h2>
   <p class="sub">Ocho cifras resumen el resultado de la metodología. Las cuatro
      destacadas en verde son las que cambian entre la línea base y la medición
-     posterior; las demás se conservan y sirven de contraste.</p>
+     posterior; las demás se conservan y sirven de contraste. La línea base es
+     el estado del instrumental al terminar la primera vuelta, antes de aplicar
+     corrección alguna, y la medición final es el estado posterior a las catorce
+     lecciones registradas. La tabla que sigue declara qué cuenta cada cifra y
+     cuál es su denominador.</p>
   <div class="kpis">
     <div class="kpi g"><div class="lab">Escenarios con medición</div>
       <div class="val">10 de 10</div>
@@ -322,9 +326,32 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
       <div class="val">4 h 26</div>
       <div class="dlt">De la línea base a la medición final</div></div>
     <div class="kpi a"><div class="lab">Lecciones cerradas</div>
-      <div class="val">14 de 14</div>
-      <div class="dlt">Con su archivo de verificación</div></div>
+      <div class="val">11 de 14</div>
+      <div class="dlt">Tres con mitigación documentada</div></div>
   </div>
+  <table style="margin-top:16px">
+    <thead><tr><th>Indicador</th><th>Qué cuenta</th>
+      <th>Denominador</th><th>Archivo de origen</th></tr></thead>
+    <tbody>
+      <tr><td>Escenarios con medición</td><td>Escenarios de la campaña a los que el instrumental atribuye una detección y registra su hora</td><td>Los diez escenarios que ejecuta cada vuelta</td><td>Reporte de indicadores de cada vuelta</td></tr>
+      <tr><td>Componentes que registran detección</td><td>Componentes que dejan un registro legible por el calculador</td><td>Los seis componentes desplegados</td><td>Reporte de indicadores</td></tr>
+      <tr><td>Técnicas con detección</td><td>Técnicas que un escenario activa y que reciben fuente de atribución</td><td>Las diez técnicas que activa la campaña</td><td>Reporte de cobertura de técnicas</td></tr>
+      <tr><td>Tácticas con detección</td><td>Tácticas del marco que cubren esas técnicas</td><td>Las seis tácticas que la campaña recorre</td><td>Reporte de cobertura de técnicas</td></tr>
+      <tr><td>Percentil 95 de detección</td><td>Percentil 95 de la distribución de los tiempos de detección</td><td>Los diez tiempos de cada vuelta</td><td>Reporte de indicadores</td></tr>
+      <tr><td>Tiempo medio de detección</td><td>Promedio aritmético de los tiempos de detección</td><td>Cuatro tiempos en la línea base y diez en la medición final</td><td>Reporte de indicadores</td></tr>
+      <tr><td>Ciclo de corrección</td><td>Tiempo transcurrido entre las dos mediciones</td><td>No aplica, es una duración</td><td>Marcas de tiempo de ambos reportes</td></tr>
+      <tr><td>Lecciones cerradas</td><td>Hallazgos con causa raíz identificada y corrección aplicada</td><td>Las catorce lecciones registradas</td><td>Registro de lecciones aprendidas</td></tr>
+    </tbody>
+  </table>
+
+  <div class="note">La forma «10 de 10» se lee como el numerador sobre el
+    denominador. El numerador es lo que el instrumental registra y el
+    denominador es lo que la campaña ejecuta, que es la misma cantidad en las
+    dos vueltas. Diez de diez escenarios con medición significa que los diez
+    escenarios produjeron tiempo de detección, mientras que diez de diez
+    escenarios ejecutados significa que los diez llegaron a lanzarse. La
+    diferencia entre ambos enunciados es precisamente lo que mide el apartado
+    siguiente, porque uno depende del instrumental y el otro de la campaña.</div>
   <div class="note">El tiempo medio de las dos vueltas no se compara entre sí,
     porque la línea base se midió sobre cuatro escenarios y la medición
     posterior sobre los diez. La comparación válida es escenario por escenario
@@ -333,11 +360,15 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
 
 <!-- 2 ANTES Y DESPUES -->
 <section id="antes">
-  <h2>D. Antes y después de la medición</h2>
+  <h2>D. Antes y después: vuelta 1 frente a vuelta 2</h2>
   <p class="sub">La metodología transformó el instrumental de medición, no el
      señuelo. El señuelo ejecutó los mismos diez escenarios en las dos vueltas
      con las mismas técnicas, de modo que la diferencia entre las columnas
-     corresponde al trabajo de la metodología.</p>
+     corresponde al trabajo de la metodología. La columna de la línea base es la
+     vuelta 1, ejecutada a las 16:07 UTC del 4 de octubre de 2026 antes de aplicar
+     corrección alguna. La columna final es la vuelta 2, ejecutada a las 20:33 UTC
+     del mismo día después de aplicar las catorce lecciones registradas. Todo este
+     apartado compara esos dos momentos y ningún otro.</p>
   <div class="two">
     <div>
       <h3>Cobertura de la medición, en valores absolutos</h3>
@@ -348,22 +379,27 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
       <table>
         <thead><tr><th>Indicador</th><th class="n">Línea base</th><th class="n">Final</th><th class="n">Δ</th></tr></thead>
         <tbody>
-          <tr><td>Escenarios con tiempo medido</td><td class="n">4</td><td class="n">10</td><td class="n"><span class="chip cg">+6</span></td></tr>
+          <tr><td>Escenarios con tiempo de detección medido</td><td class="n">4</td><td class="n">10</td><td class="n"><span class="chip cg">+6</span></td></tr>
           <tr><td>Fuentes de registro</td><td class="n">3</td><td class="n">6</td><td class="n"><span class="chip cg">+3</span></td></tr>
-          <tr><td>Técnicas con fuente</td><td class="n">4</td><td class="n">10</td><td class="n"><span class="chip cg">+6</span></td></tr>
-          <tr><td>Tácticas con fuente</td><td class="n">3</td><td class="n">6</td><td class="n"><span class="chip cg">+3</span></td></tr>
+          <tr><td>Técnicas con fuente de detección</td><td class="n">4</td><td class="n">10</td><td class="n"><span class="chip cg">+6</span></td></tr>
+          <tr><td>Tácticas con fuente de detección</td><td class="n">3</td><td class="n">6</td><td class="n"><span class="chip cg">+3</span></td></tr>
           <tr><td>Escenarios ejecutados</td><td class="n">10</td><td class="n">10</td><td class="n"><span class="chip cb2">=</span></td></tr>
           <tr><td>Técnicas del inventario</td><td class="n">17</td><td class="n">17</td><td class="n"><span class="chip cb2">=</span></td></tr>
           <tr><td>Archivos de evidencia</td><td class="n">91</td><td class="n">91</td><td class="n"><span class="chip cb2">=</span></td></tr>
           <tr><td>Calidad de la evidencia</td><td class="n">100</td><td class="n">100</td><td class="n"><span class="chip cb2">=</span></td></tr>
+          <tr><td>Lecciones registradas</td><td class="n">7</td><td class="n">14</td><td class="n"><span class="chip cg">+7</span></td></tr>
+          <tr><td>Lecciones cerradas con corrección aplicada</td><td class="n">7</td><td class="n">11</td><td class="n"><span class="chip cg">+4</span></td></tr>
         </tbody>
       </table>
     </div>
   </div>
   <div class="note">Las cuatro primeras filas crecen porque el instrumental
-    registra más. Las cuatro últimas no se mueven, y esa es precisamente la
+    registra más. Las cuatro siguientes no se mueven, y esa es precisamente la
     prueba de que la diferencia procede de la corrección del instrumental y no
-    de un cambio en el volumen de evidencia ni en el catálogo de amenazas.</div>
+    de un cambio en el volumen de evidencia ni en el catálogo de amenazas. Las
+    dos últimas miden el propio ciclo de mejora: el registro pasó de siete a
+    catorce lecciones, y cuatro de ellas cerraron con su corrección aplicada en la
+    segunda vuelta.</div>
 </section>
 
 <!-- 3 TIEMPO -->
@@ -419,7 +455,9 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
   <h2>H. Cobertura de MITRE ATT&amp;CK</h2>
   <p class="sub">El inventario del señuelo comprende diecisiete técnicas
      distribuidas en ocho tácticas. Diez las activa algún escenario de la
-     campaña y todas diez reciben fuente de detección en la medición final.</p>
+     campaña y todas diez reciben fuente de detección en la medición final. Las
+     otras siete se declaran en el inventario sin que ningún escenario las ejerza,
+     y la tabla las separa de las diez para que ambos conjuntos no se confundan.</p>
   <div class="two">
     <div>
       <h3>Inventario y detección</h3>
@@ -433,10 +471,16 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
       </table>
     </div>
   </div>
-  <div class="note">Las siete técnicas que ningún escenario activa permanecen en
-     el inventario del señuelo porque forman parte de su superficie de ataque.
-     Su presencia en el inventario y su ausencia en la medición son dos hechos
-     distintos y el tablero los separa.</div>
+    <div class="note">El inventario y la campaña cuentan cosas distintas. El
+    inventario declara diecisiete técnicas, que son las que el señuelo ofrece en
+    su superficie, mientras que la campaña ejecuta diez escenarios que activan
+    diez de ellas, una por escenario. Las siete restantes, T1059, T1059.006,
+    T1078.001, T1083, T1213, T1530 y T1595.003, no son faltantes ni descuidos,
+    porque la campaña no las ejerce y no hacen falta para medir el ciclo de
+    detección que se quiere verificar. Por eso no tienen tiempo de detección que
+    mostrar, y la tabla las marca con «en inventario» para que el lector no sume
+    diecisiete mediciones donde solo existen diez.</div>
+
 </section>
 
 <!-- 7 CICLO -->
@@ -461,26 +505,27 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
 <!-- 8 FASES -->
 <section id="fases">
   <h2>J. Aportación de cada fase de la metodología</h2>
-  <p class="sub">Cada fase produce un cambio comprobable. La columna de
-     indicador recoge el valor que la fase entrega al resultado final.</p>
+  <p class="sub">Cada fase produce un cambio comprobable, de manera que la columna de
+     aportación responde a qué se gana con ella y la columna de indicador recoge el
+     valor que entrega al resultado final.</p>
   <table>
     <thead><tr><th>Fase</th><th>Qué aporta</th><th>Indicador</th><th class="n">Línea base</th><th class="n">Final</th></tr></thead>
     <tbody>
       <tr><td><strong>1 · Diseño del señuelo</strong></td>
-          <td>Portal tributario con acceso en dos pasos y un escenario por técnica del marco de comportamiento adversario</td>
+          <td>Construye el activo que se mide, un portal tributario con acceso en dos pasos y un escenario por técnica, de manera que la campaña tenga un denominador fijo de diez escenarios</td>
           <td>Escenarios ejecutados</td><td class="n">10 de 10</td><td class="n">10 de 10</td></tr>
       <tr><td><strong>2 · Despliegue aislado</strong></td>
-          <td>Tres segmentos de red y verificación del aislamiento ejecutada desde el contenedor atacante</td>
+          <td>Aísla y segmenta el señuelo en tres zonas y verifica el aislamiento desde el propio contenedor atacante, de manera que se pueda demostrar qué queda alcanzable desde fuera</td>
           <td>Objetivos alcanzables desde el atacante</td><td class="n">—</td><td class="n">2 de 6 segmentos</td></tr>
       <tr><td><strong>3 · Captura y custodia</strong></td>
-          <td>La función de atribución reconoce las tres variantes de clave e incorpora el archivo señuelo y el sensor de red</td>
+          <td>Repara el instrumento de atribución, que es lo que impedía medir. Acepta las tres formas en que un escenario declara su objetivo y añade el archivo señuelo y el sensor de red como fuentes, de manera que los seis escenarios que antes no producían medición ahora la producen</td>
           <td>Escenarios con medición</td><td class="n">4 de 10</td><td class="n"><span class="chip cg">10 de 10</span></td></tr>
       <tr><td><strong>4 · Correlación</strong></td>
-          <td>La alerta clasificada con su técnica y su severidad encadena con la gestión de incidentes mediante el flujo de orquestación</td>
+          <td>Convierte cada evento capturado en una alerta clasificada con su técnica y su severidad y la encadena con la gestión de incidentes, de manera que el tiempo medido sea el del ciclo completo y no el de un registro suelto</td>
           <td>Alertas clasificadas con técnica</td><td class="n">10 de 10</td><td class="n">10 de 10</td></tr>
       <tr><td><strong>5 · Medición y mejora</strong></td>
-          <td>Catorce lecciones con causa raíz, cambio aplicado y cierre verificado</td>
-          <td>Lecciones cerradas</td><td class="n">7</td><td class="n"><span class="chip cg">14</span></td></tr>
+          <td>Compara las dos vueltas, registra cada discrepancia con su causa raíz y aplica la corrección antes de la segunda vuelta. Es la fase que convierte un fallo observado en un cambio verificado</td>
+          <td>Lecciones cerradas con corrección aplicada</td><td class="n">7</td><td class="n"><span class="chip cg">11 de 14</span></td></tr>
     </tbody>
   </table>
   <div class="note">La fase 3 concentra la mejora cuantificable porque es la que
@@ -491,17 +536,25 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
 <!-- 9 LECCIONES -->
 <section id="lecciones">
   <h2>K. Registro de lecciones aprendidas</h2>
-  <p class="sub">Catorce lecciones, todas cerradas. La columna de fase muestra
-     dónde se produjo cada una.</p>
-  <div class="two">
-    <div><h3>Lecciones por fase</h3><div id="ch-lecciones"></div></div>
-    <div><h3>Detalle</h3>
-      <table>
-        <thead><tr><th>ID</th><th>Fase</th><th>Hallazgo</th><th>Cierre</th></tr></thead>
-        <tbody id="tb-lecciones"></tbody>
-      </table>
-    </div>
-  </div>
+  <p class="sub">Catorce lecciones registradas en las dos vueltas. Once se cerraron con su
+     causa raíz identificada y su corrección aplicada, mientras que las tres
+     restantes quedan abiertas con una mitigación documentada, porque su causa está
+     fuera del segmento que controla la metodología. La columna de fase muestra dónde
+     se produjo cada una.</p>
+  <div id="ch-lecciones"></div>
+  <h3 style="margin-top:20px">Detalle de las catorce lecciones</h3>
+  <table>
+    <thead><tr><th>ID</th><th>Fase</th><th>Hallazgo</th><th>Causa raíz</th>
+      <th>Corrección aplicada</th><th>Estado</th></tr></thead>
+    <tbody id="tb-lecciones"></tbody>
+  </table>
+  <div class="note">Las once lecciones cerradas son las que sostienen la mejora
+    del instrumental entre las dos vueltas. Las tres abiertas se anotan con su
+    mitigación porque su causa raíz está en un componente de terceros o en una
+    decisión de despliegue que el perímetro del laboratorio no controla, de manera
+    que el registro deja constancia de lo que se hizo en lugar de declarar un
+    cierre que no se ha producido.</div>
+
 </section>
 
 <!-- 10 VOLUMEN -->
@@ -866,29 +919,28 @@ const T=(x,y,t,o={})=>`<text x="${x}" y="${y}" fill="${o.f||C.navy}"
     s+=`<rect x="${ml}" y="${y}" width="${w}" height="18" fill="${C.navy2}" rx="2"/>`;
     s+=T(ml+w+8,y+14,String(r[1]),{s:12.5,b:700,f:C.navy});
   });
-  s+=T(ml,H-8,"Total del ciclo: 14 lecciones, todas cerradas",
-    {s:11.5,b:700,f:C.green});
+  s+=T(W-10,H-8,"Total del ciclo: 14 lecciones registradas, 11 cerradas con corrección",
+    {a:"end",s:11.5,b:700,f:C.green});
   document.getElementById("ch-lecciones").innerHTML=s+"</svg>";
 
   const LE=[
-    ["L1","F3","El módulo de análisis no tenía configuración válida","Rutas de lectura insertadas en el elemento correcto"],
-    ["L2","F3","Las alertas no llegaban al índice","Publicador propio que indexa por HTTP"],
-    ["L3","F2","El gestor se reiniciaba cada dos minutos","Colector sin función de envío"],
-    ["L4","F3","El motor de red seguía detectando sin alertar","Reinicio programado de la posición de lectura"],
-    ["L5","F5","Los paneles mostraban ausencia de datos","Conversión de la consulta al formato admitido"],
-    ["L6","F5","Los paneles devolvían cero con documentos indexados","El publicador copia el campo de tiempo"],
-    ["L7","F2","Un fallo de arranque tumbaba el laboratorio","Tres scripts que restauran y terminan"],
-    ["L8","F3","El tablero nativo no representaba los datos","Sustituido por el tablero de métricas"],
-    ["L9","F4","La plataforma redirigía al módulo de organizaciones","Flujo de orquestación verificado hasta la alerta"],
-    ["L10","F2","El segmento de sensores no llegaba a crearse","Composición efectiva documentada en tres segmentos"],
-    ["L11","F5","Seis escenarios sin fuente de atribución","Aceptación de las tres variantes de clave"],
-    ["L12","F2","La campaña se detenía en el cuarto escenario","Límite de tiempo en las herramientas"],
-    ["L13","F2","Un escenario informaba captura inexistente","Comprobación de la herramienta al inicio"],
-    ["L14","F3","Dos escenarios sin fuente de detección","Lectura del archivo señuelo y del sensor de red"]];
+    ["L1","F3","El módulo de análisis no ingería los registros de los sensores","El archivo de configuración quedaba con XML inválido porque el bloque de registro local se añadía después del elemento raíz y la inicialización añadía un segundo elemento sobrante","Script que inserta los registros dentro de la raíz y absorbe el bloque sobrante, con validación XML y copia de seguridad","Cerrada"],
+    ["L2","F3","Las alertas nunca llegaban al índice","El recolector incluye un campo que el motor de búsqueda de destino rechaza en cada envío masivo","Publicador propio que indexa las alertas por HTTP sin ese campo","Cerrada"],
+    ["L3","F2","El gestor de registros se reiniciaba cada dos minutos","El recolector entra en pánico al negociar el canal cifrado y el supervisor interpreta la caída como fin del contenedor","El recolector queda con salida por consola y un lector inerte, y la indexación la hace el publicador","Cerrada"],
+    ["L4","F3","El motor de red seguía detectando pero el gestor dejó de alertar","El lector conserva la posición de lectura en la base del gestor, el archivo no rota y el desplazamiento queda desfasado","Script que trunca el archivo para forzar el reinicio de lectura y reinicia el módulo de análisis","Cerrada"],
+    ["L5","F5","Los paneles mostraban ausencia de datos","Incompatibilidad de versión entre el generador de consultas del tablero y el motor de búsqueda","Script que convierte las diecisiete consultas del tablero a un formato admitido y obtiene las categorías por rango","Cerrada"],
+    ["L6","F5","Los paneles devolvían cero con documentos indexados","Las alertas llevan el campo de tiempo con otro nombre del que usan el patrón de índice y el publicador","El publicador copia el campo de tiempo al nombre esperado y añade el campo de severidad","Cerrada"],
+    ["L7","F2","Un fallo puntual de arranque tumbaba el laboratorio entero","Los scripts de arranque usaban modo de interrupción ante error, de manera que cualquier fallo abortaba la inicialización","Los tres scripts restauran la copia de seguridad y terminan siempre con éxito","Cerrada"],
+    ["L8","F3","El tablero nativo cargaba el shell pero no renderizaba las vistas","La imagen local del producto aparece incompleta y la descarga posterior se corta","Mitigación documentada: la visualización del SIEM se sustituye por el tablero de métricas","Abierta"],
+    ["L9","F4","La plataforma de incidentes redirigía toda ruta al módulo de organizaciones","Estado de licencia en prueba del producto de gestión de incidentes","Mitigación documentada: el flujo de orquestación queda verificado hasta la generación de la alerta, que es el punto que la metodología necesita medir","Abierta"],
+    ["L10","F2","El segmento declarado para los sensores nunca llegaba a crearse","Los sensores se ejecutan en modo host y el segmento declarado no se materializa","Mitigación documentada: composición efectiva verificada en tres segmentos","Abierta"],
+    ["L11","F5","Seis escenarios quedaban como sin detección pese a que el señuelo registró el ataque","El calculador leía una sola clave para saber a qué señuelo atribuir la detección y cada escenario la escribía con un nombre distinto","La función acepta las tres variantes de clave, envuelve los valores de texto y los cuatro escenarios sin objetivo lo declaran","Cerrada"],
+    ["L12","F2","La campaña se bloqueaba en el cuarto escenario","Las herramientas de ataque se ejecutaban sin límite de tiempo","Se fija un límite de tiempo en las cuatro herramientas y en sus conexiones","Cerrada"],
+    ["L13","F2","Un escenario informaba captura de sesión sin que hubiera conexión","La herramienta de prueba no estaba instalada y el script ocultaba el fallo con un cierre tolerante","Se comprueba la herramienta al inicio, el cierre distingue el resultado parcial y se instalaron las herramientas","Cerrada"],
+    ["L14","F3","Dos escenarios no podían detectarse por falta de fuente","El calculador solo consultaba tres fuentes y no existía ninguna para el archivo señuelo ni para el tráfico DNS","Se añaden el archivo señuelo y el tráfico DNS como fuentes de detección","Cerrada"]];
   document.getElementById("tb-lecciones").innerHTML=LE.map(r=>
-    `<tr><td><strong>${r[0]}</strong></td><td>${r[1]}</td><td>${r[2]}</td>`+
-    `<td><span class="chip cg">cerrada</span><br><span style="font-size:11.5px;
-     color:#5A6878">${r[3]}</span></td></tr>`).join("");
+    `<tr><td><strong>${r[0]}</strong></td><td>${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td>`+
+    `<td>${r[4]}</td><td><span class="chip ${r[5]==="Cerrada"?"cg":"ca"}">${r[5].toLowerCase()}</span></td></tr>`).join("");
 })();
 /* ---------- A. DIAGNÓSTICO POR INSTRUMENTO ---------- */
 (function(){
@@ -997,7 +1049,8 @@ const T=(x,y,t,o={})=>`<text x="${x}" y="${y}" fill="${o.f||C.navy}"
     ["Fuentes de registro","3","6"],
     ["Técnicas con detección","4 de 10","10 de 10"],
     ["Tácticas con detección","3 de 6","6 de 6"],
-    ["Lecciones cerradas","7","14"],
+    ["Lecciones registradas","7","14"],
+    ["Lecciones cerradas","7","11"],
     ["Archivos con huella","91","91"],
     ["Calidad de la evidencia","100","100"]];
   const W=1000,rh=34,ml=330,mr=210,H=rows.length*rh+54;
@@ -1019,9 +1072,9 @@ const T=(x,y,t,o={})=>`<text x="${x}" y="${y}" fill="${o.f||C.navy}"
   s+=`<rect x="${xs[0]}" y="0" width="12" height="12" fill="${C.grey}" rx="2"/>`;
   s+=T(xs[0]+18,11,"Antes · diagnóstico del SIN (4.1)",{s:11.5,f:C.mute});
   s+=`<rect x="${xs[1]}" y="0" width="12" height="12" fill="${C.green}" rx="2"/>`;
-  s+=T(xs[1]+18,11,"Después · metodología verificada en el laboratorio (4.3 y 4.4)",
+  s+=T(xs[1]+18,11,"Después · verificado en el laboratorio (4.3 y 4.4)",
     {s:11.5,f:C.green});
-  s+=T(ml,H-26,"Los tres indicadores que no se mueven son base de partida y no de resultado.",
+  s+=T(ml,H-26,"Los cuatro indicadores que no se mueven son base de partida y no de resultado.",
     {s:11,f:C.mute});
   s+=T(ml,H-11,"Inventario, volumen de evidencia y calidad de la custodia se conservaron "
     +"durante todo el ciclo.",{s:11,f:C.mute});
