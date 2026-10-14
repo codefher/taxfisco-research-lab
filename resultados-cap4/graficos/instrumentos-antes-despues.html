@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Instrumentos antes y después</title>
+<style>
+  body{margin:0;background:#fff;font-family:'Segoe UI',Calibri,sans-serif}
+  #wrap{padding:16px}
+</style>
+</head>
+<body>
+<div id="wrap"><div id="ch"></div></div>
+<script>
+const C={navy:"#1F3864",navy2:"#2E75B6",navy3:"#4A7EBB",green:"#1F6032",
+  amber:"#9C6500",grey:"#C3CDDA",line:"#D6DEE8",mute:"#5A6878"};
+const SVG=(w,h)=>`<svg viewBox="0 0 ${w} ${h}" width="100%" height="${h}"
+  style="display:block;font-family:'Segoe UI',Calibri,sans-serif">`;
+const T=(x,y,t,o={})=>`<text x="${x}" y="${y}" fill="${o.f||C.navy}"
+  font-size="${o.s||12}" font-weight="${o.b||400}" text-anchor="${o.a||'start'}">${t}</text>`;
+
+(function(){
+  // Porcentajes iniciales verificados del apartado 4.1, de menor a mayor.
+  const antes=[["I13",47.78],["I7",47.92],["I1",48.54],["I4",49.17],["I8",49.72],
+    ["I10",50.56],["I11",52.78],["I9",53.06],["I12",53.89],["I14",53.89],
+    ["I2",56.94],["I5",57.22],["I3",58.06],["I6",58.33]];
+  const POST=99.06;   // dato agregado comunicado por el Servicio de Impuestos Nacionales
+
+  const W=780,H=568,ml=62,mr=158,mt=70,rh=28,bh=13;
+  const n=antes.length;
+  const top=mt-24, bottom=mt+n*rh+bh;
+  const min=44,max=100, sx=v=>ml+(v-min)/(max-min)*(W-ml-mr);
+  let s=SVG(W,H);
+
+  // Bandas de madurez de la ficha tecnica
+  [[44,51,"#EDF1F6"],[51,76,"#E6F0E9"],[76,100,"#EAF1F8"]].forEach(function(b){
+    s+=`<rect x="${sx(b[0])}" y="${top}" width="${sx(b[1])-sx(b[0])}"
+      height="${bottom-top}" fill="${b[2]}"/>`;
+  });
+  s+=T((sx(44)+sx(51))/2,top-9,"Básico",{a:"middle",s:11.5,b:700,f:C.navy3});
+  s+=T((sx(51)+sx(76))/2,top-9,"Gestionado",{a:"middle",s:11.5,b:700,f:C.navy3});
+  s+=T((sx(76)+sx(100))/2,top-9,"Optimizado",{a:"middle",s:11.5,b:700,f:C.navy3});
+
+  // Cortes de nivel
+  [[51,"51 %"],[76,"76 %"]].forEach(function(c){
+    s+=`<line x1="${sx(c[0])}" y1="${top}" x2="${sx(c[0])}" y2="${bottom}"
+      stroke="${C.navy2}" stroke-width="1.4" stroke-dasharray="5 4"/>`;
+    s+=T(sx(c[0]),bottom+22,c[1],{a:"middle",s:11.5,b:600,f:C.navy});
+  });
+
+  // Serie inicial, con el estilo de la figura 1 del capitulo
+  // El fondo del valor reproduce el color de su banda, de modo que la linea
+  // de corte no atraviese el texto
+  const banda=v=> v<51 ? "#EDF1F6" : (v<76 ? "#E6F0E9" : "#EAF1F8");
+  antes.forEach(function(r,i){
+    const y=mt+i*rh+bh/2, x=sx(r[1]);
+    s+=T(ml-12,y+4,r[0],{a:"end",s:11.5,b:700,f:C.mute});
+    s+=`<line x1="${ml}" y1="${y}" x2="${x}" y2="${y}"
+      stroke="${C.grey}" stroke-width="2"/>`;
+    // desplazamiento hasta el valor institucional
+    s+=`<line x1="${x+70}" y1="${y}" x2="${sx(POST)-12}" y2="${y}"
+      stroke="${C.green}" stroke-width="1" stroke-opacity="0.3"/>`;
+    s+=`<circle cx="${x}" cy="${y}" r="5.5" fill="${C.amber}"/>`;
+    const txt=String(r[1].toFixed(2)).replace(".",",")+" %";
+    s+=`<rect x="${x+7}" y="${y-9.5}" width="${txt.length*7.3+6}" height="19"
+      fill="${banda(r[1])}"/>`;
+    s+=T(x+11,y+4,txt,{s:11.5,b:700,f:C.amber});
+  });
+
+  // Resultado agregado comunicado por la institucion
+  const xp=sx(POST);
+  s+=`<line x1="${xp}" y1="${top}" x2="${xp}" y2="${bottom}"
+    stroke="${C.green}" stroke-width="2.6"/>`;
+  s+=`<circle cx="${xp}" cy="${top-14}" r="6" fill="${C.green}"/>`;
+  s+=T(xp+12,top-10,"99,06 %",{s:14,b:700,f:C.green});
+  s+=T(W-8,top+4,"Cumplimiento global",{a:"end",s:12,b:700,f:C.green});
+  s+=T(W-8,top+20,"comunicado por el SIN",{a:"end",s:11,f:C.green});
+
+  s+=T(ml,bottom+48,"Los catorce valores iniciales proceden del autoinforme de treinta respondentes, α = 0,869.",{s:11,f:C.mute});
+  s+=T(ml,bottom+66,"El valor posterior es el dato agregado comunicado por el Servicio de Impuestos Nacionales.",{s:11,f:C.mute});
+
+  document.getElementById("ch").innerHTML=s+"</svg>";
+})();
+</script>
+</body>
+</html>

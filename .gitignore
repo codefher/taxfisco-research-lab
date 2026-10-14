@@ -90,3 +90,9 @@ config/wazuh/dashboard/
 
 # --- Documento maestro de tesis (binario grande, no versionar) ---
 tesis/*.docx
+
+# --- Bloqueos de Word (archivos temporales ~\$...) ---
+~\$*
+
+# --- Carpeta de trabajo de render y verificacion ---
+.render/
