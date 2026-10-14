@@ -22,7 +22,8 @@ Esta carpeta reúne la versión vigente del tablero de resultados del capítulo 
 | Archivo | Qué es |
 | --- | --- |
 | `dashboard-resultados_v05.html` | Tablero interactivo, catorce secciones y trece gráficos vectoriales |
-| `dashboard-resultados_v05.docx` | Tablero en Word, diecisiete figuras y treinta tablas, formato vertical del capítulo |
+| `dashboard-resultados_v05.docx` | Tablero en Word con texto y tablas editables, diecisiete figuras y treinta tablas |
+| `dashboard-resultados_v05_desde-html.docx` | El mismo tablero tal como se ve en el navegador, una sección por página, con los trece gráficos y las quince tablas tal como los compone el HTML |
 | `graficos/instrumentos-antes-despues.html` | Fuente del gráfico de los catorce instrumentos, corregible en el navegador |
 | `graficos/instrumentos-antes-despues.png` | Ese mismo gráfico a 2400 px, que es la Figura 60 del capítulo |
 | `evidencia-institucional/Matriz_pre_post_99_09_alfa_SIN.xlsx` | Libro oficial recibido, archivado sin modificar |
