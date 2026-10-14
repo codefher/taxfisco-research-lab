@@ -4,6 +4,16 @@ El documento resultante NO contiene datos de la muestra de estudio. Muestra una
 sola respuesta de ejemplo, con respuestas variadas a proposito, para que quien
 lo reciba vea como se marca una casilla, como se anota la justificacion y como
 se calcula el nivel de un instrumento.
+
+Uso:
+    py -3 scripts/generar-instrumento-ejemplo.py            perfil variado
+    py -3 scripts/generar-instrumento-ejemplo.py alto       perfil de techo
+
+El perfil variado deja dos instrumentos en nivel Basico y el resto por encima,
+de modo que se observa como el instrumento discrimina entre niveles. El perfil
+alto lleva la madurez al nivel Optimizado para demostrar el techo de la escala,
+y deja un unico instrumento justo sobre el corte que separa Gestionado de
+Optimizado.
 """
 import os
 import sys
@@ -19,14 +29,21 @@ from docx.table import Table
 from docx.text.paragraph import Paragraph
 
 BASE = r"F:\Maestria\tesis\taxfisco-research-lab"
+PERFIL = sys.argv[1].lower() if len(sys.argv) > 1 else "variado"
+
+if PERFIL == "alto":
+    OUT = os.path.join(BASE, "instrumentos",
+                       "2026-06-11_Instrumento_Diagnostico_EJEMPLO_TECHO_v02.docx")
+else:
+    OUT = os.path.join(BASE, "instrumentos",
+                       "2026-06-11_Instrumento_Diagnostico_EJEMPLO_LLENADO_v01.docx")
+
 SRC = os.path.join(BASE, "instrumentos",
                    "2026-06-11_Instrumento_Diagnostico_NEUTRAL_v06.docx")
 if not os.path.exists(SRC):
     SRC = (r"C:\Users\fernando.mendoza\.minimax\v2\assets\2026\10\13\13-39-16-118-"
            r"asset_20261013-133916-118_14af3f8b4015_c93078e2-2026-06-11_"
            r"Instrumento_Diagnostico_NEUTRAL_v06.docx")
-OUT = os.path.join(BASE, "instrumentos",
-                   "2026-06-11_Instrumento_Diagnostico_EJEMPLO_LLENADO_v01.docx")
 
 # Opcion elegida por reactivo, indice base 0. El puntaje es 4 menos el indice.
 ELECCION = {
@@ -45,6 +62,30 @@ ELECCION = {
     37: 2, 38: 2, 39: 2,
     40: 1, 41: 1, 42: 1,
 }
+
+# Perfil de techo. Trece instrumentos superan el 76 % y el Instrumento 10 queda
+# justo en 75,00 %, es decir, sobre el corte que separa Gestionado de Optimizado.
+# Ese instrumento muestra el limite exacto del corte y conecta con el resultado
+# del pretest, donde el Instrumento 10 fue el mas proximo al corte de todos.
+ELECCION_ALTO = {
+    1: 0, 2: 0, 3: 1, 4: 1,          # I1  14/16 = 87,50 %
+    5: 0, 6: 0, 7: 1,                # I2  11/12 = 91,67 %
+    8: 0, 9: 0, 10: 1,               # I3  11/12 = 91,67 %
+    11: 0, 12: 1, 13: 1,             # I4  10/12 = 83,33 %
+    14: 0, 15: 0, 16: 1,             # I5  11/12 = 91,67 %
+    17: 0, 18: 1, 19: 1,             # I6  10/12 = 83,33 %
+    20: 0, 21: 1,                    # I7   7/8  = 87,50 %
+    22: 0, 23: 0, 24: 1,             # I8  11/12 = 91,67 %
+    25: 0, 26: 1, 27: 1,             # I9  10/12 = 83,33 %
+    28: 1, 29: 1, 30: 1,             # I10  9/12 = 75,00 %  (corte exacto)
+    31: 0, 32: 1, 33: 1,             # I11 10/12 = 83,33 %
+    34: 0, 35: 0, 36: 1,             # I12 11/12 = 91,67 %
+    37: 0, 38: 1, 39: 1,             # I13 10/12 = 83,33 %
+    40: 0, 41: 1, 42: 1,             # I14 10/12 = 83,33 %
+}
+
+if PERFIL == "alto":
+    ELECCION = ELECCION_ALTO
 
 JUSTIFICACION = {
     1: "Reporte de completitud de campos del último trimestre. Muestra: 200 eventos.",
@@ -214,12 +255,24 @@ ar = aviso.add_run("EJEMPLO ILUSTRATIVO DE LLENADO \u2014 NO ES DATO DE LA MUEST
 ar.font.size = Pt(13)
 ar.font.bold = True
 ar.font.color.rgb = RGBColor(0x9C, 0x65, 0x00)
-ar2 = aviso.add_run(
-    "Este documento muestra cómo se marca una casilla, cómo se anota la "
-    "justificación y cómo se calcula el nivel de un instrumento. Las respuestas "
-    "son ilustrativas y están escolhidas a propósito con valores variados para "
-    "que se observe cómo el instrumento distingue entre niveles. No proceden de "
-    "respondentes reales y no deben leerse como resultado de la investigación.")
+if PERFIL == "alto":
+    TEXTO_AVISO = (
+        "Este documento muestra el techo de la escala del instrumento. Las "
+        "respuestas son ilustrativas y se eligen altas a propósito, de modo que "
+        "trece instrumentos superan el corte de Optimizado y el décimo queda "
+        "exactamente sobre el corte que separa ese nivel del anterior. Sirve para "
+        "que quien lo reciba vea cómo se marca una casilla, cómo se anota la "
+        "justificación y cómo se calcula el nivel de un instrumento. No proceden "
+        "de respondentes reales y no deben leerse como resultado de la investigación.")
+else:
+    TEXTO_AVISO = (
+        "Este documento muestra cómo se marca una casilla, cómo se anota la "
+        "justificación y cómo se calcula el nivel de un instrumento. Las respuestas "
+        "son ilustrativas y están escogidas a propósito con valores variados para "
+        "que se observe cómo el instrumento distingue entre niveles. No proceden de "
+        "respondentes reales y no deben leerse como resultado de la investigación.")
+
+ar2 = aviso.add_run(TEXTO_AVISO)
 ar2.font.size = Pt(9.5)
 ar2.font.color.rgb = RGBColor(0x33, 0x40, 0x4F)
 primer.addprevious(aviso._p)
@@ -227,7 +280,8 @@ primer.addprevious(aviso._p)
 # ------------------------------------------------- 6. resumen del ejemplo
 res = d.add_paragraph()
 res.paragraph_format.space_before = Pt(14)
-rr = res.add_run("Resumen del ejemplo, por instrumento")
+rr = res.add_run("Resumen del ejemplo, por instrumento"
+               + (" (perfil de techo de la escala)" if PERFIL == "alto" else ""))
 rr.font.size = Pt(11)
 rr.font.bold = True
 rr.font.color.rgb = RGBColor(0x1F, 0x38, 0x64)
@@ -256,7 +310,8 @@ for inst_nombre, tot, maximo, pct, niv in resumen:
 
 glob = sum(x[3] for x in resumen) / len(resumen)
 cells = tabla.add_row().cells
-for i, v in enumerate(["Madurez global del ejemplo",
+for i, v in enumerate(["Madurez global del ejemplo"
+                       + (" (techo)" if PERFIL == "alto" else ""),
                        "42 reactivos",
                        ("%.2f %%" % glob).replace(".", ","), nivel(glob)]):
     cells[i].text = ""
