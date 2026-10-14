@@ -194,18 +194,24 @@ Los instrumentos de esta carpeta se dedican exclusivamente al Prototipo II, porq
 
 | Archivo | Contenido | Indicación que atiende |
 | --- | --- | --- |
-| `dashboard-resultados_v02.html` | Tablero navegable de trece secciones, con el antes y las seis brechas | 1 y 4 |
-| `dashboard-resultados_v02.docx` | Tablero en Word, con catorce figuras y veintitrés tablas | 1, 3, 4 y 5 |
-| `dashboard-resultados_v02.pdf` | Versión del tablero para el capítulo | 1, 3 y 4 |
+| `dashboard-resultados_v03.html` | Tablero navegable de catorce secciones, con el antes, las seis brechas y el resultado institucional | 1 y 4 |
+| `dashboard-resultados_v03.docx` | Tablero en Word, con dieciséis figuras y veintiséis tablas | 1, 3, 4 y 5 |
+| `dashboard-resultados_v03.pdf` | Versión del tablero en A3 apaisado, doce páginas | 1, 3 y 4 |
+| `dashboard-resultados_v02.html` | Añade el antes institucional sobre la v01 | 1 y 4 |
+| `dashboard-resultados_v02.docx` | Segunda versión en Word | 1, 3, 4 y 5 |
+| `dashboard-resultados_v02.pdf` | Segunda versión en PDF | 1, 3 y 4 |
 | `dashboard-resultados_v01.html` | Primera versión, solo con el antes y después del laboratorio | 1 |
 | `dashboard-resultados_v01.docx` | Primera versión en Word | 1 |
 | `dashboard-resultados_v01.pdf` | Primera versión en PDF | 1 |
 | `evidencia-visual/tablero-alertas-vuelta-1.png` | Captura del tablero en la línea base | 1 y 4 |
 | `evidencia-visual/tablero-alertas-vuelta-2.png` | Captura del tablero en la medición final | 1 y 4 |
+| `evidencia-institucional/comunicacion-sin-postest-99-06.md` | Comunicación del SIN con su análisis y las verificaciones | 4 |
 | `2026-10-12_Resultados_Prototipo_II_SIN_v12.xlsx` | Diez hojas con los indicadores del laboratorio | 1, 3 y 5 |
 | `2026-10-12_Comparacion_Antes_Despues_v05.xlsx` | Nueve hojas con el antes y el después | 4 |
 | `2026-10-12_Matriz_Evidencia_Laboratorio_por_Item_v06.xlsx` | Cuarenta y dos ítems con su evidencia | 5 |
 | `2026-10-12_Matriz_Evidencia_Laboratorio_por_Item_v01.docx` | La misma matriz en formato de documento | 5 |
+| `2026-10-14_Matriz_Pretest_Autentica_30x42_v01.xlsx` | Matriz real de treinta respondentes verificada contra el apartado 4.1 | 4 |
+| `2026-10-14_Matriz_Captura_Postest_30x42_v01.xlsx` | Libro de captura vacío con las fórmulas listas | 4 |
 | `00_GUIA_INDICACIONES_TUTORA.md` | Este documento de respaldo | Todas |
 
 ---
@@ -234,16 +240,19 @@ El tablero se entrega en dos versiones para conservar la trazabilidad de cada re
 | --- | --- | --- |
 | v01 | Antes y después de las dos iteraciones del laboratorio | `dashboard-resultados_v01.html`, `_v01.pdf` y `_v01.docx` |
 | v02 | Añade el diagnóstico institucional como punto de partida y la trazabilidad de las seis brechas | `dashboard-resultados_v02.html`, `_v02.pdf` y `_v02.docx` |
+| v03 | Añade el resultado institucional comunicado por el SIN y la tabla que separa las cuatro fuentes de resultado | `dashboard-resultados_v03.html`, `_v03.pdf` y `_v03.docx` |
 
-**Qué aporta la v02 sobre la v01**
+**Qué aporta la v03 sobre la v02**
 
-1. Un apartado inicial con el antes, tomado del apartado 4.1 del marco práctico.
-2. La madurez de los catorce instrumentos sobre los cortes de la ficha técnica.
-3. La madurez por grupo temático y la posición de la madurez global frente a los cortes.
-4. La tabla que enlaza cada una de las seis brechas con la fase que la responde y el indicador verificado.
-5. El gráfico puente que enfrenta el antes diagnosticado con el después verificado.
+1. Un apartado final con el 99,06 % comunicado por el Servicio de Impuestos Nacionales.
+2. El gráfico que sitúa esa cifra y la madurez diagnosticada sobre la escala de cortes de la ficha técnica.
+3. La tabla que separa las cuatro fuentes de resultado del capítulo y declara que no comparten escala.
+4. La corrección de dos textos que estaban en inglés y en francés en la v02.
+5. La sustitución de la nota que anunciaba una reaplicación del instrumento, porque esa reaplicación no se realizó.
 
 **Criterio de enlace entre las dos columnas.** El antes y el después se midieron con instrumentos distintos. La columna del antes procede del autoinforme de treinta respondentes, que mide madurez declarada. La columna del después procede de la instrumentalización del laboratorio, que mide ejecución verificada sobre archivos de evidencia. El tablero no superpone ambos conjuntos en un mismo eje porque ese contraste produciría una lectura engañosa. Lo que los enlaza es la trazabilidad, de modo que cada brecha tiene una fase que la responde y un indicador de archivo que la confirma.
+
+**Sobre la tercera fuente de resultado.** El 99,06 % no se superpone con las anteriores porque responde a otra pregunta y la mide otra fuente. El tablero lo presenta en su propio eje, con la escala de cortes de la ficha técnica y la distancia de 46,36 puntos porcentuales respecto del diagnóstico.
 
 ---
 

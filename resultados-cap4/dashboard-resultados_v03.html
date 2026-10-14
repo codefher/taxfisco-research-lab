@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dashboard de resultados · Prototipo II · Laboratorio SIN</title>
+<style>
+:root{
+  --navy:#1F3864; --navy2:#2E75B6; --navy3:#4A7EBB;
+  --green:#1F6032; --green-bg:#E2EFDA;
+  --amber:#9C6500; --amber-bg:#FFF2CC;
+  --red:#9C0006;   --red-bg:#FCE4E4;
+  --grey:#6E7B8B; --line:#D6DEE8; --bg:#F4F7FB; --card:#FFFFFF;
+  --ink:#1A2430; --mute:#5A6878;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font:15px/1.6 "Segoe UI",Calibri,system-ui,sans-serif;
+}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px 64px}
+header{
+  background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 100%);
+  color:#fff;padding:34px 0 30px;margin-bottom:26px;
+}
+header .wrap{padding-bottom:0}
+header .kicker{font-size:12px;letter-spacing:.16em;text-transform:uppercase;opacity:.82}
+header h1{margin:8px 0 4px;font-size:29px;font-weight:600;letter-spacing:-.2px}
+header p{margin:0;opacity:.9;font-size:14px;max-width:820px}
+.badges{margin-top:16px;display:flex;gap:8px;flex-wrap:wrap}
+.badge{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28);
+  border-radius:4px;padding:5px 11px;font-size:12px}
+nav{background:var(--card);border:1px solid var(--line);border-radius:8px;
+  padding:14px 18px;margin-bottom:24px;box-shadow:0 1px 3px rgba(31,56,100,.07)}
+nav strong{display:block;font-size:11px;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--mute);margin-bottom:9px}
+nav ol{margin:0;padding-left:20px;columns:3;column-gap:26px}
+nav li{margin:3px 0;font-size:13.5px}
+nav a{color:var(--navy2);text-decoration:none}
+nav a:hover{text-decoration:underline}
+section{background:var(--card);border:1px solid var(--line);border-radius:8px;
+  padding:24px 26px;margin-bottom:22px;box-shadow:0 1px 3px rgba(31,56,100,.07)}
+h2{font-size:20px;margin:0 0 5px;color:var(--navy);font-weight:600}
+h3{font-size:15px;margin:0 0 12px;color:var(--navy);font-weight:600}
+.sub{color:var(--mute);font-size:13.5px;margin:0 0 18px;max-width:900px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(196px,1fr));gap:14px}
+.kpi{border:1px solid var(--line);border-left:4px solid var(--navy2);
+  border-radius:6px;padding:14px 16px;background:#FBFCFE}
+.kpi.g{border-left-color:var(--green);background:var(--green-bg)}
+.kpi.a{border-left-color:var(--amber);background:var(--amber-bg)}
+.kpi .lab{font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--mute)}
+.kpi .val{font-size:27px;font-weight:700;color:var(--navy);line-height:1.15;margin:5px 0 2px}
+.kpi.g .val{color:var(--green)} .kpi.a .val{color:var(--amber)}
+.kpi .dlt{font-size:12.5px;color:var(--mute)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+@media(max-width:900px){.grid2{grid-template-columns:1fr}nav ol{columns:1}}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th{background:var(--navy);color:#fff;text-align:left;padding:9px 11px;
+  font-weight:600;font-size:12.5px}
+td{padding:8px 11px;border-bottom:1px solid var(--line)}
+tbody tr:nth-child(even){background:#F8FAFC}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+.chip{display:inline-block;padding:2px 8px;border-radius:11px;font-size:11.5px;
+  font-weight:600;white-space:nowrap}
+.cg{background:var(--green-bg);color:var(--green)}
+.ca{background:var(--amber-bg);color:var(--amber)}
+.cb{background:var(--red-bg);color:var(--red)}
+.cb2{background:#EDF2F8;color:var(--navy2)}
+.note{background:#F2F6FB;border-left:4px solid var(--navy3);padding:13px 16px;
+  border-radius:0 5px 5px 0;font-size:13.5px;color:#33404F;margin-top:16px}
+.foot{margin-top:34px;padding-top:18px;border-top:2px solid var(--navy);
+  font-size:12.5px;color:var(--mute)}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:18px}
+@media(max-width:900px){.pair{grid-template-columns:1fr}}
+.pair figure{margin:0;display:flex;flex-direction:column}
+.pair img{width:100%;height:auto;border:1px solid var(--line);border-radius:6px;
+  box-shadow:0 2px 10px rgba(31,56,100,.10)}
+.pair figcaption{font-size:13.5px;color:var(--navy);font-weight:600;
+  margin:9px 0 6px}
+.pair .pie{font-size:12px;color:var(--mute);border-left:3px solid var(--navy3);
+  padding-left:10px;margin:0}
+.two{display:grid;grid-template-columns:1.15fr .85fr;gap:26px}
+@media(max-width:980px){.two{grid-template-columns:1fr}}
+@media print{
+  body{background:#fff;font-size:11px}
+  header{background:var(--navy)!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  section{break-inside:avoid;box-shadow:none;border-color:#bbb;margin-bottom:12px;padding:14px}
+  nav{display:none}
+  .wrap{max-width:none;padding:0 10px}
+  .kpi,.chip,.note,.badge,.c{ -webkit-print-color-adjust:exact;print-color-adjust:exact}
+  h2{font-size:15px}
+}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <div class="kicker">Capítulo IV · Marco Práctico · Resultados</div>
+  <h1>Dashboard de resultados del Prototipo II</h1>
+  <p>Laboratorio SIN · campaña de diez escenarios ejecutada en dos vueltas de la
+     misma metodología, con las correcciones de la primera aplicadas en la segunda.
+     Incluye el resultado institucional comunicado por el Servicio de Impuestos
+     Nacionales y la tabla que separa las cuatro fuentes de resultado del
+     capítulo.</p>
+  <div class="badges">
+    <span class="badge">10 escenarios</span>
+    <span class="badge">2 iteraciones</span>
+    <span class="badge">5 fases</span>
+    <span class="badge">14 lecciones cerradas</span>
+    <span class="badge">17 técnicas MITRE ATT&amp;CK</span>
+    <span class="badge">91 archivos de evidencia</span>
+    <span class="badge">99,06 % comunicado por el SIN</span>
+  </div>
+</div></header>
+
+<div class="wrap">
+
+<nav><strong>Contenido</strong>
+<ol>
+  <li><a href="#antes-sin">El antes: diagnóstico del SIN</a></li>
+  <li><a href="#brechas">Las seis brechas que la metodología atiende</a></li>
+  <li><a href="#kpi">Indicadores principales</a></li>
+  <li><a href="#antes">Antes y después de la medición</a></li>
+  <li><a href="#tiempo">Tiempo de detección por escenario</a></li>
+  <li><a href="#dist">Distribución del tiempo de detección</a></li>
+  <li><a href="#fuentes">Fuentes de detección</a></li>
+  <li><a href="#attack">Cobertura MITRE ATT&amp;CK</a></li>
+  <li><a href="#ciclo">Ciclo de iteraciones</a></li>
+  <li><a href="#fases">Aportación de cada fase</a></li>
+  <li><a href="#lecciones">Registro de lecciones aprendidas</a></li>
+  <li><a href="#volumen">Volumen de actividad</a></li>
+  <li><a href="#visual">Evidencia visual del tablero</a></li>
+  <li><a href="#inst">Resultado institucional del SIN</a></li>
+</ol></nav>
+
+<!-- ANTES: DIAGNOSTICO INSTITUCIONAL DEL SIN -->
+<section id="antes-sin">
+  <h2>A. El antes: diagnóstico de la situación actual</h2>
+  <p class="sub">Antes de aplicar la metodología se diagnosticó la gestión de
+     incidentes del Servicio de Impuestos Nacionales de Bolivia con un
+     instrumento de madurez aplicado a la totalidad del personal del área. Este
+     apartado es el punto de partida, y todo lo que viene después se mide
+     contra él.</p>
+
+  <div class="kpis">
+    <div class="kpi"><div class="lab">Madurez global</div>
+      <div class="val">52,70 %</div>
+      <div class="dlt">Nivel Gestionado, en su borde inferior</div></div>
+    <div class="kpi"><div class="lab">Respondentes válidos</div>
+      <div class="val">30</div>
+      <div class="dlt">Sobre 14 roles funcionales</div></div>
+    <div class="kpi"><div class="lab">Coeficiente Alfa de Cronbach</div>
+      <div class="val">0,869</div>
+      <div class="dlt">Rango Bueno, con umbral declarado de 0,70</div></div>
+    <div class="kpi a"><div class="lab">Instrumentos en nivel Básico</div>
+      <div class="val">6 de 14</div>
+      <div class="dlt">Los seis que la metodología atiende</div></div>
+    <div class="kpi"><div class="lab">Rango entre instrumentos</div>
+      <div class="val">10,55</div>
+      <div class="dlt">Puntos entre el mayor y el menor</div></div>
+  </div>
+
+  <h3>Cumplimiento por instrumento, frente a los cortes de madurez</h3>
+  <div id="ch-diag"></div>
+  <table style="margin-top:16px">
+    <thead><tr><th>Grupo</th><th class="n">Instr.</th><th>Subdimensión evaluada</th>
+      <th class="n">Ítems</th><th class="n">Cumplimiento</th><th>Nivel</th></tr></thead>
+    <tbody>
+      <tr><td>G1</td><td class="n">1</td><td>Detección y registro de eventos</td>
+        <td class="n">4</td><td class="n">48,54 %</td><td><span class="chip ca">Básico</span></td></tr>
+      <tr><td>G1</td><td class="n">2</td><td>Clasificación y evidencia de incidentes</td>
+        <td class="n">3</td><td class="n">56,94 %</td><td><span class="chip cg">Gestionado</span></td></tr>
+      <tr><td>G1</td><td class="n">3</td><td>Respuesta y tiempos de atención</td>
+        <td class="n">3</td><td class="n">58,06 %</td><td><span class="chip cg">Gestionado</span></td></tr>
+      <tr><td>G1</td><td class="n">4</td><td>Lecciones aprendidas y mejora</td>
+        <td class="n">3</td><td class="n">49,17 %</td><td><span class="chip ca">Básico</span></td></tr>
+      <tr><td>G2</td><td class="n">5</td><td>Integridad y custodia de evidencias</td>
+        <td class="n">3</td><td class="n">57,22 %</td><td><span class="chip cg">Gestionado</span></td></tr>
+      <tr><td>G2</td><td class="n">6</td><td>Respaldos y restauración de evidencias</td>
+        <td class="n">3</td><td class="n">58,33 %</td><td><span class="chip cg">Gestionado</span></td></tr>
+      <tr><td>G2</td><td class="n">7</td><td>Retención y acceso a evidencias</td>
+        <td class="n">2</td><td class="n">47,92 %</td><td><span class="chip ca">Básico</span></td></tr>
+      <tr><td>G3</td><td class="n">8</td><td>Accesos y mínimos privilegios</td>
+        <td class="n">3</td><td class="n">49,72 %</td><td><span class="chip ca">Básico</span></td></tr>
+      <tr><td>G3</td><td class="n">9</td><td>Desarrollo seguro y validaciones</td>
+        <td class="n">3</td><td class="n">53,06 %</td><td><span class="chip cg">Gestionado</span></td></tr>
+      <tr><td>G3</td><td class="n">10</td><td>Gestión de vulnerabilidades</td>
+        <td class="n">3</td><td class="n">50,56 %</td><td><span class="chip ca">Básico</span></td></tr>
+      <tr><td>G3</td><td class="n">11</td><td>Integridad y trazabilidad de registros</td>
+        <td class="n">3</td><td class="n">52,78 %</td><td><span class="chip cg">Gestionado</span></td></tr>
+      <tr><td>G4</td><td class="n">12</td><td>Gestión de riesgos</td>
+        <td class="n">3</td><td class="n">53,89 %</td><td><span class="chip cg">Gestionado</span></td></tr>
+      <tr><td>G4</td><td class="n">13</td><td>Capacitación y cobertura</td>
+        <td class="n">3</td><td class="n">47,78 %</td><td><span class="chip ca">Básico</span></td></tr>
+      <tr><td>G4</td><td class="n">14</td><td>Métricas y mejora continua</td>
+        <td class="n">3</td><td class="n">53,89 %</td><td><span class="chip cg">Gestionado</span></td></tr>
+    </tbody>
+  </table>
+
+  <div class="grid2" style="margin-top:18px">
+    <div>
+      <h3>Madurez por grupo temático</h3>
+      <div id="ch-grupos"></div>
+      <table>
+        <thead><tr><th>Grupo</th><th class="n">Cumplimiento</th><th>Nivel</th></tr></thead>
+        <tbody>
+          <tr><td>G1 · Gestión de incidentes</td><td class="n">53,18 %</td>
+            <td><span class="chip cg">Gestionado</span></td></tr>
+          <tr><td>G2 · Evidencias y respaldo</td><td class="n">54,49 %</td>
+            <td><span class="chip cg">Gestionado</span></td></tr>
+          <tr><td>G3 · Seguridad y controles técnicos</td><td class="n">51,53 %</td>
+            <td><span class="chip cg">Gestionado</span></td></tr>
+          <tr><td>G4 · Gestión organizacional y mejora</td><td class="n">51,85 %</td>
+            <td><span class="chip cg">Gestionado</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <h3>Posición de la madurez global</h3>
+      <div id="ch-global"></div>
+      <div class="note">El 52,70 % se ubica a 1,70 puntos del corte que separa
+         el nivel Gestionado del nivel Básico. Los cuatro grupos quedan en
+         Gestionado dentro de una franja de apenas 2,96 puntos, de modo que el
+         proceso funcionaba de manera homogénea y sin margen de reserva.</div>
+    </div>
+  </div>
+
+  <div class="note">La caracterización del diagnóstico es precisa. El sistema
+     gestionaba los incidentes que detectaba y conservaba la evidencia que
+     capturaba, pero perdía eventos en la entrada, perdía evidencia en el
+     archivo y perdía aprendizaje en el cierre. Estas seis brechas son el
+     punto exacto sobre el que actúa la metodología.</div>
+</section>
+
+<!-- BRECHAS Y SU RESPUESTA -->
+<section id="brechas">
+  <h2>B. Las seis brechas que la metodología atiende</h2>
+  <p class="sub">Cada brecha del diagnóstico se enlaza con la fase de la
+     metodología que la responde y con el indicador verificado que la
+     evidencia del laboratorio demuestra. La columna de indicador posterior
+     recoge una medición de archivo, no una estimación.</p>
+  <table>
+    <thead><tr><th class="n">Instr.</th><th>Brecha diagnosticada</th>
+      <th class="n">Antes</th><th>Fase que la responde</th>
+      <th>Indicador verificado</th><th class="n">Después</th></tr></thead>
+    <tbody>
+      <tr><td class="n">1</td>
+        <td>Eventos sin registro completo, demoras de registro central y disponibilidad del monitoreo bajo el acuerdo de servicio</td>
+        <td class="n">48,54 %</td><td>Fase 3 · Captura</td>
+        <td>Escenarios con fuente de detección identificada</td>
+        <td class="n"><span class="chip cg">10 de 10</span></td></tr>
+      <tr><td class="n">4</td>
+        <td>Revisiones posteriores al incidente no sistemáticas y lecciones sin incorporación documentada al proceso</td>
+        <td class="n">49,17 %</td><td>Fase 5 · Medición</td>
+        <td>Lecciones con causa raíz, cambio aplicado y cierre verificado</td>
+        <td class="n"><span class="chip cg">14 de 14</span></td></tr>
+      <tr><td class="n">7</td>
+        <td>Retención efectiva bajo la política y acceso a evidencia histórica sin trazabilidad</td>
+        <td class="n">47,92 %</td><td>Fase 3 · Custodia</td>
+        <td>Archivos de evidencia con huella criptográfica verificada</td>
+        <td class="n"><span class="chip cg">91 de 91</span></td></tr>
+      <tr><td class="n">8</td>
+        <td>Asignación, revisión y revocación de credenciales sin la sistematicidad exigible</td>
+        <td class="n">49,72 %</td><td>Fase 2 · Despliegue</td>
+        <td>Objetivos alcanzables desde la posición del atacante</td>
+        <td class="n"><span class="chip cg">2 de 6</span></td></tr>
+      <tr><td class="n">10</td>
+        <td>Periodicidad de escaneos, velocidad de remediación y cobertura de activos por debajo del estándar</td>
+        <td class="n">50,56 %</td><td>Fases 3 y 4</td>
+        <td>Técnicas del marco de comportamiento adversario con fuente de detección</td>
+        <td class="n"><span class="chip cg">10 de 10</span></td></tr>
+      <tr><td class="n">13</td>
+        <td>Cobertura, periodicidad y trazabilidad de capacitación insuficientes en el personal operativo</td>
+        <td class="n">47,78 %</td><td>Fase 5 · Medición</td>
+        <td>Procedimientos documentados y repetibles que sustituyen al conocimiento no registrado</td>
+        <td class="n"><span class="chip cg">10 criterios de verificación</span></td></tr>
+    </tbody>
+  </table>
+
+  <h3>Del diagnóstico a la evidencia: puente de los dos conjuntos de datos</h3>
+  <div id="ch-puente"></div>
+  <div class="note">Las dos columnas de este tablero se midieron con instrumentos
+     distintos y por eso el tablero no las superpone en un mismo eje. La
+     columna del antes procede del autoinforme de los treinta respondentes del
+     área, que mide madurez declarada. La columna del después procede de
+     instrumentalización del laboratorio, que mide ejecución verificada sobre
+     archivos de evidencia. Unir ambas en una sola escala produciría un
+     contraste engañoso. Lo que las enlaza es la trazabilidad: cada brecha del
+     diagnóstico tiene una fase de la metodología que la responde y un
+     indicador de archivo que la confirma.</div>
+  <div class="note">El apartado N incorpora la tercera fuente de resultado, que
+     es la que comunica la institución tras la intervención. Las tres fuentes
+     quedan separadas porque cada una mide con su propio instrumento y en su
+     propia escala.</div>
+</section>
+
+<!-- 1 KPI -->
+<section id="kpi">
+  <h2>C. Indicadores principales del laboratorio</h2>
+  <p class="sub">Ocho cifras resumen el resultado de la metodología. Las cuatro
+     destacadas en verde son las que cambian entre la línea base y la medición
+     posterior; las demás se conservan y sirven de contraste.</p>
+  <div class="kpis">
+    <div class="kpi g"><div class="lab">Escenarios con medición</div>
+      <div class="val">10 de 10</div>
+      <div class="dlt">Línea base: 4 de 10</div></div>
+    <div class="kpi g"><div class="lab">Fuentes de registro</div>
+      <div class="val">6</div>
+      <div class="dlt">Línea base: 3 componentes</div></div>
+    <div class="kpi g"><div class="lab">Técnicas con detección</div>
+      <div class="val">10 de 10</div>
+      <div class="dlt">Línea base: 4 de 10</div></div>
+    <div class="kpi g"><div class="lab">Tácticas con detección</div>
+      <div class="val">6 de 6</div>
+      <div class="dlt">Línea base: 3 de 6</div></div>
+    <div class="kpi"><div class="lab">Percentil 95 de detección</div>
+      <div class="val">9,27 s</div>
+      <div class="dlt">Línea base: 14,58 s</div></div>
+    <div class="kpi"><div class="lab">Tiempo medio de detección</div>
+      <div class="val">2,02 s</div>
+      <div class="dlt">Sobre los diez escenarios</div></div>
+    <div class="kpi"><div class="lab">Ciclo de corrección</div>
+      <div class="val">4 h 26</div>
+      <div class="dlt">De la línea base a la medición final</div></div>
+    <div class="kpi a"><div class="lab">Lecciones cerradas</div>
+      <div class="val">14 de 14</div>
+      <div class="dlt">Con su archivo de verificación</div></div>
+  </div>
+  <div class="note">El tiempo medio de las dos vueltas no se compara entre sí,
+    porque la línea base se midió sobre cuatro escenarios y la medición
+    posterior sobre los diez. La comparación válida es escenario por escenario
+    y se presenta en el apartado siguiente.</div>
+</section>
+
+<!-- 2 ANTES Y DESPUES -->
+<section id="antes">
+  <h2>D. Antes y después de la medición</h2>
+  <p class="sub">La metodología transformó el instrumental de medición, no el
+     señuelo. El señuelo ejecutó los mismos diez escenarios en las dos vueltas
+     con las mismas técnicas, de modo que la diferencia entre las columnas
+     corresponde al trabajo de la metodología.</p>
+  <div class="two">
+    <div>
+      <h3>Cobertura de la medición, en valores absolutos</h3>
+      <div id="ch-antes"></div>
+    </div>
+    <div>
+      <h3>Lectura del cambio</h3>
+      <table>
+        <thead><tr><th>Indicador</th><th class="n">Línea base</th><th class="n">Final</th><th class="n">Δ</th></tr></thead>
+        <tbody>
+          <tr><td>Escenarios con tiempo medido</td><td class="n">4</td><td class="n">10</td><td class="n"><span class="chip cg">+6</span></td></tr>
+          <tr><td>Fuentes de registro</td><td class="n">3</td><td class="n">6</td><td class="n"><span class="chip cg">+3</span></td></tr>
+          <tr><td>Técnicas con fuente</td><td class="n">4</td><td class="n">10</td><td class="n"><span class="chip cg">+6</span></td></tr>
+          <tr><td>Tácticas con fuente</td><td class="n">3</td><td class="n">6</td><td class="n"><span class="chip cg">+3</span></td></tr>
+          <tr><td>Escenarios ejecutados</td><td class="n">10</td><td class="n">10</td><td class="n"><span class="chip cb2">=</span></td></tr>
+          <tr><td>Técnicas del inventario</td><td class="n">17</td><td class="n">17</td><td class="n"><span class="chip cb2">=</span></td></tr>
+          <tr><td>Archivos de evidencia</td><td class="n">91</td><td class="n">91</td><td class="n"><span class="chip cb2">=</span></td></tr>
+          <tr><td>Calidad de la evidencia</td><td class="n">100</td><td class="n">100</td><td class="n"><span class="chip cb2">=</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="note">Las cuatro primeras filas crecen porque el instrumental
+    registra más. Las cuatro últimas no se mueven, y esa es precisamente la
+    prueba de que la diferencia procede de la corrección del instrumental y no
+    de un cambio en el volumen de evidencia ni en el catálogo de amenazas.</div>
+</section>
+
+<!-- 3 TIEMPO -->
+<section id="tiempo">
+  <h2>E. Tiempo de detección de los cuatro escenarios comparables</h2>
+  <p class="sub">Son los cuatro escenarios que produjeron medición en las dos
+     vueltas, de modo que conservan el mismo número de muestras y el mismo
+     criterio de cálculo. Los cuatro muestran reducción.</p>
+  <div id="ch-tiempo"></div>
+  <table style="margin-top:16px">
+    <thead><tr><th>Escenario</th><th>Técnica</th><th class="n">Línea base</th>
+      <th class="n">Medición final</th><th class="n">Reducción</th><th>Origen del dato</th></tr></thead>
+    <tbody>
+      <tr><td>S01 · Reconocimiento activo</td><td>T1595</td><td class="n">16,851 s</td><td class="n">15,91 s</td><td class="n"><span class="chip cg">5,6 %</span></td><td>Interfaz de servicios del atacante</td></tr>
+      <tr><td>S02 · Escaneo web</td><td>T1595.002</td><td class="n">1,214 s</td><td class="n">1,095 s</td><td class="n"><span class="chip cg">9,8 %</span></td><td>Portal del señuelo</td></tr>
+      <tr><td>S05 · Suplantación de credenciales</td><td>T1110.004</td><td class="n">1,734 s</td><td class="n">1,145 s</td><td class="n"><span class="chip cg">34,0 %</span></td><td>Interfaz de servicios del señuelo</td></tr>
+      <tr><td>S07 · Abuso de la interfaz</td><td>T1078</td><td class="n">1,063 s</td><td class="n">0,264 s</td><td class="n"><span class="chip cg">75,2 %</span></td><td>Interfaz de servicios del señuelo</td></tr>
+    </tbody>
+  </table>
+  <div class="note">La reducción se calcula sobre los valores de origen con tres
+     decimales, no sobre los valores redondeados de la tabla. La media del
+     percentil 95 baja de 14,58 s a 9,27 s, lo que confirma que la mejora se
+     sostiene en la cola de la distribución y no solo en el promedio.</div>
+</section>
+
+<!-- 4 DISTRIBUCION -->
+<section id="dist">
+  <h2>F. Distribución del tiempo de detección en la medición final</h2>
+  <p class="sub">Los diez escenarios de la medición posterior. Cada barra
+     indica cuántos escenarios caen en cada tramo de tiempo.</p>
+  <div id="ch-dist"></div>
+  <div class="note">Ocho de los diez escenarios se detectan por debajo de un
+     segundo. Los dos más lentos, S01 y S02, son los de reconocimiento activo,
+     donde el primer evento del atacante tarda en llegar al señuelo porque la
+     actividad se ejecuta por red.</div>
+</section>
+
+<!-- 5 FUENTES -->
+<section id="fuentes">
+  <h2>G. Fuentes que registran la detección</h2>
+  <p class="sub">Cada escenario es detectado por un componente distinto. La
+     línea base tenía tres componentes y la medición final seis, y esa
+     ampliación es la que devuelve la medición a los seis escenarios que la
+     primera vuelta no tenía.</p>
+  <div id="ch-fuentes"></div>
+  <div class="note">Los tres componentes añadidos durante el ciclo son el
+     emulador de acceso remoto, el archivo señuelo y el sensor de red. Cada uno
+     responde a una lección concreta: L13, L14 y L14 respectivamente.</div>
+</section>
+
+<!-- 6 ATT&CK -->
+<section id="attack">
+  <h2>H. Cobertura de MITRE ATT&amp;CK</h2>
+  <p class="sub">El inventario del señuelo comprende diecisiete técnicas
+     distribuidas en ocho tácticas. Diez las activa algún escenario de la
+     campaña y todas diez reciben fuente de detección en la medición final.</p>
+  <div class="two">
+    <div>
+      <h3>Inventario y detección</h3>
+      <div id="ch-attack"></div>
+    </div>
+    <div>
+      <h3>Las diecisiete técnicas</h3>
+      <table>
+        <thead><tr><th>Técnica</th><th>Táctica</th><th>Escenario</th><th>Fuente en la medición final</th></tr></thead>
+        <tbody id="tb-attack"></tbody>
+      </table>
+    </div>
+  </div>
+  <div class="note">Las siete técnicas que ningún escenario activa permanecen en
+     el inventario del señuelo porque forman parte de su superficie de ataque.
+     Su presencia en el inventario y su ausencia en la medición son dos hechos
+     distintos y el tablero los separa.</div>
+</section>
+
+<!-- 7 CICLO -->
+<section id="ciclo">
+  <h2>I. Ciclo de iteraciones</h2>
+  <p class="sub">La metodología se aplicó dos veces sobre el mismo señuelo. La
+     primera medición produjo el conjunto de lecciones que originó las
+     correcciones, y la segunda midió el efecto de esas correcciones.</p>
+  <div id="ch-ciclo"></div>
+  <table style="margin-top:16px">
+    <thead><tr><th>Hito</th><th>Momento</th><th>Qué ocurrió</th><th>Evidencia</th></tr></thead>
+    <tbody>
+      <tr><td>Medición de la línea base</td><td>4 oct 2026 · 16:07 UTC</td><td>Diez escenarios ejecutados, medición en cuatro de ellos</td><td>Reporte de indicadores de la vuelta 1</td></tr>
+      <tr><td>Cadena de alertas y indexación</td><td>4 oct 2026 · 16:08 UTC</td><td>Publicador propio operativo, tablero con datos reales</td><td>Commits <code>20ee788</code> y <code>2d13573</code></td></tr>
+      <tr><td>Registro de lecciones cerrado</td><td>4 oct 2026 · 18:32 UTC</td><td>Catorce lecciones con hallazgo, causa raíz y mejora aplicada</td><td>Registro de lecciones aprendidas</td></tr>
+      <tr><td>Medición posterior</td><td>4 oct 2026 · 20:33 UTC</td><td>Diez escenarios ejecutados, medición en los diez</td><td>Reporte de indicadores de la vuelta 2</td></tr>
+      <tr><td>Duración total del ciclo</td><td>4 h 26 min</td><td>De la línea base a la medición final</td><td>Marcas de ambos reportes</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- 8 FASES -->
+<section id="fases">
+  <h2>J. Aportación de cada fase de la metodología</h2>
+  <p class="sub">Cada fase produce un cambio comprobable. La columna de
+     indicador recoge el valor que la fase entrega al resultado final.</p>
+  <table>
+    <thead><tr><th>Fase</th><th>Qué aporta</th><th>Indicador</th><th class="n">Línea base</th><th class="n">Final</th></tr></thead>
+    <tbody>
+      <tr><td><strong>1 · Diseño del señuelo</strong></td>
+          <td>Portal tributario con acceso en dos pasos y un escenario por técnica del marco de comportamiento adversario</td>
+          <td>Escenarios ejecutados</td><td class="n">10 de 10</td><td class="n">10 de 10</td></tr>
+      <tr><td><strong>2 · Despliegue aislado</strong></td>
+          <td>Tres segmentos de red y verificación del aislamiento ejecutada desde el contenedor atacante</td>
+          <td>Objetivos alcanzables desde el atacante</td><td class="n">—</td><td class="n">2 de 6 segmentos</td></tr>
+      <tr><td><strong>3 · Captura y custodia</strong></td>
+          <td>La función de atribución reconoce las tres variantes de clave e incorpora el archivo señuelo y el sensor de red</td>
+          <td>Escenarios con medición</td><td class="n">4 de 10</td><td class="n"><span class="chip cg">10 de 10</span></td></tr>
+      <tr><td><strong>4 · Correlación</strong></td>
+          <td>La alerta clasificada con su técnica y su severidad encadena con la gestión de incidentes mediante el flujo de orquestación</td>
+          <td>Alertas clasificadas con técnica</td><td class="n">10 de 10</td><td class="n">10 de 10</td></tr>
+      <tr><td><strong>5 · Medición y mejora</strong></td>
+          <td>Catorce lecciones con causa raíz, cambio aplicado y cierre verificado</td>
+          <td>Lecciones cerradas</td><td class="n">7</td><td class="n"><span class="chip cg">14</span></td></tr>
+    </tbody>
+  </table>
+  <div class="note">La fase 3 concentra la mejora cuantificable porque es la que
+     repara el instrumental de atribución. La fase 5 la sostiene, porque es la
+     que produjo las lecciones que dieron origen a esas reparaciones.</div>
+</section>
+
+<!-- 9 LECCIONES -->
+<section id="lecciones">
+  <h2>K. Registro de lecciones aprendidas</h2>
+  <p class="sub">Catorce lecciones, todas cerradas. La columna de fase muestra
+     dónde se produjo cada una.</p>
+  <div class="two">
+    <div><h3>Lecciones por fase</h3><div id="ch-lecciones"></div></div>
+    <div><h3>Detalle</h3>
+      <table>
+        <thead><tr><th>ID</th><th>Fase</th><th>Hallazgo</th><th>Cierre</th></tr></thead>
+        <tbody id="tb-lecciones"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 10 VOLUMEN -->
+<section id="volumen">
+  <h2>L. Volumen de actividad de la campaña</h2>
+  <p class="sub">Registros que el señuelo y los sensores produjeron en cada
+     vuelta. El volumen crece porque los escenarios que antes no generaban
+     evento ahora lo hacen.</p>
+  <table>
+    <thead><tr><th>Indicador</th><th class="n">Línea base</th><th class="n">Medición final</th><th class="n">Variación</th></tr></thead>
+    <tbody>
+      <tr><td>Ataques registrados en el señuelo</td><td class="n">54</td><td class="n">254</td><td class="n">+370 %</td></tr>
+      <tr><td>Solicitudes atendidas por la interfaz de servicios</td><td class="n">725</td><td class="n">1 508</td><td class="n">+108 %</td></tr>
+      <tr><td>Conexiones capturadas por el emulador</td><td class="n">7</td><td class="n">38</td><td class="n">+443 %</td></tr>
+      <tr><td>Peticiones recibidas por el portal</td><td class="n">15 765</td><td class="n">78 186</td><td class="n">+396 %</td></tr>
+      <tr><td>Archivos de evidencia con huella</td><td class="n">91</td><td class="n">91</td>
+        <td class="n"><span class="chip cb2">Constante</span></td></tr>
+      <tr><td>Calidad de la evidencia verificada</td><td class="n">100 de 100</td><td class="n">100 de 100</td>
+        <td class="n"><span class="chip cb2">Constante</span></td></tr>
+    </tbody>
+  </table>
+  <div class="note">El aumento del volumen se explica por la ampliación de la
+     cobertura de medición: los seis escenarios que la línea base dejó sin
+     atribución producen ahora eventos que antes no llegaban a ningún
+     componente de registro.</div>
+</section>
+
+<!-- 11 EVIDENCIA VISUAL -->
+<section id="visual">
+  <h2>M. Evidencia visual del tablero de alertas</h2>
+  <p class="sub">El tablero de alertas del laboratorio en los dos momentos del
+     ciclo. Cada panel conserva su propia ventana temporal, declarada en la
+     esquina superior derecha, porque la cadena de indexación se puso en
+     marcha entre una captura y la otra.</p>
+  <div class="pair">
+    <figure>
+      <img src="evidencia-visual/tablero-alertas-vuelta-1.png"
+        alt="Tablero de alertas del SIEM en la línea base, con 434 alertas indexadas y la serie temporal concentrada en picos aislados.">
+      <figcaption>Figura 1. Tablero de alertas del SIEM en la línea base,
+        ventana de tres horas.</figcaption>
+      <p class="pie">Nota. La serie temporal muestra picos aislados y un nivel
+        medio de alerta de 4,88 sobre cuatrocientas treinta y cuatro alertas
+        indexadas. Fuente: <code>v2.0-it1/04-captura-eventos/02_grafana-dashboard-siem.png</code>.</p>
+    </figure>
+    <figure>
+      <img src="evidencia-visual/tablero-alertas-vuelta-2.png"
+        alt="Tablero de alertas del SIEM en la medición final, con 35,1 mil alertas indexadas y actividad sostenida a lo largo de toda la ventana.">
+      <figcaption>Figura 2. Tablero de alertas del SIEM en la medición final,
+        ventana de veinticuatro horas.</figcaption>
+      <p class="pie">Nota. La serie temporal sostiene actividad a lo largo de
+        toda la ventana y el nivel medio de alerta sube a 6,20. Fuente:
+        <code>v2.1-it2/04-captura-eventos/05_grafana-dashboard-siem.png</code>.</p>
+    </figure>
+  </div>
+  <div class="note">Los dos paneles documentan el estado del tablero en cada
+     momento del ciclo. La comparación numérica entre las dos vueltas se
+     sostiene en los reportes de indicadores, que comparten escenario,
+     criterio de cálculo y ventana de ejecución. Las ventanas distintas de los
+     paneles se declaran para que el lector no las interprete como una serie
+     homogénea.</div>
+</section>
+
+
+<!-- 13 RESULTADO INSTITUCIONAL -->
+<section id="inst">
+  <h2>N. El resultado institucional comunicado por el Servicio de Impuestos
+     Nacionales</h2>
+  <p class="sub">La evaluación posterior a la aplicación metodológica fue
+     comunicada por la institución mediante respuesta escrita. La comunicación
+     declara un nivel global de cumplimiento de 99,06 % y lo reconoce como
+     resultado del proceso de evaluación registrado. El tablero presenta esa
+     cifra con el carácter de dato agregado que reviste.</p>
+
+  <div class="kpis">
+    <div class="kpi g"><div class="lab">Cumplimiento global comunicado</div>
+      <div class="val">99,06 %</div>
+      <div class="dlt">Nivel Optimizado de la ficha técnica</div></div>
+    <div class="kpi"><div class="lab">Madurez diagnosticada antes</div>
+      <div class="val">52,70 %</div>
+      <div class="dlt">Autoinforme de 30 respondentes</div></div>
+    <div class="kpi"><div class="lab">Confiabilidad del pretest</div>
+      <div class="val">α = 0,869</div>
+      <div class="dlt">Sobre la matriz de 30 por 42</div></div>
+    <div class="kpi"><div class="lab">Naturaleza del dato</div>
+      <div class="val">Agregado</div>
+      <div class="dlt">Comunicado por la institución</div></div>
+  </div>
+
+  <h3>Las dos cifras de la escala institucional, con su corte declarado</h3>
+  <div id="ch-inst"></div>
+  <div class="note">Los indicadores del laboratorio no aparecen en esta escala
+     porque no comparten unidad con ella. Un tiempo de detección expresado en
+     segundos y un porcentaje de cumplimiento se responden a preguntas
+     distintas, de manera que reunirlos en un mismo eje produciría una lectura
+     sin sentido. Cada fuente se presenta en su propia escala y se enlaza con
+     las demás por función, según muestra la tabla siguiente.</div>
+
+  <h3>Las cuatro fuentes de resultado del capítulo</h3>
+  <table>
+    <thead><tr><th>Fuente</th><th>Resultado</th><th>Naturaleza del dato</th>
+      <th>Respaldo disponible</th></tr></thead>
+    <tbody>
+      <tr><td>Laboratorio · Prototipo II</td>
+        <td class="n">10 de 10 escenarios medidos</td>
+        <td>Ejecución verificada sobre archivos de evidencia</td>
+        <td>Reportes de indicadores de las dos iteraciones</td></tr>
+      <tr><td>Laboratorio · Prototipo II</td>
+        <td class="n">Percentil 95 de 9,266 s</td>
+        <td>Ejecución verificada sobre archivos de evidencia</td>
+        <td>Reporte de indicadores de la segunda iteración</td></tr>
+      <tr><td>Comunicación del Servicio de Impuestos Nacionales</td>
+        <td class="n"><span class="chip cg">99,06 %</span></td>
+        <td>Dato agregado comunicado por la institución</td>
+        <td>Comunicación institucional escrita</td></tr>
+      <tr><td>Diagnóstico institucional, apartado 4.1</td>
+        <td class="n">52,70 % de madurez global</td>
+        <td>Autoinforme de 30 respondentes, α = 0,869</td>
+        <td>Matriz de 30 por 42 conservada en el repositorio</td></tr>
+    </tbody>
+  </table>
+  <p class="pie">Nota. Las filas no comparten escala ni unidad de medida, de
+     manera que la comparación entre ellas se resuelve por función y no por
+     magnitud. El 99,06 % corresponde al dato agregado comunicado por la
+     institución y no se acompaña de tamaño de muestra, desglose por
+     instrumento ni coeficiente de fiabilidad, porque la comunicación no
+     documenta esos elementos. Fuente: comunicación institucional del Servicio
+     de Impuestos Nacionales y archivos de evidencia del repositorio.</p>
+
+  <div class="note">El 99,06 % se sitúa en el nivel Optimizado de la ficha
+     técnica, cuyo corte inferior es el 76 %, y expresa el nivel que la
+     institución atribuye a su propio proceso de gestión de incidentes después
+     de la intervención. La consecuencia interpretativa es relevante, porque
+     sitúa a la institución fuera del corredor de madurez intermedia en el que
+     se ubicaba el diagnóstico del apartado 4.1.</div>
+</section>
+
+<div class="foot">
+  <p><strong>Metodología Honeypot para la Gestión de Incidentes en Servicios
+     Fiscales conforme a Normas Internacionales.</strong> Tesis de maestría.
+     Capítulo IV, Marco Práctico. Dashboard de resultados del Prototipo II,
+     ejecutado sobre el contexto del Servicio de Impuestos Nacionales de Bolivia.</p>
+  <p>La cifra de 99,06 % procede de la comunicación institucional del Servicio de
+     Impuestos Nacionales y se presenta como dato agregado, con la fuente que la
+     origina. Las demás cifras de este tablero proceden de un archivo del
+     repositorio y declaran su origen: <code>v2.0-it1/07-metricas/kpi_report.json</code>,
+     <code>v2.1-it2/07-metricas/kpi_report.json</code>,
+     <code>v2.0-it1/07-metricas/mitre_coverage.json</code>,
+     <code>evidencias/lecciones-aprendidas.md</code>,
+     <code>evidencias/INDICE.md</code>, la matriz de 30 por 42 del diagnóstico y el historial de commits. Ningún valor
+     fue estimado ni completado por analogía. El capítulo de resultados no
+     incluye comprobación de hipótesis.</p>
+</div>
+</div>
+
+<script>
+const C={navy:"#1F3864",navy2:"#2E75B6",navy3:"#4A7EBB",green:"#1F6032",
+  amber:"#9C6500",grey:"#B9C4D2",line:"#D6DEE8",mute:"#5A6878"};
+const SVG=(w,h)=>`<svg viewBox="0 0 ${w} ${h}" width="100%" height="${h}"
+  style="display:block;font-family:'Segoe UI',Calibri,sans-serif">`;
+const T=(x,y,t,o={})=>`<text x="${x}" y="${y}" fill="${o.f||C.navy}"
+  font-size="${o.s||12}" font-weight="${o.b||400}" text-anchor="${o.a||'start'}">${t}</text>`;
+
+/* ---------- 2. Antes y después ---------- */
+(function(){
+  const d=[["Escenarios\ncon medición",4,10],["Fuentes de\nregistro",3,6],
+    ["Técnicas\ncon fuente",4,10],["Tácticas\ncon fuente",3,6]];
+  const W=520,H=334,ml=40,mb=86,mt=34,bw=54,gap=30;
+  const max=12, cw=(W-ml-20)/d.length;
+  let s=SVG(W,H);
+  s+=`<line x1="${ml}" y1="${mt}" x2="${W-20}" y2="${mt}" stroke="${C.line}" stroke-width="1"/>`;
+  d.forEach((r,i)=>{
+    const x=ml+i*cw+bw/2;
+    const h1=r[1]/max*(H-mt-mb), h2=r[2]/max*(H-mt-mb);
+    s+=`<rect x="${x-bw-6}" y="${H-mb-h1}" width="${bw}" height="${h1}" fill="${C.grey}" rx="2"/>`;
+    s+=`<rect x="${x+6}" y="${H-mb-h2}" width="${bw}" height="${h2}" fill="${C.green}" rx="2"/>`;
+    s+=T(x-bw/2-6,H-mb-h1-6,String(r[1]),{a:"middle",s:12,b:700,f:"#8A94A3"});
+    s+=T(x+bw/2+6,H-mb-h2-6,String(r[2]),{a:"middle",s:12,b:700,f:C.green});
+    r[0].split("\n").forEach((l,j)=>
+      s+=T(x,H-mb+16+j*13,l,{a:"middle",s:11,f:C.mute}));
+  });
+  s+=`<rect x="${ml}" y="${H-14}" width="11" height="11" fill="${C.grey}" rx="2"/>`;
+  s+=T(ml+16,H-4,"Línea base",{s:11.5,f:C.mute});
+  s+=`<rect x="${ml+95}" y="${H-14}" width="11" height="11" fill="${C.green}" rx="2"/>`;
+  s+=T(ml+111,H-4,"Medición posterior",{s:11.5,f:C.mute});
+  document.getElementById("ch-antes").innerHTML=s+"</svg>";
+})();
+
+/* ---------- 3. Tiempo comparables ---------- */
+(function(){
+  const d=[["S01",16.851,15.91,"5,6 %"],["S02",1.214,1.095,"9,8 %"],
+    ["S05",1.734,1.145,"34,0 %"],["S07",1.063,0.264,"75,2 %"]];
+  const W=1040,rh=52,ml=58,mr=150,H=d.length*rh+26;
+  const max=18, pw=W-ml-mr;
+  let s=SVG(W,H);
+  s+=`<line x1="${ml}" y1="6" x2="${ml}" y2="${H-6}" stroke="${C.line}"/>`;
+  for(let g=0;g<=18;g+=6){
+    const x=ml+g/max*pw;
+    s+=`<line x1="${x}" y1="6" x2="${x}" y2="${H-6}" stroke="${C.line}" stroke-dasharray="3 3"/>`;
+    s+=T(x,H-2,g+" s",{a:"middle",s:10.5,f:C.mute});
+  }
+  d.forEach((r,i)=>{
+    const y=18+i*rh, w1=r[1]/max*pw, w2=r[2]/max*pw;
+    s+=T(ml-10,y+16,r[0],{a:"end",s:13,b:700});
+    s+=`<rect x="${ml}" y="${y}" width="${w1}" height="14" fill="${C.grey}" rx="2"/>`;
+    s+=`<rect x="${ml}" y="${y+19}" width="${w2}" height="14" fill="${C.green}" rx="2"/>`;
+    s+=T(ml+w1+7,y+11,String(r[1]).replace(".",",")+" s",{s:11.5,f:"#8A94A3"});
+    s+=T(ml+w2+7,y+30,String(r[2]).replace(".",",")+" s",{s:11.5,b:700,f:C.green});
+    s+=T(W-4,y+24,"−"+r[3],{a:"end",s:13.5,b:700,f:C.green});
+  });
+  s+=`<rect x="${ml}" y="2" width="11" height="11" fill="${C.grey}" rx="2"/>`;
+  s+=T(ml+16,12,"Línea base",{s:11,f:C.mute});
+  s+=`<rect x="${ml+88}" y="2" width="11" height="11" fill="${C.green}" rx="2"/>`;
+  s+=T(ml+104,12,"Medición posterior",{s:11,f:C.mute});
+  s+=T(W-4,12,"Reducción",{a:"end",s:11,b:600,f:C.green});
+  document.getElementById("ch-tiempo").innerHTML=s+"</svg>";
+})();
+
+/* ---------- 4. Distribución ---------- */
+(function(){
+  const bins=[["< 0,2 s",2],["0,2 – 0,5 s",3],["0,5 – 1,0 s",3],["1,0 – 2,0 s",1],["> 2,0 s",1]];
+  const W=1040,H=230,ml=46,mb=30,mt=18, bw=(W-ml-20)/bins.length;
+  const max=3.5, ph=H-mt-mb;
+  let s=SVG(W,H);
+  for(let g=0;g<=3;g++){
+    const y=mt+ph-g/max*ph;
+    s+=`<line x1="${ml}" y1="${y}" x2="${W-20}" y2="${y}" stroke="${C.line}" stroke-dasharray="3 3"/>`;
+    s+=T(ml-8,y+4,String(g),{a:"end",s:11,f:C.mute});
+  }
+  bins.forEach((b,i)=>{
+    const x=ml+i*bw+bw/2, h=b[1]/max*ph, col=i===4?C.amber:C.navy2;
+    s+=`<rect x="${x-bw*0.3}" y="${mt+ph-h}" width="${bw*0.6}" height="${h}" fill="${col}" rx="3"/>`;
+    s+=T(x,mt+ph-h-7,String(b[1]),{a:"middle",s:13,b:700,f:col});
+    s+=T(x,H-10,b[0],{a:"middle",s:11,f:C.mute});
+  });
+  s+=T(ml-8,mt-4,"Escenarios",{a:"end",s:11,f:C.mute});
+  document.getElementById("ch-dist").innerHTML=s+"</svg>";
+})();
+
+/* ---------- 5. Fuentes ---------- */
+(function(){
+  const d=[["Interfaz de servicios del atacante",1,1],["Interfaz de servicios del señuelo",2,2],
+    ["Portal del señuelo",1,3],["Emulador de acceso remoto",0,2],
+    ["Archivo señuelo",0,1],["Sensor de red",0,1]];
+  const W=1040,rh=44,ml=250,mr=110,H=d.length*rh+34;
+  const max=3.4, pw=W-ml-mr;
+  let s=SVG(W,H);
+  d.forEach((r,i)=>{
+    const y=10+i*rh, w1=r[1]/max*pw, w2=r[2]/max*pw;
+    s+=T(ml-12,y+12,r[0],{a:"end",s:12.5,b:600});
+    s+=`<rect x="${ml}" y="${y}" width="${w1}" height="13" fill="${C.grey}" rx="2"/>`;
+    s+=`<rect x="${ml}" y="${y+17}" width="${w2}" height="13" fill="${C.green}" rx="2"/>`;
+    if(w1>0) s+=T(ml+w1+6,y+11,String(r[1]),{s:11,f:"#8A94A3"});
+    s+=T(ml+w2+6,y+28,String(r[2]),{s:11,b:700,f:C.green});
+  });
+  const st=["Estos tres componentes ya operaban","sumamos tres más durante el ciclo"];
+  s+=T(ml,H-4,"Línea base: "+st[0],{s:11,f:C.mute});
+  s+=T(ml+330,H-4,"Medición final: "+st[1],{s:11,b:600,f:C.green});
+  document.getElementById("ch-fuentes").innerHTML=s+"</svg>";
+})();
+
+/* ---------- 6. ATT&CK ---------- */
+(function(){
+  const d=[["Técnicas del inventario",17,17],["Técnicas con detección",4,10],
+    ["Tácticas del inventario",8,8],["Tácticas con detección",3,6]];
+  const W=520,H=300,ml=38,mb=64,mt=30,bw=52;
+  const max=18, cw=(W-ml-16)/d.length;
+  let s=SVG(W,H);
+  d.forEach((r,i)=>{
+    const x=ml+i*cw+bw/2;
+    const h1=r[1]/max*(H-mt-mb), h2=r[2]/max*(H-mt-mb);
+    s+=`<rect x="${x-bw-6}" y="${H-mb-h1}" width="${bw}" height="${h1}" fill="${C.grey}" rx="2"/>`;
+    s+=`<rect x="${x+6}" y="${H-mb-h2}" width="${bw}" height="${h2}" fill="${C.green}" rx="2"/>`;
+    s+=T(x-bw/2-6,H-mb-h1-6,String(r[1]),{a:"middle",s:12,b:700,f:"#8A94A3"});
+    s+=T(x+bw/2+6,H-mb-h2-6,String(r[2]),{a:"middle",s:12,b:700,f:C.green});
+    const words=r[0].split(" "), lines=[]; let ln="";
+    words.forEach(w=>{ if((ln+" "+w).length>13){lines.push(ln);ln=w;} else ln=(ln+" "+w).trim(); });
+    if(ln) lines.push(ln);
+    lines.forEach((l,j)=>s+=T(x,H-mb+15+j*12,l,{a:"middle",s:10.5,f:C.mute}));
+  });
+  document.getElementById("ch-attack").innerHTML=s+"</svg>";
+
+  const TEC=[
+    ["T1048.003","Exfiltration","S10","Sensor de red"],
+    ["T1059","Execution","—","En el inventario, ningún escenario la activa"],
+    ["T1059.004","Execution","S09","Emulador de acceso remoto"],
+    ["T1059.006","Execution","—","En el inventario, ningún escenario la activa"],
+    ["T1059.007","Execution","S06","Portal del señuelo"],
+    ["T1078","Initial Access","S07","Interfaz de servicios del señuelo"],
+    ["T1078.001","Initial Access","—","En el inventario, ningún escenario la activa"],
+    ["T1083","Discovery","—","En el inventario, ningún escenario la activa"],
+    ["T1105","Command and Control","S08","Archivo señuelo"],
+    ["T1110.001","Credential Access","S03","Emulador de acceso remoto"],
+    ["T1110.004","Credential Access","S05","Interfaz de servicios del señuelo"],
+    ["T1190","Initial Access","S04","Portal del señuelo"],
+    ["T1213","Collection","—","En el inventario, ningún escenario la activa"],
+    ["T1530","Collection","—","En el inventario, ningún escenario la activa"],
+    ["T1595","Reconnaissance","S01","Interfaz de servicios del atacante"],
+    ["T1595.002","Reconnaissance","S02","Portal del señuelo"],
+    ["T1595.003","Reconnaissance","—","En el inventario, ningún escenario la activa"]];
+  document.getElementById("tb-attack").innerHTML=TEC.map(r=>
+    `<tr><td><code>${r[0]}</code></td><td>${r[1]}</td><td>${r[2]}</td>`+
+    `<td>${r[3]==="—"?'<span class="chip ca">en inventario</span>':
+      '<span class="chip cg">'+r[3]+'</span>'}</td></tr>`).join("");
+})();
+
+/* ---------- 7. Ciclo ---------- */
+(function(){
+  const ev=[["16:07","Medición de la línea base","10 escenarios, 4 con medición"],
+    ["16:08","Publicador propio operativo","cadena de alertas a índice"],
+    ["16:17","Reinicio de la posición de lectura","motor de red estable"],
+    ["18:32","Catorce lecciones registradas","con causa raíz y mejora"],
+    ["20:33","Medición posterior","10 escenarios, 10 con medición"]];
+  const W=1040,H=190,ml=70,mr=30,ty=64;
+  let s=SVG(W,H);
+  s+=`<line x1="${ml}" y1="${ty}" x2="${W-mr}" y2="${ty}" stroke="${C.navy3}"
+      stroke-width="2.5" stroke-linecap="round"/>`;
+  ev.forEach((e,i)=>{
+    const x=ml+i*((W-ml-mr)/(ev.length-1));
+    const up=i%2===0, ly=up?ty-22:ty+22, ty2=up?ty-30:ty+30;
+    const an=i===0?"start":(i===ev.length-1?"end":"middle");
+    const tx=i===0?x-10:(i===ev.length-1?x+10:x);
+    s+=`<line x1="${x}" y1="${ty}" x2="${x}" y2="${ty2}" stroke="${C.navy3}" stroke-width="1.5"/>`;
+    s+=`<circle cx="${x}" cy="${ty}" r="7" fill="#fff" stroke="${C.green}" stroke-width="3"/>`;
+    s+=T(tx,ly-6,e[0],{a:an,s:12,b:700,f:C.navy});
+    s+=T(tx,ly+9,e[1],{a:an,s:11.5,b:600});
+    s+=T(tx,ty+(up?-46:46),e[2],{a:an,s:10.8,f:C.mute});
+  });
+  s+=T(ml-14,ty+4,"Inicio",{a:"end",s:11,b:600,f:C.mute});
+  s+=T(W-mr+2,ty+4,"Cierre",{a:"start",s:11,b:600,f:C.mute});
+  s+=`<rect x="${(W-230)/2}" y="${H-26}" width="230" height="20" rx="10" fill="#EAF0F7"/>`;
+  s+=T((W)/2,H-12,"Ciclo completo de corrección: 4 h 26 min",
+    {a:"middle",s:11.5,b:700,f:C.navy});
+  document.getElementById("ch-ciclo").innerHTML=s+"</svg>";
+})();
+
+/* ---------- 9. Lecciones ---------- */
+(function(){
+  const d=[["Fase 1 · Diseño",0],["Fase 2 · Despliegue",5],
+    ["Fase 3 · Captura",5],["Fase 4 · Correlación",1],
+    ["Fase 5 · Medición",3]];
+  const W=520,rh=40,ml=160,mr=100,H=d.length*rh+40;
+  const max=6, pw=W-ml-mr;
+  let s=SVG(W,H);
+  d.forEach((r,i)=>{
+    const y=10+i*rh, w=r[1]/max*pw;
+    s+=T(ml-12,y+15,r[0],{a:"end",s:12.5,b:600});
+    s+=`<rect x="${ml}" y="${y}" width="${w}" height="18" fill="${C.navy2}" rx="2"/>`;
+    s+=T(ml+w+8,y+14,String(r[1]),{s:12.5,b:700,f:C.navy});
+  });
+  s+=T(ml,H-8,"Total del ciclo: 14 lecciones, todas cerradas",
+    {s:11.5,b:700,f:C.green});
+  document.getElementById("ch-lecciones").innerHTML=s+"</svg>";
+
+  const LE=[
+    ["L1","F3","El módulo de análisis no tenía configuración válida","Rutas de lectura insertadas en el elemento correcto"],
+    ["L2","F3","Las alertas no llegaban al índice","Publicador propio que indexa por HTTP"],
+    ["L3","F2","El gestor se reiniciaba cada dos minutos","Colector sin función de envío"],
+    ["L4","F3","El motor de red seguía detectando sin alertar","Reinicio programado de la posición de lectura"],
+    ["L5","F5","Los paneles mostraban ausencia de datos","Conversión de la consulta al formato admitido"],
+    ["L6","F5","Los paneles devolvían cero con documentos indexados","El publicador copia el campo de tiempo"],
+    ["L7","F2","Un fallo de arranque tumbaba el laboratorio","Tres scripts que restauran y terminan"],
+    ["L8","F3","El tablero nativo no representaba los datos","Sustituido por el tablero de métricas"],
+    ["L9","F4","La plataforma redirigía al módulo de organizaciones","Flujo de orquestación verificado hasta la alerta"],
+    ["L10","F2","El segmento de sensores no llegaba a crearse","Composición efectiva documentada en tres segmentos"],
+    ["L11","F5","Seis escenarios sin fuente de atribución","Aceptación de las tres variantes de clave"],
+    ["L12","F2","La campaña se detenía en el cuarto escenario","Límite de tiempo en las herramientas"],
+    ["L13","F2","Un escenario informaba captura inexistente","Comprobación de la herramienta al inicio"],
+    ["L14","F3","Dos escenarios sin fuente de detección","Lectura del archivo señuelo y del sensor de red"]];
+  document.getElementById("tb-lecciones").innerHTML=LE.map(r=>
+    `<tr><td><strong>${r[0]}</strong></td><td>${r[1]}</td><td>${r[2]}</td>`+
+    `<td><span class="chip cg">cerrada</span><br><span style="font-size:11.5px;
+     color:#5A6878">${r[3]}</span></td></tr>`).join("");
+})();
+/* ---------- A. DIAGNÓSTICO POR INSTRUMENTO ---------- */
+(function(){
+  // Catorce instrumentos, ordenados de menor a mayor cumplimiento
+  const rows=[[13,47.78,"G4"],[7,47.92,"G2"],[1,48.54,"G1"],[4,49.17,"G1"],[8,49.72,"G3"],
+    [10,50.56,"G3"],[11,52.78,"G3"],[9,53.06,"G3"],[3,53.18,"G1"],[12,53.89,"G4"],
+    [14,53.89,"G4"],[2,56.94,"G1"],[5,57.22,"G2"],[6,58.33,"G2"]];
+  rows.sort((a,b)=>a[1]-b[1]);
+  const W=1000,H=430,ml=54,mr=150,mt=44,rh=25;
+  const max=80, min=44;
+  const sx=v=>ml+(v-min)/(max-min)*(W-ml-mr);
+  let s=SVG(W,H);
+  // Cortes de madurez
+  [[51,"Gestionado","start"],[76,"Optimizado","end"]].forEach(c=>{
+    s+=`<line x1="${sx(c[0])}" y1="${mt-16}" x2="${sx(c[0])}" y2="${mt+rows.length*rh+4}"
+      stroke="${C.navy3}" stroke-width="1.4" stroke-dasharray="5 4"/>`;
+    s+=T(sx(c[0])+(c[2]==="start"?5:-5),mt-20,c[1],
+      {s:10.5,b:600,f:C.navy2,a:c[2]==="start"?"start":"end"});
+  });
+  s+=`<line x1="${sx(26)}" y1="${mt-16}" x2="${sx(26)}" y2="${mt+rows.length*rh+4}"
+    stroke="${C.line}" stroke-width="1.2"/>`;
+  rows.forEach((r,i)=>{
+    const y=mt+i*rh, basic=r[1]<51;
+    s+=T(ml-10,y+15,"I"+r[0],{a:"end",s:11.5,b:700,f:basic?C.amber:C.navy});
+    s+=`<circle cx="${sx(r[1])}" cy="${y+11}" r="5"
+      fill="${basic?C.amber:C.green}"/>`;
+    s+=T(sx(r[1])+12,y+15,String(r[1]).replace(".",",")+" %",
+      {s:11.5,b:700,f:basic?C.amber:C.green});
+    s+=T(W-6,y+15,basic?"Básico":"Gestionado",{a:"end",s:10.5,
+      f:basic?C.amber:C.mute});
+  });
+  s+=T(ml,H-10,"Ordenados de menor a mayor cumplimiento. Seis instrumentos quedan en nivel Básico.",
+    {s:11,f:C.mute});
+  document.getElementById("ch-diag").innerHTML=s+"</svg>";
+})();
+
+/* ---------- A. GRUPOS TEMÁTICOS ---------- */
+(function(){
+  const d=[["G2 Evidencias y respaldo",54.49],["G1 Gestión de incidentes",53.18],
+    ["G4 Organización y mejora",51.85],["G3 Seguridad y controles",51.53]];
+  const W=520,H=210,ml=168,mr=86,mt=26,rh=42;
+  const min=50,max=56, sx=v=>ml+(v-min)/(max-min)*(W-ml-mr);
+  let s=SVG(W,H);
+  s+=`<line x1="${sx(51)}" y1="${mt-8}" x2="${sx(51)}" y2="${mt+d.length*rh}"
+    stroke="${C.navy3}" stroke-width="1.4" stroke-dasharray="5 4"/>`;
+  s+=T(sx(51)+5,mt-12,"Corte Gestionado",{s:10,b:600,f:C.navy2});
+  d.forEach((r,i)=>{
+    const y=mt+i*rh;
+    s+=T(ml-12,y+15,r[0],{a:"end",s:11.5,b:600});
+    s+=`<line x1="${ml}" y1="${y+11}" x2="${sx(r[1])}" y2="${y+11}"
+      stroke="${C.line}" stroke-width="7" stroke-linecap="round"/>`;
+    s+=`<circle cx="${sx(r[1])}" cy="${y+11}" r="6" fill="${C.green}"/>`;
+    s+=T(sx(r[1])+12,y+15,String(r[1]).replace(".",",")+" %",{s:11.5,b:700,f:C.green});
+  });
+  s+=T(ml,H-8,"Los cuatro grupos dentro de una franja de 2,96 puntos.",
+    {s:11,f:C.mute});
+  document.getElementById("ch-grupos").innerHTML=s+"</svg>";
+})();
+
+/* ---------- A. MADUREZ GLOBAL ---------- */
+(function(){
+  const W=520,H=212,ml=34,mr=34,ty=104,bh=30;
+  const min=40,max=92, sx=v=>ml+(v-min)/(max-min)*(W-ml-mr);
+  let s=SVG(W,H);
+  // Bandas de madurez sobre la escala completa de la ficha tecnica
+  [[40,51,"#EDF1F6","Básico"],[51,76,"#E6F0E9","Gestionado"],[76,92,"#EAF1F8","Optimizado"]]
+    .forEach(b=>{
+      const x1=sx(b[0]), x2=sx(b[1]);
+      s+=`<rect x="${x1}" y="${ty-bh/2}" width="${x2-x1}" height="${bh}"
+        fill="${b[2]}" rx="3"/>`;
+      s+=T((x1+x2)/2,ty-bh/2-7,b[3],{a:"middle",s:10.5,b:600,f:C.mute});
+    });
+  // Cortes
+  [[51,"51 %"],[76,"76 %"]].forEach(c=>{
+    s+=`<line x1="${sx(c[0])}" y1="${ty-bh/2-3}" x2="${sx(c[0])}" y2="${ty+bh/2+3}"
+      stroke="${C.navy}" stroke-width="1.6"/>`;
+    s+=T(sx(c[0]),ty+bh/2+18,c[1],{a:"middle",s:10.5,b:600,f:C.navy});
+  });
+  // Distancia entre el corte y el valor medido
+  const x=sx(52.70), xc=sx(51);
+  s+=`<line x1="${xc}" y1="${ty-bh/2-16}" x2="${x}" y2="${ty-bh/2-16}"
+    stroke="${C.amber}" stroke-width="1.6"/>`;
+  s+=`<line x1="${xc}" y1="${ty-bh/2-21}" x2="${xc}" y2="${ty-bh/2-11}"
+    stroke="${C.amber}" stroke-width="1.6"/>`;
+  s+=`<line x1="${x}" y1="${ty-bh/2-21}" x2="${x}" y2="${ty-bh/2-11}"
+    stroke="${C.amber}" stroke-width="1.6"/>`;
+  s+=T((xc+x)/2,ty-bh/2-26,"1,70 puntos",{a:"middle",s:10.5,b:700,f:C.amber});
+  // Marcador del valor medido
+  s+=`<line x1="${x}" y1="${ty-bh/2-4}" x2="${x}" y2="${ty+bh/2+4}"
+    stroke="${C.green}" stroke-width="3" stroke-linecap="round"/>`;
+  s+=`<circle cx="${x}" cy="${ty}" r="8" fill="#fff" stroke="${C.green}" stroke-width="3.5"/>`;
+  s+=T(x,ty+bh/2+40,"52,70 %",{a:"middle",s:19,b:700,f:C.green});
+  s+=T(x,ty+bh/2+57,"Madurez global del proceso",{a:"middle",s:10.5,f:C.mute});
+  s+=T(ml,H-10,"Escala de la ficha técnica del instrumento, de 0 a 100 por ciento.",
+    {s:10.5,f:C.mute});
+  document.getElementById("ch-global").innerHTML=s+"</svg>";
+})();
+
+/* ---------- B. PUENTE ANTES / DESPUÉS ---------- */
+(function(){
+  const rows=[
+    ["Instrumentos evaluados","14","14"],
+    ["Grupos temáticos","4","4"],
+    ["Brechas en nivel Básico","6","0 abiertas"],
+    ["Escenarios con medición","4 de 10","10 de 10"],
+    ["Fuentes de registro","3","6"],
+    ["Técnicas con detección","4 de 10","10 de 10"],
+    ["Tácticas con detección","3 de 6","6 de 6"],
+    ["Lecciones cerradas","7","14"],
+    ["Archivos con huella","91","91"],
+    ["Calidad de la evidencia","100","100"]];
+  const W=1000,rh=34,ml=330,mr=210,H=rows.length*rh+54;
+  const max=14, pw=W-ml-mr;
+  let s=SVG(W,H);
+  const xs=[ml+pw*0.34, ml+pw*0.80];
+  rows.forEach((r,i)=>{
+    const y=18+i*rh;
+    s+=T(ml-16,y+16,r[0],{a:"end",s:12,b:600});
+    [["grey",r[1]],["green",r[2]]].forEach((c,j)=>{
+      const v=parseFloat(c[1]);
+      const w=(isNaN(v)?0:Math.min(v,max)/max*(pw*0.30));
+      s+=`<rect x="${xs[j]}" y="${y+3}" width="${Math.max(3,w)}" height="17"
+        fill="${C[c[0]]}" rx="2"/>`;
+      s+=T(xs[j]+Math.max(3,w)+8,y+16,c[1],{s:12,b:700,
+        f:j?C.green:"#8A94A3"});
+    });
+  });
+  s+=`<rect x="${xs[0]}" y="0" width="12" height="12" fill="${C.grey}" rx="2"/>`;
+  s+=T(xs[0]+18,11,"Antes · diagnóstico del SIN (4.1)",{s:11.5,f:C.mute});
+  s+=`<rect x="${xs[1]}" y="0" width="12" height="12" fill="${C.green}" rx="2"/>`;
+  s+=T(xs[1]+18,11,"Después · metodología verificada en el laboratorio (4.3 y 4.4)",
+    {s:11.5,f:C.green});
+  s+=T(ml,H-26,"Los tres indicadores que no se mueven son base de partida y no de resultado.",
+    {s:11,f:C.mute});
+  s+=T(ml,H-11,"Inventario, volumen de evidencia y calidad de la custodia se conservaron "
+    +"durante todo el ciclo.",{s:11,f:C.mute});
+  document.getElementById("ch-puente").innerHTML=s+"</svg>";
+})();
+
+
+/* ---------- N. RESULTADO INSTITUCIONAL ---------- */
+(function(){
+  const d=[
+    ["Madurez diagnosticada en el apartado 4.1",52.70,"Autoinforme de 30 respondentes, α = 0,869"],
+    ["Cumplimiento global comunicado por el SIN",99.06,"Dato agregado de la respuesta institucional"]];
+  const W=600,H=306,ml=30,mr=92;
+  const titleY=14, bandTop=42, bandH=26, cutY=bandTop+bandH+17;
+  const r1=132, r2=202, barDy=17;
+  const bracketY=252, tickTop=bracketY-8, deltaY=bracketY+22;
+  const min=45,max=100, sx=v=>ml+(v-min)/(max-min)*(W-ml-mr);
+  let s=SVG(W,H);
+
+  // Escala de cortes de la ficha tecnica
+  s+=T(ml,titleY,"Escala de madurez de la ficha técnica",{s:11,b:700,f:C.mute});
+  [[45,51,"#EDF1F6","Básico"],[51,76,"#E6F0E9","Gestionado"],
+   [76,100,"#EAF1F8","Optimizado"]].forEach(b=>{
+    const x1=sx(b[0]), x2=sx(b[1]);
+    s+=`<rect x="${x1}" y="${bandTop}" width="${x2-x1}" height="${bandH}"
+      fill="${b[2]}" rx="3"/>`;
+    s+=T((x1+x2)/2,bandTop-8,b[3],{a:"middle",s:10.5,b:600,f:C.mute});
+  });
+  [[51,"51 %"],[76,"76 %"]].forEach(c=>{
+    s+=`<line x1="${sx(c[0])}" y1="${bandTop}" x2="${sx(c[0])}" y2="${bandTop+bandH}"
+      stroke="${C.navy}" stroke-width="1.6"/>`;
+    s+=T(sx(c[0]),cutY,c[1],{a:"middle",s:10.5,b:600,f:C.navy});
+  });
+
+  // Series
+  d.forEach((r,i)=>{
+    const y=(i===0?r1:r2), by=y+barDy, x=sx(r[1]);
+    s+=T(ml,y,r[0],{s:12,b:700});
+    s+=`<line x1="${ml}" y1="${by}" x2="${x}" y2="${by}"
+      stroke="${i===0?"#AEB9C7":C.green}" stroke-width="9" stroke-linecap="round"/>`;
+    s+=`<circle cx="${x}" cy="${by}" r="7"
+      fill="${i===0?"#8A94A3":C.green}" stroke="#FFFFFF" stroke-width="2"/>`;
+    const etq=String(r[1].toFixed(2)).replace(".",",")+" %";
+    const cabe_a_la_derecha=x+16+etq.length*7.2<W-4;
+    if(cabe_a_la_derecha){
+      s+=T(x+14,by+4,etq,{s:12.5,b:700,f:i===0?"#8A94A3":C.green});
+    } else {
+      s+=T(x-14,by+4,etq,{a:"end",s:12.5,b:700,f:i===0?"#8A94A3":C.green});
+    }
+    s+=T(ml,y+38,r[2],{s:10.5,f:C.mute});
+  });
+
+  // Corchete de distancia, situado bajo las dos series para no cruzar los textos
+  const xa=sx(52.70), xb=sx(99.06);
+  s+=`<line x1="${xa}" y1="${tickTop}" x2="${xa}" y2="${bracketY}"
+    stroke="${C.amber}" stroke-width="1.4"/>`;
+  s+=`<line x1="${xb}" y1="${tickTop}" x2="${xb}" y2="${bracketY}"
+    stroke="${C.amber}" stroke-width="1.4"/>`;
+  s+=`<line x1="${xa}" y1="${bracketY}" x2="${xb}" y2="${bracketY}"
+    stroke="${C.amber}" stroke-width="1.4"/>`;
+  s+=T((xa+xb)/2,deltaY,"+46,36 puntos porcentuales",
+    {a:"middle",s:11,b:700,f:C.amber});
+
+  s+=T(ml,H-10,"Cada cifra se lee en la escala que declara su propia fuente.",
+    {s:11,f:C.mute});
+  document.getElementById("ch-inst").innerHTML=s+"</svg>";
+})();
+</script>
+</body>
+</html>
