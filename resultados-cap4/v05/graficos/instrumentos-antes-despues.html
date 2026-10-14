@@ -19,64 +19,94 @@ const T=(x,y,t,o={})=>`<text x="${x}" y="${y}" fill="${o.f||C.navy}"
   font-size="${o.s||12}" font-weight="${o.b||400}" text-anchor="${o.a||'start'}">${t}</text>`;
 
 (function(){
-  // Porcentajes iniciales verificados del apartado 4.1, de menor a mayor.
-  const antes=[["I13",47.78],["I7",47.92],["I1",48.54],["I4",49.17],["I8",49.72],
+  // Antes: autoinforme de treinta respondentes, apartado 4.1, de menor a mayor
+  const A=[["I13",47.78],["I7",47.92],["I1",48.54],["I4",49.17],["I8",49.72],
     ["I10",50.56],["I11",52.78],["I9",53.06],["I12",53.89],["I14",53.89],
     ["I2",56.94],["I5",57.22],["I3",58.06],["I6",58.33]];
-  const POST=99.09;   // dato agregado comunicado por el Servicio de Impuestos Nacionales
+  // Despues: porcentajes por instrumento del libro oficial de resultados
+  const D={"I1":98.33,"I2":98.89,"I3":99.17,"I4":99.17,"I5":99.17,"I6":99.17,
+    "I7":99.17,"I8":99.17,"I9":99.17,"I10":99.17,"I11":99.17,"I12":99.17,
+    "I13":99.17,"I14":99.17};
+  const GLOBAL=99.09;   // madurez global que declara el libro oficial
 
-  const W=780,H=568,ml=62,mr=158,mt=70,rh=28,bh=13;
-  const n=antes.length;
-  const top=mt-24, bottom=mt+n*rh+bh;
-  const min=44,max=100, sx=v=>ml+(v-min)/(max-min)*(W-ml-mr);
+  const W=1000,H=560,mt=96,rh=26;
+  const ax0=72,ax1=372, bx0=560,bx1=860;
+  const top=74, n=A.length, bottom=mt+n*rh;
+  const sa=v=>ax0+(v-44)/16*(ax1-ax0);
+  const sb=v=>bx0+(v-98)/1.5*(bx1-bx0);
+  const bA=v=> v<51 ? "#EDF1F6" : (v<76 ? "#E6F0E9" : "#EAF1F8");
+  const bB="#EAF1F8";
+
   let s=SVG(W,H);
 
-  // Bandas de madurez de la ficha tecnica
-  [[44,51,"#EDF1F6"],[51,76,"#E6F0E9"],[76,100,"#EAF1F8"]].forEach(function(b){
-    s+=`<rect x="${sx(b[0])}" y="${top}" width="${sx(b[1])-sx(b[0])}"
-      height="${bottom-top}" fill="${b[2]}"/>`;
+  // Fondos de los dos carriles
+  s+=`<rect x="${ax0}" y="${top}" width="${ax1-ax0}" height="${bottom-top}"
+    fill="${bA(48)}"/>`;
+  s+=`<rect x="${sa(51)}" y="${top}" width="${ax1-sa(51)}"
+    height="${bottom-top}" fill="${bA(56)}"/>`;
+  s+=`<rect x="${bx0}" y="${top}" width="${bx1-bx0}" height="${bottom-top}"
+    fill="${bB}"/>`;
+
+  // Titulos de cada carril con su escala declarada
+  s+=T(ax0,32,"Diagnóstico inicial",{s:14,b:700,f:C.navy});
+  s+=T(ax0,52,"autoinforme de treinta respondentes · escala de 44 a 60 %",
+    {s:11,f:C.mute});
+  s+=T(bx0,32,"Resultado del libro oficial",{s:14,b:700,f:C.navy});
+  s+=T(bx0,52,"matriz de treinta participantes · escala de 98 a 99,5 %",
+    {s:11,f:C.mute});
+
+  // Corte de nivel y linea de la madurez global
+  s+=`<line x1="${sa(51)}" y1="${top}" x2="${sa(51)}" y2="${bottom}"
+    stroke="${C.navy2}" stroke-width="1.4" stroke-dasharray="5 4"/>`;
+  s+=T((ax0+sa(51))/2,top+16,"Básico",{a:"middle",s:10.5,b:700,f:C.navy3});
+  s+=T((sa(51)+ax1)/2,top+16,"Gestionado",{a:"middle",s:10.5,b:700,f:C.navy3});
+  s+=T((bx0+bx1)/2,top+16,"Optimizado",{a:"middle",s:10.5,b:700,f:C.navy3});
+
+  s+=`<line x1="${sb(GLOBAL)}" y1="${top-6}" x2="${sb(GLOBAL)}" y2="${bottom}"
+    stroke="${C.green}" stroke-width="2.2"/>`;
+  s+=`<circle cx="${sb(GLOBAL)}" cy="${top-14}" r="5" fill="${C.green}"/>`;
+  s+=T(sb(GLOBAL)+11,top-10,"Madurez global 99,09 %",
+    {s:11.5,b:700,f:C.green});
+
+  // Una fila por instrumento
+  A.forEach(function(r,i){
+    const y=mt+i*rh, v=r[1], d=D[r[0]];
+    s+=`<line x1="58" y1="${y}" x2="${bx1}" y2="${y}" stroke="#EEF2F7"
+      stroke-width="1"/>`;
+    // conector entre los dos estados
+    s+=`<line x1="${ax1+10}" y1="${y}" x2="${sb(d)-9}" y2="${y}"
+      stroke="${C.green}" stroke-width="1.1" stroke-opacity="0.3"/>`;
+    s+=T(52,y+4,r[0],{a:"end",s:11.5,b:700,f:C.mute});
+    // estado inicial
+    s+=`<line x1="${ax0}" y1="${y}" x2="${sa(v)}" y2="${y}"
+      stroke="${C.grey}" stroke-width="2.4"/>`;
+    s+=`<circle cx="${sa(v)}" cy="${y}" r="5.5" fill="${C.amber}"/>`;
+    let t1=String(v.toFixed(2)).replace(".",",")+" %";
+    s+=`<rect x="${sa(v)+7}" y="${y-9.5}" width="${t1.length*7.3+6}" height="19"
+      fill="${bA(v)}"/>`;
+    s+=T(sa(v)+11,y+4,t1,{s:11.5,b:700,f:C.amber});
+    // estado posterior
+    s+=`<circle cx="${sb(d)}" cy="${y}" r="5.5" fill="${C.green}"/>`;
+    let t2=String(d.toFixed(2)).replace(".",",")+" %";
+    s+=`<rect x="${sb(d)+7}" y="${y-9.5}" width="${t2.length*7.3+6}" height="19"
+      fill="${bB}"/>`;
+    s+=T(sb(d)+11,y+4,t2,{s:11.5,b:700,f:C.green});
   });
-  s+=T((sx(44)+sx(51))/2,top-9,"Básico",{a:"middle",s:11.5,b:700,f:C.navy3});
-  s+=T((sx(51)+sx(76))/2,top-9,"Gestionado",{a:"middle",s:11.5,b:700,f:C.navy3});
-  s+=T((sx(76)+sx(100))/2,top-9,"Optimizado",{a:"middle",s:11.5,b:700,f:C.navy3});
 
-  // Cortes de nivel
-  [[51,"51 %"],[76,"76 %"]].forEach(function(c){
-    s+=`<line x1="${sx(c[0])}" y1="${top}" x2="${sx(c[0])}" y2="${bottom}"
-      stroke="${C.navy2}" stroke-width="1.4" stroke-dasharray="5 4"/>`;
-    s+=T(sx(c[0]),bottom+22,c[1],{a:"middle",s:11.5,b:600,f:C.navy});
+  // Extremos de cada escala
+  [[ax0,"44 %","start"],[sa(51),"51 %","middle"],[ax1,"60 %","end"]]
+    .forEach(function(c){
+      s+=T(c[0],bottom+22,c[1],{a:c[2],s:11,b:600,f:C.navy});
+    });
+  [[bx0,"98 %","start"],[bx1,"99,5 %","end"]].forEach(function(c){
+    s+=T(c[0],bottom+22,c[1],{a:c[2],s:11,b:600,f:C.navy});
   });
 
-  // Serie inicial, con el estilo de la figura 1 del capitulo
-  // El fondo del valor reproduce el color de su banda, de modo que la linea
-  // de corte no atraviese el texto
-  const banda=v=> v<51 ? "#EDF1F6" : (v<76 ? "#E6F0E9" : "#EAF1F8");
-  antes.forEach(function(r,i){
-    const y=mt+i*rh+bh/2, x=sx(r[1]);
-    s+=T(ml-12,y+4,r[0],{a:"end",s:11.5,b:700,f:C.mute});
-    s+=`<line x1="${ml}" y1="${y}" x2="${x}" y2="${y}"
-      stroke="${C.grey}" stroke-width="2"/>`;
-    // desplazamiento hasta el valor institucional
-    s+=`<line x1="${x+70}" y1="${y}" x2="${sx(POST)-12}" y2="${y}"
-      stroke="${C.green}" stroke-width="1" stroke-opacity="0.3"/>`;
-    s+=`<circle cx="${x}" cy="${y}" r="5.5" fill="${C.amber}"/>`;
-    const txt=String(r[1].toFixed(2)).replace(".",",")+" %";
-    s+=`<rect x="${x+7}" y="${y-9.5}" width="${txt.length*7.3+6}" height="19"
-      fill="${banda(r[1])}"/>`;
-    s+=T(x+11,y+4,txt,{s:11.5,b:700,f:C.amber});
-  });
-
-  // Resultado agregado comunicado por la institucion
-  const xp=sx(POST);
-  s+=`<line x1="${xp}" y1="${top}" x2="${xp}" y2="${bottom}"
-    stroke="${C.green}" stroke-width="2.6"/>`;
-  s+=`<circle cx="${xp}" cy="${top-14}" r="6" fill="${C.green}"/>`;
-  s+=T(xp+12,top-10,"99,09 %",{s:14,b:700,f:C.green});
-  s+=T(W-8,top+4,"Cumplimiento global",{a:"end",s:12,b:700,f:C.green});
-  s+=T(W-8,top+20,"comunicado por el SIN",{a:"end",s:11,f:C.green});
-
-  s+=T(ml,bottom+48,"Los catorce valores iniciales proceden del autoinforme de treinta respondentes, α = 0,869.",{s:11,f:C.mute});
-  s+=T(ml,bottom+66,"El valor posterior es el madurez global que calcula el libro oficial de resultados del Servicio de Impuestos Nacionales.",{s:11,f:C.mute});
+  s+=T(ax0,bottom+52,"Los catorce valores iniciales proceden del autoinforme de "
+    +"treinta respondentes, α = 0,869.",{s:11,f:C.mute});
+  s+=T(ax0,bottom+72,"Los catorce valores posteriores y la madurez global de "
+    +"99,09 % proceden del libro oficial de resultados del Servicio de Impuestos "
+    +"Nacionales.",{s:11,f:C.mute});
 
   document.getElementById("ch").innerHTML=s+"</svg>";
 })();

@@ -32,6 +32,8 @@ La cifra que el capítulo incorpora en el apartado 4.4.7 es, por tanto, el resul
 
 El libro también declara el tamaño de la matriz, **30 participantes por 42 ítems**, y un alfa de Cronbach calculado sobre esa misma matriz.
 
+**Cómo aparece en la Figura 60.** El gráfico del capítulo coloca los catorce valores iniciales en un carril con escala de 44 a 60 % y los catorce posteriores en un segundo carril con escala de 98 a 99,5 %. Los dos carriles declaran su escala en el título, de manera que la comparación se resuelve por dirección y por valor declarado, y no por distancia sobre un eje común. Un eje único de 0 a 100 % habría comprimido los catorce puntos verdes en un mismo lugar y habría hecho ver entre ellos una separación que no existe.
+
 ---
 
 ## 2. Verificación independiente de las dos matrices
@@ -96,7 +98,7 @@ La cifra de 99,06 % que el libro menciona varias veces no es un resultado, sino 
 Cuando el Servicio de Impuestos Nacionales facilite la matriz posterior aplicada a respondientes reales, la operación se repite sin alterar la estructura del argumento.
 
 1. El apartado 4.4.7 sustituye la cifra de 99,09 % por el promedio real de los catorce instrumentos.
-2. La Figura 60 cambia la línea verde institucional por una columna de puntos por instrumento, y su nota al pie pierde la frase que hoy declara la fuente del valor único.
+2. La Figura 60 sustituye los catorce puntos verdes actuales por los que produzca la matriz real, y su nota al pie pierde la frase que declara la fuente del libro oficial.
 3. La Tabla 20 conserva la fila institucional y actualiza su columna *Respaldo disponible* con el nombre del archivo firmado.
 4. El verificador `scripts/verificar-matriz-postest.py` se ejecuta sobre el archivo nuevo para comprobar la distribución de respuestas antes de incorporarlo.
 

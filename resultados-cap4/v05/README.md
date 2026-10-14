@@ -11,7 +11,7 @@ Esta carpeta reúne la versión vigente del tablero de resultados del capítulo 
 | Operación que produce la cifra | No se declaraba | Promedio simple de los 14 instrumentos sobre la matriz de 30 participantes, igual a 99,0873015873016 % |
 | Distancia respecto del diagnóstico | 46,36 puntos porcentuales | 46,39 puntos porcentuales |
 | Apartado 4.4.7 | Resultado agregado | **Resultado global del libro oficial de la institución** |
-| Gráfico de los 14 instrumentos | Una línea verde de 99,06 % | Una línea verde de **99,09 %** |
+| Gráfico de los 14 instrumentos | Una línea verde de 99,06 % | **Los catorce porcentajes posteriores, en dos carriles con escala propia** |
 | Ubicación | `resultados-cap4/` | `resultados-cap4/v05/` |
 
 ## Contenido
