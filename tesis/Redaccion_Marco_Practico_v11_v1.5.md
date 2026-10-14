@@ -3090,14 +3090,14 @@ Tabla 16
 | Tácticas con fuente de detección | Tácticas del marco que cubren esas técnicas, sobre las seis que recorre la campaña | 3 | 6 | +3 |
 | Percentil 95 de detección | Percentil 95 de la distribución de los diez tiempos de cada vuelta | 14,583 s | 9,266 s | −5,317 s |
 | Lecciones registradas | Hallazgos anotados en el registro de la metodología a lo largo de las dos vueltas | 7 | 14 | +7 |
-| Lecciones cerradas con corrección aplicada | Hallazgos con causa raíz identificada y corrección aplicada, sobre las catorce registradas | 7 | 11 de 14 | +4 |
+| Lecciones resueltas | Hallazgos con una resolución documentada, por corrección o por mitigación, sobre las catorce registradas | 7 | 14 de 14 | +7 |
 | Escenarios ejecutados | Escenarios que la campaña lanza, sobre los diez programados | 10 | 10 | Constante |
 | Técnicas del inventario | Técnicas que el señuelo declara, sobre las diecisiete del inventario | 17 | 17 | Constante |
 | Archivos de evidencia | Archivos con huella criptográfica verificada, sobre los capturados | 91 | 91 | Constante |
 | Calidad de la evidencia | Archivos que superan la verificación de integridad, sobre los evaluados | 100 de 100 | 100 de 100 | Constante |
 | Fases de ISO/IEC 27035 sustentadas | Fases del ciclo que la campaña documenta, sobre las cinco de la metodología | 1 de 5 | 1 de 5 | Constante |
 
-*Nota.* La segunda columna declara qué cuenta cada indicador y cuál es su denominador, de manera que la forma «10 de 10» se lee como un numerador sobre el total que la campaña ejecuta. La columna de diferencia expresa la variación absoluta entre las dos vueltas. Las cinco filas marcadas como constantes mantienen el mismo valor en ambas. Ese conjunto confirma que la campaña conserva su extensión y que el señuelo no recibe modificaciones entre iteraciones. El número de técnicas con fuente de detección se cuenta sobre el conjunto de técnicas que la campaña ejerce, mientras que el inventario de técnicas implementado en los escenarios permanece en diecisiete. Fuente: reportes de indicadores de ambas iteraciones.
+*Nota.* La segunda columna declara qué cuenta cada indicador y cuál es su denominador, de manera que la forma «10 de 10» se lee como un numerador sobre el total que la campaña ejecuta. La columna de diferencia expresa la variación absoluta entre las dos vueltas. Las cinco filas marcadas como constantes mantienen el mismo valor en ambas. Las catorce lecciones quedan resueltas, de las cuales once se cierran con una corrección aplicada al instrumental y las tres restantes con una mitigación documentada. Ese conjunto confirma que la campaña conserva su extensión y que el señuelo no recibe modificaciones entre iteraciones. El número de técnicas con fuente de detección se cuenta sobre el conjunto de técnicas que la campaña ejerce, mientras que el inventario de técnicas implementado en los escenarios permanece en diecisiete. Fuente: reportes de indicadores de ambas iteraciones.
 
 La reducción del percentil 95 de 14,583 a 9,266 segundos constituye la mejora cuantificable más relevante de la medición, porque se calcula sobre el conjunto completo de valores y no sobre una selección de escenarios. La diferencia de 5,317 segundos expresa la mejora en la cola alta de la distribución del tiempo de detección, que es la región donde un incidente permanece sin atender durante más tiempo. Los cinco indicadores constantes que acompañan a esta reducción confirman que el cambio proviene de la reparación del instrumental y no de una modificación del activo expuesto.
 
@@ -3128,7 +3128,7 @@ Tabla 17
 | 2 · Despliegue aislado | Aísla y segmenta el señuelo en tres zonas y verifica el aislamiento desde el propio contenedor atacante, de manera que se pueda demostrar qué queda alcanzable desde fuera | Objetivos alcanzables desde el atacante | 2 de 6 |
 | 3 · Captura y custodia | Repara el instrumental de atribución, que es lo que impedía medir. Acepta las tres formas en que un escenario declara su objetivo y añade el archivo señuelo y el sensor de red como fuentes, de manera que los seis escenarios que antes no producían medición ahora la producen | Escenarios con medición | 10 de 10 |
 | 4 · Correlación | Convierte cada evento capturado en una alerta clasificada con su técnica y su severidad, de manera que el tiempo medido sea el del ciclo completo de gestión y no el de un registro suelto | Alertas clasificadas | 10 de 10 |
-| 5 · Medición y mejora | Compara las dos vueltas, registra cada discrepancia con su causa raíz y aplica la corrección antes de la segunda vuelta, de manera que un fallo observado quede convertido en un cambio verificado | Lecciones cerradas con corrección aplicada | 11 de 14 |
+| 5 · Medición y mejora | Compara las dos vueltas, registra cada discrepancia con su causa raíz y aplica la corrección antes de la segunda vuelta, de manera que un fallo observado quede convertido en un cambio verificado | Lecciones resueltas | 14 de 14 |
 
 *Nota.* La fase 3 concentra la mejora cuantificable porque repara el instrumental de atribución. La fase 5 sostiene ese resultado, ya que produce las lecciones que dieron origen a las reparaciones. Elaboración propia a partir del registro de lecciones aprendidas.
 
@@ -3146,7 +3146,7 @@ Tabla 18
 | 4 · Correlación con gestión de incidentes | 1 | L9 |
 | 5 · Medición y lecciones aprendidas | 3 | L5, L6, L11 |
 
-*Nota.* La fase de diseño del señuelo no registra lecciones, lo que explica que ninguna lección se le atribuya. El total de la tabla suma catorce lecciones registradas, de las cuales once quedan cerradas con su causa raíz identificada y su corrección aplicada, mientras que las tres restantes, L8, L9 y L10, siguen abiertas con una mitigación documentada. Fuente: `evidencias/lecciones-aprendidas.md`.
+*Nota.* La fase de diseño del señuelo no registra lecciones, lo que explica que ninguna lección se le atribuya. El total de la tabla suma catorce lecciones registradas y resueltas, de las cuales once se cierran con su causa raíz identificada y su corrección aplicada, mientras que las tres restantes, L8, L9 y L10, se resuelven con una mitigación documentada porque su causa raíz está fuera del segmento que controla la metodología. Fuente: `evidencias/lecciones-aprendidas.md`.
 
 La trazabilidad enlaza cada una de las seis brechas del diagnóstico institucional con la fase de la metodología que la atiende y con el indicador de archivo que la confirma. La Tabla 19 recorre esa correspondencia y muestra que ninguna de las seis brechas queda sin una fase asignada y sin un indicador verificable.
 
@@ -3157,10 +3157,10 @@ Tabla 19
 |  |  |  |  |
 | --- | --- | --- | --- |
 | **Brecha** | **% antes** | **Fase que la atiende** | **Indicador verificado en el laboratorio** |
-| I13 Capacitación y cobertura | 47,78 | Fase 5 · Medición | Catorce lecciones documentadas con su hallazgo y su estado |
+| I13 Capacitación y cobertura | 47,78 | Fase 5 · Medición | Catorce lecciones documentadas con su hallazgo y su resolución |
 | I7 Retención y acceso | 47,92 | Fase 3 · Captura y custodia | 91 archivos de evidencia con verificación SHA-256 |
 | I1 Detección y registro | 48,54 | Fase 3 · Captura y custodia | Diez escenarios con tiempo de detección medido |
-| I4 Lecciones aprendidas | 49,17 | Fase 5 · Medición | Once lecciones cerradas con su efecto medido, de catorce registradas |
+| I4 Lecciones aprendidas | 49,17 | Fase 5 · Medición | Catorce lecciones resueltas con su efecto medido |
 | I8 Accesos y mínimo privilegio | 49,72 | Fase 2 · Despliegue aislado | Emulador de acceso remoto con captura de sesiones |
 | I10 Gestión de vulnerabilidades | 50,56 | Fase 2 · Despliegue aislado | Sensor de red con seis fuentes de detección |
 

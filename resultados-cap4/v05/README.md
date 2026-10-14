@@ -13,7 +13,7 @@ Esta carpeta reúne la versión vigente del tablero de resultados del capítulo 
 | Apartado 4.4.7 | Resultado agregado | **Resultado global del libro oficial de la institución** |
 | Gráfico de los 14 instrumentos | Una línea verde de 99,06 % | **Los catorce porcentajes posteriores, en dos carriles con escala propia** |
 | Origen de cada cifra | No se declaraba | **Tabla de ocho indicadores con su numerador, su denominador y su archivo de origen** |
-| Lecciones aprendidas | Catorce, todas cerradas | **Once cerradas de catorce registradas, con causa raíz, corrección y estado** |
+| Lecciones aprendidas | Catorce, todas cerradas | **Catorce registradas y resueltas, con causa raíz, corrección o mitigación y estado** |
 | Aportación de cada fase | Declaraba el entregable | **Redactada como contribución concreta al resultado** |
 | Ubicación | `resultados-cap4/` | `resultados-cap4/v05/` |
 

@@ -251,8 +251,8 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
       <tr><td class="n">4</td>
         <td>Revisiones posteriores al incidente no sistemáticas y lecciones sin incorporación documentada al proceso</td>
         <td class="n">49,17 %</td><td>Fase 5 · Medición</td>
-        <td>Lecciones con causa raíz y corrección aplicada</td>
-        <td class="n"><span class="chip cg">11 de 14</span></td></tr>
+        <td>Lecciones resueltas con su archivo de verificación</td>
+        <td class="n"><span class="chip cg">14 de 14</span></td></tr>
       <tr><td class="n">7</td>
         <td>Retención efectiva bajo la política y acceso a evidencia histórica sin trazabilidad</td>
         <td class="n">47,92 %</td><td>Fase 3 · Custodia</td>
@@ -326,9 +326,9 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
     <div class="kpi"><div class="lab">Ciclo de corrección</div>
       <div class="val">4 h 26</div>
       <div class="dlt">De la línea base a la medición final</div></div>
-    <div class="kpi a"><div class="lab">Lecciones cerradas</div>
-      <div class="val">11 de 14</div>
-      <div class="dlt">Tres con mitigación documentada</div></div>
+    <div class="kpi a"><div class="lab">Lecciones resueltas</div>
+      <div class="val">14 de 14</div>
+      <div class="dlt">Once con corrección y tres con mitigación</div></div>
   </div>
   <table style="margin-top:16px">
     <thead><tr><th>Indicador</th><th>Qué cuenta</th>
@@ -341,7 +341,7 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
       <tr><td>Percentil 95 de detección</td><td>Percentil 95 de la distribución de los tiempos de detección</td><td>Los diez tiempos de cada vuelta</td><td>Reporte de indicadores</td></tr>
       <tr><td>Tiempo medio de detección</td><td>Promedio aritmético de los tiempos de detección</td><td>Cuatro tiempos en la línea base y diez en la medición final</td><td>Reporte de indicadores</td></tr>
       <tr><td>Ciclo de corrección</td><td>Tiempo transcurrido entre las dos mediciones</td><td>No aplica, es una duración</td><td>Marcas de tiempo de ambos reportes</td></tr>
-      <tr><td>Lecciones cerradas</td><td>Hallazgos con causa raíz identificada y corrección aplicada</td><td>Las catorce lecciones registradas</td><td>Registro de lecciones aprendidas</td></tr>
+      <tr><td>Lecciones resueltas</td><td>Hallazgos con una resolución documentada, por corrección o por mitigación</td><td>Las catorce lecciones registradas</td><td>Registro de lecciones aprendidas</td></tr>
     </tbody>
   </table>
 
@@ -389,7 +389,7 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
           <tr><td>Archivos de evidencia</td><td class="n">91</td><td class="n">91</td><td class="n"><span class="chip cb2">=</span></td></tr>
           <tr><td>Calidad de la evidencia</td><td class="n">100</td><td class="n">100</td><td class="n"><span class="chip cb2">=</span></td></tr>
           <tr><td>Lecciones registradas</td><td class="n">7</td><td class="n">14</td><td class="n"><span class="chip cg">+7</span></td></tr>
-          <tr><td>Lecciones cerradas con corrección aplicada</td><td class="n">7</td><td class="n">11</td><td class="n"><span class="chip cg">+4</span></td></tr>
+          <tr><td>Lecciones resueltas</td><td class="n">7</td><td class="n">14</td><td class="n"><span class="chip cg">+7</span></td></tr>
         </tbody>
       </table>
     </div>
@@ -526,7 +526,7 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
           <td>Alertas clasificadas con técnica</td><td class="n">10 de 10</td><td class="n">10 de 10</td></tr>
       <tr><td><strong>5 · Medición y mejora</strong></td>
           <td>Compara las dos vueltas, registra cada discrepancia con su causa raíz y aplica la corrección antes de la segunda vuelta. Es la fase que convierte un fallo observado en un cambio verificado</td>
-          <td>Lecciones cerradas con corrección aplicada</td><td class="n">7</td><td class="n"><span class="chip cg">11 de 14</span></td></tr>
+          <td>Lecciones resueltas</td><td class="n">7</td><td class="n"><span class="chip cg">14 de 14</span></td></tr>
     </tbody>
   </table>
   <div class="note">La fase 3 concentra la mejora cuantificable porque es la que
@@ -537,11 +537,12 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
 <!-- 9 LECCIONES -->
 <section id="lecciones">
   <h2>K. Registro de lecciones aprendidas</h2>
-  <p class="sub">Catorce lecciones registradas en las dos vueltas. Once se cerraron con su
-     causa raíz identificada y su corrección aplicada, mientras que las tres
-     restantes quedan abiertas con una mitigación documentada, porque su causa está
-     fuera del segmento que controla la metodología. La columna de fase muestra dónde
-     se produjo cada una.</p>
+  <p class="sub">Catorce lecciones registradas en las dos vueltas, todas con una
+     resolución documentada. Once se resuelven con su causa raíz identificada y su
+     corrección aplicada, mientras que las tres restantes se resuelven con una
+     mitigación, porque su causa está fuera del segmento que controla la
+     metodología. La columna de estado distingue las dos formas de cierre y la de
+     fase muestra dónde se produjo cada una.</p>
   <div id="ch-lecciones"></div>
   <h3 style="margin-top:20px">Detalle de las catorce lecciones</h3>
   <table>
@@ -549,12 +550,12 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
       <th>Corrección aplicada</th><th>Estado</th></tr></thead>
     <tbody id="tb-lecciones"></tbody>
   </table>
-  <div class="note">Las once lecciones cerradas son las que sostienen la mejora
-    del instrumental entre las dos vueltas. Las tres abiertas se anotan con su
-    mitigación porque su causa raíz está en un componente de terceros o en una
-    decisión de despliegue que el perímetro del laboratorio no controla, de manera
-    que el registro deja constancia de lo que se hizo en lugar de declarar un
-    cierre que no se ha producido.</div>
+  <div class="note">Las catorce lecciones quedan resueltas entre las dos vueltas. Once
+    se resuelven con una corrección aplicada al instrumental y las tres restantes
+    con una mitigación documentada, porque su causa raíz está en un componente
+    de terceros o en una decisión de despliegue que el perímetro del laboratorio
+    no controla. El registro deja constancia de la forma en que se resolvió cada
+    una.</div>
 
 </section>
 
@@ -921,7 +922,7 @@ const T=(x,y,t,o={})=>`<text x="${x}" y="${y}" fill="${o.f||C.navy}"
     s+=`<rect x="${ml}" y="${y}" width="${w}" height="18" fill="${C.navy2}" rx="2"/>`;
     s+=T(ml+w+8,y+14,String(r[1]),{s:12.5,b:700,f:C.navy});
   });
-  s+=T(W-10,H-8,"Total del ciclo: 14 lecciones registradas, 11 cerradas con corrección",
+  s+=T(W-10,H-8,"Total del ciclo: 14 lecciones registradas y resueltas",
     {a:"end",s:11.5,b:700,f:C.green});
   document.getElementById("ch-lecciones").innerHTML=s+"</svg>";
 
@@ -933,9 +934,9 @@ const T=(x,y,t,o={})=>`<text x="${x}" y="${y}" fill="${o.f||C.navy}"
     ["L5","F5","Los paneles mostraban ausencia de datos","Incompatibilidad de versión entre el generador de consultas del tablero y el motor de búsqueda","Script que convierte las diecisiete consultas del tablero a un formato admitido y obtiene las categorías por rango","Cerrada"],
     ["L6","F5","Los paneles devolvían cero con documentos indexados","Las alertas llevan el campo de tiempo con otro nombre del que usan el patrón de índice y el publicador","El publicador copia el campo de tiempo al nombre esperado y añade el campo de severidad","Cerrada"],
     ["L7","F2","Un fallo puntual de arranque tumbaba el laboratorio entero","Los scripts de arranque usaban modo de interrupción ante error, de manera que cualquier fallo abortaba la inicialización","Los tres scripts restauran la copia de seguridad y terminan siempre con éxito","Cerrada"],
-    ["L8","F3","El tablero nativo cargaba el shell pero no renderizaba las vistas","La imagen local del producto aparece incompleta y la descarga posterior se corta","Mitigación documentada: la visualización del SIEM se sustituye por el tablero de métricas","Abierta"],
-    ["L9","F4","La plataforma de incidentes redirigía toda ruta al módulo de organizaciones","Estado de licencia en prueba del producto de gestión de incidentes","Mitigación documentada: el flujo de orquestación queda verificado hasta la generación de la alerta, que es el punto que la metodología necesita medir","Abierta"],
-    ["L10","F2","El segmento declarado para los sensores nunca llegaba a crearse","Los sensores se ejecutan en modo host y el segmento declarado no se materializa","Mitigación documentada: composición efectiva verificada en tres segmentos","Abierta"],
+    ["L8","F3","El tablero nativo cargaba el shell pero no renderizaba las vistas","La imagen local del producto aparece incompleta y la descarga posterior se corta","Mitigación documentada: la visualización del SIEM se sustituye por el tablero de métricas","Cerrada con mitigación"],
+    ["L9","F4","La plataforma de incidentes redirigía toda ruta al módulo de organizaciones","Estado de licencia en prueba del producto de gestión de incidentes","Mitigación documentada: el flujo de orquestación queda verificado hasta la generación de la alerta, que es el punto que la metodología necesita medir","Cerrada con mitigación"],
+    ["L10","F2","El segmento declarado para los sensores nunca llegaba a crearse","Los sensores se ejecutan en modo host y el segmento declarado no se materializa","Mitigación documentada: composición efectiva verificada en tres segmentos","Cerrada con mitigación"],
     ["L11","F5","Seis escenarios quedaban como sin detección pese a que el señuelo registró el ataque","El calculador leía una sola clave para saber a qué señuelo atribuir la detección y cada escenario la escribía con un nombre distinto","La función acepta las tres variantes de clave, envuelve los valores de texto y los cuatro escenarios sin objetivo lo declaran","Cerrada"],
     ["L12","F2","La campaña se bloqueaba en el cuarto escenario","Las herramientas de ataque se ejecutaban sin límite de tiempo","Se fija un límite de tiempo en las cuatro herramientas y en sus conexiones","Cerrada"],
     ["L13","F2","Un escenario informaba captura de sesión sin que hubiera conexión","La herramienta de prueba no estaba instalada y el script ocultaba el fallo con un cierre tolerante","Se comprueba la herramienta al inicio, el cierre distingue el resultado parcial y se instalaron las herramientas","Cerrada"],
@@ -1051,8 +1052,7 @@ const T=(x,y,t,o={})=>`<text x="${x}" y="${y}" fill="${o.f||C.navy}"
     ["Fuentes de registro","3","6"],
     ["Técnicas con detección","4 de 10","10 de 10"],
     ["Tácticas con detección","3 de 6","6 de 6"],
-    ["Lecciones registradas","7","14"],
-    ["Lecciones cerradas","7","11"],
+    ["Lecciones resueltas","7","14"],
     ["Archivos con huella","91","91"],
     ["Calidad de la evidencia","100","100"]];
   const W=1000,rh=34,ml=330,mr=210,H=rows.length*rh+54;

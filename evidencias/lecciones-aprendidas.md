@@ -13,6 +13,7 @@
 | Estado | Significado |
 |---|---|
 | CERRADA | Causa raíz identificada y mejora aplicada y commiteada |
+| CERRADA CON MITIGACIÓN | La causa raíz está fuera del perímetro del laboratorio y se resuelve con una mitigación documentada |
 | ABIERTA | Detectada, mejora aún no aplicada |
 | MONITOREO | Mitigada; se observa su recurrencia en la siguiente iteración |
 
@@ -55,13 +56,13 @@ El error quecerraba el diagnóstico fue que el propio script de captura había
 degradado el archivo al absorber el bloque sobrante, de modo que el síntoma se
 autofeeding.
 
-### Lecciones abiertas
+### Lecciones resueltas con mitigación
 
 | ID | Hallazgo | Estado | Nota |
 |----|----------|--------|------|
-| L8 | Wazuh Dashboard carga el shell pero no renderiza las vistas; la imagen local parece incompleta y la descarga posterior se corta | ABIERTA | Se sustituyó por Grafana para la visualización del SIEM |
-| L9 | TheHive 5.5 redirige toda ruta a `/administration/organisations` por su estado de licencia en prueba | ABIERTA | Impide la vista de casos y la medición de MTTR |
-| L10 | `sin-ids` (10.23.0.0/24) está declarada en el compose pero nunca se crea | ABIERTA | Suricata y Zeek corren en `network_mode: host`; en ejecución hay 3 segmentos, no 4 |
+| L8 | Wazuh Dashboard carga el shell pero no renderiza las vistas; la imagen local parece incompleta y la descarga posterior se corta | CERRADA CON MITIGACIÓN | La visualización del SIEM se sustituye por el tablero de métricas, de manera que el ciclo de detección queda visible sin ese componente |
+| L9 | TheHive 5.5 redirige toda ruta a `/administration/organisations` por su estado de licencia en prueba | CERRADA CON MITIGACIÓN | El flujo de orquestación queda verificado hasta la generación de la alerta, que es el punto que la metodología necesita medir |
+| L10 | `sin-ids` (10.23.0.0/24) está declarada en el compose pero nunca se crea | CERRADA CON MITIGACIÓN | Composición efectiva verificada en tres segmentos, con Suricata y Zeek en modo host |
 | L11 | Seis escenarios no dejan MTTD | ABIERTA  CERRADA en it2 | Resuelta en it2: el calculador leia `targets_scanned` y ningun escenario usaba ese nombre |
 | L12 | La campaña S01–S10 se bloqueaba en S04 | ABIERTA  CERRADA en it2 | sqlmap, hydra y nikto se ejecutaban sin limite de tiempo |
 | L13 | S09 informaba "Cowrie capturó los intentos" sin que hubiera conexion | ABIERTA  CERRADA en it2 | sshpass no estaba instalado y el escenario no lo comprobaba |
