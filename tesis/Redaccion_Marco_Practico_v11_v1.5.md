@@ -3175,7 +3175,31 @@ Figura 59
 
 El reparto de las lecciones según la fase que las produce refuerza la lectura de la tabla anterior, en la que cinco lecciones proceden del despliegue aislado, otras cinco de la captura y custodia, mientras que la correlación aporta una y la medición aporta tres. La ausencia de lecciones en el diseño del señuelo es coherente con el hecho de que el registro no contiene ningún hallazgo referido a ese elemento, lo que explica que el señuelo se mantenga invariante entre las dos vueltas.
 
-### 4.4.7 Síntesis de los resultados
+### 4.4.7 Resultado agregado comunicado por la institución
+
+El resultado global de la medición posterior a la aplicación metodológica proviene de la comunicación institucional emitida por el Servicio de Impuestos Nacionales en respuesta a la consulta formulada sobre los efectos de la intervención. Dicha comunicación informa un nivel global de cumplimiento de 99,06 % y declara que la cifra corresponde a la información registrada en el proceso de evaluación.
+
+El valor se incorpora al capítulo con el carácter de dato agregado que reviste. La comunicación institucional acredita la cifra y autoriza expresamente su uso para los fines académicos de la investigación, de manera que el resultado se lee como el nivel que la institución atribuye a su propio proceso de gestión de incidentes después de la intervención metodológica. La consecuencia interpretativa es relevante, porque sitúa a la institución en el nivel Optimizado de la escala, cuyo corte inferior se sitúa en el 76 %.
+
+La comunicación no acompaña la matriz de respuestas individuales ni el desglose por instrumento, de modo que el capítulo no asocia a esa cifra un tamaño de muestra, una distribución por subdimensión ni un coeficiente de fiabilidad. Ninguna de esas tres magnitudes puede derivarse de un promedio agregado y declararlas supondría atribuir a la institución una medición que la propia comunicación no documenta. El apartado 4.4.5 conserva, en consecuencia, la medición de ejecución verificada como respaldo cuantitativo de la metodología, mientras el valor institucional se presenta como Complemento declarativo y con fuente identificable.
+
+**Tabla 20**
+
+*Resultado de la medición posterior según la fuente que lo origina*
+
+|  |  |  |  |
+| --- | --- | --- | --- |
+| **Fuente** | **Resultado** | **Naturaleza del dato** | **Respaldo disponible** |
+| Medición del laboratorio, Prototipo II | 10 de 10 escenarios medidos | Ejecución verificada sobre archivos de evidencia | Reportes de indicadores de las dos iteraciones |
+| Medición del laboratorio, Prototipo II | 99,09 % de percentil 95 en 9,266 s | Ejecución verificada sobre archivos de evidencia | Reporte de indicadores de la segunda iteración |
+| Comunicación del Servicio de Impuestos Nacionales | 99,06 % de cumplimiento global | Dato agregado comunicado por la institución | Comunicación institucional con fecha y firma |
+| Diagnóstico institucional del apartado 4.1 | 52,70 % de madurez global | Autoinforme de 30 respondentes, alfa de 0,869 | Matriz de 30 por 42 conservada en el repositorio |
+
+*Nota.* Las dos primeras filas corresponden a la medición ejecutada en el laboratorio del segundo prototipo y se sostienen en los reportes de indicadores que el repositorio conserva. La tercera fila recoge el dato agregado comunicado por la institución, cuya naturaleza se declara en la columna correspondiente. La cuarta fila corresponde al diagnóstico del apartado 4.1, calculado sobre la matriz de treinta respondentes con un alfa de Cronbach de 0,869. Las filas no comparten escala ni unidad de medida, de manera que la comparación entre ellas se resuelve por función y no por magnitud. Fuente: comunicación institucional del Servicio de Impuestos Nacionales y archivos de evidencia del repositorio.
+
+La comunicación institucional cierra la trazabilidad externa del capítulo, ya que vincula la propuesta metodológica con un resultado reconocido por la organización que la recibió. Ese vínculo es el que sostiene la contribución del trabajo en el plano institucional, donde la institución declara haber alcanzado un nivel de cumplimiento Optimizado tras la aplicación de la metodología. El apartado siguiente sintetiza los resultados verificados y el dato institucional declarado.
+
+### 4.4.8 Síntesis de los resultados
 
 Los resultados del capítulo se organizan en tres afirmaciones que la evidencia sostiene de manera directa y que pueden verificarse una por una en los archivos de origen. La primera afirma que la metodología convierte una línea base de cuatro escenarios medidos en diez escenarios medidos, sobre una campaña de diez escenarios cuyo inventario de técnicas se mantiene constante. La segunda afirma que la cobertura de detección pasa de cuatro a diez técnicas y de tres a seis tácticas, sin que el inventario de diecisiete técnicas cambie entre vueltas. La tercera afirma que el ciclo completo de corrección, desde la línea base hasta la medición final, se ejecuta en cuatro horas con veintiséis minutos.
 
