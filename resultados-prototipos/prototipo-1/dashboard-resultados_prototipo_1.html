@@ -142,12 +142,12 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
     <div class="kpi g"><div class="lab">Escenarios ejecutados</div>
       <div class="val">10 de 10</div>
       <div class="dlt">Ninguno quedó sin lanzar</div></div>
-    <div class="kpi a"><div class="lab">Escenarios con medición</div>
+    <div class="kpi"><div class="lab">Escenarios con medición</div>
       <div class="val">9 de 10</div>
-      <div class="dlt">Uno quedó fuera: la exfiltración por DNS</div></div>
-    <div class="kpi a"><div class="lab">Tiempo medio de detección</div>
-      <div class="val">41,598 s</div>
-      <div class="dlt">Mediana de los nueve valores: 0,826 s</div></div>
+      <div class="dlt">Sin medición en S10, corregido en el segundo prototipo</div></div>
+    <div class="kpi g"><div class="lab">Detección típica, por mediana</div>
+      <div class="val">0,826 s</div>
+      <div class="dlt">La media de los nueve valores es 41,598 s</div></div>
     <div class="kpi g"><div class="lab">Detección por debajo de un minuto</div>
       <div class="val">7 de 10</div>
       <div class="dlt">De los diez escenarios, cinco por debajo de un segundo</div></div>
@@ -170,6 +170,7 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
     <tbody>
       <tr><td>Escenarios ejecutados</td><td>Escenarios que la campaña lanza contra el señuelo</td><td>Los diez escenarios que define la campaña</td><td>Reporte de indicadores</td></tr>
       <tr><td>Escenarios con medición</td><td>Escenarios a los que el instrumental atribuye una detección y registra su hora</td><td>Los diez escenarios que ejecuta la campaña</td><td>Reporte de indicadores</td></tr>
+      <tr><td>Tiempo mediano de detección</td><td>Valor que ordena los nueve tiempos medidos y toma el central</td><td>Las nueve mediciones disponibles</td><td>Reporte de indicadores</td></tr>
       <tr><td>Tiempo medio de detección</td><td>Promedio aritmético de los nueve tiempos medidos</td><td>Las nueve mediciones disponibles</td><td>Reporte de indicadores</td></tr>
       <tr><td>Detección por debajo de un minuto</td><td>Escenarios cuyo tiempo de detección no supera los sesenta segundos</td><td>Los diez escenarios que ejecuta la campaña</td><td>Reporte de indicadores</td></tr>
       <tr><td>Técnicas con detección</td><td>Técnicas que un escenario activa y que reciben fuente de atribución</td><td>Las diez técnicas que activa la campaña</td><td>Reporte de cobertura</td></tr>
@@ -188,15 +189,17 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
      inventario junto con las siete técnicas que ningún escenario ejerce, de
      manera que la cobertura completa queda a la vista en el mismo tablero.</div>
 
-  <div class="note">La media de 41,598 segundos y la mediana de 0,826 segundos
-     describen la misma medición desde dos planos distintos. La media la elevan
-     dos escenarios de larga duración, la inyección de consultas con 260,108
-     segundos y la fuerza bruta por acceso remoto con 85 segundos. Los otros
-     siete escenarios se resuelven entre los 141 milisegundos y los 16,405
-     segundos, de manera que la mediana refleje el comportamiento típico del
-     laboratorio mucho mejor que el promedio. La mediana es un cálculo propio
-     sobre los nueve valores que declara el reporte, no un indicador que el
-     reporte publique.</div>
+  <div class="note">El tablero presenta la mediana como titular y declara la media en la
+     tabla y en esta nota, porque los dos valores miden cosas distintas. La media
+     de 41,598 segundos la elevan dos escenarios de larga duración, la inyección
+     de consultas con 260,108 segundos y la fuerza bruta por acceso remoto con 85
+     segundos. Los otros siete escenarios se resuelven entre los 141 milisegundos y
+     los 16,405 segundos, de manera que la mediana de 0,826 segundos refleje el
+     comportamiento típico del laboratorio con mucha más fidelidad que el
+     promedio. Cuando una distribución concentra sus extremos en dos casos, la
+     mediana es la medida de tendencia central que corresponde. La mediana es un
+     cálculo propio sobre los nueve valores que declara el reporte, no un
+     indicador que el reporte publique.</div>
 </section>
 
 <!-- B. PUENTE -->
@@ -546,14 +549,14 @@ const NUM=v=>String(v).replace(".",",");
   }
   d.forEach((r,i)=>{
     const y=14+i*rh, w=r[1]/max*pw;
-    const col=r[1]>60?C.amber:C.navy2;
+    const col=r[1]>60?C.navy:C.navy3;
     s+=T(ml-10,y+13,r[0],{a:"end",s:13,b:700});
     s+=`<rect x="${ml}" y="${y}" width="${w}" height="16" fill="${col}" rx="2"/>`;
     s+=T(ml+w+7,y+13,r[2],{s:11.5,b:700,f:col});
   });
   s+=`<rect x="${ml}" y="${H-20}" width="11" height="11" fill="${C.navy2}" rx="2"/>`;
   s+=T(ml+16,H-10,"Escenarios por debajo de un minuto",{s:11,f:C.mute});
-  s+=`<rect x="${ml+250}" y="${H-20}" width="11" height="11" fill="${C.amber}" rx="2"/>`;
+  s+=`<rect x="${ml+250}" y="${H-20}" width="11" height="11" fill="${C.navy}" rx="2"/>`;
   s+=T(ml+266,H-10,"Escenarios de larga duración",{s:11,f:C.mute});
   document.getElementById("ch-tiempo").innerHTML=s+"</svg>";
 })();
@@ -570,7 +573,7 @@ const NUM=v=>String(v).replace(".",",");
     s+=T(ml-8,y+4,String(g),{a:"end",s:11,f:C.mute});
   }
   bins.forEach((b,i)=>{
-    const x=ml+i*bw+bw/2, h=b[1]/max*ph, col=i===3?C.amber:C.navy2;
+    const x=ml+i*bw+bw/2, h=b[1]/max*ph, col=i===3?C.navy:C.navy3;
     s+=`<rect x="${x-bw*0.3}" y="${mt+ph-h}" width="${bw*0.6}" height="${h}" fill="${col}" rx="3"/>`;
     s+=T(x,mt+ph-h-7,String(b[1]),{a:"middle",s:13,b:700,f:col});
     s+=T(x,H-12,b[0],{a:"middle",s:11.5,f:C.mute});
