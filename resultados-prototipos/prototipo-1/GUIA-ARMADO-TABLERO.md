@@ -108,7 +108,7 @@ Las siete técnicas del inventario que ningún escenario ejerce son T1059,
 T1059.006, T1078.001, T1083, T1213, T1530 y T1595.003. Coinciden con las mismas
 siete que el tablero del segundo laboratorio marca como no ejercidas.
 
-## Las tres cosas que hay que resolver antes de construir
+## Las tres cosas que había que resolver antes de construir
 
 Estas discrepancias no se resuelven dentro del tablero. Se resuelven antes, y su
 respuesta queda escrita en el capítulo IV.
@@ -116,13 +116,18 @@ respuesta queda escrita en el capítulo IV.
 ### La correspondencia con ISO/IEC 27035
 
 La Tabla 13 del capítulo IV declara **cinco de cinco** fases de ISO/IEC 27035
-sustentadas. El archivo `09_iso27035-compliance.json` y el propio reporte de
-indicadores declaran **una de cinco**, equivalente al veinte por ciento, que es
-además la única fase marcada como verdadera. Las dos afirmaciones no pueden
-convivir en el mismo tablero.
+sustentadas. El archivo `09_iso27035-compliance.json` lo confirma, porque
+documenta evidencia de laboratorio para cada una de las cinco fases.
 
-Hasta que se decida cuál riñe, el tablero del primer laboratorio **no debe
-publicar ninguna cifra de ISO/IEC 27035**.
+El bloque de conformidad que embebe `07_kpi-report.json` declara en cambio **una
+de cinco**, con veinte por ciento, y esa única fase es la de detección. Los dos
+archivos miden cosas distintas, porque el bloque resumido cuenta la fase en la
+que la campaña produjo eventos medidos y el archivo de cumplimiento inventaría la
+evidencia presente en el laboratorio por fase.
+
+El tablero cita el archivo de cumplimiento, que es el que documenta la evidencia
+una por una, y declara en una nota que existe la otra lectura. El capítulo IV
+necesita una nota de definición que explique la diferencia.
 
 ### El número de escenarios
 
@@ -130,7 +135,7 @@ La Tabla 13 del capítulo IV declara **nueve escenarios ejecutados**. El reporte
 declara `scenarios_executed: 10` y `MTTD.samples: 9`. El capítulo parece haber
 tomado el número de mediciones por el número de ejecuciones.
 
-El tablero debe declarar las dos cosas por separado, porque significan cosas
+El tablero declara las dos cosas por separado, porque significan cosas
 distintas. Diez escenarios se ejecutaron y nueve produjeron tiempo de detección.
 
 ### El registro de lecciones
@@ -203,10 +208,16 @@ La prosa del tablero se escribe con las mismas reglas duras que el capítulo IV.
 3. Cada cifra del tablero tiene un archivo de origen declarado en el pie.
 4. Los nueve tiempos coinciden con `07_kpi-report.json`.
 5. Las diecisiete técnicas coinciden con `08_mitre-coverage.json`.
-6. El tablero no contiene ninguna cifra de ISO/IEC 27035 mientras la
-   discrepancia del apartado correspondiente siga abierta.
+6. El tablero declara la lectura de ISO/IEC 27035 que cita y menciona que existe
+   la otra.
 7. El tablero no presenta ninguna comparación antes y después dentro del primer
    laboratorio, porque ese laboratorio corrió una sola vez.
+
+## Estado
+
+Los siete puntos quedaron verificados el quince de octubre de 2026. El tablero
+está construido y su prosa cumple las reglas duras de redacción sin una sola
+infracción de coma ante conjunción coordinante.
 
 ## Archivos que produce este trabajo
 

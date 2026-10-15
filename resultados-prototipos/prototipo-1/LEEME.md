@@ -1,8 +1,14 @@
 # Prototipo 1 — aplicación sobre la entidad homologada
 
-Esta carpeta aloja la guía de armado del tablero de resultados del primer
-prototipo de la metodología Honeypot. El tablero todavía no existe, y la razón
-es de trazabilidad, no de alcance.
+Esta carpeta aloja el tablero de resultados del primer prototipo de la
+metodología Honeypot y la guía con que se construyó. El tablero está terminado y
+verificado en navegador.
+
+| Archivo | Contenido |
+| --- | --- |
+| `dashboard-resultados_prototipo_1.html` | Tablero de diez secciones, con cuatro gráficos y dos capturas. |
+| `GUIA-ARMADO-TABLERO.md` | Datos verificados, mapa de secciones y criterios de cierre. |
+| `evidencia-visual/` | Los dos paneles del tablero de alertas del laboratorio. |
 
 ## Dónde se reportan estos resultados
 
@@ -21,18 +27,17 @@ El índice de evidencias que se lee desde la rama `prototipo-2-sin` se titula
 «Prototipo II (laboratorio SIN)» y solo describe el segundo laboratorio. De ahí
 que pareciera que el primero carecía de respaldo.
 
-## Qué bloquea la construcción
+## Qué queda abierto
 
-Tres asuntos quedan abiertos y ninguno se resuelve dentro del tablero.
+Dos asuntos siguen pendientes y ninguno se resuelve dentro del tablero.
 
 | Punto abierto | Estado |
 | --- | --- |
-| Fases de ISO/IEC 27035 | El capítulo IV declara cinco de cinco y el reporte declara una de cinco. |
-| Número de escenarios | El capítulo IV declara nueve ejecutados y el reporte declara diez con nueve medidos. |
-| Registro de lecciones | El capítulo IV atribuye tres lecciones y no hay registro versionado de este laboratorio. |
+| Fases de ISO/IEC 27035 | El capítulo IV declara cinco de cinco y el reporte de indicadores declara una de cinco. El tablero cita el archivo de cumplimiento normativo, que documenta la evidencia de cada fase por separado. |
+| Registro de lecciones | El capítulo IV atribuye tres lecciones y no hay registro versionado de este laboratorio. El tablero lo omite por esa razón. |
 
-La primera discrepancia es la más delicada, porque publicar una cifra de
-ISO/IEC 27035 obligaría a escoger entre el capítulo y la evidencia.
+La discrepancia de ISO/IEC 27035 pide una nota de definición en el capítulo IV,
+porque los dos archivos miden cosas distintas y el lector los confundirá.
 
 ## Cómo continuar
 
