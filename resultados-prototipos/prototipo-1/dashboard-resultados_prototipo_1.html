@@ -129,48 +129,53 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
 
 <!-- A. INDICADORES PRINCIPALES -->
 <section id="kpi">
-  <h2>A. Indicadores principales del laboratorio</h2>
-  <p class="sub">El primer laboratorio corrió una sola medición, de manera que no
-     existe comparación interna entre dos vueltas. Las ocho cifras resumen esa
-     única ejecución y todas proceden de los tres reportes de la carpeta
-     <code>evidencias/07-metricas/</code> del repositorio.</p>
+  <h2>A. Indicadores principales del primer prototipo</h2>
+  <p class="sub">Esta sección presenta los resultados medidos del primer
+     prototipo de la metodología Honeypot, aplicado sobre una entidad homologada
+     del rubro de servicios fiscales digitales. El laboratorio ejecutó una sola
+     medición, el catorce de septiembre de 2026, de manera que aquí no existe la
+     comparación entre dos vueltas que presenta el tablero del segundo prototipo.
+     Cada tarjeta declara un numerador y un denominador explícitos. Todas las
+     cifras proceden de los tres reportes de la carpeta
+     <code>evidencias/07-metricas/</code>.</p>
   <div class="kpis">
-    <div class="kpi g"><div class="lab">Escenarios con medición</div>
+    <div class="kpi g"><div class="lab">Escenarios ejecutados</div>
+      <div class="val">10 de 10</div>
+      <div class="dlt">Ninguno quedó sin lanzar</div></div>
+    <div class="kpi a"><div class="lab">Escenarios con medición</div>
       <div class="val">9 de 10</div>
-      <div class="dlt">Escenarios ejecutados: 10</div></div>
+      <div class="dlt">La exfiltración por DNS quedó fuera</div></div>
     <div class="kpi a"><div class="lab">Tiempo medio de detección</div>
       <div class="val">41,598 s</div>
       <div class="dlt">Mediana de los nueve valores: 0,826 s</div></div>
     <div class="kpi g"><div class="lab">Detección por debajo de un minuto</div>
       <div class="val">7 de 9</div>
-      <div class="dlt">Cinco escenarios por debajo de un segundo</div></div>
+      <div class="dlt">Cinco de los nueve, por debajo de un segundo</div></div>
     <div class="kpi g"><div class="lab">Técnicas con detección</div>
       <div class="val">10 de 17</div>
-      <div class="dlt">Inventario del señuelo</div></div>
+      <div class="dlt">Del inventario del señuelo</div></div>
     <div class="kpi g"><div class="lab">Tácticas con detección</div>
       <div class="val">6 de 8</div>
-      <div class="dlt">Tácticas del inventario</div></div>
-    <div class="kpi"><div class="lab">Componentes que registran detección</div>
-      <div class="val">5</div>
-      <div class="dlt">Fuentes que leen el evento</div></div>
-    <div class="kpi"><div class="lab">Archivos de evidencia</div>
-      <div class="val">68</div>
-      <div class="dlt">Calidad verificada: 100 de 100</div></div>
+      <div class="dlt">Del inventario del señuelo</div></div>
+    <div class="kpi g"><div class="lab">Calidad de la evidencia</div>
+      <div class="val">100 de 100</div>
+      <div class="dlt">68 archivos con huella</div></div>
     <div class="kpi"><div class="lab">Segmentos de red verificados</div>
-      <div class="val">4</div>
+      <div class="val">4 de 4</div>
       <div class="dlt">Treinta contenedores desplegados</div></div>
   </div>
 
   <table style="margin-top:20px">
     <thead><tr><th>Indicador</th><th>Qué cuenta</th><th>Denominador</th><th>Archivo de origen</th></tr></thead>
     <tbody>
+      <tr><td>Escenarios ejecutados</td><td>Escenarios que la campaña lanza contra el señuelo</td><td>Los diez escenarios que define la campaña</td><td>Reporte de indicadores</td></tr>
       <tr><td>Escenarios con medición</td><td>Escenarios a los que el instrumental atribuye una detección y registra su hora</td><td>Los diez escenarios que ejecuta la campaña</td><td>Reporte de indicadores</td></tr>
       <tr><td>Tiempo medio de detección</td><td>Promedio aritmético de los nueve tiempos medidos</td><td>Las nueve mediciones disponibles</td><td>Reporte de indicadores</td></tr>
       <tr><td>Detección por debajo de un minuto</td><td>Mediciones cuyo tiempo no supera los sesenta segundos</td><td>Las nueve mediciones disponibles</td><td>Reporte de indicadores</td></tr>
       <tr><td>Técnicas con detección</td><td>Técnicas que un escenario activa y que reciben fuente de atribución</td><td>Las diecisiete técnicas del inventario</td><td>Reporte de cobertura</td></tr>
       <tr><td>Tácticas con detección</td><td>Tácticas del marco que cubren esas técnicas</td><td>Las ocho tácticas del inventario</td><td>Reporte de cobertura</td></tr>
       <tr><td>Componentes que registran detección</td><td>Componentes que dejan un registro legible por el calculador</td><td>Los cinco declarados en el reporte</td><td>Reporte de indicadores</td></tr>
-      <tr><td>Archivos de evidencia</td><td>Volúmenes persistentes y registros con huella</td><td>Los archivos capturados por el laboratorio</td><td>Reporte de indicadores</td></tr>
+      <tr><td>Calidad de la evidencia</td><td>Puntuación de integridad verificada sobre los archivos con huella</td><td>Los sesenta y ocho archivos de evidencia</td><td>Reporte de indicadores</td></tr>
       <tr><td>Segmentos de red verificados</td><td>Redes del señuelo con composición efectiva inspeccionada</td><td>Las cuatro redes declaradas</td><td>Captura de aislamiento</td></tr>
     </tbody>
   </table>
