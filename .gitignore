@@ -83,3 +83,11 @@ config/wazuh/dashboard/
 # --- Variables de entorno de la herramienta ---
 .vscode/settings.json
 .idea/workspace.xml
+
+# --- Compilacion del generador de documentos y artefactos de render ---
+scripts/docx-builder/bin/
+scripts/docx-builder/obj/
+.render/
+.playwright-cli/
+# --- Archivos de bloqueo deOffice ---
+$$*
