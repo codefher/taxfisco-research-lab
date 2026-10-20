@@ -28,6 +28,15 @@ const info = await pagina.evaluate(() => {
     return Array.from(el.querySelectorAll('text')).map((t) => t.textContent.trim()).join(' | ');
   };
   const notaH = document.querySelector('#dist .note');
+  const cabeceras = Array.from(document.querySelectorAll('table')).map((t) => {
+    const th = t.querySelector('thead th');
+    if (th) return th.textContent.trim();
+    const td = t.querySelector('tbody tr td');
+    return td ? 'sin cabecera · ' + td.textContent.trim() : 'vacia';
+  });
+  const vacios = Array.from(document.querySelectorAll('[id^="ch-"]'))
+    .filter((e) => !e.querySelector('svg'))
+    .map((e) => e.id);
   return {
     secciones: document.querySelectorAll('section').length,
     tablas: document.querySelectorAll('table').length,
@@ -37,6 +46,10 @@ const info = await pagina.evaluate(() => {
     distribucionFinal: svgText('ch-dist'),
     ciclo: svgText('ch-ciclo'),
     sintesis: svgText('ch-sintesis'),
+    matrizPosterior: svgText('ch-matriz-postest'),
+    fuentesP2: svgText('ch-p2-fuentes'),
+    cabeceras,
+    vacios,
     notaDistribucion: notaH ? notaH.textContent.replace(/\s+/g, ' ').trim() : '[falta]',
   };
 });
@@ -49,10 +62,22 @@ console.log('Escala de cortes: ' + info.nivel);
 console.log('Distribucion final: ' + info.distribucionFinal);
 console.log('Ciclo: ' + info.ciclo);
 console.log('Sintesis: ' + info.sintesis);
+console.log('Matriz posterior: ' + info.matrizPosterior);
+console.log('Fuentes del Prototipo 2: ' + info.fuentesP2);
 console.log('Nota distribucion: ' + info.notaDistribucion);
+console.log('Graficos sin SVG: ' + (info.vacios.length === 0 ? 'ninguno' : info.vacios.join(', ')));
+console.log('Tablas del tablero:');
+info.cabeceras.forEach((c, i) => console.log('  ' + (i + 1) + '. ' + c));
 console.log('Errores de consola: ' + (errores.length === 0 ? 'ninguno' : errores.join(' / ')));
 
-for (const [id, nombre] of [['dist', 'seccion-distribucion'], ['ciclo', 'seccion-ciclo'], ['sintesis', 'seccion-sintesis']]) {
+for (const [id, nombre] of [
+  ['dist', 'seccion-distribucion'],
+  ['ciclo', 'seccion-ciclo'],
+  ['sintesis', 'seccion-sintesis'],
+  ['antes', 'seccion-antes-despues'],
+  ['p1', 'seccion-prototipo-1'],
+  ['p2', 'seccion-prototipo-2'],
+]) {
   const el = await pagina.$('#' + id);
   if (el) await el.screenshot({ path: path.join(salida, nombre + '.png') });
 }

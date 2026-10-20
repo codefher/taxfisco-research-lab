@@ -91,3 +91,6 @@ scripts/docx-builder/obj/
 .playwright-cli/
 # --- Archivos de bloqueo deOffice ---
 $$*
+~$*.docx
+~$*.doc
+~$*.xlsx

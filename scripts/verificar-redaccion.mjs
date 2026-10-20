@@ -35,10 +35,13 @@ else comaY.forEach((m) => avisar('32', m[0].replace(/\s+/g, ' ')));
 
 // Regla 8 y 9: dos puntos explicativos y raya larga como inciso
 console.log('\n== Regla 8: dos puntos ==');
-const colones = [...todo.matchAll(/[^\s:][^:\n]{0,50}:/g)]
+// Las marcas de tiempo y las marcas ISO de fecha no son dos puntos
+// explicativos, de manera que se retiran antes de laRevision.
+const sinHoras = todo.replace(/\d{1,2}:\d{2}(:\d{2})?/g, (m) => m.replace(/:/g, '.'));
+const colones = [...sinHoras.matchAll(/[^\s:][^:\n]{0,50}:/g)]
   .map((m) => m[0].trim())
   .filter((s) => !/^</.test(s))
-  .filter((s) => !/(Rev\. 3|ISO\/IEC 27001|ISO\/IEC 27035-1|Part 1|https|technology:|documented:|16:|18:|20:)/.test(s));
+  .filter((s) => !/(Rev\. 3|ISO\/IEC 27001|ISO\/IEC 27035-1|Part 1|https|technology:|documented:|Honeypots:)/.test(s));
 if (colones.length === 0) console.log('  Solo dos puntos de nombres oficiales de normas, horas y citas.');
 else colones.forEach((s) => avisar('8', s));
 

@@ -1,0 +1,9 @@
+{
+  "name": "taxfisco-scripts",
+  "private": true,
+  "type": "module",
+  "description": "Herramientas de verificacion y exportacion del tablero y del capitulo de resultados.",
+  "devDependencies": {
+    "playwright": "^1.49.0"
+  }
+}

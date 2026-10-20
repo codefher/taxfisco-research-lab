@@ -226,6 +226,11 @@ public sealed class Ctx
         {
             var enGraficos = Path.Combine(ImageDir, "graficos", fileName);
             if (File.Exists(enGraficos)) path = enGraficos;
+            else
+            {
+                var enTarjetas = Path.Combine(ImageDir, "tarjetas-kpi", fileName);
+                if (File.Exists(enTarjetas)) path = enTarjetas;
+            }
         }
         if (!File.Exists(path)) { Body.Append(new Paragraph(new Run(new Text("[figura no encontrada: " + fileName + "]")))); return; }
 

@@ -174,6 +174,36 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
      superpone, porque ese contraste produciría una lectura engañosa. La regla que
      enlaza las dos columnas es la verificación escenario por escenario dentro de
      cada laboratorio.</div>
+  <h3 style="margin-top:22px">Las fuentes de resultado que declara el tablero</h3>
+  <table>
+    <thead><tr><th>Fuente</th><th>Resultado</th><th>Naturaleza del dato</th>
+      <th>Respaldo disponible</th></tr></thead>
+    <tbody>
+      <tr><td>Laboratorio · Prototipo 1</td>
+        <td class="n">9 de 10 escenarios medidos</td>
+        <td>Ejecución verificada sobre archivos de evidencia</td>
+        <td>Reporte de indicadores y reporte de cobertura de técnicas</td></tr>
+      <tr><td>Laboratorio · Prototipo 2</td>
+        <td class="n">10 de 10 escenarios medidos</td>
+        <td>Ejecución verificada sobre archivos de evidencia</td>
+        <td>Reportes de indicadores de las dos iteraciones</td></tr>
+      <tr><td>Laboratorio · Prototipo 2</td>
+        <td class="n">Percentil 95 de 9,266 s</td>
+        <td>Ejecución verificada sobre archivos de evidencia</td>
+        <td>Reporte de indicadores de la segunda iteración</td></tr>
+      <tr><td>Libro oficial de resultados del Servicio de Impuestos Nacionales</td>
+        <td class="n"><span class="chip cg">99,09 %</span></td>
+        <td>Cálculo del libro oficial sobre la matriz posterior de treinta participantes</td>
+        <td>Libro oficial, hoja «Resultados postest»</td></tr>
+    </tbody>
+  </table>
+  <div class="note">Las dos primeras filas proceden de la ejecución instrumentada en
+     los laboratorios y las dos últimas del libro oficial de resultados. No
+     comparten escala ni unidad de medida, de manera que la relación entre ellas se
+     resuelve por función y no por magnitud. El 99,09 % corresponde al cálculo que
+     el libro oficial practica sobre la matriz posterior de treinta participantes,
+     que aporta el tamaño de muestra, el desglose de los catorce instrumentos y la
+     memoria de cálculo.</div>
 </section>
 
 <!-- B. LÍNEA BASE -->
@@ -269,12 +299,23 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
      elija para contarla.</div>
   <div class="note">La cifra de 99,09 % procede del libro de resultados de la
      medición posterior y el tablero la presenta con ese carácter. El libro no
-     permite auditar el desglose individual, porque su matriz posterior concentra
-     el noventa y seis por ciento de las respuestas en el valor superior de la
-     escala y veintiocho de los treinta participantes alcanzan el mismo puntaje.
-     La línea base de 52,70 %, en cambio, se calcula sobre una matriz de treinta
-     respondentes con distribución natural de cero a cuatro y con un alfa de
-     0,868989.</div>
+     permite auditar el desglose por participante, porque su matriz posterior
+     concentra el noventa y seis por ciento de las respuestas en el valor superior
+     de la escala y veintiocho de los treinta participantes alcanzan el mismo
+     puntaje. El desglose por instrumento sí queda declarado, y el gráfico
+     siguiente lo muestra. La línea base de 52,70 %, en cambio, se calcula sobre
+     una matriz de treinta respondentes con distribución natural de cero a cuatro
+     y con un alfa de 0,868989.</div>
+  <h3 style="margin-top:22px">Los catorce instrumentos en la matriz posterior</h3>
+  <div id="ch-matriz-postest"></div>
+  <div class="note">Cada fila representa un instrumento del instrumento de
+     madurez. El punto verde sitúa el porcentaje que el libro oficial le atribuye
+     en la matriz posterior de treinta participantes, mientras la línea vertical
+     marca la madurez global de 99,09 % que resulta del promedio de los catorce.
+     El carril tiene escala propia y declarada, entre 98 y 99,5 %, de manera que
+     los catorce valores se leen uno a uno sin comprimirse en un mismo punto. El
+     número que identifica cada instrumento tiene su denominación completa en la
+     tabla de la línea base institucional.</div>
 </section>
 
 <!-- D. PROTOTIPO 1 -->
@@ -310,6 +351,18 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
       <div class="val">4 de 4</div>
       <div class="dlt">Treinta contenedores desplegados</div></div>
   </div>
+  <h3 style="margin-top:22px">Condiciones de la medición</h3>
+  <table>
+    <tbody>
+      <tr><td>Laboratorio</td><td>TaxFisco Research Lab</td></tr>
+      <tr><td>Entidad</td><td>Homologada del rubro de servicios fiscales digitales</td></tr>
+      <tr><td>Fecha del reporte</td><td>2026-09-14T07:31:44Z</td></tr>
+      <tr><td>Método de cálculo</td><td>Tiempo desde el inicio del escenario hasta el primer evento que lo registra</td></tr>
+      <tr><td>Escenarios ejecutados</td><td>10</td></tr>
+      <tr><td>Escenarios con medición</td><td>9</td></tr>
+      <tr><td>Duración del ciclo de medición</td><td>Una sola vuelta, con la evidencia de la ejecución completa y verificada</td></tr>
+    </tbody>
+  </table>
   <div id="ch-p1-tiempo" style="margin-top:18px"></div>
   <table style="margin-top:16px">
     <thead><tr><th>Escenario</th><th>Técnica</th><th class="n">Tiempo</th><th>Fuente que lo registra</th></tr></thead>
@@ -371,6 +424,77 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
       <tr><td><code>taxfisco-ids</code></td><td>10.23.0.0/24</td><td class="n">2</td><td>Segmento de los sensores de red</td></tr>
     </tbody>
   </table>
+  <h3 style="margin-top:22px">Cobertura normativa que el laboratorio sustenta</h3>
+  <table>
+    <thead><tr><th>Marco</th><th>Fase o control</th><th>Evidencia en el laboratorio</th></tr></thead>
+    <tbody>
+      <tr><td>ISO/IEC 27035</td><td>Fase 1 · Planificar y preparar</td>
+          <td>Gestor de eventos preconfigurado, plantillas de casos, flujos de orquestación, caceras previas y reglas propias de red</td></tr>
+      <tr><td>ISO/IEC 27035</td><td>Fase 2 · Detección y reporte</td>
+          <td>Reglas de correlación del gestor, firmas del motor de red, registros del sensor y señuelos instrumentados</td></tr>
+      <tr><td>ISO/IEC 27035</td><td>Fase 3 · Evaluación y decisión</td>
+          <td>Gestión de casos, analizadores de inteligencia, correlación de indicadores y flujos de enriquecimiento</td></tr>
+      <tr><td>ISO/IEC 27035</td><td>Fase 4 · Respuesta</td>
+          <td>Recetas de contención, caceras de aislamiento, distribución de indicadores y segmentación de redes</td></tr>
+      <tr><td>ISO/IEC 27035</td><td>Fase 5 · Lecciones aprendidas</td>
+          <td>Informes de cierre de caso, tablero de indicadores y actualización de reglas desde la observación</td></tr>
+      <tr><td>ISO/IEC 27001</td><td>Controles de gestión de incidentes</td>
+          <td>Planificación, evaluación, respuesta, aprendizaje y preservación de la evidencia</td></tr>
+      <tr><td>ISO/IEC 27001</td><td>Controles de monitoreo y red</td>
+          <td>Actividades de monitoreo y seguridad de las redes</td></tr>
+    </tbody>
+  </table>
+  <h3 style="margin-top:22px">Los indicadores del Prototipo 1 y su denominador</h3>
+  <table>
+    <thead><tr><th>Indicador</th><th>Qué cuenta</th><th>Denominador</th><th>Archivo de origen</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Escenarios ejecutados</strong></td>
+          <td>Escenarios que la campaña lanza contra el señuelo</td>
+          <td>Los diez escenarios que define la campaña</td>
+          <td>Reporte de indicadores</td></tr>
+      <tr><td><strong>Escenarios con medición</strong></td>
+          <td>Escenarios a los que el instrumental atribuye una detección y registra su hora</td>
+          <td>Los diez escenarios que ejecuta la campaña</td>
+          <td>Reporte de indicadores</td></tr>
+      <tr><td><strong>Tiempo mediano de detección</strong></td>
+          <td>Valor que ordena los nueve tiempos medidos y toma el central</td>
+          <td>Las nueve mediciones disponibles</td>
+          <td>Reporte de indicadores</td></tr>
+      <tr><td><strong>Tiempo medio de detección</strong></td>
+          <td>Promedio aritmético de los nueve tiempos medidos</td>
+          <td>Las nueve mediciones disponibles</td>
+          <td>Reporte de indicadores</td></tr>
+      <tr><td><strong>Detección por debajo de un minuto</strong></td>
+          <td>Escenarios cuyo tiempo de detección no supera los sesenta segundos</td>
+          <td>Los diez escenarios que ejecuta la campaña</td>
+          <td>Reporte de indicadores</td></tr>
+      <tr><td><strong>Técnicas con detección</strong></td>
+          <td>Técnicas que un escenario activa y que reciben fuente de atribución</td>
+          <td>Las diez técnicas que activa la campaña</td>
+          <td>Reporte de cobertura</td></tr>
+      <tr><td><strong>Tácticas con detección</strong></td>
+          <td>Tácticas del marco que cubren esas técnicas</td>
+          <td>Las seis tácticas que la campaña recorre</td>
+          <td>Reporte de cobertura</td></tr>
+      <tr><td><strong>Componentes que registran detección</strong></td>
+          <td>Componentes que dejan un registro legible por el calculador</td>
+          <td>Los cinco declarados en el reporte</td>
+          <td>Reporte de indicadores</td></tr>
+      <tr><td><strong>Calidad de la evidencia</strong></td>
+          <td>Puntuación de integridad verificada sobre los archivos con huella</td>
+          <td>Los sesenta y ocho archivos de evidencia</td>
+          <td>Reporte de indicadores</td></tr>
+      <tr><td><strong>Segmentos de red verificados</strong></td>
+          <td>Redes del señuelo con composición efectiva inspeccionada</td>
+          <td>Las cuatro redes declaradas</td>
+          <td>Captura de aislamiento</td></tr>
+    </tbody>
+  </table>
+  <div class="note">Los diez indicadores declaran el denominador con que se
+     calculan, de manera que ninguna cifra de este apartado se lee fuera del
+     universo que la sostiene. El tiempo mediano y el tiempo medio comparten
+     denominador, porque los dos se calculan sobre las nueve mediciones
+     disponibles.</div>
   <h3 style="margin-top:22px">Volumen registrado en la ejecución</h3>
   <div class="strip">
     <div><span class="n">8 875</span><span class="l">Peticiones recibidas por el portal del señuelo</span></div>
@@ -461,6 +585,56 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
      de evidencia o en el catálogo de amenazas habría producido una comparación
      sin control. El ciclo completo de corrección, desde la línea base hasta la
      medición final, toma cuatro horas con veintiséis minutos.</div>
+  <h3 style="margin-top:22px">Fuentes que registran la detección</h3>
+  <div id="ch-p2-fuentes"></div>
+  <div class="note">Cada escenario es detectado por un componente distinto. La
+     vuelta 1 tenía tres componentes y la medición final seis. Los tres
+     componentes añadidos durante el ciclo son el emulador de acceso remoto, el
+     archivo señuelo y el sensor de red. Cada uno responde a una lección concreta,
+     L13, L14 y L14 respectivamente.</div>
+  <h3 style="margin-top:22px">Los indicadores del Prototipo 2 y su denominador</h3>
+  <table>
+    <thead><tr><th>Indicador</th><th>Qué cuenta</th><th>Denominador</th><th>Archivo de origen</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Escenarios con medición</strong></td>
+          <td>Escenarios de la campaña a los que el instrumental atribuye una detección y registra su hora</td>
+          <td>Los diez escenarios que ejecuta cada vuelta</td>
+          <td>Reporte de indicadores de cada vuelta</td></tr>
+      <tr><td><strong>Componentes que registran detección</strong></td>
+          <td>Componentes que dejan un registro legible por el calculador</td>
+          <td>Los seis componentes desplegados</td>
+          <td>Reporte de indicadores</td></tr>
+      <tr><td><strong>Técnicas con detección</strong></td>
+          <td>Técnicas que un escenario activa y que reciben fuente de atribución</td>
+          <td>Las diez técnicas que activa la campaña</td>
+          <td>Reporte de cobertura de técnicas</td></tr>
+      <tr><td><strong>Tácticas con detección</strong></td>
+          <td>Tácticas del marco que cubren esas técnicas</td>
+          <td>Las seis tácticas que la campaña recorre</td>
+          <td>Reporte de cobertura de técnicas</td></tr>
+      <tr><td><strong>Percentil 95 de detección</strong></td>
+          <td>Percentil 95 de la distribución de los tiempos de detección</td>
+          <td>Los diez tiempos de cada vuelta</td>
+          <td>Reporte de indicadores</td></tr>
+      <tr><td><strong>Tiempo medio de detección</strong></td>
+          <td>Promedio aritmético de los tiempos de detección</td>
+          <td>Cuatro tiempos en la línea base y diez en la medición final</td>
+          <td>Reporte de indicadores</td></tr>
+      <tr><td><strong>Ciclo de corrección</strong></td>
+          <td>Tiempo transcurrido entre las dos mediciones</td>
+          <td>No aplica, porque es una duración</td>
+          <td>Marcas de tiempo de ambos reportes</td></tr>
+      <tr><td><strong>Lecciones resueltas</strong></td>
+          <td>Hallazgos con una resolución documentada, por corrección o por mitigación</td>
+          <td>Las catorce lecciones registradas</td>
+          <td>Registro de lecciones aprendidas</td></tr>
+    </tbody>
+  </table>
+  <div class="note">Los ocho indicadores declaran el denominador con que se
+     calculan, de manera que la comparación entre las dos vueltas se lee sobre el
+     mismo universo de diez escenarios. El tiempo medio es el único indicador cuyo
+     denominador cambia entre las dos vueltas, y ese cambio queda declarado en la
+     propia tabla.</div>
 </section>
 
 <!-- G. TIEMPO PROTOTIPO 2 -->
@@ -581,7 +755,7 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
           <td>Define el activo que se engaña, el nivel de interacción y el perfil del atacante, de manera que la campaña tenga un denominador fijo de diez escenarios</td>
           <td>Escenarios ejecutados</td><td class="n">10 de 10</td><td class="n">10 de 10</td></tr>
       <tr><td><strong>2 · Despliegue aislado</strong></td>
-          <td>Aísla el señuelo en redes separadas y verifica la composición efectiva desde el propio contenedor atacante</td>
+          <td>Aísla el señuelo en redes separadas y verifica la composición efectiva desde el propio contenedor atacante, de manera que se demuestre qué queda alcanzable desde fuera</td>
           <td>Segmentos de red verificados</td><td class="n">4</td><td class="n">3</td></tr>
       <tr><td><strong>3 · Captura, enriquecimiento y custodia</strong></td>
           <td>Registra las acciones del adversario con validez forense y conserva cada archivo con su huella, de manera que la evidencia del ciclo se pueda auditar</td>
@@ -590,8 +764,11 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
           <td>Vincula cada evento capturado con la alerta clasificada y con su técnica, de manera que el tiempo medido sea el del ciclo completo y no el de un registro suelto</td>
           <td>Fuentes que registran detección</td><td class="n">5</td><td class="n">6</td></tr>
       <tr><td><strong>5 · Medición de impacto y lecciones aprendidas</strong></td>
-          <td>Cuantifica la efectividad y convierte la medición en un proceso repetible, condición que el segundo laboratorio necesita para su esquema de iteraciones</td>
+          <td>Cuantifica la efectividad y convierte la medición en un proceso repetible, contrasta las dos vueltas y registra cada discrepancia con su causa raíz, de manera que la mejora del ciclo quede verificada</td>
           <td>Escenarios con medición</td><td class="n">9 de 10</td><td class="n"><span class="chip cg">10 de 10</span></td></tr>
+      <tr><td><strong>5 · Medición de impacto y lecciones aprendidas</strong></td>
+          <td>Cuantifica la efectividad y convierte la medición en un proceso repetible, contrasta las dos vueltas y registra cada discrepancia con su causa raíz, de manera que la mejora del ciclo quede verificada</td>
+          <td>Lecciones resueltas</td><td class="n">—</td><td class="n"><span class="chip cg">14 de 14</span></td></tr>
     </tbody>
   </table>
   <div class="note">Las cinco fases aportan en planos distintos, de manera que
@@ -623,21 +800,40 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
      ejecución. El segundo laboratorio registra más volumen porque su campaña
      recorre el doble de escenarios.</p>
   <table>
-    <thead><tr><th>Indicador</th><th class="n">Prototipo 1</th><th class="n">Prototipo 2, vuelta 1</th><th class="n">Prototipo 2, final</th></tr></thead>
+    <thead><tr><th>Indicador</th><th class="n">Prototipo 1</th>
+      <th>Qué lo produce en el Prototipo 1</th>
+      <th class="n">Prototipo 2, vuelta 1</th><th class="n">Prototipo 2, final</th>
+      <th class="n">Variación en el Prototipo 2</th></tr></thead>
     <tbody>
-      <tr><td>Escenarios ejecutados</td><td class="n">10</td><td class="n">10</td><td class="n">10</td></tr>
-      <tr><td>Ataques registrados en el señuelo</td><td class="n">46</td><td class="n">54</td><td class="n">254</td></tr>
-      <tr><td>Peticiones atendidas por la interfaz de servicios</td><td class="n">1 758</td><td class="n">725</td><td class="n">1 508</td></tr>
-      <tr><td>Conexiones capturadas por el emulador</td><td class="n">8</td><td class="n">7</td><td class="n">38</td></tr>
-      <tr><td>Peticiones recibidas por el portal</td><td class="n">8 875</td><td class="n">15 765</td><td class="n">78 186</td></tr>
-      <tr><td>Archivos de evidencia con huella</td><td class="n">68</td><td class="n">91</td><td class="n">91</td></tr>
-      <tr><td>Calidad de la evidencia verificada</td><td class="n">100 de 100</td><td class="n">100 de 100</td><td class="n">100 de 100</td></tr>
+      <tr><td>Escenarios ejecutados</td><td class="n">10</td><td>La campaña de escenarios</td>
+        <td class="n">10</td><td class="n">10</td><td class="n">Constante</td></tr>
+      <tr><td>Ataques registrados en el señuelo</td><td class="n">46</td>
+        <td>Interfaz de servicios del señuelo</td>
+        <td class="n">54</td><td class="n">254</td><td class="n"><span class="chip cg">+370 %</span></td></tr>
+      <tr><td>Peticiones atendidas por la interfaz de servicios</td><td class="n">1 758</td>
+        <td>Interfaz de servicios del señuelo</td>
+        <td class="n">725</td><td class="n">1 508</td><td class="n"><span class="chip cg">+108 %</span></td></tr>
+      <tr><td>Conexiones capturadas por el emulador</td><td class="n">8</td>
+        <td>Emulador de acceso remoto</td>
+        <td class="n">7</td><td class="n">38</td><td class="n"><span class="chip cg">+443 %</span></td></tr>
+      <tr><td>Peticiones recibidas por el portal</td><td class="n">8 875</td>
+        <td>Portal del señuelo</td>
+        <td class="n">15 765</td><td class="n">78 186</td><td class="n"><span class="chip cg">+396 %</span></td></tr>
+      <tr><td>Archivos de evidencia con huella</td><td class="n">68</td>
+        <td>Custodia de la evidencia</td>
+        <td class="n">91</td><td class="n">91</td><td class="n">Constante</td></tr>
+      <tr><td>Calidad de la evidencia verificada</td><td class="n">100 de 100</td>
+        <td>Verificación de integridad</td>
+        <td class="n">100 de 100</td><td class="n">100 de 100</td><td class="n">Constante</td></tr>
     </tbody>
   </table>
   <div class="note">El aumento del volumen en la medición final del segundo
      laboratorio se explica por la ampliación de la cobertura de medición, porque
      los seis escenarios que la vuelta 1 dejó fuera de la referencia producen ahora
-     eventos que antes no llegaban a ningún componente de registro.</div>
+     eventos que antes no llegaban a ningún componente de registro. La columna de
+     variación mide el incremento porcentual entre las dos vueltas del segundo
+     laboratorio, mientras que la columna de producción declara qué componente
+     genera cada registro en el primer laboratorio.</div>
 </section>
 
 <!-- L. EVIDENCIA VISUAL -->
@@ -852,6 +1048,55 @@ const F2=v=>v.toFixed(2).replace(".",",");
   document.getElementById("ch-grupos").innerHTML=s2+"</svg>";
 })();
 
+/* ---------- C. Los catorce instrumentos en la matriz posterior ---------- */
+(function(){
+  const NOM=["Detección y registro de eventos","Clasificación y evidencia de incidentes",
+    "Respuesta y tiempos de atención","Lecciones aprendidas y mejora",
+    "Integridad y custodia de evidencias","Respaldos y restauración de evidencias",
+    "Retención y acceso a evidencias","Accesos y mínimos privilegios",
+    "Desarrollo seguro y validaciones","Gestión de vulnerabilidades",
+    "Integridad y trazabilidad de registros","Gestión de riesgos",
+    "Capacitación y cobertura","Métricas y mejora continua"];
+  const d=BASE.map(r=>[r[1],r[5]]);
+  const GLOBAL=99.09;
+  const W=1040,H=556,mt=96,rh=27;
+  const bx0=336,bx1=1000;
+  const top=74,n=d.length,bottom=mt+n*rh;
+  const sb=v=>bx0+(v-98)/1.5*(bx1-bx0);
+  let s=SVG(W,H);
+  s+=`<rect x="${bx0}" y="${top}" width="${bx1-bx0}" height="${bottom-top}"
+    fill="#EAF1F8"/>`;
+  s+=T(bx0,32,"Resultado del libro oficial",{s:14,b:700,f:C.navy});
+  s+=T(bx0,52,"matriz posterior de treinta participantes · escala de 98 a 99,5 %",
+    {s:11,f:C.mute});
+  s+=T((bx0+bx1)/2,top+16,"Optimizado",{a:"middle",s:10.5,b:700,f:C.navy3});
+  s+=`<line x1="${sb(GLOBAL)}" y1="${top-6}" x2="${sb(GLOBAL)}" y2="${bottom}"
+    stroke="${C.green}" stroke-width="2.2"/>`;
+  s+=`<circle cx="${sb(GLOBAL)}" cy="${top-14}" r="5" fill="${C.green}"/>`;
+  s+=T(sb(GLOBAL)+11,top-10,"Madurez global 99,09 %",{s:11.5,b:700,f:C.green});
+  d.forEach(function(r,i){
+    const y=mt+i*rh, v=r[1];
+    s+=`<line x1="48" y1="${y}" x2="${bx1}" y2="${y}" stroke="#EEF2F7"
+      stroke-width="1"/>`;
+    s+=T(40,y+4,"I"+r[0],{a:"end",s:11.5,b:700,f:C.mute});
+    s+=T(48,y+4,NOM[i],{s:10.5,f:C.mute});
+    s+=`<line x1="${bx0}" y1="${y}" x2="${sb(v)}" y2="${y}"
+      stroke="${C.green}" stroke-width="2.4"/>`;
+    s+=`<circle cx="${sb(v)}" cy="${y}" r="5.5" fill="${C.green}"/>`;
+    const t=F2(v)+" %";
+    s+=`<rect x="${sb(v)+7}" y="${y-9.5}" width="${t.length*7.3+6}" height="19"
+      fill="#EAF1F8"/>`;
+    s+=T(sb(v)+11,y+4,t,{s:11.5,b:700,f:C.green});
+  });
+  [[bx0,"98 %","start"],[bx1,"99,5 %","end"]].forEach(function(c){
+    s+=T(c[0],bottom+22,c[1],{a:c[2],s:11,b:600,f:C.navy});
+  });
+  s+=T(48,bottom+52,"Los catorce valores y la madurez global de 99,09 % proceden "
+    +"del libro oficial de resultados del Servicio de Impuestos Nacionales.",
+    {s:11,f:C.mute});
+  document.getElementById("ch-matriz-postest").innerHTML=s+"</svg>";
+})();
+
 /* ---------- D. Tiempo del Prototipo 1 ---------- */
 (function(){
   const d=[["S01",16.405,"16,405 s"],["S02",0.826,"0,826 s"],["S03",85.000,"85,000 s"],
@@ -978,6 +1223,30 @@ const F2=v=>v.toFixed(2).replace(".",",");
   s+=`<rect x="${ml+88}" y="${H-14}" width="11" height="11" fill="${C.green}" rx="2"/>`;
   s+=T(ml+104,H-4,"Medición posterior",{s:11.5,f:C.mute});
   document.getElementById("ch-p2-cob").innerHTML=s+"</svg>";
+})();
+
+/* ---------- F. Fuentes que registran la detección ---------- */
+(function(){
+  const d=[["Interfaz de servicios del atacante",1,1],["Interfaz de servicios del señuelo",2,2],
+    ["Portal del señuelo",1,3],["Emulador de acceso remoto",0,2],
+    ["Archivo señuelo",0,1],["Sensor de red",0,1]];
+  const W=1040,rh=44,ml=250,mr=110,H=d.length*rh+34;
+  const max=3.4, pw=W-ml-mr;
+  let s=SVG(W,H);
+  d.forEach((r,i)=>{
+    const y=10+i*rh, w1=r[1]/max*pw, w2=r[2]/max*pw;
+    s+=T(ml-12,y+12,r[0],{a:"end",s:12.5,b:600});
+    s+=`<rect x="${ml}" y="${y}" width="${w1}" height="13" fill="${C.grey}" rx="2"/>`;
+    s+=`<rect x="${ml}" y="${y+17}" width="${w2}" height="13" fill="${C.green}" rx="2"/>`;
+    if(w1>0) s+=T(ml+w1+6,y+11,String(r[1]),{s:11,f:"#8A94A3"});
+    s+=T(ml+w2+6,y+28,String(r[2]),{s:11,b:700,f:C.green});
+  });
+  s+=`<rect x="${ml}" y="${H-15}" width="11" height="11" fill="${C.grey}" rx="2"/>`;
+  s+=T(ml+16,H-4,"Vuelta 1: tres componentes ya operaban",{s:11,f:C.mute});
+  s+=`<rect x="${ml+300}" y="${H-15}" width="11" height="11" fill="${C.green}" rx="2"/>`;
+  s+=T(ml+316,H-4,"Medición final: sumamos tres más durante el ciclo",
+    {s:11,b:600,f:C.green});
+  document.getElementById("ch-p2-fuentes").innerHTML=s+"</svg>";
 })();
 
 /* ---------- G. Tiempo del Prototipo 2 ---------- */

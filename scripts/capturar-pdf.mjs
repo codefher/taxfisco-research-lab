@@ -7,7 +7,9 @@ import fs from 'fs';
 
 const raiz = process.argv[2] ? path.resolve(process.argv[2]) : path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const paginas = (process.argv[3] || '1').split(',').map(Number);
-const pdf = path.join(raiz, '.render', 'pdf3', 'capitulo-4-resultados.pdf');
+const pdf = process.argv[4]
+  ? path.resolve(process.argv[4])
+  : path.join(raiz, '.render', 'pdf3', 'capitulo-4-resultados.pdf');
 const salida = path.join(raiz, '.render', 'paginas');
 fs.mkdirSync(salida, { recursive: true });
 
