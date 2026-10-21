@@ -17,7 +17,7 @@ var imagenes = Path.Combine(raiz, "resultados-prototipos", "evidencia-visual");
 var (doc, main, body) = Scaffold.Create(salida, "Metodología Honeypot en servicios fiscales");
 var ctx = new Ctx { Main = main, Body = body, ImageDir = imagenes };
 
-const int ANCHO = 624;   // ancho util en pixeles de una pulgada y media
+const int ANCHO = 576;   // 6.0 pulgadas: cabe en la columna de texto de Carta y de A4
 const int ANCHO_AUX = 420; // ancho de los graficos auxiliares
 
 void P(string texto) => body.Append(ctx.P(texto));

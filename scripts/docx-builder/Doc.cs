@@ -241,6 +241,14 @@ public sealed class Ctx
         var (w, h) = PngSize(path);
         int heightPx = (int)Math.Round(widthPx * (h / (double)w));
 
+        // Limita el alto para que el bloque titulo + imagen + nota quepa en una pagina.
+        const int ALTO_MAX_PX = 480; // 5.0 pulgadas a 96 dpi
+        if (heightPx > ALTO_MAX_PX)
+        {
+            widthPx = (int)Math.Round(widthPx * (ALTO_MAX_PX / (double)heightPx));
+            heightPx = ALTO_MAX_PX;
+        }
+
         long cx = widthPx * 9525L;
         long cy = heightPx * 9525L;
         uint id = DocPropId++;

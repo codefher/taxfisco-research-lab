@@ -24,9 +24,11 @@ attack-scenarios/*/evidencia/
 # --- Backups ---
 backups/
 *.bak
+*.bak-*
 *.tar.gz
 *.zip
 *.7z
+*.tmp
 
 # --- Python ---
 __pycache__/
@@ -89,6 +91,9 @@ scripts/docx-builder/bin/
 scripts/docx-builder/obj/
 .render/
 .playwright-cli/
+# --- Scratch de conversion de documentos ---
+_build-docx/
+_build-*/
 # --- Archivos de bloqueo deOffice ---
 $$*
 ~$*.docx

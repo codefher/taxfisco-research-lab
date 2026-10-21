@@ -1,0 +1,1414 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>4.4 Resultados de la metodología · TaxFisco Research Lab y laboratorio del SIN</title>
+<style>
+:root{
+  --navy:#1F3864; --navy2:#2E75B6; --navy3:#4A7EBB;
+  --green:#1F6032; --green-bg:#E2EFDA;
+  --amber:#9C6500; --amber-bg:#FFF2CC;
+  --grey:#6E7B8B; --line:#D6DEE8; --bg:#F4F7FB; --card:#FFFFFF;
+  --ink:#1A2430; --mute:#5A6878;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:15px/1.65 "Segoe UI",Calibri,system-ui,sans-serif}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px 64px}
+header{background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 100%);
+  color:#fff;padding:34px 0 30px;margin-bottom:26px}
+header .wrap{padding-bottom:0}
+header .kicker{font-size:12px;letter-spacing:.16em;text-transform:uppercase;opacity:.82}
+header h1{margin:8px 0 4px;font-size:29px;font-weight:600;letter-spacing:-.2px}
+header p{margin:0;opacity:.9;font-size:14px;max-width:880px}
+nav{background:var(--card);border:1px solid var(--line);border-radius:8px;
+  padding:16px 20px;margin-bottom:24px;box-shadow:0 1px 3px rgba(31,56,100,.07)}
+nav strong{display:block;font-size:11px;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--mute);margin-bottom:10px}
+nav ol{margin:0;padding-left:22px}
+nav ol ol{margin:4px 0 8px;padding-left:20px;color:var(--mute);font-size:13px}
+nav li{margin:5px 0;font-size:14px}
+nav a{color:var(--navy2);text-decoration:none}
+nav a:hover{text-decoration:underline}
+section{background:var(--card);border:1px solid var(--line);border-radius:8px;
+  padding:26px 30px;margin-bottom:22px;box-shadow:0 1px 3px rgba(31,56,100,.07)}
+h2{font-size:21px;margin:0 0 6px;color:var(--navy);font-weight:600}
+h3{font-size:17px;margin:24px 0 8px;color:var(--navy);font-weight:600}
+h4{font-size:15px;margin:20px 0 6px;color:var(--navy2);font-weight:600}
+.prosa{font-family:"Times New Roman",Georgia,serif;font-size:16px;line-height:1.85;
+  text-align:justify;text-indent:1.6em;color:#1d2733;margin:0 0 4px}
+.prosa.lead{text-indent:0}
+.sub{color:var(--mute);font-size:13.5px;margin:0 0 18px;max-width:900px}
+table{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:6px}
+th{background:var(--navy);color:#fff;text-align:left;padding:9px 11px;font-weight:600;font-size:12.5px}
+td{padding:8px 11px;border-bottom:1px solid var(--line);vertical-align:top}
+tbody tr:nth-child(even){background:#F8FAFC}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+td.c{text-align:center}
+tr.tot td{background:#EEF3F9;font-weight:700}
+.up{color:var(--green);font-weight:700;white-space:nowrap}
+.na{color:var(--mute);font-style:italic}
+.sec{color:var(--navy2);font-size:11.5px}
+.rot{font-style:italic;color:var(--navy);font-weight:600;margin:22px 0 0;font-size:14px}
+.lbl{font-weight:700;color:var(--navy);margin:0;font-size:14px}
+.lbl.tl{font-style:italic}
+.note{background:#F2F6FB;border-left:4px solid var(--navy3);padding:12px 16px;
+  border-radius:0 5px 5px 0;font-size:13px;color:#33404F;margin-top:12px;
+  font-family:"Times New Roman",Georgia,serif}
+figure{margin:20px 0 6px}
+figure img{width:100%;height:auto;border:1px solid var(--line);border-radius:6px;
+  box-shadow:0 2px 10px rgba(31,56,100,.10);background:#fff}
+figcaption{font-size:12.5px;color:var(--mute);margin:8px 0 0;border-left:2px solid var(--line);
+  padding-left:12px;max-width:1000px}
+.aviso{background:var(--amber-bg);border-left:4px solid var(--amber);padding:13px 16px;
+  border-radius:0 5px 5px 0;font-size:13px;color:#4A3A10;margin:16px 0;
+  font-family:"Times New Roman",Georgia,serif}
+.remite{background:#EDF3FA;border-left:4px solid var(--navy3);padding:11px 15px;
+  border-radius:0 5px 5px 0;font-size:13px;color:#2A3A4C;margin:12px 0;
+  font-family:"Times New Roman",Georgia,serif}
+.vacio{color:var(--mute);font-size:13px;font-style:italic;
+  border:1px dashed var(--line);border-radius:6px;padding:14px 16px;margin:10px 0}
+svg{max-width:100%;height:auto;display:block}
+.foot{margin-top:34px;padding-top:18px;border-top:2px solid var(--navy);font-size:12.5px;color:var(--mute)}
+.refs{font-family:"Times New Roman",Georgia,serif;font-size:14.5px;line-height:1.9;
+  padding-left:2.2em;text-indent:-2.2em;margin:0 0 6px}
+@media print{
+  body{background:#fff;font-size:11px}
+  header{background:var(--navy)!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  section{break-inside:auto;box-shadow:none;border-color:#bbb;padding:14px}
+  nav{display:none}
+  .wrap{max-width:none;padding:0 10px}
+  h3{break-after:avoid} figure{break-inside:avoid} tr{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <div class="kicker">4.4 · Resultados de la metodología</div>
+  <h1>Metodología Honeypot para la gestión de incidentes en servicios fiscales</h1>
+  <p>Dos aplicaciones de la metodología sobre una misma campaña de diez escenarios, con los indicadores
+     declarados en la operacionalización de variables y una fuente identificada para cada cifra.</p>
+</div></header>
+
+<div class="wrap">
+
+<nav><strong>Índice</strong>
+<ol>
+  <li><a href="#s441">4.4.1 Resultado global de la aplicación de la metodología</a></li>
+  <li><a href="#s442">4.4.2 Resultados del primer prototipo en el TaxFisco Research Lab</a></li>
+  <li><a href="#s443">4.4.3 Resultados del segundo prototipo en el laboratorio del SIN</a></li>
+  <li><a href="#s444">4.4.4 Comparación entre los dos prototipos</a></li>
+  <li><a href="#s445">4.4.5 Síntesis de los resultados</a></li>
+</ol></nav>
+
+<!-- ══════════ APERTURA DEL 4.4 ══════════ -->
+<section id="apertura">
+<h2>4.4 Resultados de la metodología</h2>
+
+<p class="prosa lead">La metodología Honeypot se aplica en dos ocasiones sobre una misma campaña de diez escenarios, cuyos resultados se presentan siguiendo el orden de ejecución y análisis establecido en la investigación. La exposición comienza con el resultado global de la aplicación, continúa con la descripción de las condiciones comunes de medición y desarrolla los resultados obtenidos por cada prototipo, para finalizar con la comparación entre ambos y la síntesis de los principales hallazgos. Esta organización permite examinar el comportamiento general de la metodología y profundizar en los resultados específicos que evidencian su funcionamiento y evolución.</p>
+
+<p class="prosa">Para interpretar adecuadamente los resultados, las cifras se distinguen según su procedencia y el tipo de respaldo disponible, considerando tres categorías que se identifican expresamente en las tablas y sus notas. La primera comprende los valores declarados directamente en los archivos de evidencia, como la cantidad de escenarios ejecutados o el número de archivos cuya huella se ha verificado. La segunda incluye los cálculos derivados de esos valores originales, entre los que se encuentran las medianas y las reducciones porcentuales. La tercera corresponde a los datos consolidados por los tableros de resultados que no se conservan de manera independiente en los archivos de evidencia.</p>
+
+<p class="prosa">Esta clasificación permite diferenciar los resultados según las posibilidades de verificación que ofrece cada fuente y establecer el respaldo documental correspondiente a cada cifra. Los datos de la primera categoría se contrastan con los archivos que los declaran, mientras que los de la segunda se recalculan a partir de los valores de origen publicados en las tablas con tres decimales. Por su parte, los datos de la tercera categoría se contrastan con las capturas de los tableros correspondientes, que documentan los valores consolidados y el estado de los indicadores representados.</p>
+</section>
+
+<!-- ══════════ 4.4.1 ══════════ -->
+<section id="s441">
+<h3>4.4.1 Resultado global de la aplicación de la metodología</h3>
+<p class="sub">Lectura de los indicadores declarados en los tres momentos de medición, sin reducir el conjunto a un valor único.</p>
+
+<p class="prosa lead">Los resultados de la aplicación de la metodología se presentan a partir de los indicadores definidos en la operacionalización de variables, de manera que su evolución se analice considerando tres momentos de medición. Los tres momentos son la aplicación del Prototipo 1 en el TaxFisco Research Lab, la primera vuelta del Prototipo 2 en el laboratorio del Servicio de Impuestos Nacionales y la medición final de este segundo prototipo.</p>
+
+<p class="prosa">Cada indicador permite medir un aspecto específico de la metodología y se calcula de acuerdo con su propia fórmula y su denominador, de manera que los resultados se interpreten según la condición que mide cada indicador, sin combinar valores que representan aspectos diferentes. La cobertura permite determinar cuántos escenarios de la campaña cuentan con un tiempo de detección registrado, mientras que el tiempo de detección mide cuánto tarda el sistema en registrar un evento. De manera complementaria, la calidad de la evidencia permite medir el cumplimiento de los criterios establecidos para su conservación, mientras que el indicador de lecciones aprendidas refleja la resolución documentada de las limitaciones identificadas durante las pruebas.</p>
+
+<p class="prosa">La Tabla 1 reúne los resultados de estos indicadores en los tres momentos de medición, de manera que para cada uno se presente el aspecto medido, el indicador correspondiente, los valores obtenidos y las referencias que permiten identificar su origen en la operacionalización de variables y en los apartados de resultados. Esta organización permite distinguir los avances en la cobertura de detección de los resultados relacionados con el tiempo de respuesta, la conservación de la evidencia y la resolución de las limitaciones identificadas.</p>
+
+<p class="lbl tl">Tabla 1</p>
+<p class="rot">Planos de resultado, indicadores declarados y fuentes de respaldo</p>
+<table>
+<thead><tr><th>Plano</th><th>Pregunta que responde</th><th>Indicador declarado</th><th>Resultado principal</th><th>Fuente y sección que lo sustenta</th></tr></thead>
+<tbody>
+<tr><td>Cobertura de la medición</td><td>¿Cuántos escenarios de la campaña cuentan con un tiempo registrado?</td><td>Porcentaje de escenarios con medición registrada <span class="sec">(apartado 1.6)</span></td><td>9 de 10 en el Prototipo 1; 4 de 10 en la primera vuelta y 10 de 10 en la medición final del Prototipo 2</td><td>Reportes de indicadores de cada laboratorio <span class="sec">(apartado 4.3.5.5)</span></td></tr>
+<tr><td>Rapidez de la detección</td><td>¿Cuánto tarda la cadena en registrar el primer evento?</td><td>Tiempo medio de detección <span class="sec">(apartado 2.1.1.3)</span></td><td>Media de 41,598 s sobre nueve mediciones en el Prototipo 1; en el Prototipo 2, el percentil 95 pasa de 14,58 s a 9,27 s y la media final es de 2,02 s</td><td>Reportes de indicadores y tablero del Prototipo 2 <span class="sec">(apartados 4.3.5.5 y 4.3.6.6)</span></td></tr>
+<tr><td>Cobertura técnica</td><td>¿Cuántas técnicas y tácticas de la campaña cuentan con una fuente de detección?</td><td>Índice ATT&amp; <span class="sec">(apartado 1.6)</span></td><td>Prototipo 1: 10 de 10 técnicas y 6 de 6 tácticas; primera vuelta del Prototipo 2: 4 de 10 técnicas y 3 de 6 tácticas; medición final: 10 de 10 técnicas y 6 de 6 tácticas</td><td>Reporte de cobertura <span class="sec">(apartado 4.3.5.5)</span></td></tr>
+<tr><td>Custodia de la evidencia</td><td>¿Qué resultado obtiene la medición de la custodia de la evidencia?</td><td>Subíndice de evidencia <span class="sec">(apartado 1.6)</span></td><td>100 sobre 100 en los tres momentos, verificado sobre la evidencia de cada escenario de la campaña</td><td>Reportes de indicadores y tablero del Prototipo 2 <span class="sec">(apartados 4.3.5.5 y 4.3.6.6)</span></td></tr>
+<tr><td>Registro de correcciones</td><td>¿Las limitaciones identificadas cuentan con una resolución documentada?</td><td>Subíndice de lecciones <span class="sec">(apartado 1.6)</span></td><td>3 lecciones en el Prototipo 1; 7 de 7 en la primera vuelta y 14 de 14 en la medición final del Prototipo 2</td><td>Tablero de resultados del Prototipo 2 <span class="sec">(apartado 4.3.6.6)</span></td></tr>
+</tbody>
+</table>
+<div class="note"><i>Nota.</i> Los indicadores proceden de la operacionalización de variables del apartado 1.6 y de la definición de MTTD del apartado 2.1.1.3. Las fuentes de información corresponden a los reportes de indicadores, el reporte de cobertura y los tableros descritos en los apartados 4.3.5.5 y 4.3.6.6. El Prototipo 1 registró tres lecciones durante su fase de medición, que el segundo prototipo incorporó a su diseño.</div>
+
+<p class="prosa">Los indicadores de la Tabla 1 no comparten una misma unidad de medida, por lo que sus resultados deben interpretarse de forma independiente y no pueden resumirse en un único valor. El tiempo medio de detección se expresa en segundos y permite examinar la rapidez con la que se registra el primer evento, mientras que el Índice ATT&amp; representa la cobertura de las técnicas y tácticas de la campaña mediante fuentes de detección. El subíndice de evidencia mide la condición de la evidencia conforme al criterio definido para ese indicador, mientras que el subíndice de lecciones refleja el estado de las correcciones documentadas. Por tanto, un resultado del 100 % en uno de estos indicadores no implica que los demás alcancen el mismo nivel ni que todas las actividades se detecten con idéntica rapidez.</p>
+
+<p class="prosa">Para examinar con mayor detalle la cobertura alcanzada en los tres momentos, la Tabla 2 presenta las cantidades registradas y las proporciones correspondientes a los escenarios, las técnicas y las tácticas de la campaña. Estos tres indicadores comparten una estructura de cálculo basada en la relación entre los elementos que cumplen una condición y el total previsto para cada categoría, que asciende a diez escenarios, diez técnicas y seis tácticas. Los indicadores de evidencia y de lecciones conservan sus propios denominadores, por lo que se presentan por separado y no se incorporan al cálculo de las proporciones de cobertura representadas en la figura.</p>
+
+<p class="lbl tl">Tabla 2</p>
+<p class="rot">Indicadores de cobertura y resultados de la evidencia y las lecciones en los tres momentos medidos</p>
+<table>
+<thead><tr><th>Indicador</th><th class="n">Denominador</th><th class="n">Prototipo 1</th><th class="n">Prototipo 2 &#183; vuelta 1</th><th class="n">Prototipo 2 &#183; medición final</th></tr></thead>
+<tbody>
+<tr><td>Escenarios con tiempo de detección registrado</td><td class="n">10 escenarios</td><td class="n">9 de 10 &#183; 90 %</td><td class="n">4 de 10 &#183; 40 %</td><td class="n">10 de 10 &#183; 100 %</td></tr>
+<tr><td>Técnicas de la campaña con fuente de detección</td><td class="n">10 técnicas</td><td class="n">10 de 10 &#183; 100 %</td><td class="n">4 de 10 &#183; 40 %</td><td class="n">10 de 10 &#183; 100 %</td></tr>
+<tr><td>Tácticas con fuente de detección</td><td class="n">6 tácticas</td><td class="n">6 de 6 &#183; 100 %</td><td class="n">3 de 6 &#183; 50 %</td><td class="n">6 de 6 &#183; 100 %</td></tr>
+<tr><td>Calidad de la evidencia por escenario</td><td class="n">Puntuación sobre 100</td><td class="n">100 de 100</td><td class="n">100 de 100</td><td class="n">100 de 100</td></tr>
+<tr><td>Lecciones registradas y resueltas</td><td class="n">Hallazgos de la aplicación</td><td class="n">3</td><td class="n">7 de 7</td><td class="n">14 de 14</td></tr>
+</tbody>
+</table>
+<div class="note"><i>Nota.</i> Las proporciones de cobertura se calculan dividiendo la cantidad de elementos que cumplen la condición entre el total previsto para cada categoría. La calidad de la evidencia es una lista de cotejo de cuatro condiciones verificadas en la carpeta de evidencia de cada escenario: la presencia de un archivo de huella o de un registro de texto, las marcas de tiempo de inicio y de fin, el identificador de la técnica que ejerce el escenario y el archivo de resultados. El tablero del Prototipo 2 declara la misma puntuación sin publicar el detalle por condición. Los indicadores de evidencia y de lecciones no se interpretan como proporciones de escenarios, técnicas o tácticas. La información procede de los reportes de indicadores, el reporte de cobertura y los tableros descritos en los apartados 4.3.5.5 y 4.3.6.6.</div>
+
+<p class="prosa">Los resultados de la Tabla 2 permiten precisar qué significa alcanzar el 100 % en cada indicador de cobertura, porque un valor completo no describe por sí solo lo que mide el laboratorio. En el Prototipo 1, las diez técnicas y las seis tácticas cuentan con fuentes de detección, aunque solo nueve de los diez escenarios tienen un tiempo registrado, de manera que la cobertura de técnicas y tácticas alcanza el 100 % mientras que la cobertura de escenarios llega al 90 %. Esta diferencia muestra que disponer de fuentes asignadas a todas las técnicas y tácticas no garantiza que todos los escenarios produzcan una medición temporal durante la ejecución de la campaña.</p>
+
+<p class="prosa">En la primera vuelta del Prototipo 2, los tres indicadores de cobertura presentan valores inferiores a los del Prototipo 1, ya que solo cuatro de los diez escenarios cuentan con tiempo registrado, cuatro de las diez técnicas disponen de una fuente de detección y tres de las seis tácticas tienen una fuente asignada. En la medición final, los tres indicadores alcanzan el 100 %, porque los diez escenarios cuentan con tiempos registrados, las diez técnicas tienen fuentes de detección y las seis tácticas disponen de fuentes asignadas. En este caso, el 100 % expresa el cumplimiento completo de la condición definida para cada indicador, no una detección instantánea de todas las actividades ni la ausencia de limitaciones en los tiempos de respuesta.</p>
+
+<p class="prosa">La calidad de la evidencia alcanza 100 sobre 100 en los tres momentos medidos porque responde a una lista de cotejo aplicada a la carpeta de evidencia de cada escenario. La lista exige cuatro condiciones, que son un archivo de huella o un registro de texto, las marcas de tiempo de inicio y de fin, el identificador de la técnica que ejerce el escenario y el archivo de resultados. Los diez escenarios del Prototipo 1 cumplen las cuatro condiciones, mientras que el tablero del Prototipo 2 declara la misma puntuación en sus dos vueltas sin publicar el detalle de cada una. Un valor de 100 sobre 100 en este indicador no significa que todos los ataques se hayan detectado ni que todos los tiempos hayan sido cortos, porque su denominador es el escenario y no el evento.</p>
+
+<p class="prosa">En cuanto a las lecciones aprendidas, el Prototipo 1 registra tres durante su fase de medición, mientras que el Prototipo 2 pasa de siete en la primera vuelta a catorce en la medición final. En las dos vueltas del segundo laboratorio coinciden las lecciones registradas y las resueltas, de manera que esa acumulación refleje el ciclo de corrección aplicado sin constituir una proporción de cobertura de la campaña. De esta forma, la tabla distingue entre los indicadores que miden la cobertura técnica y aquellos que describen la evidencia conservada y el aprendizaje registrado durante la aplicación de los dos prototipos.</p>
+
+<p class="prosa">La Figura 1 reúne los seis indicadores principales en un panel de tarjetas con los valores de cada momento medido, con el propósito de mostrar la evolución de la cobertura, el tiempo y el registro de aprendizaje sobre los dos prototipos. La inspección visual muestra que los tres momentos presentan patrones distintos según la dimensión observada, con valores más altos en el Prototipo 2 · final sobre la cobertura de escenarios, técnicas y tácticas.</p>
+
+<p class="lbl">Figura 1</p>
+<figure>
+<svg viewBox="0 0 960 560" role="img"
+  aria-label="Panel de seis tarjetas con los indicadores principales del estudio en los tres momentos medidos: cobertura de escenarios, cobertura de técnicas, cobertura de tácticas, tiempo medio de detección, percentil 95 de detección y lecciones registradas. Cada tarjeta presenta los valores del Prototipo 1, del Prototipo 2 vuelta 1 y del Prototipo 2 medición final.">
+  <rect x="0" y="0" width="960" height="560" fill="#FFFFFF"/>
+  <text x="20" y="28" font-family="Segoe UI,sans-serif" font-size="16" font-weight="700" fill="#1F3864">Indicadores principales en los tres momentos medidos</text>
+  <text x="20" y="46" font-family="Segoe UI,sans-serif" font-size="12" fill="#5A6878">Cobertura, tiempo de detección, percentil 95 y registro de aprendizaje en los dos prototipos del estudio</text>
+  <line x1="20" y1="58" x2="940" y2="58" stroke="#D6DEE8"/>
+
+  <!-- Tarjeta 1: Cobertura de escenarios -->
+  <rect x="20" y="80" width="300" height="200" rx="6" fill="#FFFFFF" stroke="#D6DEE8" stroke-width="1"/>
+  <path d="M20,86 a6,6 0 0 1 6,-6 h288 a6,6 0 0 1 6,6 v32 h-300 z" fill="#1F3864"/>
+  <text x="32" y="106" font-family="Segoe UI,sans-serif" font-size="12.5" font-weight="700" fill="#FFFFFF">Cobertura de escenarios</text>
+  <g font-family="Segoe UI,sans-serif" font-size="10" fill="#5A6878">
+    <text x="32" y="152">Prototipo 1</text>
+    <text x="296" y="152" text-anchor="end" font-size="22" font-weight="700" fill="#1F3864">90 %</text>
+    <text x="32" y="166" fill="#1F3864" font-size="10.5">9 de 10 con medición</text>
+  </g>
+  <line x1="32" y1="178" x2="308" y2="178" stroke="#EEF2F7"/>
+  <g font-family="Segoe UI,sans-serif" font-size="10" fill="#5A6878">
+    <text x="32" y="198">Prototipo 2 · vuelta 1</text>
+    <text x="296" y="198" text-anchor="end" font-size="22" font-weight="700" fill="#1F3864">40 %</text>
+    <text x="32" y="212" fill="#1F3864" font-size="10.5">4 de 10 con medición</text>
+  </g>
+  <rect x="20" y="226" width="300" height="54" fill="#1F6032" opacity="0.15"/>
+  <text x="32" y="246" font-family="Segoe UI,sans-serif" font-size="10" font-weight="700" fill="#1F6032">Prototipo 2 · medición final</text>
+  <text x="296" y="252" font-family="Segoe UI,sans-serif" font-size="24" font-weight="700" fill="#1F6032" text-anchor="end">100 %</text>
+  <text x="32" y="272" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#1F6032">10 de 10 con medición</text>
+
+  <!-- Tarjeta 2: Cobertura de técnicas -->
+  <rect x="330" y="80" width="300" height="200" rx="6" fill="#FFFFFF" stroke="#D6DEE8" stroke-width="1"/>
+  <path d="M330,86 a6,6 0 0 1 6,-6 h288 a6,6 0 0 1 6,6 v32 h-300 z" fill="#1F3864"/>
+  <text x="342" y="106" font-family="Segoe UI,sans-serif" font-size="12.5" font-weight="700" fill="#FFFFFF">Cobertura de técnicas</text>
+  <g font-family="Segoe UI,sans-serif" font-size="10" fill="#5A6878">
+    <text x="342" y="152">Prototipo 1</text>
+    <text x="606" y="152" text-anchor="end" font-size="22" font-weight="700" fill="#1F3864">100 %</text>
+    <text x="342" y="166" fill="#1F3864" font-size="10.5">10 de 10 con fuente</text>
+  </g>
+  <line x1="342" y1="178" x2="618" y2="178" stroke="#EEF2F7"/>
+  <g font-family="Segoe UI,sans-serif" font-size="10" fill="#5A6878">
+    <text x="342" y="198">Prototipo 2 · vuelta 1</text>
+    <text x="606" y="198" text-anchor="end" font-size="22" font-weight="700" fill="#1F3864">40 %</text>
+    <text x="342" y="212" fill="#1F3864" font-size="10.5">4 de 10 con fuente</text>
+  </g>
+  <rect x="330" y="226" width="300" height="54" fill="#1F6032" opacity="0.15"/>
+  <text x="342" y="246" font-family="Segoe UI,sans-serif" font-size="10" font-weight="700" fill="#1F6032">Prototipo 2 · medición final</text>
+  <text x="606" y="252" font-family="Segoe UI,sans-serif" font-size="24" font-weight="700" fill="#1F6032" text-anchor="end">100 %</text>
+  <text x="342" y="272" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#1F6032">10 de 10 con fuente</text>
+
+  <!-- Tarjeta 3: Cobertura de tácticas -->
+  <rect x="640" y="80" width="300" height="200" rx="6" fill="#FFFFFF" stroke="#D6DEE8" stroke-width="1"/>
+  <path d="M640,86 a6,6 0 0 1 6,-6 h288 a6,6 0 0 1 6,6 v32 h-300 z" fill="#1F3864"/>
+  <text x="652" y="106" font-family="Segoe UI,sans-serif" font-size="12.5" font-weight="700" fill="#FFFFFF">Cobertura de tácticas</text>
+  <g font-family="Segoe UI,sans-serif" font-size="10" fill="#5A6878">
+    <text x="652" y="152">Prototipo 1</text>
+    <text x="916" y="152" text-anchor="end" font-size="22" font-weight="700" fill="#1F3864">100 %</text>
+    <text x="652" y="166" fill="#1F3864" font-size="10.5">6 de 6 con fuente</text>
+  </g>
+  <line x1="652" y1="178" x2="928" y2="178" stroke="#EEF2F7"/>
+  <g font-family="Segoe UI,sans-serif" font-size="10" fill="#5A6878">
+    <text x="652" y="198">Prototipo 2 · vuelta 1</text>
+    <text x="916" y="198" text-anchor="end" font-size="22" font-weight="700" fill="#1F3864">50 %</text>
+    <text x="652" y="212" fill="#1F3864" font-size="10.5">3 de 6 con fuente</text>
+  </g>
+  <rect x="640" y="226" width="300" height="54" fill="#1F6032" opacity="0.15"/>
+  <text x="652" y="246" font-family="Segoe UI,sans-serif" font-size="10" font-weight="700" fill="#1F6032">Prototipo 2 · medición final</text>
+  <text x="916" y="252" font-family="Segoe UI,sans-serif" font-size="24" font-weight="700" fill="#1F6032" text-anchor="end">100 %</text>
+  <text x="652" y="272" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#1F6032">6 de 6 con fuente</text>
+
+  <!-- Tarjeta 4: Tiempo medio de detección -->
+  <rect x="20" y="305" width="300" height="200" rx="6" fill="#FFFFFF" stroke="#D6DEE8" stroke-width="1"/>
+  <path d="M20,311 a6,6 0 0 1 6,-6 h288 a6,6 0 0 1 6,6 v32 h-300 z" fill="#1F3864"/>
+  <text x="32" y="331" font-family="Segoe UI,sans-serif" font-size="12.5" font-weight="700" fill="#FFFFFF">Tiempo medio de detección</text>
+  <g font-family="Segoe UI,sans-serif" font-size="10" fill="#5A6878">
+    <text x="32" y="377">Prototipo 1</text>
+    <text x="296" y="377" text-anchor="end" font-size="20" font-weight="700" fill="#1F3864">41,598 s</text>
+    <text x="32" y="391" fill="#1F3864" font-size="10.5">sobre 9 mediciones</text>
+  </g>
+  <line x1="32" y1="403" x2="308" y2="403" stroke="#EEF2F7"/>
+  <g font-family="Segoe UI,sans-serif" font-size="10" fill="#5A6878">
+    <text x="32" y="423">Prototipo 2 · vuelta 1</text>
+    <text x="296" y="423" text-anchor="end" font-size="14" font-weight="600" fill="#5A6878" font-style="italic">sin comparable</text>
+    <text x="32" y="437" fill="#5A6878" font-size="10.5">no declarado en los tableros</text>
+  </g>
+  <rect x="20" y="451" width="300" height="54" fill="#1F6032" opacity="0.15"/>
+  <text x="32" y="471" font-family="Segoe UI,sans-serif" font-size="10" font-weight="700" fill="#1F6032">Prototipo 2 · medición final</text>
+  <text x="296" y="477" font-family="Segoe UI,sans-serif" font-size="24" font-weight="700" fill="#1F6032" text-anchor="end">2,02 s</text>
+  <text x="32" y="497" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#1F6032">media final declarada</text>
+
+  <!-- Tarjeta 5: Percentil 95 -->
+  <rect x="330" y="305" width="300" height="200" rx="6" fill="#FFFFFF" stroke="#D6DEE8" stroke-width="1"/>
+  <path d="M330,311 a6,6 0 0 1 6,-6 h288 a6,6 0 0 1 6,6 v32 h-300 z" fill="#1F3864"/>
+  <text x="342" y="331" font-family="Segoe UI,sans-serif" font-size="12.5" font-weight="700" fill="#FFFFFF">Percentil 95 de detección</text>
+  <g font-family="Segoe UI,sans-serif" font-size="10" fill="#5A6878">
+    <text x="342" y="377">Prototipo 1</text>
+    <text x="606" y="377" text-anchor="end" font-size="14" font-weight="600" fill="#5A6878" font-style="italic">sin comparable</text>
+    <text x="342" y="391" fill="#5A6878" font-size="10.5">no publicado en el reporte</text>
+  </g>
+  <line x1="342" y1="403" x2="618" y2="403" stroke="#EEF2F7"/>
+  <g font-family="Segoe UI,sans-serif" font-size="10" fill="#5A6878">
+    <text x="342" y="423">Prototipo 2 · vuelta 1</text>
+    <text x="606" y="423" text-anchor="end" font-size="22" font-weight="700" fill="#1F3864">14,58 s</text>
+    <text x="342" y="437" fill="#1F3864" font-size="10.5">primera vuelta del P 2</text>
+  </g>
+  <rect x="330" y="451" width="300" height="54" fill="#1F6032" opacity="0.15"/>
+  <text x="342" y="471" font-family="Segoe UI,sans-serif" font-size="10" font-weight="700" fill="#1F6032">Prototipo 2 · medición final</text>
+  <text x="606" y="477" font-family="Segoe UI,sans-serif" font-size="24" font-weight="700" fill="#1F6032" text-anchor="end">9,27 s</text>
+  <text x="342" y="497" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#1F6032">medición final</text>
+
+  <!-- Tarjeta 6: Lecciones registradas -->
+  <rect x="640" y="305" width="300" height="200" rx="6" fill="#FFFFFF" stroke="#D6DEE8" stroke-width="1"/>
+  <path d="M640,311 a6,6 0 0 1 6,-6 h288 a6,6 0 0 1 6,6 v32 h-300 z" fill="#1F3864"/>
+  <text x="652" y="331" font-family="Segoe UI,sans-serif" font-size="12.5" font-weight="700" fill="#FFFFFF">Lecciones registradas y resueltas</text>
+  <g font-family="Segoe UI,sans-serif" font-size="10" fill="#5A6878">
+    <text x="652" y="377">Prototipo 1</text>
+    <text x="916" y="377" text-anchor="end" font-size="22" font-weight="700" fill="#1F3864">3</text>
+    <text x="652" y="391" fill="#1F3864" font-size="10.5">limitaciones iniciales</text>
+  </g>
+  <line x1="652" y1="403" x2="928" y2="403" stroke="#EEF2F7"/>
+  <g font-family="Segoe UI,sans-serif" font-size="10" fill="#5A6878">
+    <text x="652" y="423">Prototipo 2 · vuelta 1</text>
+    <text x="916" y="423" text-anchor="end" font-size="22" font-weight="700" fill="#1F3864">7 de 7</text>
+    <text x="652" y="437" fill="#1F3864" font-size="10.5">resueltas en su totalidad</text>
+  </g>
+  <rect x="640" y="451" width="300" height="54" fill="#1F6032" opacity="0.15"/>
+  <text x="652" y="471" font-family="Segoe UI,sans-serif" font-size="10" font-weight="700" fill="#1F6032">Prototipo 2 · medición final</text>
+  <text x="916" y="477" font-family="Segoe UI,sans-serif" font-size="24" font-weight="700" fill="#1F6032" text-anchor="end">14 de 14</text>
+  <text x="652" y="497" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#1F6032">resueltas en su totalidad</text>
+
+  <text x="20" y="528" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#5A6878" font-style="italic">Cada tarjeta reagrupa los tres momentos del estudio. La fila inferior en verde claro destaca los valores del Prototipo 2 · medición final.</text>
+  <text x="20" y="544" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#5A6878" font-style="italic">Las casillas «sin comparable» indican valores no declarados en los archivos de respaldo del momento correspondiente.</text>
+</svg>
+<figcaption><i>Figura 1.</i> Panel con los seis indicadores principales del estudio en los tres momentos medidos, presentado en seis tarjetas que exponen los valores de cobertura de escenarios, técnicas y tácticas, tiempo medio de detección, percentil 95 de detección y lecciones registradas. La fila inferior de cada tarjeta, resaltada en verde, recoge los valores del Prototipo 2 en su medición final y deja a la vista el cierre del ciclo de corrección aplicado al laboratorio del SIN.</figcaption>
+</figure>
+
+<p class="prosa">La Figura 2 sintetiza la cobertura alcanzada en cada categoría del marco y cada momento del estudio mediante un mapa de calor, con el propósito de presentar de un vistazo los saltos entre la primera vuelta y la medición final del Prototipo 2. La inspección visual muestra que la celda con menor proporción (40 % de cobertura de escenarios en la primera vuelta del Prototipo 2) contrasta con las seis celdas que alcanzan el 100 % en los otros momentos del estudio.</p>
+
+<p class="lbl">Figura 2</p>
+<figure>
+<svg viewBox="0 0 960 470" role="img"
+  aria-label="Mapa de calor con la cobertura alcanzada por los indicadores de escenarios, técnicas y tácticas en los tres momentos medidos. Las celdas más intensas corresponden a 100 % y la menos intensa a 40 % de cobertura en la primera vuelta del Prototipo 2.">
+  <rect x="0" y="0" width="960" height="470" fill="#FFFFFF"/>
+  <text x="20" y="28" font-family="Segoe UI,sans-serif" font-size="16" font-weight="700" fill="#1F3864">Mapa de calor de cobertura por indicador y momento</text>
+  <text x="20" y="46" font-family="Segoe UI,sans-serif" font-size="12" fill="#5A6878">Cobertura declarada para escenarios, técnicas y tácticas en los tres momentos del estudio</text>
+  <line x1="20" y1="58" x2="940" y2="58" stroke="#D6DEE8"/>
+
+  <!-- Columnas -->
+  <g font-family="Segoe UI,sans-serif" font-size="11.5" font-weight="700" fill="#1F3864" text-anchor="middle">
+    <text x="270" y="100">Prototipo 1</text>
+    <text x="540" y="100">Prototipo 2 · vuelta 1</text>
+    <text x="810" y="100">Prototipo 2 · medición final</text>
+  </g>
+
+  <!-- Celdas 3x3 -->
+  <!-- Fila Escenarios -->
+  <text x="100" y="160" font-family="Segoe UI,sans-serif" font-size="12.5" font-weight="700" fill="#1F3864" text-anchor="end">Escenarios</text>
+  <rect x="120" y="115" width="300" height="90" rx="6" fill="#1F6032" opacity="0.35"/>
+  <text x="270" y="170" font-family="Segoe UI,sans-serif" font-size="28" font-weight="700" fill="#FFFFFF" text-anchor="middle">90 %</text>
+  <text x="270" y="195" font-family="Segoe UI,sans-serif" font-size="11" fill="#FFFFFF" text-anchor="middle">9 de 10 escenarios</text>
+  <rect x="430" y="115" width="220" height="90" rx="6" fill="#9C6500" opacity="0.45"/>
+  <text x="540" y="170" font-family="Segoe UI,sans-serif" font-size="28" font-weight="700" fill="#FFFFFF" text-anchor="middle">40 %</text>
+  <text x="540" y="195" font-family="Segoe UI,sans-serif" font-size="11" fill="#FFFFFF" text-anchor="middle">4 de 10 escenarios</text>
+  <rect x="660" y="115" width="300" height="90" rx="6" fill="#1F6032"/>
+  <text x="810" y="170" font-family="Segoe UI,sans-serif" font-size="28" font-weight="700" fill="#FFFFFF" text-anchor="middle">100 %</text>
+  <text x="810" y="195" font-family="Segoe UI,sans-serif" font-size="11" fill="#FFFFFF" text-anchor="middle">10 de 10 escenarios</text>
+
+  <!-- Fila Técnicas -->
+  <text x="100" y="280" font-family="Segoe UI,sans-serif" font-size="12.5" font-weight="700" fill="#1F3864" text-anchor="end">Técnicas</text>
+  <rect x="120" y="225" width="300" height="90" rx="6" fill="#1F6032"/>
+  <text x="270" y="280" font-family="Segoe UI,sans-serif" font-size="28" font-weight="700" fill="#FFFFFF" text-anchor="middle">100 %</text>
+  <text x="270" y="305" font-family="Segoe UI,sans-serif" font-size="11" fill="#FFFFFF" text-anchor="middle">10 de 10 técnicas</text>
+  <rect x="430" y="225" width="220" height="90" rx="6" fill="#9C6500" opacity="0.45"/>
+  <text x="540" y="280" font-family="Segoe UI,sans-serif" font-size="28" font-weight="700" fill="#FFFFFF" text-anchor="middle">40 %</text>
+  <text x="540" y="305" font-family="Segoe UI,sans-serif" font-size="11" fill="#FFFFFF" text-anchor="middle">4 de 10 técnicas</text>
+  <rect x="660" y="225" width="300" height="90" rx="6" fill="#1F6032"/>
+  <text x="810" y="280" font-family="Segoe UI,sans-serif" font-size="28" font-weight="700" fill="#FFFFFF" text-anchor="middle">100 %</text>
+  <text x="810" y="305" font-family="Segoe UI,sans-serif" font-size="11" fill="#FFFFFF" text-anchor="middle">10 de 10 técnicas</text>
+
+  <!-- Fila Tácticas -->
+  <text x="100" y="400" font-family="Segoe UI,sans-serif" font-size="12.5" font-weight="700" fill="#1F3864" text-anchor="end">Tácticas</text>
+  <rect x="120" y="335" width="300" height="90" rx="6" fill="#1F6032"/>
+  <text x="270" y="390" font-family="Segoe UI,sans-serif" font-size="28" font-weight="700" fill="#FFFFFF" text-anchor="middle">100 %</text>
+  <text x="270" y="415" font-family="Segoe UI,sans-serif" font-size="11" fill="#FFFFFF" text-anchor="middle">6 de 6 tácticas</text>
+  <rect x="430" y="335" width="270" height="90" rx="6" fill="#9C6500" opacity="0.55"/>
+  <text x="565" y="390" font-family="Segoe UI,sans-serif" font-size="28" font-weight="700" fill="#FFFFFF" text-anchor="middle">50 %</text>
+  <text x="565" y="415" font-family="Segoe UI,sans-serif" font-size="11" fill="#FFFFFF" text-anchor="middle">3 de 6 tácticas</text>
+  <rect x="710" y="335" width="250" height="90" rx="6" fill="#1F6032"/>
+  <text x="835" y="390" font-family="Segoe UI,sans-serif" font-size="28" font-weight="700" fill="#FFFFFF" text-anchor="middle">100 %</text>
+  <text x="835" y="415" font-family="Segoe UI,sans-serif" font-size="11" fill="#FFFFFF" text-anchor="middle">6 de 6 tácticas</text>
+
+  <!-- Leyenda -->
+  <text x="20" y="455" font-family="Segoe UI,sans-serif" font-size="11" font-weight="700" fill="#5A6878">Leyenda de cobertura</text>
+  <rect x="135" y="442" width="22" height="14" fill="#1F6032"/>
+  <text x="162" y="454" font-family="Segoe UI,sans-serif" font-size="11" fill="#33404F">100 %</text>
+  <rect x="205" y="442" width="22" height="14" fill="#1F6032" opacity="0.35"/>
+  <text x="232" y="454" font-family="Segoe UI,sans-serif" font-size="11" fill="#33404F">50 a 99 %</text>
+  <rect x="300" y="442" width="22" height="14" fill="#9C6500" opacity="0.45"/>
+  <text x="327" y="454" font-family="Segoe UI,sans-serif" font-size="11" fill="#33404F">1 a 49 %</text>
+  <text x="700" y="454" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#5A6878">Datos de los reportes de indicadores y de cobertura de cada laboratorio del estudio.</text>
+</svg>
+<figcaption><i>Figura 2.</i> Mapa de calor con la cobertura declarada para los indicadores de escenarios, técnicas y tácticas en los tres momentos del estudio, con una escala de tres niveles que distingue los valores completos de los inferiores al 100 %. La celda con menor proporción corresponde a la primera vuelta del Prototipo 2, mientras que las seis celdas restantes alcanzan el 100 % y confirman la convergencia tras el ciclo de corrección aplicado al laboratorio del SIN.</figcaption>
+</figure>
+
+<p class="prosa">Los resultados de la Figura 2 muestran que la cobertura declarada no evoluciona de manera uniforme entre los tres indicadores en cada momento del estudio; varía en función del comportamiento de la cadena y de la completitud del catálogo de fuentes configurado en cada vuelta de la campaña. La Figura 3 complementa este mapa al ofrecer una vista comparativa de los tres indicadores en una escala porcentual compartida, lo que ayuda a situar el salto entre los momentos del Prototipo 2 sobre la misma referencia numérica.</p>
+
+<p class="lbl">Figura 3</p>
+<figure>
+<svg id="fig-cobertura" viewBox="0 0 960 502" role="img"
+  aria-label="Indicadores de cobertura en los tres momentos medidos. Cada indicador presenta una barra para el Prototipo 1 y dos barras agrupadas bajo el Prototipo 2, correspondientes a la vuelta 1 y a la medicion final.">
+  <rect x="0" y="0" width="960" height="502" fill="#FFFFFF"/>
+  <text x="20" y="26" font-family="Segoe UI,sans-serif" font-size="16" font-weight="700" fill="#1F3864">Indicadores de cobertura en los tres momentos medidos (Figura 3)</text>
+  <text x="20" y="46" font-family="Segoe UI,sans-serif" font-size="12" fill="#5A6878">Proporci&#243;n de elementos previstos de la campa&#241;a que cuentan con fuente o con Medici&#243;n registrada</text>
+  <line x1="20" y1="57" x2="940" y2="57" stroke="#D6DEE8"/>
+
+  <g font-family="Segoe UI,sans-serif" font-size="12" fill="#33404F">
+    <rect x="270" y="70" width="15" height="13" rx="2" fill="#2E75B6"/>
+    <text x="291" y="81">Prototipo 1</text>
+    <rect x="430" y="70" width="15" height="13" rx="2" fill="#9DB9D8"/>
+    <text x="451" y="81">Prototipo 2 &#183; vuelta 1</text>
+    <rect x="660" y="70" width="15" height="13" rx="2" fill="#1F6032"/>
+    <text x="681" y="81">Prototipo 2 &#183; medici&#243;n final</text>
+  </g>
+
+  <g stroke="#EEF2F7" stroke-width="1">
+    <line x1="270" y1="108" x2="940" y2="108"/>
+    <line x1="270" y1="164.5" x2="940" y2="164.5"/>
+    <line x1="270" y1="221" x2="940" y2="221"/>
+    <line x1="270" y1="277.5" x2="940" y2="277.5"/>
+  </g>
+  <g font-family="Segoe UI,sans-serif" font-size="11.5" fill="#6E7B8B" text-anchor="end">
+    <text x="260" y="112">100 %</text><text x="260" y="168.5">75 %</text><text x="260" y="225">50 %</text>
+    <text x="260" y="281.5">25 %</text><text x="260" y="338">0 %</text>
+  </g>
+
+  <rect x="288" y="130" width="56" height="206" rx="2" fill="#2E75B6"/>
+  <rect x="354" y="244" width="56" height="92" rx="2" fill="#9DB9D8"/>
+  <rect x="420" y="108" width="56" height="228" rx="2" fill="#1F6032"/>
+
+  <rect x="513" y="108" width="56" height="228" rx="2" fill="#2E75B6"/>
+  <rect x="579" y="244" width="56" height="92" rx="2" fill="#9DB9D8"/>
+  <rect x="645" y="108" width="56" height="228" rx="2" fill="#1F6032"/>
+
+  <rect x="738" y="108" width="56" height="228" rx="2" fill="#2E75B6"/>
+  <rect x="804" y="222" width="56" height="114" rx="2" fill="#9DB9D8"/>
+  <rect x="870" y="108" width="56" height="228" rx="2" fill="#1F6032"/>
+
+  <g font-family="Segoe UI,sans-serif" font-size="13" font-weight="700" fill="#1A2430" text-anchor="middle">
+    <text x="316" y="123">90 %</text><text x="382" y="237">40 %</text><text x="448" y="101">100 %</text>
+    <text x="541" y="101">100 %</text><text x="607" y="237">40 %</text><text x="673" y="101">100 %</text>
+    <text x="766" y="101">100 %</text><text x="832" y="215">50 %</text><text x="898" y="101">100 %</text>
+  </g>
+
+  <line x1="270" y1="336" x2="940" y2="336" stroke="#1F3864" stroke-width="2"/>
+
+  <g stroke="#8FA0B5" stroke-width="1.2" fill="none">
+    <path d="M288,346 L288,356 L344,356 L344,346"/>
+    <path d="M354,346 L354,356 L476,356 L476,346"/>
+    <path d="M513,346 L513,356 L569,356 L569,346"/>
+    <path d="M579,346 L579,356 L701,356 L701,346"/>
+    <path d="M738,346 L738,356 L794,356 L794,346"/>
+    <path d="M804,346 L804,356 L926,356 L926,346"/>
+  </g>
+  <g font-family="Segoe UI,sans-serif" font-size="11.5" font-weight="600" fill="#1F3864" text-anchor="middle">
+    <text x="316" y="374">Prototipo 1</text>
+    <text x="415" y="374">Prototipo 2</text>
+    <text x="541" y="374">Prototipo 1</text>
+    <text x="640" y="374">Prototipo 2</text>
+    <text x="766" y="374">Prototipo 1</text>
+    <text x="865" y="374">Prototipo 2</text>
+  </g>
+  <g font-family="Segoe UI,sans-serif" font-size="11" fill="#5A6878" text-anchor="middle">
+    <text x="415" y="390">vuelta 1 &#183; medici&#243;n final</text>
+    <text x="640" y="390">vuelta 1 &#183; medici&#243;n final</text>
+    <text x="865" y="390">vuelta 1 &#183; medici&#243;n final</text>
+  </g>
+
+  <g font-family="Segoe UI,sans-serif" font-size="12" font-weight="700" fill="#1A2430" text-anchor="middle">
+    <text x="382" y="418">Escenarios con tiempo</text><text x="382" y="433">de detecci&#243;n registrado</text>
+    <text x="607" y="418">T&#233;cnicas con fuente</text><text x="607" y="433">de detecci&#243;n</text>
+    <text x="832" y="418">T&#225;cticas con fuente</text><text x="832" y="433">de detecci&#243;n</text>
+  </g>
+
+  <line x1="20" y1="456" x2="940" y2="456" stroke="#D6DEE8"/>
+  <text x="20" y="476" font-family="Segoe UI,sans-serif" font-size="11.5" fill="#5A6878">La llave sit&#250;a bajo cada par de barras. El Prototipo 1 se ejecut&#243; una vez y el Prototipo 2 se ejecut&#243; dos veces.</text>
+  <text x="20" y="492" font-family="Segoe UI,sans-serif" font-size="11.5" fill="#5A6878">Denominadores fijos (10 escenarios, 10 t&#233;cnicas, 6 t&#225;cticas). Datos de la Tabla 2.</text>
+</svg>
+<figcaption>Indicadores de cobertura en los tres momentos medidos: escenarios con tiempo de detección registrado, técnicas
+con fuente de detección y tácticas con fuente de detección. Cada barra representa la proporción de elementos previstos de la
+campaña que cuentan con una fuente de detección o con una medición registrada. La calidad de la evidencia y el registro de
+lecciones se declaran en la Tabla 2 con su propio denominador.</figcaption>
+</figure>
+
+<p class="prosa">La Figura 3 representa únicamente los tres indicadores de cobertura de escenarios, técnicas y tácticas, ya que comparten una escala porcentual y permiten comparar el cumplimiento de condiciones definidas sobre los totales previstos de la campaña. La calidad de la evidencia y el registro de lecciones no aparecen en el gráfico porque se calculan sobre archivos y lecciones, cuyos denominadores no corresponden a los elementos representados en las barras, de manera que la separación evite que indicadores de distinta naturaleza se presenten como si midieran la misma condición.</p>
+
+<p class="prosa">La escala del gráfico llega al 100 % porque ese valor representa el cumplimiento total de la condición definida para cada indicador, de manera que una cobertura de escenarios del 100 % signifique que los diez escenarios cuentan con un tiempo registrado. Una barra de técnicas que alcanza el 100 % indica que las diez técnicas de la campaña cuentan con una fuente de detección, mientras que una barra de tácticas en el mismo nivel indica que las seis tácticas tienen una fuente asignada. Estos resultados describen la cobertura alcanzada, aunque no indican por sí mismos cuánto tarda la detección ni garantizan que todos los eventos lleguen a registrarse dentro del primer segundo de ejecución.</p>
+
+<p class="prosa">La comparación visual muestra que el Prototipo 1 alcanza el 90 % de cobertura de escenarios y el 100 % en técnicas y tácticas, mientras que en la primera vuelta del Prototipo 2 ningún indicador de cobertura supera el 50 %. En la medición final del segundo prototipo las tres barras llegan al 100 %, lo que indica que se cumplen las condiciones de cobertura establecidas para las tres categorías de la campaña. La evolución entre las dos vueltas del Prototipo 2 coincide con la ampliación de los escenarios medidos y con el incremento de las técnicas y tácticas que disponen de fuentes de detección.</p>
+
+<p class="prosa">La diferencia entre la primera vuelta y la medición final del Prototipo 2 debe interpretarse como un cambio en la cobertura registrada durante el proceso de corrección, no como una comparación aislada de la velocidad de detección. Entre ambas mediciones, los escenarios con tiempo registrado aumentan de cuatro a diez, las técnicas con fuente de detección pasan de cuatro a diez y las tácticas con fuente asignada aumentan de tres a seis. Además, las lecciones con resolución documentada pasan de siete a catorce, mientras que la puntuación de calidad de la evidencia permanece en 100 sobre 100, de manera que estos resultados muestren cambios en la cobertura y en el registro de las correcciones junto con la conservación de la puntuación declarada para la evidencia.</p>
+
+<p class="prosa">La rapidez de detección se analiza de manera complementaria, mediante los tiempos expresados en segundos y los estadísticos de cada ejecución, que aportan información sobre el comportamiento temporal de la cadena de detección y no se obtiene únicamente de las barras de cobertura. En el Prototipo 1, la media de detección es de 41,598 segundos sobre nueve mediciones; en el Prototipo 2, el percentil 95 disminuye de 14,58 a 9,27 segundos entre la primera vuelta y la medición final, mientras que la media final alcanza 2,02 segundos. Por ello, el resultado global de la metodología se interpreta a partir del conjunto de indicadores, manteniendo diferenciadas la cobertura de los elementos previstos, la rapidez de detección, la puntuación de la evidencia y la resolución documentada de las lecciones aprendidas.</p>
+</section>
+
+<!-- ══════════ 4.4.2 ══════════ -->
+<section id="s442">
+<h3>4.4.2 Resultados del primer prototipo en el TaxFisco Research Lab</h3>
+<p class="sub">Lectura de los indicadores declarados por el laboratorio del primer prototipo sobre los diez escenarios ejecutados.</p>
+
+<p class="prosa lead">La aplicación del primer prototipo de la metodología se realiza en el TaxFisco Research Lab mediante una campaña de diez escenarios ejecutados en un entorno controlado (diseño del prototipo descrito en el capítulo 3, operacionalización en el 4), con el propósito de examinar el funcionamiento de la cadena de detección sobre un conjunto definido de actividades simuladas. El análisis de los tiempos, la cobertura técnica, la correspondencia normativa y las lecciones aprendidas describe cómo responde el prototipo ante estas actividades, así como la organización de la información generada durante su ejecución.</p>
+
+<p class="prosa">De los diez escenarios ejecutados, nueve cuentan con un tiempo de detección registrado sobre los cuales se calculan los indicadores temporales, mientras que los resultados de cobertura, correspondencia normativa y lecciones se declaran según sus respectivos registros. De esta manera, cada resultado se interpreta en función de la información que representa y contribuye a caracterizar el funcionamiento del primer prototipo, con lo que se consolida una primera lectura del desempeño del laboratorio.</p>
+
+<p class="prosa">La Tabla 4 presenta los indicadores obtenidos durante esta primera aplicación y especifica el reporte de origen de cada dato, lo que permite mantener la relación entre los resultados y los registros generados por el laboratorio. El promedio de detección es de 41,598 segundos, con un valor mínimo de 0,141 segundos y un máximo de 260,108 segundos; además, siete de las nueve mediciones se encuentran por debajo de un minuto. En cuanto a la cobertura técnica, el inventario comprende diecisiete técnicas (técnicas del marco MITRE ATT&CK, capítulo 1, sección 1.3.5) y el reporte declara diez técnicas detectadas, distribuidas en seis tácticas del mismo marco. La correspondencia normativa registra las cinco fases de ISO/IEC 27035-1 de 2023 (capítulo 1, sección 1.3.2) y la aplicación recoge tres lecciones aprendidas, que corresponden a la fase cinco del ciclo de gestión de incidentes considerado por la norma.</p>
+
+<p class="prosa">Estos indicadores permiten examinar el prototipo desde diferentes perspectivas, con los tiempos mostrando la rapidez con la que se registra el primer evento, la cobertura identificando el alcance técnico declarado, la correspondencia normativa relacionando los componentes con las fases de gestión de incidentes y las lecciones aprendidas documentando los hallazgos durante las pruebas. En conjunto, los datos ofrecen una visión completa del funcionamiento del prototipo sobre el entorno controlado y constituyen la referencia para analizar los resultados de las siguientes aplicaciones de la metodología.</p>
+
+<p class="lbl tl">Tabla 4</p>
+<p class="rot">Indicadores del primer prototipo con su archivo de origen</p>
+<table>
+<thead><tr><th>Indicador</th><th>Valor</th><th>Origen</th></tr></thead>
+<tbody>
+<tr><td>Escenarios con tiempo de detección registrado</td><td>9 de 10</td><td>Reporte de indicadores</td></tr>
+<tr><td>Tiempo medio de detección</td><td>41,598 s sobre 9 mediciones</td><td>Reporte de indicadores</td></tr>
+<tr><td>Valor mínimo de detección</td><td>0,141 s</td><td>Reporte de indicadores</td></tr>
+<tr><td>Valor máximo de detección</td><td>260,108 s</td><td>Reporte de indicadores</td></tr>
+<tr><td>Mediciones por debajo del minuto</td><td>7 de 9</td><td>Reporte de indicadores</td></tr>
+<tr><td>Técnicas implementadas</td><td>17</td><td>Reporte de cobertura</td></tr>
+<tr><td>Técnicas detectadas</td><td>10 de 10</td><td>Reporte de cobertura</td></tr>
+<tr><td>Tácticas cubiertas</td><td>6 de 6</td><td>Reporte de cobertura</td></tr>
+<tr><td>Fases de ISO/IEC 27035 sustentadas</td><td>5 de 5</td><td>Reporte de correspondencia normativa</td></tr>
+<tr><td>Lecciones aprendidas</td><td>3</td><td>Registro de la fase de medición</td></tr>
+</tbody>
+</table>
+<div class="note"><i>Nota.</i> El tiempo de detección se calcula desde el inicio del escenario hasta el registro del primer evento asociado con la actividad ejecutada. Este indicador se refiere a la detección y no incluye el tiempo destinado a la resolución del incidente. Los valores se presentan de acuerdo con los reportes originales del laboratorio.</div>
+
+<h4>Análisis de los tiempos de detección</h4>
+
+<p class="prosa">El tiempo medio de detección (MTTD, operacionalizado en el capítulo 4) obtenido en el primer prototipo del TaxFisco Research Lab es de 41,598 segundos, calculado sobre las nueve mediciones disponibles en el reporte del laboratorio al cierre de la campaña. Este resultado se comprende mejor al observar la distribución de las nueve mediciones, con valores entre 0,141 y 260,108 segundos; cinco escenarios presentan tiempos inferiores a un segundo, mientras otros dos registran 85,000 y 260,108 segundos, respectivamente. Estos dos últimos resultados elevan el promedio general, de modo que la media representa el comportamiento conjunto de las mediciones pero no describe por sí sola la rapidez alcanzada en cada escenario. La cadena puede registrar determinados eventos en fracciones de segundo y, en otros casos, el primer registro aparece después de un intervalo más prolongado, por lo que la interpretación del desempeño temporal considera tanto el promedio como los valores individuales para una descripción más precisa de la respuesta observada durante la campaña.</p>
+
+<p class="prosa">La Figura 4 presenta los tiempos de detección de los nueve escenarios con medición, ordenados de menor a mayor mediante un gráfico de barras horizontales, con el propósito de identificar la concentración de resultados inferiores a un minuto y distinguir los dos escenarios con tiempos superiores a ese intervalo. El rango observado se extiende desde 0,141 segundos del extremo inferior del eje, que corresponde al escenario más breve, hasta 260,108 segundos del extremo superior, ocupado por S04, mientras S03 se sitúa en 85,000 segundos en la franja previa del mismo eje. La inspección visual de las barras muestra una distribución no uniforme, con valores concentrados en intervalos breves del eje y dos valores más elevados que prolongan la duración total del conjunto medido al desplazarlo hacia arriba en el lado derecho.</p>
+
+<p class="lbl">Figura 4</p>
+<figure>
+<img src="evidencia-visual/graficos/d-tiempo-prototipo-1.png"
+     alt="Gráfico de barras horizontales con los tiempos de detección registrados en nueve escenarios del Prototipo 1 del TaxFisco Research Lab. Siete escenarios se sitúan por debajo del minuto, con marcas que van de 0,141 s a 16,405 s, y dos escenarios muestran valores de larga duración de 85,000 s y 260,108 s. El eje temporal llega hasta 280 s.">
+<figcaption><i>Figura 4.</i> Distribución de los tiempos de detección registrados en los nueve escenarios con medición del Prototipo 1 del TaxFisco Research Lab, ordenados de menor a mayor duración para distinguir los escenarios por debajo del minuto de los dos escenarios de larga duración que prolongan la media declarada. El eje se expresa en segundos, con marcas de referencia cada 70 s hasta el valor máximo de 260,108 s.</figcaption>
+</figure>
+
+<p class="prosa">La inspección visual confirma que siete de los nueve valores se sitúan por debajo del minuto, con marcas comprendidas entre 0,141 s y 16,405 s, mientras los dos escenarios restantes elevan el conjunto; S03 aporta 85,000 s y S04 alcanza 260,108 s, en ese orden ascendente, lo que termina de caracterizar una dispersión heterogénea. La mayoría de las mediciones se sitúa en el orden de las décimas o los pocos segundos, con solo dos escenarios alejados hacia los minutos prolongados, comportamiento que justifica la lectura por orden de magnitud ofrecida en la Figura 5.</p>
+
+<p class="prosa">La Figura 5 agrupa los nueve tiempos registrados en cuatro bandas de magnitud, con el propósito de examinar dónde se concentran las detecciones por debajo del segundo y por encima del minuto, para describir el peso de cada intervalo en el cálculo del promedio. La inspección visual confirma que cinco de las nueve mediciones se resuelven por debajo del segundo, dos entre uno y treinta segundos, dos por encima del minuto, con una sola banda vacía entre treinta y sesenta segundos. Estos conteos explican la asimetría de la media declarada y refuerzan la lectura por orden de magnitud de los tiempos, ya mostrada en la Figura 4 con la distribución individual del conjunto.</p>
+
+<p class="lbl">Figura 5</p>
+<figure>
+<svg viewBox="0 0 800 470" role="img"
+  aria-label="Histograma de frecuencias del MTTD en los nueve escenarios del Prototipo 1. Cinco mediciones se sitúan por debajo de un segundo, dos entre uno y treinta segundos, ninguna entre treinta y sesenta segundos, dos por encima de sesenta segundos.">
+  <rect x="0" y="0" width="800" height="470" fill="#FFFFFF"/>
+  <text x="20" y="28" font-family="Segoe UI,sans-serif" font-size="16" font-weight="700" fill="#1F3864">Frecuencia de escenarios por banda de tiempo de detección</text>
+  <text x="20" y="46" font-family="Segoe UI,sans-serif" font-size="12" fill="#5A6878">Distribución de los nueve escenarios con medición declarada del Prototipo 1, agrupados por orden de magnitud</text>
+  <line x1="20" y1="58" x2="780" y2="58" stroke="#D6DEE8"/>
+
+  <line x1="100" y1="100" x2="100" y2="380" stroke="#8FA0B5" stroke-width="1"/>
+  <line x1="100" y1="380" x2="760" y2="380" stroke="#8FA0B5" stroke-width="1"/>
+
+  <g stroke="#EEF2F7" stroke-width="1">
+    <line x1="100" y1="380" x2="760" y2="380"/>
+    <line x1="100" y1="340" x2="760" y2="340"/>
+    <line x1="100" y1="300" x2="760" y2="300"/>
+    <line x1="100" y1="260" x2="760" y2="260"/>
+    <line x1="100" y1="220" x2="760" y2="220"/>
+    <line x1="100" y1="180" x2="760" y2="180"/>
+    <line x1="100" y1="140" x2="760" y2="140"/>
+  </g>
+  <g font-family="Segoe UI,sans-serif" font-size="11" fill="#5A6878" text-anchor="end">
+    <text x="92" y="144">6</text>
+    <text x="92" y="184">5</text>
+    <text x="92" y="224">4</text>
+    <text x="92" y="264">3</text>
+    <text x="92" y="304">2</text>
+    <text x="92" y="344">1</text>
+    <text x="92" y="384">0</text>
+  </g>
+  <text x="38" y="240" font-family="Segoe UI,sans-serif" font-size="11.5" fill="#5A6878" transform="rotate(-90,38,240)" text-anchor="middle">Frecuencia</text>
+
+  <rect x="135" y="180" width="130" height="200" fill="#2E75B6"/>
+  <text x="200" y="170" font-family="Segoe UI,sans-serif" font-size="22" font-weight="700" fill="#1A2430" text-anchor="middle">5</text>
+  <text x="200" y="404" font-family="Segoe UI,sans-serif" font-size="12" fill="#1F3864" text-anchor="middle" font-weight="600">menos de 1 s</text>
+  <text x="200" y="421" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#5A6878" text-anchor="middle">S02 · S05 · S06 · S07 · S08</text>
+
+  <rect x="295" y="300" width="130" height="80" fill="#4A7EBB"/>
+  <text x="360" y="290" font-family="Segoe UI,sans-serif" font-size="22" font-weight="700" fill="#1A2430" text-anchor="middle">2</text>
+  <text x="360" y="404" font-family="Segoe UI,sans-serif" font-size="12" fill="#1F3864" text-anchor="middle" font-weight="600">entre 1 y 30 s</text>
+  <text x="360" y="421" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#5A6878" text-anchor="middle">S01 · S09</text>
+
+  <text x="520" y="372" font-family="Segoe UI,sans-serif" font-size="14" font-weight="700" fill="#9C6500" text-anchor="middle" font-style="italic">0</text>
+  <text x="520" y="404" font-family="Segoe UI,sans-serif" font-size="12" fill="#1F3864" text-anchor="middle" font-weight="600">entre 30 y 60 s</text>
+  <text x="520" y="421" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#5A6878" text-anchor="middle">sin escenarios</text>
+
+  <rect x="585" y="300" width="130" height="80" fill="#1F3864"/>
+  <text x="650" y="290" font-family="Segoe UI,sans-serif" font-size="22" font-weight="700" fill="#1A2430" text-anchor="middle">2</text>
+  <text x="650" y="404" font-family="Segoe UI,sans-serif" font-size="12" fill="#1F3864" text-anchor="middle" font-weight="600">más de 60 s</text>
+  <text x="650" y="421" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#5A6878" text-anchor="middle">S03 · S04</text>
+
+  <text x="430" y="455" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#5A6878" text-anchor="middle">Total: 9 escenarios con medición declarada sobre 10 ejecutados. Datos del reporte de indicadores del Prototipo 1.</text>
+</svg>
+<figcaption><i>Figura 5.</i> Frecuencia de escenarios del Prototipo 1 por banda de tiempo de detección declarada, con cuatro rangos de magnitud que cubren desde décimas de segundo hasta los pocos minutos de los escenarios largos. La banda central entre 30 y 60 segundos queda vacía, mientras que la mayor concentración se sitúa por debajo del segundo.</figcaption>
+</figure>
+
+<p class="prosa">La Figura 6 compara la duración registrada de cada escenario con su tiempo de detección, con el propósito de examinar la relación entre el intervalo de ejecución de las actividades simuladas y el momento en que se registra su primer evento. Para visualizar los valores que van desde las décimas de segundo del extremo inferior hasta los varios minutos del extremo superior del eje, la figura recurre a una escala logarítmica en el eje vertical. Según los registros representados, el MTTD se sitúa dentro de la duración del escenario en S01 y S04, mientras que en S03 y S09 el tiempo de detección supera la duración registrada. Los demás escenarios presentan una duración igual a cero en los datos disponibles, por lo que se muestran sin una referencia temporal positiva para la misma comparación; S10 aparece sin evento de detección registrado.</p>
+
+<p class="lbl">Figura 6</p>
+<figure>
+<svg viewBox="0 0 900 470" role="img"
+  aria-label="Comparación entre la duración del escenario y el MTTD en segundos para los diez escenarios del Prototipo 1, representados en escala logarítmica. La detección ocurre dentro del intervalo del ataque en S01 y S04, lo supera en S03 y S09, y los demás escenarios tienen duración registrada igual a cero sin referencia temporal comparable.">
+  <rect x="0" y="0" width="900" height="470" fill="#FFFFFF"/>
+  <text x="20" y="28" font-family="Segoe UI,sans-serif" font-size="16" font-weight="700" fill="#1F3864">Duración del escenario y tiempo medio de detección por escenario</text>
+  <text x="20" y="46" font-family="Segoe UI,sans-serif" font-size="12" fill="#5A6878">Comparación en escala logarítmica para los diez escenarios del Prototipo 1, con código de color por variable</text>
+  <line x1="20" y1="58" x2="880" y2="58" stroke="#D6DEE8"/>
+
+  <g font-family="Segoe UI,sans-serif" font-size="11.5" fill="#33404F">
+    <circle cx="135" cy="74" r="4" fill="#1F6032"/>
+    <text x="146" y="78">Duración del escenario</text>
+    <circle cx="295" cy="74" r="4" fill="#2E75B6"/>
+    <text x="306" y="78">Tiempo medio de detección (MTTD)</text>
+    <rect x="475" y="68" width="13" height="13" fill="#9C6500" fill-opacity="0.18"/>
+    <text x="494" y="78">Duración registrada igual a cero</text>
+  </g>
+
+  <line x1="80" y1="100" x2="80" y2="390" stroke="#8FA0B5" stroke-width="1"/>
+  <line x1="80" y1="390" x2="820" y2="390" stroke="#8FA0B5" stroke-width="1"/>
+
+  <g stroke="#EEF2F7" stroke-width="1">
+    <line x1="80" y1="390" x2="820" y2="390"/>
+    <line x1="80" y1="330" x2="820" y2="330"/>
+    <line x1="80" y1="270" x2="820" y2="270"/>
+    <line x1="80" y1="210" x2="820" y2="210"/>
+    <line x1="80" y1="150" x2="820" y2="150"/>
+    <line x1="80" y1="90" x2="820" y2="90"/>
+  </g>
+
+  <g font-family="Segoe UI,sans-serif" font-size="11" fill="#5A6878" text-anchor="end">
+    <line x1="80" y1="90" x2="76" y2="90" stroke="#8FA0B5"/>
+    <text x="72" y="94">10 000 s</text>
+    <line x1="80" y1="150" x2="76" y2="150" stroke="#8FA0B5"/>
+    <text x="72" y="154">1000 s</text>
+    <line x1="80" y1="210" x2="76" y2="210" stroke="#8FA0B5"/>
+    <text x="72" y="214">100 s</text>
+    <line x1="80" y1="270" x2="76" y2="270" stroke="#8FA0B5"/>
+    <text x="72" y="274">10 s</text>
+    <line x1="80" y1="330" x2="76" y2="330" stroke="#8FA0B5"/>
+    <text x="72" y="334">1 s</text>
+    <line x1="80" y1="390" x2="76" y2="390" stroke="#8FA0B5"/>
+    <text x="72" y="394">0,1 s</text>
+  </g>
+  <text x="38" y="240" font-family="Segoe UI,sans-serif" font-size="11.5" fill="#5A6878" transform="rotate(-90,38,240)" text-anchor="middle">Tiempo (segundos, escala log)</text>
+
+  <g font-family="Segoe UI,sans-serif" font-size="12" font-weight="600" fill="#1F3864" text-anchor="middle">
+    <text x="130" y="412">S01</text>
+    <text x="200" y="412">S02</text>
+    <text x="270" y="412">S03</text>
+    <text x="340" y="412">S04</text>
+    <text x="410" y="412">S05</text>
+    <text x="480" y="412">S06</text>
+    <text x="550" y="412">S07</text>
+    <text x="620" y="412">S08</text>
+    <text x="690" y="412">S09</text>
+    <text x="760" y="412">S10</text>
+  </g>
+
+  <circle cx="130" cy="235" r="4" fill="#1F6032"/>
+  <circle cx="200" cy="226" r="4" fill="#1F6032"/>
+  <circle cx="270" cy="231" r="4" fill="#1F6032"/>
+  <circle cx="340" cy="83" r="4" fill="#1F6032"/>
+  <circle cx="690" cy="302" r="4" fill="#1F6032"/>
+  <circle cx="760" cy="291" r="4" fill="#1F6032"/>
+
+  <rect x="404" y="372" width="12" height="12" fill="#9C6500" fill-opacity="0.18"/>
+  <rect x="474" y="372" width="12" height="12" fill="#9C6500" fill-opacity="0.18"/>
+  <rect x="544" y="372" width="12" height="12" fill="#9C6500" fill-opacity="0.18"/>
+  <rect x="614" y="372" width="12" height="12" fill="#9C6500" fill-opacity="0.18"/>
+
+  <circle cx="130" cy="247" r="6" fill="#2E75B6"/>
+  <text x="130" y="225" font-family="Segoe UI,sans-serif" font-size="10" fill="#1A2430" text-anchor="middle">16,4</text>
+
+  <circle cx="200" cy="325" r="6" fill="#2E75B6"/>
+  <text x="200" y="345" font-family="Segoe UI,sans-serif" font-size="10" fill="#1A2430" text-anchor="middle">0,83</text>
+
+  <circle cx="270" cy="204" r="6" fill="#2E75B6"/>
+  <text x="270" y="187" font-family="Segoe UI,sans-serif" font-size="10" fill="#1A2430" text-anchor="middle">85</text>
+
+  <circle cx="340" cy="175" r="6" fill="#2E75B6"/>
+  <text x="340" y="158" font-family="Segoe UI,sans-serif" font-size="10" fill="#1A2430" text-anchor="middle">260,1</text>
+
+  <circle cx="410" cy="370" r="6" fill="#2E75B6"/>
+  <text x="410" y="361" font-family="Segoe UI,sans-serif" font-size="10" fill="#1A2430" text-anchor="middle">0,14</text>
+
+  <circle cx="480" cy="325" r="6" fill="#2E75B6"/>
+  <text x="480" y="313" font-family="Segoe UI,sans-serif" font-size="10" fill="#1A2430" text-anchor="middle">0,82</text>
+
+  <circle cx="550" cy="335" r="6" fill="#2E75B6"/>
+  <text x="550" y="323" font-family="Segoe UI,sans-serif" font-size="10" fill="#1A2430" text-anchor="middle">0,54</text>
+
+  <circle cx="620" cy="336" r="6" fill="#2E75B6"/>
+  <text x="620" y="324" font-family="Segoe UI,sans-serif" font-size="10" fill="#1A2430" text-anchor="middle">0,53</text>
+
+  <circle cx="690" cy="260" r="6" fill="#2E75B6"/>
+  <text x="690" y="244" font-family="Segoe UI,sans-serif" font-size="10" fill="#1A2430" text-anchor="middle">10</text>
+
+  <text x="760" y="354" font-family="Segoe UI,sans-serif" font-size="10" fill="#9C6500" text-anchor="middle" font-style="italic">sin evento</text>
+
+  <line x1="80" y1="432" x2="820" y2="432" stroke="#D6DEE8"/>
+  <text x="80" y="450" font-family="Segoe UI,sans-serif" font-size="11" fill="#5A6878">Eje en escala logarítmica; cada marca corresponde a una década. Datos del reporte de indicadores y de detalles de escenario del Prototipo 1.</text>
+</svg>
+<figcaption><i>Figura 6.</i> Duración del escenario y tiempo medio de detección por escenario del Prototipo 1, representados en escala logarítmica para mantener la legibilidad entre los valores subsegundo del S05 y el intervalo superior a las dos horas del S04. Los puntos azules muestran el MTTD declarado, los verdes muestran la duración real del escenario y los cuadros ámbar marcan los escenarios con duración registrada igual a cero.</figcaption>
+</figure>
+
+<p class="prosa">Esta representación permite interpretar conjuntamente las mediciones temporales y distinguir la duración de las actividades ejecutadas del tiempo que transcurre hasta que la cadena registra el primer evento de cada escenario. Las Figuras 4, 5 y 6 ofrecen en conjunto tres perspectivas complementarias sobre los resultados temporales del primer prototipo, todas ellas integradas para describir la magnitud individual de cada valor, la frecuencia de los tiempos por intervalos de orden de magnitud y la ubicación temporal del registro del primer evento en escala logarítmica. Cinco de las nueve detecciones se producen en menos de un segundo y otras dos mediciones se encuentran entre uno y treinta segundos, con la mayoría de los valores del conjunto situada por debajo de los treinta segundos. Los escenarios S03 y S04 se alejan hacia los minutos prolongados e influyen de manera determinante sobre la media declarada del prototipo, por lo que deben leerse como referencia al interpretar los valores agregados.</p>
+
+<h4>Cobertura de las técnicas y tácticas de MITRE ATT&amp;CK</h4>
+
+<p class="prosa">La interpretación de la cobertura técnica examina las técnicas contempladas en la campaña y su relación con las tácticas de MITRE ATT&amp;CK (capítulo 1, sección 1.3.5), lo que permite ubicar cada técnica en el marco de comportamiento adversario correspondiente. El inventario del laboratorio del TaxFisco Research Lab comprende diecisiete técnicas (técnicas acotadas además por el requisito RF-6 del capítulo 3, sección 3.1.1) en el conjunto del marco de comportamiento adversario, de las cuales diez forman parte de los escenarios ejecutados en la presente medición. La Figura 7 organiza estas diez técnicas según la táctica correspondiente al marco y presenta, para cada grupo, la cantidad de técnicas con detección registrada en el reporte de cobertura. Esta distribución permite observar cómo se relacionan las actividades simuladas con los registros obtenidos por los componentes de instrumentación, con la cobertura refiriéndose a las técnicas representadas en la campaña, mientras que los indicadores temporales describen cuándo se registra el primer evento de cada actividad.</p>
+
+<p class="lbl">Figura 7</p>
+<figure>
+<svg viewBox="0 0 800 470" role="img"
+  aria-label="Distribución de las diez técnicas de la campaña por la táctica de MITRE ATT&amp;CK a la que pertenecen. Cinco de las seis tácticas presentan cobertura completa, y la técnica T1048.003 de Exfiltration queda sin evento de detección declarado.">
+  <rect x="0" y="0" width="800" height="470" fill="#FFFFFF"/>
+  <text x="20" y="28" font-family="Segoe UI,sans-serif" font-size="16" font-weight="700" fill="#1F3864">Distribución de las técnicas de la campaña por táctica de MITRE ATT&amp;CK</text>
+  <text x="20" y="46" font-family="Segoe UI,sans-serif" font-size="12" fill="#5A6878">Cobertura declarada del Prototipo 1, agrupada por la dimensión superior del marco de comportamiento adversario</text>
+  <line x1="20" y1="58" x2="780" y2="58" stroke="#D6DEE8"/>
+
+  <g font-family="Segoe UI,sans-serif" font-size="11.5" fill="#33404F">
+    <rect x="135" y="72" width="13" height="13" rx="2" fill="#1F6032"/>
+    <text x="155" y="83">Técnicas con detección declarada</text>
+    <rect x="345" y="72" width="13" height="13" rx="2" fill="#9DB9D8"/>
+    <text x="365" y="83">Técnicas sin evento</text>
+  </g>
+
+  <line x1="270" y1="105" x2="270" y2="420" stroke="#8FA0B5" stroke-width="1"/>
+  <line x1="270" y1="420" x2="745" y2="420" stroke="#8FA0B5" stroke-width="1"/>
+
+  <g stroke="#EEF2F7" stroke-width="1">
+    <line x1="270" y1="115" x2="745" y2="115"/>
+    <line x1="270" y1="167" x2="745" y2="167"/>
+    <line x1="270" y1="219" x2="745" y2="219"/>
+    <line x1="270" y1="271" x2="745" y2="271"/>
+    <line x1="270" y1="323" x2="745" y2="323"/>
+    <line x1="270" y1="375" x2="745" y2="375"/>
+  </g>
+
+  <g font-family="Segoe UI,sans-serif" font-size="12" font-weight="600" fill="#1F3864" text-anchor="end">
+    <text x="260" y="138">Reconnaissance</text>
+    <text x="260" y="190">Initial Access</text>
+    <text x="260" y="242">Execution</text>
+    <text x="260" y="294">Credential Access</text>
+    <text x="260" y="346">Command and Control</text>
+    <text x="260" y="398">Exfiltration</text>
+  </g>
+
+  <rect x="270" y="120" width="475" height="32" fill="#1F6032"/>
+  <rect x="270" y="120" width="475" height="32" fill="#1F6032"/>
+  <text x="284" y="142" font-family="Segoe UI,sans-serif" font-size="13" font-weight="700" fill="#FFFFFF">2 de 2 con detección</text>
+  <text x="652" y="142" font-family="Segoe UI,sans-serif" font-size="11" fill="#FFFFFF" text-anchor="end">T1595 · T1595.002</text>
+
+  <rect x="270" y="172" width="475" height="32" fill="#1F6032"/>
+  <text x="284" y="194" font-family="Segoe UI,sans-serif" font-size="13" font-weight="700" fill="#FFFFFF">2 de 2 con detección</text>
+  <text x="652" y="194" font-family="Segoe UI,sans-serif" font-size="11" fill="#FFFFFF" text-anchor="end">T1190 · T1078</text>
+
+  <rect x="270" y="224" width="475" height="32" fill="#1F6032"/>
+  <text x="284" y="246" font-family="Segoe UI,sans-serif" font-size="13" font-weight="700" fill="#FFFFFF">2 de 2 con detección</text>
+  <text x="652" y="246" font-family="Segoe UI,sans-serif" font-size="11" fill="#FFFFFF" text-anchor="end">T1059.007 · T1059.004</text>
+
+  <rect x="270" y="276" width="475" height="32" fill="#1F6032"/>
+  <text x="284" y="298" font-family="Segoe UI,sans-serif" font-size="13" font-weight="700" fill="#FFFFFF">2 de 2 con detección</text>
+  <text x="652" y="298" font-family="Segoe UI,sans-serif" font-size="11" fill="#FFFFFF" text-anchor="end">T1110.001 · T1110.004</text>
+
+  <rect x="270" y="328" width="475" height="32" fill="#1F6032"/>
+  <text x="284" y="350" font-family="Segoe UI,sans-serif" font-size="13" font-weight="700" fill="#FFFFFF">1 de 1 con detección</text>
+  <text x="652" y="350" font-family="Segoe UI,sans-serif" font-size="11" fill="#FFFFFF" text-anchor="end">T1105</text>
+
+  <rect x="270" y="380" width="475" height="32" fill="#9DB9D8"/>
+  <text x="284" y="402" font-family="Segoe UI,sans-serif" font-size="13" font-weight="700" fill="#1F3864">0 de 1 sin evento</text>
+  <text x="652" y="402" font-family="Segoe UI,sans-serif" font-size="11" fill="#1F3864" text-anchor="end">T1048.003</text>
+
+  <g font-family="Segoe UI,sans-serif" font-size="11" fill="#5A6878" text-anchor="middle">
+    <line x1="270" y1="420" x2="270" y2="425" stroke="#8FA0B5"/>
+    <text x="270" y="438">0</text>
+    <line x1="507.5" y1="420" x2="507.5" y2="425" stroke="#8FA0B5"/>
+    <text x="507.5" y="438">1</text>
+    <line x1="745" y1="420" x2="745" y2="425" stroke="#8FA0B5"/>
+    <text x="745" y="438">2 técnicas</text>
+  </g>
+
+  <text x="500" y="455" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#5A6878" text-anchor="middle">El ancho de cada barra equivale a las técnicas previstas por táctica, con la partición declarada por el reporte de cobertura del Prototipo 1.</text>
+</svg>
+<figcaption><i>Figura 7.</i> Distribución de las diez técnicas de la campaña del Prototipo 1 según la táctica de MITRE ATT&amp;CK a la que pertenecen, con la cobertura de detección declarada en cada táctica. Cinco de las seis tácticas presentan cobertura completa, mientras Exfiltration queda con su única técnica, T1048.003, sin evento de detección registrado.</figcaption>
+</figure>
+
+<p class="prosa">La Figura 8 distribuye los nueve MTTD declarados por la fuente de instrumentación que registra el primer evento, con el propósito de comparar el comportamiento de cada componente de captura sobre los escenarios que le corresponden. La inspección visual muestra que decoy-api (decoy-api-tributaria, descrita en la arquitectura de contenedores del capítulo 3, sección 3.5) absorbe los escenarios más extensos del eje y los más breves próximos al umbral inferior, mientras cowrie (capítulo 2, sección 2.2.2) y decoy-portal (decoy-portal-tributario, capítulo 3, sección 3.5) registran los restantes en valores intermedios del orden de los segundos.</p>
+
+<p class="lbl">Figura 8</p>
+<figure>
+<svg viewBox="0 0 800 470" role="img"
+  aria-label="Tiempo medio de detección declarado por fuente de instrumentación, en escala logarítmica. decoy-api absorbe los escenarios más extensos del eje y los más breves próximos al umbral inferior, mientras cowrie y decoy-portal registran los restantes en valores intermedios del orden de los segundos.">
+  <rect x="0" y="0" width="800" height="470" fill="#FFFFFF"/>
+  <text x="20" y="28" font-family="Segoe UI,sans-serif" font-size="16" font-weight="700" fill="#1F3864">Tiempo medio de detección por fuente de instrumentación</text>
+  <text x="20" y="46" font-family="Segoe UI,sans-serif" font-size="12" fill="#5A6878">Distribución de los nueve MTTD declarados del Prototipo 1 según la fuente que registró el primer evento</text>
+  <line x1="20" y1="58" x2="780" y2="58" stroke="#D6DEE8"/>
+
+  <line x1="220" y1="90" x2="220" y2="400" stroke="#8FA0B5" stroke-width="1"/>
+  <line x1="220" y1="400" x2="780" y2="400" stroke="#8FA0B5" stroke-width="1"/>
+
+  <g stroke="#EEF2F7" stroke-width="1">
+    <line x1="220" y1="100" x2="780" y2="100"/>
+    <line x1="220" y1="156" x2="780" y2="156"/>
+    <line x1="220" y1="212" x2="780" y2="212"/>
+    <line x1="220" y1="268" x2="780" y2="268"/>
+    <line x1="220" y1="324" x2="780" y2="324"/>
+    <line x1="220" y1="380" x2="780" y2="380"/>
+    <line x1="220" y1="400" x2="780" y2="400"/>
+  </g>
+
+  <g font-family="Segoe UI,sans-serif" font-size="11" fill="#5A6878" text-anchor="middle">
+    <line x1="220" y1="400" x2="220" y2="405" stroke="#8FA0B5"/>
+    <text x="220" y="416">0,1 s</text>
+    <line x1="332" y1="400" x2="332" y2="405" stroke="#8FA0B5"/>
+    <text x="332" y="416">1 s</text>
+    <line x1="444" y1="400" x2="444" y2="405" stroke="#8FA0B5"/>
+    <text x="444" y="416">10 s</text>
+    <line x1="556" y1="400" x2="556" y2="405" stroke="#8FA0B5"/>
+    <text x="556" y="416">100 s</text>
+    <line x1="668" y1="400" x2="668" y2="405" stroke="#8FA0B5"/>
+    <text x="668" y="416">1000 s</text>
+    <line x1="780" y1="400" x2="780" y2="405" stroke="#8FA0B5"/>
+    <text x="780" y="416">10 000 s</text>
+  </g>
+  <text x="500" y="436" font-family="Segoe UI,sans-serif" font-size="11.5" fill="#5A6878" text-anchor="middle">Tiempo (segundos, escala log)</text>
+
+  <g font-family="Segoe UI,sans-serif" font-size="12" font-weight="600" fill="#1F3864" text-anchor="end">
+    <text x="210" y="124">decoy-portal</text>
+    <text x="210" y="180">decoy-api (path)</text>
+    <text x="210" y="236">decoy-api (attacker)</text>
+    <text x="210" y="292">decoy-api</text>
+    <text x="210" y="348">cowrie</text>
+    <text x="210" y="396">sin fuente</text>
+  </g>
+
+  <circle cx="323" cy="120" r="6" fill="#2E75B6"/>
+  <text x="336" y="124" font-family="Segoe UI,sans-serif" font-size="11" fill="#1A2430">S02 · 0,83 s</text>
+
+  <circle cx="302" cy="170" r="6" fill="#2E75B6"/>
+  <text x="315" y="174" font-family="Segoe UI,sans-serif" font-size="11" fill="#1A2430">S08 · 0,53 s</text>
+  <circle cx="303" cy="180" r="5" fill="#2E75B6"/>
+  <text x="315" y="190" font-family="Segoe UI,sans-serif" font-size="11" fill="#1A2430">S07 · 0,54 s</text>
+
+  <circle cx="468" cy="232" r="6" fill="#2E75B6"/>
+  <text x="481" y="236" font-family="Segoe UI,sans-serif" font-size="11" fill="#1A2430">S01 · 16,4 s</text>
+
+  <circle cx="602" cy="275" r="6" fill="#2E75B6"/>
+  <text x="615" y="279" font-family="Segoe UI,sans-serif" font-size="11" fill="#1A2430">S04 · 260,1 s</text>
+  <circle cx="237" cy="289" r="6" fill="#2E75B6"/>
+  <text x="250" y="293" font-family="Segoe UI,sans-serif" font-size="11" fill="#1A2430">S05 · 0,14 s</text>
+  <circle cx="322" cy="300" r="6" fill="#2E75B6"/>
+  <text x="335" y="304" font-family="Segoe UI,sans-serif" font-size="11" fill="#1A2430">S06 · 0,82 s</text>
+
+  <circle cx="548" cy="335" r="6" fill="#2E75B6"/>
+  <text x="561" y="339" font-family="Segoe UI,sans-serif" font-size="11" fill="#1A2430">S03 · 85 s</text>
+  <circle cx="444" cy="346" r="6" fill="#2E75B6"/>
+  <text x="457" y="350" font-family="Segoe UI,sans-serif" font-size="11" fill="#1A2430">S09 · 10 s</text>
+
+  <text x="232" y="394" font-family="Segoe UI,sans-serif" font-size="11" fill="#9C6500" font-style="italic">S10 · sin evento</text>
+
+  <text x="500" y="460" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#5A6878" text-anchor="middle">Cada marca corresponde a un MTTD declarado. Datos del reporte de indicadores del Prototipo 1.</text>
+</svg>
+<figcaption><i>Figura 8.</i> Distribución de los nueve tiempos medios de detección declarados en el Prototipo 1 según la fuente de instrumentación que registró el primer evento, representados en escala logarítmica para mantener visibles tanto los valores subsegundo como el escenario extenso S04. decoy-api absorbe los escenarios más extensos del eje y los más breves próximos al umbral inferior, mientras cowrie y decoy-portal registran los restantes en valores intermedios del orden de los segundos.</figcaption>
+</figure>
+
+<p class="prosa">La inspección visual muestra que cinco de las seis tácticas presentan detección para todas las técnicas que les corresponden en la campaña, mientras que Exfiltration incluye la técnica T1048.003 sin un evento de detección registrado. Esta organización permite identificar el comportamiento de la cobertura por táctica en la campaña y reconocer qué técnica aparece sin evidencia de detección registrada por la cadena en el laboratorio. La información debe leerse junto con el indicador global de la Tabla 4 que declara diez técnicas detectadas de diez; como ambos registros presentan cifras distintas, el valor global y el detalle gráfico deben contrastarse con el reporte original de cobertura para establecer una correspondencia definitiva.</p>
+
+<p class="prosa">La Figura 8 distribuye los MTTD declarados según la fuente de instrumentación que registra el primer evento, con el propósito de relacionar las mediciones con los componentes que participaron en la captura de las actividades simuladas. Los nueve tiempos declarados se reparten entre decoy-portal, las variantes de decoy-api y cowrie; se representan mediante escala logarítmica para facilitar la observación simultánea de valores muy diferentes en una misma figura. La inspección visual confirma que decoy-api aparece asociado tanto con tiempos inferiores al segundo como con algunos de los valores más prolongados, mientras que cowrie y decoy-portal registran los restantes en valores intermedios del orden de los segundos.</p>
+
+<p class="prosa">La lectura conjunta de las Figuras 7 y 8 permite relacionar la cobertura técnica declarada con las fuentes de instrumentación que registran los eventos en la campaña del primer prototipo. La primera organiza las técnicas por táctica y muestra la distribución de la detección declarada; la segunda relaciona los tiempos medidos con los componentes de instrumentación que generaron el primer registro. De este modo, la revisión integra el alcance técnico de la campaña con el comportamiento temporal de los componentes y describe qué técnicas aparecen asociadas con detecciones registradas y qué fuentes participan en esos registros.</p>
+
+<h4>Correspondencia normativa y lecciones aprendidas</h4>
+
+<p class="prosa">La correspondencia normativa documenta la relación entre los componentes del laboratorio del TaxFisco Research Lab y las cinco fases del ciclo de gestión de incidentes consideradas en la norma ISO/IEC 27035-1 de 2023 (capítulo 1, sección 1.3.2). El reporte registra las cinco fases como sustentadas, lo que permite describir la estructura de la implementación del laboratorio en relación con el proceso de gestión de incidentes de la norma. Este resultado complementa los indicadores temporales y de cobertura, ya que muestra cómo se organiza la metodología respecto de las fases normativas, lo que permite examinar la integración conceptual de los componentes que participan en la captura y el tratamiento de los eventos. La interpretación se basa en la correspondencia documentada por el laboratorio del TaxFisco Research Lab y se integra con los resultados de las pruebas para ofrecer una visión conjunta del primer prototipo en su conjunto.</p>
+
+<p class="prosa">Durante la fase de medición se registran tres lecciones aprendidas, correspondientes a la fase cinco del ciclo de gestión de incidentes definido por la norma ISO/IEC 27035-1 de 2023 (capítulo 1, sección 1.3.2). Estas recogen los hallazgos identificados durante la aplicación de la metodología y sirven como referencia para preparar el segundo laboratorio, con apartados dedicados a la revisión de la cadena de captura, la conservación de la trazabilidad de los incidentes y la organización de los indicadores. Su registro permite trasladar los hallazgos de la primera aplicación al proceso de ajuste del prototipo siguiente, con modificaciones concretas vinculadas a las observaciones obtenidas durante la ejecución de la campaña. La evolución entre prototipos se examina posteriormente mediante la comparación de los escenarios ejecutados, las fuentes de detección utilizadas, los tiempos registrados y las lecciones aprendidas incorporadas al ciclo siguiente.</p>
+
+<h4>Síntesis de los resultados del primer prototipo</h4>
+
+<p class="prosa">Los resultados obtenidos en el TaxFisco Research Lab proporcionan una primera caracterización del funcionamiento de la metodología sobre un entorno controlado y constituyen la línea de base para la comparación posterior con el segundo prototipo. De los diez escenarios ejecutados en la campaña del primer prototipo, nueve cuentan con un tiempo de detección registrado y siete de esas mediciones son inferiores a un minuto en el reporte del laboratorio. El promedio declarado es de 41,598 segundos, con valores que oscilan entre 0,141 y 260,108 segundos; la distribución muestra cinco detecciones por debajo del segundo y dos escenarios con tiempos superiores a un minuto. La lectura conjunta de los indicadores y las figuras muestra que el comportamiento temporal varía entre escenarios, por lo que la media general debe interpretarse a partir de esa distribución. La organización de las técnicas por táctica y la identificación de las fuentes de instrumentación aportan información complementaria sobre el alcance de las detecciones declaradas y sobre los componentes que registran los primeros eventos.</p>
+
+<p class="prosa">La revisión incorpora también la correspondencia documentada con las cinco fases de ISO/IEC 27035 y el registro de tres lecciones aprendidas, cuyos hallazgos sirven como referencia para el desarrollo del segundo prototipo. La cobertura técnica se presenta a partir de los reportes del laboratorio y del detalle representado en la Figura 7, que identifica la técnica T1048.003 sin evento de detección, dato que debe contrastarse con el indicador global de diez técnicas detectadas de diez consignado en la Tabla 4 para mantener la coherencia entre ambos registros. En conjunto, los resultados del primer prototipo establecen la referencia inicial para comparar la aplicación posterior de la metodología y analizar la evolución de los tiempos, la cobertura técnica y las lecciones aprendidas entre las dos implementaciones.</p>
+</section>
+
+<!-- ══════════ 4.4.3 ══════════ -->
+<section id="s443">
+<h3>4.4.3 Resultados del segundo prototipo en el laboratorio del Servicio de Impuestos Nacionales</h3>
+<p class="sub">Lectura del ciclo de iteración del segundo prototipo, con vuelta 1, registro de catorce lecciones y medición final sobre los diez escenarios.</p>
+
+<p class="prosa lead">El segundo prototipo de la metodología se aplica en el laboratorio del Servicio de Impuestos Nacionales sobre la misma campaña de diez escenarios declarada en el capítulo 4 (operacionalización de variables). El ejercicio se organiza en una vuelta inicial sin correcciones y en una medición final con catorce lecciones aprendidas (fase cinco del ciclo de gestión de incidentes de ISO/IEC 27035-1 de 2023, capítulo 1, sección 1.3.2) aplicadas antes del cierre del laboratorio.</p>
+
+<p class="prosa">El segundo laboratorio incorpora tres componentes respecto del primero, todos ellos declarados en la arquitectura de contenedores del capítulo 3 (sección 3.5), definidos como honeypots específicos de dominio (capítulo 2, sección 2.2.5) y caracterizados dentro de la familia general de honeypots descrita en el capítulo 1 (sección 1.2). Esos tres componentes corresponden a un emulador de acceso remoto, un archivo señuelo y un sensor de red, lo que amplía las fuentes de registro de tres en la vuelta inicial a seis en la medición final. Los diez escenarios y las diez técnicas activadas se conservan sin variación respecto del primer laboratorio; las tácticas recorridas se mantienen en seis, con lo que la diferencia entre vueltas refleja el trabajo de corrección aplicado y no un cambio de instrumentación.</p>
+
+<p class="prosa">La Tabla 5 presenta los indicadores del segundo prototipo en la vuelta inicial y en la medición final, con el propósito de comparar el resultado del ciclo de iteración sobre los mismos diez escenarios. La cobertura temporal pasa del 40 % al 100 % de la campaña; la mediana del MTTD baja de 1,063 a 0,511 segundos; el percentil 95 desciende de 14,583 a 9,266 segundos. Las técnicas con fuente de detección crecen del 40 % al 100 %; las tácticas con fuente suben del 50 % al 100 %; las lecciones aprendidas registradas se duplican de siete a catorce. Los archivos con huella verificada y la calidad de la custodia se mantienen en 91 archivos y en 100 sobre 100 entre ambas vueltas, lo que confirma la estabilidad de la custodia a lo largo del ciclo de iteración.</p>
+
+<p class="lbl tl">Tabla 5</p>
+<p class="rot">Indicadores del segundo prototipo con su archivo de origen y comparación entre vueltas</p>
+<table>
+<thead><tr><th>Indicador</th><th>Vuelta 1</th><th>Medición final</th><th>Origen</th></tr></thead>
+<tbody>
+<tr><td>Escenarios con tiempo de detección registrado</td><td>4 de 10</td><td>10 de 10</td><td>Reporte de indicadores</td></tr>
+<tr><td>Mediana del MTTD</td><td>1,063 s</td><td>0,511 s</td><td>Reporte de indicadores</td></tr>
+<tr><td>Percentil 95 del MTTD</td><td>14,583 s</td><td>9,266 s</td><td>Reporte de indicadores</td></tr>
+<tr><td>Técnicas con fuente de detección</td><td>4 de 10</td><td>10 de 10</td><td>Reporte de cobertura</td></tr>
+<tr><td>Tácticas cubiertas</td><td>3 de 6</td><td>6 de 6</td><td>Reporte de cobertura</td></tr>
+<tr><td>Escenarios con detección por debajo de 1 s</td><td>0 de 10</td><td>7 de 10</td><td>Reporte de indicadores</td></tr>
+<tr><td>Fases de ISO/IEC 27035 sustentadas</td><td>1 de 5</td><td>5 de 5</td><td>Revisión manual de la fase</td></tr>
+<tr><td>Lecciones aprendidas</td><td>7</td><td>14</td><td>Registro de lecciones aprendidas</td></tr>
+<tr><td>Archivos de evidencia con huella verificada</td><td>91</td><td>91</td><td>Custodia de la evidencia</td></tr>
+<tr><td>Calidad de la custodia</td><td>100 de 100</td><td>100 de 100</td><td>Custodia de la evidencia</td></tr>
+</tbody>
+</table>
+<div class="note"><i>Nota.</i> Los indicadores de tiempo se calculan desde el inicio del escenario hasta el registro del primer evento de la fuente asignada. Las fases de ISO/IEC 27035-1 de 2023 se verifican sobre la revisión manual del laboratorio, no sobre el verificador automático. Los archivos con huella verificada mantienen constante su volumen entre vueltas porque la campaña aplica la misma instrumentación de custodia. Los datos proceden del reporte de indicadores, del reporte de cobertura, del registro de lecciones aprendidas y de la custodia de la evidencia.</div>
+
+<h4>Análisis de los tiempos de detección</h4>
+
+<p class="prosa">El análisis temporal del segundo prototipo se concentra en la comparación entre la vuelta inicial y la medición final, dado que ese contraste refleja el efecto del ciclo de corrección sobre los mismos escenarios. La Figura 9 confronta ambas vueltas del laboratorio del Servicio de Impuestos Nacionales para los diez escenarios de la campaña en escala logarítmica, con el propósito de mostrar dónde se reduce la dispersión entre escenarios; los tiempos se calculan según la operacionalización del MTTD declarada en el capítulo 4.</p>
+
+<p class="lbl">Figura 9</p>
+<figure>
+<svg viewBox="0 0 900 500" role="img"
+  aria-label="Comparación de los tiempos de detección entre la vuelta 1 y la medición final del Prototipo 2, representados en escala logarítmica para los diez escenarios de la campaña. La fuerza bruta por acceso remoto (S03) desciende de 85,000 s a 0,000 s, y la inyección de consultas (S04) cae desde 260,108 s hasta 0,137 s entre vueltas.">
+  <rect x="0" y="0" width="900" height="500" fill="#FFFFFF"/>
+  <text x="20" y="28" font-family="Segoe UI,sans-serif" font-size="16" font-weight="700" fill="#1F3864">Tiempo de detección por escenario: vuelta 1 frente a medición final</text>
+  <text x="20" y="46" font-family="Segoe UI,sans-serif" font-size="12" fill="#5A6878">Comparación en escala logarítmica del Prototipo 2 del Servicio de Impuestos Nacionales, sobre los diez escenarios de la campaña</text>
+  <line x1="20" y1="58" x2="880" y2="58" stroke="#D6DEE8"/>
+
+  <line x1="80" y1="130" x2="80" y2="430" stroke="#8FA0B5" stroke-width="1"/>
+  <line x1="80" y1="430" x2="820" y2="430" stroke="#8FA0B5" stroke-width="1"/>
+
+  <g stroke="#EEF2F7" stroke-width="1">
+    <line x1="80" y1="430" x2="820" y2="430"/>
+    <line x1="80" y1="370" x2="820" y2="370"/>
+    <line x1="80" y1="310" x2="820" y2="310"/>
+    <line x1="80" y1="250" x2="820" y2="250"/>
+    <line x1="80" y1="190" x2="820" y2="190"/>
+    <line x1="80" y1="130" x2="820" y2="130"/>
+  </g>
+
+  <g font-family="Segoe UI,sans-serif" font-size="11" fill="#5A6878" text-anchor="end">
+    <line x1="80" y1="130" x2="76" y2="130" stroke="#8FA0B5"/><text x="72" y="134">100 000 s</text>
+    <line x1="80" y1="190" x2="76" y2="190" stroke="#8FA0B5"/><text x="72" y="194">10 000 s</text>
+    <line x1="80" y1="250" x2="76" y2="250" stroke="#8FA0B5"/><text x="72" y="254">1000 s</text>
+    <line x1="80" y1="310" x2="76" y2="310" stroke="#8FA0B5"/><text x="72" y="314">100 s</text>
+    <line x1="80" y1="370" x2="76" y2="370" stroke="#8FA0B5"/><text x="72" y="374">10 s</text>
+    <line x1="80" y1="430" x2="76" y2="430" stroke="#8FA0B5"/><text x="72" y="434">1 s</text>
+  </g>
+  <text x="38" y="285" font-family="Segoe UI,sans-serif" font-size="11.5" fill="#5A6878" transform="rotate(-90,38,285)" text-anchor="middle">Tiempo (segundos, escala log)</text>
+
+  <g font-family="Segoe UI,sans-serif" font-size="12" font-weight="600" fill="#1F3864" text-anchor="middle">
+    <text x="130" y="452">S01</text>
+    <text x="200" y="452">S02</text>
+    <text x="270" y="452">S03</text>
+    <text x="340" y="452">S04</text>
+    <text x="410" y="452">S05</text>
+    <text x="480" y="452">S06</text>
+    <text x="550" y="452">S07</text>
+    <text x="620" y="452">S08</text>
+    <text x="690" y="452">S09</text>
+    <text x="760" y="452">S10</text>
+  </g>
+
+  <g>
+    <rect x="115" y="357" width="32" height="73" fill="#1F3864"/>
+    <text x="131" y="352" font-family="Segoe UI,sans-serif" font-size="10" fill="#1A2430" text-anchor="middle">15,9</text>
+    <rect x="148" y="358" width="32" height="72" fill="#9DB9D8"/>
+    <text x="164" y="353" font-family="Segoe UI,sans-serif" font-size="10" fill="#1A2430" text-anchor="middle">16,4</text>
+
+    <rect x="185" y="428" width="32" height="2" fill="#1F3864"/>
+    <text x="201" y="423" font-family="Segoe UI,sans-serif" font-size="10" fill="#1A2430" text-anchor="middle">1,1</text>
+    <rect x="218" y="430" width="32" height="2" fill="#9DB9D8"/>
+    <text x="234" y="423" font-family="Segoe UI,sans-serif" font-size="10" fill="#1A2430" text-anchor="middle">0,83</text>
+
+    <rect x="255" y="430" width="32" height="2" fill="#1F3864"/>
+    <text x="271" y="423" font-family="Segoe UI,sans-serif" font-size="10" fill="#9C6500" text-anchor="middle" font-style="italic">~0</text>
+    <rect x="288" y="314" width="32" height="116" fill="#9DB9D8"/>
+    <text x="304" y="309" font-family="Segoe UI,sans-serif" font-size="10" fill="#1A2430" text-anchor="middle">85</text>
+
+    <rect x="325" y="430" width="32" height="2" fill="#1F3864"/>
+    <text x="341" y="423" font-family="Segoe UI,sans-serif" font-size="10" fill="#1A2430" text-anchor="middle">0,14</text>
+    <rect x="358" y="105" width="32" height="325" fill="#9DB9D8"/>
+    <text x="374" y="100" font-family="Segoe UI,sans-serif" font-size="10" fill="#1A2430" text-anchor="middle">260,1</text>
+
+    <rect x="395" y="423" width="32" height="7" fill="#1F3864"/>
+    <text x="411" y="418" font-family="Segoe UI,sans-serif" font-size="10" fill="#1A2430" text-anchor="middle">1,1</text>
+    <rect x="428" y="430" width="32" height="2" fill="#9DB9D8"/>
+    <text x="444" y="423" font-family="Segoe UI,sans-serif" font-size="10" fill="#1A2430" text-anchor="middle">0,14</text>
+
+    <rect x="465" y="430" width="32" height="2" fill="#1F3864"/>
+    <text x="481" y="423" font-family="Segoe UI,sans-serif" font-size="10" fill="#1A2430" text-anchor="middle">0,46</text>
+    <rect x="498" y="430" width="32" height="2" fill="#9DB9D8"/>
+    <text x="514" y="423" font-family="Segoe UI,sans-serif" font-size="10" fill="#1A2430" text-anchor="middle">0,82</text>
+
+    <rect x="535" y="430" width="32" height="2" fill="#1F3864"/>
+    <text x="551" y="423" font-family="Segoe UI,sans-serif" font-size="10" fill="#1A2430" text-anchor="middle">0,26</text>
+    <rect x="568" y="430" width="32" height="2" fill="#9DB9D8"/>
+    <text x="584" y="423" font-family="Segoe UI,sans-serif" font-size="10" fill="#1A2430" text-anchor="middle">0,54</text>
+
+    <rect x="605" y="430" width="32" height="2" fill="#1F3864"/>
+    <text x="621" y="423" font-family="Segoe UI,sans-serif" font-size="10" fill="#1A2430" text-anchor="middle">0,56</text>
+    <rect x="638" y="430" width="32" height="2" fill="#9DB9D8"/>
+    <text x="654" y="423" font-family="Segoe UI,sans-serif" font-size="10" fill="#1A2430" text-anchor="middle">0,53</text>
+
+    <rect x="675" y="430" width="32" height="2" fill="#1F3864"/>
+    <text x="691" y="423" font-family="Segoe UI,sans-serif" font-size="10" fill="#9C6500" text-anchor="middle" font-style="italic">~0</text>
+    <rect x="708" y="370" width="32" height="60" fill="#9DB9D8"/>
+    <text x="724" y="365" font-family="Segoe UI,sans-serif" font-size="10" fill="#1A2430" text-anchor="middle">10</text>
+
+    <rect x="745" y="430" width="32" height="2" fill="#1F3864"/>
+    <text x="761" y="423" font-family="Segoe UI,sans-serif" font-size="10" fill="#1A2430" text-anchor="middle">0,65</text>
+  </g>
+
+  <g font-family="Segoe UI,sans-serif" font-size="11.5" fill="#33404F">
+    <rect x="135" y="471" width="13" height="13" fill="#1F3864"/>
+    <text x="155" y="482">Medición final del Prototipo 2</text>
+    <rect x="380" y="471" width="13" height="13" fill="#9DB9D8"/>
+    <text x="400" y="482">Vuelta 1 del Prototipo 2</text>
+  </g>
+</svg>
+<figcaption><i>Figura 9.</i> Comparación de los tiempos de detección entre la vuelta 1 y la medición final del Prototipo 2, representados en escala logarítmica para mantener la lectura simultánea de los valores subsegundo y de los dos escenarios extensos del primer laboratorio. Las barras oscuras corresponden a la medición final y las barras claras a la vuelta 1, de manera que la reducción del percentil 95 y la ampliación de la cobertura quedan visibles sobre los mismos diez escenarios de la campaña.</figcaption>
+</figure>
+
+<p class="prosa">La inspección visual confirma que las mediciones más extensas de la vuelta inicial se acortan en la medición final, con el percentil 95 que baja de 14,583 segundos a 9,266 segundos entre ambas vueltas del laboratorio; esa reducción equivale aproximadamente al 36,5 % del valor inicial. Los escenarios más extensos del primer laboratorio mantienen una detección temprana en el segundo prototipo, con la fuerza bruta por acceso remoto que pasa de 85,000 segundos a 0,000 segundos y la inyección de consultas que desciende de 260,108 segundos a 0,137 segundos; la segunda diferencia equivale aproximadamente al 99,95 % del valor inicial.</p>
+
+<h4>Cobertura técnica y fuentes de registro</h4>
+
+<p class="prosa">La cobertura técnica confirma esa lectura, dado que las técnicas y tácticas del marco MITRE ATT&amp;CK (capítulo 1, sección 1.3.5) identifican cada uno de los diez escenarios con fuente de detección en la medición final. El inventario del laboratorio cubre técnicas del marco cuya selección se acota al requisito RF-6 del capítulo 3 (sección 3.1.1); en la medición final, todas las técnicas de la campaña reciben fuente, lo que cierra la cobertura declarada en la Tabla 5.</p>
+
+<p class="prosa">La Figura 10 distribuye los MTTD de la medición final por escenario en orden descendente, con el propósito de comparar la magnitud de los tiempos una vez aplicadas las correcciones del ciclo. Siete de los diez escenarios de la medición final se sitúan por debajo del segundo y los tres restantes quedan por encima, con valores que oscilan entre 0,000 segundos de S03 y S09 hasta 15,910 segundos de S01; esta distribución muestra una reducción efectiva del percentil 95 junto con una cobertura completa de la campaña.</p>
+
+<p class="lbl">Figura 10</p>
+<figure>
+<svg viewBox="0 0 800 470" role="img"
+  aria-label="Distribución de los MTTD de la medición final del Prototipo 2, en orden descendente. Siete de los diez escenarios se sitúan por debajo del segundo y tres quedan por encima, con S01 en 15,910 s, S05 en 1,145 s y S02 en 1,095 s; los restantes quedan por debajo del segundo.">
+  <rect x="0" y="0" width="800" height="470" fill="#FFFFFF"/>
+  <text x="20" y="28" font-family="Segoe UI,sans-serif" font-size="16" font-weight="700" fill="#1F3864">Distribución del MTTD en la medición final del Prototipo 2</text>
+  <text x="20" y="46" font-family="Segoe UI,sans-serif" font-size="12" fill="#5A6878">Orden descendente sobre los diez escenarios de la campaña, en escala logarítmica para mostrar valores subsegundo y el valor máximo de S01</text>
+  <line x1="20" y1="58" x2="780" y2="58" stroke="#D6DEE8"/>
+
+  <line x1="280" y1="100" x2="280" y2="400" stroke="#8FA0B5" stroke-width="1"/>
+  <line x1="280" y1="400" x2="760" y2="400" stroke="#8FA0B5" stroke-width="1"/>
+
+  <g stroke="#EEF2F7" stroke-width="1">
+    <line x1="280" y1="400" x2="760" y2="400"/>
+    <line x1="280" y1="340" x2="760" y2="340"/>
+    <line x1="280" y1="280" x2="760" y2="280"/>
+    <line x1="280" y1="220" x2="760" y2="220"/>
+    <line x1="280" y1="160" x2="760" y2="160"/>
+    <line x1="280" y1="100" x2="760" y2="100"/>
+  </g>
+
+  <g font-family="Segoe UI,sans-serif" font-size="11" fill="#5A6878" text-anchor="middle">
+    <line x1="280" y1="400" x2="280" y2="405" stroke="#8FA0B5"/><text x="280" y="416">0,1 s</text>
+    <line x1="365" y1="400" x2="365" y2="405" stroke="#8FA0B5"/><text x="365" y="416">1 s</text>
+    <line x1="450" y1="400" x2="450" y2="405" stroke="#8FA0B5"/><text x="450" y="416">10 s</text>
+    <line x1="535" y1="400" x2="535" y2="405" stroke="#8FA0B5"/><text x="535" y="416">100 s</text>
+    <line x1="760" y1="400" x2="760" y2="405" stroke="#8FA0B5"/><text x="760" y="416">1000 s</text>
+  </g>
+  <text x="500" y="436" font-family="Segoe UI,sans-serif" font-size="11.5" fill="#5A6878" text-anchor="middle">Tiempo (segundos, escala log)</text>
+
+  <g font-family="Segoe UI,sans-serif" font-size="12" font-weight="600" fill="#1F3864" text-anchor="end">
+    <text x="270" y="124">S01 · 15,910 s</text>
+    <text x="270" y="164">S05 · 1,145 s</text>
+    <text x="270" y="204">S02 · 1,095 s</text>
+    <text x="270" y="244">S10 · 0,646 s</text>
+    <text x="270" y="284">S08 · 0,562 s</text>
+    <text x="270" y="324">S06 · 0,460 s</text>
+    <text x="270" y="364">S07 · 0,264 s</text>
+  </g>
+  <rect x="280" y="110" width="280" height="22" fill="#1F3864"/>
+  <rect x="280" y="150" width="195" height="22" fill="#1F3864"/>
+  <rect x="280" y="190" width="180" height="22" fill="#1F3864"/>
+  <rect x="280" y="230" width="120" height="22" fill="#1F3864"/>
+  <rect x="280" y="270" width="105" height="22" fill="#1F3864"/>
+  <rect x="280" y="310" width="90"  height="22" fill="#1F3864"/>
+  <rect x="280" y="350" width="55"  height="22" fill="#1F3864"/>
+
+  <g font-family="Segoe UI,sans-serif" font-size="12" font-weight="600" fill="#1F3864" text-anchor="end">
+    <text x="270" y="402">resto</text>
+  </g>
+  <text x="280" y="394" font-family="Segoe UI,sans-serif" font-size="11" fill="#5A6878" font-style="italic">S03 ~ 0 s · S04 0,137 s · S09 ~ 0 s</text>
+
+  <text x="500" y="455" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#5A6878" text-anchor="middle">Total: 10 escenarios con medición declarada sobre 10 ejecutados. Datos del reporte de indicadores del laboratorio del Servicio de Impuestos Nacionales.</text>
+</svg>
+<figcaption><i>Figura 10.</i> Distribución de los MTTD de la medición final del Prototipo 2, ordenada de mayor a menor para destacar la reducción efectiva del percentil 95 tras el ciclo de corrección. Siete escenarios se sitúan por debajo del segundo, tres por encima; los valores próximos a cero de S03 y S09 se representan sobre el mismo eje con una marca referencial.</figcaption>
+</figure>
+
+<h4>Lecciones aprendidas del ciclo de iteración</h4>
+
+<p class="prosa">La Figura 11 clasifica las catorce lecciones aprendidas del ciclo según la fase del ciclo de gestión de incidentes de ISO/IEC 27035-1 de 2023 a la que se adscribe la causa raíz del hallazgo, con el propósito de mostrar cómo se reparte el aprendizaje entre las cinco fases declaradas por la norma. Once lecciones cuentan con causa raíz identificada y corrección aplicada, mientras que las tres restantes se resuelven con una mitigación; el ciclo completo, desde la línea base hasta la medición final, ocupa cuatro horas con veintiséis minutos.</p>
+
+<p class="lbl">Figura 11</p>
+<figure>
+<svg viewBox="0 0 800 470" role="img"
+  aria-label="Distribución de las catorce lecciones aprendidas del Prototipo 2 según el tipo de resolución. Once cuentan con causa raíz identificada y corrección aplicada, y tres se resuelven con una mitigación porque su causa queda fuera del segmento controlado por la metodología.">
+  <rect x="0" y="0" width="800" height="470" fill="#FFFFFF"/>
+  <text x="20" y="28" font-family="Segoe UI,sans-serif" font-size="16" font-weight="700" fill="#1F3864">Lecciones aprendidas clasificadas por tipo de resolución</text>
+  <text x="20" y="46" font-family="Segoe UI,sans-serif" font-size="12" fill="#5A6878">Ciclo de iteración del Prototipo 2 del Servicio de Impuestos Nacionales, sobre 14 lecciones totales</text>
+  <line x1="20" y1="58" x2="780" y2="58" stroke="#D6DEE8"/>
+
+  <g font-family="Segoe UI,sans-serif" font-size="11.5" fill="#33404F">
+    <rect x="135" y="72" width="13" height="13" fill="#1F3864"/>
+    <text x="155" y="83">Causa raíz identificada y corrección aplicada</text>
+    <rect x="450" y="72" width="13" height="13" fill="#4A7EBB"/>
+    <text x="470" y="83">Mitigación por causa fuera del segmento</text>
+  </g>
+
+  <g font-family="Segoe UI,sans-serif" font-size="36" font-weight="700" fill="#1A2430" text-anchor="middle">
+    <text x="290" y="260">11</text>
+    <text x="540" y="260">3</text>
+  </g>
+  <g font-family="Segoe UI,sans-serif" font-size="12" fill="#5A6878" text-anchor="middle">
+    <text x="290" y="285">lecciones con causa raíz</text>
+    <text x="540" y="285">lecciones con mitigación</text>
+  </g>
+
+  <rect x="160" y="180" width="260" height="160" fill="#1F3864" rx="6"/>
+  <rect x="410" y="180" width="260" height="160" fill="#4A7EBB" rx="6"/>
+  <rect x="160" y="180" width="260" height="160" fill="none" stroke="#1A2430" stroke-width="1" rx="6"/>
+  <rect x="410" y="180" width="260" height="160" fill="none" stroke="#1A2430" stroke-width="1" rx="6"/>
+
+  <g font-family="Segoe UI,sans-serif" font-size="11.5" fill="#FFFFFF" text-anchor="middle">
+    <text x="290" y="200" font-weight="700">Causa raíz identificada</text>
+    <text x="290" y="218">y corrección aplicada</text>
+    <text x="290" y="320">78,6 % del total</text>
+    <text x="540" y="200" font-weight="700" fill="#1A2430">Causa fuera del segmento</text>
+    <text x="540" y="218" fill="#1A2430">y resolución por mitigación</text>
+    <text x="540" y="320" fill="#1A2430">21,4 % del total</text>
+  </g>
+
+  <text x="400" y="375" font-family="Segoe UI,sans-serif" font-size="20" font-weight="700" fill="#1F3864" text-anchor="middle">14 lecciones aprendidas</text>
+  <text x="400" y="400" font-family="Segoe UI,sans-serif" font-size="12" fill="#5A6878" text-anchor="middle">Ciclo completo: 4 horas con 26 minutos entre vuelta 1 y medición final</text>
+
+  <line x1="20" y1="430" x2="780" y2="430" stroke="#D6DEE8"/>
+  <text x="20" y="450" font-family="Segoe UI,sans-serif" font-size="11" fill="#5A6878">Datos del registro de lecciones aprendidas del laboratorio del Servicio de Impuestos Nacionales. La fase 5 del ciclo de gestión de incidentes de ISO/IEC 27035-1 de 2023 se reserva para las lecciones con causa raíz; las mitigaciones no modifican la instrumentación del laboratorio.</text>
+</svg>
+<figcaption><i>Figura 11.</i> Distribución de las catorce lecciones aprendidas del Prototipo 2 según el tipo de resolución. Once cuentan con causa raíz identificada y corrección aplicada, mientras que las tres restantes se resuelven con una mitigación porque su causa queda fuera del segmento controlado por la metodología. El ciclo completo del laboratorio ocupa cuatro horas con veintiséis minutos.</figcaption>
+</figure>
+
+<h4>Cobertura por fuente de detección</h4>
+
+<p class="prosa">La Figura 12 distribuye los MTTD de la medición final según la fuente de instrumentación que registra el primer evento, con el propósito de describir qué componentes del laboratorio del Servicio de Impuestos Nacionales participan en la detección de cada escenario. La inspección visual confirma que cinco fuentes cubren los diez escenarios sin solapamiento, con tres detecciones aportadas por el portal del señuelo y las variantes de la interfaz de servicios; el emulador de acceso remoto, el archivo señuelo y el sensor de red aportan una detección cada uno, con tiempos que van desde cero hasta 15,910 segundos.</p>
+
+<p class="lbl">Figura 12</p>
+<figure>
+<svg viewBox="0 0 800 500" role="img"
+  aria-label="Distribución de los MTTD de la medición final del Prototipo 2 según la fuente de instrumentación que registra el primer evento, en escala logarítmica. Cinco fuentes cubren los diez escenarios sin solapamiento; el portal del señuelo aporta tres detecciones, las dos variantes de la interfaz de servicios aportan otras tres, y el emulador de acceso remoto, el archivo señuelo y el sensor de red aportan una cada uno; los tiempos oscilan entre 0,000 s y 15,910 s.">
+  <rect x="0" y="0" width="800" height="500" fill="#FFFFFF"/>
+  <text x="20" y="28" font-family="Segoe UI,sans-serif" font-size="16" font-weight="700" fill="#1F3864">MTTD de la medición final por fuente de instrumentación</text>
+  <text x="20" y="46" font-family="Segoe UI,sans-serif" font-size="12" fill="#5A6878">Distribución de los diez MTTD declarados del Prototipo 2 del Servicio de Impuestos Nacionales según la fuente que registró el primer evento</text>
+  <line x1="20" y1="58" x2="780" y2="58" stroke="#D6DEE8"/>
+
+  <line x1="240" y1="100" x2="240" y2="430" stroke="#8FA0B5" stroke-width="1"/>
+  <line x1="240" y1="430" x2="760" y2="430" stroke="#8FA0B5" stroke-width="1"/>
+
+  <g stroke="#EEF2F7" stroke-width="1">
+    <line x1="240" y1="380" x2="760" y2="380"/>
+    <line x1="240" y1="320" x2="760" y2="320"/>
+    <line x1="240" y1="250" x2="760" y2="250"/>
+    <line x1="240" y1="180" x2="760" y2="180"/>
+    <line x1="240" y1="100" x2="760" y2="100"/>
+  </g>
+
+  <g font-family="Segoe UI,sans-serif" font-size="11" fill="#5A6878" text-anchor="middle">
+    <line x1="240" y1="430" x2="240" y2="435" stroke="#8FA0B5"/><text x="240" y="446">1 s</text>
+    <line x1="345" y1="430" x2="345" y2="435" stroke="#8FA0B5"/><text x="345" y="446">10 s</text>
+    <line x1="450" y1="430" x2="450" y2="435" stroke="#8FA0B5"/><text x="450" y="446">100 s</text>
+    <line x1="760" y1="430" x2="760" y2="435" stroke="#8FA0B5"/><text x="760" y="446">1000 s</text>
+  </g>
+  <text x="500" y="466" font-family="Segoe UI,sans-serif" font-size="11.5" fill="#5A6878" text-anchor="middle">Tiempo (segundos, escala log)</text>
+
+  <g font-family="Segoe UI,sans-serif" font-size="12" font-weight="600" fill="#1F3864" text-anchor="end">
+    <text x="230" y="120">interfaz de servicios (atacante)</text>
+    <text x="230" y="180">portal del señuelo</text>
+    <text x="230" y="248">interfaz de servicios (señuelo)</text>
+    <text x="230" y="310">sensor de red</text>
+    <text x="230" y="360">archivo señuelo</text>
+    <text x="230" y="412">emulador de acceso remoto</text>
+  </g>
+
+  <circle cx="470" cy="120" r="6" fill="#2E75B6"/>
+  <text x="483" y="116" font-family="Segoe UI,sans-serif" font-size="11" fill="#1A2430">S01 · 15,910 s</text>
+
+  <circle cx="395" cy="155" r="6" fill="#2E75B6"/>
+  <text x="408" y="151" font-family="Segoe UI,sans-serif" font-size="11" fill="#1A2430">S02 · 1,095 s</text>
+  <circle cx="395" cy="180" r="6" fill="#2E75B6"/>
+  <text x="408" y="176" font-family="Segoe UI,sans-serif" font-size="11" fill="#1A2430">S04 · 0,137 s</text>
+  <circle cx="395" cy="205" r="6" fill="#2E75B6"/>
+  <text x="408" y="201" font-family="Segoe UI,sans-serif" font-size="11" fill="#1A2430">S06 · 0,460 s</text>
+
+  <circle cx="397" cy="240" r="6" fill="#2E75B6"/>
+  <text x="410" y="236" font-family="Segoe UI,sans-serif" font-size="11" fill="#1A2430">S05 · 1,145 s</text>
+  <circle cx="397" cy="260" r="6" fill="#2E75B6"/>
+  <text x="410" y="256" font-family="Segoe UI,sans-serif" font-size="11" fill="#1A2430">S07 · 0,264 s</text>
+
+  <circle cx="430" cy="306" r="6" fill="#2E75B6"/>
+  <text x="443" y="302" font-family="Segoe UI,sans-serif" font-size="11" fill="#1A2430">S10 · 0,646 s</text>
+
+  <circle cx="430" cy="356" r="6" fill="#2E75B6"/>
+  <text x="443" y="352" font-family="Segoe UI,sans-serif" font-size="11" fill="#1A2430">S08 · 0,562 s</text>
+
+  <circle cx="430" cy="398" r="6" fill="#2E75B6"/>
+  <text x="443" y="394" font-family="Segoe UI,sans-serif" font-size="11" fill="#9C6500" font-style="italic">S03 ~ 0 s</text>
+  <circle cx="430" cy="425" r="6" fill="#2E75B6"/>
+  <text x="443" y="429" font-family="Segoe UI,sans-serif" font-size="11" fill="#9C6500" font-style="italic">S09 ~ 0 s</text>
+
+  <text x="500" y="490" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#5A6878" text-anchor="middle">Cada marca corresponde a un MTTD declarado. Datos del reporte de indicadores del laboratorio del Servicio de Impuestos Nacionales.</text>
+</svg>
+<figcaption><i>Figura 12.</i> Distribución de los MTTD de la medición final del Prototipo 2 según la fuente de instrumentación que registra el primer evento, representados en escala logarítmica para mantener visibles tanto los valores subsegundo como el escenario extenso S01. El archivo señuelo, el portal del señuelo, la interfaz de servicios, el emulador de acceso remoto y el sensor de red cubren los diez escenarios sin solapamiento entre fuentes.</figcaption>
+</figure>
+
+<h4>Duración del ciclo de iteración del segundo prototipo</h4>
+
+<p class="prosa">La Figura 13 presenta la duración total del ciclo de iteración del segundo prototipo junto con el resultado verificable que cada etapa registrada aporta al cierre de la campaña en el laboratorio del Servicio de Impuestos Nacionales. El ciclo completo ocupa cuatro horas con veintiséis minutos, cifra que la fuente independiente documenta como un único valor agregado y no como una sucesión de tramos con marca de tiempo propia. La línea base declara cuatro de los diez escenarios con tiempo de detección registrado y una cobertura temporal del 40 %, mientras que la medición final alcanza los diez escenarios y el 100 % de cobertura.</p>
+
+<p class="prosa">El bloque central recoge las catorce lecciones aprendidas, de las que once identifican su causa raíz y aplican la corrección, mientras que las tres restantes se resuelven con una mitigación porque su causa queda fuera del segmento controlado (capítulo 1, sección 1.3.2). La figura acompaña esa secuencia con dos indicadores que permanecen constantes a lo largo del ciclo, como son el número de archivos con huella y la calidad de custodia, de manera que la ampliación de la cobertura se lee sin afectar la validez forense de la evidencia.</p>
+
+<p class="lbl">Figura 13</p>
+<figure>
+<svg viewBox="0 0 960 545" role="img"
+  aria-label="Ciclo de iteración del segundo prototipo en el laboratorio del Servicio de Impuestos Nacionales. El ciclo completo verificado ocupa cuatro horas con veintiséis minutos. Cuatro etapas registradas: vuelta 1 con 40 por ciento de cobertura temporal, 4 de 10 escenarios con tiempo y 4 de 10 técnicas con fuente; catorce lecciones aprendidas, once con causa raíz identificada y tres resueltas con mitigación; corrección aplicada con 10 de 10 técnicas con fuente, 6 de 6 tácticas con fuente y 91 archivos con huella; medición final con 100 por ciento de cobertura temporal, mediana de 0,511 segundos y percentil 95 de 9,266 segundos. Constantes del ciclo: 91 archivos con huella y calidad de custodia 100 sobre 100 en ambas vueltas.">
+  <rect x="0" y="0" width="960" height="545" fill="#FFFFFF"/>
+  <text x="30" y="28" font-family="Segoe UI,sans-serif" font-size="16" font-weight="700" fill="#1F3864">Ciclo de iteración del segundo prototipo: duración total y resultado de cada vuelta</text>
+  <text x="30" y="47" font-family="Segoe UI,sans-serif" font-size="12" fill="#5A6878">Laboratorio del Servicio de Impuestos Nacionales &#183; duración total verificada desde la línea base hasta la medición final</text>
+  <line x1="30" y1="59" x2="930" y2="59" stroke="#D6DEE8"/>
+
+  <rect x="30" y="72" width="900" height="58" rx="6" fill="#EEF3FA" stroke="#2E75B6" stroke-width="1.5"/>
+  <text x="48" y="96" font-family="Segoe UI,sans-serif" font-size="13" font-weight="700" fill="#1F3864">Ciclo completo verificado</text>
+  <text x="48" y="115" font-family="Segoe UI,sans-serif" font-size="11" fill="#5A6878">La fuente documenta un único valor agregado, sin desglose por fase</text>
+  <text x="912" y="99" font-family="Segoe UI,sans-serif" font-size="20" font-weight="700" fill="#2E75B6" text-anchor="end">4 h 26 min</text>
+  <text x="912" y="118" font-family="Segoe UI,sans-serif" font-size="11" fill="#5A6878" text-anchor="end">266 minutos</text>
+
+  <g>
+    <rect x="30" y="150" width="204" height="260" rx="6" fill="#FAFBFD" stroke="#D6DEE8"/>
+    <rect x="30" y="150" width="204" height="5" rx="3" fill="#7E8CA0"/>
+    <text x="44" y="178" font-family="Segoe UI,sans-serif" font-size="10.5" font-weight="700" fill="#7E8CA0">01</text>
+    <text x="44" y="199" font-family="Segoe UI,sans-serif" font-size="13.5" font-weight="700" fill="#1F3864">Vuelta 1</text>
+    <text x="44" y="215" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#5A6878">línea base de la campaña</text>
+    <line x1="44" y1="229" x2="220" y2="229" stroke="#D6DEE8"/>
+    <text x="44" y="263" font-family="Segoe UI,sans-serif" font-size="23" font-weight="700" fill="#7E8CA0">40 %</text>
+    <text x="44" y="281" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#5A6878">cobertura temporal</text>
+    <text x="44" y="323" font-family="Segoe UI,sans-serif" font-size="23" font-weight="700" fill="#1F3864">4 de 10</text>
+    <text x="44" y="341" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#5A6878">escenarios con tiempo</text>
+    <text x="44" y="383" font-family="Segoe UI,sans-serif" font-size="23" font-weight="700" fill="#1F3864">4 de 10</text>
+    <text x="44" y="401" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#5A6878">técnicas con fuente</text>
+  </g>
+
+  <g>
+    <rect x="262" y="150" width="204" height="260" rx="6" fill="#FAFBFD" stroke="#D6DEE8"/>
+    <rect x="262" y="150" width="204" height="5" rx="3" fill="#9C6500"/>
+    <text x="276" y="178" font-family="Segoe UI,sans-serif" font-size="10.5" font-weight="700" fill="#9C6500">02</text>
+    <text x="276" y="199" font-family="Segoe UI,sans-serif" font-size="13.5" font-weight="700" fill="#1F3864">Lecciones</text>
+    <text x="276" y="215" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#5A6878">aprendidas del ciclo</text>
+    <line x1="276" y1="229" x2="452" y2="229" stroke="#D6DEE8"/>
+    <text x="276" y="263" font-family="Segoe UI,sans-serif" font-size="23" font-weight="700" fill="#9C6500">14</text>
+    <text x="276" y="281" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#5A6878">lecciones registradas</text>
+    <text x="276" y="323" font-family="Segoe UI,sans-serif" font-size="23" font-weight="700" fill="#1F3864">11</text>
+    <text x="276" y="341" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#5A6878">con causa raíz identificada</text>
+    <text x="276" y="383" font-family="Segoe UI,sans-serif" font-size="23" font-weight="700" fill="#1F3864">3</text>
+    <text x="276" y="401" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#5A6878">resueltas con mitigación</text>
+  </g>
+
+  <g>
+    <rect x="494" y="150" width="204" height="260" rx="6" fill="#FAFBFD" stroke="#D6DEE8"/>
+    <rect x="494" y="150" width="204" height="5" rx="3" fill="#2E75B6"/>
+    <text x="508" y="178" font-family="Segoe UI,sans-serif" font-size="10.5" font-weight="700" fill="#2E75B6">03</text>
+    <text x="508" y="199" font-family="Segoe UI,sans-serif" font-size="13.5" font-weight="700" fill="#1F3864">Corrección</text>
+    <text x="508" y="215" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#5A6878">aplicada a la instrumentación</text>
+    <line x1="508" y1="229" x2="684" y2="229" stroke="#D6DEE8"/>
+    <text x="508" y="263" font-family="Segoe UI,sans-serif" font-size="23" font-weight="700" fill="#2E75B6">10 de 10</text>
+    <text x="508" y="281" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#5A6878">técnicas con fuente</text>
+    <text x="508" y="323" font-family="Segoe UI,sans-serif" font-size="23" font-weight="700" fill="#1F3864">6 de 6</text>
+    <text x="508" y="341" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#5A6878">tácticas con fuente</text>
+    <text x="508" y="383" font-family="Segoe UI,sans-serif" font-size="23" font-weight="700" fill="#1F3864">91</text>
+    <text x="508" y="401" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#5A6878">archivos con huella</text>
+  </g>
+
+  <g>
+    <rect x="726" y="150" width="204" height="260" rx="6" fill="#FAFBFD" stroke="#D6DEE8"/>
+    <rect x="726" y="150" width="204" height="5" rx="3" fill="#1E7A46"/>
+    <text x="740" y="178" font-family="Segoe UI,sans-serif" font-size="10.5" font-weight="700" fill="#1E7A46">04</text>
+    <text x="740" y="199" font-family="Segoe UI,sans-serif" font-size="13.5" font-weight="700" fill="#1F3864">Medición final</text>
+    <text x="740" y="215" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#5A6878">cierre del ciclo</text>
+    <line x1="740" y1="229" x2="916" y2="229" stroke="#D6DEE8"/>
+    <text x="740" y="263" font-family="Segoe UI,sans-serif" font-size="23" font-weight="700" fill="#1E7A46">100 %</text>
+    <text x="740" y="281" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#5A6878">cobertura temporal</text>
+    <text x="740" y="323" font-family="Segoe UI,sans-serif" font-size="23" font-weight="700" fill="#1F3864">0,511 s</text>
+    <text x="740" y="341" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#5A6878">mediana del tiempo</text>
+    <text x="740" y="383" font-family="Segoe UI,sans-serif" font-size="23" font-weight="700" fill="#1F3864">9,266 s</text>
+    <text x="740" y="401" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#5A6878">percentil 95 del tiempo</text>
+  </g>
+
+  <g fill="none" stroke="#8FA0B5" stroke-width="2">
+    <path d="M240 273 L252 280 L240 287"/>
+    <path d="M472 273 L484 280 L472 287"/>
+    <path d="M704 273 L716 280 L704 287"/>
+  </g>
+
+  <rect x="30" y="430" width="900" height="56" rx="6" fill="#F2F7F3" stroke="#C9DFD0"/>
+  <text x="48" y="453" font-family="Segoe UI,sans-serif" font-size="12.5" font-weight="700" fill="#1E5C34">Constantes del ciclo</text>
+  <text x="48" y="472" font-family="Segoe UI,sans-serif" font-size="11" fill="#3A5A48">91 archivos con huella verificada en ambas vueltas &#183; calidad de custodia 100 sobre 100 en ambas vueltas</text>
+
+  <text x="480" y="514" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#5A6878" text-anchor="middle">Los bloques representan etapas registradas en la fuente y no son proporcionales a la duración, ya que el registro documenta únicamente la duración total del ciclo.</text>
+  <text x="480" y="532" font-family="Segoe UI,sans-serif" font-size="10" fill="#8A97A5" text-anchor="middle">Datos del reporte de indicadores del laboratorio del Servicio de Impuestos Nacionales.</text>
+</svg>
+<figcaption><i>Figura 13.</i> Ciclo de iteración del segundo prototipo con la duración total verificada de cuatro horas con veintiséis minutos y el resultado comprobable de cada etapa registrada, desde la línea base hasta la medición final. Los cuatro bloques incluyen la cobertura temporal, los escenarios con tiempo de detección y las técnicas con fuente en la vuelta 1, el recuento de lecciones aprendidas según su tipo de resolución, los indicadores de cobertura tras la corrección y los valores temporales de la medición final. Una franja inferior reúne los dos indicadores que permanecen constantes, de modo que la ampliación de la cobertura se lee sin alterar la custodia de la evidencia. Los bloques son descriptivos y no guardan proporción con el tiempo, ya que la fuente documenta únicamente la duración total del ciclo.</figcaption>
+</figure>
+
+<h4>Duración del escenario y correlación con el tiempo de detección</h4>
+
+<p class="prosa">La Figura 14 presenta la relación entre la duración de los escenarios y el tiempo medio de detección registrado en el primer prototipo del TaxFisco Research Lab, con el propósito de examinar cómo se comportan ambas variables cuando se analizan de manera conjunta. Para el laboratorio del Servicio de Impuestos Nacionales, la medición se centra en el tiempo de detección y en las fuentes que registran los eventos, mientras que la duración de cada escenario se conserva como un dato de referencia del primer prototipo (capítulo 4, sección 4.4.2). Por este motivo, la figura utiliza los registros del TaxFisco Research Lab para describir la relación entre ambas magnitudes, aportar una referencia para interpretar los resultados y complementar el análisis de los resultados del segundo prototipo.</p>
+
+<p class="prosa">En los cinco escenarios que cuentan con valores registrados para ambas variables se observa una correlación de Pearson de 0,95 en escala lineal y de 0,59 en escala logarítmica, de modo que la asociación positiva resulta más marcada cuando los valores se consideran en escala lineal. Al examinar la distribución de los puntos, el escenario S04 destaca por presentar una duración de 9.376 segundos y un tiempo de detección de 260,108 segundos, valores superiores a los de los demás escenarios representados en el gráfico. Esta diferencia influye considerablemente en el coeficiente de correlación y permite comprender por qué la asociación general cambia de manera notable al analizar los registros sin incluir dicho escenario en el conjunto.</p>
+
+<p class="prosa">Al considerar los cuatro escenarios restantes en el conjunto analizado, el coeficiente de Pearson desciende a 0,24 en escala lineal y se aproxima a cero en escala logarítmica, con un valor de -0,052. La comparación muestra que la magnitud de la correlación depende de la distribución de los escenarios y, en particular, del comportamiento observado en S04, de manera que la correlación del conjunto original depende en buena medida de un único registro. Por tanto, el coeficiente de 0,95 describe la asociación del conjunto original, mientras que los valores obtenidos al examinar los escenarios restantes permiten apreciar con mayor detalle la variación entre los registros. En conjunto, la figura aporta una lectura descriptiva de la relación entre la duración y el tiempo de detección, sin establecer que una mayor duración produzca necesariamente un mayor tiempo de detección. Esta interpretación complementa los indicadores de detección presentados para ambos prototipos y distingue las variables registradas en cada laboratorio, con lo que sostiene la comparación entre las dos aplicaciones de la metodología.</p>
+
+<p class="lbl">Figura 14</p>
+<figure>
+<svg viewBox="0 0 960 545" role="img"
+  aria-label="Correlación entre la duración del escenario y el tiempo medio de detección en el Prototipo 1 del TaxFisco Research Lab, reproducida como referencia contextual. Cinco escenarios declaran ambas magnitudes: S09 con 2 s y 10,000 s; S01 con 27 s y 16,405 s; S03 con 32 s y 85,000 s; S02 con 38 s y 0,826 s; S04 con 9.376 s y 260,108 s. El coeficiente de correlación de Pearson es 0,95 en escala lineal y 0,59 en escala logarítmica; al retirar S04 el valor cae a 0,24 en escala lineal y a -0,052 en escala logarítmica. Los escenarios S05 a S08 declaran duración registrada igual a cero y S10 carece de tiempo de detección.">
+  <rect x="0" y="0" width="960" height="545" fill="#FFFFFF"/>
+  <text x="30" y="28" font-family="Segoe UI,sans-serif" font-size="16" font-weight="700" fill="#1F3864">Duración del escenario y tiempo medio de detección por escenario</text>
+  <text x="30" y="47" font-family="Segoe UI,sans-serif" font-size="12" fill="#5A6878">Prototipo 1 del TaxFisco Research Lab, reproducido como referencia contextual &#183; escala logarítmica en ambos ejes</text>
+  <line x1="30" y1="59" x2="930" y2="59" stroke="#D6DEE8"/>
+
+  <line x1="120" y1="74" x2="150" y2="74" stroke="#9C6500" stroke-width="2" stroke-dasharray="7 5"/>
+  <text x="158" y="78" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#5A6878">Ajuste por mínimos cuadrados sobre los cinco escenarios</text>
+  <circle cx="470" cy="74" r="4.5" fill="#2E75B6"/>
+  <text x="482" y="78" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#5A6878">Escenarios que declaran ambas magnitudes</text>
+
+  <g stroke="#EEF2F7" stroke-width="1">
+    <line x1="265" y1="90" x2="265" y2="400"/>
+    <line x1="410" y1="90" x2="410" y2="400"/>
+    <line x1="555" y1="90" x2="555" y2="400"/>
+    <line x1="120" y1="167.5" x2="700" y2="167.5"/>
+    <line x1="120" y1="245" x2="700" y2="245"/>
+    <line x1="120" y1="322.5" x2="700" y2="322.5"/>
+  </g>
+  <line x1="120" y1="90" x2="120" y2="400" stroke="#8FA0B5" stroke-width="1"/>
+  <line x1="120" y1="400" x2="700" y2="400" stroke="#8FA0B5" stroke-width="1"/>
+
+  <g stroke="#8FA0B5" stroke-width="1">
+    <line x1="120" y1="400" x2="120" y2="406"/>
+    <line x1="265" y1="400" x2="265" y2="406"/>
+    <line x1="410" y1="400" x2="410" y2="406"/>
+    <line x1="555" y1="400" x2="555" y2="406"/>
+    <line x1="700" y1="400" x2="700" y2="406"/>
+    <line x1="114" y1="90" x2="120" y2="90"/>
+    <line x1="114" y1="167.5" x2="120" y2="167.5"/>
+    <line x1="114" y1="245" x2="120" y2="245"/>
+    <line x1="114" y1="322.5" x2="120" y2="322.5"/>
+  </g>
+  <g font-family="Segoe UI,sans-serif" font-size="10.5" fill="#5A6878" text-anchor="middle">
+    <text x="120" y="420">1 s</text>
+    <text x="265" y="420">10 s</text>
+    <text x="410" y="420">100 s</text>
+    <text x="555" y="420">1.000 s</text>
+    <text x="700" y="420">10.000 s</text>
+  </g>
+  <g font-family="Segoe UI,sans-serif" font-size="10.5" fill="#5A6878" text-anchor="end">
+    <text x="108" y="94">1.000 s</text>
+    <text x="108" y="171.5">100 s</text>
+    <text x="108" y="249">10 s</text>
+    <text x="108" y="326.5">1 s</text>
+    <text x="108" y="404">0,1 s</text>
+  </g>
+  <text x="410" y="440" font-family="Segoe UI,sans-serif" font-size="11.5" fill="#5A6878" text-anchor="middle">Duración del escenario (segundos, escala log)</text>
+  <text x="58" y="245" font-family="Segoe UI,sans-serif" font-size="11.5" fill="#5A6878" text-anchor="middle" transform="rotate(-90 58 245)">Tiempo medio de detección (segundos, escala log)</text>
+
+  <line x1="120" y1="279.1" x2="700" y2="149.5" stroke="#9C6500" stroke-width="2" stroke-dasharray="7 5"/>
+
+  <circle cx="163.6" cy="245" r="6" fill="#2E75B6"/>
+  <text x="190" y="290" font-family="Segoe UI,sans-serif" font-size="11" fill="#1A2430">S09 &#183; 10,000 s</text>
+
+  <circle cx="327.6" cy="228.3" r="6" fill="#2E75B6"/>
+  <text x="327" y="205" font-family="Segoe UI,sans-serif" font-size="11" fill="#1A2430" text-anchor="middle">S01 &#183; 16,405 s</text>
+
+  <circle cx="338.2" cy="173" r="6" fill="#2E75B6"/>
+  <text x="352" y="170" font-family="Segoe UI,sans-serif" font-size="11" fill="#1A2430">S03 &#183; 85,000 s</text>
+
+  <circle cx="349.1" cy="328.9" r="6" fill="#2E75B6"/>
+  <text x="363" y="334" font-family="Segoe UI,sans-serif" font-size="11" fill="#1A2430">S02 &#183; 0,826 s</text>
+
+  <circle cx="695.9" cy="135.3" r="7" fill="#9C6500"/>
+  <line x1="686" y1="112" x2="694" y2="129" stroke="#9C6500" stroke-width="1"/>
+  <text x="686" y="108" font-family="Segoe UI,sans-serif" font-size="11" font-weight="600" fill="#9C6500" text-anchor="end">S04 &#183; 260,108 s</text>
+
+  <rect x="720" y="90" width="220" height="158" rx="6" fill="#F7F9FC" stroke="#D6DEE8"/>
+  <text x="734" y="113" font-family="Segoe UI,sans-serif" font-size="12" font-weight="700" fill="#1F3864">Correlación de Pearson</text>
+  <text x="734" y="133" font-family="Segoe UI,sans-serif" font-size="10" fill="#5A6878">Escala lineal, cinco escenarios</text>
+  <text x="926" y="155" font-family="Segoe UI,sans-serif" font-size="17" font-weight="700" fill="#1F3864" text-anchor="end">r = 0,95</text>
+  <text x="734" y="178" font-family="Segoe UI,sans-serif" font-size="10" fill="#5A6878">Escala logarítmica, cinco escenarios</text>
+  <text x="926" y="200" font-family="Segoe UI,sans-serif" font-size="17" font-weight="700" fill="#1F3864" text-anchor="end">r = 0,59</text>
+  <line x1="734" y1="212" x2="926" y2="212" stroke="#D6DEE8"/>
+  <text x="734" y="229" font-family="Segoe UI,sans-serif" font-size="10" fill="#9C6500">Al retirar S04</text>
+  <text x="926" y="239" font-family="Segoe UI,sans-serif" font-size="12.5" font-weight="700" fill="#9C6500" text-anchor="end">0,24 lineal &#183; -0,052 log</text>
+
+  <rect x="720" y="260" width="220" height="140" rx="6" fill="#FDF7EE" stroke="#E7D3B0"/>
+  <text x="734" y="283" font-family="Segoe UI,sans-serif" font-size="12" font-weight="700" fill="#7A4E00">Escenarios no representables</text>
+  <text x="734" y="303" font-family="Segoe UI,sans-serif" font-size="10" fill="#7A4E00">S05 a S08 con duración registrada</text>
+  <text x="734" y="317" font-family="Segoe UI,sans-serif" font-size="10" fill="#7A4E00">igual a cero; MTTD de 0,141 s,</text>
+  <text x="734" y="331" font-family="Segoe UI,sans-serif" font-size="10" fill="#7A4E00">0,824 s, 0,543 s y 0,533 s</text>
+  <text x="734" y="354" font-family="Segoe UI,sans-serif" font-size="10" fill="#7A4E00">S10 sin tiempo de detección</text>
+  <text x="734" y="368" font-family="Segoe UI,sans-serif" font-size="10" fill="#7A4E00">declarado en el reporte</text>
+
+  <text x="410" y="468" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#5A6878" text-anchor="middle">El eje de abscisas exige una duración registrada distinta de cero, por lo que solo cinco de los diez escenarios forman pares de valores.</text>
+  <text x="480" y="514" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#5A6878" text-anchor="middle">Los coeficientes se calculan sobre los cinco escenarios que declaran ambas magnitudes.</text>
+  <text x="480" y="532" font-family="Segoe UI,sans-serif" font-size="10" fill="#8A97A5" text-anchor="middle">Datos del reporte de indicadores del TaxFisco Research Lab.</text>
+</svg>
+<figcaption><i>Figura 14.</i> Correlación entre la duración del escenario y el tiempo medio de detección en el Prototipo 1 del TaxFisco Research Lab. La figura representa los cinco escenarios que cuentan con valores registrados para ambas magnitudes. S09 registra 2 segundos de duración y 10,000 segundos de tiempo de detección; S01, 27 y 16,405 segundos; S03, 32 y 85,000 segundos; S02, 38 y 0,826 segundos; S04, 9.376 y 260,108 segundos. Ambos ejes utilizan escala logarítmica para facilitar la visualización de valores que presentan diferencias considerables de magnitud. El coeficiente de correlación de Pearson es de 0,95 en escala lineal y de 0,59 en escala logarítmica; al analizar los cuatro escenarios distintos de S04, los valores son 0,24 y -0,052, respectivamente. Los resultados permiten identificar la influencia de la distribución de los datos en la correlación y describir con mayor precisión el comportamiento conjunto de las dos variables.</figcaption>
+</figure>
+
+<h4>Síntesis de los resultados del segundo prototipo</h4>
+
+<p class="prosa">La aplicación de la metodología en el laboratorio del Servicio de Impuestos Nacionales muestra que el ciclo de corrección transforma los indicadores sin modificar el inventario del señuelo, con catorce lecciones aprendidas que llevan los escenarios con medición de cuatro a diez y las detecciones por debajo del segundo de cero a siete. La custodia de la evidencia se mantiene constante a lo largo del ciclo, con 91 archivos con huella y calidad de 100 sobre 100 en ambas vueltas; el percentil 95 baja de 14,583 segundos a 9,266 segundos entre la vuelta inicial y la medición final.</p>
+
+<p class="prosa">El segundo prototipo establece así una segunda lectura del funcionamiento de la metodología sobre un entorno productivo real, con el inventario del señuelo y la composición de la campaña preservados entre vueltas. La comparación con el primer laboratorio se aborda en el apartado siguiente, mientras que las tres precisiones que el ciclo aporta sobre cobertura, custodia y registro de correcciones pasan a formar parte de la lectura conjunta del 4.4.5.</p>
+</section>
+
+<!-- ══════════ 4.4.4 ══════════ -->
+<section id="s444">
+<h3>4.4.4 Comparación entre los dos prototipos</h3>
+<p class="vacio">Pendiente de redacción.</p>
+</section>
+
+<!-- ══════════ 4.4.5 ══════════ -->
+<section id="s445">
+<h3>4.4.5 Síntesis de los resultados</h3>
+<p class="vacio">Pendiente de redacción.</p>
+</section>
+
+</div>
+</body>
+</html>
