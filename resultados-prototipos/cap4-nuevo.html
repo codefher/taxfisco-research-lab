@@ -1417,13 +1417,66 @@ lecciones se declaran en la Tabla 2 con su propio denominador.</figcaption>
 
 <h4>Reparto de la detección entre componentes</h4>
 
-<p class="prosa">El reparto de la detección entre componentes ofrece la comparación más directa entre los dos laboratorios, porque en ambos casos cada escenario recibe un primer registro identificable aunque el inventario de señuelos difiera. La Figura 16 muestra cómo el Prototipo 1 distribuye sus nueve escenarios medidos entre los componentes que registran el primer evento, en orden descendente de mayor a menor participación dentro del primer laboratorio. Cinco componentes participan en esa distribución, con la interfaz de servicios al frente con tres escenarios y el emulador de acceso remoto junto con la interfaz de registro de ruta con dos cada uno, mientras que la vista del atacante y el portal del señuelo aportan un escenario cada uno. La medición final del segundo laboratorio incorpora seis fuentes de registro, una más que el primer laboratorio, de manera que cubra los diez escenarios de la campaña frente a los nueve que ese primer laboratorio logra medir.</p>
+<p class="prosa">El reparto de la detección entre componentes ofrece la comparación más directa entre los dos laboratorios, porque en ambos casos cada escenario recibe un primer registro identificable aunque el inventario de señuelos difiera. La Figura 16 reúne los dos repartos en dos paneles contiguos, de manera que el lector compare la cobertura de los dos laboratorios sin abandonar el apartado ni buscar la fuente en otro gráfico. El panel izquierdo reparte los nueve escenarios medidos del Prototipo 1 entre cinco componentes, con la interfaz de servicios al frente con tres escenarios y el emulador de acceso remoto junto con la interfaz de registro de ruta con dos cada uno. El panel derecho reparte los diez escenarios de la medición final del Prototipo 2 entre seis fuentes de registro, de las que el portal del señuelo cubre tres escenarios y el emulador de acceso remoto cubre dos. La diferencia que separa ambos paneles no está en el número de escenarios sino en la cobertura, porque ninguna de las diez técnicas de la campaña queda sin fuente en el segundo laboratorio.</p>
 
 <p class="lbl">Figura 16</p>
 <figure>
-<img src="evidencia-visual/graficos/d-componentes-deteccion.png"
-     alt="Distribución de los nueve escenarios con medición del Prototipo 1 entre los componentes que registran el primer evento. La interfaz de servicios cubre tres escenarios, la interfaz de registro de ruta dos, el emulador de acceso remoto dos, la vista del atacante uno y el portal del señuelo uno.">
-<figcaption><i>Figura 16.</i> Escenarios con medición del Prototipo 1 según el componente que registra el primer evento, ordenados de mayor a menor cobertura. Cinco componentes participan en la distribución y suman los nueve escenarios medidos. La medición final del Prototipo 2 reparte los diez escenarios entre seis fuentes de registro, una más que el primer laboratorio, con la diferencia de que ninguna técnica de la campaña queda sin registro.</figcaption>
+<svg viewBox="0 0 960 452" role="img"
+  aria-label="Dos paneles que comparan el reparto de la deteccion entre componentes en los dos laboratorios medidos. El panel izquierdo muestra el Prototipo 1, donde nueve escenarios medidos se reparten entre cinco componentes: la interfaz de servicios con tres escenarios, la interfaz con registro de ruta con dos, el emulador de acceso remoto con dos, la interfaz con vista del atacante con uno y el portal del señuelo con uno. El panel derecho muestra la medicion final del Prototipo 2, donde diez escenarios se reparten entre seis fuentes de registro: el portal del señuelo con tres escenarios, la interfaz de servicios del senuelo con dos, el emulador de acceso remoto con dos, la interfaz de servicios del atacante con uno, el archivo senuelo con uno y el sensor de red con uno.">
+  <rect x="0" y="0" width="960" height="452" fill="#FFFFFF"/>
+  <text x="20" y="28" font-family="Segoe UI,sans-serif" font-size="16" font-weight="700" fill="#1F3864">Reparto de la detección entre componentes en los dos laboratorios</text>
+  <text x="20" y="46" font-family="Segoe UI,sans-serif" font-size="12" fill="#5A6878">Escenarios según el componente que registra el primer evento, en el Prototipo 1 y en la medición final del Prototipo 2</text>
+  <line x1="20" y1="58" x2="940" y2="58" stroke="#D6DEE8"/>
+  <rect x="20" y="74" width="450" height="332" rx="6" fill="#FAFBFD" stroke="#D6DEE8"/>
+  <path d="M20,74 h450 v40 h-450 z" fill="#1F3864"/>
+  <rect x="20" y="74" width="450" height="6" rx="6" fill="#1F3864"/>
+  <text x="38" y="94" font-family="Segoe UI,sans-serif" font-size="13" font-weight="700" fill="#FFFFFF">Prototipo 1</text>
+  <text x="38" y="108" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#C6D2E2">nueve escenarios medidos · cinco componentes</text>
+  <text x="268" y="148" font-family="Segoe UI,sans-serif" font-size="11.5" fill="#1A2430" text-anchor="end">Interfaz de servicios</text>
+  <rect x="282" y="134" width="168" height="18" rx="2" fill="#2E75B6"/>
+  <text x="459" y="148" font-family="Segoe UI,sans-serif" font-size="11.5" font-weight="700" fill="#2E75B6">3</text>
+  <text x="268" y="186" font-family="Segoe UI,sans-serif" font-size="11.5" fill="#1A2430" text-anchor="end">Interfaz, registro de ruta</text>
+  <rect x="282" y="172" width="112" height="18" rx="2" fill="#2E75B6"/>
+  <text x="403" y="186" font-family="Segoe UI,sans-serif" font-size="11.5" font-weight="700" fill="#2E75B6">2</text>
+  <text x="268" y="224" font-family="Segoe UI,sans-serif" font-size="11.5" fill="#1A2430" text-anchor="end">Emulador de acceso remoto</text>
+  <rect x="282" y="210" width="112" height="18" rx="2" fill="#2E75B6"/>
+  <text x="403" y="224" font-family="Segoe UI,sans-serif" font-size="11.5" font-weight="700" fill="#2E75B6">2</text>
+  <text x="268" y="262" font-family="Segoe UI,sans-serif" font-size="11.5" fill="#1A2430" text-anchor="end">Interfaz, vista del atacante</text>
+  <rect x="282" y="248" width="56" height="18" rx="2" fill="#2E75B6"/>
+  <text x="347" y="262" font-family="Segoe UI,sans-serif" font-size="11.5" font-weight="700" fill="#2E75B6">1</text>
+  <text x="268" y="300" font-family="Segoe UI,sans-serif" font-size="11.5" fill="#1A2430" text-anchor="end">Portal del señuelo</text>
+  <rect x="282" y="286" width="56" height="18" rx="2" fill="#2E75B6"/>
+  <text x="347" y="300" font-family="Segoe UI,sans-serif" font-size="11.5" font-weight="700" fill="#2E75B6">1</text>
+  <line x1="38" y1="372" x2="452" y2="372" stroke="#D6DEE8"/>
+  <text x="38" y="390" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#5A6878">El escenario de exfiltración por nombres queda fuera: sin evento de detección registrado</text>
+  <rect x="490" y="74" width="450" height="332" rx="6" fill="#FAFBFD" stroke="#D6DEE8"/>
+  <path d="M490,74 h450 v40 h-450 z" fill="#1F3864"/>
+  <rect x="490" y="74" width="450" height="6" rx="6" fill="#1F3864"/>
+  <text x="508" y="94" font-family="Segoe UI,sans-serif" font-size="13" font-weight="700" fill="#FFFFFF">Prototipo 2 · medición final</text>
+  <text x="508" y="108" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#C6D2E2">diez escenarios · seis fuentes de registro</text>
+  <text x="738" y="148" font-family="Segoe UI,sans-serif" font-size="11.5" fill="#1A2430" text-anchor="end">Portal del señuelo</text>
+  <rect x="752" y="134" width="168" height="18" rx="2" fill="#1F6032"/>
+  <text x="929" y="148" font-family="Segoe UI,sans-serif" font-size="11.5" font-weight="700" fill="#1F6032">3</text>
+  <text x="738" y="186" font-family="Segoe UI,sans-serif" font-size="11.5" fill="#1A2430" text-anchor="end">Interfaz de servicios del señuelo</text>
+  <rect x="752" y="172" width="112" height="18" rx="2" fill="#1F6032"/>
+  <text x="873" y="186" font-family="Segoe UI,sans-serif" font-size="11.5" font-weight="700" fill="#1F6032">2</text>
+  <text x="738" y="224" font-family="Segoe UI,sans-serif" font-size="11.5" fill="#1A2430" text-anchor="end">Emulador de acceso remoto</text>
+  <rect x="752" y="210" width="112" height="18" rx="2" fill="#1F6032"/>
+  <text x="873" y="224" font-family="Segoe UI,sans-serif" font-size="11.5" font-weight="700" fill="#1F6032">2</text>
+  <text x="738" y="262" font-family="Segoe UI,sans-serif" font-size="11.5" fill="#1A2430" text-anchor="end">Interfaz de servicios del atacante</text>
+  <rect x="752" y="248" width="56" height="18" rx="2" fill="#1F6032"/>
+  <text x="817" y="262" font-family="Segoe UI,sans-serif" font-size="11.5" font-weight="700" fill="#1F6032">1</text>
+  <text x="738" y="300" font-family="Segoe UI,sans-serif" font-size="11.5" fill="#1A2430" text-anchor="end">Archivo señuelo</text>
+  <rect x="752" y="286" width="56" height="18" rx="2" fill="#1F6032"/>
+  <text x="817" y="300" font-family="Segoe UI,sans-serif" font-size="11.5" font-weight="700" fill="#1F6032">1</text>
+  <text x="738" y="338" font-family="Segoe UI,sans-serif" font-size="11.5" fill="#1A2430" text-anchor="end">Sensor de red</text>
+  <rect x="752" y="324" width="56" height="18" rx="2" fill="#1F6032"/>
+  <text x="817" y="338" font-family="Segoe UI,sans-serif" font-size="11.5" font-weight="700" fill="#1F6032">1</text>
+  <line x1="508" y1="372" x2="922" y2="372" stroke="#D6DEE8"/>
+  <text x="508" y="390" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#5A6878">Ninguna de las diez técnicas de la campaña queda sin fuente de registro</text>
+  <text x="20" y="432" font-family="Segoe UI,sans-serif" font-size="11" fill="#5A6878">Barras azules: Prototipo 1. Barras verdes: medición final del Prototipo 2. Los paneles no comparten denominador, porque el primero cuenta nueve escenarios y el segundo los diez de la campaña.</text>
+</svg>
+<figcaption><i>Figura 16.</i> Escenarios según el componente que registra el primer evento en los dos laboratorios medidos. El panel izquierdo agrupa los nueve escenarios con medición del Prototipo 1 entre cinco componentes, mientras que el panel derecho reparte los diez escenarios de la medición final del Prototipo 2 entre seis fuentes de registro. Los paneles no comparten denominador, de manera que las barras comparen la cobertura interna de cada laboratorio y no una escala común entre ambos.</figcaption>
 </figure>
 
 <div class="aviso"><b>Advertencia de comparabilidad.</b> Los tableros de las dos vueltas del segundo laboratorio cubren ventanas temporales distintas, de tres horas y de veinticuatro horas, porque la cadena de indexación se puso en marcha entre una captura y la otra. La comparación entre ambos paneles se apoya por tanto en la tendencia y no en la igualdad de los totales, de manera que el volumen de tráfico se lea junto con la cobertura y no como un indicador independiente.</div>
