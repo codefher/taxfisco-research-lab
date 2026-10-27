@@ -17,9 +17,6 @@ fs.mkdirSync(salida, { recursive: true });
 // id del grafico en el tablero -> nombre del archivo generado
 const graficos = [
   ['ch-nivel', 'b-escala-cortes'],
-  ['ch-instrumentos', 'c-variacion-instrumentos'],
-  ['ch-grupos', 'c-variacion-grupos'],
-  ['ch-matriz-postest', 'c-matriz-posterior-instrumentos'],
   ['ch-p1-tiempo', 'd-tiempo-prototipo-1'],
   ['ch-p1-dist', 'd-distribucion-tiempo-1'],
   ['ch-p1-fuentes', 'd-componentes-deteccion'],

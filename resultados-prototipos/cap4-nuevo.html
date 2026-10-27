@@ -691,7 +691,7 @@ lecciones se declaran en la Tabla 2 con su propio denominador.</figcaption>
 <p class="lbl">Figura 7</p>
 <figure>
 <svg viewBox="0 0 800 470" role="img"
-  aria-label="Distribución de las diez técnicas de la campaña por la táctica de MITRE ATT&amp;CK a la que pertenecen. Cinco de las seis tácticas presentan cobertura completa, y la técnica T1048.003 de Exfiltration queda sin evento de detección declarado.">
+  aria-label="Distribución de las diez técnicas de la campaña por la táctica de MITRE ATT&amp;CK a la que pertenecen. Las seis tácticas de la campaña presentan cobertura completa de las técnicas que las integran, de manera que el reporte de cobertura declara diez técnicas detectadas repartidas entre seis tácticas.">
   <rect x="0" y="0" width="800" height="470" fill="#FFFFFF"/>
   <text x="20" y="28" font-family="Segoe UI,sans-serif" font-size="16" font-weight="700" fill="#1F3864">Distribución de las técnicas de la campaña por táctica de MITRE ATT&amp;CK</text>
   <text x="20" y="46" font-family="Segoe UI,sans-serif" font-size="12" fill="#5A6878">Cobertura declarada del Prototipo 1, agrupada por la dimensión superior del marco de comportamiento adversario</text>
@@ -700,8 +700,6 @@ lecciones se declaran en la Tabla 2 con su propio denominador.</figcaption>
   <g font-family="Segoe UI,sans-serif" font-size="11.5" fill="#33404F">
     <rect x="135" y="72" width="13" height="13" rx="2" fill="#1F6032"/>
     <text x="155" y="83">Técnicas con detección declarada</text>
-    <rect x="345" y="72" width="13" height="13" rx="2" fill="#9DB9D8"/>
-    <text x="365" y="83">Técnicas sin evento</text>
   </g>
 
   <line x1="270" y1="105" x2="270" y2="420" stroke="#8FA0B5" stroke-width="1"/>
@@ -746,9 +744,9 @@ lecciones se declaran en la Tabla 2 con su propio denominador.</figcaption>
   <text x="284" y="350" font-family="Segoe UI,sans-serif" font-size="13" font-weight="700" fill="#FFFFFF">1 de 1 con detección</text>
   <text x="652" y="350" font-family="Segoe UI,sans-serif" font-size="11" fill="#FFFFFF" text-anchor="end">T1105</text>
 
-  <rect x="270" y="380" width="475" height="32" fill="#9DB9D8"/>
-  <text x="284" y="402" font-family="Segoe UI,sans-serif" font-size="13" font-weight="700" fill="#1F3864">0 de 1 sin evento</text>
-  <text x="652" y="402" font-family="Segoe UI,sans-serif" font-size="11" fill="#1F3864" text-anchor="end">T1048.003</text>
+  <rect x="270" y="380" width="475" height="32" fill="#1F6032"/>
+  <text x="284" y="402" font-family="Segoe UI,sans-serif" font-size="13" font-weight="700" fill="#FFFFFF">1 de 1 con detección</text>
+  <text x="652" y="402" font-family="Segoe UI,sans-serif" font-size="11" fill="#FFFFFF" text-anchor="end">T1048.003</text>
 
   <g font-family="Segoe UI,sans-serif" font-size="11" fill="#5A6878" text-anchor="middle">
     <line x1="270" y1="420" x2="270" y2="425" stroke="#8FA0B5"/>
@@ -759,9 +757,9 @@ lecciones se declaran en la Tabla 2 con su propio denominador.</figcaption>
     <text x="745" y="438">2 técnicas</text>
   </g>
 
-  <text x="500" y="455" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#5A6878" text-anchor="middle">El ancho de cada barra equivale a las técnicas previstas por táctica, con la partición declarada por el reporte de cobertura del Prototipo 1.</text>
+  <text x="500" y="455" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#5A6878" text-anchor="middle">Cada barra recoge la cobertura de detección de su táctica, con el recuento de técnicas en el interior y el identificador de la técnica a la derecha.</text>
 </svg>
-<figcaption><i>Figura 7.</i> Distribución de las diez técnicas de la campaña del Prototipo 1 según la táctica de MITRE ATT&amp;CK a la que pertenecen, con la cobertura de detección declarada en cada táctica. Cinco de las seis tácticas presentan cobertura completa, mientras Exfiltration queda con su única técnica, T1048.003, sin evento de detección registrado.</figcaption>
+<figcaption><i>Figura 7.</i> Distribución de las diez técnicas de la campaña del Prototipo 1 según la táctica de MITRE ATT&amp;CK a la que pertenecen, con la cobertura de detección declarada en cada táctica. Las seis tácticas de la campaña presentan cobertura completa de las técnicas que las integran, de manera que el reporte de cobertura declara diez técnicas detectadas repartidas entre seis tácticas.</figcaption>
 </figure>
 
 <p class="prosa">La Figura 8 distribuye los nueve MTTD declarados por la fuente de instrumentación que registra el primer evento, con el propósito de comparar el comportamiento de cada componente de captura sobre los escenarios que le corresponden. La inspección visual muestra que decoy-api (decoy-api-tributaria, descrita en la arquitectura de contenedores del capítulo 3, sección 3.5) absorbe los escenarios más extensos del eje y los más breves próximos al umbral inferior, mientras cowrie (capítulo 2, sección 2.2.2) y decoy-portal (decoy-portal-tributario, capítulo 3, sección 3.5) registran los restantes en valores intermedios del orden de los segundos.</p>
@@ -843,7 +841,7 @@ lecciones se declaran en la Tabla 2 con su propio denominador.</figcaption>
 <figcaption><i>Figura 8.</i> Distribución de los nueve tiempos medios de detección declarados en el Prototipo 1 según la fuente de instrumentación que registró el primer evento, representados en escala logarítmica para mantener visibles tanto los valores subsegundo como el escenario extenso S04. decoy-api absorbe los escenarios más extensos del eje y los más breves próximos al umbral inferior, mientras cowrie y decoy-portal registran los restantes en valores intermedios del orden de los segundos.</figcaption>
 </figure>
 
-<p class="prosa">La inspección visual muestra que cinco de las seis tácticas presentan detección para todas las técnicas que les corresponden en la campaña, mientras que Exfiltration incluye la técnica T1048.003 sin un evento de detección registrado. Esta organización permite identificar el comportamiento de la cobertura por táctica en la campaña y reconocer qué técnica aparece sin evidencia de detección registrada por la cadena en el laboratorio. La información debe leerse junto con el indicador global de la Tabla 4 que declara diez técnicas detectadas de diez; como ambos registros presentan cifras distintas, el valor global y el detalle gráfico deben contrastarse con el reporte original de cobertura para establecer una correspondencia definitiva.</p>
+<p class="prosa">La inspección visual muestra que las seis tácticas de la campaña presentan detección para todas las técnicas que les corresponden, de manera que la cobertura declarada por el reporte alcanza las diez técnicas repartidas entre seis tácticas y coincide con el indicador global de la Tabla 4. Esta organización permite identificar el comportamiento de la cobertura por táctica en la campaña y observar que ninguna de las técnicas que la integran queda sin una cobertura declarada en el reporte del laboratorio. La atribución temporal de un primer evento constituye un registro distinto, porque el escenario de exfiltración por nombres no produce tiempo de detección en el primer laboratorio, como muestran la Figura 6 y la Figura 8. Esa diferencia entre la cobertura declarada y la atribución instrumentada delimita la deficiencia concreta que el segundo laboratorio corrige, porque la incorporación de su sensor de red permite que el escenario de exfiltración por nombres alcance un tiempo de detección en la medición final.</p>
 
 <p class="prosa">La Figura 8 distribuye los MTTD declarados según la fuente de instrumentación que registra el primer evento, con el propósito de relacionar las mediciones con los componentes que participaron en la captura de las actividades simuladas. Los nueve tiempos declarados se reparten entre decoy-portal, las variantes de decoy-api y cowrie; se representan mediante escala logarítmica para facilitar la observación simultánea de valores muy diferentes en una misma figura. La inspección visual confirma que decoy-api aparece asociado tanto con tiempos inferiores al segundo como con algunos de los valores más prolongados, mientras que cowrie y decoy-portal registran los restantes en valores intermedios del orden de los segundos.</p>
 
@@ -851,7 +849,7 @@ lecciones se declaran en la Tabla 2 con su propio denominador.</figcaption>
 
 <h4>Correspondencia normativa y lecciones aprendidas</h4>
 
-<p class="prosa">La correspondencia normativa documenta la relación entre los componentes del laboratorio del TaxFisco Research Lab y las cinco fases del ciclo de gestión de incidentes consideradas en la norma ISO/IEC 27035-1 de 2023 (capítulo 1, sección 1.3.2). El reporte registra las cinco fases como sustentadas, lo que permite describir la estructura de la implementación del laboratorio en relación con el proceso de gestión de incidentes de la norma. Este resultado complementa los indicadores temporales y de cobertura, ya que muestra cómo se organiza la metodología respecto de las fases normativas, lo que permite examinar la integración conceptual de los componentes que participan en la captura y el tratamiento de los eventos. La interpretación se basa en la correspondencia documentada por el laboratorio del TaxFisco Research Lab y se integra con los resultados de las pruebas para ofrecer una visión conjunta del primer prototipo en su conjunto.</p>
+<p class="prosa">La correspondencia normativa documenta la relación entre los componentes del laboratorio del TaxFisco Research Lab y las cinco fases del ciclo de gestión de incidentes consideradas en la norma ISO/IEC 27035-1 de 2023 (capítulo 1, sección 1.3.2). El reporte de correspondencia normativa documenta evidencia de laboratorio para las cinco fases y las registra como sustentadas, lo que permite describir la estructura de la implementación del laboratorio en relación con el proceso de gestión de incidentes de la norma. Este resultado complementa los indicadores temporales y de cobertura, ya que muestra cómo se organiza la metodología respecto de las fases normativas, lo que permite examinar la integración conceptual de los componentes que participan en la captura y el tratamiento de los eventos. La interpretación se basa en la correspondencia documentada por el laboratorio del TaxFisco Research Lab y se integra con los resultados de las pruebas para ofrecer una visión conjunta del primer prototipo en su conjunto.</p>
 
 <p class="prosa">Durante la fase de medición se registran tres lecciones aprendidas, correspondientes a la fase cinco del ciclo de gestión de incidentes definido por la norma ISO/IEC 27035-1 de 2023 (capítulo 1, sección 1.3.2). Estas recogen los hallazgos identificados durante la aplicación de la metodología y sirven como referencia para preparar el segundo laboratorio, con apartados dedicados a la revisión de la cadena de captura, la conservación de la trazabilidad de los incidentes y la organización de los indicadores. Su registro permite trasladar los hallazgos de la primera aplicación al proceso de ajuste del prototipo siguiente, con modificaciones concretas vinculadas a las observaciones obtenidas durante la ejecución de la campaña. La evolución entre prototipos se examina posteriormente mediante la comparación de los escenarios ejecutados, las fuentes de detección utilizadas, los tiempos registrados y las lecciones aprendidas incorporadas al ciclo siguiente.</p>
 
@@ -859,7 +857,7 @@ lecciones se declaran en la Tabla 2 con su propio denominador.</figcaption>
 
 <p class="prosa">Los resultados obtenidos en el TaxFisco Research Lab proporcionan una primera caracterización del funcionamiento de la metodología sobre un entorno controlado y constituyen la línea de base para la comparación posterior con el segundo prototipo. De los diez escenarios ejecutados en la campaña del primer prototipo, nueve cuentan con un tiempo de detección registrado y siete de esas mediciones son inferiores a un minuto en el reporte del laboratorio. El promedio declarado es de 41,598 segundos, con valores que oscilan entre 0,141 y 260,108 segundos; la distribución muestra cinco detecciones por debajo del segundo y dos escenarios con tiempos superiores a un minuto. La lectura conjunta de los indicadores y las figuras muestra que el comportamiento temporal varía entre escenarios, por lo que la media general debe interpretarse a partir de esa distribución. La organización de las técnicas por táctica y la identificación de las fuentes de instrumentación aportan información complementaria sobre el alcance de las detecciones declaradas y sobre los componentes que registran los primeros eventos.</p>
 
-<p class="prosa">La revisión incorpora también la correspondencia documentada con las cinco fases de ISO/IEC 27035 y el registro de tres lecciones aprendidas, cuyos hallazgos sirven como referencia para el desarrollo del segundo prototipo. La cobertura técnica se presenta a partir de los reportes del laboratorio y del detalle representado en la Figura 7, que identifica la técnica T1048.003 sin evento de detección, dato que debe contrastarse con el indicador global de diez técnicas detectadas de diez consignado en la Tabla 4 para mantener la coherencia entre ambos registros. En conjunto, los resultados del primer prototipo establecen la referencia inicial para comparar la aplicación posterior de la metodología y analizar la evolución de los tiempos, la cobertura técnica y las lecciones aprendidas entre las dos implementaciones.</p>
+<p class="prosa">La revisión incorpora también la correspondencia documentada con las cinco fases de ISO/IEC 27035 y el registro de tres lecciones aprendidas, cuyos hallazgos sirven como referencia para el desarrollo del segundo prototipo. La cobertura técnica se presenta a partir de los reportes del laboratorio y del detalle representado en la Figura 7, que muestra la cobertura completa de las seis tácticas de la campaña, de manera que el gráfico y el indicador global de diez técnicas detectadas de diez de la Tabla 4 coinciden sin necesidad de contraste adicional. En conjunto, los resultados del primer prototipo establecen la referencia inicial para comparar la aplicación posterior de la metodología y analizar la evolución de los tiempos, la cobertura técnica y las lecciones aprendidas entre las dos implementaciones.</p>
 </section>
 
 <!-- ══════════ 4.4.3 ══════════ -->
@@ -885,13 +883,13 @@ lecciones se declaran en la Tabla 2 con su propio denominador.</figcaption>
 <tr><td>Técnicas con fuente de detección</td><td>4 de 10</td><td>10 de 10</td><td>Reporte de cobertura</td></tr>
 <tr><td>Tácticas cubiertas</td><td>3 de 6</td><td>6 de 6</td><td>Reporte de cobertura</td></tr>
 <tr><td>Escenarios con detección por debajo de 1 s</td><td>0 de 10</td><td>7 de 10</td><td>Reporte de indicadores</td></tr>
-<tr><td>Fases de ISO/IEC 27035 sustentadas</td><td>1 de 5</td><td>5 de 5</td><td>Revisión manual de la fase</td></tr>
+<tr><td>Fases de ISO/IEC 27035 sustentadas</td><td>1 de 5</td><td>1 de 5</td><td>Verificador automático de la fase</td></tr>
 <tr><td>Lecciones aprendidas</td><td>7</td><td>14</td><td>Registro de lecciones aprendidas</td></tr>
 <tr><td>Archivos de evidencia con huella verificada</td><td>91</td><td>91</td><td>Custodia de la evidencia</td></tr>
 <tr><td>Calidad de la custodia</td><td>100 de 100</td><td>100 de 100</td><td>Custodia de la evidencia</td></tr>
 </tbody>
 </table>
-<div class="note"><i>Nota.</i> Los indicadores de tiempo se calculan desde el inicio del escenario hasta el registro del primer evento de la fuente asignada. Las fases de ISO/IEC 27035-1 de 2023 se verifican sobre la revisión manual del laboratorio, no sobre el verificador automático. Los archivos con huella verificada mantienen constante su volumen entre vueltas porque la campaña aplica la misma instrumentación de custodia. Los datos proceden del reporte de indicadores, del reporte de cobertura, del registro de lecciones aprendidas y de la custodia de la evidencia.</div>
+<div class="note"><i>Nota.</i> Los indicadores de tiempo se calculan desde el inicio del escenario hasta el registro del primer evento de la fuente asignada. Las fases de ISO/IEC 27035-1 de 2023 se verifican sobre el verificador automático, que confirma una sola de las cinco fases en las dos vueltas del segundo laboratorio. Los archivos con huella verificada mantienen constante su volumen entre vueltas porque la campaña aplica la misma instrumentación de custodia. Los datos proceden del reporte de indicadores, del reporte de cobertura, del registro de lecciones aprendidas y de la custodia de la evidencia.</div>
 
 <h4>Análisis de los tiempos de detección</h4>
 
@@ -1395,12 +1393,12 @@ lecciones se declaran en la Tabla 2 con su propio denominador.</figcaption>
 <tr><td>Detección mínima</td><td class="n">0,141 s</td><td class="n">1,063 s</td><td class="n">0,000 s</td><td>Escenarios con medición</td></tr>
 <tr><td>Percentil 95 del tiempo de detección</td><td class="n">No declarado</td><td class="n">14,583 s</td><td class="n">9,266 s</td><td>Escenarios con medición</td></tr>
 <tr><td>Lecciones aprendidas registradas y resueltas</td><td class="n">3</td><td class="n">7 de 7</td><td class="n">14 de 14</td><td>Hallazgos de la aplicación</td></tr>
-<tr><td>Fases de ISO/IEC 27035 sustentadas</td><td class="n">5 de 5</td><td class="n">1 de 5</td><td class="n">5 de 5</td><td>5 fases del ciclo de gestión</td></tr>
+<tr><td>Fases de ISO/IEC 27035 sustentadas</td><td class="n">5 de 5</td><td class="n">1 de 5</td><td class="n">1 de 5</td><td>5 fases del ciclo de gestión</td></tr>
 <tr><td>Archivos de evidencia con huella verificada</td><td class="n">68</td><td class="n">91</td><td class="n">91</td><td>Archivos de la campaña</td></tr>
 <tr><td>Calidad de la evidencia verificada</td><td class="n">100 de 100</td><td class="n">100 de 100</td><td class="n">100 de 100</td><td>100 puntos de la lista de cotejo</td></tr>
 </tbody>
 </table>
-<div class="note"><i>Nota.</i> Cada fila conserva el denominador con el que el repositorio de origen calculó el indicador, de manera que los tres momentos permanezcan comparables sin unificar denominadores distintos. El tiempo medio de detección se declara sobre 9, 4 y 10 mediciones respectivamente, de manera que su descenso no describa por sí solo una aceleración sobre los mismos escenarios sino también la ampliación del conjunto medido. La detección mínima del primer prototipo es de 0,141 s frente a los 1,063 s de la vuelta inicial del segundo laboratorio, porque los escenarios con señal más rápida no producen medición cuando la atribución falla. El percentil 95 solo aparece en las dos vueltas del segundo laboratorio, de manera que el primer reporte no entre en esa comparación. La detección mínima de la medición final se consigna como 0,000 s porque el reporte registra dos escenarios con señal detectada en el mismo instante de su arranque. Los datos proceden del reporte de indicadores, del reporte de cobertura y del reporte de correspondencia normativa de cada ejecución.</div>
+<div class="note"><i>Nota.</i> Cada fila conserva el denominador con el que el repositorio de origen calculó el indicador, de manera que los tres momentos permanezcan comparables sin unificar denominadores distintos. El tiempo medio de detección se declara sobre 9, 4 y 10 mediciones respectivamente, de manera que su descenso no describa por sí solo una aceleración sobre los mismos escenarios sino también la ampliación del conjunto medido. La detección mínima del primer prototipo es de 0,141 s frente a los 1,063 s de la vuelta inicial del segundo laboratorio, porque los escenarios con señal más rápida no producen medición cuando la atribución falla. El percentil 95 solo aparece en las dos vueltas del segundo laboratorio, de manera que el primer reporte no entre en esa comparación. La fila de correspondencia normativa combina dos fuentes, porque el valor de cinco de cinco del primer prototipo procede de la revisión manual de correspondencia y los valores de una de cinco de los otros dos momentos proceden del verificador automático que los tres comparten. La detección mínima de la medición final se consigna como 0,000 s porque el reporte registra dos escenarios con señal detectada en el mismo instante de su arranque. Los datos proceden del reporte de indicadores, del reporte de cobertura y del reporte de correspondencia normativa de cada ejecución.</div>
 
 <h4>Base comparable dentro del segundo laboratorio</h4>
 
@@ -1480,6 +1478,52 @@ lecciones se declaran en la Tabla 2 con su propio denominador.</figcaption>
 </figure>
 
 <div class="aviso"><b>Advertencia de comparabilidad.</b> Los tableros de las dos vueltas del segundo laboratorio cubren ventanas temporales distintas, de tres horas y de veinticuatro horas, porque la cadena de indexación se puso en marcha entre una captura y la otra. La comparación entre ambos paneles se apoya por tanto en la tendencia y no en la igualdad de los totales, de manera que el volumen de tráfico se lea junto con la cobertura y no como un indicador independiente.</div>
+
+<h4>El antes y después de cada prototipo por resultado</h4>
+
+<p class="prosa">El Prototipo 1 se mide una sola vez, porque su objetivo de diseño consiste en comprobar que cada componente del sistema opera por separado antes de medir su efecto en conjunto, de manera que su estado inicial no admite una segunda medición propia. Su estado final se verifica en el segundo laboratorio, porque allí se aplican las tres correcciones que sus tres lecciones originan, de manera que la comparación entre los dos prototipos se resuelve por el ciclo de la metodología y no por una repetición del ejercicio en el primer laboratorio.</p>
+
+<p class="prosa">La Tabla 7 presenta ese ciclo para el primer prototipo y la Tabla 8 lo completa para el segundo, de manera que cada laboratorio exponga su momento inicial, su momento final y el cambio que sostiene esa lectura. Esa salvedad acota la lectura de la comparación, porque el estado final del primer prototipo se observa en otro laboratorio y con una campaña de mayor cobertura, de manera que la diferencia entre los dos momentos sea atribuible a la corrección del instrumental y no al cambio de escenario. La comparación del Prototipo 2 no arrastra esa salvedad, porque sus dos vueltas comparten el mismo señuelo, la misma campaña de diez escenarios y el mismo instrumental de custodia, de manera que la variación se atribuya a las once correcciones de instrumental y a las tres mitigaciones documentadas.</p>
+
+<p class="lbl tl">Tabla 7</p>
+<p class="rot">Antes y después del primer prototipo según los indicadores verificados en los dos laboratorios</p>
+<table>
+<thead><tr><th>Indicador</th><th class="n">Momento inicial</th><th class="n">Momento final verificado</th><th>Qué cambió</th></tr></thead>
+<tbody>
+<tr><td>Escenarios con tiempo de detección registrado</td><td class="n">9 de 10</td><td class="n">10 de 10</td><td>El escenario de exfiltración por nombres alcanza medición con el sensor de red</td></tr>
+<tr><td>Técnicas de la campaña con fuente de detección</td><td class="n">10 de 10</td><td class="n">10 de 10</td><td>Sin variación, la campaña conserva las diez técnicas con fuente</td></tr>
+<tr><td>Tácticas con fuente de detección</td><td class="n">6 de 6</td><td class="n">6 de 6</td><td>Sin variación, las seis tácticas conservan su fuente</td></tr>
+<tr><td>Escenarios con detección inferior a 1 s</td><td class="n">5 de 9</td><td class="n">7 de 10</td><td>La atribución instrumentada alcanza valores subsegundo en siete escenarios</td></tr>
+<tr><td>Tiempo medio de detección</td><td class="n">41,598 s sobre 9 mediciones</td><td class="n">2,0219 s sobre 10 mediciones</td><td>El promedio baja junto con la ampliación del conjunto medido</td></tr>
+<tr><td>Detección mínima</td><td class="n">0,141 s</td><td class="n">0,000 s</td><td>El mínimo llega a cero por dos detecciones en el instante de arranque</td></tr>
+<tr><td>Percentil 95 del tiempo de detección</td><td class="na">No declarado</td><td class="n">9,266 s</td><td>El primer reporte no declara el percentil, de manera que la comparación arranca en el segundo laboratorio</td></tr>
+<tr><td>Lecciones aprendidas registradas y resueltas</td><td class="n">3</td><td class="n">14 de 14</td><td>Las tres lecciones originan las reparaciones que el segundo laboratorio aplica</td></tr>
+<tr><td>Fases de ISO/IEC 27035 sustentadas</td><td class="n">5 de 5</td><td class="n">1 de 5</td><td>La lectura cambia de fuente, porque el verificador automático confirma una sola fase</td></tr>
+<tr><td>Archivos de evidencia con huella verificada</td><td class="n">68</td><td class="n">91</td><td>El segundo laboratorio captura veintitrés archivos adicionales</td></tr>
+<tr><td>Calidad de la evidencia verificada</td><td class="n">100 de 100</td><td class="n">100 de 100</td><td>Sin variación, la custodia mantiene la integridad verificada</td></tr>
+</tbody>
+</table>
+<div class="note"><i>Nota.</i> El momento inicial del primer prototipo recoge la única ejecución disponible en el TaxFisco Research Lab, y el momento final verificado corresponde a la medición final del segundo laboratorio, en la que se aplican las correcciones que las tres lecciones de la primera campaña originan. La fila de correspondencia normativa cambia de fuente, porque el valor de cinco de cinco procede de la revisión manual de correspondencia del primer laboratorio y el valor de una de cinco del verificador automático que los tres momentos comparten. Los once indicadores reproducen los de la Tabla 6 con su denominador declarado.</div>
+
+<p class="lbl tl">Tabla 8</p>
+<p class="rot">Antes y después del segundo prototipo según los indicadores verificados en sus dos vueltas</p>
+<table>
+<thead><tr><th>Indicador</th><th class="n">Momento inicial</th><th class="n">Momento final</th><th>Qué cambió</th></tr></thead>
+<tbody>
+<tr><td>Escenarios con tiempo de detección registrado</td><td class="n">4 de 10</td><td class="n">10 de 10</td><td>El instrumental de atribución reparado alcanza los seis escenarios sin medición</td></tr>
+<tr><td>Técnicas de la campaña con fuente de detección</td><td class="n">4 de 10</td><td class="n">10 de 10</td><td>Seis técnicas que carecían de fuente la obtienen con el instrumental reparado</td></tr>
+<tr><td>Tácticas con fuente de detección</td><td class="n">3 de 6</td><td class="n">6 de 6</td><td>Las tres tácticas restantes alcanzan fuente con el instrumental reparado</td></tr>
+<tr><td>Escenarios con detección inferior a 1 s</td><td class="n">0 de 10</td><td class="n">7 de 10</td><td>La atribución instrumentada sitúa siete escenarios por debajo del segundo</td></tr>
+<tr><td>Tiempo medio de detección</td><td class="n">5,2155 s sobre 4 mediciones</td><td class="n">2,0219 s sobre 10 mediciones</td><td>El promedio baja al mismo tiempo que se amplía el conjunto medido</td></tr>
+<tr><td>Detección mínima</td><td class="n">1,063 s</td><td class="n">0,000 s</td><td>El mínimo llega a cero por dos detecciones en el instante de arranque</td></tr>
+<tr><td>Percentil 95 del tiempo de detección</td><td class="n">14,583 s</td><td class="n">9,266 s</td><td>El percentil 95 se reduce en 5,317 segundos</td></tr>
+<tr><td>Lecciones aprendidas registradas y resueltas</td><td class="n">7 de 7</td><td class="n">14 de 14</td><td>Las siete lecciones de la vuelta inicial se cierran y la medición final registra otras siete</td></tr>
+<tr><td>Fases de ISO/IEC 27035 sustentadas</td><td class="n">1 de 5</td><td class="n">1 de 5</td><td>Sin variación, el verificador automático confirma una sola fase</td></tr>
+<tr><td>Archivos de evidencia con huella verificada</td><td class="n">91</td><td class="n">91</td><td>Sin variación, la campaña conserva el volumen de custodia</td></tr>
+<tr><td>Calidad de la evidencia verificada</td><td class="n">100 de 100</td><td class="n">100 de 100</td><td>Sin variación, la custodia mantiene la integridad verificada</td></tr>
+</tbody>
+</table>
+<div class="note"><i>Nota.</i> Las dos vueltas comparten el mismo señuelo, la misma campaña de diez escenarios y el mismo instrumental de custodia, de manera que la variación de cada fila sea atribuible a las correcciones aplicadas y no a un cambio en la composición de la campaña. Los once indicadores reproducen los de la Tabla 6 con su denominador declarado.</div>
 </section>
 
 <!-- ══════════ 4.4.5 ══════════ -->
@@ -1589,7 +1633,7 @@ lecciones se declaran en la Tabla 2 con su propio denominador.</figcaption>
 <figcaption><i>Figura 17.</i> Elementos que cada indicador mide efectivamente en los tres momentos del estudio, con el denominador declarado al pie de cada grupo. El eje vertical llega a catorce elementos porque el registro de lecciones es el único indicador cuyo denominador crece con la aplicación. Los tres primeros grupos comparten una escala común de diez, seis o diez elementos, de manera que sus alturas sean comparables dentro del eje, mientras que la comparación entre grupos se limita a la proporción que cada uno alcanza sobre su propio denominador.</figcaption>
 </figure>
 
-<p class="prosa">Tres precisiones condicionan la lectura de estos resultados porque cada una limita la fuerza con la que cabe sostener una afirmación concreta sobre los tiempos, la cobertura y la correspondencia normativa. La primera se refiere a los tiempos, cuya mejora se lee junto con el agregado de instrumentación del segundo laboratorio y no como el efecto aislado de una modificación puntual del primer prototipo. La segunda se refiere a la comparación entre momentos, porque cada uno se apoya en un número distinto de elementos medidos, como muestra la Figura 17, en la que los escenarios con medición son nueve, cuatro y diez. La tercera se refiere a la correspondencia normativa, porque el verificador automático de ISO/IEC 27035-1 de 2023 confirma una sola de las cinco fases y la lectura completa de esa columna proviene de una revisión manual.</p>
+<p class="prosa">Tres precisiones condicionan la lectura de estos resultados porque cada una limita la fuerza con la que cabe sostener una afirmación concreta sobre los tiempos, la cobertura y la correspondencia normativa. La primera se refiere a los tiempos, cuya mejora se lee junto con el agregado de instrumentación del segundo laboratorio y no como el efecto aislado de una modificación puntual del primer prototipo. La segunda se refiere a la comparación entre momentos, porque cada uno se apoya en un número distinto de elementos medidos, como muestra la Figura 17, en la que los escenarios con medición son nueve, cuatro y diez. La tercera se refiere a la correspondencia normativa, porque el verificador automático de ISO/IEC 27035-1 de 2023 confirma una sola de las cinco fases en los tres momentos medidos, mientras que la revisión manual de correspondencia del primer laboratorio documenta evidencia para las cinco y sostiene la lectura completa de esa columna.</p>
 
 <p class="prosa">Los tiempos de respuesta, contención y cierre no forman parte de la medición ejecutada, porque el reporte de indicadores del primer prototipo los declara como no medidos y porque el ejercicio solo produce marcas temporales del primer evento, sin captura de los casos ni de las respuestas. Esa ausencia limita la lectura del ciclo completo de gestión de incidentes a la sola fase de detección, de manera que los resultados sostengan una afirmación sobre velocidad de registro y no sobre el tiempo total de resolución de un incidente. Dentro de ese alcance, la medición final del segundo laboratorio cubre los diez escenarios de la campaña, mantiene la calidad de la evidencia en 100 sobre 100 puntos y documenta catorce lecciones aprendidas. Leídas en conjunto, las cifras permiten afirmar que la metodología amplía la cobertura de la campaña y sostiene la custodia de la evidencia en un entorno productivo real, con el alcance y los límites que se han expuesto en cada apartado.</p>
 </section>

@@ -104,8 +104,8 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
   <p>Resultados de la metodología Honeypot aplicada en dos laboratorios. El
      primer laboratorio opera sobre una entidad homologada del rubro de servicios
      fiscales digitales y el segundo sobre el contexto del Servicio de Impuestos
-     Nacionales. El tablero reúne la línea base institucional, la comparación
-     antes y después y los resultados medidos de cada aplicación.</p>
+     Nacionales. El tablero reúne el diagnóstico institucional previo y los
+     resultados medidos de cada aplicación en los dos laboratorios.</p>
   <div class="badges">
     <span class="badge">2 prototipos</span>
     <span class="badge">5 fases</span>
@@ -122,8 +122,7 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
 <nav><strong>Contenido</strong>
 <ol>
   <li><a href="#lectura">Cómo leer este tablero</a></li>
-  <li><a href="#base">Línea base institucional</a></li>
-  <li><a href="#antes">Antes y después cuantificado</a></li>
+  <li><a href="#base">Diagnóstico institucional previo</a></li>
   <li><a href="#p1">Prototipo 1 · Laboratorio TaxFisco</a></li>
   <li><a href="#puente">Prototipo 1 · El puente entre laboratorios</a></li>
   <li><a href="#p2">Prototipo 2 · Las dos vueltas del laboratorio SIN</a></li>
@@ -142,21 +141,17 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
 <section id="lectura">
   <h2>A. Cómo leer este tablero</h2>
   <p class="sub">Antes de entrar en las cifras conviene declarar de dónde sale
-     cada una, porque los cuatro bloques de datos que aparecen aquí no miden lo
+     cada una, porque los tres bloques de datos que aparecen aquí no miden lo
      mismo y no admiten una lectura sobre un mismo eje. El tablero los presenta
      por separado y los enlaza por la metodología, que es la misma en los
-     cuatro.</p>
+     tres.</p>
   <table>
     <thead><tr><th>Bloque</th><th>Qué mide</th><th>Archivo de origen</th><th>Naturaleza del dato</th></tr></thead>
     <tbody>
-      <tr><td><strong>Línea base institucional</strong></td>
+      <tr><td><strong>Diagnóstico institucional previo</strong></td>
           <td>Madurez declarada por la organización antes de la intervención</td>
-          <td><code>Matriz_pre_post_SIN20_Libelula10.xlsx</code>, hoja «Resultados pretest»</td>
+          <td><code>2026-06-25_Calculo_Alfa_Cronbach_Encuesta_v05.xlsx</code>, hoja «Resultados de madurez»</td>
           <td>Medida sobre treinta respondentes reales. Alfa de Cronbach 0,868989.</td></tr>
-      <tr><td><strong>Resultado posterior</strong></td>
-          <td>Madurez registrada en el libro de resultados de la medición posterior</td>
-          <td><code>Matriz_pre_post_SIN20_Libelula10.xlsx</code>, hoja «Resultados postest»</td>
-          <td>Resultado global del libro de resultados, de naturaleza declarada</td></tr>
       <tr><td><strong>Prototipo 1</strong></td>
           <td>Ejecución instrumentada en el laboratorio TaxFisco</td>
           <td><code>evidencias/07-metricas/</code> del repositorio</td>
@@ -167,13 +162,13 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
           <td>Verificada sobre archivos de evidencia</td></tr>
     </tbody>
   </table>
-  <div class="note">Los dos primeros bloques responden a la pregunta de cuánto
-     mide la organización. Solo ellos son comparables entre sí. Los dos
-     últimos responden a la pregunta de qué detecta y ejecuta el laboratorio, de
-     manera que no comparten escala con los anteriores. El tablero no los
-     superpone, porque ese contraste produciría una lectura engañosa. La regla que
-     enlaza las dos columnas es la verificación escenario por escenario dentro de
-     cada laboratorio.</div>
+  <div class="note">Los tres bloques no comparten escala, de manera que la relación
+     entre ellos se resuelve por función y no por magnitud. El bloque institucional
+     recoge el diagnóstico previo, con su matriz real de treinta respondentes y su
+     alfa de Cronbach, mientras que los dos bloques de laboratorio responden a la
+     pregunta de qué detecta y qué ejecuta el señuelo. El tablero no los superpone,
+     porque ese contraste produciría una lectura engañosa, y la regla que los
+     enlaza es la verificación escenario por escenario dentro de cada laboratorio.</div>
   <h3 style="margin-top:22px">Las fuentes de resultado que declara el tablero</h3>
   <table>
     <thead><tr><th>Fuente</th><th>Resultado</th><th>Naturaleza del dato</th>
@@ -191,35 +186,22 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
         <td class="n">Percentil 95 de 9,266 s</td>
         <td>Ejecución verificada sobre archivos de evidencia</td>
         <td>Reporte de indicadores de la segunda iteración</td></tr>
-      <tr><td>Libro oficial de resultados del Servicio de Impuestos Nacionales</td>
-        <td class="n"><span class="chip cg">99,09 %</span></td>
-        <td>Cálculo del libro oficial sobre la matriz posterior de treinta participantes</td>
-        <td>Libro oficial, hoja «Resultados postest»</td></tr>
     </tbody>
   </table>
-  <div class="note">Las dos primeras filas proceden de la ejecución instrumentada en
-     los laboratorios y las dos últimas del libro oficial de resultados. No
-     comparten escala ni unidad de medida, de manera que la relación entre ellas se
-     resuelve por función y no por magnitud. El 99,09 % corresponde al cálculo que
-     el libro oficial practica sobre la matriz posterior de treinta participantes,
-     que aporta el tamaño de muestra, el desglose de los catorce instrumentos y la
-     memoria de cálculo.</div>
+  <div class="note">Las tres filas proceden de la ejecución instrumentada en los dos
+     laboratorios. Cada una declara el archivo de evidencia que la respalda, de
+     manera que el lector pueda reabrir el dato desde su origen y comprobar la
+     cifra sin intermediarios.</div>
 </section>
 
 <!-- B. LÍNEA BASE -->
 <section id="base">
-  <h2>B. Línea base institucional</h2>
+  <h2>B. Diagnóstico institucional previo</h2>
   <p class="sub">La medición inicial recogió la madurez declarada por la
      organización antes de la intervención. Treinta personas responden el
      instrumento de catorce subdimensiones con cuarenta y dos reactivos. El
      resultado global se sitúa en el nivel Gestionado de la escala de cortes.</p>
   <div class="kpis" style="grid-template-columns:repeat(auto-fit,minmax(176px,1fr))">
-    <div class="kpi"><div class="lab">Madurez global inicial</div>
-      <div class="val">52,70 %</div>
-      <div class="dlt">Nivel Gestionado</div></div>
-    <div class="kpi g"><div class="lab">Madurez global final</div>
-      <div class="val">99,09 %</div>
-      <div class="dlt">Nivel Optimizado</div></div>
     <div class="kpi"><div class="lab">Respondentes</div>
       <div class="val">30</div>
       <div class="dlt">Veinte del SIN y diez de Libélula</div></div>
@@ -234,88 +216,19 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
   <h3 style="margin-top:22px">Los catorce instrumentos de la línea base</h3>
   <table>
     <thead><tr><th>Grupo</th><th class="n">Instr.</th><th>Subdimensión</th>
-      <th class="n">Reactivos</th><th class="n">Línea base</th>
-      <th class="n">Resultado posterior</th><th class="n">Mejora</th><th>Nivel</th></tr></thead>
+      <th class="n">Reactivos</th><th class="n">Línea base</th><th>Nivel</th></tr></thead>
     <tbody id="tb-base"></tbody>
     <tfoot><tr><td>Global</td><td class="n">14</td><td>Madurez de los catorce instrumentos</td>
-      <td class="n">42</td><td class="n">52,70 %</td><td class="n">99,09 %</td>
-      <td class="n up">+46,38 pp</td><td>Los catorce en Optimizado</td></tr></tfoot>
+      <td class="n">42</td><td class="n">52,70 %</td><td>Gestionado</td></tr></tfoot>
   </table>
   <div class="note">Los cuatro grupos temáticos se sitúan en el mismo nivel y con
      valores próximos, de manera que la línea base no presenta un punto débil
      aislado sino una distribución homogénea. El instrumento con menor
-     cumplimiento es la retención y el acceso a evidencias, con 47,92 %. El
-     mayor es la respuesta y los tiempos de atención, con 58,06 %. La columna de
-     mejora mide la distancia en puntos porcentuales entre el valor posterior y el
-     valor de línea base de cada instrumento. Los catorce
-     instrumentos terminan la medición posterior en nivel Optimizado, de manera
-     que la columna de mejora crece en las catorce filas sin una sola excepción.
-     Fuente: hojas «Resultados pretest» y «Resultados postest» del libro de
-     resultados.</div>
-</section>
-
-<!-- C. ANTES Y DESPUÉS -->
-<section id="antes">
-  <h2>C. Antes y después cuantificado</h2>
-  <p class="sub">La comparación recoge los catorce instrumentos antes y después
-     de la intervención. La variación global alcanza 46,38 puntos
-     porcentuales y todos los instrumentos suben de nivel, de manera que el
-     cambio no depende de un subconjunto del instrumento.</p>
-  <div class="kpis">
-    <div class="kpi"><div class="lab">Madurez inicial</div>
-      <div class="val">52,70 %</div>
-      <div class="dlt">Nivel Gestionado</div></div>
-    <div class="kpi g"><div class="lab">Madurez posterior</div>
-      <div class="val">99,09 %</div>
-      <div class="dlt">Nivel Optimizado</div></div>
-    <div class="kpi g"><div class="lab">Variación global</div>
-      <div class="val">+46,38</div>
-      <div class="dlt">Puntos porcentuales, diferencia entre las dos medias</div></div>
-    <div class="kpi g"><div class="lab">Instrumentos que suben de nivel</div>
-      <div class="val">14 de 14</div>
-      <div class="dlt">Ninguno se mantiene en su nivel inicial</div></div>
-  </div>
-  <h3 style="margin-top:22px">Variación por instrumento</h3>
-  <div id="ch-instrumentos"></div>
-  <p class="cap">Cada barra compara el mismo instrumento antes y después. La cifra de
-     la derecha es la mejora en puntos porcentuales, calculada sobre los porcentajes
-     exactos que declara el libro de resultados, antes de redondearlos.</p>
-  <h3 style="margin-top:22px">Variación por grupo temático</h3>
-  <div id="ch-grupos"></div>
-  <table style="margin-top:18px">
-    <thead><tr><th>Grupo</th><th>Denominación</th><th>Instrumentos</th>
-      <th class="n">Antes</th><th class="n">Después</th><th class="n">Variación</th><th>Nivel final</th></tr></thead>
-    <tbody>
-      <tr><td>G1</td><td>Gestión de incidentes</td><td class="n">1, 2, 3, 4</td><td class="n">53,18 %</td><td class="n">98,89 %</td><td class="n"><span class="chip cg">+45,71</span></td><td><span class="chip cg">Optimizado</span></td></tr>
-      <tr><td>G2</td><td>Evidencias y respaldo</td><td class="n">5, 6, 7</td><td class="n">54,49 %</td><td class="n">99,17 %</td><td class="n"><span class="chip cg">+44,68</span></td><td><span class="chip cg">Optimizado</span></td></tr>
-      <tr><td>G3</td><td>Seguridad y controles técnicos</td><td class="n">8, 9, 10, 11</td><td class="n">51,53 %</td><td class="n">99,17 %</td><td class="n"><span class="chip cg">+47,64</span></td><td><span class="chip cg">Optimizado</span></td></tr>
-      <tr><td>G4</td><td>Gestión organizacional y mejora</td><td class="n">12, 13, 14</td><td class="n">51,85 %</td><td class="n">99,17 %</td><td class="n"><span class="chip cg">+47,31</span></td><td><span class="chip cg">Optimizado</span></td></tr>
-    </tbody>
-  </table>
-  <div class="note">La variación mayor corresponde a la capacitación y la
-     cobertura, con 51,39 puntos porcentuales. La menor corresponde a los respaldos y
-     la restauración de evidencias, con 40,83. Ningún instrumento baja, de manera que
-     la distancia entre el antes y el después no depende de qué indicador se
-     elija para contarla.</div>
-  <div class="note">La cifra de 99,09 % procede del libro de resultados de la
-     medición posterior y el tablero la presenta con ese carácter. El libro no
-     permite auditar el desglose por participante, porque su matriz posterior
-     concentra el noventa y seis por ciento de las respuestas en el valor superior
-     de la escala y veintiocho de los treinta participantes alcanzan el mismo
-     puntaje. El desglose por instrumento sí queda declarado, y el gráfico
-     siguiente lo muestra. La línea base de 52,70 %, en cambio, se calcula sobre
-     una matriz de treinta respondentes con distribución natural de cero a cuatro
-     y con un alfa de 0,868989.</div>
-  <h3 style="margin-top:22px">Los catorce instrumentos en la matriz posterior</h3>
-  <div id="ch-matriz-postest"></div>
-  <div class="note">Cada fila representa un instrumento del instrumento de
-     madurez. El punto verde sitúa el porcentaje que el libro oficial le atribuye
-     en la matriz posterior de treinta participantes, mientras la línea vertical
-     marca la madurez global de 99,09 % que resulta del promedio de los catorce.
-     El carril tiene escala propia y declarada, entre 98 y 99,5 %, de manera que
-     los catorce valores se leen uno a uno sin comprimirse en un mismo punto. El
-     número que identifica cada instrumento tiene su denominación completa en la
-     tabla de la línea base institucional.</div>
+     cumplimiento es la retención y el acceso a evidencias, con 47,92 %, y el
+     mayor es el respaldo y la restauración de evidencias, con 58,33 %. La columna
+     de nivel traduce cada porcentaje a la banda que le corresponde en la escala
+     de cortes, de manera que se lea el punto de partida sin alterar el
+     diagnóstico. Fuente: hoja «Resultados de madurez» del libro de la encuesta.</div>
 </section>
 
 <!-- D. PROTOTIPO 1 -->
@@ -879,28 +792,28 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
 <!-- M. SÍNTESIS -->
 <section id="sintesis">
   <h2>O. Síntesis de los resultados</h2>
-  <p class="sub">Los tres planos de resultado se leen juntos sin superponerse.
-     La organización pasa de Gestionado a Optimizado, el primer laboratorio
-     verifica que la cadena opera y el segundo comprueba que la metodología
-     corrige los vacíos que el primero dejó ver.</p>
+  <p class="sub">El primer plano de resultado recoge la madurez que la organización
+     declaró antes de la intervención, con una muestra real de treinta respondentes.
+     El segundo plano verifica, mediante la ejecución instrumentada de los dos
+     laboratorios, qué detecta el señuelo y qué corrige la metodología aplicada
+     sobre el mismo activo.</p>
   <div id="ch-sintesis"></div>
   <table style="margin-top:18px">
     <thead><tr><th>Plano</th><th>Pregunta que responde</th><th>Resultado</th><th>Fuente</th></tr></thead>
     <tbody>
-      <tr><td>Madurez organizacional</td><td>Cuánto mide la organización</td>
-          <td class="n">52,70 % a 99,09 %</td><td>Libro de resultados</td></tr>
-      <tr><td>Verificación de la cadena</td><td>Si cada componente opera por separado</td>
-          <td class="n">9 de 10 escenarios medidos</td><td>Reporte de indicadores del Prototipo 1</td></tr>
-      <tr><td>Mejora del instrumental</td><td>Qué produce la corrección aplicada</td>
-          <td class="n">4 de 10 a 10 de 10</td><td>Reportes de indicadores del Prototipo 2</td></tr>
+      <tr><td>Madurez institucional previa</td><td>Cuánto mide la organización antes de la intervención</td>
+          <td class="n">52,70 %</td><td>Libro de la encuesta</td></tr>
+      <tr><td>Verificación de la cadena</td><td>Qué detecta el señuelo y qué corrige la metodología</td>
+          <td class="n">4 de 10 a 10 de 10 escenarios medidos</td><td>Reportes de indicadores del Prototipo 2</td></tr>
     </tbody>
   </table>
-  <div class="note">La metodología aporta en los tres planos a la vez. Sube la
-     madurez declarada de la organización, verifica que la cadena de detección
-     opera por separado y amplía la cobertura de medición de cuatro a diez
-     escenarios en el segundo laboratorio. El primer laboratorio cumple la función
-     de línea de base técnica, porque muestra qué falta antes de que el segundo
-     laboratorio lo resuelva.</div>
+  <div class="note">Los dos planos se apoyan en datos de naturaleza distinta, porque el
+     primero proviene de una encuesta aplicada a treinta personas y el segundo de una
+     ejecución instrumentada sobre el señuelo. La metodología aporta en el segundo
+     plano, ya que amplía la cobertura de medición de cuatro a diez escenarios en el
+     segundo laboratorio y cierra las catorce lecciones registradas. El primer
+     laboratorio cumple la función de línea de base técnica, porque muestra qué falta
+     antes de que el segundo laboratorio lo resuelva.</div>
 </section>
 
 <div class="foot">
@@ -910,21 +823,17 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
      dos prototipos.</p>
   <p>Todas las cifras proceden de un archivo del repositorio o del libro de
      resultados entregado y declaran su origen en las rutas siguientes.
-     <code>Matriz_pre_post_SIN20_Libelula10.xlsx</code> con sus hojas «Resultados
-     pretest», «Resultados postest» y «Control de completitud»,
+     <code>2026-06-25_Calculo_Alfa_Cronbach_Encuesta_v05.xlsx</code> con sus hojas
+     «Concepto», «Cálculo», «Asignación por rol» y «Resultados de madurez»,
      <code>evidencias/07-metricas/07_kpi-report.json</code>,
      <code>evidencias/07-metricas/08_mitre-coverage.json</code>,
      <code>evidencias/03-aislamiento-red/02_subnets.txt</code>,
      <code>evidencias/v2.0-it1/07-metricas/kpi_report.json</code>,
      <code>evidencias/v2.1-it2/07-metricas/kpi_report.json</code>,
      <code>evidencias/lecciones-aprendidas.md</code> y las tres capturas del
-     apartado de evidencia visual. La mediana de 0,826 segundos y la variación de
-     46,38 puntos porcentuales son cálculos propios sobre valores declarados. La
-     variación de 46,38 resulta de restar las dos medias exactas que declara el
-     libro, 99,0873 menos 52,7034, de manera que la diferencia que aparece al
-     restar los porcentajes ya redondeados, 99,09 menos 52,70, es de un centésimo
-     y proviene solo del redondeo de la presentación. Ningún
-     valor fue estimado ni completado por analogía.</p>
+     apartado de evidencia visual. La mediana de 0,826 segundos es un cálculo
+     propio sobre los tiempos que declara cada reporte de indicadores. Ningún valor
+     fue estimado ni completado por analogía.</p>
   <p>El tablero no contiene comprobación de hipótesis, porque el capítulo presenta
      resultados y su lectura analítica, no inferencia estadística.</p>
 </div>
@@ -937,20 +846,20 @@ const SVG=(w,h)=>`<svg viewBox="0 0 ${w} ${h}" width="100%" height="${h}"
   style="display:block;font-family:'Segoe UI',Calibri,sans-serif">`;
 const T=(x,y,t,o={})=>`<text x="${x}" y="${y}" fill="${o.f||C.navy}" font-size="${o.s||12}" font-weight="${o.b||400}" text-anchor="${o.a||'start'}">${t}</text>`;
 
-const BASE=[["G1",1,"Detección y registro de eventos",4,48.541666666666664,98.333333333333329],
-    ["G1",2,"Clasificación y evidencia de incidentes",3,56.944444444444443,98.888888888888886],
-    ["G1",3,"Respuesta y tiempos de atención",3,58.055555555555557,99.166666666666671],
-    ["G1",4,"Lecciones aprendidas y mejora",3,49.166666666666664,99.166666666666671],
-    ["G2",5,"Integridad y custodia de evidencias",3,57.222222222222221,99.166666666666671],
-    ["G2",6,"Respaldos y restauración de evidencias",3,58.333333333333336,99.166666666666671],
-    ["G2",7,"Retención y acceso a evidencias",2,47.916666666666671,99.166666666666671],
-    ["G3",8,"Accesos y mínimos privilegios",3,49.722222222222221,99.166666666666671],
-    ["G3",9,"Desarrollo seguro y validaciones",3,53.055555555555557,99.166666666666671],
-    ["G3",10,"Gestión de vulnerabilidades",3,50.555555555555557,99.166666666666671],
-    ["G3",11,"Integridad y trazabilidad de registros",3,52.777777777777779,99.166666666666671],
-    ["G4",12,"Gestión de riesgos",3,53.888888888888886,99.166666666666671],
-    ["G4",13,"Capacitación y cobertura",3,47.777777777777779,99.166666666666671],
-    ["G4",14,"Métricas y mejora continua",3,53.888888888888886,99.166666666666671]];
+const BASE=[["G1",1,"Detección y registro de eventos",4,48.541666666666664],
+    ["G1",2,"Clasificación y evidencia de incidentes",3,56.944444444444443],
+    ["G1",3,"Respuesta y tiempos de atención",3,58.055555555555557],
+    ["G1",4,"Lecciones aprendidas y mejora",3,49.166666666666664],
+    ["G2",5,"Integridad y custodia de evidencias",3,57.222222222222221],
+    ["G2",6,"Respaldos y restauración de evidencias",3,58.333333333333336],
+    ["G2",7,"Retención y acceso a evidencias",2,47.916666666666671],
+    ["G3",8,"Accesos y mínimos privilegios",3,49.722222222222221],
+    ["G3",9,"Desarrollo seguro y validaciones",3,53.055555555555557],
+    ["G3",10,"Gestión de vulnerabilidades",3,50.555555555555557],
+    ["G3",11,"Integridad y trazabilidad de registros",3,52.777777777777779],
+    ["G4",12,"Gestión de riesgos",3,53.888888888888886],
+    ["G4",13,"Capacitación y cobertura",3,47.777777777777779],
+    ["G4",14,"Métricas y mejora continua",3,53.888888888888886]];
 const NV=v=>v>=76?"Optimizado":(v>=51?"Gestionado":(v>=26?"Básico":"Inicial"));
 const F2=v=>v.toFixed(2).replace(".",",");
 
@@ -967,7 +876,7 @@ const F2=v=>v.toFixed(2).replace(".",",");
     s+=T(cx,mt+52,c[2],{a:"middle",s:11.5,b:600,f:opt?"#FFFFFF":C.mute});
     s+=T(cx,mt+68,c[0]+" a "+c[1]+" %",{a:"middle",s:10,f:opt?"#FFFFFF":C.mute});
   });
-  [[52.70,"Línea base","Gestionado",C.navy3],[99.09,"Resultado posterior","Optimizado",C.green]]
+  [[52.70,"Línea base","Gestionado",C.navy3]]
     .forEach(d=>{
       s+=`<line x1="${sb(d[0])}" y1="${mt-8}" x2="${sb(d[0])}" y2="${mt+94}"
         stroke="${d[0]>=75?"#FFFFFF":d[3]}" stroke-width="2.4"/>`;
@@ -975,126 +884,18 @@ const F2=v=>v.toFixed(2).replace(".",",");
         {a:"middle",s:13,b:700,f:d[3]});
     });
   s+=T(ml,mt+128,"Madurez global declarada por la organización",{s:12,b:600,f:C.mute});
-  s+=T(ml+330,mt+128,"Variación de 46,38 puntos porcentuales",{s:12,b:700,f:C.green});
   s+=T(ml,H-14,"Escala de cortes de la ficha técnica · muestra de 30 respondentes · alfa de Cronbach 0,868989",
     {s:11,f:C.mute});
   document.getElementById("ch-nivel").innerHTML=s+"</svg>";
 
   document.getElementById("tb-base").innerHTML=BASE.map((r,i)=>{
-    const ini=NV(r[4]), fin=NV(r[5]), d=r[5]-r[4];
+    const nivel=NV(r[4]);
     const chip=v=>v==="Optimizado"?"cg":(v==="Gestionado"?"cb2":"cb2");
     return `<tr class="${i===0||r[0]!==BASE[i-1][0]?"sep":""}">`+
       `<td>${r[0]}</td><td class="n">${r[1]}</td><td>${r[2]}</td>`+
-      `<td class="n">${r[3]}</td><td class="n">${F2(r[4])} %</td>`+
-      `<td class="n"><strong>${F2(r[5])} %</strong></td>`+
-      `<td class="n up">+${F2(d)} pp</td>`+
-      `<td class="lv"><span class="chip ${chip(ini)}">${ini}</span> → `+
-      `<span class="chip cg">${fin}</span></td></tr>`;
+      `<td class="n">${r[3]}</td><td class="n"><strong>${F2(r[4])} %</strong></td>`+
+      `<td class="lv"><span class="chip ${chip(nivel)}">${nivel}</span></td></tr>`;
   }).join("");
-})();
-
-/* ---------- C. Variación por instrumento ---------- */
-(function(){
-  const d=BASE.map(r=>[r[1],r[4],r[5]]);
-  const W=1040,rh=42,ml=70,mr=118,H=d.length*rh+70;
-  const max=100,pw=W-ml-mr;
-  let s=SVG(W,H);
-  for(let g=0;g<=100;g+=25){
-    const x=ml+g/max*pw;
-    s+=`<line x1="${x}" y1="4" x2="${x}" y2="${H-60}" stroke="${C.line}" stroke-dasharray="3 3"/>`;
-    s+=T(x,H-46,g+" %",{a:"middle",s:10.5,f:C.mute});
-  }
-  d.forEach((r,i)=>{
-    const y=10+i*rh, w1=r[1]/max*pw, w2=r[2]/max*pw;
-    s+=T(ml-12,y+16,"I"+r[0],{a:"end",s:12,b:700,f:C.mute});
-    s+=`<rect x="${ml}" y="${y}" width="${w1}" height="13" fill="${C.navy3}" rx="2"/>`;
-    s+=`<rect x="${ml}" y="${y+16}" width="${w2}" height="13" fill="${C.green}" rx="2"/>`;
-    s+=T(ml+w2+6,y+26,F2(r[2])+" %",{s:10.5,b:700,f:C.green});
-    s+=T(W-6,y+26,"+"+F2(r[2]-r[1]),{a:"end",s:11.5,b:700,f:C.green});
-  });
-  s+=`<rect x="${ml}" y="${H-26}" width="11" height="11" fill="${C.navy3}" rx="2"/>`;
-  s+=T(ml+16,H-16,"Antes",{s:11,f:C.mute});
-  s+=`<rect x="${ml+82}" y="${H-26}" width="11" height="11" fill="${C.green}" rx="2"/>`;
-  s+=T(ml+98,H-16,"Después",{s:11,f:C.mute});
-  s+=T(W-6,H-16,"Mejora en puntos porcentuales",{a:"end",s:11,b:700,f:C.green});
-  document.getElementById("ch-instrumentos").innerHTML=s+"</svg>";
-
-  const g=[["G1","Gestión de incidentes",53.177083333333336,98.8888888888889],
-    ["G2","Evidencias y respaldo",54.49074074074074,99.166666666666671],
-    ["G3","Seguridad y controles",51.527777777777771,99.166666666666671],
-    ["G4","Gestión organizacional",51.851851851851848,99.166666666666671]];
-  const W2=1040,H2=290,ml2=230,mt=26,mb=54,pw2=W2-ml2-90;
-  const max2=100;
-  let s2=SVG(W2,H2);
-  for(let k=0;k<=100;k+=25){
-    const x=ml2+k/max2*pw2;
-    s2+=`<line x1="${x}" y1="${mt}" x2="${x}" y2="${H2-mb+6}" stroke="${C.line}" stroke-dasharray="3 3"/>`;
-    s2+=T(x,H2-16,k+" %",{a:"middle",s:10.5,f:C.mute});
-  }
-  g.forEach((r,i)=>{
-    const y=mt+14+i*54, w1=r[2]/max2*pw2, w2=r[3]/max2*pw2;
-    s2+=T(ml2-14,y+20,r[0]+" · "+r[1],{a:"end",s:12.5,b:600});
-    s2+=`<rect x="${ml2}" y="${y}" width="${w1}" height="17" fill="${C.navy3}" rx="2"/>`;
-    s2+=`<rect x="${ml2}" y="${y+22}" width="${w2}" height="17" fill="${C.green}" rx="2"/>`;
-    s2+=T(ml2+w2+8,y+35,r[3].toFixed(2).replace(".",",")+" %",{s:11,b:700,f:C.green});
-    s2+=T(W2-8,y+16,"+"+(r[3]-r[2]).toFixed(2).replace(".",","),
-      {a:"end",s:12.5,b:700,f:C.green});
-  });
-  s2+=`<rect x="${ml2}" y="${H2-40}" width="11" height="11" fill="${C.navy3}" rx="2"/>`;
-  s2+=T(ml2+16,H2-30,"Antes",{s:11,f:C.mute});
-  s2+=`<rect x="${ml2+82}" y="${H2-40}" width="11" height="11" fill="${C.green}" rx="2"/>`;
-  s2+=T(ml2+98,H2-30,"Después",{s:11,f:C.mute});
-  s2+=T(W2-8,H2-30,"Variación",{a:"end",s:11,b:700,f:C.green});
-  document.getElementById("ch-grupos").innerHTML=s2+"</svg>";
-})();
-
-/* ---------- C. Los catorce instrumentos en la matriz posterior ---------- */
-(function(){
-  const NOM=["Detección y registro de eventos","Clasificación y evidencia de incidentes",
-    "Respuesta y tiempos de atención","Lecciones aprendidas y mejora",
-    "Integridad y custodia de evidencias","Respaldos y restauración de evidencias",
-    "Retención y acceso a evidencias","Accesos y mínimos privilegios",
-    "Desarrollo seguro y validaciones","Gestión de vulnerabilidades",
-    "Integridad y trazabilidad de registros","Gestión de riesgos",
-    "Capacitación y cobertura","Métricas y mejora continua"];
-  const d=BASE.map(r=>[r[1],r[5]]);
-  const GLOBAL=99.09;
-  const W=1040,H=556,mt=96,rh=27;
-  const bx0=336,bx1=1000;
-  const top=74,n=d.length,bottom=mt+n*rh;
-  const sb=v=>bx0+(v-98)/1.5*(bx1-bx0);
-  let s=SVG(W,H);
-  s+=`<rect x="${bx0}" y="${top}" width="${bx1-bx0}" height="${bottom-top}"
-    fill="#EAF1F8"/>`;
-  s+=T(bx0,32,"Resultado del libro oficial",{s:14,b:700,f:C.navy});
-  s+=T(bx0,52,"matriz posterior de treinta participantes · escala de 98 a 99,5 %",
-    {s:11,f:C.mute});
-  s+=T((bx0+bx1)/2,top+16,"Optimizado",{a:"middle",s:10.5,b:700,f:C.navy3});
-  s+=`<line x1="${sb(GLOBAL)}" y1="${top-6}" x2="${sb(GLOBAL)}" y2="${bottom}"
-    stroke="${C.green}" stroke-width="2.2"/>`;
-  s+=`<circle cx="${sb(GLOBAL)}" cy="${top-14}" r="5" fill="${C.green}"/>`;
-  s+=T(sb(GLOBAL)+11,top-10,"Madurez global 99,09 %",{s:11.5,b:700,f:C.green});
-  d.forEach(function(r,i){
-    const y=mt+i*rh, v=r[1];
-    s+=`<line x1="48" y1="${y}" x2="${bx1}" y2="${y}" stroke="#EEF2F7"
-      stroke-width="1"/>`;
-    s+=T(40,y+4,"I"+r[0],{a:"end",s:11.5,b:700,f:C.mute});
-    s+=T(48,y+4,NOM[i],{s:10.5,f:C.mute});
-    s+=`<line x1="${bx0}" y1="${y}" x2="${sb(v)}" y2="${y}"
-      stroke="${C.green}" stroke-width="2.4"/>`;
-    s+=`<circle cx="${sb(v)}" cy="${y}" r="5.5" fill="${C.green}"/>`;
-    const t=F2(v)+" %";
-    s+=`<rect x="${sb(v)+7}" y="${y-9.5}" width="${t.length*7.3+6}" height="19"
-      fill="#EAF1F8"/>`;
-    s+=T(sb(v)+11,y+4,t,{s:11.5,b:700,f:C.green});
-  });
-  [[bx0,"98 %","start"],[bx1,"99,5 %","end"]].forEach(function(c){
-    s+=T(c[0],bottom+22,c[1],{a:c[2],s:11,b:600,f:C.navy});
-  });
-  s+=T(48,bottom+52,"Los catorce valores y la madurez global de 99,09 % proceden "
-    +"del libro oficial de resultados del Servicio de Impuestos Nacionales.",
-    {s:11,f:C.mute});
-  document.getElementById("ch-matriz-postest").innerHTML=s+"</svg>";
 })();
 
 /* ---------- D. Tiempo del Prototipo 1 ---------- */
@@ -1413,7 +1214,7 @@ const F2=v=>v.toFixed(2).replace(".",",");
 /* ---------- M. Síntesis ---------- */
 (function(){
   const filas=[
-    ["Madurez organizacional","52,70 %","99,09 %",46.383928571428576],
+    ["Madurez institucional previa","52,70 %",null,null],
     ["Escenarios con medición en el segundo laboratorio","4","10",6],
     ["Fuentes de registro en el segundo laboratorio","3","6",3]];
   const W=1040,rh=76,ml=330,mt=34,mb=52,pw=W-ml-150;
@@ -1421,11 +1222,16 @@ const F2=v=>v.toFixed(2).replace(".",",");
   let s=SVG(W,mt+filas.length*rh+mb);
   filas.forEach((r,i)=>{
     const y=mt+i*rh;
-    const dif=Math.round(r[3]*100)/100;
-    const txt=dif===Math.round(dif)?String(Math.round(dif)):dif.toFixed(2).replace(".",",");
     s+=T(ml-16,y+26,r[0],{a:"end",s:12.5,b:600});
     s+=`<rect x="${ml}" y="${y+8}" width="${W2}" height="22" rx="4" fill="#EAF1F8"/>`;
     s+=T(ml+10,y+24,r[1],{s:12,b:700,f:C.mute});
+    if(r[2]===null){
+      s+=T(ml+W2+40,y+24,"sin medición posterior verificable",{s:11.5,f:C.mute});
+      s+=T(W-8,y+26,"—",{a:"end",s:15,b:700,f:C.mute});
+      return;
+    }
+    const dif=Math.round(r[3]*100)/100;
+    const txt=dif===Math.round(dif)?String(Math.round(dif)):dif.toFixed(2).replace(".",",");
     s+=`<path d="M ${ml+W2+6} ${y+19} L ${ml+W2+22} ${y+19}" stroke="${C.navy3}" stroke-width="2"/>`;
     s+=`<path d="M ${ml+W2+22} ${y+19} l -6 -4 l 0 8 z" fill="${C.navy3}"/>`;
     s+=`<rect x="${ml+W2+30}" y="${y+8}" width="${W2}" height="22" rx="4" fill="#E2EFDA"/>`;

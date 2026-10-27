@@ -46,7 +46,6 @@ const info = await pagina.evaluate(() => {
     distribucionFinal: svgText('ch-dist'),
     ciclo: svgText('ch-ciclo'),
     sintesis: svgText('ch-sintesis'),
-    matrizPosterior: svgText('ch-matriz-postest'),
     fuentesP2: svgText('ch-p2-fuentes'),
     cabeceras,
     vacios,
@@ -62,7 +61,6 @@ console.log('Escala de cortes: ' + info.nivel);
 console.log('Distribucion final: ' + info.distribucionFinal);
 console.log('Ciclo: ' + info.ciclo);
 console.log('Sintesis: ' + info.sintesis);
-console.log('Matriz posterior: ' + info.matrizPosterior);
 console.log('Fuentes del Prototipo 2: ' + info.fuentesP2);
 console.log('Nota distribucion: ' + info.notaDistribucion);
 console.log('Graficos sin SVG: ' + (info.vacios.length === 0 ? 'ninguno' : info.vacios.join(', ')));
@@ -74,7 +72,7 @@ for (const [id, nombre] of [
   ['dist', 'seccion-distribucion'],
   ['ciclo', 'seccion-ciclo'],
   ['sintesis', 'seccion-sintesis'],
-  ['antes', 'seccion-antes-despues'],
+  ['base', 'seccion-diagnostico-previo'],
   ['p1', 'seccion-prototipo-1'],
   ['p2', 'seccion-prototipo-2'],
 ]) {

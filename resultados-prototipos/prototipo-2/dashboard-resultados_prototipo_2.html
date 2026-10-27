@@ -98,8 +98,8 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
   <h1>Dashboard de resultados del Prototipo 2</h1>
   <p>Laboratorio SIN · campaña de diez escenarios ejecutada en dos vueltas de la
      misma metodología, con las correcciones de la primera aplicadas en la segunda.
-     Incluye el resultado institucional comunicado por el Servicio de Impuestos
-     Nacionales y la tabla que separa las fuentes de resultado de este tablero.</p>
+     La sección final separa las fuentes de resultado que respaldan cada indicador
+     que presenta este tablero.</p>
   <div class="badges">
     <span class="badge">10 escenarios</span>
     <span class="badge">2 iteraciones</span>
@@ -107,7 +107,6 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
     <span class="badge">14 lecciones cerradas</span>
     <span class="badge">17 técnicas MITRE ATT&amp;CK</span>
     <span class="badge">91 archivos de evidencia</span>
-    <span class="badge">99,09 % en el libro oficial del SIN</span>
   </div>
 </div></header>
 
@@ -126,7 +125,7 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
   <li><a href="#lecciones">Registro de lecciones aprendidas</a></li>
   <li><a href="#volumen">Volumen de actividad</a></li>
   <li><a href="#visual">Evidencia visual del tablero</a></li>
-  <li><a href="#inst">Resultado institucional del SIN</a></li>
+  <li><a href="#inst">Fuentes de resultado de este tablero</a></li>
 </ol></nav>
 
 <!-- A. INDICADORES PRINCIPALES -->
@@ -520,38 +519,13 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
      homogénea.</div>
 </section>
 
-<!-- K. RESULTADO INSTITUCIONAL -->
+<!-- K. FUENTES DE RESULTADO -->
 <section id="inst">
-  <h2>L. El resultado global del libro oficial del Servicio de Impuestos
-     Nacionales</h2>
-  <p class="sub">El libro oficial de resultados que entrega la institución calcula la
-     madurez global como el promedio simple de los catorce instrumentos
-     sobre la matriz de treinta participantes. Ese cálculo arroja
-     99,0873015873016 %, cifra que redondea a 99,09 %. El tablero presenta
-     ese valor con el carácter de nivel que la institución atribuye a su
-     propio proceso.</p>
-
-  <div class="kpis">
-    <div class="kpi g"><div class="lab">Madurez global calculada</div>
-      <div class="val">99,09 %</div>
-      <div class="dlt">Nivel Optimizado de la ficha técnica</div></div>
-    <div class="kpi"><div class="lab">Instrumentos evaluados</div>
-      <div class="val">14</div>
-      <div class="dlt">Sobre la matriz de treinta participantes</div></div>
-    <div class="kpi"><div class="lab">Naturaleza del dato</div>
-      <div class="val">Global</div>
-      <div class="dlt">Calculado por la institución</div></div>
-  </div>
-
-  <h3>Los catorce instrumentos en la matriz posterior</h3>
-  <div id="ch-instrumentos"></div>
-  <div class="note">Cada fila representa un instrumento del instrumento de
-     madurez. El punto verde sitúa el porcentaje que el libro oficial le
-     atribuye en la matriz posterior de treinta participantes, mientras la línea
-     vertical marca la madurez global de 99,09 % que resulta del promedio de
-     los catorce. El carril tiene escala propia y declarada, entre 98 y
-     99,5 %, de manera que los catorce valores se leen uno a uno sin
-     comprimirse en un mismo punto.</div>
+  <h2>L. Fuentes de resultado de este tablero</h2>
+  <p class="sub">El tablero presenta únicamente resultados medidos en el Prototipo 2.
+     Cada indicador que aparece en las secciones anteriores declara en esta tabla el
+     archivo que lo respalda y la naturaleza del dato, de manera que el lector pueda
+     reabrir cada cifra desde su origen y comprobar su valor sin intermediarios.</p>
 
   <h3>Las fuentes de resultado de este tablero</h3>
   <table>
@@ -566,27 +540,14 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
         <td class="n">Percentil 95 de 9,266 s</td>
         <td>Ejecución verificada sobre archivos de evidencia</td>
         <td>Reporte de indicadores de la segunda iteración</td></tr>
-      <tr><td>Libro oficial de resultados del Servicio de Impuestos Nacionales</td>
-        <td class="n"><span class="chip cg">99,09 %</span></td>
-        <td>Cálculo del libro oficial sobre la matriz posterior de 30 participantes</td>
-        <td>Libro oficial, hoja de Resultados postest</td></tr>
     </tbody>
   </table>
-  <p class="pie">Nota. Las dos primeras filas proceden de la ejecución
-     instrumentada en el laboratorio y la tercera del libro oficial de
-     resultados. No comparten escala ni unidad de medida, de manera que la
-     relación entre ellas se resuelve por función y no por magnitud. El 99,09 %
-     corresponde al cálculo que el libro oficial practica sobre la matriz
-     posterior de treinta participantes, que aporta el tamaño de muestra, el
-     desglose de los catorce instrumentos y la memoria de cálculo. Fuente: libro
-     oficial de resultados del Servicio de Impuestos Nacionales y archivos de
-     evidencia del repositorio.</p>
-
-  <div class="note">El 99,09 % se sitúa en el nivel Optimizado de la ficha
-     técnica, cuyo corte inferior es el 76 %. Expresa el nivel que la
-     institución atribuye a su propio proceso de gestión de incidentes después
-     de la intervención. El libro oficial sitúa los catorce instrumentos en ese
-     nivel, con un valor mínimo de 98,33 % y trece entre 98,89 % y 99,17 %.</div>
+  <p class="pie">Nota. Las dos filas proceden de la ejecución instrumentada en el
+     laboratorio y ambas se verifican sobre archivos de evidencia del repositorio.
+     El tablero no incorpora ninguna cifra de madurez institucional, porque la
+     medición posterior de la que procedería no forma parte de la evidencia
+     verificada que respalda este capítulo. Fuente: archivos de evidencia del
+     repositorio.</p>
 </section>
 
 <div class="foot">
@@ -605,9 +566,7 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
      <code>v2.1-it2/07-metricas/kpi_report.json</code>,
      <code>v2.0-it1/07-metricas/mitre_coverage.json</code>,
      <code>evidencias/lecciones-aprendidas.md</code>,
-     <code>evidencias/INDICE.md</code> y el historial de commits. La cifra de
-     99,09 % procede del libro oficial de resultados del Servicio de Impuestos
-     Nacionales y se presenta con la hoja que la calcula. Ningún valor
+     <code>evidencias/INDICE.md</code> y el historial de commits. Ningún valor
      fue estimado ni completado por analogía. El tablero no
      incluye comprobación de hipótesis.</p>
 </div>
@@ -831,63 +790,6 @@ const T=(x,y,t,o={})=>`<text x="${x}" y="${y}" fill="${o.f||C.navy}"
     `<td>${r[4]}</td><td><span class="chip ${r[5]==="Cerrada"?"cg":"ca"}">${r[5].toLowerCase()}</span></td></tr>`).join("");
 })();
 
-/* ---------- K. Los catorce instrumentos en la matriz posterior ---------- */
-(function(){
-  const D=[["I1",98.33],["I2",98.89],["I3",99.17],["I4",99.17],["I5",99.17],
-    ["I6",99.17],["I7",99.17],["I8",99.17],["I9",99.17],["I10",99.17],
-    ["I11",99.17],["I12",99.17],["I13",99.17],["I14",99.17]];
-  const GLOBAL=99.09;
-
-  const W=1000,H=556,mt=96,rh=27;
-  const bx0=210,bx1=880;
-  const top=74, n=D.length, bottom=mt+n*rh;
-  const sb=v=>bx0+(v-98)/1.5*(bx1-bx0);
-
-  let s=SVG(W,H);
-
-  // Fondo del carril
-  s+=`<rect x="${bx0}" y="${top}" width="${bx1-bx0}" height="${bottom-top}"
-    fill="#EAF1F8"/>`;
-
-  // Titulo del carril con su escala declarada
-  s+=T(bx0,32,"Resultado del libro oficial",{s:14,b:700,f:C.navy});
-  s+=T(bx0,52,"matriz posterior de treinta participantes · escala de 98 a 99,5 %",
-    {s:11,f:C.mute});
-
-  // Nivel y linea de la madurez global
-  s+=T((bx0+bx1)/2,top+16,"Optimizado",{a:"middle",s:10.5,b:700,f:C.navy3});
-  s+=`<line x1="${sb(GLOBAL)}" y1="${top-6}" x2="${sb(GLOBAL)}" y2="${bottom}"
-    stroke="${C.green}" stroke-width="2.2"/>`;
-  s+=`<circle cx="${sb(GLOBAL)}" cy="${top-14}" r="5" fill="${C.green}"/>`;
-  s+=T(sb(GLOBAL)+11,top-10,"Madurez global 99,09 %",
-    {s:11.5,b:700,f:C.green});
-
-  // Una fila por instrumento
-  D.forEach(function(r,i){
-    const y=mt+i*rh, v=r[1];
-    s+=`<line x1="58" y1="${y}" x2="${bx1}" y2="${y}" stroke="#EEF2F7"
-      stroke-width="1"/>`;
-    s+=T(52,y+4,r[0],{a:"end",s:11.5,b:700,f:C.mute});
-    s+=`<line x1="${bx0}" y1="${y}" x2="${sb(v)}" y2="${y}"
-      stroke="${C.green}" stroke-width="2.4"/>`;
-    s+=`<circle cx="${sb(v)}" cy="${y}" r="5.5" fill="${C.green}"/>`;
-    const t=String(v.toFixed(2)).replace(".",",")+" %";
-    s+=`<rect x="${sb(v)+7}" y="${y-9.5}" width="${t.length*7.3+6}" height="19"
-      fill="#EAF1F8"/>`;
-    s+=T(sb(v)+11,y+4,t,{s:11.5,b:700,f:C.green});
-  });
-
-  // Extremos de la escala
-  [[bx0,"98 %","start"],[bx1,"99,5 %","end"]].forEach(function(c){
-    s+=T(c[0],bottom+22,c[1],{a:c[2],s:11,b:600,f:C.navy});
-  });
-
-  s+=T(58,bottom+52,"Los catorce valores y la madurez global de 99,09 % proceden del "
-    +"libro oficial de resultados del Servicio de Impuestos Nacionales.",
-    {s:11,f:C.mute});
-
-  document.getElementById("ch-instrumentos").innerHTML=s+"</svg>";
-})();
 </script>
 </body>
 </html>
