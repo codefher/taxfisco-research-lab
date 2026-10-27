@@ -7,8 +7,19 @@ de ISO/IEC 27035-1:2023 y a los controles de ISO/IEC 27001:2022.
 """
 
 import json
+import re
 from pathlib import Path
 from datetime import datetime
+
+
+# Los escenarios registran su fase de dos formas, "(Phase 2)" y "(2)", de manera
+# que el numero de fase se extrae del patron que declara cada escenario.
+PHASE_NUMBER_PATTERN = re.compile(r"\((?:Phase\s*)?(\d+)\)")
+
+
+def extract_phase_numbers(phase: str) -> list:
+    """Devuelve los numeros de fase de ISO/IEC 27035 declarados en la cadena."""
+    return [int(n) for n in PHASE_NUMBER_PATTERN.findall(phase or "")]
 
 
 # ISO 27035-1:2023 phases
@@ -141,7 +152,7 @@ def generate_compliance_report() -> dict:
                     "scenario": s.get("scenario", ""),
                     "technique": s.get("technique_id", ""),
                     "iso27035_phase": s.get("iso27035_phase", ""),
-                    "iso27035_phase_number": s.get("iso27035_phase", "").split(" ")[1] if "Phase" in s.get("iso27035_phase", "") else "?",
+                    "iso27035_phase_number": extract_phase_numbers(s.get("iso27035_phase", "")),
                 })
 
     return report

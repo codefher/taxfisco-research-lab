@@ -127,6 +127,23 @@
 | 08_mitre-coverage.png / .txt / .json | Métricas | Cobertura MITRE ATT&CK: 17 técnicas implementadas, 10 detectadas | Terminal: `python3 -m json.tool` | 2026-09-14 | `.txt`=salida mostrada, completo en `.json` |
 | 09_iso27035-compliance.png / .txt / .json | Métricas | Cumplimiento ISO 27035/27001 por fase | Terminal: `python3 -m json.tool` | 2026-09-14 | `.txt`=salida mostrada, completo en `.json` |
 
+### Medición institucional previa (encuesta de madurez)
+
+| Archivo | Funcionalidad | Qué demuestra | Cómo se obtuvo | Fecha | Observaciones |
+|---------|---------------|---------------|----------------|-------|---------------|
+| `resultados-prototipos/2026-06-25_Calculo_Alfa_Cronbach_Encuesta_v05.xlsx` | Medición institucional previa | Madurez declarada por la organización antes de la intervención, con 30 respondentes, 42 reactivos y 14 subdimensiones | Libro de resultados entregado por la institución | 2026-06-25 | Hojas «Concepto», «Cálculo», «Asignación por rol» y «Resultados de madurez». Alfa de Cronbach 0,86898886380354. Madurez global 52,703373015873 %. 898 de 1260 respuestas en el interior de la escala |
+
+La madurez global es el promedio simple de los catorce instrumentos y no el promedio de los cuarenta y dos reactivos, porque cada reactivo pertenece a un solo instrumento. El agregado se calculaba dividiendo la suma de los cuarenta y dos reactivos entre los catorce instrumentos, lo que produce 158,15 %, cifra que se descarta por esa vía de agregación. El libro no contiene una medición posterior, de manera que los tableros no presentan ninguna cifra de madurez institucional posterior a la intervención.
+
+### Corrección del reporte de cumplimiento ISO/IEC 27035
+
+| Archivo | Campo corregido | Qué cambió | Causa | Fecha |
+|---------|-----------------|------------|-------|-------|
+| `evidencias/07-metricas/09_iso27035-compliance.json` | `scenario_to_phase_mapping[].iso27035_phase_number` | Tres registros con el valor `and` y siete con el valor `?` pasan a declarar los números de fase | La derivación dividía la cadena de fase por espacios y tomaba el segundo fragmento | 2026-10-27 |
+| `analysis/iso27035_mapping.py` | `extract_phase_numbers()` | La extracción pasa a leer los números entre paréntesis, con la forma `(Phase 2)` y con la forma `(2)` | La misma causa | 2026-10-27 |
+
+El valor observado `iso27035_phase` de cada escenario no se modificó, porque procede del archivo `resultados.json` que el laboratorio dejó en ejecución. La corrección afecta únicamente al campo derivado, y el bloque `metadata.repaired` del propio JSON registra la reparación con su fecha y su motivo.
+
 ### Datos mostrados en los dashboards
 
 - **Total de alertas indexadas:** 199
@@ -173,3 +190,4 @@ Pendiente. No se ejecutaron escenarios durante esta sesión.
 - **Cortex:** sin conexión a Elasticsearch
 - **Wazuh Dashboard:** necesita configurar index patterns
 - **Datos de ataques:** el pipeline decoy→Wazuh no está generando alertas nuevas (los escenarios usan IPs obsoletas 172.20.x). Los dashboards muestran las 199 alertas reales de Wazuh disponibles.
+- **Madurez institucional posterior:** el libro de resultados entregado contiene únicamente la medición previa, de manera que los tableros no presentan ninguna cifra de madurez posterior a la intervención.
