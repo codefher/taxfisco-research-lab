@@ -478,11 +478,11 @@ lecciones se declaran en la Tabla 2 con su propio denominador.</figcaption>
 
 <p class="prosa">De los diez escenarios ejecutados, nueve cuentan con un tiempo de detección registrado sobre los cuales se calculan los indicadores temporales, mientras que los resultados de cobertura, correspondencia normativa y lecciones se declaran según sus respectivos registros. De esta manera, cada resultado se interpreta en función de la información que representa y contribuye a caracterizar el funcionamiento del primer prototipo, con lo que se consolida una primera lectura del desempeño del laboratorio.</p>
 
-<p class="prosa">La Tabla 4 presenta los indicadores obtenidos durante esta primera aplicación y especifica el reporte de origen de cada dato, lo que permite mantener la relación entre los resultados y los registros generados por el laboratorio. El promedio de detección es de 41,598 segundos, con un valor mínimo de 0,141 segundos y un máximo de 260,108 segundos; además, siete de las nueve mediciones se encuentran por debajo de un minuto. En cuanto a la cobertura técnica, el inventario comprende diecisiete técnicas (técnicas del marco MITRE ATT&CK, capítulo 1, sección 1.3.5) y el reporte declara diez técnicas detectadas, distribuidas en seis tácticas del mismo marco. La correspondencia normativa registra las cinco fases de ISO/IEC 27035-1 de 2023 (capítulo 1, sección 1.3.2) y la aplicación recoge tres lecciones aprendidas, que corresponden a la fase cinco del ciclo de gestión de incidentes considerado por la norma.</p>
+<p class="prosa">La Tabla 3 presenta los indicadores obtenidos durante esta primera aplicación y especifica el reporte de origen de cada dato, lo que permite mantener la relación entre los resultados y los registros generados por el laboratorio. El promedio de detección es de 41,598 segundos, con un valor mínimo de 0,141 segundos y un máximo de 260,108 segundos; además, siete de las nueve mediciones se encuentran por debajo de un minuto. En cuanto a la cobertura técnica, el inventario comprende diecisiete técnicas (técnicas del marco MITRE ATT&CK, capítulo 1, sección 1.3.5) y el reporte declara diez técnicas detectadas, distribuidas en seis tácticas del mismo marco. La correspondencia normativa registra las cinco fases de ISO/IEC 27035-1 de 2023 (capítulo 1, sección 1.3.2) y la aplicación recoge tres lecciones aprendidas, que corresponden a la fase cinco del ciclo de gestión de incidentes considerado por la norma.</p>
 
 <p class="prosa">Estos indicadores permiten examinar el prototipo desde diferentes perspectivas, con los tiempos mostrando la rapidez con la que se registra el primer evento, la cobertura identificando el alcance técnico declarado, la correspondencia normativa relacionando los componentes con las fases de gestión de incidentes y las lecciones aprendidas documentando los hallazgos durante las pruebas. En conjunto, los datos ofrecen una visión completa del funcionamiento del prototipo sobre el entorno controlado y constituyen la referencia para analizar los resultados de las siguientes aplicaciones de la metodología.</p>
 
-<p class="lbl tl">Tabla 4</p>
+<p class="lbl tl">Tabla 3</p>
 <p class="rot">Indicadores del primer prototipo con su archivo de origen</p>
 <table>
 <thead><tr><th>Indicador</th><th>Valor</th><th>Origen</th></tr></thead>
@@ -841,7 +841,7 @@ lecciones se declaran en la Tabla 2 con su propio denominador.</figcaption>
 <figcaption><i>Figura 8.</i> Distribución de los nueve tiempos medios de detección declarados en el Prototipo 1 según la fuente de instrumentación que registró el primer evento, representados en escala logarítmica para mantener visibles tanto los valores subsegundo como el escenario extenso S04. decoy-api absorbe los escenarios más extensos del eje y los más breves próximos al umbral inferior, mientras cowrie y decoy-portal registran los restantes en valores intermedios del orden de los segundos.</figcaption>
 </figure>
 
-<p class="prosa">La inspección visual muestra que las seis tácticas de la campaña presentan detección para todas las técnicas que les corresponden, de manera que la cobertura declarada por el reporte alcanza las diez técnicas repartidas entre seis tácticas y coincide con el indicador global de la Tabla 4. Esta organización permite identificar el comportamiento de la cobertura por táctica en la campaña y observar que ninguna de las técnicas que la integran queda sin una cobertura declarada en el reporte del laboratorio. La atribución temporal de un primer evento constituye un registro distinto, porque el escenario de exfiltración por nombres no produce tiempo de detección en el primer laboratorio, como muestran la Figura 6 y la Figura 8. Esa diferencia entre la cobertura declarada y la atribución instrumentada delimita la deficiencia concreta que el segundo laboratorio corrige, porque la incorporación de su sensor de red permite que el escenario de exfiltración por nombres alcance un tiempo de detección en la medición final.</p>
+<p class="prosa">La inspección visual muestra que las seis tácticas de la campaña presentan detección para todas las técnicas que les corresponden, de manera que la cobertura declarada por el reporte alcanza las diez técnicas repartidas entre seis tácticas y coincide con el indicador global de la Tabla 3. Esta organización permite identificar el comportamiento de la cobertura por táctica en la campaña y observar que ninguna de las técnicas que la integran queda sin una cobertura declarada en el reporte del laboratorio. La atribución temporal de un primer evento constituye un registro distinto, porque el escenario de exfiltración por nombres no produce tiempo de detección en el primer laboratorio, como muestran la Figura 6 y la Figura 8. Esa diferencia entre la cobertura declarada y la atribución instrumentada delimita la deficiencia concreta que el segundo laboratorio corrige, porque la incorporación de su sensor de red permite que el escenario de exfiltración por nombres alcance un tiempo de detección en la medición final.</p>
 
 <p class="prosa">La Figura 8 distribuye los MTTD declarados según la fuente de instrumentación que registra el primer evento, con el propósito de relacionar las mediciones con los componentes que participaron en la captura de las actividades simuladas. Los nueve tiempos declarados se reparten entre decoy-portal, las variantes de decoy-api y cowrie; se representan mediante escala logarítmica para facilitar la observación simultánea de valores muy diferentes en una misma figura. La inspección visual confirma que decoy-api aparece asociado tanto con tiempos inferiores al segundo como con algunos de los valores más prolongados, mientras que cowrie y decoy-portal registran los restantes en valores intermedios del orden de los segundos.</p>
 
@@ -857,7 +857,7 @@ lecciones se declaran en la Tabla 2 con su propio denominador.</figcaption>
 
 <p class="prosa">Los resultados obtenidos en el TaxFisco Research Lab proporcionan una primera caracterización del funcionamiento de la metodología sobre un entorno controlado y constituyen la línea de base para la comparación posterior con el segundo prototipo. De los diez escenarios ejecutados en la campaña del primer prototipo, nueve cuentan con un tiempo de detección registrado y siete de esas mediciones son inferiores a un minuto en el reporte del laboratorio. El promedio declarado es de 41,598 segundos, con valores que oscilan entre 0,141 y 260,108 segundos; la distribución muestra cinco detecciones por debajo del segundo y dos escenarios con tiempos superiores a un minuto. La lectura conjunta de los indicadores y las figuras muestra que el comportamiento temporal varía entre escenarios, por lo que la media general debe interpretarse a partir de esa distribución. La organización de las técnicas por táctica y la identificación de las fuentes de instrumentación aportan información complementaria sobre el alcance de las detecciones declaradas y sobre los componentes que registran los primeros eventos.</p>
 
-<p class="prosa">La revisión incorpora también la correspondencia documentada con las cinco fases de ISO/IEC 27035 y el registro de tres lecciones aprendidas, cuyos hallazgos sirven como referencia para el desarrollo del segundo prototipo. La cobertura técnica se presenta a partir de los reportes del laboratorio y del detalle representado en la Figura 7, que muestra la cobertura completa de las seis tácticas de la campaña, de manera que el gráfico y el indicador global de diez técnicas detectadas de diez de la Tabla 4 coinciden sin necesidad de contraste adicional. En conjunto, los resultados del primer prototipo establecen la referencia inicial para comparar la aplicación posterior de la metodología y analizar la evolución de los tiempos, la cobertura técnica y las lecciones aprendidas entre las dos implementaciones.</p>
+<p class="prosa">La revisión incorpora también la correspondencia documentada con las cinco fases de ISO/IEC 27035 y el registro de tres lecciones aprendidas, cuyos hallazgos sirven como referencia para el desarrollo del segundo prototipo. La cobertura técnica se presenta a partir de los reportes del laboratorio y del detalle representado en la Figura 7, que muestra la cobertura completa de las seis tácticas de la campaña, de manera que el gráfico y el indicador global de diez técnicas detectadas de diez de la Tabla 3 coinciden sin necesidad de contraste adicional. En conjunto, los resultados del primer prototipo establecen la referencia inicial para comparar la aplicación posterior de la metodología y analizar la evolución de los tiempos, la cobertura técnica y las lecciones aprendidas entre las dos implementaciones.</p>
 </section>
 
 <!-- ══════════ 4.4.3 ══════════ -->
@@ -869,9 +869,9 @@ lecciones se declaran en la Tabla 2 con su propio denominador.</figcaption>
 
 <p class="prosa">El segundo laboratorio incorpora tres componentes respecto del primero, todos ellos declarados en la arquitectura de contenedores del capítulo 3 (sección 3.5), definidos como honeypots específicos de dominio (capítulo 2, sección 2.2.5) y caracterizados dentro de la familia general de honeypots descrita en el capítulo 1 (sección 1.2). Esos tres componentes corresponden a un emulador de acceso remoto, un archivo señuelo y un sensor de red, lo que amplía las fuentes de registro de tres en la vuelta inicial a seis en la medición final. Los diez escenarios y las diez técnicas activadas se conservan sin variación respecto del primer laboratorio; las tácticas recorridas se mantienen en seis, con lo que la diferencia entre vueltas refleja el trabajo de corrección aplicado y no un cambio de instrumentación.</p>
 
-<p class="prosa">La Tabla 5 presenta los indicadores del segundo prototipo en la vuelta inicial y en la medición final, con el propósito de comparar el resultado del ciclo de iteración sobre los mismos diez escenarios. La cobertura temporal pasa del 40 % al 100 % de la campaña; el tiempo medio de detección baja de 5,2155 a 2,0219 segundos; el percentil 95 desciende de 14,583 a 9,266 segundos. Las técnicas con fuente de detección crecen del 40 % al 100 %; las tácticas con fuente suben del 50 % al 100 %; las lecciones aprendidas registradas se duplican de siete a catorce. Los archivos con huella verificada y la calidad de la custodia se mantienen en 91 archivos y en 100 sobre 100 entre ambas vueltas, lo que confirma la estabilidad de la custodia a lo largo del ciclo de iteración.</p>
+<p class="prosa">La Tabla 4 presenta los indicadores del segundo prototipo en la vuelta inicial y en la medición final, con el propósito de comparar el resultado del ciclo de iteración sobre los mismos diez escenarios. La cobertura temporal pasa del 40 % al 100 % de la campaña; el tiempo medio de detección baja de 5,2155 a 2,0219 segundos; el percentil 95 desciende de 14,583 a 9,266 segundos. Las técnicas con fuente de detección crecen del 40 % al 100 %; las tácticas con fuente suben del 50 % al 100 %; las lecciones aprendidas registradas se duplican de siete a catorce. Los archivos con huella verificada y la calidad de la custodia se mantienen en 91 archivos y en 100 sobre 100 entre ambas vueltas, lo que confirma la estabilidad de la custodia a lo largo del ciclo de iteración.</p>
 
-<p class="lbl tl">Tabla 5</p>
+<p class="lbl tl">Tabla 4</p>
 <p class="rot">Indicadores del segundo prototipo con su archivo de origen y comparación entre vueltas</p>
 <table>
 <thead><tr><th>Indicador</th><th>Vuelta 1</th><th>Medición final</th><th>Origen</th></tr></thead>
@@ -978,7 +978,7 @@ lecciones se declaran en la Tabla 2 con su propio denominador.</figcaption>
 
 <h4>Cobertura técnica y fuentes de registro</h4>
 
-<p class="prosa">La cobertura técnica confirma esa lectura, dado que las técnicas y tácticas del marco MITRE ATT&amp;CK (capítulo 1, sección 1.3.5) identifican cada uno de los diez escenarios con fuente de detección en la medición final. El inventario del laboratorio cubre técnicas del marco cuya selección se acota al requisito RF-6 del capítulo 3 (sección 3.1.1); en la medición final, todas las técnicas de la campaña reciben fuente, lo que cierra la cobertura declarada en la Tabla 5.</p>
+<p class="prosa">La cobertura técnica confirma esa lectura, dado que las técnicas y tácticas del marco MITRE ATT&amp;CK (capítulo 1, sección 1.3.5) identifican cada uno de los diez escenarios con fuente de detección en la medición final. El inventario del laboratorio cubre técnicas del marco cuya selección se acota al requisito RF-6 del capítulo 3 (sección 3.1.1); en la medición final, todas las técnicas de la campaña reciben fuente, lo que cierra la cobertura declarada en la Tabla 4.</p>
 
 <p class="prosa">La Figura 10 distribuye los MTTD de la medición final por escenario en orden descendente, con el propósito de comparar la magnitud de los tiempos una vez aplicadas las correcciones del ciclo. Siete de los diez escenarios de la medición final se sitúan por debajo del segundo y los tres restantes quedan por encima, con valores que oscilan entre 0,000 segundos de S03 y S09 hasta 15,910 segundos de S01; esta distribución muestra una reducción efectiva del percentil 95 junto con una cobertura completa de la campaña.</p>
 
@@ -1376,11 +1376,11 @@ lecciones se declaran en la Tabla 2 con su propio denominador.</figcaption>
 <h3>4.4.4 Comparación entre los dos prototipos</h3>
 <p class="sub">Lectura conjunta de los indicadores de los dos laboratorios, con lo que se conserva entre las tres mediciones y lo que cambia entre ellas.</p>
 
-<p class="prosa">La comparación entre los dos prototipos se apoya en una campaña común de diez escenarios, diez técnicas y seis tácticas, de manera que la diferencia entre los tres momentos medidos provenga del instrumental y no de un cambio en la composición de la campaña. Los tres momentos corresponden al primer laboratorio, a la primera vuelta del segundo y a su medición final, de manera que la comparación conserve una base idéntica de actividades simuladas. La Tabla 6 reúne los indicadores de los tres momentos en una sola lectura, con lo que cada indicador conserve su denominador declarado y la comparación se establezca sobre la misma estructura de cuentas.</p>
+<p class="prosa">La comparación entre los dos prototipos se apoya en una campaña común de diez escenarios, diez técnicas y seis tácticas, de manera que la diferencia entre los tres momentos medidos provenga del instrumental y no de un cambio en la composición de la campaña. Los tres momentos corresponden al primer laboratorio, a la primera vuelta del segundo y a su medición final, de manera que la comparación conserve una base idéntica de actividades simuladas. La Tabla 5 reúne los indicadores de los tres momentos en una sola lectura, con lo que cada indicador conserve su denominador declarado y la comparación se establezca sobre la misma estructura de cuentas.</p>
 
 <p class="prosa">La lectura conjunta muestra que la cobertura de escenarios es el indicador con mayor recorrido, porque pasa de nueve de diez a cuatro de diez y regresa a diez de diez, mientras que la custodia de la evidencia permanece invariable en los tres momentos con 100 sobre 100. Las técnicas y las tácticas comparten ese mismo recorrido, con un descenso en la primera vuelta del que se recuperan por completo en la medición final, mientras que las lecciones aprendidas crecen de tres a siete y a catorce porque cada vuelta incorpora las correcciones de la anterior. El percentil 95 solo puede compararse entre las dos vueltas del segundo laboratorio, porque el primer reporte no lo declara; esa comparación muestra una reducción de 14,583 a 9,266 segundos en la medición final.</p>
 
-<p class="lbl tl">Tabla 6</p>
+<p class="lbl tl">Tabla 5</p>
 <p class="rot">Indicadores de los tres momentos medidos con su denominador declarado</p>
 <table>
 <thead><tr><th>Indicador</th><th class="n">Prototipo 1</th><th class="n">Prototipo 2 &#183; vuelta 1</th><th class="n">Prototipo 2 &#183; medición final</th><th>Denominador declarado</th></tr></thead>
@@ -1483,9 +1483,9 @@ lecciones se declaran en la Tabla 2 con su propio denominador.</figcaption>
 
 <p class="prosa">El Prototipo 1 se mide una sola vez, porque su objetivo de diseño consiste en comprobar que cada componente del sistema opera por separado antes de medir su efecto en conjunto, de manera que su estado inicial no admite una segunda medición propia. Su estado final se verifica en el segundo laboratorio, porque allí se aplican las tres correcciones que sus tres lecciones originan, de manera que la comparación entre los dos prototipos se resuelve por el ciclo de la metodología y no por una repetición del ejercicio en el primer laboratorio.</p>
 
-<p class="prosa">La Tabla 7 presenta ese ciclo para el primer prototipo y la Tabla 8 lo completa para el segundo, de manera que cada laboratorio exponga su momento inicial, su momento final y el cambio que sostiene esa lectura. Esa salvedad acota la lectura de la comparación, porque el estado final del primer prototipo se observa en otro laboratorio y con una campaña de mayor cobertura, de manera que la diferencia entre los dos momentos sea atribuible a la corrección del instrumental y no al cambio de escenario. La comparación del Prototipo 2 no arrastra esa salvedad, porque sus dos vueltas comparten el mismo señuelo, la misma campaña de diez escenarios y el mismo instrumental de custodia, de manera que la variación se atribuya a las once correcciones de instrumental y a las tres mitigaciones documentadas.</p>
+<p class="prosa">La Tabla 6 presenta ese ciclo para el primer prototipo y la Tabla 7 lo completa para el segundo, de manera que cada laboratorio exponga su momento inicial, su momento final y el cambio que sostiene esa lectura. Esa salvedad acota la lectura de la comparación, porque el estado final del primer prototipo se observa en otro laboratorio y con una campaña de mayor cobertura, de manera que la diferencia entre los dos momentos sea atribuible a la corrección del instrumental y no al cambio de escenario. La comparación del Prototipo 2 no arrastra esa salvedad, porque sus dos vueltas comparten el mismo señuelo, la misma campaña de diez escenarios y el mismo instrumental de custodia, de manera que la variación se atribuya a las once correcciones de instrumental y a las tres mitigaciones documentadas.</p>
 
-<p class="lbl tl">Tabla 7</p>
+<p class="lbl tl">Tabla 6</p>
 <p class="rot">Antes y después del primer prototipo según los indicadores verificados en los dos laboratorios</p>
 <table>
 <thead><tr><th>Indicador</th><th class="n">Momento inicial</th><th class="n">Momento final verificado</th><th>Qué cambió</th></tr></thead>
@@ -1503,9 +1503,9 @@ lecciones se declaran en la Tabla 2 con su propio denominador.</figcaption>
 <tr><td>Calidad de la evidencia verificada</td><td class="n">100 de 100</td><td class="n">100 de 100</td><td>Sin variación, la custodia mantiene la integridad verificada</td></tr>
 </tbody>
 </table>
-<div class="note"><i>Nota.</i> El momento inicial del primer prototipo recoge la única ejecución disponible en el TaxFisco Research Lab, y el momento final verificado corresponde a la medición final del segundo laboratorio, en la que se aplican las correcciones que las tres lecciones de la primera campaña originan. La fila de correspondencia normativa cambia de fuente, porque el valor de cinco de cinco procede de la revisión manual de correspondencia del primer laboratorio y el valor de una de cinco del verificador automático que los tres momentos comparten. Los once indicadores reproducen los de la Tabla 6 con su denominador declarado.</div>
+<div class="note"><i>Nota.</i> El momento inicial del primer prototipo recoge la única ejecución disponible en el TaxFisco Research Lab, y el momento final verificado corresponde a la medición final del segundo laboratorio, en la que se aplican las correcciones que las tres lecciones de la primera campaña originan. La fila de correspondencia normativa cambia de fuente, porque el valor de cinco de cinco procede de la revisión manual de correspondencia del primer laboratorio y el valor de una de cinco del verificador automático que los tres momentos comparten. Los once indicadores reproducen los de la Tabla 5 con su denominador declarado.</div>
 
-<p class="lbl tl">Tabla 8</p>
+<p class="lbl tl">Tabla 7</p>
 <p class="rot">Antes y después del segundo prototipo según los indicadores verificados en sus dos vueltas</p>
 <table>
 <thead><tr><th>Indicador</th><th class="n">Momento inicial</th><th class="n">Momento final</th><th>Qué cambió</th></tr></thead>
@@ -1523,7 +1523,7 @@ lecciones se declaran en la Tabla 2 con su propio denominador.</figcaption>
 <tr><td>Calidad de la evidencia verificada</td><td class="n">100 de 100</td><td class="n">100 de 100</td><td>Sin variación, la custodia mantiene la integridad verificada</td></tr>
 </tbody>
 </table>
-<div class="note"><i>Nota.</i> Las dos vueltas comparten el mismo señuelo, la misma campaña de diez escenarios y el mismo instrumental de custodia, de manera que la variación de cada fila sea atribuible a las correcciones aplicadas y no a un cambio en la composición de la campaña. Los once indicadores reproducen los de la Tabla 6 con su denominador declarado.</div>
+<div class="note"><i>Nota.</i> Las dos vueltas comparten el mismo señuelo, la misma campaña de diez escenarios y el mismo instrumental de custodia, de manera que la variación de cada fila sea atribuible a las correcciones aplicadas y no a un cambio en la composición de la campaña. Los once indicadores reproducen los de la Tabla 5 con su denominador declarado.</div>
 <p class="lbl">Figura 17</p>
 <figure>
 <svg viewBox="0 0 960 560" role="img"
@@ -1540,217 +1540,10 @@ lecciones se declaran en la Tabla 2 con su propio denominador.</figcaption>
 </svg>
 <figcaption><i>Figura 17.</i> Perfil verificado de cada prototipo en los seis indicadores que ambos laboratorios miden con denominador declarado.</figcaption>
 </figure>
-<div class="note"><i>Nota.</i> Cada eje conserva el denominador declarado en la Tabla 6, de manera que el porcentaje de cada indicador se lea sobre la misma base en los tres momentos medidos. El eje de detección subsegundo usa los escenarios con medición como denominador, porque el primer prototipo registró nueve mediciones y los otros dos momentos registran diez mediciones cada uno. El eje de fases de ISO/IEC 27035 combina dos fuentes distintas, porque el valor de cinco de cinco del primer prototipo procede de la revisión manual de correspondencia y el valor de una de cinco de los otros dos momentos procede del verificador automático que los tres comparten, de manera que el descenso de ese eje en el perfil del primer prototipo refleje el cambio de fuente y no una variación de la cobertura normativa. El momento final del primer prototipo se observa en el segundo laboratorio, porque allí se aplican las correcciones que sus tres lecciones originan. Los valores proceden del reporte de indicadores, del reporte de cobertura y del reporte de correspondencia normativa de cada ejecución.</div>
+<div class="note"><i>Nota.</i> Cada eje conserva el denominador declarado en la Tabla 5, de manera que el porcentaje de cada indicador se lea sobre la misma base en los tres momentos medidos. El eje de detección subsegundo usa los escenarios con medición como denominador, porque el primer prototipo registró nueve mediciones y los otros dos momentos registran diez mediciones cada uno. El eje de fases de ISO/IEC 27035 combina dos fuentes distintas, porque el valor de cinco de cinco del primer prototipo procede de la revisión manual de correspondencia y el valor de una de cinco de los otros dos momentos procede del verificador automático que los tres comparten, de manera que el descenso de ese eje en el perfil del primer prototipo refleje el cambio de fuente y no una variación de la cobertura normativa. El momento final del primer prototipo se observa en el segundo laboratorio, porque allí se aplican las correcciones que sus tres lecciones originan. Los valores proceden del reporte de indicadores, del reporte de cobertura y del reporte de correspondencia normativa de cada ejecución.</div>
 <p class="prosa">La Figura 17 sitúa en un mismo sistema de ejes los seis indicadores que ambos prototipos miden con denominador declarado, de manera que el perfil de cada laboratorio se lea de un vistazo y que la comparación entre los dos resultados sea directa. Cada eje expresa el porcentaje que el indicador alcanza sobre el denominador que el reporte de origen declara y no un valor absoluto, porque esa forma hace comparables los dos radares sin unificar denominadores distintos.</p>
 
 
-<h4>Perfil verificado de cada prototipo sobre su diagnóstico inicial</h4>
-
-<p class="prosa">El perfil institucional de partida y el resultado verificado de cada prototipo se contrastan en las Figuras 18 y 19, porque cada laboratorio parte de un diagnóstico distinto que condiciona la forma de la mejora. El polígono gris reproduce el perfil del diagnóstico inicial que el apartado 4.1.4 recoge para cada institución, mientras que el polígono verde expone el resultado que los indicadores verificados del apartado 4.4 alcanzan en cada eje. Los seis ejes que cuentan con indicador verificado aparecen señalados, de manera que el lector distinga las dimensiones que la metodología vuelve a medir y las que conservan el valor del diagnóstico inicial sin que ese valor declare una permanencia comprobada.</p>
-
-<p class="lbl">Figura 18</p>
-<figure>
-<svg viewBox="0 0 960 700" role="img"
-  aria-label="Radar de catorce ejes que contrasta el diagnóstico inicial de la empresa homologada con el resultado verificado del primer prototipo. El polígono gris reproduce los porcentajes del diagnóstico inicial y el verde los resultados verificados. Detección y registro 31,25 y 90 por ciento; clasificación y evidencia 33,33 y 100; respuesta y tiempos 41,67 y 55,56; lecciones aprendidas 25 y 21,43; integridad y custodia 8,33 y 100; respaldos y restauración 25 y 25; retención y acceso 50 y 74,73; control de accesos 33,33 y 33,33; desarrollo seguro 41,67 y 41,67; gestión de vulnerabilidades 25 y 25; integridad y trazabilidad 50 y 50; gestión de riesgos 50 y 50; capacitación 25 y 25; métricas y mejora continua 50 y 50. Los ejes de detección, clasificación, respuesta, lecciones, integridad y custodia, así como el de retención y acceso, cuentan con indicador verificado en el apartado 4.4.">
-  <rect x="0" y="0" width="960" height="700" fill="#FFFFFF"/>
-  <text x="20" y="28" font-family="Segoe UI,sans-serif" font-size="16" font-weight="700" fill="#1F3864">Perfil verificado del primer prototipo sobre su diagnóstico inicial</text>
-  <text x="20" y="47" font-family="Segoe UI,sans-serif" font-size="11.5" fill="#5A6878">TaxFisco Research Lab: diagnóstico inicial de los catorce instrumentos frente al resultado verificado del primer laboratorio</text>
-  <line x1="20" y1="59" x2="940" y2="59" stroke="#D6DEE8"/>
-  <rect x="300" y="72" width="14" height="14" rx="2" fill="#7E8CA0" fill-opacity="0.22" stroke="#7E8CA0" stroke-width="2"/>
-  <text x="322" y="83" font-family="Segoe UI,sans-serif" font-size="11" fill="#5A6878">Diagnóstico inicial</text>
-  <rect x="440" y="72" width="14" height="14" rx="2" fill="#1E7A46" fill-opacity="0.20" stroke="#1E7A46" stroke-width="2.4"/>
-  <text x="462" y="83" font-family="Segoe UI,sans-serif" font-size="11" fill="#5A6878">Resultado verificado</text>
-  <circle cx="607" cy="79" r="4.5" fill="#1F3864"/>
-  <text x="620" y="83" font-family="Segoe UI,sans-serif" font-size="11" fill="#5A6878">Eje con indicador verificado</text>
-<line x1="480.0" y1="352.0" x2="480.0" y2="166.0" stroke="#E7ECF3" stroke-width="1"/><line x1="480.0" y1="352.0" x2="560.7" y2="184.4" stroke="#E7ECF3" stroke-width="1"/><line x1="480.0" y1="352.0" x2="625.4" y2="236.0" stroke="#E7ECF3" stroke-width="1"/><line x1="480.0" y1="352.0" x2="661.3" y2="310.6" stroke="#E7ECF3" stroke-width="1"/><line x1="480.0" y1="352.0" x2="661.3" y2="393.4" stroke="#E7ECF3" stroke-width="1"/><line x1="480.0" y1="352.0" x2="625.4" y2="468.0" stroke="#E7ECF3" stroke-width="1"/><line x1="480.0" y1="352.0" x2="560.7" y2="519.6" stroke="#E7ECF3" stroke-width="1"/><line x1="480.0" y1="352.0" x2="480.0" y2="538.0" stroke="#E7ECF3" stroke-width="1"/><line x1="480.0" y1="352.0" x2="399.3" y2="519.6" stroke="#E7ECF3" stroke-width="1"/><line x1="480.0" y1="352.0" x2="334.6" y2="468.0" stroke="#E7ECF3" stroke-width="1"/><line x1="480.0" y1="352.0" x2="298.7" y2="393.4" stroke="#E7ECF3" stroke-width="1"/><line x1="480.0" y1="352.0" x2="298.7" y2="310.6" stroke="#E7ECF3" stroke-width="1"/><line x1="480.0" y1="352.0" x2="334.6" y2="236.0" stroke="#E7ECF3" stroke-width="1"/><line x1="480.0" y1="352.0" x2="399.3" y2="184.4" stroke="#E7ECF3" stroke-width="1"/><polygon points="480.0,314.8 496.1,318.5 509.1,328.8 516.3,343.7 516.3,360.3 509.1,375.2 496.1,385.5 480.0,389.2 463.9,385.5 450.9,375.2 443.7,360.3 443.7,343.7 450.9,328.8 463.9,318.5" fill="none" stroke="#D6DEE8" stroke-width="1"/><polygon points="480.0,277.6 512.3,285.0 538.2,305.6 552.5,335.4 552.5,368.6 538.2,398.4 512.3,419.0 480.0,426.4 447.7,419.0 421.8,398.4 407.5,368.6 407.5,335.4 421.8,305.6 447.7,285.0" fill="none" stroke="#D6DEE8" stroke-width="1"/><polygon points="480.0,240.4 528.4,251.5 567.3,282.4 588.8,327.2 588.8,376.8 567.3,421.6 528.4,452.5 480.0,463.6 431.6,452.5 392.7,421.6 371.2,376.8 371.2,327.2 392.7,282.4 431.6,251.5" fill="none" stroke="#D6DEE8" stroke-width="1"/><polygon points="480.0,203.2 544.6,217.9 596.3,259.2 625.1,318.9 625.1,385.1 596.3,444.8 544.6,486.1 480.0,500.8 415.4,486.1 363.7,444.8 334.9,385.1 334.9,318.9 363.7,259.2 415.4,217.9" fill="none" stroke="#D6DEE8" stroke-width="1"/><polygon points="480.0,166.0 560.7,184.4 625.4,236.0 661.3,310.6 661.3,393.4 625.4,468.0 560.7,519.6 480.0,538.0 399.3,519.6 334.6,468.0 298.7,393.4 298.7,310.6 334.6,236.0 399.3,184.4" fill="none" stroke="#D6DEE8" stroke-width="1"/>  <text x="464.0" y="318.3" font-family="Segoe UI,sans-serif" font-size="8.5" fill="#8A97A5" text-anchor="end">20 %</text>
-  <text x="464.0" y="281.1" font-family="Segoe UI,sans-serif" font-size="8.5" fill="#8A97A5" text-anchor="end">40 %</text>
-  <text x="464.0" y="243.9" font-family="Segoe UI,sans-serif" font-size="8.5" fill="#8A97A5" text-anchor="end">60 %</text>
-  <text x="464.0" y="206.7" font-family="Segoe UI,sans-serif" font-size="8.5" fill="#8A97A5" text-anchor="end">80 %</text>
-  <text x="464.0" y="169.5" font-family="Segoe UI,sans-serif" font-size="8.5" fill="#8A97A5" text-anchor="end">100 %</text>
-  <text x="464.0" y="355.5" font-family="Segoe UI,sans-serif" font-size="8.5" fill="#8A97A5" text-anchor="end">0 %</text>
-<polygon points="480.0,293.9 506.9,296.1 540.6,303.7 525.3,341.7 495.1,355.4 516.4,381.0 520.4,435.8 480.0,414.0 446.4,421.8 443.6,381.0 389.3,372.7 389.3,331.3 443.6,323.0 439.6,268.2" fill="#7E8CA0" fill-opacity="0.22" stroke="#7E8CA0" stroke-width="2.0"/>
-<polygon points="480.0,184.6 560.7,184.4 560.8,287.6 518.9,343.1 661.3,393.4 516.4,381.0 540.3,477.2 480.0,414.0 446.4,421.8 443.6,381.0 389.3,372.7 389.3,331.3 443.6,323.0 439.6,268.2" fill="#1E7A46" fill-opacity="0.2" stroke="#1E7A46" stroke-width="2.4"/>
-<circle cx="480.0" cy="293.9" r="3" fill="#7E8CA0"/>
-<circle cx="506.9" cy="296.1" r="3" fill="#7E8CA0"/>
-<circle cx="540.6" cy="303.7" r="3" fill="#7E8CA0"/>
-<circle cx="525.3" cy="341.7" r="3" fill="#7E8CA0"/>
-<circle cx="495.1" cy="355.4" r="3" fill="#7E8CA0"/>
-<circle cx="516.4" cy="381.0" r="3" fill="#7E8CA0"/>
-<circle cx="520.4" cy="435.8" r="3" fill="#7E8CA0"/>
-<circle cx="480.0" cy="414.0" r="3" fill="#7E8CA0"/>
-<circle cx="446.4" cy="421.8" r="3" fill="#7E8CA0"/>
-<circle cx="443.6" cy="381.0" r="3" fill="#7E8CA0"/>
-<circle cx="389.3" cy="372.7" r="3" fill="#7E8CA0"/>
-<circle cx="389.3" cy="331.3" r="3" fill="#7E8CA0"/>
-<circle cx="443.6" cy="323.0" r="3" fill="#7E8CA0"/>
-<circle cx="439.6" cy="268.2" r="3" fill="#7E8CA0"/>
-<circle cx="480.0" cy="184.6" r="3" fill="#1E7A46"/>
-<circle cx="560.7" cy="184.4" r="3" fill="#1E7A46"/>
-<circle cx="560.8" cy="287.6" r="3" fill="#1E7A46"/>
-<circle cx="518.9" cy="343.1" r="3" fill="#1E7A46"/>
-<circle cx="661.3" cy="393.4" r="3" fill="#1E7A46"/>
-<circle cx="516.4" cy="381.0" r="3" fill="#1E7A46"/>
-<circle cx="540.3" cy="477.2" r="3" fill="#1E7A46"/>
-<circle cx="480.0" cy="414.0" r="3" fill="#1E7A46"/>
-<circle cx="446.4" cy="421.8" r="3" fill="#1E7A46"/>
-<circle cx="443.6" cy="381.0" r="3" fill="#1E7A46"/>
-<circle cx="389.3" cy="372.7" r="3" fill="#1E7A46"/>
-<circle cx="389.3" cy="331.3" r="3" fill="#1E7A46"/>
-<circle cx="443.6" cy="323.0" r="3" fill="#1E7A46"/>
-<circle cx="439.6" cy="268.2" r="3" fill="#1E7A46"/>
-  <circle cx="480.0" cy="166.0" r="4.5" fill="#1F3864"/>
-  <circle cx="560.7" cy="184.4" r="4.5" fill="#1F3864"/>
-  <circle cx="625.4" cy="236.0" r="4.5" fill="#1F3864"/>
-  <circle cx="661.3" cy="310.6" r="4.5" fill="#1F3864"/>
-  <circle cx="661.3" cy="393.4" r="4.5" fill="#1F3864"/>
-  <circle cx="560.7" cy="519.6" r="4.5" fill="#1F3864"/>
-  <text x="480.0" y="128.0" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#1A2430" text-anchor="middle">Detección y registro</text>
-  <text x="480.0" y="140.0" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#1A2430" text-anchor="middle">(Honeypot)</text>
-  <text x="480.0" y="152.0" font-family="Segoe UI,sans-serif" font-size="8.5" font-weight="700" fill="#5A6878" text-anchor="middle">31,25 % &#183; 90 %</text>
-  <text x="565.9" y="157.6" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#1A2430" text-anchor="start">Clasificación y evidencia</text>
-  <text x="565.9" y="169.6" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#1A2430" text-anchor="start">de incidentes</text>
-  <text x="565.9" y="181.6" font-family="Segoe UI,sans-serif" font-size="8.5" font-weight="700" fill="#5A6878" text-anchor="start">33,33 % &#183; 100 %</text>
-  <text x="634.8" y="212.5" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#1A2430" text-anchor="start">Respuesta y tiempos</text>
-  <text x="634.8" y="224.5" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#1A2430" text-anchor="start">de atención</text>
-  <text x="634.8" y="236.5" font-family="Segoe UI,sans-serif" font-size="8.5" font-weight="700" fill="#5A6878" text-anchor="start">41,67 % &#183; 55,56 %</text>
-  <text x="673.0" y="291.9" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#1A2430" text-anchor="start">Lecciones aprendidas</text>
-  <text x="673.0" y="303.9" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#1A2430" text-anchor="start">y mejora</text>
-  <text x="673.0" y="315.9" font-family="Segoe UI,sans-serif" font-size="8.5" font-weight="700" fill="#5A6878" text-anchor="start">25 % &#183; 21,43 %</text>
-  <text x="673.0" y="380.1" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#1A2430" text-anchor="start">Integridad y custodia</text>
-  <text x="673.0" y="392.1" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#1A2430" text-anchor="start">de evidencias</text>
-  <text x="673.0" y="404.1" font-family="Segoe UI,sans-serif" font-size="8.5" font-weight="700" fill="#5A6878" text-anchor="start">8,33 % &#183; 100 %</text>
-  <text x="634.8" y="459.5" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#1A2430" text-anchor="start">Respaldos y restauración</text>
-  <text x="634.8" y="483.5" font-family="Segoe UI,sans-serif" font-size="8.5" font-weight="700" fill="#5A6878" text-anchor="start">25 % &#183; 25 %</text>
-  <text x="565.9" y="514.4" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#1A2430" text-anchor="start">Retención y acceso</text>
-  <text x="565.9" y="526.4" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#1A2430" text-anchor="start">a evidencias</text>
-  <text x="565.9" y="538.4" font-family="Segoe UI,sans-serif" font-size="8.5" font-weight="700" fill="#5A6878" text-anchor="start">50 % &#183; 74,73 %</text>
-  <text x="480.0" y="558.0" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#1A2430" text-anchor="middle">Control de accesos</text>
-  <text x="480.0" y="570.0" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#1A2430" text-anchor="middle">y privilegios</text>
-  <text x="480.0" y="582.0" font-family="Segoe UI,sans-serif" font-size="8.5" font-weight="700" fill="#5A6878" text-anchor="middle">33,33 % &#183; 33,33 %</text>
-  <text x="394.1" y="514.4" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#1A2430" text-anchor="end">Desarrollo seguro</text>
-  <text x="394.1" y="538.4" font-family="Segoe UI,sans-serif" font-size="8.5" font-weight="700" fill="#5A6878" text-anchor="end">41,67 % &#183; 41,67 %</text>
-  <text x="325.2" y="459.5" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#1A2430" text-anchor="end">Gestión de vulnerabilidades</text>
-  <text x="325.2" y="483.5" font-family="Segoe UI,sans-serif" font-size="8.5" font-weight="700" fill="#5A6878" text-anchor="end">25 % &#183; 25 %</text>
-  <text x="287.0" y="380.1" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#1A2430" text-anchor="end">Integridad y trazabilidad</text>
-  <text x="287.0" y="392.1" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#1A2430" text-anchor="end">de registros</text>
-  <text x="287.0" y="404.1" font-family="Segoe UI,sans-serif" font-size="8.5" font-weight="700" fill="#5A6878" text-anchor="end">50 % &#183; 50 %</text>
-  <text x="287.0" y="291.9" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#1A2430" text-anchor="end">Gestión de riesgos</text>
-  <text x="287.0" y="315.9" font-family="Segoe UI,sans-serif" font-size="8.5" font-weight="700" fill="#5A6878" text-anchor="end">50 % &#183; 50 %</text>
-  <text x="325.2" y="212.5" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#1A2430" text-anchor="end">Capacitación</text>
-  <text x="325.2" y="224.5" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#1A2430" text-anchor="end">y concienciación</text>
-  <text x="325.2" y="236.5" font-family="Segoe UI,sans-serif" font-size="8.5" font-weight="700" fill="#5A6878" text-anchor="end">25 % &#183; 25 %</text>
-  <text x="394.1" y="157.6" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#1A2430" text-anchor="end">Métricas y mejora continua</text>
-  <text x="394.1" y="181.6" font-family="Segoe UI,sans-serif" font-size="8.5" font-weight="700" fill="#5A6878" text-anchor="end">50 % &#183; 50 %</text>
-  <text x="20" y="670" font-family="Segoe UI,sans-serif" font-size="9.5" fill="#8A97A5">Cada vértice declara el porcentaje que la medida alcanza sobre el denominador que declara la fuente de origen</text>
-  <text x="20" y="686" font-family="Segoe UI,sans-serif" font-size="9.5" fill="#8A97A5">Datos del diagnóstico inicial del apartado 4.1.4 y de los indicadores verificados del apartado 4.4</text>
-</svg>
-<figcaption><i>Figura 18.</i> Perfil verificado del primer prototipo sobre el diagnóstico inicial de la empresa homologada. El polígono gris reproduce los catorce porcentajes del diagnóstico inicial y el verde los resultados verificados en los seis ejes que cuentan con indicador verificado.</figcaption>
-</figure>
-<div class="note"><i>Nota.</i> Cada vértice declara dos porcentajes separados por un punto, el del diagnóstico inicial y el del resultado verificado. Los ejes señalados con un círculo cuentan con un indicador verificado en el apartado 4.4, mientras que los restantes conservan el valor del diagnóstico inicial porque la metodología no vuelve a medir esas dimensiones, de manera que la figura no declare que hayan quedado sin cambio. El eje de detección y registro toma el valor de nueve escenarios medidos sobre los diez de la campaña, el eje de retención y acceso el de sesenta y ocho archivos con huella verificada sobre los noventa y uno de la campaña final, mientras que el eje de lecciones aprendidas toma el de tres lecciones resueltas sobre el total de catorce que el proyecto registra. El diagnóstico inicial de la empresa homologada procede de la Tabla 1 del apartado 4.1.4.1.</div>
-
-<p class="prosa">La forma de la mejora del primer prototipo se concentra en los ejes con indicador verificado, de manera que la lectura del contraste dependa del punto de partida de cada eje. La detección y el registro pasan del 31,25 % al 90 % y la clasificación de incidentes del 33,33 % al 100 %, mientras que el eje de lecciones aprendidas desciende del 25 % al 21,43 % porque la medida verificada cuenta tres lecciones resueltas sobre las catorce que el proyecto acumula. Ese descenso no describe un retroceso del laboratorio, porque el denominador de la medida verificada difiere del que emplea el instrumento de madurez, de manera que la comparación entre ambos valores no sea de una misma magnitud. El resultado verificado del primer prototipo corresponde a la única ejecución disponible en el TaxFisco Research Lab, porque su estado final se verifica en el segundo laboratorio, que aplica las correcciones que sus tres lecciones originan, tal como expone la Tabla 7.</p>
-
-<p class="lbl">Figura 19</p>
-<figure>
-<svg viewBox="0 0 960 700" role="img"
-  aria-label="Radar de catorce ejes que contrasta el diagnóstico inicial del Servicio de Impuestos Nacionales con el resultado verificado del segundo prototipo. El polígono gris reproduce los porcentajes del diagnóstico inicial y el verde los resultados verificados. Detección y registro 37,5 y 100 por ciento; clasificación y evidencia 41,67 y 100; respuesta y tiempos 41,67 y 70; lecciones aprendidas 25 y 100; integridad y custodia 41,67 y 100; respaldos y restauración 25 y 25; retención y acceso 62,5 y 100; control de accesos 25 y 25; desarrollo seguro 41,67 y 41,67; gestión de vulnerabilidades 25 y 25; integridad y trazabilidad 50 y 50; gestión de riesgos 50 y 50; capacitación 25 y 25; métricas y mejora continua 50 y 50. Los ejes de detección, clasificación, respuesta, lecciones, integridad y custodia, así como el de retención y acceso, cuentan con indicador verificado en el apartado 4.4.">
-  <rect x="0" y="0" width="960" height="700" fill="#FFFFFF"/>
-  <text x="20" y="28" font-family="Segoe UI,sans-serif" font-size="16" font-weight="700" fill="#1F3864">Perfil verificado del segundo prototipo sobre su diagnóstico inicial</text>
-  <text x="20" y="47" font-family="Segoe UI,sans-serif" font-size="11.5" fill="#5A6878">Servicio de Impuestos Nacionales: diagnóstico inicial de los catorce instrumentos frente al resultado verificado del segundo laboratorio</text>
-  <line x1="20" y1="59" x2="940" y2="59" stroke="#D6DEE8"/>
-  <rect x="300" y="72" width="14" height="14" rx="2" fill="#7E8CA0" fill-opacity="0.22" stroke="#7E8CA0" stroke-width="2"/>
-  <text x="322" y="83" font-family="Segoe UI,sans-serif" font-size="11" fill="#5A6878">Diagnóstico inicial</text>
-  <rect x="440" y="72" width="14" height="14" rx="2" fill="#1E7A46" fill-opacity="0.20" stroke="#1E7A46" stroke-width="2.4"/>
-  <text x="462" y="83" font-family="Segoe UI,sans-serif" font-size="11" fill="#5A6878">Resultado verificado</text>
-  <circle cx="607" cy="79" r="4.5" fill="#1F3864"/>
-  <text x="620" y="83" font-family="Segoe UI,sans-serif" font-size="11" fill="#5A6878">Eje con indicador verificado</text>
-<line x1="480.0" y1="352.0" x2="480.0" y2="166.0" stroke="#E7ECF3" stroke-width="1"/><line x1="480.0" y1="352.0" x2="560.7" y2="184.4" stroke="#E7ECF3" stroke-width="1"/><line x1="480.0" y1="352.0" x2="625.4" y2="236.0" stroke="#E7ECF3" stroke-width="1"/><line x1="480.0" y1="352.0" x2="661.3" y2="310.6" stroke="#E7ECF3" stroke-width="1"/><line x1="480.0" y1="352.0" x2="661.3" y2="393.4" stroke="#E7ECF3" stroke-width="1"/><line x1="480.0" y1="352.0" x2="625.4" y2="468.0" stroke="#E7ECF3" stroke-width="1"/><line x1="480.0" y1="352.0" x2="560.7" y2="519.6" stroke="#E7ECF3" stroke-width="1"/><line x1="480.0" y1="352.0" x2="480.0" y2="538.0" stroke="#E7ECF3" stroke-width="1"/><line x1="480.0" y1="352.0" x2="399.3" y2="519.6" stroke="#E7ECF3" stroke-width="1"/><line x1="480.0" y1="352.0" x2="334.6" y2="468.0" stroke="#E7ECF3" stroke-width="1"/><line x1="480.0" y1="352.0" x2="298.7" y2="393.4" stroke="#E7ECF3" stroke-width="1"/><line x1="480.0" y1="352.0" x2="298.7" y2="310.6" stroke="#E7ECF3" stroke-width="1"/><line x1="480.0" y1="352.0" x2="334.6" y2="236.0" stroke="#E7ECF3" stroke-width="1"/><line x1="480.0" y1="352.0" x2="399.3" y2="184.4" stroke="#E7ECF3" stroke-width="1"/><polygon points="480.0,314.8 496.1,318.5 509.1,328.8 516.3,343.7 516.3,360.3 509.1,375.2 496.1,385.5 480.0,389.2 463.9,385.5 450.9,375.2 443.7,360.3 443.7,343.7 450.9,328.8 463.9,318.5" fill="none" stroke="#D6DEE8" stroke-width="1"/><polygon points="480.0,277.6 512.3,285.0 538.2,305.6 552.5,335.4 552.5,368.6 538.2,398.4 512.3,419.0 480.0,426.4 447.7,419.0 421.8,398.4 407.5,368.6 407.5,335.4 421.8,305.6 447.7,285.0" fill="none" stroke="#D6DEE8" stroke-width="1"/><polygon points="480.0,240.4 528.4,251.5 567.3,282.4 588.8,327.2 588.8,376.8 567.3,421.6 528.4,452.5 480.0,463.6 431.6,452.5 392.7,421.6 371.2,376.8 371.2,327.2 392.7,282.4 431.6,251.5" fill="none" stroke="#D6DEE8" stroke-width="1"/><polygon points="480.0,203.2 544.6,217.9 596.3,259.2 625.1,318.9 625.1,385.1 596.3,444.8 544.6,486.1 480.0,500.8 415.4,486.1 363.7,444.8 334.9,385.1 334.9,318.9 363.7,259.2 415.4,217.9" fill="none" stroke="#D6DEE8" stroke-width="1"/><polygon points="480.0,166.0 560.7,184.4 625.4,236.0 661.3,310.6 661.3,393.4 625.4,468.0 560.7,519.6 480.0,538.0 399.3,519.6 334.6,468.0 298.7,393.4 298.7,310.6 334.6,236.0 399.3,184.4" fill="none" stroke="#D6DEE8" stroke-width="1"/>  <text x="464.0" y="318.3" font-family="Segoe UI,sans-serif" font-size="8.5" fill="#8A97A5" text-anchor="end">20 %</text>
-  <text x="464.0" y="281.1" font-family="Segoe UI,sans-serif" font-size="8.5" fill="#8A97A5" text-anchor="end">40 %</text>
-  <text x="464.0" y="243.9" font-family="Segoe UI,sans-serif" font-size="8.5" fill="#8A97A5" text-anchor="end">60 %</text>
-  <text x="464.0" y="206.7" font-family="Segoe UI,sans-serif" font-size="8.5" fill="#8A97A5" text-anchor="end">80 %</text>
-  <text x="464.0" y="169.5" font-family="Segoe UI,sans-serif" font-size="8.5" fill="#8A97A5" text-anchor="end">100 %</text>
-  <text x="464.0" y="355.5" font-family="Segoe UI,sans-serif" font-size="8.5" fill="#8A97A5" text-anchor="end">0 %</text>
-<polygon points="480.0,282.2 513.6,282.2 540.6,303.7 525.3,341.7 555.6,369.2 516.4,381.0 530.4,456.7 480.0,398.5 446.4,421.8 443.6,381.0 389.3,372.7 389.3,331.3 443.6,323.0 439.6,268.2" fill="#7E8CA0" fill-opacity="0.22" stroke="#7E8CA0" stroke-width="2.0"/>
-<polygon points="480.0,166.0 560.7,184.4 581.8,270.8 661.3,310.6 661.3,393.4 516.4,381.0 560.7,519.6 480.0,398.5 446.4,421.8 443.6,381.0 389.3,372.7 389.3,331.3 443.6,323.0 439.6,268.2" fill="#1E7A46" fill-opacity="0.2" stroke="#1E7A46" stroke-width="2.4"/>
-<circle cx="480.0" cy="282.2" r="3" fill="#7E8CA0"/>
-<circle cx="513.6" cy="282.2" r="3" fill="#7E8CA0"/>
-<circle cx="540.6" cy="303.7" r="3" fill="#7E8CA0"/>
-<circle cx="525.3" cy="341.7" r="3" fill="#7E8CA0"/>
-<circle cx="555.6" cy="369.2" r="3" fill="#7E8CA0"/>
-<circle cx="516.4" cy="381.0" r="3" fill="#7E8CA0"/>
-<circle cx="530.4" cy="456.7" r="3" fill="#7E8CA0"/>
-<circle cx="480.0" cy="398.5" r="3" fill="#7E8CA0"/>
-<circle cx="446.4" cy="421.8" r="3" fill="#7E8CA0"/>
-<circle cx="443.6" cy="381.0" r="3" fill="#7E8CA0"/>
-<circle cx="389.3" cy="372.7" r="3" fill="#7E8CA0"/>
-<circle cx="389.3" cy="331.3" r="3" fill="#7E8CA0"/>
-<circle cx="443.6" cy="323.0" r="3" fill="#7E8CA0"/>
-<circle cx="439.6" cy="268.2" r="3" fill="#7E8CA0"/>
-<circle cx="480.0" cy="166.0" r="3" fill="#1E7A46"/>
-<circle cx="560.7" cy="184.4" r="3" fill="#1E7A46"/>
-<circle cx="581.8" cy="270.8" r="3" fill="#1E7A46"/>
-<circle cx="661.3" cy="310.6" r="3" fill="#1E7A46"/>
-<circle cx="661.3" cy="393.4" r="3" fill="#1E7A46"/>
-<circle cx="516.4" cy="381.0" r="3" fill="#1E7A46"/>
-<circle cx="560.7" cy="519.6" r="3" fill="#1E7A46"/>
-<circle cx="480.0" cy="398.5" r="3" fill="#1E7A46"/>
-<circle cx="446.4" cy="421.8" r="3" fill="#1E7A46"/>
-<circle cx="443.6" cy="381.0" r="3" fill="#1E7A46"/>
-<circle cx="389.3" cy="372.7" r="3" fill="#1E7A46"/>
-<circle cx="389.3" cy="331.3" r="3" fill="#1E7A46"/>
-<circle cx="443.6" cy="323.0" r="3" fill="#1E7A46"/>
-<circle cx="439.6" cy="268.2" r="3" fill="#1E7A46"/>
-  <circle cx="480.0" cy="166.0" r="4.5" fill="#1F3864"/>
-  <circle cx="560.7" cy="184.4" r="4.5" fill="#1F3864"/>
-  <circle cx="625.4" cy="236.0" r="4.5" fill="#1F3864"/>
-  <circle cx="661.3" cy="310.6" r="4.5" fill="#1F3864"/>
-  <circle cx="661.3" cy="393.4" r="4.5" fill="#1F3864"/>
-  <circle cx="560.7" cy="519.6" r="4.5" fill="#1F3864"/>
-  <text x="480.0" y="128.0" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#1A2430" text-anchor="middle">Detección y registro</text>
-  <text x="480.0" y="140.0" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#1A2430" text-anchor="middle">(Honeypot)</text>
-  <text x="480.0" y="152.0" font-family="Segoe UI,sans-serif" font-size="8.5" font-weight="700" fill="#5A6878" text-anchor="middle">37,5 % &#183; 100 %</text>
-  <text x="565.9" y="157.6" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#1A2430" text-anchor="start">Clasificación y evidencia</text>
-  <text x="565.9" y="169.6" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#1A2430" text-anchor="start">de incidentes</text>
-  <text x="565.9" y="181.6" font-family="Segoe UI,sans-serif" font-size="8.5" font-weight="700" fill="#5A6878" text-anchor="start">41,67 % &#183; 100 %</text>
-  <text x="634.8" y="212.5" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#1A2430" text-anchor="start">Respuesta y tiempos</text>
-  <text x="634.8" y="224.5" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#1A2430" text-anchor="start">de atención</text>
-  <text x="634.8" y="236.5" font-family="Segoe UI,sans-serif" font-size="8.5" font-weight="700" fill="#5A6878" text-anchor="start">41,67 % &#183; 70 %</text>
-  <text x="673.0" y="291.9" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#1A2430" text-anchor="start">Lecciones aprendidas</text>
-  <text x="673.0" y="303.9" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#1A2430" text-anchor="start">y mejora</text>
-  <text x="673.0" y="315.9" font-family="Segoe UI,sans-serif" font-size="8.5" font-weight="700" fill="#5A6878" text-anchor="start">25 % &#183; 100 %</text>
-  <text x="673.0" y="380.1" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#1A2430" text-anchor="start">Integridad y custodia</text>
-  <text x="673.0" y="392.1" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#1A2430" text-anchor="start">de evidencias</text>
-  <text x="673.0" y="404.1" font-family="Segoe UI,sans-serif" font-size="8.5" font-weight="700" fill="#5A6878" text-anchor="start">41,67 % &#183; 100 %</text>
-  <text x="634.8" y="459.5" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#1A2430" text-anchor="start">Respaldos y restauración</text>
-  <text x="634.8" y="483.5" font-family="Segoe UI,sans-serif" font-size="8.5" font-weight="700" fill="#5A6878" text-anchor="start">25 % &#183; 25 %</text>
-  <text x="565.9" y="514.4" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#1A2430" text-anchor="start">Retención y acceso</text>
-  <text x="565.9" y="526.4" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#1A2430" text-anchor="start">a evidencias</text>
-  <text x="565.9" y="538.4" font-family="Segoe UI,sans-serif" font-size="8.5" font-weight="700" fill="#5A6878" text-anchor="start">62,5 % &#183; 100 %</text>
-  <text x="480.0" y="558.0" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#1A2430" text-anchor="middle">Control de accesos</text>
-  <text x="480.0" y="570.0" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#1A2430" text-anchor="middle">y privilegios</text>
-  <text x="480.0" y="582.0" font-family="Segoe UI,sans-serif" font-size="8.5" font-weight="700" fill="#5A6878" text-anchor="middle">25 % &#183; 25 %</text>
-  <text x="394.1" y="514.4" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#1A2430" text-anchor="end">Desarrollo seguro</text>
-  <text x="394.1" y="538.4" font-family="Segoe UI,sans-serif" font-size="8.5" font-weight="700" fill="#5A6878" text-anchor="end">41,67 % &#183; 41,67 %</text>
-  <text x="325.2" y="459.5" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#1A2430" text-anchor="end">Gestión de vulnerabilidades</text>
-  <text x="325.2" y="483.5" font-family="Segoe UI,sans-serif" font-size="8.5" font-weight="700" fill="#5A6878" text-anchor="end">25 % &#183; 25 %</text>
-  <text x="287.0" y="380.1" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#1A2430" text-anchor="end">Integridad y trazabilidad</text>
-  <text x="287.0" y="392.1" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#1A2430" text-anchor="end">de registros</text>
-  <text x="287.0" y="404.1" font-family="Segoe UI,sans-serif" font-size="8.5" font-weight="700" fill="#5A6878" text-anchor="end">50 % &#183; 50 %</text>
-  <text x="287.0" y="291.9" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#1A2430" text-anchor="end">Gestión de riesgos</text>
-  <text x="287.0" y="315.9" font-family="Segoe UI,sans-serif" font-size="8.5" font-weight="700" fill="#5A6878" text-anchor="end">50 % &#183; 50 %</text>
-  <text x="325.2" y="212.5" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#1A2430" text-anchor="end">Capacitación</text>
-  <text x="325.2" y="224.5" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#1A2430" text-anchor="end">y concienciación</text>
-  <text x="325.2" y="236.5" font-family="Segoe UI,sans-serif" font-size="8.5" font-weight="700" fill="#5A6878" text-anchor="end">25 % &#183; 25 %</text>
-  <text x="394.1" y="157.6" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#1A2430" text-anchor="end">Métricas y mejora continua</text>
-  <text x="394.1" y="181.6" font-family="Segoe UI,sans-serif" font-size="8.5" font-weight="700" fill="#5A6878" text-anchor="end">50 % &#183; 50 %</text>
-  <text x="20" y="670" font-family="Segoe UI,sans-serif" font-size="9.5" fill="#8A97A5">Cada vértice declara el porcentaje que la medida alcanza sobre el denominador que declara la fuente de origen</text>
-  <text x="20" y="686" font-family="Segoe UI,sans-serif" font-size="9.5" fill="#8A97A5">Datos del diagnóstico inicial del apartado 4.1.4 y de los indicadores verificados del apartado 4.4</text>
-</svg>
-<figcaption><i>Figura 19.</i> Perfil verificado del segundo prototipo sobre el diagnóstico inicial del Servicio de Impuestos Nacionales. El polígono gris reproduce los catorce porcentajes del diagnóstico inicial y el verde los resultados verificados en los seis ejes que cuentan con indicador verificado.</figcaption>
-</figure>
-<div class="note"><i>Nota.</i> Cada vértice declara dos porcentajes separados por un punto, el del diagnóstico inicial y el del resultado verificado. Los ejes señalados con un círculo cuentan con un indicador verificado en el apartado 4.4, mientras que los restantes conservan el valor del diagnóstico inicial porque la metodología no vuelve a medir esas dimensiones, de manera que la figura no declare que hayan quedado sin cambio. El eje de detección y registro toma el valor de diez escenarios medidos sobre los diez de la campaña, el eje de retención y acceso el de noventa y un archivos con huella verificada sobre los noventa y uno de la campaña, mientras que el eje de lecciones aprendidas toma el de catorce lecciones resueltas sobre el total de catorce que el proyecto registra. El diagnóstico inicial del Servicio de Impuestos Nacionales procede de la tabla del apartado 4.1.4.2.</div>
-
-<p class="prosa">La lectura conjunta de las dos figuras muestra que los seis ejes con indicador verificado alcanzan su máximo en los dos laboratorios, mientras que las dimensiones sin indicador verificado permanecen en el nivel del diagnóstico inicial y determinan la forma irregular de ambos polígonos. Los dos prototipos comparten la misma campaña de diez escenarios, de manera que la comparación entre sus perfiles se apoye en una base común de escenarios y no en actividades distintas de cada laboratorio. El alcance de estas figuras se limita a los seis ejes verificados, porque los ocho restantes conservan el valor del diagnóstico inicial sin que la metodología vuelva a medirlos a lo largo de la campaña.</p>
 
 </section>
 
@@ -1761,7 +1554,7 @@ lecciones se declaran en la Tabla 2 con su propio denominador.</figcaption>
 
 <p class="prosa">La lectura de conjunto sitúa el resultado más sólido de la metodología dentro del segundo laboratorio, cuyas dos vueltas comparten campaña, señuelo y denominador, mientras que el primer laboratorio aporta la verificación instrumentada de un entorno controlado. Tres resultados sostienen esa lectura y se apoyan en conteos verificables sobre la misma campaña, de manera que sean la ampliación de la cobertura de la medición, la continuidad de la custodia de los archivos y el crecimiento del registro de correcciones. La rapidez de detección se lee en un plano distinto, porque depende del número de escenarios medidos y de la instrumentación que registra el primer evento, de manera que su comparación entre momentos requiera un denominador explícito.</p>
 
-<p class="lbl">Figura 20</p>
+<p class="lbl">Figura 18</p>
 <figure>
 <svg viewBox="0 0 960 520" role="img"
   aria-label="Elementos medidos por indicador en los tres momentos del estudio. Escenarios con medición: 9 en el Prototipo 1, 4 en la vuelta 1 del Prototipo 2 y 10 en la medición final. Técnicas con fuente de detección: 10, 4 y 10. Tácticas con fuente de detección: 6, 3 y 6. Lecciones aprendidas registradas: 3, 7 y 14. Cada grupo conserva su denominador declarado: 10 escenarios, 10 técnicas, 6 tácticas y los hallazgos de la aplicación.">
@@ -1858,7 +1651,7 @@ lecciones se declaran en la Tabla 2 con su propio denominador.</figcaption>
   <text x="480" y="482" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#5A6878" text-anchor="middle">Las barras de un mismo grupo comparten denominador, mientras que las de grupos distintos no se suman ni se promedian entre sí.</text>
   <text x="480" y="500" font-family="Segoe UI,sans-serif" font-size="10" fill="#8A97A5" text-anchor="middle">Datos del reporte de indicadores, del reporte de cobertura y del registro de lecciones de cada ejecución.</text>
 </svg>
-<figcaption><i>Figura 20.</i> Elementos que cada indicador mide efectivamente en los tres momentos del estudio, con el denominador declarado al pie de cada grupo. El eje vertical llega a catorce elementos porque el registro de lecciones es el único indicador cuyo denominador crece con la aplicación. Los tres primeros grupos comparten una escala común de diez, seis o diez elementos, de manera que sus alturas sean comparables dentro del eje, mientras que la comparación entre grupos se limita a la proporción que cada uno alcanza sobre su propio denominador.</figcaption>
+<figcaption><i>Figura 18.</i> Elementos que cada indicador mide efectivamente en los tres momentos del estudio, con el denominador declarado al pie de cada grupo. El eje vertical llega a catorce elementos porque el registro de lecciones es el único indicador cuyo denominador crece con la aplicación. Los tres primeros grupos comparten una escala común de diez, seis o diez elementos, de manera que sus alturas sean comparables dentro del eje, mientras que la comparación entre grupos se limita a la proporción que cada uno alcanza sobre su propio denominador.</figcaption>
 </figure>
 
 <p class="prosa">Tres precisiones condicionan la lectura de estos resultados porque cada una limita la fuerza con la que cabe sostener una afirmación concreta sobre los tiempos, la cobertura y la correspondencia normativa. La primera se refiere a los tiempos, cuya mejora se lee junto con el agregado de instrumentación del segundo laboratorio y no como el efecto aislado de una modificación puntual del primer prototipo. La segunda se refiere a la comparación entre momentos, porque cada uno se apoya en un número distinto de elementos medidos, como muestra la Figura 17, en la que los escenarios con medición son nueve, cuatro y diez. La tercera se refiere a la correspondencia normativa, porque el verificador automático de ISO/IEC 27035-1 de 2023 confirma una sola de las cinco fases en los tres momentos medidos, mientras que la revisión manual de correspondencia del primer laboratorio documenta evidencia para las cinco y sostiene la lectura completa de esa columna.</p>
