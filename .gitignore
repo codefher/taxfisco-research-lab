@@ -92,8 +92,13 @@ scripts/docx-builder/obj/
 .render/
 .playwright-cli/
 # --- Scratch de conversion de documentos ---
-_build-docx/
+# La carpeta de compilacion se ignora, salvo la plantilla de estilos
+# ref-word.docx, que se versiona porque no se puede regenerar y una limpieza
+# del arbol volveria a eliminarla.
 _build-*/
+!_build-docx/
+**/_build-docx/*
+!**/_build-docx/ref-word.docx
 # --- Archivos de bloqueo deOffice ---
 $$*
 ~$*.docx
