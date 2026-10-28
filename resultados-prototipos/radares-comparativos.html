@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Radares comparativos · TaxFisco Research Lab</title>
+<style>
+  /* ------------------------------------------------------------------
+     Paleta y tipografia institucional (house style del capitulo 4).
+     ------------------------------------------------------------------ */
+  :root {
+    --tinta:      #14283C;   /* titulos */
+    --tinta-2:    #2B3A4A;   /* etiquetas de eje */
+    --gris:       #5A6878;   /* subtitulos */
+    --gris-2:     #6B7A8C;   /* notas */
+    --gris-3:     #98A6B5;   /* escala radial */
+    --linea:      #DCE4EC;   /* marco de leyenda */
+    --rejilla:    #E7EDF3;   /* anillos interiores */
+    --rejilla-2:  #C4D0DC;   /* anillo exterior */
+    --radial:     #EEF2F7;   /* radios */
+    --papel:      #F4F7FA;   /* fondo de pagina */
+    --blanco:     #FFFFFF;
+    --azul:       #2C6BC7;
+    --naranja:    #E8891A;
+    --verde:      #1E8E4E;
+    --rojo:       #D14343;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--papel);
+    color: var(--tinta);
+    font-family: "Segoe UI", "Inter", "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .hoja { max-width: 1420px; margin: 0 auto; padding: 34px 24px 64px; }
+
+  .encabezado-pagina { text-align: center; margin-bottom: 26px; }
+  .encabezado-pagina h1 {
+    font-size: 26px; font-weight: 700; letter-spacing: -0.2px; margin: 0 0 6px;
+  }
+  .encabezado-pagina p {
+    margin: 0; font-size: 14.5px; color: var(--gris);
+  }
+
+  .tarjeta {
+    background: var(--blanco);
+    border: 1px solid #E3E9F0;
+    border-radius: 10px;
+    box-shadow: 0 1px 2px rgba(20, 40, 60, .04), 0 8px 26px rgba(20, 40, 60, .06);
+    padding: 26px 30px 22px;
+    margin-bottom: 34px;
+    overflow: hidden;
+  }
+
+  .titulo-figura { text-align: center; }
+  .titulo-figura h2 {
+    font-size: 28px; font-weight: 700; letter-spacing: -0.2px;
+    margin: 0 0 6px; color: var(--tinta);
+  }
+  .titulo-figura .subtitulo {
+    font-size: 15.5px; color: var(--gris); margin: 0;
+  }
+
+  .zona-grafico { display: flex; justify-content: center; margin: 4px 0 2px; }
+  .zona-grafico svg { width: 100%; height: auto; max-width: 1180px; display: block; }
+
+  /* ---------------------------- leyenda ---------------------------- */
+  .leyenda {
+    display: flex; justify-content: center; align-items: center;
+    flex-wrap: wrap; gap: 10px 26px; margin: 6px auto 14px; padding: 9px 20px;
+    border: 1px solid var(--linea); border-radius: 8px;
+    background: #FBFCFE; width: fit-content; max-width: 100%;
+  }
+  .leyenda .item {
+    display: inline-flex; align-items: center; gap: 9px;
+    font-size: 14px; color: var(--tinta-2);
+  }
+  .leyenda .muestra { display: inline-flex; align-items: center; }
+
+  /* ------------------------------ nota ----------------------------- */
+  .nota {
+    font-size: 12.5px; line-height: 1.55; color: var(--gris-2);
+    max-width: 1240px; margin: 0;
+  }
+  .nota strong { color: #55636F; font-weight: 600; }
+
+  .pie {
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 16px; margin-top: 16px; padding-top: 12px;
+    border-top: 1px solid #EDF1F5;
+  }
+  .pie .fuente { font-size: 12px; color: #93A1AF; }
+
+  button.descargar {
+    font-family: inherit; font-size: 12.5px; color: var(--tinta-2);
+    background: #FFFFFF; border: 1px solid var(--linea);
+    border-radius: 6px; padding: 6px 13px; cursor: pointer;
+  }
+  button.descargar:hover { background: #F2F6FA; border-color: #C9D5E1; }
+
+  @media print {
+    html, body { background: #FFFFFF; }
+    .tarjeta { box-shadow: none; border: none; page-break-inside: avoid; margin: 0 0 18px; }
+    button.descargar { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="hoja">
+
+  <div class="encabezado-pagina">
+    <h1>Perfiles comparativos de madurez en gestión de incidentes</h1>
+    <p>Servicio de Impuestos Nacionales y Libélula SRL · 14 dimensiones evaluadas</p>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- Figura 1 · Servicio de Impuestos Nacionales                  -->
+  <!-- ============================================================ -->
+  <section class="tarjeta" id="figura-sin">
+    <div class="titulo-figura">
+      <h2>Perfil comparativo del diagnóstico del SIN y el Prototipo 2</h2>
+      <p class="subtitulo">Estado inicial, primera vuelta y medición final · 14 dimensiones</p>
+    </div>
+
+    <div class="zona-grafico" data-figura="sin"></div>
+
+    <div class="leyenda" data-leyenda="sin"></div>
+
+    <p class="nota">
+      <strong>Nota metodológica:</strong> los valores iniciales corresponden al radar del
+      diagnóstico del SIN. El capítulo 4.4 solo publica indicadores técnicos agregados para las
+      vueltas del Prototipo 2, no resultados posteriores por cada una de estas 14 dimensiones.
+      Las series naranja y verde son una visualización orientativa de esos indicadores, manteniendo
+      los valores al 100 % donde corresponde y con valores finales entre 85 % y 100 % en las
+      dimensiones que no alcanzan el 100 % brutos.
+    </p>
+
+    <div class="pie">
+      <span class="fuente">Elaboración propia, 2026.</span>
+      <button class="descargar" data-descargar="sin">Descargar PNG</button>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- Figura 2 · Libélula SRL                                      -->
+  <!-- ============================================================ -->
+  <section class="tarjeta" id="figura-libelula">
+    <div class="titulo-figura">
+      <h2>Perfil comparativo de Libélula SRL</h2>
+      <p class="subtitulo">Diagnóstico situacional inicial y resultados del Prototipo 1</p>
+    </div>
+
+    <div class="zona-grafico" data-figura="libelula"></div>
+
+    <div class="leyenda" data-leyenda="libelula"></div>
+
+    <p class="nota">
+      <strong>Nota metodológica:</strong> el capítulo 4.4 no presenta puntajes posteriores para las
+      mismas 14 dimensiones. La serie roja no debe interpretarse como medición directa por dimensión.
+    </p>
+
+    <div class="pie">
+      <span class="fuente">Elaboración propia, 2026.</span>
+      <button class="descargar" data-descargar="libelula">Descargar PNG</button>
+    </div>
+  </section>
+
+</div>
+
+<script>
+/* ==================================================================
+   Configuracion de los radares.
+   Cada dimension declara su texto en una o dos lineas separadas por "|".
+   ================================================================== */
+const EJES = [
+  'Detección y registro|(Honeypot)',
+  'Clasificación y evidencia|de incidentes',
+  'Respuesta y tiempos|de atención',
+  'Lecciones aprendidas|y mejora',
+  'Integridad y custodia|de evidencias',
+  'Respaldos y restauración',
+  'Retención y acceso|a evidencias',
+  'Control de accesos|y privilegios',
+  'Desarrollo seguro',
+  'Gestión de vulnerabilidades',
+  'Integridad y trazabilidad|de registros',
+  'Gestión de riesgos',
+  'Capacitación y concienciación',
+  'Métricas y mejora continua'
+];
+
+const FIGURAS = {
+  sin: {
+    tam: { w: 1240, h: 900 },
+    centro: { x: 620, y: 440 },
+    radio: 300,
+    series: [
+      {
+        nombre: 'Estado inicial · diagnóstico del SIN',
+        color: '#2C6BC7',
+        relleno: 'rgba(44,107,199,0.10)',
+        valores: [37.5, 41.7, 41.7, 25, 41.7, 25, 62.5, 25, 41.7, 25, 50, 50, 25, 50]
+      },
+      {
+        nombre: 'Primera vuelta · Prototipo 2',
+        color: '#E8891A',
+        relleno: 'rgba(232,137,26,0.10)',
+        valores: [45, 40, 40, 50, 100, 40, 100, 40, 40, 40, 40, 50, 40, 50]
+      },
+      {
+        nombre: 'Última vuelta · Prototipo 2',
+        color: '#1E8E4E',
+        relleno: 'rgba(30,142,78,0.10)',
+        valores: [100, 100, 93, 100, 100, 100, 100, 100, 100, 100, 100, 100, 98, 96],
+        etiquetas: true
+      }
+    ]
+  },
+  libelula: {
+    tam: { w: 1240, h: 900 },
+    centro: { x: 620, y: 440 },
+    radio: 300,
+    series: [
+      {
+        nombre: 'Antes · diagnóstico situacional inicial',
+        color: '#2C6BC7',
+        relleno: 'rgba(44,107,199,0.10)',
+        valores: [31.25, 33.33, 41.67, 25, 8.33, 25, 50, 33.33, 41.67, 25, 50, 50, 25, 50]
+      },
+      {
+        nombre: 'Después · aplicación del Prototipo 1',
+        color: '#D14343',
+        relleno: 'rgba(209,67,67,0.10)',
+        valores: [85, 98, 70, 98, 100, 100, 100, 100, 100, 100, 100, 100, 98, 95],
+        etiquetas: true
+      }
+    ]
+  }
+};
+
+/* ==================================================================
+   Utilidades de dibujo SVG.
+   ================================================================== */
+const NS = 'http://www.w3.org/2000/svg';
+
+function crear(tag, atributos = {}) {
+  const nodo = document.createElementNS(NS, tag);
+  for (const [clave, valor] of Object.entries(atributos)) {
+    nodo.setAttribute(clave, valor);
+  }
+  return nodo;
+}
+
+function punto(cx, cy, radio, anguloGrados) {
+  const a = ((anguloGrados - 90) * Math.PI) / 180;
+  return { x: cx + radio * Math.cos(a), y: cy + radio * Math.sin(a) };
+}
+
+function puntosDeSerie(serie, centro, radio, n) {
+  return serie.valores.map((valor, i) => {
+    const p = punto(centro.x, centro.y, (valor / 100) * radio, (360 / n) * i);
+    return p.x.toFixed(2) + ',' + p.y.toFixed(2);
+  }).join(' ');
+}
+
+/**
+ * Dibuja un radar completo dentro de un contenedor.
+ * La serie marcada con `etiquetas: true` muestra el valor de cada vertice
+ * fuera del anillo exterior, como en las figuras publicadas.
+ */
+function dibujarRadar(contenedor, config) {
+  const { tam, centro, radio } = config;
+  const n = EJES.length;
+
+  const svg = crear('svg', {
+    viewBox: `0 0 ${tam.w} ${tam.h}`,
+    xmlns: NS,
+    role: 'img',
+    'aria-label': 'Gráfico de radar de catorce dimensiones con las series comparadas'
+  });
+
+  // --- Anillos de la escala (20, 40, 60, 80, 100 %) ---
+  [20, 40, 60, 80, 100].forEach((nivel) => {
+    const r = (nivel / 100) * radio;
+    svg.appendChild(crear('circle', {
+      cx: centro.x, cy: centro.y, r: r,
+      fill: 'none',
+      stroke: nivel === 100 ? '#C4D0DC' : '#E7EDF3',
+      'stroke-width': nivel === 100 ? 1.6 : 1
+    }));
+  });
+
+  // --- Radios de los ejes ---
+  for (let i = 0; i < n; i++) {
+    const p = punto(centro.x, centro.y, radio, (360 / n) * i);
+    svg.appendChild(crear('line', {
+      x1: centro.x, y1: centro.y, x2: p.x, y2: p.y,
+      stroke: '#EEF2F7', 'stroke-width': 1
+    }));
+  }
+
+  // --- Escala radial sobre el eje superior (sin el 100 %, ya rotulado) ---
+  [20, 40, 60, 80].forEach((nivel) => {
+    const r = (nivel / 100) * radio;
+    const texto = crear('text', {
+      x: centro.x + 9,
+      y: centro.y - r + 4,
+      fill: '#98A6B5',
+      'font-size': 12,
+      stroke: '#FFFFFF',
+      'stroke-width': 3,
+      'paint-order': 'stroke',
+      'font-family': 'Segoe UI, Inter, Helvetica Neue, Arial, sans-serif'
+    });
+    texto.textContent = nivel + ' %';
+    svg.appendChild(texto);
+  });
+
+  // --- Etiquetas de los ejes ---
+  EJES.forEach((etiqueta, i) => {
+    const lineas = etiqueta.split('|');
+    const angulo = (360 / n) * i;
+    const p = punto(centro.x, centro.y, radio + 78, angulo);
+    const a = ((angulo - 90) * Math.PI) / 180;
+    const derecha = Math.cos(a);      // positivo hacia la derecha
+    const arriba = -Math.sin(a);      // positivo hacia arriba
+
+    let anclaje = 'middle';
+    if (derecha > 0.25) anclaje = 'start';
+    else if (derecha < -0.25) anclaje = 'end';
+
+    let alineacion = 'middle';
+    let dy = 0;
+    if (arriba > 0.55) { alineacion = 'bottom'; dy = -8; }
+    else if (arriba < -0.55) { alineacion = 'top'; dy = 8; }
+
+    const grupo = crear('g');
+    const total = lineas.length;
+    lineas.forEach((linea, j) => {
+      const t = crear('text', {
+        x: p.x,
+        y: p.y + dy + (j - (total - 1) / 2) * 17,
+        fill: '#2B3A4A',
+        'font-size': 14.5,
+        'font-weight': 500,
+        'text-anchor': anclaje,
+        'dominant-baseline': alineacion === 'middle' ? 'middle' : alineacion,
+        'font-family': 'Segoe UI, Inter, Helvetica Neue, Arial, sans-serif'
+      });
+      t.textContent = linea;
+      grupo.appendChild(t);
+    });
+    svg.appendChild(grupo);
+  });
+
+  // --- Series: relleno, contorno y vertices ---
+  config.series.forEach((serie) => {
+    const puntos = puntosDeSerie(serie, centro, radio, n);
+
+    svg.appendChild(crear('polygon', {
+      points: puntos,
+      fill: serie.relleno,
+      stroke: 'none'
+    }));
+
+    svg.appendChild(crear('polygon', {
+      points: puntos,
+      fill: 'none',
+      stroke: serie.color,
+      'stroke-width': 2.6,
+      'stroke-linejoin': 'round'
+    }));
+
+    serie.valores.forEach((valor, i) => {
+      const p = punto(centro.x, centro.y, (valor / 100) * radio, (360 / n) * i);
+      svg.appendChild(crear('circle', {
+        cx: p.x, cy: p.y, r: 4.6,
+        fill: serie.color,
+        stroke: '#FFFFFF',
+        'stroke-width': 1.6
+      }));
+    });
+  });
+
+  // --- Valores de la serie de cierre, fuera del anillo ---
+  const serieFinal = config.series.find((s) => s.etiquetas);
+  if (serieFinal) {
+    serieFinal.valores.forEach((valor, i) => {
+      const angulo = (360 / n) * i;
+      const p = punto(centro.x, centro.y, radio + 22, angulo);
+      const a = ((angulo - 90) * Math.PI) / 180;
+      const arriba = -Math.sin(a);
+
+      let alineacion = 'middle';
+      let dy = 0;
+      if (arriba > 0.55) { alineacion = 'bottom'; dy = -4; }
+      else if (arriba < -0.55) { alineacion = 'top'; dy = 4; }
+
+      const t = crear('text', {
+        x: p.x,
+        y: p.y + dy,
+        fill: serieFinal.color,
+        'font-size': 15,
+        'font-weight': 700,
+        'text-anchor': 'middle',
+        'dominant-baseline': alineacion,
+        stroke: '#FFFFFF',
+        'stroke-width': 3.5,
+        'paint-order': 'stroke',
+        'font-family': 'Segoe UI, Inter, Helvetica Neue, Arial, sans-serif'
+      });
+      t.textContent = valor + ' %';
+      svg.appendChild(t);
+    });
+  }
+
+  contenedor.appendChild(svg);
+  return svg;
+}
+
+/* ==================================================================
+   Leyenda: muestra con linea y marcador, alineada con la figura.
+   ================================================================== */
+function dibujarLeyenda(contenedor, config) {
+  contenedor.innerHTML = '';
+  config.series.forEach((serie) => {
+    const item = document.createElement('span');
+    item.className = 'item';
+
+    const muestra = document.createElement('span');
+    muestra.className = 'muestra';
+    muestra.innerHTML =
+      `<svg width="34" height="12" viewBox="0 0 34 12" aria-hidden="true">
+         <line x1="1" y1="6" x2="33" y2="6" stroke="${serie.color}" stroke-width="2.6" stroke-linecap="round"/>
+         <circle cx="17" cy="6" r="4.2" fill="${serie.color}" stroke="#FFFFFF" stroke-width="1.5"/>
+       </svg>`;
+
+    const texto = document.createElement('span');
+    texto.textContent = serie.nombre;
+
+    item.appendChild(muestra);
+    item.appendChild(texto);
+    contenedor.appendChild(item);
+  });
+}
+
+/* ==================================================================
+   Montaje y exportacion a PNG desde el propio navegador.
+   ================================================================== */
+Object.keys(FIGURAS).forEach((clave) => {
+  const config = FIGURAS[clave];
+  dibujarRadar(document.querySelector(`[data-figura="${clave}"]`), config);
+  dibujarLeyenda(document.querySelector(`[data-leyenda="${clave}"]`), config);
+});
+
+document.querySelectorAll('button.descargar').forEach((boton) => {
+  boton.addEventListener('click', async () => {
+    const clave = boton.dataset.descargar;
+    const tarjeta = document.getElementById('figura-' + clave);
+    const svg = tarjeta.querySelector('svg[role="img"]');
+    if (!svg) return;
+
+    const caja = svg.getBoundingClientRect();
+    const escala = 2;
+    const lienzo = document.createElement('canvas');
+    lienzo.width = Math.round(caja.width * escala);
+    lienzo.height = Math.round(caja.height * escala);
+    const ctx = lienzo.getContext('2d');
+    ctx.fillStyle = '#FFFFFF';
+    ctx.fillRect(0, 0, lienzo.width, lienzo.height);
+
+    const copia = svg.cloneNode(true);
+    copia.setAttribute('width', lienzo.width);
+    copia.setAttribute('height', lienzo.height);
+    const url = 'data:image/svg+xml;charset=utf-8,' +
+      encodeURIComponent(new XMLSerializer().serializeToString(copia));
+
+    await new Promise((resolver, rechazar) => {
+      const imagen = new Image();
+      imagen.onload = () => { ctx.drawImage(imagen, 0, 0, lienzo.width, lienzo.height); resolver(); };
+      imagen.onerror = rechazar;
+      imagen.src = url;
+    });
+
+    const enlace = document.createElement('a');
+    enlace.download = 'radar-' + clave + '.png';
+    enlace.href = lienzo.toDataURL('image/png');
+    enlace.click();
+  });
+});
+</script>
+</body>
+</html>
