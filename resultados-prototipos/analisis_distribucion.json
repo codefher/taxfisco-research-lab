@@ -1,0 +1,186 @@
+{
+  "prototipo_1": {
+    "datos": {
+      "n": 9,
+      "media": 41.59777777777778,
+      "mediana": 0.826,
+      "min": 0.141,
+      "max": 260.108,
+      "desv": 86.37048086264454,
+      "cv": 2.076324397039908,
+      "sesgo": 2.5248144605712364,
+      "curtosis": 6.493661131206629
+    },
+    "normalidad": {
+      "shapiro_wilk": {
+        "W": 0.570024292223145,
+        "p": 4.254749282191236e-05,
+        "veredicto": "se rechaza la normalidad"
+      },
+      "dagostino_k2": {
+        "k2": 19.033512029448417,
+        "p": 7.36080609297837e-05,
+        "veredicto": "se rechaza la normalidad"
+      },
+      "jarque_bera": {
+        "jb": 9.466787006461214,
+        "p": 0.00879656914651966,
+        "veredicto": "se rechaza la normalidad"
+      },
+      "shapiro_log10": {
+        "W": 0.90796731279089,
+        "p": 0.30190587074622244,
+        "desplazamiento": 0.0,
+        "veredicto": "no se rechaza la normalidad"
+      },
+      "etiqueta": "Prototipo 1 (9 escenarios medidos)"
+    },
+    "valores": [
+      16.405,
+      0.826,
+      85.0,
+      260.108,
+      0.141,
+      0.824,
+      0.543,
+      0.533,
+      10.0
+    ],
+    "escenarios": [
+      "S01-reconocimiento",
+      "S02-escaneo-web",
+      "S03-bruteforce-ssh",
+      "S04-sql-injection",
+      "S05-credential-stuffing",
+      "S06-xss",
+      "S07-api-abuse",
+      "S08-malware-drop",
+      "S09-reverse-shell"
+    ]
+  },
+  "prototipo_2_vuelta_1": {
+    "datos": {
+      "n": 4,
+      "media": 5.2155,
+      "mediana": 1.474,
+      "min": 1.063,
+      "max": 16.851,
+      "desv": 7.762322697921459,
+      "cv": 1.4883180323883538,
+      "sesgo": 1.9918357519538537,
+      "curtosis": 3.9720421716735324
+    },
+    "normalidad": {
+      "shapiro_wilk": {
+        "W": 0.6617495388491206,
+        "p": 0.0037811301576743234,
+        "veredicto": "se rechaza la normalidad"
+      },
+      "dagostino_k2": {
+        "k2": null,
+        "p": null,
+        "veredicto": "no aplicable, la prueba exige al menos ocho observaciones"
+      },
+      "jarque_bera": {
+        "jb": 0.9565513618682888,
+        "p": 0.6198512922422111,
+        "veredicto": "no se rechaza la normalidad"
+      },
+      "shapiro_log10": {
+        "W": 0.7628712574594267,
+        "p": 0.05059840556282349,
+        "desplazamiento": 0.0,
+        "veredicto": "no se rechaza la normalidad"
+      },
+      "etiqueta": "P2 vuelta 1 (4 medidos)"
+    },
+    "valores": [
+      16.851,
+      1.214,
+      1.734,
+      1.063
+    ]
+  },
+  "prototipo_2_medicion_final": {
+    "datos": {
+      "n": 10,
+      "media": 2.0219,
+      "mediana": 0.511,
+      "min": 0.0,
+      "max": 15.91,
+      "desv": 4.896604026148008,
+      "cv": 2.421783483925025,
+      "sesgo": 3.122003694866714,
+      "curtosis": 9.811535521726055
+    },
+    "normalidad": {
+      "shapiro_wilk": {
+        "W": 0.441508953337993,
+        "p": 7.55073109041759e-07,
+        "veredicto": "se rechaza la normalidad"
+      },
+      "dagostino_k2": {
+        "k2": 28.04389755281793,
+        "p": 8.134765177489631e-07,
+        "veredicto": "se rechaza la normalidad"
+      },
+      "jarque_bera": {
+        "jb": 21.987335574277665,
+        "p": 1.6807795066057685e-05,
+        "veredicto": "se rechaza la normalidad"
+      },
+      "log10_desplazamiento": 0.001,
+      "shapiro_log10": {
+        "W": 0.8399404799648993,
+        "p": 0.044051914755656923,
+        "desplazamiento": 0.001,
+        "veredicto": "se rechaza la normalidad"
+      },
+      "etiqueta": "P2 medicion final (10 medidos)"
+    },
+    "valores": [
+      15.91,
+      1.095,
+      0.0,
+      0.137,
+      1.145,
+      0.46,
+      0.264,
+      0.562,
+      0.0,
+      0.646
+    ]
+  },
+  "nula_wilcoxon_n4": {
+    "soporte": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "probabilidades": {
+      "0": 0.0625,
+      "1": 0.0625,
+      "2": 0.0625,
+      "3": 0.125,
+      "4": 0.125,
+      "5": 0.125,
+      "6": 0.125,
+      "7": 0.125,
+      "8": 0.0625,
+      "9": 0.0625,
+      "10": 0.0625
+    },
+    "w_observado": 0,
+    "p_bilateral": 0.125,
+    "p_minimo": 0.125,
+    "p_unilateral": 0.0625
+  }
+}

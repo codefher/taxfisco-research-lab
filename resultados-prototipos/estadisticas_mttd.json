@@ -1,0 +1,488 @@
+{
+  "fuente": "scripts/verificar_estadisticas_mttd.py",
+  "datasets": {
+    "p1": {
+      "etiqueta": "Prototipo 1 - TaxFisco Research Lab",
+      "clave": "TaxFisco",
+      "escenarios": [
+        "S01",
+        "S02",
+        "S03",
+        "S04",
+        "S05",
+        "S06",
+        "S07",
+        "S08",
+        "S09",
+        "S10"
+      ],
+      "valores": [
+        16.405,
+        0.826,
+        85.0,
+        260.108,
+        0.141,
+        0.824,
+        0.543,
+        0.533,
+        10.0
+      ],
+      "sin_registro": [
+        "S10"
+      ],
+      "n": 9,
+      "suma": 374.38,
+      "media": 41.59777777777778,
+      "mediana": 0.826,
+      "minimo": 0.141,
+      "maximo": 260.108,
+      "rango": 259.967,
+      "desviacion_estandar": 86.37048086264454,
+      "cv": 2.076324397039908,
+      "p95_inclusivo": 190.06479999999993,
+      "h_p95": 8.6,
+      "ordenados": [
+        0.141,
+        0.533,
+        0.543,
+        0.824,
+        0.826,
+        10.0,
+        16.405,
+        85.0,
+        260.108
+      ],
+      "sesgo_fisher_pearson": 2.5248144605712364,
+      "curtosis_exceso": 6.493661131206629,
+      "shapiro_wilk": {
+        "w": 0.570024292223145,
+        "p": 4.254749282191236e-05
+      },
+      "histograma": [
+        {
+          "desde": 0.0,
+          "hasta": 30.0,
+          "frecuencia_absoluta": 7,
+          "frecuencia_relativa": 0.7777777777777778
+        },
+        {
+          "desde": 30.0,
+          "hasta": 60.0,
+          "frecuencia_absoluta": 0,
+          "frecuencia_relativa": 0.0
+        },
+        {
+          "desde": 60.0,
+          "hasta": 90.0,
+          "frecuencia_absoluta": 1,
+          "frecuencia_relativa": 0.1111111111111111
+        },
+        {
+          "desde": 90.0,
+          "hasta": 120.0,
+          "frecuencia_absoluta": 0,
+          "frecuencia_relativa": 0.0
+        },
+        {
+          "desde": 120.0,
+          "hasta": 150.0,
+          "frecuencia_absoluta": 0,
+          "frecuencia_relativa": 0.0
+        },
+        {
+          "desde": 150.0,
+          "hasta": 180.0,
+          "frecuencia_absoluta": 0,
+          "frecuencia_relativa": 0.0
+        },
+        {
+          "desde": 180.0,
+          "hasta": 210.0,
+          "frecuencia_absoluta": 0,
+          "frecuencia_relativa": 0.0
+        },
+        {
+          "desde": 210.0,
+          "hasta": 240.0,
+          "frecuencia_absoluta": 0,
+          "frecuencia_relativa": 0.0
+        },
+        {
+          "desde": 240.0,
+          "hasta": 270.0,
+          "frecuencia_absoluta": 1,
+          "frecuencia_relativa": 0.1111111111111111
+        }
+      ],
+      "ancho_bin": 30.0
+    },
+    "p2v1": {
+      "etiqueta": "Prototipo 2 - SIN, primera vuelta",
+      "clave": "SIN vuelta 1",
+      "escenarios": [
+        "S01",
+        "S02",
+        "S05",
+        "S07"
+      ],
+      "valores": [
+        16.851,
+        1.214,
+        1.734,
+        1.063
+      ],
+      "sin_registro": [
+        "S03",
+        "S04",
+        "S06",
+        "S08",
+        "S09",
+        "S10"
+      ],
+      "n": 4,
+      "suma": 20.862,
+      "media": 5.2155,
+      "mediana": 1.474,
+      "minimo": 1.063,
+      "maximo": 16.851,
+      "rango": 15.787999999999998,
+      "desviacion_estandar": 7.762322697921459,
+      "cv": 1.4883180323883538,
+      "p95_inclusivo": 14.583449999999994,
+      "h_p95": 3.8499999999999996,
+      "ordenados": [
+        1.063,
+        1.214,
+        1.734,
+        16.851
+      ],
+      "sesgo_fisher_pearson": 1.9918357519538537,
+      "curtosis_exceso": 3.9720421716735324,
+      "shapiro_wilk": {
+        "w": 0.6617495388491206,
+        "p": 0.0037811301576743234
+      },
+      "histograma": [
+        {
+          "desde": 0.0,
+          "hasta": 1.0,
+          "frecuencia_absoluta": 0,
+          "frecuencia_relativa": 0.0
+        },
+        {
+          "desde": 1.0,
+          "hasta": 2.0,
+          "frecuencia_absoluta": 3,
+          "frecuencia_relativa": 0.75
+        },
+        {
+          "desde": 2.0,
+          "hasta": 3.0,
+          "frecuencia_absoluta": 0,
+          "frecuencia_relativa": 0.0
+        },
+        {
+          "desde": 3.0,
+          "hasta": 4.0,
+          "frecuencia_absoluta": 0,
+          "frecuencia_relativa": 0.0
+        },
+        {
+          "desde": 4.0,
+          "hasta": 5.0,
+          "frecuencia_absoluta": 0,
+          "frecuencia_relativa": 0.0
+        },
+        {
+          "desde": 5.0,
+          "hasta": 6.0,
+          "frecuencia_absoluta": 0,
+          "frecuencia_relativa": 0.0
+        },
+        {
+          "desde": 6.0,
+          "hasta": 7.0,
+          "frecuencia_absoluta": 0,
+          "frecuencia_relativa": 0.0
+        },
+        {
+          "desde": 7.0,
+          "hasta": 8.0,
+          "frecuencia_absoluta": 0,
+          "frecuencia_relativa": 0.0
+        },
+        {
+          "desde": 8.0,
+          "hasta": 9.0,
+          "frecuencia_absoluta": 0,
+          "frecuencia_relativa": 0.0
+        },
+        {
+          "desde": 9.0,
+          "hasta": 10.0,
+          "frecuencia_absoluta": 0,
+          "frecuencia_relativa": 0.0
+        },
+        {
+          "desde": 10.0,
+          "hasta": 11.0,
+          "frecuencia_absoluta": 0,
+          "frecuencia_relativa": 0.0
+        },
+        {
+          "desde": 11.0,
+          "hasta": 12.0,
+          "frecuencia_absoluta": 0,
+          "frecuencia_relativa": 0.0
+        },
+        {
+          "desde": 12.0,
+          "hasta": 13.0,
+          "frecuencia_absoluta": 0,
+          "frecuencia_relativa": 0.0
+        },
+        {
+          "desde": 13.0,
+          "hasta": 14.0,
+          "frecuencia_absoluta": 0,
+          "frecuencia_relativa": 0.0
+        },
+        {
+          "desde": 14.0,
+          "hasta": 15.0,
+          "frecuencia_absoluta": 0,
+          "frecuencia_relativa": 0.0
+        },
+        {
+          "desde": 15.0,
+          "hasta": 16.0,
+          "frecuencia_absoluta": 0,
+          "frecuencia_relativa": 0.0
+        },
+        {
+          "desde": 16.0,
+          "hasta": 17.0,
+          "frecuencia_absoluta": 1,
+          "frecuencia_relativa": 0.25
+        }
+      ],
+      "ancho_bin": 1.0
+    },
+    "p2fin": {
+      "etiqueta": "Prototipo 2 - SIN, medicion final",
+      "clave": "SIN medicion final",
+      "escenarios": [
+        "S01",
+        "S02",
+        "S03",
+        "S04",
+        "S05",
+        "S06",
+        "S07",
+        "S08",
+        "S09",
+        "S10"
+      ],
+      "valores": [
+        15.91,
+        1.095,
+        0.0,
+        0.137,
+        1.145,
+        0.46,
+        0.264,
+        0.562,
+        0.0,
+        0.646
+      ],
+      "sin_registro": [],
+      "n": 10,
+      "suma": 20.219,
+      "media": 2.0219,
+      "mediana": 0.511,
+      "minimo": 0.0,
+      "maximo": 15.91,
+      "rango": 15.91,
+      "desviacion_estandar": 4.896604026148008,
+      "cv": 2.421783483925025,
+      "p95_inclusivo": 9.265749999999985,
+      "h_p95": 9.549999999999999,
+      "ordenados": [
+        0.0,
+        0.0,
+        0.137,
+        0.264,
+        0.46,
+        0.562,
+        0.646,
+        1.095,
+        1.145,
+        15.91
+      ],
+      "sesgo_fisher_pearson": 3.122003694866714,
+      "curtosis_exceso": 9.811535521726055,
+      "shapiro_wilk": {
+        "w": 0.441508953337993,
+        "p": 7.55073109041759e-07
+      },
+      "histograma": [
+        {
+          "desde": 0.0,
+          "hasta": 1.0,
+          "frecuencia_absoluta": 7,
+          "frecuencia_relativa": 0.7
+        },
+        {
+          "desde": 1.0,
+          "hasta": 2.0,
+          "frecuencia_absoluta": 2,
+          "frecuencia_relativa": 0.2
+        },
+        {
+          "desde": 2.0,
+          "hasta": 3.0,
+          "frecuencia_absoluta": 0,
+          "frecuencia_relativa": 0.0
+        },
+        {
+          "desde": 3.0,
+          "hasta": 4.0,
+          "frecuencia_absoluta": 0,
+          "frecuencia_relativa": 0.0
+        },
+        {
+          "desde": 4.0,
+          "hasta": 5.0,
+          "frecuencia_absoluta": 0,
+          "frecuencia_relativa": 0.0
+        },
+        {
+          "desde": 5.0,
+          "hasta": 6.0,
+          "frecuencia_absoluta": 0,
+          "frecuencia_relativa": 0.0
+        },
+        {
+          "desde": 6.0,
+          "hasta": 7.0,
+          "frecuencia_absoluta": 0,
+          "frecuencia_relativa": 0.0
+        },
+        {
+          "desde": 7.0,
+          "hasta": 8.0,
+          "frecuencia_absoluta": 0,
+          "frecuencia_relativa": 0.0
+        },
+        {
+          "desde": 8.0,
+          "hasta": 9.0,
+          "frecuencia_absoluta": 0,
+          "frecuencia_relativa": 0.0
+        },
+        {
+          "desde": 9.0,
+          "hasta": 10.0,
+          "frecuencia_absoluta": 0,
+          "frecuencia_relativa": 0.0
+        },
+        {
+          "desde": 10.0,
+          "hasta": 11.0,
+          "frecuencia_absoluta": 0,
+          "frecuencia_relativa": 0.0
+        },
+        {
+          "desde": 11.0,
+          "hasta": 12.0,
+          "frecuencia_absoluta": 0,
+          "frecuencia_relativa": 0.0
+        },
+        {
+          "desde": 12.0,
+          "hasta": 13.0,
+          "frecuencia_absoluta": 0,
+          "frecuencia_relativa": 0.0
+        },
+        {
+          "desde": 13.0,
+          "hasta": 14.0,
+          "frecuencia_absoluta": 0,
+          "frecuencia_relativa": 0.0
+        },
+        {
+          "desde": 14.0,
+          "hasta": 15.0,
+          "frecuencia_absoluta": 0,
+          "frecuencia_relativa": 0.0
+        },
+        {
+          "desde": 15.0,
+          "hasta": 16.0,
+          "frecuencia_absoluta": 1,
+          "frecuencia_relativa": 0.1
+        }
+      ],
+      "ancho_bin": 1.0
+    }
+  },
+  "comparacion_reportada": {
+    "media_vuelta_1": 5.2155,
+    "media_final": 2.0219,
+    "diferencia_absoluta": 3.1935999999999996,
+    "reduccion_relativa_pct": 61.23286357971431
+  },
+  "comparacion_comparable": {
+    "escenarios": [
+      {
+        "escenario": "S01",
+        "vuelta_1": 16.851,
+        "final": 15.91,
+        "diferencia": 0.940999999999999,
+        "reduccion_relativa_pct": 5.58423832413506
+      },
+      {
+        "escenario": "S02",
+        "vuelta_1": 1.214,
+        "final": 1.095,
+        "diferencia": 0.119,
+        "reduccion_relativa_pct": 9.802306425041186
+      },
+      {
+        "escenario": "S05",
+        "vuelta_1": 1.734,
+        "final": 1.145,
+        "diferencia": 0.589,
+        "reduccion_relativa_pct": 33.9677047289504
+      },
+      {
+        "escenario": "S07",
+        "vuelta_1": 1.063,
+        "final": 0.264,
+        "diferencia": 0.7989999999999999,
+        "reduccion_relativa_pct": 75.16462841015992
+      }
+    ],
+    "media_inicial": 5.2155,
+    "media_final": 4.6034999999999995,
+    "diferencia_absoluta": 0.6120000000000001,
+    "reduccion_relativa_pct": 11.734253666954274
+  },
+  "cobertura": {
+    "p1": {
+      "medidos": 9,
+      "declarados": 10,
+      "pct": 90.0
+    },
+    "p2v1": {
+      "medidos": 4,
+      "declarados": 10,
+      "pct": 40.0
+    },
+    "p2fin": {
+      "medidos": 10,
+      "declarados": 10,
+      "pct": 100.0
+    }
+  }
+}

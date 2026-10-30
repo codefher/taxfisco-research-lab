@@ -1,0 +1,446 @@
+{
+  "nota": "Version 2. Los modelos con soporte positivo se ajustan con estimadores de maxima verosimilitud propios y localizacion anclada en cero. La version 1 usaba stats.<dist>.fit(x, loc=0), que en scipy 1.18.1 no respeta el anclaje.",
+  "criterio": "AIC y BIC con correccion de Lilliefors sobre 2000 remuestreos parametricos",
+  "semilla": 20251027,
+  "prototipo_1": {
+    "n": 9,
+    "valores": [
+      16.405,
+      0.826,
+      85.0,
+      260.108,
+      0.141,
+      0.824,
+      0.543,
+      0.533,
+      10.0
+    ],
+    "verificacion_estimadores": {
+      "Normal": {
+        "loglik_propia": -52.368237,
+        "loglik_numerica": -52.368237,
+        "diferencia": 0.0
+      },
+      "Log-normal": {
+        "loglik_propia": -32.330728,
+        "loglik_numerica": -32.330728,
+        "diferencia": 0.0
+      },
+      "Exponencial": {
+        "loglik_propia": -42.552421,
+        "loglik_numerica": -42.552421,
+        "diferencia": 0.0
+      },
+      "Gamma": {
+        "loglik_propia": -33.931998,
+        "loglik_numerica": -33.931998,
+        "diferencia": 0.0
+      },
+      "Weibull": {
+        "loglik_propia": -33.202951,
+        "loglik_numerica": -33.202951,
+        "diferencia": 0.0
+      },
+      "Log-logistica": {
+        "loglik_propia": -32.722177,
+        "loglik_numerica": -32.722177,
+        "diferencia": 0.0
+      }
+    },
+    "comparacion": [
+      {
+        "modelo": "Log-normal",
+        "params": [
+          2.4432554410432332,
+          3.5967592112336746
+        ],
+        "k": 2,
+        "loglik": -32.330728,
+        "aic": 68.661456,
+        "bic": 69.055905,
+        "ks": 0.282017,
+        "p_ks": 0.0395,
+        "n_ajuste": 9,
+        "censurados": 0,
+        "daic": 0.0,
+        "dbic": 0.0,
+        "w_akaike": 0.435571
+      },
+      {
+        "modelo": "Log-logistica",
+        "params": [
+          2.96755260147643,
+          0.675560916174345
+        ],
+        "k": 2,
+        "loglik": -32.722177,
+        "aic": 69.444354,
+        "bic": 69.838803,
+        "ks": 0.259046,
+        "p_ks": 0.026,
+        "n_ajuste": 9,
+        "censurados": 0,
+        "daic": 0.7829,
+        "dbic": 0.7829,
+        "w_akaike": 0.294479
+      },
+      {
+        "modelo": "Weibull",
+        "params": [
+          0.4121087403694658,
+          12.786955435428172
+        ],
+        "k": 2,
+        "loglik": -33.202951,
+        "aic": 70.405903,
+        "bic": 70.800352,
+        "ks": 0.279273,
+        "p_ks": 0.032,
+        "n_ajuste": 9,
+        "censurados": 0,
+        "daic": 1.7444,
+        "dbic": 1.7444,
+        "w_akaike": 0.182078
+      },
+      {
+        "modelo": "Gamma",
+        "params": [
+          0.28418218204412565,
+          146.3771505090186
+        ],
+        "k": 2,
+        "loglik": -33.931998,
+        "aic": 71.863996,
+        "bic": 72.258445,
+        "ks": 0.300736,
+        "p_ks": 0.051,
+        "n_ajuste": 9,
+        "censurados": 0,
+        "daic": 3.2025,
+        "dbic": 3.2025,
+        "w_akaike": 0.087829
+      },
+      {
+        "modelo": "Exponencial",
+        "params": [
+          0.024039745712912015
+        ],
+        "k": 1,
+        "loglik": -42.552421,
+        "aic": 87.104841,
+        "bic": 87.302066,
+        "ks": 0.535895,
+        "p_ks": 0.0,
+        "n_ajuste": 9,
+        "censurados": 0,
+        "daic": 18.4434,
+        "dbic": 18.2462,
+        "w_akaike": 4.3e-05
+      },
+      {
+        "modelo": "Normal",
+        "params": [
+          41.59777777777778,
+          81.43087028309183
+        ],
+        "k": 2,
+        "loglik": -52.368237,
+        "aic": 108.736474,
+        "bic": 109.130923,
+        "ks": 0.39926,
+        "p_ks": 0.0005,
+        "n_ajuste": 9,
+        "censurados": 0,
+        "daic": 40.075,
+        "dbic": 40.075,
+        "w_akaike": 0.0
+      }
+    ],
+    "calibracion_ks": {
+      "n": 9,
+      "replicas": 200,
+      "p_medio": 0.505463,
+      "proporcion_rechazos_005": 0.055
+    }
+  },
+  "prototipo_2_vuelta_1": {
+    "n": 4,
+    "valores": [
+      16.851,
+      1.214,
+      1.734,
+      1.063
+    ],
+    "comparacion": [
+      {
+        "modelo": "Exponencial",
+        "params": [
+          0.19173617102866458
+        ],
+        "k": 1,
+        "loglik": -10.60654,
+        "aic": 23.21308,
+        "bic": 22.599374,
+        "ks": 0.46715,
+        "p_ks": 0.0595,
+        "n_ajuste": 4,
+        "censurados": 0,
+        "daic": 0.0,
+        "dbic": 0.3009,
+        "w_akaike": 0.282677
+      },
+      {
+        "modelo": "Log-normal",
+        "params": [
+          1.1211198634427062,
+          2.478030690062737
+        ],
+        "k": 2,
+        "loglik": -9.762923,
+        "aic": 23.525846,
+        "bic": 22.298435,
+        "ks": 0.374932,
+        "p_ks": 0.0645,
+        "n_ajuste": 4,
+        "censurados": 0,
+        "daic": 0.3128,
+        "dbic": 0.0,
+        "w_akaike": 0.241754
+      },
+      {
+        "modelo": "Log-logistica",
+        "params": [
+          1.9766831443021502,
+          1.6057571475671533
+        ],
+        "k": 2,
+        "loglik": -9.797436,
+        "aic": 23.594872,
+        "bic": 22.36746,
+        "ks": 0.302391,
+        "p_ks": 0.145,
+        "n_ajuste": 4,
+        "censurados": 0,
+        "daic": 0.3818,
+        "dbic": 0.069,
+        "w_akaike": 0.233553
+      },
+      {
+        "modelo": "Weibull",
+        "params": [
+          0.8159922696540595,
+          4.565725971954354
+        ],
+        "k": 2,
+        "loglik": -10.437913,
+        "aic": 24.875827,
+        "bic": 23.648415,
+        "ks": 0.385181,
+        "p_ks": 0.048,
+        "n_ajuste": 4,
+        "censurados": 0,
+        "daic": 1.6627,
+        "dbic": 1.35,
+        "w_akaike": 0.123092
+      },
+      {
+        "modelo": "Gamma",
+        "params": [
+          0.7978094156135399,
+          6.5372756100180105
+        ],
+        "k": 2,
+        "loglik": -10.533491,
+        "aic": 25.066982,
+        "bic": 23.839571,
+        "ks": 0.417688,
+        "p_ks": 0.036,
+        "n_ajuste": 4,
+        "censurados": 0,
+        "daic": 1.8539,
+        "dbic": 1.5411,
+        "w_akaike": 0.111872
+      },
+      {
+        "modelo": "Normal",
+        "params": [
+          5.2155,
+          6.7223686487725445
+        ],
+        "k": 2,
+        "loglik": -13.297516,
+        "aic": 30.595033,
+        "bic": 29.367622,
+        "ks": 0.447735,
+        "p_ks": 0.0045,
+        "n_ajuste": 4,
+        "censurados": 0,
+        "daic": 7.382,
+        "dbic": 7.0692,
+        "w_akaike": 0.007052
+      }
+    ]
+  },
+  "prototipo_2_medicion_final": {
+    "n": 10,
+    "valores": [
+      15.91,
+      1.095,
+      0.0,
+      0.137,
+      1.145,
+      0.46,
+      0.264,
+      0.562,
+      0.0,
+      0.646
+    ],
+    "verificacion_estimadores": {
+      "Normal": {
+        "loglik_propia": -24.336896,
+        "loglik_numerica": -24.336896,
+        "diferencia": 0.0
+      },
+      "Log-normal": {
+        "loglik_propia": -11.466246,
+        "loglik_numerica": -11.466246,
+        "diferencia": 0.0
+      },
+      "Exponencial": {
+        "loglik_propia": -15.41745,
+        "loglik_numerica": -15.41745,
+        "diferencia": 0.0
+      },
+      "Gamma": {
+        "loglik_propia": -13.99335,
+        "loglik_numerica": -13.99335,
+        "diferencia": 0.0
+      },
+      "Weibull": {
+        "loglik_propia": -13.200768,
+        "loglik_numerica": -13.200768,
+        "diferencia": 0.0
+      },
+      "Log-logistica": {
+        "loglik_propia": -11.117137,
+        "loglik_numerica": -11.117137,
+        "diferencia": 0.0
+      }
+    },
+    "comparacion": [
+      {
+        "modelo": "Log-logistica",
+        "params": [
+          0.6478083238598015,
+          1.4690816438527874
+        ],
+        "k": 2,
+        "loglik": -11.117137,
+        "aic": 26.234275,
+        "bic": 26.393158,
+        "ks": 0.177222,
+        "p_ks": 0.5365,
+        "n_ajuste": 8,
+        "censurados": 2,
+        "daic": 0.0,
+        "dbic": 0.0,
+        "w_akaike": 0.520017
+      },
+      {
+        "modelo": "Log-normal",
+        "params": [
+          1.3216337920375982,
+          0.7675693386995416
+        ],
+        "k": 2,
+        "loglik": -11.466246,
+        "aic": 26.932492,
+        "bic": 27.091375,
+        "ks": 0.256096,
+        "p_ks": 0.1515,
+        "n_ajuste": 8,
+        "censurados": 2,
+        "daic": 0.6982,
+        "dbic": 0.6982,
+        "w_akaike": 0.366776
+      },
+      {
+        "modelo": "Weibull",
+        "params": [
+          0.6368961948572505,
+          1.5891203397242324
+        ],
+        "k": 2,
+        "loglik": -13.200768,
+        "aic": 30.401536,
+        "bic": 30.560419,
+        "ks": 0.319151,
+        "p_ks": 0.014,
+        "n_ajuste": 8,
+        "censurados": 2,
+        "daic": 4.1673,
+        "dbic": 4.1673,
+        "w_akaike": 0.06473
+      },
+      {
+        "modelo": "Gamma",
+        "params": [
+          0.5284718816406545,
+          4.782420843885395
+        ],
+        "k": 2,
+        "loglik": -13.99335,
+        "aic": 31.9867,
+        "bic": 32.145583,
+        "ks": 0.386471,
+        "p_ks": 0.0045,
+        "n_ajuste": 8,
+        "censurados": 2,
+        "daic": 5.7524,
+        "dbic": 5.7524,
+        "w_akaike": 0.029302
+      },
+      {
+        "modelo": "Exponencial",
+        "params": [
+          0.39566744151540634
+        ],
+        "k": 1,
+        "loglik": -15.41745,
+        "aic": 32.834899,
+        "bic": 32.914341,
+        "ks": 0.510693,
+        "p_ks": 0.001,
+        "n_ajuste": 8,
+        "censurados": 2,
+        "daic": 6.6006,
+        "dbic": 6.5212,
+        "w_akaike": 0.019174
+      },
+      {
+        "modelo": "Normal",
+        "params": [
+          2.5273749999999997,
+          5.069151554685952
+        ],
+        "k": 2,
+        "loglik": -24.336896,
+        "aic": 52.673792,
+        "bic": 52.832675,
+        "ks": 0.482459,
+        "p_ks": 0.0,
+        "n_ajuste": 8,
+        "censurados": 2,
+        "daic": 26.4395,
+        "dbic": 26.4395,
+        "w_akaike": 1e-06
+      }
+    ],
+    "calibracion_ks": {
+      "n": 8,
+      "replicas": 200,
+      "p_medio": 0.508975,
+      "proporcion_rechazos_005": 0.035
+    }
+  }
+}

@@ -1,0 +1,2207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Análisis estadístico del MTTD · TaxFisco Research Lab</title>
+<meta name="description" content="Análisis estadístico de los tiempos de detección (MTTD) con la metodología Honeypot: distribución empírica, histogramas, medidas descriptivas y comparación antes y después de las correcciones del Servicio de Impuestos Nacionales." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+/* =====================================================================
+   Paleta y tipografía institucional (house style del capítulo 4)
+   Modo: informe / long-read de investigación
+   ===================================================================== */
+:root{
+  --papel:#F4F7FA;
+  --papel-2:#FBFCFE;
+  --blanco:#FFFFFF;
+  --tinta:#14283C;
+  --tinta-2:#2B3A4A;
+  --gris:#5A6878;
+  --gris-2:#6B7A8C;
+  --gris-3:#98A6B5;
+  --linea:#DCE4EC;
+  --rejilla:#E7EDF3;
+  --azul:#2C6BC7;
+  --azul-claro:#5B8FDB;
+  --naranja:#E8891A;
+  --verde:#1E8E4E;
+  --rojo:#D14343;
+  --crema:#F7F5F0;
+
+  --sans:"Outfit","Segoe UI","Helvetica Neue",sans-serif;
+  --serif:"DM Serif Display",Georgia,"Times New Roman",serif;
+  --mono:"JetBrains Mono","Cascadia Mono",Consolas,monospace;
+
+  --radio:14px;
+  --sombra-s:0 1px 2px rgba(20,40,60,.04), 0 6px 18px rgba(20,40,60,.05);
+  --sombra-m:0 2px 6px rgba(20,40,60,.05), 0 18px 44px -12px rgba(20,40,60,.16);
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+html,body{
+  margin:0;padding:0;
+  background:var(--papel);
+  color:var(--tinta);
+  font-family:var(--sans);
+  font-size:16px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+body{
+  background-image:
+    radial-gradient(1100px 520px at 8% -8%, rgba(44,107,199,.055), transparent 60%),
+    radial-gradient(900px 480px at 100% 0%, rgba(30,142,78,.045), transparent 60%);
+  background-repeat:no-repeat;
+}
+
+/* ------------------------------ tipografía ------------------------------ */
+h1,h2,h3,h4{font-family:var(--serif);font-weight:400;letter-spacing:-.005em;color:var(--tinta);margin:0}
+h1{font-size:clamp(2rem,4.4vw,3.05rem);line-height:1.12}
+h2{font-size:clamp(1.45rem,2.5vw,1.95rem);line-height:1.2}
+h3{font-size:1.22rem;line-height:1.3}
+h4{font-size:1.02rem;font-family:var(--sans);font-weight:600;letter-spacing:0}
+p{margin:0 0 12px}
+p:last-child{margin-bottom:0}
+a{color:var(--azul)}
+strong{font-weight:600;color:var(--tinta)}
+.kicker{
+  font-family:var(--sans);font-size:.74rem;font-weight:600;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--azul);margin:0 0 12px
+}
+.lede{font-size:1.08rem;color:var(--gris);max-width:74ch}
+.chap{font-family:var(--mono);font-size:.78rem;color:var(--gris-2)}
+
+/* --------------------------------- layout -------------------------------- */
+.envoltura{max-width:1180px;margin:0 auto;padding:0 24px 88px}
+.bloque{padding:60px 0 0;scroll-margin-top:86px}
+.bloque--separado{border-top:1px solid var(--linea)}
+
+/* ------------------------------- navegación ------------------------------ */
+.nav{
+  position:sticky;top:0;z-index:50;
+  background:rgba(244,247,250,.92);
+  backdrop-filter:saturate(1.4) blur(10px);
+  border-bottom:1px solid var(--linea);
+}
+.nav-inner{
+  max-width:1180px;margin:0 auto;padding:10px 24px;
+  display:flex;align-items:center;gap:18px;
+}
+.nav-marca{font-family:var(--serif);font-size:1rem;white-space:nowrap;color:var(--tinta)}
+.nav-marca span{color:var(--azul)}
+.nav-links{
+  display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;flex:1;
+  -webkit-overflow-scrolling:touch;
+}
+.nav-links::-webkit-scrollbar{display:none}
+.nav-links a{
+  font-size:.82rem;color:var(--gris);text-decoration:none;padding:6px 10px;border-radius:999px;
+  white-space:nowrap;transition:background .18s ease,color .18s ease;
+}
+.nav-links a:hover{background:#E6EDF6;color:var(--tinta)}
+.nav-accion{
+  flex:none;font-family:var(--sans);font-size:.8rem;font-weight:500;color:var(--tinta-2);
+  background:var(--blanco);border:1px solid var(--linea);border-radius:8px;padding:7px 13px;
+  cursor:pointer;transition:background .18s ease,border-color .18s ease;
+}
+.nav-accion:hover{background:#EEF3F9;border-color:#C4D0DC}
+
+/* -------------------------------- portada -------------------------------- */
+.portada{padding:52px 0 8px}
+.portada h1{max-width:20ch}
+.portada .lede{margin-top:18px}
+.cinta{
+  display:flex;flex-wrap:wrap;gap:0;margin:28px 0 0;
+  border-top:1px solid var(--linea);border-bottom:1px solid var(--linea);
+}
+.cinta-item{padding:18px 30px 18px 0;margin-right:30px;border-right:1px solid var(--linea)}
+.cinta-item:last-child{border-right:0;margin-right:0}
+.cinta-item:last-child{padding-right:0}
+.cinta-valor{
+  font-family:var(--serif);font-size:1.95rem;line-height:1;color:var(--tinta);display:block
+}
+.cinta-valor em{font-style:normal;color:var(--azul)}
+.cinta-etiqueta{font-size:.78rem;color:var(--gris-2);display:block;margin-top:7px;max-width:30ch}
+
+/* -------------------------------- tarjetas ------------------------------- */
+.tarjeta{
+  background:var(--blanco);border:1px solid var(--linea);border-radius:var(--radio);
+  box-shadow:var(--sombra-s);padding:28px 30px 24px;margin-top:26px;
+}
+.tarjeta--plano{box-shadow:none;background:transparent;border:0;padding:0}
+.figura{margin-top:26px}
+.fig-cabecera{margin-bottom:14px}
+.fig-cabecera h3{margin-bottom:4px}
+.fig-sub{font-size:.92rem;color:var(--gris);margin:0}
+.fig-etq{
+  font-family:var(--mono);font-size:.73rem;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--gris-3);margin-bottom:6px;display:block
+}
+.zona-grafico svg{width:100%;height:auto;display:block}
+/* ninguna gráfica puede rebasar la tarjeta que la contiene */
+.tarjeta svg,.marco svg{max-width:100%;height:auto}
+#g-mapa svg{width:100%;max-width:430px;height:auto;display:block;margin:0 auto}
+.nota{
+  font-size:.85rem;line-height:1.6;color:var(--gris-2);margin-top:16px;
+  border-top:1px dashed var(--linea);padding-top:13px;
+}
+.nota strong{color:var(--gris)}
+.pie-fig{
+  display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;
+  margin-top:14px;padding-top:11px;border-top:1px solid #EDF1F5;
+}
+.pie-fig .fuente{font-size:.76rem;color:var(--gris-3)}
+.btn-png{
+  font-family:var(--sans);font-size:.76rem;color:var(--tinta-2);background:var(--blanco);
+  border:1px solid var(--linea);border-radius:7px;padding:6px 12px;cursor:pointer;
+  display:inline-flex;align-items:center;gap:7px;transition:background .18s ease,border-color .18s ease;
+}
+.btn-png:hover{background:#F1F6FB;border-color:#C4D0DC}
+.btn-png svg{width:14px;height:14px}
+
+/* --------------------------------- grids --------------------------------- */
+.grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:26px}
+.grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:26px}
+.rejilla-12{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:26px}
+.col-7{grid-column:span 7}.col-5{grid-column:span 5}.col-12{grid-column:span 12}.col-6{grid-column:span 6}
+
+/* --------------------------------- tablas -------------------------------- */
+table.datos{
+  width:100%;border-collapse:collapse;font-size:.88rem;
+  font-variant-numeric:tabular-nums;
+}
+table.datos caption{
+  text-align:left;font-size:.8rem;color:var(--gris-2);padding-bottom:9px;font-weight:500;
+}
+table.datos th,table.datos td{padding:8px 10px;border-bottom:1px solid #EDF1F5;text-align:right}
+table.datos th:first-child,table.datos td:first-child{text-align:left}
+table.datos thead th{
+  border-bottom:1.5px solid var(--linea);color:var(--gris);font-weight:600;font-size:.78rem;
+  letter-spacing:.03em;text-transform:uppercase;white-space:nowrap;
+}
+table.datos tbody tr:last-child td{border-bottom:none}
+table.datos tbody tr:hover{background:#F8FBFD}
+table.datos td.esc{font-family:var(--mono);font-size:.82rem;color:var(--tinta-2)}
+table.datos td.vacia{color:var(--gris-3);font-style:italic}
+table.datos tr.destacado td{background:#F2F7FE;font-weight:600}
+.tabla-envoltura{overflow-x:auto}
+
+/* --------------------------------- chips --------------------------------- */
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{
+  font-family:var(--mono);font-size:.74rem;padding:4px 9px;border-radius:6px;
+  border:1px solid var(--linea);background:var(--papel-2);color:var(--gris);
+}
+.chip.medido{background:#E9F3EC;border-color:#BFDECB;color:#186A3B}
+.chip.sin{background:#F7F8FA;color:var(--gris-3);border-style:dashed}
+
+/* --------------------------------- listas -------------------------------- */
+ol.preguntas{list-style:none;margin:0;padding:0;counter-reset:p}
+ol.preguntas li{
+  counter-increment:p;position:relative;padding:14px 0 14px 52px;border-bottom:1px solid #EDF1F5;
+}
+ol.preguntas li:last-child{border-bottom:none}
+ol.preguntas li::before{
+  content:counter(p);position:absolute;left:0;top:12px;width:30px;height:30px;
+  display:grid;place-items:center;border-radius:50%;
+  background:#E9F0FA;color:var(--azul);font-size:.86rem;font-weight:600;font-family:var(--sans);
+}
+ol.preguntas li strong{display:block;margin-bottom:2px}
+ol.preguntas li span{font-size:.9rem;color:var(--gris)}
+
+ol.motivos{list-style:none;margin:0;padding:0}
+ol.motivos li{
+  position:relative;padding:9px 0 9px 30px;font-size:.93rem;color:var(--gris);
+}
+ol.motivos li::before{
+  content:"";position:absolute;left:6px;top:17px;width:7px;height:7px;border-radius:2px;
+  background:var(--azul);transform:rotate(45deg);
+}
+
+ul.marcas{list-style:none;margin:0;padding:0}
+ul.marcas li{position:relative;padding:7px 0 7px 24px;font-size:.93rem;color:var(--gris)}
+ul.marcas li::before{
+  content:"";position:absolute;left:4px;top:15px;width:6px;height:6px;border-radius:50%;
+  background:var(--verde);
+}
+ul.marcas li strong{color:var(--tinta)}
+
+.aviso{
+  border:1px solid #F0DCC0;background:#FDF6EC;border-radius:var(--radio);
+  padding:18px 20px;margin-top:20px;font-size:.92rem;color:#6A5227;
+}
+.aviso h4{color:#8A6320;margin-bottom:6px;display:flex;align-items:center;gap:8px}
+.aviso svg{width:17px;height:17px;flex:none}
+.aviso--azul{border-color:#C9DBF3;background:#F1F6FD;color:#2C4A73}
+.aviso--azul h4{color:var(--azul)}
+.aviso--verde{border-color:#BEDDC9;background:#EFF8F2;color:#2C5E3D}
+.aviso--verde h4{color:var(--verde)}
+.aviso--rojo{border-color:#F0CDCD;background:#FCF1F1;color:#7A3535}
+.aviso--rojo h4{color:var(--rojo)}
+
+/* -------------------------------- formulas -------------------------------- */
+.formula{
+  background:var(--papel-2);border:1px solid var(--linea);border-radius:10px;
+  padding:16px 18px;margin:12px 0;font-family:var(--mono);font-size:.92rem;color:var(--tinta);
+  overflow-x:auto;
+}
+.formula .mi{font-family:"Cambria Math","Times New Roman",serif;font-size:1.18rem;font-style:italic}
+.frac{display:inline-flex;flex-direction:column;align-items:center;vertical-align:-.55em;margin:0 .3em}
+.frac>span:first-child{padding:0 .45em;border-bottom:1.6px solid currentColor;line-height:1.25}
+.frac>span:last-child{padding:0 .45em;line-height:1.25}
+.raiz{border-top:1.4px solid currentColor;padding:2px 3px 0 3px;margin-left:.12em}
+.eq-lbl{float:right;color:var(--gris-3);font-size:.76rem;margin-top:4px}
+.paso{
+  display:grid;grid-template-columns:30px 1fr;gap:14px;align-items:start;
+  padding:12px 0;border-bottom:1px dashed var(--linea);
+}
+.paso:last-child{border-bottom:none}
+.paso-n{
+  width:26px;height:26px;border-radius:8px;background:#E9F0FA;color:var(--azul);
+  display:grid;place-items:center;font-size:.78rem;font-weight:600;
+}
+.paso p{margin:0;font-size:.94rem;color:var(--gris)}
+.paso p strong{color:var(--tinta)}
+
+/* --------------------------------- boxes --------------------------------- */
+.marco{
+  border:1px solid var(--linea);border-radius:var(--radio);background:var(--papel-2);padding:20px 22px;
+}
+.marco h4{margin-bottom:8px}
+.marco p{font-size:.9rem;color:var(--gris)}
+
+/* -------------------------------- timeline -------------------------------- */
+ol.tline{list-style:none;margin:0;padding:0;position:relative}
+ol.tline::before{content:"";position:absolute;left:9px;top:8px;bottom:8px;width:2px;background:var(--linea)}
+ol.tline li{position:relative;padding:0 0 26px 36px}
+ol.tline li:last-child{padding-bottom:0}
+ol.tline li::before{
+  content:"";position:absolute;left:2px;top:4px;width:16px;height:16px;border-radius:50%;
+  background:var(--blanco);border:2px solid var(--azul);
+}
+ol.tline li .num{
+  font-family:var(--mono);font-size:.74rem;color:var(--azul);font-weight:500;display:block;margin-bottom:2px
+}
+ol.tline li h4{margin-bottom:4px}
+ol.tline li p{font-size:.9rem;color:var(--gris);margin:0}
+
+/* ------------------------------- bench bars ------------------------------- */
+.bench{display:grid;grid-template-columns:170px 1fr 96px;gap:14px;align-items:center;padding:7px 0}
+.bench-label{font-size:.86rem;color:var(--tinta-2)}
+.bench-track{height:16px;background:#E9EFF6;border-radius:8px;overflow:hidden}
+.bench-fill{height:100%;border-radius:8px;transition:width .8s cubic-bezier(.22,1,.36,1)}
+.bench-val{font-family:var(--mono);font-size:.82rem;color:var(--tinta-2);text-align:right}
+.bench-sub{font-size:.76rem;color:var(--gris-2);margin:-4px 0 4px}
+
+/* --------------------------------- KPI ----------------------------------- */
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--linea);
+  border:1px solid var(--linea);border-radius:12px;overflow:hidden}
+.kpi{background:var(--blanco);padding:16px 18px}
+.kpi .v{font-family:var(--serif);font-size:1.6rem;line-height:1.1;color:var(--tinta)}
+.kpi .v small{font-size:.85rem;color:var(--gris-2);font-family:var(--sans)}
+.kpi .l{font-size:.76rem;color:var(--gris-2);margin-top:5px;line-height:1.4}
+
+/* --------------------------------- leyenda -------------------------------- */
+.leyenda{
+  display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:14px;padding:9px 16px;
+  border:1px solid var(--linea);border-radius:9px;background:var(--papel-2);
+  font-size:.8rem;color:var(--tinta-2);
+}
+.leyenda .it{display:inline-flex;align-items:center;gap:8px}
+
+/* --------------------------------- footer --------------------------------- */
+.pie-pagina{
+  margin-top:64px;padding-top:22px;border-top:1px solid var(--linea);
+  font-size:.82rem;color:var(--gris-3);display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;
+}
+
+/* -------------------------------- utilities ------------------------------- */
+.centrado{text-align:center}
+.mt-0{margin-top:0}.mb-0{margin-bottom:0}
+.serif{font-family:var(--serif)}
+.mono{font-family:var(--mono)}
+.pequena{font-size:.85rem;color:var(--gris)}
+.gris{color:var(--gris)}
+.verde{color:var(--verde)}.naranja{color:var(--naranja)}.azul{color:var(--azul)}.rojo{color:var(--rojo)}
+.izq{text-align:left}
+.oculto-visual{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+@media (max-width:900px){
+  .grid-2,.grid-3,.rejilla-12{grid-template-columns:1fr}
+  .col-7,.col-5,.col-6,.col-12{grid-column:span 1}
+  .cinta-item{padding-right:22px;margin-right:22px}
+}
+@media (max-width:640px){
+  .envoltura{padding:0 16px 60px}
+  .tarjeta{padding:20px 18px 18px}
+  .bloque{padding-top:44px}
+  .bench{grid-template-columns:110px 1fr 74px;gap:9px}
+  .cinta-item{border-right:none;border-bottom:1px solid var(--linea);padding:14px 0;margin:0}
+  .cinta-item:last-child{border-bottom:none}
+  .nav-marca{display:none}
+  /* las gráficas conservan su legibilidad y se recorren en horizontal */
+  .zona-grafico{overflow-x:auto;overscroll-behavior-x:contain}
+  .zona-grafico svg{min-width:680px}
+  .leyenda{font-size:.75rem;padding:9px 12px}
+  .formula{font-size:.82rem}
+}
+@media print{
+  html,body{background:#fff}
+  .nav{display:none}
+  .bloque{page-break-inside:avoid;padding-top:26px}
+  .tarjeta{box-shadow:none;border-color:#DCE4EC;page-break-inside:avoid}
+  .btn-png{display:none}
+  .portada{padding-top:12px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .bench-fill{transition:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ============================ NAVEGACIÓN ============================ -->
+<nav class="nav" aria-label="Secciones del documento">
+  <div class="nav-inner">
+    <span class="nav-marca">MTTD <span>·</span> Análisis estadístico</span>
+    <div class="nav-links">
+      <a href="#objetivo">Objetivo</a>
+      <a href="#mttd">Qué es MTTD</a>
+      <a href="#datos">Datos</a>
+      <a href="#distribucion">Distribución</a>
+      <a href="#graficas">Gráficas</a>
+      <a href="#medidas">Medidas</a>
+      <a href="#calculos">Cálculos</a>
+      <a href="#tabla">Tabla general</a>
+      <a href="#comparacion">Comparación SIN</a>
+      <a href="#asimetria">Asimetría</a>
+      <a href="#capitulo">Ubicación</a>
+      <a href="#cautelas">Cautelas</a>
+    </div>
+    <button class="nav-accion" type="button" onclick="window.print()">Imprimir / PDF</button>
+  </div>
+</nav>
+
+<div class="envoltura">
+
+  <!-- ============================= PORTADA ============================= -->
+  <header class="portada">
+    <p class="kicker">TaxFisco Research Lab · Capítulo 4.4 · Resultados</p>
+    <h1>Análisis estadístico de los tiempos de detección (MTTD)</h1>
+    <p class="lede">
+      Aplicación de la metodología Honeypot a la gestión de incidentes en servicios fiscales.
+      Se analiza la distribución empírica de los tiempos de detección de tres momentos de medición,
+      se calculan las medidas descriptivas y se comparan los resultados del Servicio de Impuestos
+      Nacionales antes y después del ciclo de correcciones.
+    </p>
+
+    <div class="cinta">
+      <div class="cinta-item">
+        <span class="cinta-valor">Asimetría <em>positiva</em></span>
+        <span class="cinta-etiqueta">La media supera a la mediana en los tres momentos de medición</span>
+      </div>
+      <div class="cinta-item">
+        <span class="cinta-valor"><em>−11,73 %</em></span>
+        <span class="cinta-etiqueta">Reducción de la media en los cuatro escenarios comparables del SIN</span>
+      </div>
+      <div class="cinta-item">
+        <span class="cinta-valor"><em>40 % → 100 %</em></span>
+        <span class="cinta-etiqueta">Cobertura temporal de los registros después de las correcciones</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============================ FIGURA 1 ============================= -->
+  <section class="figura" id="fig-hero" aria-labelledby="fig1-t">
+    <div class="tarjeta">
+      <div class="fig-cabecera">
+        <span class="fig-etq">Figura 1 · Lectura de conjunto</span>
+        <h3 id="fig1-t">Los tres momentos de medición sobre una misma escala de tiempos</h3>
+        <p class="fig-sub">Cada punto es un escenario con tiempo de detección registrado · escala logarítmica</p>
+      </div>
+      <div class="zona-grafico" id="g-hero"></div>
+      <div class="leyenda" id="l-hero"></div>
+      <p class="nota">
+        <strong>Qué muestra la figura:</strong> en las tres series la mayoría de las observaciones se concentra
+        muy cerca del origen y solo uno o dos escenarios se extienden hacia tiempos mucho mayores.
+        La marca vertical azul señala la <strong>mediana</strong>, que describe el valor central del conjunto;
+        la media, en cambio, queda muy por encima de esa marca. La escala es logarítmica porque los rangos
+        van de 0,141 s a 260,108 s.
+      </p>
+      <div class="pie-fig">
+        <span class="fuente">Elaboración propia a partir de los registros de los capítulos 4.4.</span>
+        <button class="btn-png" type="button" data-png="g-hero">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Descargar PNG
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== OBJETIVO ============================== -->
+  <section class="bloque" id="objetivo">
+    <p class="kicker">01 · Punto de partida</p>
+    <h2>¿Qué queremos demostrar con el análisis estadístico?</h2>
+    <p class="lede" style="margin-top:12px">
+      La investigación aplica la metodología Honeypot en dos prototipos: el <strong>Prototipo 1</strong>,
+      TaxFisco Research Lab, y el <strong>Prototipo 2</strong>, el laboratorio del Servicio de Impuestos
+      Nacionales (SIN), evaluado en una primera vuelta y después de aplicar las correcciones.
+      No basta con afirmar que el segundo prototipo obtuvo una media menor: hay que explicar cómo se
+      distribuyen los tiempos, cuáles son habituales, cuáles son exceptionalmente altos y qué cambió
+      después de incorporar las lecciones aprendidas.
+    </p>
+
+    <div class="rejilla-12" style="margin-top:26px">
+      <div class="col-7">
+        <div class="marco" style="height:100%">
+          <h4>Las cinco preguntas que responde el análisis</h4>
+          <ol class="preguntas">
+            <li><strong>¿Cuánto tarda el sistema en registrar el primer evento?</strong>
+              <span>Definición operativa del MTTD y lectura de cada observación.</span></li>
+            <li><strong>¿Cómo se distribuyen esos tiempos entre los escenarios?</strong>
+              <span>Distribución empírica de frecuencias, tabla de frecuencias e histogramas.</span></li>
+            <li><strong>¿Están concentrados en valores pequeños o hay gran dispersión?</strong>
+              <span>Contraste entre media, mediana, rango y desviación estándar.</span></li>
+            <li><strong>¿Qué diferencias se observan después de las correcciones?</strong>
+              <span>Comparación de los tiempos y de la cobertura temporal de los registros.</span></li>
+            <li><strong>¿Cómo se justifican estadísticamente las conclusiones?</strong>
+              <span>Procedimiento explícito y verificable, con sus limitaciones declaradas.</span></li>
+          </ol>
+        </div>
+      </div>
+      <div class="col-5">
+        <div class="marco" style="height:100%;background:#fff">
+          <h4>Dos prototipos, tres momentos de medición</h4>
+          <div id="g-mapa"></div>
+          <p class="pequena" style="margin-top:12px">
+            Cada recuadro reúne el conjunto de escenarios con tiempo registrado. Los escenarios sin
+            medición no se convierten en ceros: quedan fuera del cálculo y se reportan aparte.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================ MTTD ================================ -->
+  <section class="bloque bloque--separado" id="mttd">
+    <p class="kicker">02 · Definición</p>
+    <h2>¿Qué es el MTTD y qué representa cada observación?</h2>
+    <p class="lede" style="margin-top:12px">
+      El MTTD proviene del término inglés <em>Mean Time to Detect</em>, tiempo medio de detección.
+      En esta investigación cada observación temporal representa el <strong>intervalo entre el inicio
+      de un escenario simulado y el registro de su primer evento</strong> asociado con la actividad ejecutada.
+    </p>
+
+    <div class="tarjeta" id="fig-mttd">
+      <div class="fig-cabecera">
+        <span class="fig-etq">Figura 2 · Definición operativa</span>
+        <h3>Qué se mide en cada observación</h3>
+      </div>
+      <div class="zona-grafico" id="g-mttd"></div>
+      <p class="nota">
+        <strong>Ejemplo.</strong> Si se inicia un escenario de escaneo web y el primer registro aparece
+        0,826 s después, el tiempo de detección registrado para ese escenario es 0,826 s. Si otro escenario
+        tarda 16,405 s, su detección registrada fue más tardía. La observación es <strong>individual</strong>;
+        el tiempo medio de detección es el promedio que se calcula después sobre las mediciones disponibles.
+      </p>
+    </div>
+
+    <div class="grid-2" style="margin-top:26px">
+      <div class="marco">
+        <h4>Dos conceptos que no deben confundirse</h4>
+        <ul class="marcas">
+          <li><strong>Tiempo individual de detección:</strong> el valor registrado para un escenario concreto.</li>
+          <li><strong>Tiempo medio de detección:</strong> el promedio de las mediciones disponibles.</li>
+        </ul>
+      </div>
+      <div class="aviso aviso--rojo" style="margin-top:0">
+        <h4>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          Cero no es lo mismo que ausencia
+        </h4>
+        <p style="margin:0">
+          Un escenario sin tiempo registrado <strong>no</strong> debe convertirse automáticamente en cero.
+          La ausencia de medición y un valor registrado de 0,000 s son situaciones diferentes.
+          En la medición final del SIN los 0,000 s se conservan tal como aparecen en el reporte, y su
+          lectura depende de cómo el sistema de medición resuelva esos valores.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================ DATOS ================================ -->
+  <section class="bloque bloque--separado" id="datos">
+    <p class="kicker">03 · Evidencia numérica</p>
+    <h2>Datos originales de los tres momentos de medición</h2>
+    <p class="lede" style="margin-top:12px">
+      Antes de elegir una distribución hay que conocer los valores sobre los que se trabaja.
+      Estos son los registros tal como aparecen en los capítulos de resultados, con el tamaño muestral
+      efectivo de cada conjunto.
+    </p>
+
+    <div class="grid-3" style="margin-top:26px">
+      <div class="tarjeta">
+        <span class="fig-etq">Prototipo 1</span>
+        <h3 style="margin-bottom:4px">TaxFisco Research Lab</h3>
+        <p class="fig-sub" style="margin-bottom:14px">Diez escenarios ejecutados · nueve con tiempo registrado · <strong>n = 9</strong></p>
+        <div class="tabla-envoltura"><table class="datos" id="tabla-p1"></table></div>
+        <p class="nota" style="margin-top:14px">
+          S03 (85,000 s) y S04 (260,108 s) presentan tiempos considerablemente mayores que el resto.
+          Este detalle es fundamental: explica por qué el promedio puede resultar elevado.
+        </p>
+      </div>
+
+      <div class="tarjeta">
+        <span class="fig-etq">Prototipo 2 · primera vuelta</span>
+        <h3 style="margin-bottom:4px">Laboratorio del SIN</h3>
+        <p class="fig-sub" style="margin-bottom:14px">Diez escenarios ejecutados · cuatro con tiempo registrado · <strong>n = 4</strong></p>
+        <div class="tabla-envoltura"><table class="datos" id="tabla-p2v1"></table></div>
+        <p class="nota" style="margin-top:14px">
+          Los seis escenarios restantes no se incorporan como ceros a los cálculos temporales.
+          Con solo cuatro observaciones, esta vuelta describe lo registrado, no la distribución completa.
+        </p>
+      </div>
+
+      <div class="tarjeta">
+        <span class="fig-etq">Prototipo 2 · medición final</span>
+        <h3 style="margin-bottom:4px">Laboratorio del SIN</h3>
+        <p class="fig-sub" style="margin-bottom:14px">Diez escenarios ejecutados · diez con tiempo registrado · <strong>n = 10</strong></p>
+        <div class="tabla-envoltura"><table class="datos" id="tabla-p2fin"></table></div>
+        <p class="nota" style="margin-top:14px">
+          Los dos valores de 0,000 s se conservan tal como figuran en el reporte. Antes de la defensa debe
+          confirmarse cómo los calcula el sistema de medición.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= DISTRIBUCIÓN ============================= -->
+  <section class="bloque bloque--separado" id="distribucion">
+    <p class="kicker">04 · Criterio metodológico</p>
+    <h2>¿Qué es una distribución estadística y cuál se elige aquí?</h2>
+    <p class="lede" style="margin-top:12px">
+      Una distribución estadística describe cómo se reparten los valores de una variable. Si diez escenarios
+      generan tiempos de detección y siete están por debajo de un segundo, dos tardan algo más de un segundo
+      y uno tarda casi dieciséis segundos, no basta con conocer el promedio: hay que ver cómo están repartidos
+      los diez resultados.
+    </p>
+
+    <div class="rejilla-12" style="margin-top:26px">
+      <div class="col-6">
+        <div class="marco" style="height:100%">
+          <h4>El lenguaje de la distribución empírica</h4>
+          <ul class="marcas">
+            <li><strong>Frecuencia absoluta:</strong> cantidad de observaciones que pertenecen a un intervalo.</li>
+            <li><strong>Frecuencia relativa:</strong> proporción de observaciones que pertenecen a ese intervalo.</li>
+            <li><strong>Histograma:</strong> representación gráfica de las frecuencias mediante barras contiguas.</li>
+            <li><strong>Distribución empírica:</strong> descripción del patrón que realmente muestran los datos observados.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="marco" style="height:100%">
+          <h4>Por qué la distribución empírica de frecuencias</h4>
+          <ol class="motivos">
+            <li>Describe los resultados reales de los prototipos sin imponer una forma matemática previa.</li>
+            <li>Hace visibles los tiempos cortos y los valores extremos.</li>
+            <li>Es adecuada como primera herramienta descriptiva con muestras pequeñas.</li>
+            <li>Permite aplicar el mismo procedimiento a los tres momentos de medición.</li>
+          </ol>
+          <div class="aviso aviso--azul" style="margin-top:16px">
+            <h4>Precisión necesaria</h4>
+            <p style="margin:0">
+              Una distribución empírica <strong>no es lo mismo</strong> que una distribución teórica de
+              probabilidad. No se afirma que los tiempos sigan una distribución normal, exponencial o
+              lognormal sin un análisis específico que justifique ese ajuste. Si la tutora exige una
+              distribución teórica concreta, el ajuste se estudia como paso adicional.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="figura" id="fig-forma">
+      <div class="tarjeta">
+        <div class="fig-cabecera">
+          <span class="fig-etq">Figura 3 · Forma de la distribución</span>
+          <h3>Simetría frente a asimetría hacia la derecha</h3>
+          <p class="fig-sub">Esquema de referencia para leer los histogramas de la sección 05</p>
+        </div>
+        <div class="zona-grafico" id="g-forma"></div>
+        <p class="nota">
+          <strong>Simétrica:</strong> los valores se reparten de manera relativamente equilibrada alrededor
+          del centro. <strong>Asimétrica hacia la derecha:</strong> muchas observaciones se concentran en
+          valores pequeños y una cola se extiende hacia valores grandes, arrastrando la media por encima
+          de la mediana.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== GRÁFICAS ============================== -->
+  <section class="bloque bloque--separado" id="graficas">
+    <p class="kicker">05 · Construcción de las gráficas</p>
+    <h2>Distribución empírica de los tiempos de detección</h2>
+    <p class="lede" style="margin-top:12px">
+      En los histogramas el eje horizontal representa el tiempo de detección en segundos y el eje vertical
+      indica cuántos escenarios tienen tiempos dentro de cada intervalo. Como los rangos de los tres conjuntos
+      son diferentes, se usan intervalos apropiados para cada uno. Por eso se comparan la <strong>concentración</strong>,
+      la <strong>dispersión</strong> y la presencia de <strong>valores extremos</strong>, no las alturas de las
+      barras de histogramas con anchuras distintas.
+    </p>
+
+    <div class="figura" id="fig-hist-p1">
+      <div class="tarjeta">
+        <div class="fig-cabecera">
+          <span class="fig-etq">Figura 4 · Histograma</span>
+          <h3>Prototipo 1: TaxFisco Research Lab</h3>
+          <p class="fig-sub">Distribución empírica de los tiempos de detección del primer prototipo · intervalos de 30 s</p>
+        </div>
+        <div class="zona-grafico" id="g-hist-p1"></div>
+        <div class="tabla-envoltura" style="margin-top:16px"><table class="datos" id="tab-frec-p1"></table></div>
+        <ul class="marcas" style="margin-top:16px">
+          <li>La mayor concentración de tiempos se encuentra en el intervalo inicial.</li>
+          <li>Hay tiempos de detección cortos, inferiores a un segundo.</li>
+          <li>Los valores de 85,000 s y 260,108 s aparecen alejados de la concentración principal.</li>
+          <li>La distribución presenta una cola hacia los valores altos, compatible con asimetría hacia la derecha.</li>
+        </ul>
+        <p class="nota">
+          Esos dos valores elevados explican por qué el promedio puede ser mucho mayor que el tiempo central
+          de las mediciones. <strong>Nota de lectura:</strong> el ancho de intervalo es de 30 s, por lo que las
+          alturas de este histograma no son comparables con las de los paneles de 1 s.
+        </p>
+        <div class="pie-fig">
+          <span class="fuente">Elaboración propia a partir de los registros del capítulo 4.4.</span>
+          <button class="btn-png" type="button" data-png="g-hist-p1">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Descargar PNG
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="figura" id="fig-hist-p2v1">
+      <div class="tarjeta">
+        <div class="fig-cabecera">
+          <span class="fig-etq">Figura 5 · Histograma</span>
+          <h3>Prototipo 2: SIN, primera vuelta</h3>
+          <p class="fig-sub">Laboratorio del SIN antes del ciclo de correcciones · intervalos de 1 s</p>
+        </div>
+        <div class="zona-grafico" id="g-hist-p2v1"></div>
+        <ul class="marcas" style="margin-top:16px">
+          <li>Tres mediciones se encuentran entre 1 y 2 segundos.</li>
+          <li>S01 se sitúa entre 16 y 17 segundos.</li>
+          <li>La distribución tiene una concentración clara entre 1 y 2 s y un valor considerablemente mayor que el resto.</li>
+        </ul>
+        <p class="nota">
+          <strong>Cautela:</strong> solo hay cuatro observaciones. Esta gráfica permite describir los datos
+          registrados, pero no es suficiente para determinar con seguridad una distribución teórica de todos
+          los tiempos que podría generar el sistema.
+        </p>
+        <div class="pie-fig">
+          <span class="fuente">Elaboración propia a partir de los registros del capítulo 4.4.</span>
+          <button class="btn-png" type="button" data-png="g-hist-p2v1">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Descargar PNG
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="figura" id="fig-hist-p2fin">
+      <div class="tarjeta">
+        <div class="fig-cabecera">
+          <span class="fig-etq">Figura 6 · Histograma</span>
+          <h3>Prototipo 2: SIN, medición final</h3>
+          <p class="fig-sub">Laboratorio del SIN después del ciclo de correcciones · intervalos de 1 s</p>
+        </div>
+        <div class="zona-grafico" id="g-hist-p2fin"></div>
+        <ul class="marcas" style="margin-top:16px">
+          <li>Siete valores son inferiores a un segundo.</li>
+          <li>Dos valores se sitúan entre 1 y 2 segundos.</li>
+          <li>Un valor se registra entre 15 y 16 segundos.</li>
+          <li>Dos observaciones aparecen registradas como 0,000 s, que deben interpretarse según la resolución del sistema de medición.</li>
+        </ul>
+        <p class="nota">
+          La mayor concentración está en los intervalos bajos, pero S01 continúa siendo un valor elevado
+          respecto de los demás. Esta gráfica respalda la descripción de una distribución empírica asimétrica
+          hacia la derecha; por sí sola no demuestra que una distribución teórica específica sea la correcta.
+        </p>
+        <div class="pie-fig">
+          <span class="fuente">Elaboración propia a partir de los registros del capítulo 4.4.</span>
+          <button class="btn-png" type="button" data-png="g-hist-p2fin">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Descargar PNG
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="figura" id="fig-puntos">
+      <div class="tarjeta">
+        <div class="fig-cabecera">
+          <span class="fig-etq">Figura 7 · Gráficos de puntos</span>
+          <h3>Cada escenario, por separado</h3>
+          <p class="fig-sub">El histograma agrupa los valores en intervalos; el gráfico de puntos permite ver cada observación individual</p>
+        </div>
+        <div class="zona-grafico" id="g-puntos"></div>
+        <p class="nota">
+          En el TaxFisco se distinguen los dos valores más altos (S03 y S04). En la primera vuelta del SIN se ve
+          que S01 se encuentra alejado de los otros tres escenarios. En la medición final el valor de S01 también
+          se separa del resto. Estos gráficos complementan los histogramas porque muestran los valores individuales
+          sin depender tanto de la selección de intervalos.
+        </p>
+        <div class="pie-fig">
+          <span class="fuente">Elaboración propia a partir de los registros del capítulo 4.4.</span>
+          <button class="btn-png" type="button" data-png="g-puntos">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Descargar PNG
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== MEDIDAS ============================== -->
+  <section class="bloque bloque--separado" id="medidas">
+    <p class="kicker">06 · Medidas descriptivas</p>
+    <h2>Qué se calcula y para qué sirve cada medida</h2>
+    <p class="lede" style="margin-top:12px">
+      Una vez examinada la distribución, el conjunto de datos se resume numéricamente. Se trabaja con la media,
+      la mediana, el mínimo, el máximo, el rango, la desviación estándar y el percentil 95.
+    </p>
+
+    <div class="rejilla-12" style="margin-top:26px">
+      <div class="col-6">
+        <div class="tarjeta" style="margin-top:0">
+          <h4>6.1 · Media aritmética</h4>
+          <p class="pequena" style="margin:6px 0 0">Es el promedio de los tiempos registrados.</p>
+          <div class="formula">
+            <span class="mi">x&#772;</span> =
+            <span class="frac"><span>&#931;<sub>i=1</sub><sup>n</sup> x<sub>i</sub></span><span>n</span></span>
+            <span class="eq-lbl">(1)</span>
+          </div>
+          <p class="pequena">
+            <strong>x&#772;</strong> es la media · <strong>x<sub>i</sub></strong> representa cada tiempo individual ·
+            <strong>n</strong> es el número de mediciones disponibles · <strong>&#931;x<sub>i</sub></strong> indica que
+            deben sumarse todos los tiempos.
+          </p>
+          <p class="pequena" style="margin-top:8px">
+            Utiliza todos los valores, pero es <strong>sensible a los valores extremos</strong>: si un escenario tarda
+            mucho más que los demás, puede elevar considerablemente el promedio.
+          </p>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="tarjeta" style="margin-top:0">
+          <h4>6.2 · Mediana</h4>
+          <p class="pequena" style="margin:6px 0 0">Es el valor que queda en el centro al ordenar los tiempos de menor a mayor.</p>
+          <ul class="marcas">
+            <li>Si el número de observaciones es <strong>impar</strong>, se toma el valor central.</li>
+            <li>Si es <strong>par</strong>, se promedia el valor central y el siguiente.</li>
+          </ul>
+          <p class="pequena" style="margin-top:8px">
+            Es especialmente útil cuando hay valores extremos, porque estos no desplazan la mediana de la
+            misma forma en que pueden desplazar la media.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-top:26px">
+      <div class="tarjeta" style="margin-top:0">
+        <h4>6.3 · Mínimo, máximo y rango</h4>
+        <p class="pequena" style="margin:6px 0 0">El mínimo es el tiempo más pequeño observado y el máximo, el más grande.</p>
+        <div class="formula">
+          <span class="mi">R</span> = <span class="mi">x</span><sub>max</sub> − <span class="mi">x</span><sub>min</sub>
+          <span class="eq-lbl">(2)</span>
+        </div>
+        <p class="pequena">
+          El rango indica cuánto se extienden los datos entre el menor y el mayor tiempo. No dice cómo están
+          repartidas todas las observaciones intermedias, pero permite reconocer la amplitud total.
+        </p>
+      </div>
+      <div class="tarjeta" style="margin-top:0">
+        <h4>6.4 · Desviación estándar muestral</h4>
+        <p class="pequena" style="margin:6px 0 0">Describe cuánto se dispersan los valores alrededor de la media.</p>
+        <div class="formula">
+          <span class="mi">s</span> =
+          <span class="raiz"><span class="frac" style="margin:0"><span>&#931;<sub>i=1</sub><sup>n</sup> (x<sub>i</sub> − x&#772;)<sup>2</sup></span><span>n − 1</span></span></span>
+          <span class="eq-lbl">(3)</span>
+        </div>
+        <ul class="marcas">
+          <li>Se resta la media a cada observación.</li>
+          <li>Se eleva cada diferencia al cuadrado.</li>
+          <li>Se suman esas diferencias cuadráticas.</li>
+          <li>Se divide entre <strong>n − 1</strong> y se calcula la raíz cuadrada.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-top:26px">
+      <div class="tarjeta" style="margin-top:0">
+        <h4>6.5 · Percentil 95 (P95)</h4>
+        <p class="pequena" style="margin:6px 0 0">
+          Identifica un valor por debajo del cual queda aproximadamente el 95 % de las observaciones, de acuerdo
+          con el método de cálculo empleado.
+        </p>
+        <div class="formula">
+          <span class="mi">h</span> = 1 + (<span class="mi">n</span> − 1) × 0,95
+          <span class="eq-lbl">(4)</span>
+        </div>
+        <p class="pequena">
+          Si <strong>h</strong> no es un número entero, se interpola entre los dos valores ordenados que rodean
+          esa posición. Se usa el <strong>método inclusivo</strong>, equivalente a PERCENTILE.INC de Excel, para
+          mantener consistencia con los valores del SIN que ya aparecen en la tesis.
+        </p>
+        <p class="pequena" style="margin-top:8px">
+          Con cuatro observaciones su estimación es especialmente sensible al valor máximo, por lo que no debe
+          presentarse como garantía de que el 95 % de todos los incidentes futuros se detectará antes de ese tiempo.
+        </p>
+      </div>
+      <div class="tarjeta" style="margin-top:0">
+        <h4>Por qué la media y la mediana cuentan historias distintas</h4>
+        <p class="pequena" style="margin:6px 0 12px">
+          En los tres conjuntos la media supera a la mediana. La razón es siempre la misma: uno o dos valores
+          muy altos tiran del promedio.
+        </p>
+        <div class="bench"><span class="bench-label">TaxFisco</span><div class="bench-track"><div class="bench-fill" style="width:100%;background:var(--naranja)"></div></div><span class="bench-val">×50,4</span></div>
+        <div class="bench"><span class="bench-label">SIN vuelta 1</span><div class="bench-track"><div class="bench-fill" style="width:7.0%;background:var(--azul)"></div></div><span class="bench-val">×3,5</span></div>
+        <div class="bench"><span class="bench-label">SIN medición final</span><div class="bench-track"><div class="bench-fill" style="width:7.9%;background:var(--verde)"></div></div><span class="bench-val">×4,0</span></div>
+        <p class="bench-sub" style="margin-top:10px">
+          Factor por el que la media supera a la mediana (media ÷ mediana). Cuanto mayor es el factor, más
+          peso tienen los valores extremos en el promedio.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== CÁLCULOS ============================== -->
+  <section class="bloque bloque--separado" id="calculos">
+    <p class="kicker">07 a 09 · Desarrollo</p>
+    <h2>Cálculos completos de cada conjunto de datos</h2>
+    <p class="lede" style="margin-top:12px">
+      El desarrollo se presenta junto a los datos a los que se aplica, para que cada fórmula se lea al lado
+      de sus números. Todos los resultados provienen de la verificación numérica de los registros originales.
+    </p>
+
+    <!-- 07 -->
+    <div class="tarjeta">
+      <div class="fig-cabecera">
+        <span class="fig-etq">Sección 07</span>
+        <h3>Prototipo 1: TaxFisco Research Lab</h3>
+        <p class="fig-sub">n = 9 mediciones disponibles</p>
+      </div>
+
+      <h4 style="margin-top:18px">7.1 · Datos ordenados</h4>
+      <div class="formula" id="ord-p1"></div>
+
+      <h4 style="margin-top:22px">7.2 · Media</h4>
+      <div class="paso">
+        <div class="paso-n">1</div>
+        <div>
+          <p>Se suman los nueve valores:</p>
+          <div class="formula" id="suma-p1"></div>
+        </div>
+      </div>
+      <div class="paso">
+        <div class="paso-n">2</div>
+        <div>
+          <p>Se divide entre el número de observaciones, <strong>n = 9</strong>:</p>
+          <div class="formula" id="media-p1"></div>
+          <p style="margin-top:8px">El resultado coincide con la media declarada en el capítulo de resultados.</p>
+        </div>
+      </div>
+
+      <h4 style="margin-top:22px">7.3 · Mediana</h4>
+      <div class="paso">
+        <div class="paso-n">1</div>
+        <div>
+          <p>Hay nueve observaciones, por lo que la mediana es el <strong>quinto valor ordenado</strong>:
+            <strong class="mono">0,826 s</strong>.</p>
+        </div>
+      </div>
+      <div class="paso">
+        <div class="paso-n">2</div>
+        <div>
+          <p>La media es de <strong class="mono">41,598 s</strong> y la mediana de <strong class="mono">0,826 s</strong>.
+            La diferencia se explica porque los tiempos de 85,000 s y 260,108 s elevan la media, aunque la mayoría
+            de los valores sea mucho menor.</p>
+        </div>
+      </div>
+
+      <h4 style="margin-top:22px">7.4 · Mínimo, máximo y rango</h4>
+      <div class="formula" id="rango-p1"></div>
+
+      <h4 style="margin-top:22px">7.5 · Desviación estándar</h4>
+      <div class="formula" id="sd-p1"></div>
+      <p class="pequena" style="margin-top:8px">
+        La desviación estándar es elevada en relación con la mediana y refleja la dispersión de los tiempos,
+        influida especialmente por los dos valores grandes.
+      </p>
+
+      <h4 style="margin-top:22px">7.6 · Percentil 95</h4>
+      <div class="paso">
+        <div class="paso-n">1</div>
+        <div>
+          <p>Se calcula la posición con <strong>n = 9</strong>:</p>
+          <div class="formula" id="h-p1"></div>
+        </div>
+      </div>
+      <div class="paso">
+        <div class="paso-n">2</div>
+        <div>
+          <p>La posición 8,6 queda entre el octavo valor (<strong class="mono">85,000 s</strong>) y el noveno
+            (<strong class="mono">260,108 s</strong>). Se interpola:</p>
+          <div class="formula" id="p95-p1"></div>
+        </div>
+      </div>
+
+      <div class="aviso aviso--azul" style="margin-top:20px">
+        <h4>7.7 · Interpretación del primer prototipo</h4>
+        <p style="margin:0">
+          La media de 41,598 s no representa por sí sola la rapidez habitual de las detecciones, porque dos
+          escenarios presentan tiempos mucho mayores que los restantes. La mediana de 0,826 s permite observar que
+          el valor central del conjunto es considerablemente inferior a la media. La diferencia entre ambas medidas,
+          junto con el histograma y el rango, respalda la descripción de una distribución heterogénea y compatible
+          con asimetría positiva. Esta conclusión es <strong>descriptiva</strong>: no significa que se haya demostrado
+          que los tiempos siguen una distribución teórica determinada.
+        </p>
+      </div>
+    </div>
+
+    <!-- 08 -->
+    <div class="tarjeta">
+      <div class="fig-cabecera">
+        <span class="fig-etq">Sección 08</span>
+        <h3>Prototipo 2: SIN, primera vuelta</h3>
+        <p class="fig-sub">n = 4 mediciones disponibles</p>
+      </div>
+
+      <h4 style="margin-top:18px">8.1 · Datos ordenados</h4>
+      <div class="formula" id="ord-p2v1"></div>
+
+      <h4 style="margin-top:22px">8.2 · Media</h4>
+      <div class="paso">
+        <div class="paso-n">1</div>
+        <div>
+          <p>La suma de los cuatro valores es <strong class="mono">20,862 s</strong>, y se divide entre cuatro:</p>
+          <div class="formula" id="media-p2v1"></div>
+        </div>
+      </div>
+
+      <h4 style="margin-top:22px">8.3 · Mediana</h4>
+      <div class="paso">
+        <div class="paso-n">1</div>
+        <div>
+          <p>Hay cuatro observaciones, un número par, de modo que se promedian el segundo y el tercer valor
+            (<strong class="mono">1,214 s</strong> y <strong class="mono">1,734 s</strong>):</p>
+          <div class="formula" id="mediana-p2v1"></div>
+        </div>
+      </div>
+      <div class="paso">
+        <div class="paso-n">2</div>
+        <div>
+          <p><strong class="naranja">Atención a la revisión de tablas:</strong> la mediana inicial del SIN es
+            <strong class="mono">1,474 s</strong>, no 1,063 s. El valor de 1,063 s es el <strong>mínimo</strong>.
+            Esta distinción es importante al revisar cualquier tabla anterior de la tesis.</p>
+        </div>
+      </div>
+
+      <h4 style="margin-top:22px">8.4 · Mínimo, máximo y rango</h4>
+      <div class="formula" id="rango-p2v1"></div>
+
+      <h4 style="margin-top:22px">8.5 · Desviación estándar</h4>
+      <div class="formula" id="sd-p2v1"></div>
+      <p class="pequena" style="margin-top:8px">
+        La dispersión es considerable en comparación con los tres valores próximos a uno o dos segundos. El tiempo
+        de S01, de 16,851 s, influye notablemente en el resultado.
+      </p>
+
+      <h4 style="margin-top:22px">8.6 · Percentil 95</h4>
+      <div class="paso">
+        <div class="paso-n">1</div>
+        <div>
+          <p>La posición se calcula con <strong>n = 4</strong>:</p>
+          <div class="formula" id="h-p2v1"></div>
+        </div>
+      </div>
+      <div class="paso">
+        <div class="paso-n">2</div>
+        <div>
+          <p>La posición queda entre el tercer valor (<strong class="mono">1,734 s</strong>) y el cuarto
+            (<strong class="mono">16,851 s</strong>). Se interpola:</p>
+          <div class="formula" id="p95-p2v1"></div>
+        </div>
+      </div>
+
+      <div class="aviso aviso--azul" style="margin-top:20px">
+        <h4>8.7 · Interpretación de la primera vuelta</h4>
+        <p style="margin:0">
+          Tres de los cuatro tiempos están entre 1 y 2 segundos, mientras que S01 presenta un tiempo mucho mayor.
+          Por eso la media es de 5,2155 s y la mediana de 1,474 s. El P95 de 14,583 s también queda cerca del valor
+          máximo debido a la interpolación entre los dos valores más altos. Como solo hay cuatro observaciones, el
+          percentil debe interpretarse con cautela y las conclusiones limitarse a los datos de esta vuelta.
+        </p>
+      </div>
+    </div>
+
+    <!-- 09 -->
+    <div class="tarjeta">
+      <div class="fig-cabecera">
+        <span class="fig-etq">Sección 09</span>
+        <h3>Prototipo 2: SIN, medición final</h3>
+        <p class="fig-sub">n = 10 mediciones disponibles</p>
+      </div>
+
+      <h4 style="margin-top:18px">9.1 · Datos ordenados</h4>
+      <div class="formula" id="ord-p2fin"></div>
+
+      <h4 style="margin-top:22px">9.2 · Media</h4>
+      <div class="paso">
+        <div class="paso-n">1</div>
+        <div>
+          <p>La suma de los diez valores es <strong class="mono">20,219 s</strong>:</p>
+          <div class="formula" id="media-p2fin"></div>
+        </div>
+      </div>
+      <div class="paso">
+        <div class="paso-n">2</div>
+        <div>
+          <p>El resultado coincide con la media declarada en la tabla del segundo prototipo.</p>
+        </div>
+      </div>
+
+      <h4 style="margin-top:22px">9.3 · Mediana</h4>
+      <div class="paso">
+        <div class="paso-n">1</div>
+        <div>
+          <p>Con diez observaciones se promedian el quinto (<strong class="mono">0,460 s</strong>) y el sexto
+            (<strong class="mono">0,562 s</strong>):</p>
+          <div class="formula" id="mediana-p2fin"></div>
+        </div>
+      </div>
+
+      <h4 style="margin-top:22px">9.4 · Mínimo, máximo y rango</h4>
+      <div class="formula" id="rango-p2fin"></div>
+
+      <h4 style="margin-top:22px">9.5 · Desviación estándar</h4>
+      <div class="formula" id="sd-p2fin"></div>
+      <p class="pequena" style="margin-top:8px">
+        Aunque la mayoría de los tiempos son pequeños, el valor de S01 continúa influyendo considerablemente en
+        la dispersión.
+      </p>
+
+      <h4 style="margin-top:22px">9.6 · Percentil 95</h4>
+      <div class="paso">
+        <div class="paso-n">1</div>
+        <div>
+          <p>La posición se calcula con <strong>n = 10</strong>:</p>
+          <div class="formula" id="h-p2fin"></div>
+        </div>
+      </div>
+      <div class="paso">
+        <div class="paso-n">2</div>
+        <div>
+          <p>La posición queda entre el noveno valor (<strong class="mono">1,145 s</strong>) y el décimo
+            (<strong class="mono">15,910 s</strong>). Se interpola:</p>
+          <div class="formula" id="p95-p2fin"></div>
+        </div>
+      </div>
+
+      <div class="aviso aviso--azul" style="margin-top:20px">
+        <h4>9.7 · Interpretación de la medición final</h4>
+        <p style="margin:0">
+          Siete de los diez escenarios tienen tiempos inferiores a un segundo, dos se sitúan entre 1 y 2 segundos
+          y uno registra 15,910 s. La media de 2,0219 s es mayor que la mediana de 0,511 s, principalmente por el
+          tiempo elevado de S01. Aunque la mayor parte de las detecciones registradas presenta tiempos cortos,
+          sigue existiendo un escenario que prolonga la cola de la distribución. El P95 disminuye respecto a la
+          primera vuelta, pero se calcula con cuatro observaciones en la primera vuelta y diez en la medición final:
+          la diferencia describe los resultados reportados y no debe interpretarse como si ambos percentiles
+          provinieran de muestras idénticas.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================== TABLA =============================== -->
+  <section class="bloque bloque--separado" id="tabla">
+    <p class="kicker">10 · Síntesis numérica</p>
+    <h2>Tabla general de resultados estadísticos</h2>
+    <p class="lede" style="margin-top:12px">
+      Reunidos los cálculos, la tabla permite comparar los tres momentos de medición con la misma batería de
+      indicadores.
+    </p>
+
+    <div class="tarjeta">
+      <div class="tabla-envoltura"><table class="datos" id="tabla-general"></table></div>
+      <p class="nota">
+        <strong>Cómo leer esta tabla:</strong> no debe concluirse que el TaxFisco es necesariamente peor solo porque
+        su media sea mayor. Los tres momentos tienen distintas cantidades de mediciones y el primer prototipo
+        incluye dos tiempos muy elevados. Además, los prototipos no son exactamente el mismo entorno de
+        instrumentación. La tabla permite describir las diferencias observadas, pero la comparación más homogénea
+        de la evolución del SIN se realiza con los cuatro escenarios que cuentan con medición en ambas vueltas.
+      </p>
+    </div>
+
+    <div class="figura" id="fig-indicadores">
+      <div class="tarjeta">
+        <div class="fig-cabecera">
+          <span class="fig-etq">Figura 8 · Comparación de indicadores</span>
+          <h3>Media, mediana y percentil 95 en los tres momentos</h3>
+          <p class="fig-sub">Escala logarítmica · un mismo eje para las tres series</p>
+        </div>
+        <div class="zona-grafico" id="g-indicadores"></div>
+        <p class="nota">
+          En cada serie, la barra de la media se separa de la mediana por la distancia que imponen los valores
+          extremos. El P95 queda por encima de la media porque interpola hacia el valor máximo.
+        </p>
+        <div class="pie-fig">
+          <span class="fuente">Elaboración propia a partir de los registros del capítulo 4.4.</span>
+          <button class="btn-png" type="button" data-png="g-indicadores">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Descargar PNG
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ COMPARACIÓN ============================ -->
+  <section class="bloque bloque--separado" id="comparacion">
+    <p class="kicker">11 · Antes y después de las correcciones</p>
+    <h2>Qué cambió en el SIN después del ciclo de correcciones</h2>
+
+    <div class="rejilla-12" style="margin-top:26px">
+      <div class="col-7">
+        <div class="marco" style="height:100%">
+          <h4>11.1 · Comparación de las medias reportadas</h4>
+          <p class="pequena" style="margin:8px 0 12px">
+            La media de la primera vuelta fue de 5,2155 s y la de la medición final de 2,0219 s:
+          </p>
+          <div class="formula" id="dif-absoluta"></div>
+          <div class="formula" id="dif-relativa"></div>
+          <p class="pequena" style="margin-top:10px">
+            La disminución relativa entre esas dos medias reportadas es del <strong class="mono">61,23 %</strong>.
+          </p>
+          <div class="aviso aviso--rojo" style="margin-top:14px">
+            <h4>Limitación que debe declararse</h4>
+            <p style="margin:0">
+              La primera media utiliza cuatro mediciones y la final utiliza diez. El 61,23 % describe la
+              disminución entre las medias reportadas, pero no constituye por sí solo la comparación más homogénea
+              de los mismos escenarios.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-5">
+        <div class="marco" style="height:100%">
+          <h4>11.2 · Comparación homogénea: los mismos cuatro escenarios</h4>
+          <p class="pequena" style="margin:8px 0 12px">
+            Media de los cuatro escenarios con medición en ambas vueltas:
+          </p>
+          <div class="formula" id="comp-media-ini"></div>
+          <div class="formula" id="comp-media-fin"></div>
+          <div class="formula" id="comp-reduccion"></div>
+          <p class="pequena" style="margin-top:10px">
+            La reducción es del <strong class="mono">11,73 %</strong>. Esta comparación es la más homogénea
+            porque utiliza los mismos escenarios en ambas vueltas.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="figura" id="fig-comparacion">
+      <div class="tarjeta">
+        <div class="fig-cabecera">
+          <span class="fig-etq">Figura 9 · Escenario por escenario</span>
+          <h3>Reducción del tiempo registrado en los cuatro escenarios comparables</h3>
+          <p class="fig-sub">Panel izquierdo: escala común · panel derecho: S02, S05 y S07 ampliados</p>
+        </div>
+        <div class="zona-grafico" id="g-comparacion"></div>
+        <div class="tabla-envoltura" style="margin-top:18px"><table class="datos" id="tabla-comparacion"></table></div>
+        <p class="nota">
+          Los cuatro escenarios muestran una reducción de sus tiempos registrados. El mayor cambio relativo se
+          produce en S07 (1,063 s → 0,264 s) y el menor en S02 (1,214 s → 1,095 s).
+        </p>
+        <div class="pie-fig">
+          <span class="fuente">Elaboración propia a partir de los registros del capítulo 4.4.</span>
+          <button class="btn-png" type="button" data-png="g-comparacion">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Descargar PNG
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="figura" id="fig-cobertura">
+      <div class="tarjeta">
+        <div class="fig-cabecera">
+          <span class="fig-etq">Figura 10 · Cobertura temporal</span>
+          <h3>El resultado del ciclo de corrección no se limita al tiempo</h3>
+          <p class="fig-sub">Escenarios con tiempo registrado sobre los diez escenarios declarados</p>
+        </div>
+        <div class="zona-grafico" id="g-cobertura"></div>
+        <p class="nota">
+          La primera vuelta del SIN registró tiempos en 4 de 10 escenarios, equivalente al <strong>40 %</strong>.
+          La medición final registró tiempos en los 10 de 10 escenarios, equivalente al <strong>100 %</strong>.
+          Esto significa que la medición final proporciona tiempos para toda la campaña declarada: es una mejora
+          en la <strong>completitud de los registros</strong>, que debe analizarse por separado de la rapidez de
+          detección.
+        </p>
+        <div class="pie-fig">
+          <span class="fuente">Elaboración propia a partir de los registros del capítulo 4.4.</span>
+          <button class="btn-png" type="button" data-png="g-cobertura">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Descargar PNG
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="aviso aviso--verde" style="margin-top:22px">
+      <h4>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        Conclusión correcta de la comparación
+      </h4>
+      <p style="margin:0">
+        La medición final presenta tiempos más bajos en los cuatro escenarios comparables y aumenta la cobertura
+        temporal del 40 % al 100 %. Los resultados son consistentes con una mejora observada después del ciclo de
+        corrección, sin atribuir automáticamente toda diferencia a una sola causa.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================ ASIMETRÍA ============================ -->
+  <section class="bloque bloque--separado" id="asimetria">
+    <p class="kicker">12 · Concepto clave para la defensa</p>
+    <h2>¿Por qué se afirma que hay asimetría hacia la derecha?</h2>
+    <p class="lede" style="margin-top:12px">
+      Una distribución simétrica tendría los valores repartidos de manera relativamente equilibrada alrededor de
+      su centro. En cambio, una distribución con asimetría hacia la derecha concentra muchas observaciones en
+      valores pequeños y presenta una cola que se extiende hacia valores grandes.
+    </p>
+
+    <div class="figura" id="fig-asimetria">
+      <div class="tarjeta">
+        <div class="fig-cabecera">
+          <span class="fig-etq">Figura 11 · Anatomía de la asimetría</span>
+          <h3>Mínimo, mediana, media y máximo en los tres conjuntos</h3>
+          <p class="fig-sub">Escala logarítmica de tiempos · la distancia entre la mediana y la media mide el peso de los valores extremos</p>
+        </div>
+        <div class="zona-grafico" id="g-asimetria"></div>
+        <div class="leyenda" id="l-asimetria"></div>
+        <p class="nota">
+          En los tres casos la media es mayor que la mediana. Las gráficas muestran además tiempos pequeños junto
+          con unos pocos tiempos más elevados. Estas observaciones son <strong>compatibles con asimetría positiva</strong>;
+          no obstante, no debe afirmarse que una distribución teórica determinada ha sido demostrada solamente a
+          partir de esta diferencia.
+        </p>
+        <div class="pie-fig">
+          <span class="fuente">Elaboración propia a partir de los registros del capítulo 4.4.</span>
+          <button class="btn-png" type="button" data-png="g-asimetria">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Descargar PNG
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-top:26px">
+      <div class="marco">
+        <h4>Por qué no se afirma que los datos siguen una distribución normal</h4>
+        <ul class="marcas">
+          <li>Una distribución normal tiene una <strong>forma simétrica</strong> característica y los tiempos observados no la presentan.</li>
+          <li>Las muestras son pequeñas: <strong class="mono">n = 9</strong>, <strong class="mono">n = 4</strong> y <strong class="mono">n = 10</strong>.</li>
+          <li>Con tan pocos datos, la forma del histograma puede variar bastante según los valores y los intervalos elegidos.</li>
+        </ul>
+        <p class="pequena" style="margin-top:10px">
+          El enfoque defendible es describir primero la distribución empírica. Si la tutora exige una distribución
+          teórica, corresponde comparar modelos candidatos y justificar el ajuste mediante herramientas
+          apropiadas, en vez de seleccionar uno por intuición.
+        </p>
+      </div>
+      <div class="marco">
+        <h4>Reserva metodológica: la normalidad ya fue contrastada</h4>
+        <p class="pequena" style="margin:8px 0 12px">
+          El repositorio de la investigación incluye la prueba de normalidad de Shapiro-Wilk aplicada a los tres
+          conjuntos. Los resultados se conservan aquí como respaldo verificable, no como sustituto del argumento
+          descriptivo.
+        </p>
+        <div class="tabla-envoltura"><table class="datos" id="tabla-normalidad"></table></div>
+        <p class="pequena" style="margin-top:10px">
+          En los tres conjuntos la normalidad se rechaza, lo que <strong>confirma</strong> el argumento de
+          asimetría positiva en lugar de contradecirlo.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= UBICACIÓN ============================= -->
+  <section class="bloque bloque--separado" id="capitulo">
+    <p class="kicker">13 · Integración en el capítulo</p>
+    <h2>Dónde incorporar este análisis en el capítulo 4.4</h2>
+    <p class="lede" style="margin-top:12px">
+      Para que el análisis quede consecutivo y sea fácil de leer, la estructura dentro del capítulo de resultados
+      queda ordenada en cuatro apartados. La explicación de la selección estadística se introduce al inicio del
+      análisis temporal de 4.4.2 y se retoma brevemente en 4.4.3, de manera que el lector conoce primero el
+      criterio utilizado y después lo ve aplicado a cada conjunto.
+    </p>
+
+    <div class="rejilla-12" style="margin-top:26px">
+      <div class="col-7">
+        <ol class="tline">
+          <li>
+            <span class="num">4.4.2</span>
+            <h4>Resultados del primer prototipo en el TaxFisco Research Lab</h4>
+            <p>Presentación de los datos originales, histograma, tabla de frecuencias, medidas descriptivas y explicación de la asimetría.</p>
+          </li>
+          <li>
+            <span class="num">4.4.3</span>
+            <h4>Resultados del segundo prototipo en el laboratorio del SIN</h4>
+            <p>Datos de la primera vuelta y de la medición final, histogramas, cálculos desarrollados y análisis del P95.</p>
+          </li>
+          <li>
+            <span class="num">4.4.4</span>
+            <h4>Comparación entre los dos prototipos</h4>
+            <p>Tabla comparativa de los tres momentos, comparación de los cuatro escenarios comunes y análisis de la cobertura temporal.</p>
+          </li>
+          <li>
+            <span class="num">4.4.5</span>
+            <h4>Síntesis de los resultados</h4>
+            <p>Interpretación general de los hallazgos, su relación con las lecciones aprendidas y las conclusiones que permiten sostener los datos.</p>
+          </li>
+        </ol>
+      </div>
+      <div class="col-5">
+        <div class="marco" style="height:100%">
+          <h4>Criterio de redacción</h4>
+          <p>
+            No se recomienda trasladar todas las fórmulas a una sección aislada al final: es más fácil comprenderlas
+            cuando aparecen cerca de los datos a los que se aplican. Si la tutora prefiere un apartado estadístico
+            independiente, la reorganización es posible sin cambiar los cálculos.
+          </p>
+          <div class="aviso aviso--azul" style="margin-top:14px">
+            <h4>Secuencia recomendada</h4>
+            <p style="margin:0">
+              Definición del criterio → datos → histogramas → medidas descriptivas → comparación → síntesis.
+              Cada figura se apoya en los cálculos que la preceden.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== CAUTELAS ============================== -->
+  <section class="bloque bloque--separado" id="cautelas">
+    <p class="kicker">14 · Blindaje del argumento</p>
+    <h2>Cautelas metodológicas que sostienen la defensa</h2>
+    <p class="lede" style="margin-top:12px">
+      Los límites del análisis no debilitan el resultado: lo vuelven verificable. Estos son los puntos que
+      conviene declarar de forma explícita ante la tutora.
+    </p>
+
+    <div class="rejilla-12" style="margin-top:26px">
+      <div class="col-6">
+        <div class="aviso aviso--rojo" style="margin-top:0">
+          <h4>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            Ausencia de medición no es 0,000 s
+          </h4>
+          <p style="margin:0">
+            Los seis escenarios sin registro de la primera vuelta del SIN no se incorporan como ceros. Los dos
+            valores de 0,000 s de la medición final sí son registros y se conservan, pero su interpretación exige
+            confirmar cómo el sistema de medición resuelve esos valores.
+          </p>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="aviso aviso--rojo" style="margin-top:0">
+          <h4>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            El P95 no es una garantía futura
+          </h4>
+          <p style="margin:0">
+            Con cuatro observaciones, el P95 de 14,583 s depende de la interpolación entre los dos valores más altos.
+            No debe presentarse como la garantía de que el 95 % de los incidentes futuros se detectará antes de ese
+            tiempo.
+          </p>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="aviso aviso--rojo" style="margin-top:0">
+          <h4>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            Tamaños muestrales distintos
+          </h4>
+          <p style="margin:0">
+            La comparación del 61,23 % usa cuatro mediciones frente a diez. La comparación homogénea de los mismos
+            cuatro escenarios (11,73 %) es la que corresponde citar como evidencia principal del efecto de las
+            correcciones.
+          </p>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="aviso aviso--rojo" style="margin-top:0">
+          <h4>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            Entornos no idénticos
+          </h4>
+          <p style="margin:0">
+            Los prototipos no son exactamente el mismo entorno de instrumentación. Por eso la tabla describe
+            diferencias observadas entre momentos de medición y no un rendimiento comparativo del TaxFisco frente
+            al SIN.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================ PIE ================================ -->
+  <footer class="pie-pagina">
+    <span>Análisis estadístico de los tiempos de detección (MTTD) · TaxFisco Research Lab · Capítulo 4.4</span>
+    <span>Elaboración propia, 2026 · Todos los cálculos verificados sobre los registros originales</span>
+  </footer>
+</div>
+
+<script>
+/* =====================================================================
+   DATOS VERIFICADOS
+   Fuente: scripts/verificar_estadisticas_mttd.py
+   (salida resultados-prototipos/estadisticas_mttd.json). Los valores coinciden con las
+   medias declaradas en los capítulos 4.4.
+   ===================================================================== */
+const DATA = {
+  p1: {
+    clave:'TaxFisco', etiqueta:'Prototipo 1 · TaxFisco Research Lab', sub:'n = 9 mediciones disponibles',
+    esc:['S01','S02','S03','S04','S05','S06','S07','S08','S09'],
+    vals:[16.405,0.826,85.000,260.108,0.141,0.824,0.543,0.533,10.000],
+    sinReg:['S10'], declarados:10,
+    suma:374.380, media:41.59777777777778, mediana:0.826,
+    min:0.141, max:260.108, rango:259.967, s:86.37048086264454, cv:2.076324397039908,
+    p95:190.0648, h:8.6, sesgo:2.5248144605712364,
+    sw:{w:0.570024292223145, p:4.254749282191236e-05},
+    hist:{ancho:30, cortes:[0,30,60,90,120,150,180,210,240,270], frec:[7,0,1,0,0,0,0,0,1]}
+  },
+  p2v1: {
+    clave:'SIN vuelta 1', etiqueta:'Prototipo 2 · SIN, primera vuelta', sub:'n = 4 mediciones disponibles',
+    esc:['S01','S02','S05','S07'],
+    vals:[16.851,1.214,1.734,1.063],
+    sinReg:['S03','S04','S06','S08','S09','S10'], declarados:10,
+    suma:20.862, media:5.2155, mediana:1.474,
+    min:1.063, max:16.851, rango:15.788, s:7.762322697921459, cv:1.4883180323883538,
+    p95:14.583449999999994, h:3.85, sesgo:1.9918357519538537,
+    sw:{w:0.6617495388491206, p:0.0037811301576743234},
+    hist:{ancho:1, cortes:Array.from({length:18},(_,i)=>i), frec:(function(){var f=new Array(17).fill(0);f[1]=3;f[16]=1;return f;})()}
+  },
+  p2fin: {
+    clave:'SIN medición final', etiqueta:'Prototipo 2 · SIN, medición final', sub:'n = 10 mediciones disponibles',
+    esc:['S01','S02','S03','S04','S05','S06','S07','S08','S09','S10'],
+    vals:[15.910,1.095,0.000,0.137,1.145,0.460,0.264,0.562,0.000,0.646],
+    sinReg:[], declarados:10,
+    suma:20.219, media:2.0219, mediana:0.511,
+    min:0.000, max:15.910, rango:15.910, s:4.896604026148008, cv:2.421783483925025,
+    p95:9.265749999999985, h:9.55, sesgo:3.122003694866714,
+    sw:{w:0.441508953337993, p:7.55073109041759e-07},
+    hist:{ancho:1, cortes:Array.from({length:17},(_,i)=>i), frec:(function(){var f=new Array(16).fill(0);f[0]=7;f[1]=2;f[15]=1;return f;})()}
+  }
+};
+const ORDEN = ['p1','p2v1','p2fin'];
+const COLOR_SERIE = {p1:'#E8891A', p2v1:'#2C6BC7', p2fin:'#1E8E4E'};
+
+const COMPARABLES = [
+  {esc:'S01', v1:16.851, fin:15.910, dif:0.941, pct:5.58},
+  {esc:'S02', v1:1.214,  fin:1.095,  dif:0.119, pct:9.80},
+  {esc:'S05', v1:1.734,  fin:1.145,  dif:0.589, pct:33.97},
+  {esc:'S07', v1:1.063,  fin:0.264,  dif:0.799, pct:75.16}
+];
+
+/* ------------------------------- utilidades ------------------------------ */
+const NF = (v,d) => (v===null||v===undefined) ? '—' : v.toFixed(d===undefined?3:d).replace('.',',');
+const NSVG = 'http://www.w3.org/2000/svg';
+function S(tag, attrs, text){
+  const e = document.createElementNS(NSVG, tag);
+  if(attrs) for(const k in attrs){ if(attrs[k]!==null && attrs[k]!==undefined) e.setAttribute(k, attrs[k]); }
+  if(text!==undefined && text!==null) e.textContent = text;
+  return e;
+}
+function txt(parent, x, y, s, o){
+  o = o || {};
+  const t = S('text',{
+    x:x, y:y, 'font-family': o.familia || 'Outfit, Segoe UI, sans-serif',
+    'font-size': o.tam || 13, fill: o.color || '#5A6878',
+    'text-anchor': o.anchor || 'start', 'font-weight': o.peso || 400,
+    'letter-spacing': o.espacio || null, 'font-style': o.cursiva || null
+  }, s);
+  parent.appendChild(t);
+  return t;
+}
+function linea(parent,x1,y1,x2,y2,o){
+  o=o||{};
+  parent.appendChild(S('line',{x1:x1,y1:y1,x2:x2,y2:y2,stroke:o.color||'#E7EDF3','stroke-width':o.ancho||1}));
+}
+function rect(parent,x,y,w,h,o){
+  o=o||{};
+  parent.appendChild(S('rect',{x:x,y:y,width:w,height:h,fill:o.fill||'#fff',stroke:o.stroke||null,
+    'stroke-width':o.grosor||null,rx:o.rx||null,opacity:o.opacidad||null}));
+}
+function circulo(parent,cx,cy,r,o){
+  o=o||{};
+  parent.appendChild(S('circle',{cx:cx,cy:cy,r:r,fill:o.fill||'#fff',stroke:o.stroke||null,
+    'stroke-width':o.grosor||null,opacity:o.opacidad||null}));
+}
+function svgRaiz(host, w, h, titulo){
+  host.innerHTML='';
+  const svg = S('svg',{viewBox:`0 0 ${w} ${h}`, width:w, height:h, role:'img', 'aria-label':titulo||''});
+  host.appendChild(svg);
+  return svg;
+}
+function escalaLog(dmin,dmax,x0,x1){
+  const lmin=Math.log10(dmin), lmax=Math.log10(dmax);
+  return function(v){ return x0 + (Math.log10(v)-lmin)/(lmax-lmin)*(x1-x0); };
+}
+
+/* ============================== FIGURA 1 · HERO ========================== */
+function dibujarHero(){
+  const host=document.getElementById('g-hero');
+  const W=1120,H=326, svg=svgRaiz(host,W,H,'Tiempos de detección de los tres momentos de medición');
+  const x0=252,x1=1062;
+  const sc=escalaLog(0.1,300,x0,x1);
+  const laneCero=x0-42;
+
+  // rejilla y ticks logarítmicos
+  const menores=[0.2,0.5,2,5,20,50,200];
+  menores.forEach(function(v){
+    const x=sc(v);
+    linea(svg,x,46,x,250,'#EDF2F7');
+    txt(svg,x,272,NF(v,v<1?1:0),{tam:11,color:'#98A6B5',anchor:'middle',familia:'JetBrains Mono, monospace'});
+  });
+  [0.1,1,10,100].forEach(function(v){
+    const x=sc(v);
+    linea(svg,x,46,x,250,'#DCE4EC');
+    txt(svg,x,294,NF(v,v<1?1:0),{tam:12,color:'#5A6878',anchor:'middle',peso:500,familia:'JetBrains Mono, monospace'});
+  });
+  linea(svg,x0,250,x1,250,'#DCE4EC');
+  txt(svg,(x0+x1)/2,316,'Tiempo de detección (segundos, escala logarítmica)',{tam:12,color:'#6B7A8C',anchor:'middle'});
+
+  // carril de ceros
+  linea(svg,laneCero,46,laneCero,250,'#E7EDF3');
+  txt(svg,laneCero,272,'0',{tam:11,color:'#98A6B5',anchor:'middle',familia:'JetBrains Mono, monospace'});
+
+  const filas=[
+    {k:'p1',   y:86,  ly:120, lan:'middle', lx:null},
+    {k:'p2v1', y:152, ly:186, lan:'middle', lx:null},
+    {k:'p2fin',y:218, ly:222, lan:'end',    lx:x1}
+  ];
+  filas.forEach(function(f){
+    const d=DATA[f.k], col=COLOR_SERIE[f.k];
+    // etiqueta de fila
+    txt(svg,16,f.y-6,d.clave,{tam:15,color:'#14283C',peso:600});
+    txt(svg,16,f.y+11,'n = '+d.vals.length+' mediciones',{tam:11,color:'#98A6B5',familia:'JetBrains Mono, monospace'});
+    txt(svg,16,f.y+27,'mín '+NF(d.min)+' s',{tam:11,color:'#98A6B5',familia:'JetBrains Mono, monospace'});
+    // línea base
+    linea(svg,x0,f.y,x1,f.y,'#E7EDF3');
+    // mediana
+    const xm=sc(d.mediana);
+    linea(svg,xm,f.y-16,xm,f.y+16,'#2C6BC7',2);
+    txt(svg,xm,f.y-23,'mediana '+NF(d.mediana)+' s',{tam:11.5,color:'#2C6BC7',peso:600,anchor:'middle'});
+    // puntos
+    d.vals.forEach(function(v,i){
+      const esCero=(v===0);
+      const x=esCero?laneCero:sc(v);
+      const j=(i-(d.vals.length-1)/2)*3.4;
+      if(esCero){
+        rect(svg,x-5,f.y-5,10,10,{fill:'#fff',stroke:'#1E8E4E',grosor:2,rx:2});
+      }else{
+        circulo(svg,x,f.y+j,5.5,{fill:'#fff',stroke:col,grosor:2.2});
+      }
+    });
+    // etiqueta del valor extremo, anclada al borde derecho
+    const maxI=d.vals.indexOf(d.max);
+    const maxX=d.max===0?laneCero:sc(d.max);
+    const maxAnc=(f.lx!==null)?f.lan:((maxX>980)?'end':'middle');
+    const maxPx=(f.lx!==null)?f.lx:((maxX>980)?x1:maxX);
+    txt(svg,maxPx,f.ly,d.esc[maxI]+' · '+NF(d.max)+' s',{tam:11.5,color:col,peso:600,anchor:maxAnc});
+  });
+
+  // leyenda
+  const l=document.getElementById('l-hero');
+  l.innerHTML =
+    '<span class="it"><svg width="22" height="12" aria-hidden="true"><circle cx="6" cy="6" r="5" fill="#fff" stroke="#2C6BC7" stroke-width="2"/></svg> tiempo registrado</span>'+
+    '<span class="it"><svg width="22" height="12" aria-hidden="true"><rect x="5" y="1" width="10" height="10" rx="2" fill="#fff" stroke="#1E8E4E" stroke-width="2"/></svg> registro de 0,000&nbsp;s</span>'+
+    '<span class="it"><svg width="22" height="12" aria-hidden="true"><line x1="11" y1="0" x2="11" y2="12" stroke="#2C6BC7" stroke-width="2"/></svg> mediana</span>'+
+    '<span class="it"><svg width="22" height="12" aria-hidden="true"><line x1="0" y1="6" x2="22" y2="6" stroke="#DCE4EC" stroke-width="1"/></svg> escala logarítmica de segundos</span>';
+}
+
+/* ====================== FIGURA 2 · DEFINICIÓN DE MTTD ===================== */
+function dibujarMttd(){
+  const host=document.getElementById('g-mttd');
+  const W=1120,H=250, svg=svgRaiz(host,W,H,'Definición operativa del tiempo medio de detección');
+
+  // línea de tiempo superior
+  const y=96, x0=90, x1=980;
+  linea(svg,x0,y,x1,y,'#C4D0DC',2);
+  circulo(svg,x0,y,7,{fill:'#14283C'});
+  txt(svg,x0,y-18,'Inicio del escenario',{tam:13,color:'#14283C',peso:600,anchor:'middle'});
+  txt(svg,x0,y+26,'t = 0',{tam:11.5,color:'#98A6B5',anchor:'middle',familia:'JetBrains Mono, monospace'});
+
+  const xEv=560;
+  circulo(svg,xEv,y,7,{fill:'#2C6BC7'});
+  txt(svg,xEv,y-18,'Primer evento registrado',{tam:13,color:'#2C6BC7',peso:600,anchor:'middle'});
+  txt(svg,xEv,y+26,'t = 0,826 s',{tam:11.5,color:'#6B7A8C',anchor:'middle',familia:'JetBrains Mono, monospace'});
+
+  // doble flecha del intervalo
+  svg.appendChild(S('path',{d:`M${x0+14},${y-52} L${xEv-14},${y-52}`,stroke:'#E8891A','stroke-width':1.6,fill:'none'}));
+  svg.appendChild(S('path',{d:`M${x0+14},${y-52} l9,-5 v10 z`,fill:'#E8891A'}));
+  svg.appendChild(S('path',{d:`M${xEv-14},${y-52} l-9,-5 v10 z`,fill:'#E8891A'}));
+  txt(svg,(x0+xEv)/2,y-64,'MTTD del escenario = 0,826 s',{tam:13.5,color:'#B06A12',peso:600,anchor:'middle'});
+
+  // caso sin registro
+  const y2=192;
+  linea(svg,x0,y2,x1,y2,'#E7EDF3');
+  circulo(svg,x0,y2,6,{fill:'#fff',stroke:'#98A6B5',grosor:2});
+  circulo(svg,x1,y2,6,{fill:'#fff',stroke:'#D14343',grosor:2});
+  txt(svg,x0,y2-16,'Inicio del escenario',{tam:11.5,color:'#6B7A8C',anchor:'middle'});
+  txt(svg,x1,y2-16,'Ningún evento registrado',{tam:11.5,color:'#D14343',peso:600,anchor:'middle'});
+  svg.appendChild(S('path',{d:`M${x0+14},${y2+34} L${x1-14},${y2+34}`,stroke:'#98A6B5','stroke-width':1.4,'stroke-dasharray':'5 4',fill:'none'}));
+  txt(svg,(x0+x1)/2,y2+56,'Sin tiempo registrado · no equivale a 0,000 s',{tam:12.5,color:'#6B7A8C',anchor:'middle'});
+}
+
+/* ======================== FIGURA 3 · FORMA DE LA DISTRIBUCIÓN ============== */
+function dibujarForma(){
+  const host=document.getElementById('g-forma');
+  const W=1120,H=300, svg=svgRaiz(host,W,H,'Esquema de distribución simétrica y asimétrica hacia la derecha');
+
+  function panel(ox,titulo,sub,path,color,nota){
+    txt(svg,ox,26,titulo,{tam:15,color:'#14283C',peso:600});
+    txt(svg,ox,46,sub,{tam:12,color:'#98A6B5'});
+    linea(svg,ox,72,ox+460,72,'#DCE4EC');
+    linea(svg,ox,250,ox+460,250,'#C4D0DC');
+    svg.appendChild(S('path',{d:path,fill:'rgba(44,107,199,.10)',stroke:color,'stroke-width':2.2}));
+    txt(svg,ox,272,nota,{tam:12,color:'#6B7A8C'});
+    txt(svg,ox+460,282,'tiempo',{tam:11,color:'#98A6B5',anchor:'end',familia:'JetBrains Mono, monospace'});
+  }
+  // simétrica (normal)
+  panel(60,'Distribución simétrica','media y mediana coinciden',
+    'M60,250 C120,250 150,90 200,78 C250,66 280,90 340,120 C380,140 420,230 460,250 L460,250 L60,250 Z',
+    '#2C6BC7','Forma de campana: los valores se reparten a ambos lados del centro');
+  // marca central
+  svg.appendChild(S('path',{d:'M290,60 L290,110',stroke:'#2C6BC7','stroke-width':1.6,'stroke-dasharray':'4 3'}));
+  // asimétrica
+  panel(600,'Distribución asimétrica hacia la derecha','la media supera a la mediana',
+    'M600,250 C640,250 660,120 700,92 C740,64 780,120 830,190 C870,235 920,248 1060,250 L1060,250 L600,250 Z',
+    '#E8891A','Cola larga hacia los valores altos que eleva el promedio');
+  svg.appendChild(S('path',{d:'M720,58 L720,104',stroke:'#E8891A','stroke-width':1.6,'stroke-dasharray':'4 3'}));
+  txt(svg,728,58,'mediana',{tam:11,color:'#E8891A',peso:600});
+  txt(svg,1000,58,'media',{tam:11,color:'#E8891A',peso:600});
+}
+
+/* ========================== HISTOGRAMAS ================================== */
+function dibujarHistograma(key, hostId){
+  const host=document.getElementById(hostId);
+  const d=DATA[key], col=COLOR_SERIE[key];
+  const W=1120,H=330, svg=svgRaiz(host,W,H,'Histograma de '+d.clave);
+  const x0=96,x1=1070,yTop=44,yBase=258;
+  const nbins=d.hist.frec.length;
+  const ancho=(x1-x0)/nbins;
+  const maxF=Math.max.apply(null,d.hist.frec);
+
+  // rejilla horizontal
+  for(let f=0;f<=maxF;f++){
+    const y=yBase-(f/maxF)*(yBase-yTop);
+    linea(svg,x0,y,x1,y,'#EDF2F7');
+    txt(svg,x0-14,y+4,NF(f,0),{tam:11.5,color:'#98A6B5',anchor:'end',familia:'JetBrains Mono, monospace'});
+  }
+  // eje x
+  linea(svg,x0,yBase,x1,yBase,'#C4D0DC');
+
+  // barras
+  d.hist.frec.forEach(function(f,i){
+    const bx=x0+i*ancho;
+    if(f===0){
+      rect(svg,bx+1,yBase-ancho*0.02,ancho-2,ancho*0.02,{fill:'#EEF3F8'});
+      return;
+    }
+    const h=(f/maxF)*(yBase-yTop);
+    rect(svg,bx+2,yBase-h,ancho-4,h,{fill:col,opacidad:0.88,rx:3});
+    txt(svg,bx+ancho/2,yBase-h-9,NF(f,0),{tam:13,color:'#14283C',peso:600,anchor:'middle'});
+  });
+
+  // marcas del eje x en los límites de cada intervalo
+  const cortes=d.hist.cortes;
+  const nb=cortes.length-1;
+  for(let i=0;i<=nb;i++){
+    const bx=x0+i*ancho;
+    linea(svg,bx,yBase,bx,yBase+6,'#DCE4EC');
+    const anc=(i===0)?'start':((i===nb)?'end':'middle');
+    const px=(i===0)?(bx-2):((i===nb)?(bx+2):bx);
+    txt(svg,px,yBase+21,NF(cortes[i],0),{tam:11,color:'#98A6B5',anchor:anc,familia:'JetBrains Mono, monospace'});
+  }
+  txt(svg,(x0+x1)/2,yBase+46,'Tiempo de detección (segundos)',{tam:12.5,color:'#6B7A8C',anchor:'middle'});
+
+  // título del eje y rotado
+  const yl=txt(svg,0,0,'Escenarios');
+  yl.setAttribute('transform','translate(34,'+((yTop+yBase)/2)+') rotate(-90)');
+  yl.setAttribute('text-anchor','middle');
+  yl.setAttribute('font-size','12.5');
+  yl.setAttribute('fill','#6B7A8C');
+  yl.setAttribute('font-family','Outfit, Segoe UI, sans-serif');
+
+  // nota interna de intervalo
+  txt(svg,x1,yTop-14,'intervalos de '+NF(d.hist.ancho,0)+' s',{tam:11.5,color:'#98A6B5',anchor:'end'});
+}
+
+/* ====================== FIGURA 7 · GRÁFICOS DE PUNTOS ====================== */
+function dibujarPuntos(){
+  const host=document.getElementById('g-puntos');
+  const W=1120, left=180, right=950, vx=1002;
+  const paneles=[];
+  let top=8;
+  ORDEN.forEach(function(key){
+    const d=DATA[key];
+    const alto=54+d.vals.length*23+52;
+    paneles.push({key:key,d:d,top:top,alto:alto});
+    top+=alto+30;
+  });
+  const H=top+8;
+  const svg=svgRaiz(host,W,H,'Gráficos de puntos por escenario');
+
+  paneles.forEach(function(p){
+    const d=p.d, col=COLOR_SERIE[p.key];
+    const y0=p.top+52;
+    const n=d.vals.length;
+    const max=d.max;
+    const sc=function(v){ return left+(v/max)*(right-left); };
+
+    // cabecera del panel
+    txt(svg,16,p.top+8,d.clave,{tam:14.5,color:'#14283C',peso:600});
+    txt(svg,16,p.top+27,'n = '+n+' mediciones',{tam:11,color:'#98A6B5',familia:'JetBrains Mono, monospace'});
+    txt(svg,right,p.top+8,'mín '+NF(d.min)+' s · máx '+NF(d.max)+' s',{tam:11,color:'#98A6B5',anchor:'end',familia:'JetBrains Mono, monospace'});
+
+    // marcador de la mediana
+    const xm=sc(d.mediana);
+    svg.appendChild(S('line',{x1:xm,y1:y0-10,x2:xm,y2:y0+n*23+6,stroke:'#2C6BC7','stroke-width':1.2,'stroke-dasharray':'4 4',opacity:0.75}));
+    txt(svg,xm,y0-15,'mediana '+NF(d.mediana)+' s',{tam:11,color:'#2C6BC7',peso:600,anchor:'middle'});
+
+    // una fila por escenario
+    d.vals.forEach(function(v,i){
+      const y=y0+i*23;
+      const esc=d.esc[i];
+      const esMax=(v===d.max);
+      const x=sc(v);
+      txt(svg,left-16,y+4,esc,{tam:11,color:esMax?'#B06A12':'#6B7A8C',peso:esMax?600:500,anchor:'end',familia:'JetBrains Mono, monospace'});
+      linea(svg,left,y,x,y,esMax?'#E4C79A':'#E7EDF3',esMax?2:1.4);
+      circulo(svg,x,y,esMax?6:4.8,{fill:esMax?col:'#fff',stroke:col,grosor:esMax?2.2:1.8});
+      txt(svg,vx,y+4,NF(v)+' s',{tam:11,color:esMax?'#B06A12':'#5A6878',peso:esMax?600:400,familia:'JetBrains Mono, monospace'});
+    });
+
+    // eje de tiempos
+    const yAxis=y0+n*23+10;
+    linea(svg,left,yAxis,right,yAxis,'#C4D0DC');
+    const dec=(max/4 % 1 === 0)?0:1;
+    for(let t=0;t<=4;t++){
+      const v=max*t/4, x=sc(v);
+      linea(svg,x,yAxis,x,yAxis+5,'#DCE4EC');
+      txt(svg,x,yAxis+20,NF(v,dec),{tam:10.5,color:'#98A6B5',anchor:'middle',familia:'JetBrains Mono, monospace'});
+    }
+    txt(svg,(left+right)/2,yAxis+40,'Tiempo de detección (segundos)',{tam:11,color:'#98A6B5',anchor:'middle'});
+    txt(svg,vx,yAxis+20,'valor registrado',{tam:10,color:'#B4BFCC',familia:'JetBrains Mono, monospace'});
+  });
+}
+
+/* ==================== FIGURA 8 · INDICADORES COMPARADOS ==================== */
+function dibujarIndicadores(){
+  const host=document.getElementById('g-indicadores');
+  const W=1120,H=380, svg=svgRaiz(host,W,H,'Media, mediana y percentil 95 por momento de medición');
+  const x0=200,x1=1020;
+  const sc=escalaLog(0.05,300,x0,x1);
+  const top=40, yEje=268;
+
+  [0.05,0.1,0.5,1,5,10,50,100,300].forEach(function(v){
+    const x=sc(v);
+    linea(svg,x,top,x,yEje,'#EDF2F7');
+    txt(svg,x,yEje+22,NF(v,v<1?2:(v<10?1:0)),{tam:11,color:'#98A6B5',anchor:'middle',familia:'JetBrains Mono, monospace'});
+  });
+  linea(svg,x0,yEje,x1,yEje,'#C4D0DC');
+  txt(svg,(x0+x1)/2,yEje+44,'Tiempo de detección (segundos, escala logarítmica)',{tam:11.5,color:'#98A6B5',anchor:'middle'});
+
+  const series=[
+    {k:'p1',   y:top+20},
+    {k:'p2v1', y:top+100},
+    {k:'p2fin',y:top+180}
+  ];
+  series.forEach(function(sr){
+    const d=DATA[sr.k];
+    txt(svg,16,sr.y+12,d.clave,{tam:14,color:'#14283C',peso:600});
+    txt(svg,16,sr.y+30,'n = '+d.vals.length,{tam:11,color:'#98A6B5',familia:'JetBrains Mono, monospace'});
+    const items=[
+      {v:d.mediana, c:'#2C6BC7', t:'Mediana '+NF(d.mediana)+' s'},
+      {v:d.media,   c:'#E8891A', t:'Media '+NF(d.media)+' s'},
+      {v:d.p95,     c:'#8A93A0', t:'P95 '+NF(d.p95)+' s'}
+    ];
+    items.forEach(function(it){
+      const x=sc(it.v);
+      circulo(svg,x,sr.y+10,8,{fill:it.c,opacidad:0.92});
+      circulo(svg,x,sr.y+10,13,{fill:'none',stroke:it.c,opacidad:0.25,grosor:1.3});
+      const anc=(x>960)?'end':'middle';
+      const px=(x>960)?x+6:x;
+      txt(svg,px,sr.y-8,it.t,{tam:11,color:it.c,peso:600,anchor:anc});
+    });
+  });
+  // leyenda
+  const y=340;
+  let x=x0;
+  [{nombre:'Mediana', color:'#2C6BC7'},{nombre:'Media', color:'#E8891A'},{nombre:'P95', color:'#8A93A0'}].forEach(function(e){
+    circulo(svg,x,y,7,{fill:e.color});
+    txt(svg,x+14,y+4,e.nombre,{tam:12,color:'#5A6878'});
+    x+=130;
+  });
+  txt(svg,x1,y+4,'un mismo eje para las tres series',{tam:11.5,color:'#98A6B5',anchor:'end'});
+}
+
+/* ==================== FIGURA 9 · COMPARACIÓN DE ESCENARIOS ================= */
+function dibujarComparacion(){
+  const host=document.getElementById('g-comparacion');
+  const W=1120,H=300, svg=svgRaiz(host,W,H,'Reducción del tiempo registrado por escenario');
+
+  function panel(ox,titulo,maximo,filas,ancho){
+    txt(svg,ox,26,titulo,{tam:13.5,color:'#14283C',peso:600});
+    const left=ox+56, right=ox+ancho;
+    const sc=function(v){ return left+(v/maximo)*(right-left); };
+    const filaH=26, top=48;
+    filas.forEach(function(f,i){
+      const y=top+i*filaH;
+      txt(svg,ox+46,y+11,f.esc,{tam:11.5,color:'#5A6878',anchor:'end',familia:'JetBrains Mono, monospace'});
+      // barra vuelta 1
+      const w1=sc(f.v1)-left;
+      rect(svg,left,y,w1,9,{fill:'#2C6BC7',opacidad:0.85,rx:4});
+      // barra final
+      const w2=sc(f.fin)-left;
+      rect(svg,left,y+12,w2,9,{fill:'#1E8E4E',opacidad:0.9,rx:4});
+      txt(svg,left+w1+9,y+8,NF(f.v1)+' s',{tam:10.5,color:'#2C6BC7',familia:'JetBrains Mono, monospace'});
+      txt(svg,left+w2+9,y+20,NF(f.fin)+' s',{tam:10.5,color:'#1E8E4E',familia:'JetBrains Mono, monospace'});
+    });
+    // eje
+    const yAxis=top+filas.length*filaH;
+    linea(svg,left,yAxis,right,yAxis,'#DCE4EC');
+    const dec=(maximo/4 % 1 === 0)?0:1;
+    for(let t=0;t<=4;t++){
+      const v=maximo*t/4, x=sc(v);
+      txt(svg,x,yAxis+18,NF(v,dec),{tam:10.5,color:'#98A6B5',anchor:'middle',familia:'JetBrains Mono, monospace'});
+    }
+    txt(svg,(left+right)/2,yAxis+38,'Tiempo de detección (segundos)',{tam:11.5,color:'#98A6B5',anchor:'middle'});
+  }
+  panel(40,'S01 con escala común (0–18 s)',18,[COMPARABLES[0]],430);
+  panel(560,'S02, S05 y S07 ampliados (0–2 s)',2,[COMPARABLES[1],COMPARABLES[2],COMPARABLES[3]],430);
+
+  // leyenda
+  const ly=262;
+  rect(svg,40,ly-8,18,9,{fill:'#2C6BC7',opacidad:0.85,rx:4});
+  txt(svg,66,ly,'primera vuelta',{tam:12,color:'#5A6878'});
+  rect(svg,200,ly-8,18,9,{fill:'#1E8E4E',opacidad:0.9,rx:4});
+  txt(svg,226,ly,'medición final',{tam:12,color:'#5A6878'});
+  txt(svg,1080,ly,'los cuatro escenarios con medición en ambas vueltas',{tam:11.5,color:'#98A6B5',anchor:'end'});
+}
+
+/* ==================== FIGURA 10 · COBERTURA TEMPORAL ======================= */
+function dibujarCobertura(){
+  const host=document.getElementById('g-cobertura');
+  const W=1120,H=250, svg=svgRaiz(host,W,H,'Cobertura temporal de los registros');
+
+  const filas=[
+    {k:'p1', etiqueta:'TaxFisco Research Lab', esc:DATA.p1.esc, med:DATA.p1.vals.length},
+    {k:'p2v1', etiqueta:'SIN · primera vuelta', esc:DATA.p2v1.esc, med:DATA.p2v1.vals.length},
+    {k:'p2fin', etiqueta:'SIN · medición final', esc:DATA.p2fin.esc, med:DATA.p2fin.vals.length}
+  ];
+  const top=44, filaH=66, x0=250, x1=900;
+
+  filas.forEach(function(f,i){
+    const d=DATA[f.k], col=COLOR_SERIE[f.k], y=top+i*filaH;
+    txt(svg,16,y+4,f.etiqueta,{tam:13,color:'#14283C',peso:600});
+    // barra de cobertura
+    const w=(f.med/10)*(x1-x0);
+    rect(svg,x0,y-11,x1-x0,22,{fill:'#EDF2F8',rx:11});
+    rect(svg,x0,y-11,w,22,{fill:col,opacidad:0.85,rx:11});
+    txt(svg,x0+w+14,y+5,NF(f.med/10*100,0)+' %  ('+f.med+'/10)',{tam:12.5,color:'#14283C',peso:600,familia:'JetBrains Mono, monospace'});
+
+    // chips de los diez escenarios declarados
+    let cx=x0;
+    for(let s=1;s<=10;s++){
+      const e='S'+String(s).padStart(2,'0');
+      const medido=d.esc.indexOf(e)>=0;
+      const wch=32;
+      rect(svg,cx,y+18,wch-5,16,{fill:medido?'#E9F3EC':'#F7F8FA',stroke:medido?'#BFDECB':'#DCE4EC',rx:5});
+      txt(svg,cx+(wch-5)/2,y+30,e,{tam:9.5,color:medido?'#186A3B':'#98A6B5',anchor:'middle',familia:'JetBrains Mono, monospace'});
+      cx+=wch;
+    }
+    txt(svg,x1+18,y+30,d.sinReg.length?(d.sinReg.length+' escenarios sin registro'):'los diez escenarios con registro',{tam:10.5,color:d.sinReg.length?'#98A6B5':'#186A3B',familia:'JetBrains Mono, monospace'});
+  });
+  const ly=242;
+  rect(svg,250,ly-11,18,16,{fill:'#E9F3EC',stroke:'#BFDECB',rx:5});
+  txt(svg,276,ly+2,'escenario con tiempo registrado',{tam:11.5,color:'#5A6878'});
+  rect(svg,480,ly-11,18,16,{fill:'#F7F8FA',stroke:'#DCE4EC',rx:5});
+  txt(svg,506,ly+2,'escenario sin registro',{tam:11.5,color:'#5A6878'});
+}
+
+/* ==================== FIGURA 11 · ASIMETRÍA ================================= */
+function dibujarAsimetria(){
+  const host=document.getElementById('g-asimetria');
+  const W=1120,H=352, svg=svgRaiz(host,W,H,'Mínimo, mediana, media y máximo por conjunto');
+  const x0=250,x1=1050;
+  const sc=escalaLog(0.05,300,x0,x1);
+  const laneCero=x0-40;
+  const top=60;
+
+  ORDEN.forEach(function(key,i){
+    const d=DATA[key], col=COLOR_SERIE[key], y=top+i*82;
+    txt(svg,16,y+4,d.clave,{tam:14,color:'#14283C',peso:600});
+    txt(svg,16,y+22,'n = '+d.vals.length,{tam:11,color:'#98A6B5',familia:'JetBrains Mono, monospace'});
+
+    // eje de la fila
+    linea(svg,x0,y,x1,y,'#E7EDF3');
+    // rango mínimo–máximo
+    const xmin=d.min>0?sc(d.min):laneCero;
+    const xmax=sc(d.max);
+    linea(svg,xmin,y,xmax,y,'#C4D0DC',5);
+    // mínimo
+    circulo(svg,xmin,y,6,{fill:'#fff',stroke:'#8A93A0',grosor:2});
+    txt(svg,xmin,y+26,'mín '+NF(d.min)+' s',{tam:10.5,color:'#6B7A8C',anchor:'middle',familia:'JetBrains Mono, monospace'});
+    // mediana
+    const xmed=sc(d.mediana);
+    linea(svg,xmed,y-13,xmed,y+13,'#2C6BC7',3);
+    txt(svg,xmed,y-18,'mediana '+NF(d.mediana)+' s',{tam:11,color:'#2C6BC7',peso:600,anchor:'middle'});
+    // media
+    const xmean=sc(d.media);
+    const dia=S('path',{d:`M${xmean},${y-10} L${xmean+9},${y} L${xmean},${y+10} L${xmean-9},${y} Z`,fill:'#E8891A'});
+    svg.appendChild(dia);
+    txt(svg,xmean,y+26,'media '+NF(d.media)+' s',{tam:11,color:'#B06A12',peso:600,anchor:'middle'});
+    // máximo
+    circulo(svg,xmax,y,6.5,{fill:'#fff',stroke:'#8A93A0',grosor:2});
+    txt(svg,xmax,y-20,'máx '+NF(d.max)+' s',{tam:10.5,color:'#6B7A8C',anchor:'middle',familia:'JetBrains Mono, monospace'});
+  });
+
+  // eje x
+  [0.1,1,10,100].forEach(function(v){
+    const x=sc(v);
+    txt(svg,x,top+3*82-6,NF(v,v<1?1:0),{tam:11,color:'#98A6B5',anchor:'middle',familia:'JetBrains Mono, monospace'});
+  });
+  txt(svg,(x0+x1)/2,top+3*82+20,'Tiempo de detección (segundos, escala logarítmica)',{tam:11.5,color:'#98A6B5',anchor:'middle'});
+
+  const l=document.getElementById('l-asimetria');
+  l.innerHTML =
+    '<span class="it"><svg width="22" height="14" aria-hidden="true"><line x1="11" y1="0" x2="11" y2="14" stroke="#2C6BC7" stroke-width="3"/></svg> mediana</span>'+
+    '<span class="it"><svg width="22" height="14" aria-hidden="true"><path d="M11 1 L20 7 L11 13 L2 7 Z" fill="#E8891A"/></svg> media</span>'+
+    '<span class="it"><svg width="22" height="14" aria-hidden="true"><circle cx="11" cy="7" r="6" fill="#fff" stroke="#8A93A0" stroke-width="2"/></svg> mínimo y máximo</span>'+
+    '<span class="it"><svg width="22" height="14" aria-hidden="true"><line x1="0" y1="7" x2="22" y2="7" stroke="#C4D0DC" stroke-width="5"/></svg> recorrido observado</span>';
+}
+
+/* ====================== MAPA DE PROTOTIPOS Y DATOS ======================== */
+function dibujarMapa(){
+  const host=document.getElementById('g-mapa');
+  const W=420,H=366, svg=svgRaiz(host,W,H,'Mapa de prototipos y momentos de medición');
+
+  // ---------------- prototipo 1 ----------------
+  const d1=DATA.p1;
+  rect(svg,6,6,408,88,{fill:'#fff',stroke:'#DCE4EC',rx:12});
+  rect(svg,6,6,4,88,{fill:COLOR_SERIE.p1,rx:2});
+  txt(svg,24,28,'Prototipo 1',{tam:11,color:'#98A6B5',peso:600});
+  txt(svg,24,48,'TaxFisco Research Lab',{tam:13.5,color:'#14283C',peso:600});
+  txt(svg,24,68,'n = '+d1.vals.length+' mediciones · mediana '+NF(d1.mediana)+' s',{tam:11,color:'#5A6878',familia:'JetBrains Mono, monospace'});
+  txt(svg,24,85,'cobertura '+NF(d1.vals.length/10*100,0)+' % de los escenarios declarados',{tam:11,color:COLOR_SERIE.p1,familia:'JetBrains Mono, monospace'});
+
+  // flecha hacia el prototipo 2
+  svg.appendChild(S('path',{d:'M210,94 L210,110',stroke:'#C4D0DC','stroke-width':1.6,fill:'none'}));
+  svg.appendChild(S('path',{d:'M210,110 l-5,-8 h10 z',fill:'#C4D0DC'}));
+
+  // ---------------- contenedor del prototipo 2 ----------------
+  rect(svg,6,112,408,248,{fill:'#FBFCFE',stroke:'#DCE4EC',rx:12});
+  txt(svg,24,134,'Prototipo 2',{tam:11,color:'#98A6B5',peso:600});
+  txt(svg,24,152,'Laboratorio del SIN',{tam:13,color:'#14283C',peso:600});
+
+  function bloque(oy,titulo,sub,k,color){
+    const d=DATA[k];
+    rect(svg,22,oy,376,80,{fill:'#fff',stroke:'#DCE4EC',rx:10});
+    rect(svg,22,oy,4,80,{fill:color,rx:2});
+    txt(svg,40,oy+24,titulo,{tam:12.5,color:'#14283C',peso:600});
+    txt(svg,40,oy+41,sub,{tam:10.5,color:'#98A6B5'});
+    txt(svg,40,oy+60,'n = '+d.vals.length+' mediciones · mediana '+NF(d.mediana)+' s',{tam:11,color:'#5A6878',familia:'JetBrains Mono, monospace'});
+    txt(svg,40,oy+74,'cobertura '+NF(d.vals.length/10*100,0)+' %',{tam:11,color:color,familia:'JetBrains Mono, monospace'});
+  }
+  bloque(162,'1.ª vuelta','Antes de las correcciones','p2v1',COLOR_SERIE.p2v1);
+
+  // flecha entre los dos momentos
+  svg.appendChild(S('path',{d:'M210,242 L210,256',stroke:'#C4D0DC','stroke-width':1.6,fill:'none'}));
+  svg.appendChild(S('path',{d:'M210,256 l-5,-8 h10 z',fill:'#C4D0DC'}));
+
+  bloque(258,'Medición final','Después de las correcciones','p2fin',COLOR_SERIE.p2fin);
+}
+
+/* ================================ TABLAS ================================== */
+function tablaDatos(hostId, d){
+  const t=document.getElementById(hostId);
+  let html='<thead><tr><th>Escenario</th><th>Tiempo de detección</th></tr></thead><tbody>';
+  d.esc.forEach(function(e,i){
+    const v=d.vals[i];
+    html+='<tr><td class="esc">'+e+'</td><td class="mono">'+NF(v)+' s</td></tr>';
+  });
+  d.sinReg.forEach(function(e){
+    html+='<tr><td class="esc">'+e+'</td><td class="vacia">Sin tiempo registrado</td></tr>';
+  });
+  html+='</tbody>';
+  t.innerHTML=html;
+}
+function tablaFrecuencias(hostId, d){
+  const t=document.getElementById(hostId);
+  let html='<caption>Tabla de frecuencias · intervalos de '+NF(d.hist.ancho,0)+' s</caption>'+
+    '<thead><tr><th>Intervalo (s)</th><th>Frecuencia absoluta</th><th>Frecuencia relativa</th></tr></thead><tbody>';
+  d.hist.frec.forEach(function(f,i){
+    const a=d.hist.cortes[i], b=d.hist.cortes[i+1];
+    if(f===0 && d.hist.frec.every(function(x){return x===0;})) return;
+    html+='<tr'+(f===0?' class="destacado"':'')+'><td class="mono">['+NF(a,0)+', '+NF(b,0)+')</td><td class="mono">'+f+'</td><td class="mono">'+NF(f/d.vals.length*100,1)+' %</td></tr>';
+  });
+  html+='</tbody>';
+  t.innerHTML=html;
+}
+function tablaGeneral(){
+  const t=document.getElementById('tabla-general');
+  const filas=[
+    ['Mediciones disponibles (n)', function(d){return d.vals.length;}],
+    ['Media', function(d){return NF(d.media,4)+' s';}],
+    ['Mediana', function(d){return NF(d.mediana)+' s';}],
+    ['Mínimo', function(d){return NF(d.min)+' s';}],
+    ['Máximo', function(d){return NF(d.max)+' s';}],
+    ['Rango', function(d){return NF(d.rango)+' s';}],
+    ['Desviación estándar muestral', function(d){return NF(d.s)+' s';}],
+    ['P95 inclusivo', function(d){return NF(d.p95)+' s';}]
+  ];
+  let html='<thead><tr><th>Indicador</th><th>TaxFisco</th><th>SIN: vuelta 1</th><th>SIN: medición final</th></tr></thead><tbody>';
+  filas.forEach(function(f){
+    html+='<tr><td>'+f[0]+'</td><td class="mono">'+f[1](DATA.p1)+'</td><td class="mono">'+f[1](DATA.p2v1)+'</td><td class="mono">'+f[1](DATA.p2fin)+'</td></tr>';
+  });
+  html+='</tbody>';
+  t.innerHTML=html;
+}
+function tablaComparacion(){
+  const t=document.getElementById('tabla-comparacion');
+  let html='<thead><tr><th>Escenario</th><th>Primera vuelta</th><th>Medición final</th><th>Disminución</th><th>Reducción relativa</th></tr></thead><tbody>';
+  COMPARABLES.forEach(function(c){
+    html+='<tr><td class="esc">'+c.esc+'</td><td class="mono">'+NF(c.v1)+' s</td><td class="mono">'+NF(c.fin)+' s</td><td class="mono">'+NF(c.dif)+' s</td><td class="mono verde">'+NF(c.pct,2)+' %</td></tr>';
+  });
+  html+='<tr class="destacado"><td>Media de los cuatro</td><td class="mono">'+NF(5.2155,4)+' s</td><td class="mono">'+NF(4.6035,4)+' s</td><td class="mono">'+NF(0.6120,4)+' s</td><td class="mono verde">'+NF(11.73,2)+' %</td></tr>';
+  html+='</tbody>';
+  t.innerHTML=html;
+}
+function tablaNormalidad(){
+  const t=document.getElementById('tabla-normalidad');
+  let html='<thead><tr><th>Conjunto</th><th>W</th><th>p</th><th>Veredicto</th></tr></thead><tbody>';
+  ORDEN.forEach(function(k){
+    const d=DATA[k];
+    html+='<tr><td>'+d.clave+'</td><td class="mono">'+NF(d.sw.w,4)+'</td><td class="mono">'+d.sw.p.toExponential(2).replace('.',',')+'</td><td class="mono rojo">se rechaza la normalidad</td></tr>';
+  });
+  html+='</tbody>';
+  t.innerHTML=html;
+}
+
+/* ============================ FÓRMULAS DE DATOS =========================== */
+function pintarFormulas(){
+  const set=function(id,html){ const e=document.getElementById(id); if(e) e.innerHTML=html; };
+
+  set('ord-p1','<span class="mi">0,141; 0,533; 0,543; 0,824; 0,826; 10,000; 16,405; 85,000; 260,108</span>');
+  set('suma-p1','<span class="mi">0,141 + 0,533 + 0,543 + 0,824 + 0,826 + 10,000 + 16,405 + 85,000 + 260,108 = 374,380</span>');
+  set('media-p1','<span class="mi">x&#772;</span> = <span class="frac"><span>374,380</span><span>9</span></span> = <span class="mi">41,598&nbsp;s</span>');
+  set('rango-p1','<span class="mi">R</span> = <span class="mi">x</span><sub>max</sub> − <span class="mi">x</span><sub>min</sub> = 260,108 − 0,141 = <span class="mi">259,967&nbsp;s</span>');
+  set('sd-p1','<span class="mi">s</span> ≈ <span class="mi">86,370&nbsp;s</span>');
+  set('h-p1','<span class="mi">h</span> = 1 + (9 − 1) × 0,95 = <span class="mi">8,6</span>');
+  set('p95-p1','<span class="mi">P</span><sub>95</sub> = 85,000 + 0,6(260,108 − 85,000) = 85,000 + 105,0648 = <span class="mi">190,065&nbsp;s</span>');
+
+  set('ord-p2v1','<span class="mi">1,063; 1,214; 1,734; 16,851</span>');
+  set('media-p2v1','<span class="mi">x&#772;</span> = <span class="frac"><span>20,862</span><span>4</span></span> = <span class="mi">5,2155&nbsp;s</span>');
+  set('mediana-p2v1','<span class="mi">Mediana</span> = <span class="frac"><span>1,214 + 1,734</span><span>2</span></span> = <span class="mi">1,474&nbsp;s</span>');
+  set('rango-p2v1','<span class="mi">R</span> = 16,851 − 1,063 = <span class="mi">15,788&nbsp;s</span>');
+  set('sd-p2v1','<span class="mi">s</span> ≈ <span class="mi">7,762&nbsp;s</span>');
+  set('h-p2v1','<span class="mi">h</span> = 1 + (4 − 1) × 0,95 = <span class="mi">3,85</span>');
+  set('p95-p2v1','<span class="mi">P</span><sub>95</sub> = 1,734 + 0,85(16,851 − 1,734) = 1,734 + 12,84945 = <span class="mi">14,583&nbsp;s</span>');
+
+  set('ord-p2fin','<span class="mi">0,000; 0,000; 0,137; 0,264; 0,460; 0,562; 0,646; 1,095; 1,145; 15,910</span>');
+  set('media-p2fin','<span class="mi">x&#772;</span> = <span class="frac"><span>20,219</span><span>10</span></span> = <span class="mi">2,0219&nbsp;s</span>');
+  set('mediana-p2fin','<span class="mi">Mediana</span> = <span class="frac"><span>0,460 + 0,562</span><span>2</span></span> = <span class="mi">0,511&nbsp;s</span>');
+  set('rango-p2fin','<span class="mi">R</span> = 15,910 − 0,000 = <span class="mi">15,910&nbsp;s</span>');
+  set('sd-p2fin','<span class="mi">s</span> ≈ <span class="mi">4,897&nbsp;s</span>');
+  set('h-p2fin','<span class="mi">h</span> = 1 + (10 − 1) × 0,95 = <span class="mi">9,55</span>');
+  set('p95-p2fin','<span class="mi">P</span><sub>95</sub> = 1,145 + 0,55(15,910 − 1,145) = 1,145 + 8,12075 = <span class="mi">9,266&nbsp;s</span>');
+
+  set('dif-absoluta','<span class="mi">5,2155 − 2,0219 = 3,1936&nbsp;s</span>');
+  set('dif-relativa','<span class="frac"><span>5,2155 − 2,0219</span><span>5,2155</span></span> × 100 = <span class="mi">61,23&nbsp;%</span>');
+  set('comp-media-ini','<span class="frac"><span>16,851 + 1,214 + 1,734 + 1,063</span><span>4</span></span> = <span class="mi">5,2155&nbsp;s</span>');
+  set('comp-media-fin','<span class="frac"><span>15,910 + 1,095 + 1,145 + 0,264</span><span>4</span></span> = <span class="mi">4,6035&nbsp;s</span>');
+  set('comp-reduccion','<span class="frac"><span>5,2155 − 4,6035</span><span>5,2155</span></span> × 100 = <span class="mi">11,73&nbsp;%</span>');
+}
+
+/* ====================== DESCARGA DE FIGURAS EN PNG ========================= */
+function descargarPNG(id){
+  const host=document.getElementById(id);
+  if(!host) return;
+  const svg=host.querySelector('svg');
+  if(!svg) return;
+  const clone=svg.cloneNode(true);
+  clone.setAttribute('xmlns','http://www.w3.org/2000/svg');
+  const w=parseInt(clone.getAttribute('width'),10), h=parseInt(clone.getAttribute('height'),10);
+  const datos=new XMLSerializer().serializeToString(clone);
+  const blob=new Blob([datos],{type:'image/svg+xml;charset=utf-8'});
+  const url=URL.createObjectURL(blob);
+  const img=new Image();
+  img.onload=function(){
+    const canvas=document.createElement('canvas');
+    const escala=2;
+    canvas.width=w*escala; canvas.height=h*escala;
+    const ctx=canvas.getContext('2d');
+    ctx.fillStyle='#FFFFFF'; ctx.fillRect(0,0,canvas.width,canvas.height);
+    ctx.drawImage(img,0,0,canvas.width,canvas.height);
+    URL.revokeObjectURL(url);
+    canvas.toBlob(function(b){
+      const a=document.createElement('a');
+      a.href=URL.createObjectURL(b);
+      a.download=id+'.png';
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    });
+  };
+  img.src=url;
+}
+document.addEventListener('click',function(ev){
+  const b=ev.target.closest?ev.target.closest('[data-png]'):null;
+  if(b) descargarPNG(b.getAttribute('data-png'));
+});
+
+/* ================================ ARRANQUE ================================ */
+(function(){
+  dibujarHero();
+  dibujarMapa();
+  dibujarMttd();
+  dibujarForma();
+  dibujarHistograma('p1','g-hist-p1');
+  dibujarHistograma('p2v1','g-hist-p2v1');
+  dibujarHistograma('p2fin','g-hist-p2fin');
+  dibujarPuntos();
+  dibujarIndicadores();
+  dibujarComparacion();
+  dibujarCobertura();
+  dibujarAsimetria();
+
+  tablaDatos('tabla-p1',DATA.p1);
+  tablaDatos('tabla-p2v1',DATA.p2v1);
+  tablaDatos('tabla-p2fin',DATA.p2fin);
+  tablaFrecuencias('tab-frec-p1',DATA.p1);
+  tablaGeneral();
+  tablaComparacion();
+  tablaNormalidad();
+  pintarFormulas();
+})();
+</script>
+</body>
+</html>
