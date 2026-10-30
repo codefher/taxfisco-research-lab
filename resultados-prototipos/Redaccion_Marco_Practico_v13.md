@@ -38,243 +38,265 @@ Octubre, 2026
 
 # Índice
 
-[Dedicatoria ii](#_Toc242091167)
+[Dedicatoria ii](#_Toc244000434)
 
-[Agradecimientos iii](#_Toc242091168)
+[Agradecimientos iii](#_Toc244000435)
 
-[Resumen iv](#_Toc242091169)
+[Resumen iv](#_Toc244000436)
 
-[Índice v](#_Toc242091170)
+[Índice v](#_Toc244000437)
 
-[Índice de Tablas, Cuadros y Gráficos ix](#_Toc242091171)
+[Índice de Tablas, Cuadros y Gráficos x](#_Toc244000438)
 
-[Introducción 1](#_Toc242091172)
+[Introducción 1](#_Toc244000439)
 
-[Capítulo I: Aspectos Generales 2](#_Toc242091173)
+[Capítulo I: Aspectos Generales 2](#_Toc244000440)
 
-[1.1 Antecedentes 2](#_Toc242091174)
+[1.1 Antecedentes 2](#_Toc244000441)
 
-[1.2 Planteamiento del Problema 3](#_Toc242091175)
+[1.2 Planteamiento del Problema 3](#_Toc244000442)
 
-[1.2.1 Formulación del Problema de Investigación 4](#_Toc242091176)
+[1.2.1 Formulación del Problema de Investigación 4](#_Toc244000443)
 
-[1.3 Objetivo General y Específicos de la Investigación 4](#_Toc242091177)
+[1.3 Objetivo General y Específicos de la Investigación 4](#_Toc244000444)
 
-[1.3.1 Objetivo General 4](#_Toc242091178)
+[1.3.1 Objetivo General 4](#_Toc244000445)
 
-[1.3.2 Objetivos Específicos 4](#_Toc242091179)
+[1.3.2 Objetivos Específicos 4](#_Toc244000446)
 
-[1.4 Resultados de la Investigación 4](#_Toc242091180)
+[1.4 Resultados de la Investigación 4](#_Toc244000447)
 
-[1.5 Planteamiento de la Hipótesis 5](#_Toc242091181)
+[1.5 Planteamiento de la Hipótesis 5](#_Toc244000448)
 
-[1.6 Operacionalización de Variables 6](#_Toc242091182)
+[1.6 Operacionalización de Variables 6](#_Toc244000449)
 
-[Capítulo II: Marco Teórico 10](#_Toc242091183)
+[Capítulo II: Marco Teórico 10](#_Toc244000450)
 
-[2.1 Marco Conceptual 10](#_Toc242091184)
+[2.1 Marco Conceptual 10](#_Toc244000451)
 
-[2.1.1 Detección y gestión de eventos de seguridad 10](#_Toc242091185)
+[2.1.1 Detección y gestión de eventos de seguridad 10](#_Toc244000452)
 
-[2.1.1.1 Evento e incidente de seguridad 10](#_Toc242091186)
+[2.1.1.1 Evento e incidente de seguridad 10](#_Toc244000453)
 
-[2.1.1.2 Ciclo de vida del incidente 11](#_Toc242091187)
+[2.1.1.2 Ciclo de vida del incidente 11](#_Toc244000454)
 
-[2.1.1.3 Indicadores MTTD y MTTR 12](#_Toc242091188)
+[2.1.1.3 Indicadores MTTD y MTTR 12](#_Toc244000455)
 
-[2.1.1.4 Evidencia forense y cadena de custodia 13](#_Toc242091189)
+[2.1.1.4 Evidencia forense y cadena de custodia 13](#_Toc244000456)
 
-[2.1.2 El servicio fiscal digital como sector de aplicación 13](#_Toc242091190)
+[2.1.2 El servicio fiscal digital como sector de aplicación 13](#_Toc244000457)
 
-[2.1.2.1 Definición de servicio fiscal digital 14](#_Toc242091191)
+[2.1.2.1 Definición de servicio fiscal digital 14](#_Toc244000458)
 
-[2.1.2.2 Tributaria 3.0 14](#_Toc242091192)
+[2.1.2.2 Tributaria 3.0 14](#_Toc244000459)
 
-[2.1.2.3 Modelo de Madurez de la Transformación Digital 15](#_Toc242091193)
+[2.1.2.3 Modelo de Madurez de la Transformación Digital 15](#_Toc244000460)
 
-[2.1.2.4 Contexto institucional boliviano 16](#_Toc242091194)
+[2.1.2.4 Contexto institucional boliviano 16](#_Toc244000461)
 
-[2.1.2.5 Índice de madurez en ciberseguridad fiscal 17](#_Toc242091195)
+[2.1.2.5 Índice de madurez en ciberseguridad fiscal 17](#_Toc244000462)
 
-[2.1.3 Conceptos operativos de detección 18](#_Toc242091196)
+[2.1.3 Conceptos operativos de detección 18](#_Toc244000463)
 
-[2.1.3.1 Marco MITRE ATT&CK 18](#_Toc242091197)
+[2.1.3.1 Marco MITRE ATT&CK 18](#_Toc244000464)
 
-[2.1.3.2 Ciberdecepción 19](#_Toc242091198)
+[2.1.3.2 Ciberdecepción 19](#_Toc244000465)
 
-[2.1.3.3 Honeypots 20](#_Toc242091199)
+[2.1.3.3 Honeypots 20](#_Toc244000466)
 
-[2.1.3.4 Honeytokens, honeynets y sensores de engaño 21](#_Toc242091200)
+[2.1.3.4 Honeytokens, honeynets y sensores de engaño 21](#_Toc244000467)
 
-[2.1.3.5 Detección, evidencia y mejora continua 22](#_Toc242091201)
+[2.1.3.5 Detección, evidencia y mejora continua 22](#_Toc244000468)
 
-[2.2 Marco Referencial 22](#_Toc242091202)
+[2.2 Marco Referencial 22](#_Toc244000469)
 
-[2.2.1 Teoría general de riesgo y resiliencia en ciberseguridad 23](#_Toc242091203)
+[2.2.1 Teoría general de riesgo y resiliencia en ciberseguridad 23](#_Toc244000470)
 
-[2.2.1.1 Origen y fundamento de la teoría 23](#_Toc242091204)
+[2.2.1.1 Origen y fundamento de la teoría 23](#_Toc244000471)
 
-[2.2.1.2 Ciclo de gestión del riesgo 24](#_Toc242091205)
+[2.2.1.2 Ciclo de gestión del riesgo 24](#_Toc244000472)
 
-[2.2.1.3 Capacidades de la resiliencia organizacional 25](#_Toc242091206)
+[2.2.1.3 Capacidades de la resiliencia organizacional 25](#_Toc244000473)
 
-[2.2.1.4 Articulación riesgo–resiliencia 26](#_Toc242091207)
+[2.2.1.4 Articulación riesgo–resiliencia 26](#_Toc244000474)
 
-[2.2.1.5 Criterios de evaluación teórica 26](#_Toc242091208)
+[2.2.1.5 Criterios de evaluación teórica 27](#_Toc244000475)
 
-[2.2.2 Teoría sustantiva de modelos de madurez en ciberseguridad tributaria 28](#_Toc242091209)
+[2.2.2 Teoría sustantiva de modelos de madurez en ciberseguridad tributaria 28](#_Toc244000476)
 
-[2.2.2.1 Fundamento de los modelos de madurez 28](#_Toc242091210)
+[2.2.2.1 Fundamento de los modelos de madurez 28](#_Toc244000477)
 
-[2.3 Marco Legal 29](#_Toc242091211)
+[2.3 Marco Legal 29](#_Toc244000478)
 
-[Capítulo III: Metodología de la Investigación 30](#_Toc242091212)
+[Capítulo III: Metodología de la Investigación 30](#_Toc244000479)
 
-[3.1 Métodos de Investigación 30](#_Toc242091213)
+[3.1 Métodos de Investigación 30](#_Toc244000480)
 
-[3.2 Tipo de Investigación 31](#_Toc242091214)
+[3.2 Tipo de Investigación 31](#_Toc244000481)
 
-[3.3 Universo o Población de Estudio 33](#_Toc242091215)
+[3.3 Universo o Población de Estudio 33](#_Toc244000482)
 
-[3.3.1 Determinación y Elección de la Muestra 34](#_Toc242091216)
+[3.3.1 Determinación y Elección de la Muestra 34](#_Toc244000483)
 
-[3.4 Sujetos Vinculados a la Población 36](#_Toc242091217)
+[3.4 Sujetos Vinculados a la Población 36](#_Toc244000484)
 
-[3.5 Fuentes y Diseño de los Instrumentos de Relevamiento de Información 37](#_Toc242091218)
+[3.5 Fuentes y Diseño de los Instrumentos de Relevamiento de Información 37](#_Toc244000485)
 
-[3.5.1 Fuentes de la Investigación 37](#_Toc242091219)
+[3.5.1 Fuentes de la Investigación 37](#_Toc244000486)
 
-[3.5.2 Diseño de los Instrumentos de Relevamiento de Información 40](#_Toc242091220)
+[3.5.2 Diseño de los Instrumentos de Relevamiento de Información 40](#_Toc244000487)
 
-[3.5.2.1 Descripción del Instrumento de Diagnóstico 41](#_Toc242091221)
+[3.5.2.1 Descripción del Instrumento de Diagnóstico 41](#_Toc244000488)
 
-[3.5.2.2 Validez del Instrumento 48](#_Toc242091222)
+[3.5.2.2 Validez del Instrumento 48](#_Toc244000489)
 
-[3.5.2.3 Confiabilidad del Instrumento 56](#_Toc242091223)
+[3.5.2.3 Confiabilidad del Instrumento 56](#_Toc244000490)
 
-[3.6 Procesamiento y Análisis de la Información 63](#_Toc242091224)
+[3.6 Procesamiento y Análisis de la Información 63](#_Toc244000491)
 
-[Capítulo IV: Marco Práctico 64](#_Toc242091225)
+[Capítulo IV: Marco Práctico 64](#_Toc244000492)
 
-[4.1 Análisis de la situación actual 64](#_Toc242091226)
+[4.1 Análisis de la situación actual 64](#_Toc244000493)
 
-[4.1.1 Análisis de la normativa 64](#_Toc242091227)
+[4.1.1 Análisis de la normativa 64](#_Toc244000494)
 
-[4.1.1.1 Criterio de selección de las normas 65](#_Toc242091228)
+[4.1.1.1 Criterio de selección de las normas 65](#_Toc244000495)
 
-[4.1.1.2 Normas de gestión de incidentes 66](#_Toc242091229)
+[4.1.1.2 Normas de gestión de incidentes 66](#_Toc244000496)
 
-[4.1.1.3 Norma marco de seguridad de la información 68](#_Toc242091230)
+[4.1.1.3 Norma marco de seguridad de la información 68](#_Toc244000497)
 
-[4.1.1.4 Normas de evidencia digital y forense 69](#_Toc242091231)
+[4.1.1.4 Normas de evidencia digital y forense 69](#_Toc244000498)
 
-[4.1.1.5 Norma de gestión de riesgos 70](#_Toc242091232)
+[4.1.1.5 Norma de gestión de riesgos 70](#_Toc244000499)
 
-[4.1.1.6 Marco de comportamiento adversario 70](#_Toc242091233)
+[4.1.1.6 Marco de comportamiento adversario 70](#_Toc244000500)
 
-[4.1.1.7 Benchmarks operativos y modelos de madurez 71](#_Toc242091234)
+[4.1.1.7 Benchmarks operativos y modelos de madurez 71](#_Toc244000501)
 
-[4.1.2 Aplicación del instrumento 74](#_Toc242091235)
+[4.1.2 Aplicación del instrumento 74](#_Toc244000502)
 
-[4.1.2.1 Aplicación a la muestra de diagnóstico 75](#_Toc242091236)
+[4.1.2.1 Aplicación a la muestra de diagnóstico 75](#_Toc244000503)
 
-[4.1.2.2 Confiabilidad del instrumento 76](#_Toc242091237)
+[4.1.2.2 Confiabilidad del instrumento 76](#_Toc244000504)
 
-[4.1.2.3 Resultados por instrumento 77](#_Toc242091238)
+[4.1.2.3 Resultados por instrumento 77](#_Toc244000505)
 
-[4.1.2.4 Resultados por grupo temático 80](#_Toc242091239)
+[4.1.2.4 Resultados por grupo temático 80](#_Toc244000506)
 
-[4.1.2.5 Resultado global de madurez 82](#_Toc242091240)
+[4.1.2.5 Resultado global de madurez 82](#_Toc244000507)
 
-[4.1.3 Diagnóstico situacional 83](#_Toc242091241)
+[4.1.3 Diagnóstico situacional 83](#_Toc244000508)
 
-[4.1.3.1 Brechas en gestión de incidentes 84](#_Toc242091242)
+[4.1.3.1 Brechas en gestión de incidentes 84](#_Toc244000509)
 
-[4.1.3.2 Brechas en evidencias y respaldo 85](#_Toc242091243)
+[4.1.3.2 Brechas en evidencias y respaldo 85](#_Toc244000510)
 
-[4.1.3.3 Brechas en controles técnicos 86](#_Toc242091244)
+[4.1.3.3 Brechas en controles técnicos 86](#_Toc244000511)
 
-[4.1.3.4 Brechas en gestión organizacional y mejora 87](#_Toc242091245)
+[4.1.3.4 Brechas en gestión organizacional y mejora 87](#_Toc244000512)
 
-[4.1.3.5 Caracterización del estado actual 88](#_Toc242091246)
+[4.1.3.5 Caracterización del estado actual 88](#_Toc244000513)
 
-[4.1.3.6 Matriz de trazabilidad 90](#_Toc242091247)
+[4.1.3.6 Matriz de trazabilidad 90](#_Toc244000514)
 
-[4.2 Diseño de la metodología de honeypot para la gestión de incidentes en los servicios fiscales 93](#_Toc242091248)
+[4.2 Diseño de la metodología de honeypot para la gestión de incidentes en los servicios fiscales 93](#_Toc244000515)
 
-[4.2.1 Fundamentación del diseño metodológico 93](#_Toc242091249)
+[4.2.1 Fundamentación del diseño metodológico 93](#_Toc244000516)
 
-[4.2.1.1 Principios de diseño de la metodología Honeypot 94](#_Toc242091250)
+[4.2.1.1 Principios de diseño de la metodología Honeypot 94](#_Toc244000517)
 
-[4.2.1.2 Atención integral de los hallazgos del diagnóstico 98](#_Toc242091251)
+[4.2.1.2 Atención integral de los hallazgos del diagnóstico 98](#_Toc244000518)
 
-[4.2.1.3 Decisiones de diseño asumidas por la metodología Honeypot 105](#_Toc242091252)
+[4.2.1.3 Decisiones de diseño asumidas por la metodología Honeypot 105](#_Toc244000519)
 
-[4.2.2 Arquitectura general de la metodología 107](#_Toc242091253)
+[4.2.2 Arquitectura general de la metodología 107](#_Toc244000520)
 
-[4.2.2.1 Estructura secuencial de las cinco fases y sus bucles de retroalimentación 109](#_Toc242091254)
+[4.2.2.1 Estructura secuencial de las cinco fases y sus bucles de retroalimentación 109](#_Toc244000521)
 
-[4.2.2.2 Planos transversales de la metodología y categorías funcionales de tecnología 110](#_Toc242091255)
+[4.2.2.2 Planos transversales de la metodología y categorías funcionales de tecnología 110](#_Toc244000522)
 
-[4.2.2.3 Trazabilidad metodológica de las cinco fases 113](#_Toc242091256)
+[4.2.2.3 Trazabilidad metodológica de las cinco fases 113](#_Toc244000523)
 
-[4.2.2.4 Prerrequisitos de la organización y transferibilidad de la metodología 115](#_Toc242091257)
+[4.2.2.4 Prerrequisitos de la organización y transferibilidad de la metodología 115](#_Toc244000524)
 
-[4.2.2.5 Justificación metodológica de las cinco actividades por fase 117](#_Toc242091258)
+[4.2.2.5 Justificación metodológica de las cinco actividades por fase 117](#_Toc244000525)
 
-[4.2.3 Fase 1. Diseño del señuelo 122](#_Toc242091259)
+[4.2.3 Fase 1. Diseño del señuelo 122](#_Toc244000526)
 
-[4.2.4 Fase 2. Despliegue aislado 128](#_Toc242091260)
+[4.2.4 Fase 2. Despliegue aislado 128](#_Toc244000527)
 
-[4.2.5 Fase 3. Captura, enriquecimiento y custodia 132](#_Toc242091261)
+[4.2.5 Fase 3. Captura, enriquecimiento y custodia 132](#_Toc244000528)
 
-[4.2.6 Fase 4. Correlación con gestión de incidentes 137](#_Toc242091262)
+[4.2.6 Fase 4. Correlación con gestión de incidentes 137](#_Toc244000529)
 
-[4.2.7 Fase 5. Medición de impacto y lecciones aprendidas 142](#_Toc242091263)
+[4.2.7 Fase 5. Medición de impacto y lecciones aprendidas 142](#_Toc244000530)
 
-[2.8 Síntesis del diseño de la metodología Honeypot 148](#_Toc242091264)
+[2.8 Síntesis del diseño de la metodología Honeypot 148](#_Toc244000531)
 
-[4.3 Implementación de la metodología de honeypot para la gestión de incidentes 149](#_Toc242091265)
+[4.3 Implementación de la metodología de honeypot para la gestión de incidentes 149](#_Toc244000532)
 
-[4.3.1 Propósito, alcance y línea base 150](#_Toc242091266)
+[4.3.1 Propósito, alcance y línea base 150](#_Toc244000533)
 
-[4.3.2 Entorno controlado de implementación 151](#_Toc242091267)
+[4.3.2 Entorno controlado de implementación 151](#_Toc244000534)
 
-[4.3.3 Plataforma tecnológica del prototipo 154](#_Toc242091268)
+[4.3.3 Plataforma tecnológica del prototipo 154](#_Toc244000535)
 
-[4.3.4 Matriz de trabajo y criterios de verificación 159](#_Toc242091269)
+[4.3.4 Matriz de trabajo y criterios de verificación 159](#_Toc244000536)
 
-[4.3.5. Fase 1. Diseño del señuelo 162](#_Toc242091270)
+[4.3.5 Prototipo I. Implementación sobre una entidad homologada 162](#_Toc244000537)
 
-[4.3.6. Fase 2. Despliegue aislado 170](#_Toc242091271)
+[4.3.5.1 Fase 1. Diseño del señuelo 162](#_Toc244000538)
 
-[4.3.7. Fase 3. Captura, enriquecimiento y custodia 181](#_Toc242091272)
+[4.3.5.2 Fase 2. Despliegue aislado 170](#_Toc244000539)
 
-[4.3.8. Fase 4. Correlación con gestión de incidentes 196](#_Toc242091273)
+[4.3.5.3 Fase 3. Captura, enriquecimiento y custodia 181](#_Toc244000540)
 
-[4.3.9. Fase 5. Medición y lecciones aprendidas 201](#_Toc242091274)
+[4.3.5.4 Fase 4. Correlación con gestión de incidentes 196](#_Toc244000541)
 
-[Capítulo V: Conclusiones y Recomendaciones de la Investigación 213](#_Toc242091275)
+[4.3.5.5 Fase 5. Medición y lecciones aprendidas 201](#_Toc244000542)
 
-[5.1 Conclusiones 213](#_Toc242091276)
+[4.3.6 Segundo prototipo: adaptación al contexto del SIN e iteraciones de mejora 212](#_Toc244000543)
 
-[5.2 Recomendaciones 213](#_Toc242091277)
+[4.3.6.1 Adaptación del señuelo y equivalencia entre prototipos 213](#_Toc244000544)
 
-[Anexos 215](#_Toc242091278)
+[4.3.6.2 Fase 1. Diseño del señuelo SIN 215](#_Toc244000545)
 
-[Anexo A: [Nombre del Primer Anexo] 215](#_Toc242091279)
+[4.3.6.3 Fase 2. Despliegue aislado 220](#_Toc244000546)
 
-[Anexo B: [Nombre del Segundo Anexo] 215](#_Toc242091280)
+[4.3.6.4 Fase 3. Captura, enriquecimiento y custodia 223](#_Toc244000547)
 
-[Glosario 216](#_Toc242091281)
+[4.3.6.5 Fase 4. Correlación con gestión de incidentes 227](#_Toc244000548)
 
-[Apéndice 217](#_Toc242091282)
+[4.3.6.6 Fase 5. Medición con iteraciones de mejora 228](#_Toc244000549)
 
-[Apéndice A: Instrumento de Recolección de Datos 217](#_Toc242091283)
+[4.3.7 Síntesis comparativa de los dos prototipos 243](#_Toc244000550)
 
-[Apéndice B: Consentimiento Informado 217](#_Toc242091284)
+[4.4 Evaluación de la metodología y validación de resultados 245](#_Toc244000551)
 
-[Bibliografía 218](#_Toc242091285)
+[4.4.1 245](#_Toc244000552)
+
+[Capítulo V: Conclusiones y Recomendaciones de la Investigación 245](#_Toc244000553)
+
+[5.1 Conclusiones 245](#_Toc244000554)
+
+[5.2 Recomendaciones 246](#_Toc244000555)
+
+[Anexos 247](#_Toc244000556)
+
+[Anexo A: [Nombre del Primer Anexo] 247](#_Toc244000557)
+
+[Anexo B: [Nombre del Segundo Anexo] 247](#_Toc244000558)
+
+[Glosario 248](#_Toc244000559)
+
+[Apéndice 249](#_Toc244000560)
+
+[Apéndice A: Instrumento de Recolección de Datos 249](#_Toc244000561)
+
+[Apéndice B: Consentimiento Informado 249](#_Toc244000562)
+
+[Bibliografía 250](#_Toc244000563)
 
 # Índice de Tablas, Cuadros y Gráficos
 
@@ -487,7 +509,9 @@ El índice de madurez en ciberseguridad fiscal es el constructo que articula los
 
 La construcción de un índice de madurez requiere tres elementos: una estructura de dimensiones e indicadores anclada a marcos reconocidos, una escala de niveles con criterios verificables y un procedimiento de cálculo que agregue las observaciones individuales en un valor compuesto (Liyanage et al., 2024). El instrumento diagnóstico desarrollado en esta tesis adopta esa lógica y produce dos índices complementarios: el Índice Institucional de Alineación Metodológica (IIAM), centrado en la conformidad con los marcos internacionales de referencia, y el Índice de Madurez en Gestión de Incidentes (IMGI), centrado en el desempeño operativo medido a través de MTTD, MTTR y completitud de evidencia.
 
-La pertinencia del concepto para la investigación es directa. Los cuatro objetivos específicos del estudio se operacionalizan a través de mediciones del IIAM y del IMGI. El primer objetivo establece la línea base mediante el cálculo inicial de ambos índices; el segundo y tercer objetivos diseñan e implementan una intervención metodológica orientada a elevar sus valores; y el cuarto objetivo valida la eficacia de la intervención mediante la comparación de los índices antes y después de la implementación. El índice de madurez en ciberseguridad fiscal es, en consecuencia, el constructo articulador entre la teoría sustantiva, los objetivos específicos y el instrumento operativo de la investigación.
+La pertinencia del concepto para la investigación es directa. Los cuatro objetivos específicos del estudio se operacionalizan a través de mediciones del IIAM y del IMGI. El primer objetivo establece la línea base mediante el cálculo inicial de ambos índices; el segundo y tercer objetivos diseñan e implementan una intervención metodológica orientada a elevar sus valores; y el cuarto objetivo valida la eficacia de la intervención mediante la comparación de los índices antes y después de la implementación. El índice de madurez en
+
+fiscal es, en consecuencia, el constructo articulador entre la teoría sustantiva, los objetivos específicos y el instrumento operativo de la investigación.
 
 ### 2.1.3 Conceptos operativos de detección
 
@@ -1173,7 +1197,7 @@ El cálculo del porcentaje de cumplimiento se ejecuta instrumento por instrument
 | G4 | 13 | Capacitación y cobertura | 3 | 47,78 | Básico |
 | G4 | 14 | Métricas y mejora continua | 3 | 53,89 | Gestionado |
 
-*Nota.* Cálculo del porcentaje sobre el promedio de los puntajes individuales de los 30 respondentes para cada instrumento. Niveles de madurez según los cortes definidos en la ficha técnica del instrumento: Inicial de 0 % a menos de 26 %, Básico de 26 % a menos de 51 %, Gestionado de 51 % a menos de 76 % y Optimizado de 76 % a 100 %. Elaboración propia, 2026.
+*Nota.* Cálculo del porcentaje sobre el promedio de los puntajes individuales de los 30 respondentes para cada instrumento. Niveles de madurez según los cortes definidos en la ficha técnica del instrumento: Inicial 0–25 %, Básico 26–50 %, Gestionado 51–75 %, Optimizado 76–100 %. Elaboración propia, 2026.
 
 La lectura de la tabla revela una distribución concentrada en una franja estrecha. Ningún instrumento alcanza el nivel Optimizado y ninguno descende al nivel Inicial. Los catorce valores oscilan entre 47,78 % y 58,33 %, lo cual sitúa al proceso completo dentro del corredor que separa el final del nivel Básico del comienzo del nivel Gestionado. Esa estrechez del rango es, por sí misma, una característica del diagnóstico. Las instituciones no presentan dominios donde la madurez se haya consolidado claramente ni dominios donde la operación esté ausente, sino un patrón sostenido de cumplimiento parcial.
 
@@ -1329,6 +1353,128 @@ La matriz documenta el cumplimiento del primer objetivo específico de la invest
 
 El estado de cumplimiento del Objetivo Específico 1 queda, en consecuencia, establecido. La situación actual de la gestión de incidentes en la institución bajo estudio se diagnostica con el instrumento confiable (α = 0,869), aplicación válida sobre el personal del área (n = 30, 14 roles funcionales) y resultado expresado como nivel global de madurez (52,70 %, Gestionado al borde inferior). Las seis debilidades concretas listadas en la Tabla 4 configuran el conjunto de insumos diagnósticos sobre los cuales se construye, en el apartado siguiente, el diseño de la metodología propuesta.
 
+### 4.1.4 Diagnóstico inicial de los casos de estudio
+
+El diagnóstico inicial comprende dos casos de estudio, la empresa homologada Libélula SRL y el Servicio de Impuestos Nacionales (SIN), con el propósito de conocer las condiciones en las que se desarrolla la gestión de incidentes de seguridad de la información antes de aplicar la metodología Honeypot. El análisis permite describir las prácticas existentes e identificar los aspectos que requieren fortalecimiento en cada organización.
+
+Para realizar esta evaluación se consideran catorce dimensiones relacionadas con la detección y el registro de eventos, la clasificación de incidentes, los tiempos de respuesta, la conservación de evidencias digitales, los respaldos, el control de accesos y la gestión de vulnerabilidades. También se examinan la seguridad durante el desarrollo de sistemas, la gestión de riesgos, la capacitación del personal y las actividades de mejora continua, con el fin de obtener una visión general de las condiciones evaluadas.
+
+Los resultados de los instrumentos permiten establecer una puntuación para cada dimensión y calcular su porcentaje de cumplimiento respecto del máximo correspondiente. En el análisis acumulado, el Servicio de Impuestos Nacionales obtiene 64 puntos de un máximo de 168, equivalentes al 38,10 %, mientras que Libélula SRL alcanza 58 puntos, que representan el 34,52 %. Estos resultados resumen el desempeño inicial de ambas organizaciones en las dimensiones consideradas.
+
+La interpretación de los resultados permite examinar las diferencias entre los dos casos e identificar las áreas con menor cumplimiento, esta información sirve como referencia para orientar la aplicación de la metodología Honeypot, de acuerdo con las características de cada entorno, y para valorar posteriormente los cambios observados en la gestión de incidentes de seguridad de la información.
+
+A continuación, se presenta el diagnóstico individual de Libélula SRL y del Servicio de Impuestos Nacionales. En cada caso se describen los resultados de las catorce dimensiones evaluadas, con el propósito de caracterizar su situación inicial y establecer una base para el análisis de los resultados obtenidos tras la aplicación de la metodología propuesta.
+
+#### 4.1.4.1 Diagnóstico inicial de la empresa homologada Libélula SRL
+
+El diagnóstico inicial de la empresa homologada Libélula SRL permite caracterizar las condiciones de partida relacionadas con la gestión de incidentes de seguridad de la información, considerando los aspectos evaluados mediante los 14 instrumentos de análisis. Esta caracterización se vincula con la revisión normativa y la aplicación de los instrumentos desarrolladas en los apartados anteriores, puesto que proporciona una referencia descriptiva para identificar las áreas que requieren atención dentro del contexto de la metodología Honeypot.
+
+Para organizar los resultados, se toman como base los puntajes atribuidos a Libélula SRL en el documento 2025-10-23\_Analisis\_Comparativo\_Unificado\_v02.docx. Cada porcentaje corresponde a la relación entre el puntaje registrado y el valor máximo establecido para el instrumento respectivo, mientras que el resultado acumulado se calcula mediante la suma de los puntajes obtenidos dividida entre la suma de los máximos de los 14 instrumentos. La Tabla 1 presenta la distribución de estos valores como referencia para interpretar la situación inicial de la empresa.
+
+***Tabla 1***
+
+*Puntajes del diagnóstico inicial de Libélula SRL por instrumento*
+
+|  |  |  |  |
+| --- | --- | --- | --- |
+| **`** | **Instrumento evaluado** | **Puntaje** | **Porcentaje** |
+| 1 | Detección y registro (Honeypot) | 5/16 | 31,25 % |
+| 2 | Clasificación y evidencia de incidentes | 4/12 | 33,33 % |
+| 3 | Respuesta y tiempos de atención | 5/12 | 41,67 % |
+| 4 | Lecciones aprendidas y mejora | 3/12 | 25,00 % |
+| 5 | Integridad y custodia de evidencias | 1/12 | 8,33 % |
+| 6 | Respaldos y restauración | 3/12 | 25,00 % |
+| 7 | Retención y acceso a evidencias | 4/8 | 50,00 % |
+| 8 | Control de accesos y privilegios | 4/12 | 33,33 % |
+| 9 | Desarrollo seguro | 5/12 | 41,67 % |
+| 10 | Gestión de vulnerabilidades | 3/12 | 25,00 % |
+| 11 | Integridad y trazabilidad de registros | 6/12 | 50,00 % |
+| 12 | Gestión de riesgos | 6/12 | 50,00 % |
+| 13 | Capacitación y concienciación | 3/12 | 25,00 % |
+| 14 | Métricas y mejora continua | 6/12 | 50,00 % |
+| **Total** | **Resultado acumulado descriptivo** | **58/168** | **34,52 %** |
+
+*Nota.* Los porcentajes se calculan dividiendo el puntaje obtenido entre el máximo correspondiente a cada instrumento, el resultado acumulado representa la relación entre la suma de los puntajes obtenidos y la suma de los máximos declarados. Los valores proceden del documento 2025-10-23\_Analisis\_Comparativo\_Unificado\_v02.docx y requieren contraste con los instrumentos detallados antes de su consolidación definitiva.
+
+La distribución de los puntajes permite reconocer diferencias entre las dimensiones examinadas, ya que los resultados más altos corresponden a retención y acceso a evidencias, integridad y trazabilidad de registros, gestión de riesgos y métricas y mejora continua, cada una con un 50,00 %. Estos valores describen los resultados consignados en la fuente comparativa, aunque por sí solos no demuestran que los procesos asociados se encuentren plenamente formalizados ni que respondan de manera integral a los requisitos normativos aplicables.
+
+En contraste, integridad y custodia de evidencias presenta el menor resultado, con 1 punto de un máximo de 12, equivalente al 8,33 %. Esta diferencia sitúa la preservación de las evidencias entre los aspectos que requieren mayor revisión, debido a que la gestión de incidentes necesita mecanismos que permitan mantener la integridad de los registros, documentar su tratamiento y respaldar su utilización durante el análisis técnico. La interpretación concreta de esta brecha debe mantenerse vinculada a los hallazgos consignados en la fuente, sin atribuir a la empresa deficiencias específicas que no cuenten con respaldo documental verificable.
+
+También se observan resultados del 25,00 % en lecciones aprendidas y mejora, respaldos y restauración, gestión de vulnerabilidades y capacitación y concienciación. En conjunto, estos valores muestran áreas de evaluación que merecen atención dentro del diagnóstico, puesto que se relacionan con la revisión posterior de los incidentes, la disponibilidad de información recuperable, la identificación de debilidades técnicas y el fortalecimiento de las capacidades del personal.
+
+Para facilitar la lectura de las diferencias entre las dimensiones evaluadas, la Figura 1 presenta el perfil inicial mediante un gráfico de radar, esta representación permite observar de forma conjunta la distribución porcentual de los 14 instrumentos e identificar visualmente las dimensiones con valores relativamente mayores o menores. Su utilidad es descriptiva, puesto que complementa la tabla y permite reconocer patrones generales sin sustituir la revisión de los puntajes individuales ni la interpretación documental de cada resultado.
+
+**Figura 1**
+
+*Perfil porcentual del diagnóstico inicial de Libélula SRL*
+
+![](data:image/png;base64...)
+
+*Nota.* El gráfico representa los porcentajes calculados a partir de los puntajes consignados en el documento de análisis comparativo unificado.
+
+En términos generales, el resultado acumulado de 58 puntos sobre un máximo de 168, equivalente al 34,52 %, representa el nivel de cumplimiento alcanzado por Libélula SRL en la evaluación de sus condiciones iniciales. Este resultado permite establecer una referencia cuantitativa del estado de las dimensiones analizadas, considerando los puntajes obtenidos en cada uno de los instrumentos aplicados.
+
+Los resultados muestran diferencias entre las dimensiones evaluadas, lo que permite identificar áreas con distintos niveles de desarrollo en la gestión de incidentes de seguridad de la información. La integridad y custodia de evidencias presenta el menor porcentaje de cumplimiento, con un 8,33 %, mientras que la retención y acceso a evidencias, la integridad y trazabilidad de registros, la gestión de riesgos, así como las métricas y la mejora continua alcanzan un 50 %. Estas variaciones reflejan las características de la situación inicial de la empresa y permiten reconocer los aspectos que requieren mayor atención dentro de la metodología propuesta.
+
+Este diagnóstico constituye la línea base de Libélula SRL para el desarrollo de la metodología Honeypot y permite orientar las etapas posteriores de diseño, implementación y evaluación.
+
+#### 4.1.4.2. Diagnóstico inicial del Servicio de Impuestos Nacionales (SIN)
+
+La evaluación inicial del Servicio de Impuestos Nacionales (SIN) examina las condiciones institucionales vinculadas con la detección, el registro y la atención de incidentes de seguridad de la información. El análisis abarca catorce dimensiones que permiten estudiar las prácticas relacionadas con el tratamiento de eventos, la preservación de evidencias digitales y la aplicación de controles de seguridad. Esta evaluación constituye el punto de referencia para analizar la incorporación de la metodología Honeypot en el contexto institucional.
+
+Los datos utilizados proceden del documento 2025-10-23\_Analisis\_Comparativo\_Unificado\_v02.docx, que reúne los resultados de los instrumentos aplicados al SIN y a Libélula SRL. Para cada dimensión se considera la puntuación obtenida respecto del máximo establecido, expresada posteriormente en términos porcentuales. La suma de los puntajes individuales permite calcular el resultado global de la evaluación, cuyos valores se presentan en la Tabla X.
+
+**Tabla X**
+
+*Resultados de los instrumentos de diagnóstico inicial del SIN*
+
+|  |  |  |
+| --- | --- | --- |
+| **Instrumento evaluado** | **Puntaje** | **Porcentaje** |
+| Detección y registro (Honeypot) | 6/16 | 37,50 % |
+| Clasificación y evidencia de incidentes | 5/12 | 41,67 % |
+| Respuesta y tiempos de atención | 5/12 | 41,67 % |
+| Lecciones aprendidas y mejora | 3/12 | 25,00 % |
+| Integridad y custodia de evidencias | 5/12 | 41,67 % |
+| Respaldos y restauración | 3/12 | 25,00 % |
+| Retención y acceso a evidencias | 5/8 | 62,50 % |
+| Control de accesos y privilegios | 3/12 | 25,00 % |
+| Desarrollo seguro | 5/12 | 41,67 % |
+| Gestión de vulnerabilidades | 3/12 | 25,00 % |
+| Integridad y trazabilidad de registros | 6/12 | 50,00 % |
+| Gestión de riesgos | 6/12 | 50,00 % |
+| Capacitación y concienciación | 3/12 | 25,00 % |
+| Métricas y mejora continua | 6/12 | 50,00 % |
+| **Total** | **64/168** | **38,10 %** |
+
+*Nota.* Los porcentajes individuales resultan de dividir cada puntaje entre el máximo correspondiente y multiplicar el valor por cien. El resultado global se obtiene mediante la relación entre la suma de los puntajes alcanzados y la suma de los máximos de los catorce instrumentos.
+
+Fuente. Elaboración propia con base en los resultados del análisis comparativo del SIN y Libélula SRL.
+
+La distribución porcentual muestra que la retención y el acceso a evidencias alcanzan el valor más elevado, con un 62,50 %. A continuación, la integridad y trazabilidad de registros, la gestión de riesgos, así como las métricas y la mejora continua presentan un 50,00 % cada una. Estas puntuaciones permiten reconocer los ámbitos que tienen mayor representación relativa en la evaluación y examinar las prácticas asociadas con cada uno.
+
+En materia de retención y acceso a evidencias, los resultados describen periodos de conservación de doce a dieciocho meses y la atención de solicitudes de acceso a la información. En cuanto a los registros, los sistemas utilizan servidores internos para sincronizar sus relojes, lo que proporciona referencias temporales para el análisis de eventos. La gestión de riesgos comprende actividades de identificación y reevaluación anual, mientras que el seguimiento de indicadores permite presentar información operativa en los comités institucionales.
+
+Las dimensiones de clasificación y evidencia de incidentes, respuesta y tiempos de atención, integridad y custodia de evidencias, así como desarrollo seguro, obtienen un 41,67 % cada una. En estos ámbitos, la evaluación identifica la participación de los analistas en la clasificación de alertas, la coordinación interna para atender incidentes, la conservación de información y las revisiones manuales del código. Estas actividades forman parte de los procesos que intervienen en el tratamiento de eventos de seguridad y permiten contextualizar la manera en que se desarrollan las tareas operativas.
+
+La detección y el registro mediante Honeypot alcanzan un 37,50 %. El instrumento registra un tiempo promedio de cuatro a cinco minutos, mientras que el percentil 95 se sitúa entre once y veinte minutos. Estos valores describen el comportamiento inicial del registro de eventos y proporcionan parámetros para examinar el desempeño de la captura de información durante la aplicación de la metodología. Su comparación posterior permite valorar los cambios registrados en esta dimensión.
+
+Por otra parte, lecciones aprendidas y mejora, respaldos y restauración, control de accesos y privilegios, gestión de vulnerabilidades, así como capacitación y concienciación, presentan un 25,00 % cada una. Los resultados de estos instrumentos se relacionan con la revisión de incidentes, la realización de copias de seguridad, la administración de permisos, el análisis de vulnerabilidades y las actividades formativas. Su consideración permite delimitar los aspectos que conviene atender durante la implementación, de acuerdo con los procedimientos y objetivos de la metodología propuesta.
+
+La Figura X complementa los resultados de la tabla mediante un gráfico de radar que reúne los porcentajes de las catorce dimensiones. La representación permite apreciar las diferencias entre las puntuaciones y observar la distribución de los resultados en conjunto, facilitando la lectura de los datos obtenidos durante la evaluación inicial.
+
+**Figura X**
+
+*Distribución porcentual de las dimensiones evaluadas en el SIN*
+
+![](data:image/png;base64...)
+
+*Nota*. Elaboración propia a partir de los resultados de los catorce instrumentos de diagnóstico inicial.
+
+En términos globales, el SIN obtiene 64 puntos de un máximo de 168, equivalentes al 38,10 %. este resultado sintetiza las puntuaciones de las dimensiones examinadas y establece una referencia cuantitativa para el análisis de la gestión de incidentes de seguridad de la información. La distribución de los valores también permite distinguir los ámbitos con resultados diferentes y relacionarlos con las actividades descritas en los instrumentos.
+
+La información obtenida orienta la aplicación de la metodología Honeypot hacia el estudio de la detección de eventos, su registro, la clasificación de incidentes y el tratamiento de las evidencias digitales, considerando su relación con los demás procesos de seguridad. De esta manera, la evaluación inicial proporciona los valores necesarios para contrastar los resultados posteriores y examinar los cambios observados en las dimensiones analizadas.
+
 ## 4.2 Diseño de la metodología de honeypot para la gestión de incidentes en los servicios fiscales
 
 La metodología de honeypot que se diseña para atender las carencias detectadas en el diagnóstico previo tiene alcance específico en la gestión de incidentes en servicios fiscales y se articula sobre el marco de referencia que integran las normas internacionales reconocidas.
@@ -1376,7 +1522,7 @@ En la Tabla 1 ordenamos la trazabilidad normativa de las seis brechas del primer
 | **#** | **Brecha diagnosticada** | **Norma internacional** | **Índice medible** |
 | 1 | G1 Inst. 1 — Detección de incidentes | ISO/IEC 27035-1:2023 (detección) | MTTD |
 | 2 | G1 Inst. 4 — Lecciones aprendidas | ISO/IEC 27035-1:2023 (lecciones) | IIAM |
-| 3 | G2 Inst. 7 — Preservación de evidencia | ISO/IEC 27037:2012 | Calidad de la evidencia verificada |
+| 3 | G2 Inst. 7 — Preservación de evidencia | ISO/IEC 27037:2012 | Wilcoxon pareada |
 | 4 | G3 Inst. 8 — Controles de acceso | ISO/IEC 27001:2022 (A.5.17 + A.8.16) | Derivada al plan |
 | 5 | G3 Inst. 10 — Gestión de vulnerabilidades | ISO/IEC 27001:2022 (A.8.23) | Derivada al plan |
 | 6 | G4 Inst. 13 — Concienciación y capacitación | ISO/IEC 27001:2022 (A.6.3) | Derivada al plan |
@@ -1385,7 +1531,7 @@ En la Tabla 1 ordenamos la trazabilidad normativa de las seis brechas del primer
 
 Asignamos las seis carencias del primer objetivo específico a dos vías de atención, y la cifra de dos vías dimana de que la metodología y el plan institucional son los dos únicos mecanismos disponibles para atender las brechas, dado que la metodología aporta datos verificables sobre tres de las seis y el plan institucional aporta los controles de gestión sobre las otras tres. Atendemos tres brechas con la metodología Honeypot, y derivamos las otras tres al plan institucional paralelo, de modo que la metodología se concentra en las carencias que puede reducir con resultados verificables mientras que el plan institucional absorbe las carencias que requieren intervenciones organizacionales. La cifra de tres brechas atendidas por la metodología dimana de que solo tres de las seis brechas Básico admiten una reducción verificable mediante un honeypot con un indicador cuantificable, mientras que las otras tres requieren intervenciones organizacionales que escapan al alcance del honeypot.
 
-Las tres brechas atendidas por la metodología son la detección de incidentes, las lecciones aprendidas y la preservación de evidencia, y las asignamos respectivamente a la fase tres de captura, la fase cinco de medición y la fase tres de custodia. Las tres fases mencionadas forman parte de las cinco fases secuenciales expuestas en §4.2.1.1, y la asignación de cada brecha a su fase dimana de que cada fase produce los datos verificables que alimentan el índice correspondiente. La captura de eventos genera el tiempo medio de detección, la medición del impacto genera el índice de impacto del aprendizaje y la mejora; la custodia de evidencia genera el dato de calidad de la evidencia verificada. Los tres índices cubren una dimensión distinta del impacto, porque el MTTD mide la velocidad de identificación de eventos, el IIAM mide el aprendizaje organizacional mediante la comparación de indicadores antes y después de la implementación, mientras que la calidad de la evidencia verificada confirma la integridad de la custodia en los tres momentos medidos. La custodia de la evidencia se observa en 100 de 100 archivos en los tres momentos medidos, de manera que su constante no admita un contraste pareado, mientras que el único conjunto de pares reales del estudio se reduce a los cuatro escenarios que conservan medición en las dos vueltas. La prueba pareada admite ejecución sobre esos cuatro pares, de manera que el estadístico W+ de cero y el estadístico W− de diez, con un valor p exacto bilateral de 0,1250, describan la dirección del cambio sin que ese resultado admita una lectura de significación. El mínimo alcanzable en dos colas con cuatro pares es 0,125, de manera que el estudio requiere seis pares reales para acercarse al umbral de 0,05; esa limitación del diseño convierte el resultado en un contraste descriptivo. La asignación de cada brecha a la metodología dimana de que el honeypot genera datos verificables para cada una de las tres, de modo que la metodología demuestra con datos cuantitativos la reducción correspondiente.
+Las tres brechas atendidas por la metodología son la detección de incidentes, las lecciones aprendidas y la preservación de evidencia, y las asignamos respectivamente a la fase tres de captura, la fase cinco de medición y la fase tres de custodia. Las tres fases mencionadas forman parte de las cinco fases secuenciales expuestas en §4.2.1.1, y la asignación de cada brecha a su fase dimana de que cada fase produce los datos verificables que alimentan el índice correspondiente. La captura de eventos genera el tiempo medio de detección, la medición del impacto genera el índice de impacto del aprendizaje y la mejora, y la custodia de evidencia genera los datos para la prueba de Wilcoxon pareada. Los tres índices cubren una dimensión distinta del impacto, a saber, el MTTD mide la velocidad de identificación de eventos, el IIAM evalúa el aprendizaje organizacional mediante la comparación de indicadores antes y después de la implementación, y la prueba de Wilcoxon pareada valida estadísticamente la hipótesis nula de igualdad entre el estado inicial y el estado posterior. La asignación de cada brecha a la metodología dimana de que el honeypot genera datos verificables para cada una de las tres, de modo que la metodología demuestra con datos cuantitativos la reducción correspondiente.
 
 Asignamos las tres carencias restantes del primer objetivo específico a un plan institucional paralelo, y la derivación al plan dimana de que estas tres brechas requieren intervenciones organizacionales que el honeypot no puede realizar, de modo que la metodología las declara fuera de su alcance y las asigna a un plan complementario. Asignamos la brecha de controles de acceso a los controles A.5.17 y A.8.16 de ISO/IEC 27001:2022, la brecha de gestión de vulnerabilidades al control A.8.23 de ISO/IEC 27001:2022, y la brecha de capacitación al control A.6.3 de ISO/IEC 27001:2022. La asignación de cada control dimana de que los controles A.5.17 y A.8.16 cubren el ciclo de gestión de identidades y accesos (autenticación, autorización, monitoreo), el control A.8.23 define el ciclo de gestión de vulnerabilidades técnicas (identificación, evaluación, remediación), y el control A.6.3 regula los programas formativos de concienciación y capacitación. Definimos los tres índices de medición respectivos como la auditoría de gestión de identidades, el ciclo de gestión de parches, y la tasa de aprobación de los programas formativos, y cada índice mide el aspecto específico de la brecha correspondiente. La auditoría mide la eficacia de los controles de acceso, el ciclo de parches mide la velocidad de remediación de vulnerabilidades, y la tasa de aprobación mide la eficacia de la capacitación. Justificamos la distinción entre procesos organizacionales e infraestructura técnica en que los primeros requieren intervención humana y gestión administrativa, mientras que los segundos son sistemas automatizados que el honeypot puede monitorear y verificar directamente. La cifra de tres brechas derivadas dimana de que las tres brechas restantes del diagnóstico Básico corresponden a controles de la norma ISO/IEC 27001:2022 que requieren gestión institucional, y a las que el honeypot no puede aportar datos verificables porque su implementación depende de procesos organizacionales y no de infraestructura técnica.
 
@@ -1393,7 +1539,7 @@ En la Figura 1 mostramos la separación entre las dos vías de atención, con la
 
 Asignamos las seis carencias del primer objetivo específico a dos vías de atención, y la cifra de dos vías dimana de que la metodología y el plan institucional son los dos únicos mecanismos disponibles para atender las brechas, dado que la metodología aporta datos verificables sobre tres de las seis y el plan institucional aporta los controles de gestión sobre las otras tres. Atendemos tres brechas con la metodología Honeypot y derivamos las otras tres al plan institucional paralelo, de modo que la metodología se concentra en las carencias que puede reducir con resultados verificables mientras que el plan institucional absorbe las carencias que requieren intervenciones organizacionales. La cifra de tres brechas atendidas por la metodología dimana de que solo tres de las seis brechas Básico admiten una reducción verificable mediante un honeypot con un indicador cuantificable, mientras que las otras tres requieren intervenciones organizacionales.
 
-Las tres brechas atendidas por la metodología son la detección de incidentes, las lecciones aprendidas y la preservación de evidencia, y las asignamos respectivamente a la fase tres de captura, la fase cinco de medición y la fase tres de custodia. Las tres fases mencionadas forman parte de las cinco fases secuenciales expuestas en 4.2.1.1, y la asignación de cada brecha a su fase dimana de que cada fase produce los datos verificables que alimentan el índice correspondiente. La captura de eventos genera el tiempo medio de detección, la medición del impacto genera el índice de impacto del aprendizaje y la mejora; la custodia de evidencia genera el dato de calidad de la evidencia verificada. Los tres índices cubren una dimensión distinta del impacto, porque el MTTD mide la velocidad de identificación de eventos, el IIAM mide el aprendizaje organizacional mediante la comparación de indicadores antes y después de la implementación, mientras que la calidad de la evidencia verificada confirma la integridad de la custodia en los tres momentos medidos. La custodia de la evidencia se observa en 100 de 100 archivos en los tres momentos medidos, de manera que su constante no admita un contraste pareado, mientras que el único conjunto de pares reales del estudio se reduce a los cuatro escenarios que conservan medición en las dos vueltas. La prueba pareada admite ejecución sobre esos cuatro pares, de manera que el estadístico W+ de cero y el estadístico W− de diez, con un valor p exacto bilateral de 0,1250, describan la dirección del cambio sin que ese resultado admita una lectura de significación. El mínimo alcanzable en dos colas con cuatro pares es 0,125, de manera que el estudio requiere seis pares reales para acercarse al umbral de 0,05; esa limitación del diseño convierte el resultado en un contraste descriptivo. La asignación de cada brecha a la metodología dimana de que el honeypot genera datos verificables para cada una de las tres, de modo que la metodología demuestra con datos cuantitativos la reducción correspondiente.
+Las tres brechas atendidas por la metodología son la detección de incidentes, las lecciones aprendidas y la preservación de evidencia, y las asignamos respectivamente a la fase tres de captura, la fase cinco de medición y la fase tres de custodia. Las tres fases mencionadas forman parte de las cinco fases secuenciales expuestas en 4.2.1.1, y la asignación de cada brecha a su fase dimana de que cada fase produce los datos verificables que alimentan el índice correspondiente. La captura de eventos genera el tiempo medio de detección, la medición del impacto genera el índice de impacto del aprendizaje y la mejora y la custodia de evidencia genera los datos para la prueba de Wilcoxon pareada. Los tres índices cubren una dimensión distinta del impacto, a saber, el MTTD mide la velocidad de identificación de eventos, el IIAM evalúa el aprendizaje organizacional mediante la comparación de indicadores antes y después de la implementación y la prueba de Wilcoxon pareada valida estadísticamente la hipótesis nula de igualdad entre el estado inicial y el estado posterior. La asignación de cada brecha a la metodología dimana de que el honeypot genera datos verificables para cada una de las tres, de modo que la metodología demuestra con datos cuantitativos la reducción correspondiente.
 
 Asignamos las tres carencias restantes del primer objetivo específico a un plan institucional paralelo, y la derivación al plan dimana de que estas tres brechas requieren intervenciones organizacionales que el honeypot no puede realizar, de modo que la metodología las declara fuera de su alcance y las asigna a un plan complementario. Asignamos la brecha de controles de acceso a los controles A.5.17 y A.8.16 de ISO/IEC 27001:2022, la brecha de gestión de vulnerabilidades al control A.8.23 de ISO/IEC 27001:2022, y la brecha de capacitación al control A.6.3 de ISO/IEC 27001:2022. La asignación de cada control dimana de que los controles A.5.17 y A.8.16 cubren el ciclo de gestión de identidades y accesos (autenticación, autorización, monitoreo), el control A.8.23 define el ciclo de gestión de vulnerabilidades técnicas (identificación, evaluación, remediación), y el control A.6.3 regula los programas formativos de concienciación y capacitación. Definimos los tres índices de medición respectivos como la auditoría de gestión de identidades, el ciclo de gestión de parches, la tasa de aprobación de los programas formativos y cada índice mide el aspecto específico de la brecha correspondiente. La auditoría mide la eficacia de los controles de acceso, el ciclo de parches mide la velocidad de remediación de vulnerabilidades y la tasa de aprobación mide la eficacia de la capacitación. Justificamos la distinción entre procesos organizacionales e infraestructura técnica en que los primeros requieren intervención humana y gestión administrativa, mientras que los segundos son sistemas automatizados que el honeypot puede monitorear y verificar directamente. La cifra de tres brechas derivadas dimana de que las tres brechas restantes del diagnóstico Básico corresponden a controles de la norma ISO/IEC 27001:2022 que requieren gestión institucional y a las que el honeypot no puede aportar datos verificables porque su implementación depende de procesos organizacionales y no de infraestructura técnica.
 
@@ -1403,7 +1549,7 @@ En la Figura 1 mostramos la separación entre las dos vías de atención, con la
 
 *![](data:image/jpeg;base64...)*
 
-*Nota.* La Figura 1 muestra cómo las seis brechas del diagnóstico se enrutan a dos vías de atención. Las tres brechas superiores (G1 Inst. 1 detección, G1 Inst. 4 lecciones, G2 Inst. 7 evidencia) se atienden con la metodología Honeypot y se miden con el tiempo medio de detección, el índice de impacto del aprendizaje y la mejora, mientras que la calidad de la evidencia verificada confirma la custodia de los archivos. Las tres brechas inferiores (G3 Inst. 8 accesos, G3 Inst. 10 vulnerabilidades, G4 Inst. 13 capacitación) se derivan al plan institucional paralelo y se atienden con los controles A.5.17, A.8.23 y A.6.3 de ISO/IEC 27001:2022. MTTD = tiempo medio de detección. IIAM = índice de impacto del aprendizaje y la mejora. ISO/IEC = Organización Internacional de Normalización y Comisión Electrotécnica Internacional. Fuente: elaboración propia con base en los resultados del primer objetivo específico.
+*Nota.* La Figura 1 muestra cómo las seis brechas del diagnóstico se enrutan a dos vías de atención. Las tres brechas superiores (G1 Inst. 1 detección, G1 Inst. 4 lecciones, G2 Inst. 7 evidencia) se atienden con la metodología Honeypot y se miden con el tiempo medio de detección, el índice de impacto del aprendizaje y la mejora, y la prueba no paramétrica de Wilcoxon pareada. Las tres brechas inferiores (G3 Inst. 8 accesos, G3 Inst. 10 vulnerabilidades, G4 Inst. 13 capacitación) se derivan al plan institucional paralelo y se atienden con los controles A.5.17, A.8.23 y A.6.3 de ISO/IEC 27001:2022. MTTD = tiempo medio de detección. IIAM = índice de impacto del aprendizaje y la mejora. ISO/IEC = Organización Internacional de Normalización y Comisión Electrotécnica Internacional. Fuente: elaboración propia con base en los resultados del primer objetivo específico.
 
 Cerramos la atención integral con la separación entre lo que la metodología atiende y lo que se deriva al plan institucional, de modo que el diseño queda conectado con el primer objetivo específico mediante la Tabla 1 y la Figura 1, y las decisiones de diseño que adopta el método se formalizan en §4.2.1.3.
 
@@ -1439,23 +1585,23 @@ Los cuatro ejes se desarrollan en orden, de modo que el primer eje de 4.2.2.1 fi
 
 ![](data:image/jpeg;base64...)
 
-*Nota.* La Figura 1 muestra la composición general de la metodología con la integración de las cinco fases secuenciales (diseño del señuelo, despliegue aislado, captura y custodia, correlación con gestión institucional, medición y lecciones), los tres planos transversales (normativo con ISO/IEC 27035-1:2023, NIST SP 800-61 Rev. 3, MITRE ATT&CK, e ISO/IEC 27037:2012; operativo con hash, sellado temporal, inmutabilidad, roles, y geolocalización; institucional con plan de respuesta a incidentes, reglas del sistema de gestión de información y eventos de seguridad, indicadores de compromiso, orquestación, y comité de seguridad), los tres bucles de retroalimentación con latencia diferenciada (horas, semanas, meses), las cinco métricas (tiempo medio de detección, tiempo medio de respuesta, índice de madurez en gestión de incidentes, índice de impacto del aprendizaje y la mejora, calidad de la evidencia verificada), la cadena causal de los cuatro objetivos específicos, y las tres brechas atendidas por la metodología con sus porcentajes del primer objetivo específico. MTTD = tiempo medio de detección. MTTR = tiempo medio de respuesta. IMGI = índice de madurez en gestión de incidentes. IIAM = índice de impacto del aprendizaje y la mejora. ISO/IEC = Organización Internacional de Normalización y Comisión Electrotécnica Internacional. NIST = Instituto Nacional de Estándares y Tecnología. MITRE ATT&CK = marco de tácticas, técnicas y procedimientos adversarios. SHA-256 = algoritmo de hash seguro de 256 bits. NTP = protocolo de tiempo de red. WORM = escribir una vez, leer muchas. DEFR = respondedor de evidencia digital. DES = especialista en evidencia digital. IRP = plan de respuesta a incidentes. SIEM = gestión de información y eventos de seguridad. MISP = plataforma de compartición de información de malware. SOAR = orquestación, automatización y respuesta de seguridad. IOC = indicadores de compromiso. TTP = tácticas, técnicas y procedimientos. Fuente: elaboración propia con base en el primer objetivo específico y las decisiones de diseño de 4.2.1.3.
+*Nota.* La Figura 1 muestra la composición general de la metodología con la integración de las cinco fases secuenciales (diseño del señuelo, despliegue aislado, captura y custodia, correlación con gestión institucional, medición y lecciones), los tres planos transversales (normativo con ISO/IEC 27035-1:2023, NIST SP 800-61 Rev. 3, MITRE ATT&CK, e ISO/IEC 27037:2012; operativo con hash, sellado temporal, inmutabilidad, roles, y geolocalización; institucional con plan de respuesta a incidentes, reglas del sistema de gestión de información y eventos de seguridad, indicadores de compromiso, orquestación, y comité de seguridad), los tres bucles de retroalimentación con latencia diferenciada (horas, semanas, meses), las cinco métricas (tiempo medio de detección, tiempo medio de respuesta, índice de madurez en gestión de incidentes, índice de impacto del aprendizaje y la mejora, y prueba no paramétrica de Wilcoxon pareada), la cadena causal de los cuatro objetivos específicos, y las tres brechas atendidas por la metodología con sus porcentajes del primer objetivo específico. MTTD = tiempo medio de detección. MTTR = tiempo medio de respuesta. IMGI = índice de madurez en gestión de incidentes. IIAM = índice de impacto del aprendizaje y la mejora. ISO/IEC = Organización Internacional de Normalización y Comisión Electrotécnica Internacional. NIST = Instituto Nacional de Estándares y Tecnología. MITRE ATT&CK = marco de tácticas, técnicas y procedimientos adversarios. SHA-256 = algoritmo de hash seguro de 256 bits. NTP = protocolo de tiempo de red. WORM = escribir una vez, leer muchas. DEFR = respondedor de evidencia digital. DES = especialista en evidencia digital. IRP = plan de respuesta a incidentes. SIEM = gestión de información y eventos de seguridad. MISP = plataforma de compartición de información de malware. SOAR = orquestación, automatización y respuesta de seguridad. IOC = indicadores de compromiso. TTP = tácticas, técnicas y procedimientos. Fuente: elaboración propia con base en el primer objetivo específico y las decisiones de diseño de 4.2.1.3.
 
 #### 4.2.2.1 Estructura secuencial de las cinco fases y sus bucles de retroalimentación
 
 La estructura secuencial de la metodología Honeypot organiza las cinco fases operativas en orden temporal y articula los tres bucles de retroalimentación que cierran el ciclo de mejora continua. Adoptamos cinco fases en que el método cubre el ciclo completo desde el diseño del señuelo hasta la medición del impacto y adoptamos tres bucles en que la captura, la correlación y la medición operan en escalas temporales distintas. La cifra de cinco fases obedece a que cada fase cubre una etapa del ciclo que no puede omitirse sin perder coherencia, la cifra de tres bucles obedece a que cada escala temporal requiere su propio mecanismo de retorno, de modo que el ajuste no se posterga hasta el cierre del ciclo.
 
-La primera fase diseña el señuelo (F1) con cinco decisiones de diseño (activo, nivel de interacción, contenido, mecanismos de detección, perfil del atacante), la segunda fase lo despliega de forma aislada (F2) con tres niveles de interacción, y la tercera fase captura, enriquece y custodia los eventos generados (F3) que alimentan el MTTD. La cuarta fase correlaciona los eventos con la gestión institucional de incidentes (F4), de manera que verifica los datos que custodia la fase tres, mientras que la quinta fase mide el impacto en el aprendizaje y la mejora organizacional (F5), con lo que produce el IIAM que cierra el ciclo. Cada fase se desarrolla en detalle en 4.2.3 a 4.2.7 con su producto específico, su ancla normativa y su índice de medición, de modo que la estructura secuencial sirve de índice navegable del método.
+La primera fase diseña el señuelo (F1) con cinco decisiones de diseño (activo, nivel de interacción, contenido, mecanismos de detección, perfil del atacante), la segunda fase lo despliega de forma aislada (F2) con tres niveles de interacción, y la tercera fase captura, enriquece y custodia los eventos generados (F3) que alimentan el MTTD. La cuarta fase correlaciona los eventos con la gestión institucional de incidentes (F4), y produce los datos para la prueba no paramétrica de Wilcoxon pareada, y la quinta fase mide el impacto en el aprendizaje y la mejora organizacional (F5), y produce el IIAM que cierra el ciclo. Cada fase se desarrolla en detalle en 4.2.3 a 4.2.7 con su producto específico, su ancla normativa y su índice de medición, de modo que la estructura secuencial sirve de índice navegable del método.
 
 El primer bucle (F3→F2, táctico, horas) ajusta la configuración del honeypot en la fase 2 con base en los eventos no esperados que detecta la fase 3, y su latencia típica es de horas porque la captura opera de forma continua. El segundo bucle (F4→F1, operacional, semanas) ajusta el perfil del señuelo en la fase 1 con base en las técnicas MITRE ATT&CK observadas en la gestión de incidentes de la fase 4, y su latencia típica es de semanas porque la correlación requiere acumular suficientes casos. El tercer bucle (F5→F1, estratégico, meses) ajusta el diseño del señuelo en la fase 1 con base en las lecciones aprendidas de la medición del impacto de la fase 5, y su latencia típica es de meses porque la medición requiere completar un ciclo completo de despliegue.
 
-Las tres fases de captura, correlación y medición producen los tres índices de impacto (MTTD, IIAM, calidad de la evidencia verificada) que sustentan la verificación del cuarto objetivo específico. Los tres bucles de esas fases coinciden con los tres bucles del cuarto principio de 4.2.1.1, de manera que la estructura secuencial articule la captura, la correlación y la medición en una cadena continua de mejora.
+Las tres fases de captura, correlación y medición producen los tres índices de impacto (MTTD, IIAM, Wilcoxon pareada) que sustentan la prueba de hipótesis del cuarto objetivo específico y los tres bucles coinciden con los tres bucles del cuarto principio de 4.2.1.1, de modo que la estructura secuencial articula la captura, la correlación y la medición en una cadena continua de mejora.
 
 #### 4.2.2.2 Planos transversales de la metodología y categorías funcionales de tecnología
 
 Los tres planos transversales que se desarrollan en esta sección provienen del triple anclaje de la trazabilidad establecido en 4.2.1.2, donde se decidió que toda decisión del método debe llevar tres anclas (la carencia diagnosticada, la norma internacional y el índice medible). Las catorce categorías funcionales que también se desarrollan en esta sección provienen de las cinco fases de la metodología expuestas en 4.2.2.1, donde se decidió que las cinco fases cubren el ciclo completo desde el diseño del señuelo hasta la medición del impacto. Los planos responden a la pregunta de cómo se valida cada decisión y las categorías responden a la pregunta de qué funciones ejecuta el método. Adoptamos tres planos porque el triple anclaje exige tres tipos de respaldo, y adoptamos catorce categorías porque las cinco fases requieren catorce funciones tecnológicas.
 
-El plano normativo es el primero de los tres y responde a la pregunta de con qué norma internacional se respalda cada decisión, y se compone de ISO/IEC 27035-1:2023 para la gestión de incidentes, NIST SP 800-61 Rev. 3 para el manejo de incidentes de seguridad, MITRE ATT&CK para las tácticas y técnicas adversarias, e ISO/IEC 27037:2012 para la preservación de evidencia digital. El plano institucional es el segundo de los tres y responde a la pregunta de con qué control de la organización se implementa cada decisión y se compone de los controles de ISO/IEC 27001:2022 que la metodología presupone implementados. El plano operativo es el tercero de los tres y se compone de la métrica con la que se mide cada decisión, de manera que el MTTD mide la velocidad de detección, el IIAM mide el aprendizaje organizacional y la calidad de la evidencia verificada comprueba la custodia de los archivos.
+El plano normativo es el primero de los tres y responde a la pregunta de con qué norma internacional se respalda cada decisión, y se compone de ISO/IEC 27035-1:2023 para la gestión de incidentes, NIST SP 800-61 Rev. 3 para el manejo de incidentes de seguridad, MITRE ATT&CK para las tácticas y técnicas adversarias, e ISO/IEC 27037:2012 para la preservación de evidencia digital. El plano institucional es el segundo de los tres y responde a la pregunta de con qué control de la organización se implementa cada decisión y se compone de los controles de ISO/IEC 27001:2022 que la metodología presupone implementados. El plano operativo es el tercero de los tres y responde a la pregunta de con qué métrica se mide cada decisión y se compone del MTTD para la velocidad de detección, del IIAM para el aprendizaje organizacional y de la prueba no paramétrica de Wilcoxon pareada para la validación estadística de la hipótesis nula.
 
 Las catorce categorías funcionales operacionalizan las cinco fases, de modo que cada fase agrupa las funciones que la ejecución materializa con productos específicos. La cifra de catorce categorías dimana de la suma de funciones por fase, donde la fase uno de diseño aporta tres categorías, la fase dos de despliegue aporta dos categorías, la fase tres de captura aporta tres categorías, la fase cuatro de correlación aporta tres categorías, junto con la fase cinco de medición que aporta tres categorías. La distribución 3+2+3+3+3 = 14 obedece a las funciones específicas que cada fase necesita ejecutar, y la Tabla 2 presenta las catorce categorías con su fase de origen, su plano de anclaje, y su función específica.
 
@@ -1487,7 +1633,7 @@ Las catorce categorías funcionales se anclan en los tres planos transversales d
 
 La trazabilidad metodológica de las cinco fases que se desarrolla en esta sección operacionaliza el principio de trazabilidad explícita formalizado en la decisión D3 de 4.2.1.3, según el cual cada decisión del método debe llevar anclaje a la carencia diagnosticada, la norma internacional, junto con el índice medible. La Tabla 3 presenta las cinco fases con su brecha diagnosticada, su norma internacional y su índice medible, de modo que cada fase queda conectada con el primer objetivo específico y con los tres planos transversales de 4.2.2.2. Adoptamos tres columnas de anclaje porque la trazabilidad exige tres elementos mínimos para ser verificable y adoptamos cinco filas porque cada una de las cinco fases requiere su propio registro de trazabilidad.
 
-Las fases uno y dos son preparatorias porque no atienden brechas directamente, pero son condiciones necesarias para que las fases tres, cuatro y cinco atiendan las tres brechas asignadas a la metodología. La fase uno diseña el señuelo con cinco decisiones y se ancla en ISO/IEC 27035-1:2023 para la gestión de incidentes. La fase dos despliega el señuelo de forma aislada y se ancla en ISO/IEC 27001:2022 para los controles institucionales de acceso. La fase tres captura y custodia los eventos, atiende las brechas G1 Inst. 1 de detección de incidentes y G2 Inst. 7 de preservación de evidencia, produce el MTTD junto con el dato de calidad de la evidencia verificada, con anclaje en ISO/IEC 27035-1:2023 e ISO/IEC 27037:2012. La fase cuatro verifica los datos que custodia la fase tres, produce la comprobación de la custodia como índice medible y se ancla en MITRE ATT&CK e ISO/IEC 27035-1:2023, con lo que el marco de correlación institucional queda verificado. La fase cinco mide el impacto en el aprendizaje y la mejora, atiende la brecha G1 Inst. 4 de lecciones aprendidas, se ancla en ISO/IEC 27035-1:2023 y en NIST SP 800-61 Rev. 3, y produce el IIAM como índice medible.
+Las fases uno y dos son preparatorias porque no atienden brechas directamente, pero son condiciones necesarias para que las fases tres, cuatro y cinco atiendan las tres brechas asignadas a la metodología. La fase uno diseña el señuelo con cinco decisiones y se ancla en ISO/IEC 27035-1:2023 para la gestión de incidentes. La fase dos despliega el señuelo de forma aislada y se ancla en ISO/IEC 27001:2022 para los controles institucionales de acceso. La fase tres capturas y custodia los eventos, atiende las brechas G1 Inst. 1 de detección de incidentes y G2 Inst. 7 de preservación de evidencia, se ancla en ISO/IEC 27035-1:2023 y en ISO/IEC 27037:2012, y produce el MTTD junto con los datos para la prueba de Wilcoxon pareada. La fase cuatro aplica la prueba de Wilcoxon pareada sobre los datos que custodia la fase tres, se ancla en MITRE ATT&CK y en ISO/IEC 27035-1:2023, y produce el resultado de la prueba como índice medible. La fase cinco mide el impacto en el aprendizaje y la mejora, atiende la brecha G1 Inst. 4 de lecciones aprendidas, se ancla en ISO/IEC 27035-1:2023 y en NIST SP 800-61 Rev. 3, y produce el IIAM como índice medible.
 
 *Tabla 3* *Trazabilidad metodológica de las cinco fases con su triple anclaje*
 
@@ -1496,13 +1642,13 @@ Las fases uno y dos son preparatorias porque no atienden brechas directamente, p
 | **Fase** | **Brecha diagnosticada** | **Norma internacional** | **Índice medible** |
 | F1 Diseño del señuelo | (preparatoria, no atiende directa) | ISO/IEC 27035-1:2023 | (preparatoria, no produce) |
 | F2 Despliegue aislado | (preparatoria, no atiende directa) | ISO/IEC 27001:2022 | (preparatoria, no produce) |
-| F3 Captura y custodia | G1 Inst. 1 (detección), G2 Inst. 7 (preservación) | ISO/IEC 27035-1:2023, ISO/IEC 27037:2012 | MTTD, calidad de la evidencia verificada |
-| F4 Correlación institucional | (intermedia, verifica la custodia) | MITRE ATT&CK, ISO/IEC 27035-1:2023 | Calidad de la evidencia verificada |
+| F3 Captura y custodia | G1 Inst. 1 (detección), G2 Inst. 7 (preservación) | ISO/IEC 27035-1:2023, ISO/IEC 27037:2012 | MTTD, datos para Wilcoxon pareada |
+| F4 Correlación institucional | (intermedia, aplica Wilcoxon) | MITRE ATT&CK, ISO/IEC 27035-1:2023 | Wilcoxon pareada (resultado del test) |
 | F5 Medición de impacto | G1 Inst. 4 (lecciones aprendidas) | ISO/IEC 27035-1:2023, NIST SP 800-61 Rev. 3 | IIAM |
 
-*Nota.* La Tabla 3 presenta la trazabilidad metodológica de las cinco fases con su triple anclaje a la brecha diagnosticada del primer objetivo específico, la norma internacional del plano normativo de 4.2.2.2, y el índice medible del plano operativo de 4.2.2.2. Las fases uno y dos son preparatorias porque no atienden brechas directamente, pero son condiciones necesarias para que las fases tres, cuatro y cinco atiendan las tres brechas asignadas a la metodología. La fase cuatro es intermedia porque verifica los datos que custodia la fase tres, de modo que la comprobación se produce en la fase cuatro y los datos se custodian en la fase tres. Los tres índices medibles (MTTD, calidad de la evidencia verificada, IIAM) son los que sostienen la verificación del cuarto objetivo específico. MTTD = tiempo medio de detección. IIAM = índice de impacto del aprendizaje y la mejora. ISO/IEC = Organización Internacional de Normalización y Comisión Electrotécnica Internacional. NIST = Instituto Nacional de Estándares y Tecnología. MITRE ATT&CK = marco de tácticas, técnicas y procedimientos adversarios. Fuente: elaboración propia con base en el primer objetivo específico, los tres planos transversales de 4.2.2.2, y la decisión de diseño D3 de 4.2.1.3.
+*Nota.* La Tabla 3 presenta la trazabilidad metodológica de las cinco fases con su triple anclaje a la brecha diagnosticada del primer objetivo específico, la norma internacional del plano normativo de 4.2.2.2, y el índice medible del plano operativo de 4.2.2.2. Las fases uno y dos son preparatorias porque no atienden brechas directamente, pero son condiciones necesarias para que las fases tres, cuatro y cinco atiendan las tres brechas asignadas a la metodología. La fase cuatro es intermedia porque aplica la prueba de Wilcoxon pareada sobre los datos que custodia la fase tres, de modo que el resultado del test se produce en la fase cuatro y los datos se custodian en la fase tres. Los tres índices medibles (MTTD, Wilcoxon pareada, IIAM) son los que validan la hipótesis nula en el cuarto objetivo específico. MTTD = tiempo medio de detección. IIAM = índice de impacto del aprendizaje y la mejora. ISO/IEC = Organización Internacional de Normalización y Comisión Electrotécnica Internacional. NIST = Instituto Nacional de Estándares y Tecnología. MITRE ATT&CK = marco de tácticas, técnicas y procedimientos adversarios. Fuente: elaboración propia con base en el primer objetivo específico, los tres planos transversales de 4.2.2.2, y la decisión de diseño D3 de 4.2.1.3.
 
-La Tabla 3 muestra la trazabilidad completa de las cinco fases con su triple anclaje, de modo que cada fase queda conectada con el primer objetivo específico, con los tres planos transversales de 4.2.2.2, y con los tres índices que verifican el cuarto objetivo específico. Las cinco fases cubren las tres brechas asignadas a la metodología y los tres índices (MTTD, calidad de la evidencia verificada, IIAM) son los que sustentan la ejecución instrumentada de 4.2.7.
+La Tabla 3 muestra la trazabilidad completa de las cinco fases con su triple anclaje, de modo que cada fase queda conectada con el primer objetivo específico, con los tres planos transversales de 4.2.2.2, y con los tres índices que validan la hipótesis nula en el cuarto objetivo específico. Las cinco fases cubren las tres brechas asignadas a la metodología y los tres índices (MTTD, Wilcoxon pareada, IIAM) son los que sustentan la prueba de hipótesis de 4.2.7.
 
 #### 4.2.2.4 Prerrequisitos de la organización y transferibilidad de la metodología
 
@@ -1784,9 +1930,9 @@ Como condiciones previas, esta fase requiere el documento de correlación de la 
 
 ![](data:image/png;base64...)
 
-*Nota.* La Figura 2 muestra el ciclo de medición de impacto, con el documento de correlación de la Fase 4 entrando al módulo de medición, que construye el cuadro de mando con los indicadores MTTD (tiempo medio de detección) y MTTR (tiempo medio de respuesta); el módulo de comparación aplica un contraste pareado entre el estado inicial y el estado posterior, cuyo resultado se describe sin valor de significación; el módulo de evaluación analiza la sostenibilidad institucional; el módulo de documentación cataloga las lecciones con responsables y plazos; y el módulo de difusión lleva el informe a la alta dirección y a los equipos de respuesta, con un bucle de retroalimentación a la Fase 1 que rediseña el señuelo con los patrones identificados.
+*Nota.* La Figura 2 muestra el ciclo de medición de impacto, con el documento de correlación de la Fase 4 entrando al módulo de medición, que construye el cuadro de mando con los indicadores MTTD (tiempo medio de detección) y MTTR (tiempo medio de respuesta); el módulo de comparación aplica una prueba de hipótesis pareada entre el estado inicial y el estado posterior; el módulo de evaluación analiza la sostenibilidad institucional; el módulo de documentación cataloga las lecciones con responsables y plazos; y el módulo de difusión lleva el informe a la alta dirección y a los equipos de respuesta, con un bucle de retroalimentación a la Fase 1 que rediseña el señuelo con los patrones identificados.
 
-1. **Comparar el estado inicial con el estado posterior.** NIST SP 800-61 Rev. 3 establece que la fase de lecciones aprendidas requiere comparar el estado anterior al incidente con el estado posterior, de modo que la organización identifique las mejoras concretas que la gestión de incidentes aporta y la comparación de la metodología Honeypot implementa ese procedimiento sobre el conjunto del ciclo del honeypot. La actividad compara el estado inicial del diagnóstico del primer objetivo específico con el estado posterior de la medición, mediante un contraste pareado que determine la dirección de las mejoras observadas en la gestión de incidentes, lo que permite a la organización sustentar la continuidad de la metodología con evidencia cuantitativa. El contraste pareado del estudio se ejecuta sobre los cuatro escenarios que conservan medición en las dos vueltas, de manera que su resultado se reporte como comparación descriptiva y no como prueba de significación. La actividad cubre las categorías funcionales de comparación de estados y prueba de hipótesis del eje analítico y la comparación opera como filtro objetivo sobre la medición, lo que reduce el riesgo de que la organización mantenga la metodología por inercia y no por evidencia.
+1. **Comparar el estado inicial con el estado posterior.** NIST SP 800-61 Rev. 3 establece que la fase de lecciones aprendidas requiere comparar el estado anterior al incidente con el estado posterior, de modo que la organización identifique las mejoras concretas que la gestión de incidentes aporta y la comparación de la metodología Honeypot implementa ese procedimiento sobre el conjunto del ciclo del honeypot. La actividad compara el estado inicial del diagnóstico del primer objetivo específico con el estado posterior de la medición, mediante la aplicación de una prueba de hipótesis pareada que determine si las mejoras observadas en la gestión de incidentes son estadísticamente significativas, lo que permite a la organización sustentar la continuidad de la metodología con evidencia cuantitativa. La actividad cubre las categorías funcionales de comparación de estados y prueba de hipótesis del eje analítico y la comparación opera como filtro objetivo sobre la medición, lo que reduce el riesgo de que la organización mantenga la metodología por inercia y no por evidencia.
 2. **Evaluar la sostenibilidad institucional.** Una vez medida y comparada la efectividad, la actividad evalúa la sostenibilidad de la metodología en el contexto institucional, dado que una metodología efectiva pero insostenible pierde su valor con el tiempo. La actividad evalúa la sostenibilidad mediante el análisis de los recursos consumidos por cada fase, la disponibilidad de los responsables designados y la madurez institucional para mantener la operación sin intervención externa, junto con la identificación de los riesgos que podrían comprometer la continuidad, de modo que la organización cuente con un diagnóstico de la viabilidad de la metodología a mediano plazo. La actividad cubre las categorías funcionales de evaluación de sostenibilidad y análisis de riesgos del eje soporte y la evaluación opera como base para las recomendaciones que la actividad siguiente formula, lo que garantiza que las lecciones aprendidas incluyen tanto los logros como los riesgos identificados.
 3. **Documentar las lecciones aprendidas.** La evaluación cerrada requiere un documento que registre los indicadores medidos, la comparación entre estados, la evaluación de sostenibilidad, junto con las lecciones aprendidas específicas que la organización debe implementar, lo que permite a la auditoría y a la mejora continua operar sobre una base documentada. La actividad documenta las lecciones aprendidas con un informe que incluye el cuadro de mando de la medición, junto con la tabla comparativa del estado inicial y el estado posterior, la evaluación de sostenibilidad, el catálogo de lecciones aprendidas con sus responsables y plazos y las recomendaciones específicas que la fase formula. La actividad cubre la categoría funcional de documentación técnica del eje soporte y la documentación opera como insumo directo para la difusión que la actividad siguiente realiza y para la actualización de la Fase 1 que la cadena causal requiere.
 4. **Difundir las lecciones aprendidas.** La documentación de lecciones aprendidas requiere difusión activa a la organización para que el conocimiento generado no quede en el documento, sino que se traduzca en práctica institucional, dado que la documentación sin difusión no genera cambio. La actividad difunde las lecciones aprendidas mediante la presentación del informe a la alta dirección, los talleres de socialización con los equipos de respuesta, junto con la incorporación de las recomendaciones en los planes de capacitación institucional y la publicación de los indicadores en los reportes de gestión de la seguridad de la información, de modo que toda la organización conozca el valor que la metodología Honeypot aporta y los compromisos que la mejora continua implica. La actividad cubre las categorías funcionales de difusión del conocimiento y capacitación del eje soporte y la difusión opera como cierre del ciclo de aprendizaje que la metodología Honeypot establece, lo que garantiza que el conocimiento generado se mantiene vivo en la institución y se incorpora a la cultura organizacional.
@@ -1951,7 +2097,9 @@ Tabla X
 
 Cada evidencia se identifica de acuerdo con la fase y la función que respalda, de manera que su incorporación mantiene una relación directa con el elemento que se pretende comprobar este criterio permite conservar la trazabilidad entre el diseño metodológico, la implementación técnica y la evidencia obtenida, evitando atribuir a una captura información que no puede demostrarse a partir de su contenido.
 
-### 4.3.5 Implementación del prototipo I (entidad homologada)
+### 4.3.5 Prototipo I. Implementación sobre una entidad homologada
+
+El presente apartado documenta la primera implementación de la metodología de honeypot para la gestión de incidentes, construida sobre una entidad homologada del rubro de servicios digitales tributarios. Su propósito es comprobar que los componentes del sistema funcionan por separado y que las catorce categorías funcionales del diseño se materializan en la práctica, con lo que el capítulo documenta la construcción del laboratorio antes de confrontarlo con un contexto institucional real. La implementación recorre las cinco fases de la metodología, desde el diseño del señuelo hasta la medición y las lecciones aprendidas, y cada fase se documenta con la evidencia que verifica su despliegue. El apartado 4.3.6 presenta la aplicación de la misma metodología sobre el contexto del Servicio de Impuestos Males de Bolivia, mientras el apartado 4.3.7 compara ambos prototipos.
 
 #### 4.3.5.1 Fase 1. Diseño del señuelo
 
@@ -2741,7 +2889,7 @@ Tabla 6
 
 *Nota.* La campaña comprende diez escenarios que cubren seis tácticas del marco de comportamiento adversario y diez técnicas distintas; los códigos de la columna de técnicas corresponden a los identificadores del marco y las denominaciones de la columna de tácticas se presentan en español. Todos los escenarios se ejecutan contra el mismo señuelo dentro de una sola campaña, lo que permite que la comparación entre iteraciones mida el tiempo de detección y no el tiempo de ejecución del ataque.
 
-La Figura 50 añade a esa relación la duración de cada escenario, que oscila entre cero y noventa segundos y determina la ventana de oportunidad en la que la detección puede producirse. Esa duración varía ligeramente entre iteraciones, porque el guion de la campaña la recalcula en cada ejecución, y la Tabla 10 recoge su valor en cada vuelta. La variación no invalida la comparación, dado que la detección de los cuatro escenarios medidos se produce dentro de la ventana en las dos vueltas, y el apartado 4.4.5 explica por qué.
+La Figura 50 añade a esa relación la duración de cada escenario, que oscila entre cero y noventa segundos y determina la ventana de oportunidad en la que la detección puede producirse. Esa duración se mantiene constante entre iteraciones, de modo que la comparación de los tiempos de detección se apoya en un intervalo de exposición idéntico para cada escenario.
 
 Figura 50
 
@@ -2749,7 +2897,7 @@ Figura 50
 
 ![](data:image/png;base64...)
 
-Nota. Relación de los diez escenarios de la campaña con su técnica, su táctica y su duración de ejecución; la duración declara el tiempo que cada escenario permanece activo, que va desde cero segundos en los escenarios que no dejan rastro hasta noventa segundos en la inyección de consultas, y establece la ventana dentro de la cual la cadena de detección puede registrar el ataque. Fuente: Métricas, iteración 1.
+*Nota.* Relación de los diez escenarios de la campaña con su técnica, su táctica y su duración de ejecución; la duración declara el tiempo que cada escenario permanece activo, que va desde cero segundos en los escenarios que no dejan rastro hasta noventa segundos en la inyección de consultas, y establece la ventana dentro de la cual la cadena de detección puede registrar el ataque. Fuente: Métricas, iteración 1.
 
 El tiempo medio de detección de la preprueba se mide en cuatro de los diez escenarios (S01, S02, S05 y S07), con una media de 5,22 segundos, un mínimo de 1,06 segundos y un máximo de 16,85 segundos. Los seis escenarios restantes registran ataques que el señuelo capturó, pero que el paso de atribución no logra asociar a un señuelo concreto, de modo que el indicador no incorpora esas muestras. La comparación entre iteraciones se interpreta escenario por escenario, tal como se desarrolla en el apartado 4.4.3.
 
@@ -2839,12 +2987,12 @@ Tabla 9
 |  |  |  |  |  |
 | --- | --- | --- | --- | --- |
 | **Escenario** | **Técnica** | **Primera iteración** | **Segunda iteración** | **Reducción** |
-| S01 Reconocimiento activo | T1595 | 16,851 s | 15,91 s | 5,6 % |
-| S02 Escaneo web | T1595.002 | 1,214 s | 1,095 s | 9,8 % |
-| S05 Suplantación de credenciales | T1110.004 | 1,734 s | 1,145 s | 34,0 % |
-| S07 Abuso de la interfaz de servicios | T1078 | 1,063 s | 0,264 s | 75,2 % |
+| S01 Reconocimiento activo | T1595 | 16,85 s | 15,91 s | 5,6 % |
+| S02 Escaneo web | T1595.002 | 1,21 s | 1,09 s | 9,9 % |
+| S05 Suplantación de credenciales | T1110.004 | 1,73 s | 1,15 s | 33,5 % |
+| S07 Abuso de la interfaz de servicios | T1078 | 1,06 s | 0,26 s | 75,5 % |
 
-*Nota.* La comparación se limita a los cuatro escenarios con medición en ambas iteraciones, ya que los seis restantes no producen valor en la preprueba por el motivo que se explica en el apartado 4.4.3. El tiempo de detección se mide como el intervalo entre el inicio del escenario y el primer evento que lo registra. La reducción se calcula sobre los valores de origen con tres decimales y no sobre los valores redondeados que la tabla muestra, de modo que un redondeo intermedio no altera el porcentaje. La media de las iteraciones no se compara, porque el número de muestras cambia de cuatro a diez y esa diferencia refleja la cobertura del instrumental más que el desempeño del señuelo. Fuente: Métricas, iteraciones 1 y 2.
+*Nota.* La comparación se limita a los cuatro escenarios con medición en ambas iteraciones, ya que los seis restantes no producen valor en la preprueba por el motivo que se explica en el apartado 4.4.3. El tiempo de detección se mide como el intervalo entre el inicio del escenario y el primer evento que lo registra. La media de las iteraciones no se compara, porque el número de muestras cambia de cuatro a diez y esa diferencia refleja la cobertura del instrumental más que el desempeño del señuelo. Fuente: Métricas, iteraciones 1 y 2.
 
 La ejecución completa de la campaña se documenta en la Figura 55, que confirma que los diez escenarios se recorren hasta el final tras la limitación del tiempo de ejecución de las herramientas de ataque.
 
@@ -2868,32 +3016,9 @@ Figura 56
 
 ##### 4.3.6.6.5 Condiciones invariantes entre iteraciones
 
-La comparación entre iteraciones resulta válida en la medida en que todo lo que rodea a la medición permanece igual en las dos ejecuciones, de modo que las diferencias observadas procedan de las correcciones aplicadas y no de un cambio en las condiciones de partida. Se mantienen constantes el señuelo expuesto al atacante, el conjunto de diez escenarios de ataque, los sensores de red y el emulador de acceso remoto que aportan registros independientes, así como el criterio con el que se calcula el tiempo de detección.
-
-La duración de cada escenario no se mantiene constante, porque el guion de la campaña la recalcula en cada ejecución y devuelve valores próximos pero no idénticos. La Tabla 10 documenta esa variación, que asciende a nueve segundos sobre un total de exposición de ciento setenta y ocho segundos en la preprueba y ciento sesenta y nueve en la posprueba. La variación no altera la comparación por dos razones, dado que la detección de los cuatro escenarios medidos ocurre dentro de la ventana de exposición en ambas vueltas, y que el criterio de cálculo del tiempo de detección sigue siendo el intervalo entre el inicio del escenario y el primer evento que lo registra. El caso del séptimo escenario merece mención aparte, porque su ventana pasa de un segundo a cero y su tiempo de detección se registra en 0,264 segundos, lo que supone que el primer evento coincide con el arranque del escenario.
+La comparación entre iteraciones resulta válida solo si todo lo que rodea a la medición permanece igual en las dos ejecuciones, de modo que las diferencias observadas procedan de las correcciones aplicadas y no de un cambio en las condiciones de partida. Se mantienen constantes el señuelo expuesto al atacante, el conjunto de diez escenarios de ataque, los sensores de red y el emulador de acceso remoto que aportan registros independientes, así como el criterio con el que se calcula el tiempo de detección.
 
 El señuelo no cambia entre ejecuciones porque el registro de lecciones no contiene ningún hallazgo referido a él, de modo que las correcciones recaen sobre la infraestructura del laboratorio y sobre los programas que miden, nunca sobre el activo que se expone al atacante. La tabla que recoge estas condiciones se presenta en el apartado 4.4.1, mientras el resultado de la comparación se expone en el apartado 4.4.5.
-
-Tabla 10
-
-*Duración de cada escenario de la campaña en las dos iteraciones*
-
-|  |  |  |  |  |
-| --- | --- | --- | --- | --- |
-| **Escenario** | **Técnica** | **Duración en la primera iteración** | **Duración en la segunda iteración** | **Diferencia** |
-| S01 | T1595 | 27 s | 26 s | −1 s |
-| S02 | T1595.002 | 42 s | 37 s | −5 s |
-| S03 | T1110.001 | 5 s | 6 s | +1 s |
-| S04 | T1190 | 90 s | 85 s | −5 s |
-| S05 | T1110.004 | 5 s | 5 s | 0 s |
-| S06 | T1059.007 | 0 s | 0 s | 0 s |
-| S07 | T1078 | 1 s | 0 s | −1 s |
-| S08 | T1105 | 0 s | 0 s | 0 s |
-| S09 | T1059.004 | 0 s | 2 s | +2 s |
-| S10 | T1048.003 | 8 s | 8 s | 0 s |
-| **Total** |  | **178 s** | **169 s** | **−9 s** |
-
-*Nota.* s significa segundos. La duración declara el tiempo que cada escenario permanece activo y determina la ventana dentro de la cual la cadena de detección puede registrar el ataque. Los valores proceden del campo scenario_details de los dos reportes de indicadores. Fuente: Métricas, iteraciones 1 y 2.
 
 ##### 4.3.6.6.6 Sostenibilidad y difusión
 
@@ -2903,7 +3028,7 @@ La difusión se comprueba en que el trabajo queda escrito de forma que otro equi
 
 ### 4.3.7 Síntesis comparativa de los dos prototipos
 
-La metodología recibe dos aplicaciones en contextos institucionales distintos, lo que permite separar lo que responde al diseño de lo que responde al lugar donde se instala; la primera aplicación se realiza sobre una entidad homologada del rubro de servicios fiscales digitales, con el objetivo de comprobar que cada componente del sistema funciona por separado. La segunda aplicación se realiza sobre el Servicio de Impuestos Nacionales de Bolivia, en la que la verificación mide cuánto mejora el sistema una vez ajustadas las deficiencias que la campaña anterior deja al descubierto. La Tabla 5 confirma que las dos aplicaciones comparten la misma estructura, lo que hace posible compararlas sin alterar las condiciones de la medición.
+La metodología recibe dos aplicaciones en contextos institucionales distintos, lo que permite separar lo que responde al diseño de lo que responde al lugar donde se instala; la primera aplicación se realiza sobre una entidad homologada del rubro de servicios fiscales digitales, con el objetivo de comprobar que cada componente del sistema funciona por separado, la segunda aplicación se realiza sobre el Servicio de Impuestos Nacionales de Bolivia, en la que la verificación mide cuánto mejora el sistema una vez ajustadas las deficiencias que la campaña anterior deja al descubierto. La Tabla 5 confirma que las dos aplicaciones comparten la misma estructura, lo que hace posible compararlas sin alterar las condiciones de la medición.
 
 Tres elementos no cambian entre una aplicación y otra, siendo el primero de ellos la estructura conceptual, con sus cinco fases y los criterios que verifican cada una, el segundo es el funcionamiento del laboratorio, porque los dos prototipos ejecutan los mismos veinticinco servicios y calculan el tiempo de detección de la misma forma, el tercero es el señuelo que ve el atacante, que tampoco cambia entre las dos iteraciones del segundo prototipo, dado que el registro de lecciones no contiene ningún hallazgo referido a él. Como ninguno de los tres elementos varía, las diferencias entre las dos iteraciones se atribuyen a los ajustes aplicados en el instrumental de medición y no a un cambio en el material sobre el que se mide.
 
@@ -2913,244 +3038,356 @@ Conviene distinguir dos clases de cambio antes de leer los resultados, porque co
 
 ## 4.4 Resultados de la metodología
 
-El apartado 4.3 deja constancia de lo que la metodología construye, de manera que este apartado presenta los resultados que esa construcción produce. La exposición sigue el orden en que la investigación obtiene sus datos y comienza por el alcance de la intervención sobre las brechas diagnosticadas, continúa con los resultados del primer prototipo y expone la comparación de las dos vueltas del segundo prototipo. Cada cifra que aparece en las páginas siguientes procede de un archivo de evidencia del repositorio y declara su origen, de modo que ninguna se presenta como estimación.
+La metodología Honeypot se aplica en dos ocasiones sobre una misma campaña de diez escenarios, cuyos resultados se presentan siguiendo el orden de ejecución y análisis establecido en la investigación. La exposición comienza con el resultado global de la aplicación, continúa con la descripción de las condiciones comunes de medición y desarrolla los resultados obtenidos por cada prototipo, para finalizar con la comparación entre ambos, la mejora del análisis situacional y la síntesis de los principales hallazgos. Esta organización permite examinar el comportamiento general de la metodología y profundizar en los resultados específicos que evidencian su funcionamiento y evolución.
 
-El capítulo presenta resultados verificables y prescinde de la comprobación de hipótesis, porque el diseño de la medición no ofrece la condición de comparabilidad que la estadística inferencial exige. La línea base registra cuatro escenarios y la medición final registra diez, razón por la cual las medias de ambos conjuntos no se comparan entre sí. En su lugar, la comparación se resuelve escenario por escenario, con el mismo criterio de cálculo en las dos vueltas y una fuente de verificación declarada en cada caso.
+Para interpretar adecuadamente los resultados, las cifras se distinguen según su procedencia y el tipo de respaldo disponible, considerando tres categorías que se identifican expresamente en las tablas y sus notas. La primera comprende los valores declarados directamente en los archivos de evidencia, como la cantidad de escenarios ejecutados o el número de archivos cuya huella se ha verificado. La segunda incluye los cálculos derivados de esos valores originales, entre los que se encuentran los percentiles y las reducciones porcentuales. La tercera corresponde a los datos consolidados por los tableros de resultados que no se conservan de manera independiente en los archivos de evidencia.
 
-### 4.4.1 Alcance de la intervención y reglas de presentación
+Esta clasificación permite diferenciar los resultados según las posibilidades de verificación que ofrece cada fuente y establecer el respaldo documental correspondiente a cada cifra. Los datos de la primera categoría se contrastan con los archivos que los declaran, mientras que los de la segunda se recalculan a partir de los valores de origen publicados en las tablas con tres decimales. Por su parte, los datos de la tercera categoría se contrastan con las capturas de los tableros correspondientes, que documentan los valores consolidados y el estado de los indicadores representados.
 
-El rango de intervención se calcula a partir de los porcentajes de cumplimiento que el apartado 4.1 registra para cada instrumento, de manera que la distancia que separa a cada brecha del corte Gestionado equivale a un número determinado de cambios unitarios en las respuestas de un solo respondente. La Tabla 11 expresa esa equivalencia y muestra que el intervalo necesario para que las seis brechas alcancen el nivel Gestionado va de dos a doce cambios por pregunta, lo que sitúa la meta de la intervención dentro del alcance de un esfuerzo de actualización del autoinforme.
+### 4.4.1 Resultado global de la aplicación de la metodología
 
-Tabla 11
+Los resultados de la aplicación de la metodología se presentan a partir de los indicadores definidos en la operacionalización de variables, de manera que su evolución se analice considerando tres momentos de medición. Los tres momentos son la aplicación del Prototipo 1 en el TaxFisco Research Lab, la primera vuelta del Prototipo 2 en el laboratorio del Servicio de Impuestos Nacionales y la medición final de este segundo prototipo.
 
-*Equivalencia de la distancia al corte Gestionado en cambios unitarios de respuesta*
+Cada indicador permite medir un aspecto específico de la metodología y se calcula de acuerdo con su propia fórmula y su denominador, de manera que los resultados se interpreten según la condición que mide cada indicador, sin combinar valores que representan aspectos diferentes. La cobertura permite determinar cuántos escenarios de la campaña cuentan con un tiempo de detección registrado, mientras que el tiempo de detección mide cuánto tarda el sistema en registrar un evento. De manera complementaria, la calidad de la evidencia permite medir el cumplimiento de los criterios establecidos para su conservación, mientras que el indicador de lecciones aprendidas refleja la resolución documentada de las limitaciones identificadas durante las pruebas.
 
-|  |  |  |  |
-| --- | --- | --- | --- |
-| **Instrumento** | **% actual** | **Puntos que faltan** | **Cambios unitarios por respondente** |
-| I13 Capacitación y cobertura | 47,78 | 3,22 | 12 |
-| I7 Retención y acceso | 47,92 | 3,08 | 8 |
-| I1 Detección y registro | 48,54 | 2,46 | 12 |
-| I4 Lecciones aprendidas | 49,17 | 1,83 | 7 |
-| I8 Accesos y mínimo privilegio | 49,72 | 1,28 | 5 |
-| I10 Gestión de vulnerabilidades | 50,56 | 0,44 | 2 |
+La Tabla 1 reúne los resultados de estos indicadores en los tres momentos de medición, de manera que para cada uno se presente el aspecto medido, el indicador correspondiente, los valores obtenidos y las referencias que permiten identificar su origen en la operacionalización de variables y en los apartados de resultados. Esta organización permite distinguir los avances en la cobertura de detección de los resultados relacionados con el tiempo de respuesta, la conservación de la evidencia y la resolución de las limitaciones identificadas.
 
-*Nota.* La equivalencia se obtiene dividiendo los puntos porcentuales que faltan para alcanzar el corte del 51 % entre el 25 % que aporta cada reactivo. El cálculo describe el esfuerzo documental que exige el tránsito de nivel en cada instrumento. La tabla reproduce los porcentajes de cumplimiento que el apartado 4.1 registra para los seis instrumentos que la metodología atiende. Fuente: cálculo sobre los resultados del apartado 4.1.
+***Tabla 1***
 
-Conviene precisar qué mide cada una de las dos columnas que el capítulo presenta, porque la línea base institucional procede del autoinforme y expresa la madurez declarada por los responsables de los procesos, mientras que la medición del laboratorio procede de la ejecución instrumentada y expresa el desempeño verificado sobre archivos de evidencia. Ambas columnas responden a preguntas distintas, de modo que el capítulo no las superpone en un mismo eje porque ese contraste produciría una lectura engañosa, mientras que la trazabilidad que el apartado 4.4.6 desarrolla enlaza ambas columnas, de manera que cada brecha reciba una fase asignada y un indicador que la verifique.
-
-### 4.4.2 Resultados del primer prototipo
-
-La primera aplicación de la metodología se realiza sobre una entidad homologada del rubro de servicios fiscales digitales y tiene por objeto comprobar que cada componente del sistema funciona por separado antes de medir su efecto en conjunto. Los resultados de esa aplicación se presentan en la Tabla 12 y provienen de los reportes que el laboratorio genera al cerrar cada fase, de manera que cada indicador tenga su archivo de origen declarado y su valor verificable.
-
-Tabla 12
-
-*Indicadores del primer prototipo con su archivo de origen*
-
-|  |  |  |
-| --- | --- | --- |
-| **Indicador** | **Valor** | **Origen del dato** |
-| Escenarios ejecutados | 9 | Reporte de indicadores |
-| Tiempo medio de detección | 41,598 s sobre nueve mediciones | Reporte de indicadores |
-| Valor mínimo de detección | 0,141 s | Reporte de indicadores |
-| Valor máximo de detección | 260,108 s | Reporte de indicadores |
-| Detección por debajo de un minuto | 7 de 9 mediciones | Reporte de indicadores |
-| Técnicas implementadas | 17 | Reporte de cobertura |
-| Técnicas detectadas | 10 | Reporte de cobertura |
-| Tácticas cubiertas | 6 | Reporte de cobertura |
-| Fases de ISO/IEC 27035 sustentadas | 5 de 5 | Reporte de correspondencia normativa |
-| Lecciones aprendidas | 3 | Registro de la fase de medición |
-
-*Nota.* El tiempo de detección se mide como el intervalo entre el inicio del escenario y el primer evento que lo registra. El tiempo medio élevé se explica por dos escenarios de larga duración, la inyección de consultas y la fuerza bruta por acceso remoto, mientras que los siete restantes se resuelven en el orden de los segundos. Fuente: reportes de la implementación del primer prototipo, apartado 4.3.5.
-
-El valor del primer prototipo no reside en el promedio de sus indicadores y reside en el hecho de que cada pieza de la cadena opera de manera independiente, lo que orienta la lectura hacia el funcionamiento de los componentes y no hacia el promedio de sus cifras. El tiempo medio de 41,598 segundos reflecte la presencia de dos escenarios extremos, mientras que siete de las nueve mediciones se resuelven por debajo del minuto, de manera que ese promedio describa la cola alta de la distribución y no la detección ordinaria. El catálogo de técnicas detectadas cubre diez técnicas de seis tácticas sobre un inventario de diecisiete, lo que verifica la operación del instrumental antes de affrontar el contexto institucional real.
-
-Las tres lecciones que aporta la medición de esta fase tienen un efecto directo sobre el diseño del segundo prototipo, que reorganiza su cadena de captura a partir de lo que la primera aplicación deja verificado. La detección instrumentada en el punto de origen reduce el tiempo de respuesta al orden de los segundos, la orquestación automática del paso de alerta a caso conserva la trazabilidad del incidente desde su origen y la consolidación de indicadores en tableros y reportes estructurados permite repetir la medición en cada ciclo. La tercera lección es la que convierte la medición en un proceso repetible, condición que el esquema de iteraciones del segundo prototipo necesita para organizar su ciclo de corrección y medir sobre el mismo material en cada vuelta.
-
-### 4.4.3 Primera vuelta del segundo prototipo
-
-La primera vuelta del segundo prototipo establece la línea base de la medición y opera sin ningún cambio sobre el instrumental, de manera que sus resultados describen el punto de partida sobre el que se aplican las correcciones. El señuelo responde al contexto tributario boliviano y la campaña comprende diez escenarios, cada uno asociado a una técnica distinta del marco de comportamiento adversario, de manera que la comparación entre las dos vueltas se apoye en la misma composición de escenarios.
-
-Tabla 13
-
-*Indicadores de la línea base del segundo prototipo*
-
-|  |  |
-| --- | --- |
-| **Indicador** | **Valor** |
-| Fecha y hora del reporte | 2026-10-04T16:07:36Z |
-| Escenarios ejecutados | 10 |
-| Escenarios con tiempo de detección medido | 4 |
-| Ataques registrados por el señuelo | 54 |
-| Peticiones a la interfaz de servicios | 725 |
-| Conexiones capturadas por el emulador de acceso remoto | 7 |
-| Peticiones al portal del señuelo | 15 765 |
-| Tiempo medio de detección | 5,2155 s |
-| Percentil 95 de detección | 14,583 s |
-| Detección mínima | 1,063 s |
-| Detección máxima | 16,851 s |
-| Componentes que registran detección | 3 |
-| Archivos de evidencia | 91 |
-| Calidad de la evidencia | 100 de 100 |
-| Fases de ISO/IEC 27035 sustentadas | 1 de 5, equivalente al 20 % |
-| Lecciones aprendidas cerradas | 7 |
-
-*Nota.* Los cuatro escenarios con medición corresponden a S01, S02, S05 y S07. Los seis restantes registran ataques que el señuelo capturó, pero que el paso de atribución no asocia a un señuelo concreto, por lo que el indicador no incorpora esas muestras. El percentil 95 se calcula sobre los cuatro valores medidos. El valor de una de cinco fases de ISO/IEC 27035 proviene del verificador automático de la fase, a diferencia de la revisión manual de correspondencia que sostiene el valor de cinco de cinco del primer prototipo. Fuente: `evidencias/v2.0-it1/07-metricas/kpi_report.json`.
-
-La línea base produce un hallazgo que condiciona toda la comparación posterior, pues de los diez escenarios ejecutados, solo cuatro producen un tiempo de detección, de modo que la campaña mide correctamente cuatro técnicas y deja las otras seis sin valor. La ausencia de medición no procede de una falla en la detección que opera desde el inicio y sí procede de una limitación del instrumental que la calcula, el cual no logra atribuir la detección a un señuelo concreto en seis de los diez casos.
-
-El segundo hallazgo de la línea base se refiere a la cadena de alertas, cuyo componente generador permanece inactivo durante la campaña y cuyas alertas no alcanzan el índice de búsqueda, de manera que los tableros de medición no reciben eventos. El síntoma visible consiste en la ausencia de datos en los tableros, mientras que la causa se sitúa en una capa anterior del instrumental, hecho que determina la naturaleza de las correcciones que la segunda vuelta aplica.
-
-### 4.4.4 Segunda vuelta del segundo prototipo
-
-La segunda vuelta opera tras aplicar las correcciones que la línea base genera y sus resultados constituyen la medición final de la metodología sobre el contexto del Servicio de Impuestos Nacionales. La Tabla 14 recoge los indicadores de esta vuelta con el mismo criterio de cálculo empleado en la línea base, lo que permite la comparación directa que el apartado siguiente desarrolla.
-
-Tabla 14
-
-*Indicadores de la medición final del segundo prototipo*
-
-|  |  |
-| --- | --- |
-| **Indicador** | **Valor** |
-| Fecha y hora del reporte | 2026-10-04T20:33:47Z |
-| Escenarios ejecutados | 10 |
-| Escenarios con tiempo de detección medido | 10 |
-| Ataques registrados por el señuelo | 254 |
-| Peticiones a la interfaz de servicios | 1 508 |
-| Conexiones capturadas por el emulador de acceso remoto | 38 |
-| Peticiones al portal del señuelo | 78 186 |
-| Tiempo medio de detección | 2,0219 s |
-| Percentil 95 de detección | 9,266 s |
-| Detección mínima | 0,0 s |
-| Detección máxima | 15,91 s |
-| Componentes que registran detección | 6 |
-| Archivos de evidencia | 91 |
-| Calidad de la evidencia | 100 de 100 |
-| Fases de ISO/IEC 27035 sustentadas | 1 de 5, equivalente al 20 % |
-| Lecciones aprendidas cerradas | 14 |
-
-*Nota.* El tiempo medio de esta vuelta se calcula sobre diez mediciones y, por esa razón, no se compara con el promedio de la línea base, que se obtiene sobre cuatro. El percentil 95 se calcula sobre el conjunto completo de diez valores. El valor de una de cinco fases de ISO/IEC 27035 proviene del verificador automático de la fase, a diferencia de la revisión manual de correspondencia que sostiene el valor de cinco de cinco del primer prototipo. Fuente: `evidencias/v2.1-it2/07-metricas/kpi_report.json`.
-
-La medición final cubre los diez escenarios de la campaña y cada uno recibe una fuente de detección identificable, entre las que figuran el emulador de acceso remoto, el portal del señuelo, la interfaz de servicios, el honeypot de ficheros y el sensor de nombres de dominio. La cobertura del marco de comportamiento adversario alcanza las diez técnicas y las seis tácticas que la campaña ejerce, lo que verifica que cada técnica del inventario de escenarios dispone de un componente que la registra.
-
-Los seis escenarios que la línea base deja sin medición recuperan una medición en la segunda vuelta, de manera que esa recuperación de la cobertura constituya el resultado central de esa vuelta y el indicador que mejor expresa el efecto de las correcciones. El tercer y el noveno escenario registran detección en el mismo instante en que se ejecutan, con cero segundos, mientras que el cuarto, el sexto, el séptimo, el octavo y el décimo resuelven su detección por debajo de un segundo. El primer escenario mantiene el valor más alto de la serie con 15,91 segundos y concentra la diferencia entre el percentil 95 de esta vuelta y el de la línea base.
-
-El intervalo que separa las dos vueltas asciende a cuatro horas con veintiséis minutos, de manera que la corrección del instrumental, la repetición de la campaña completa y la consolidación de sus resultados ocurren dentro de una misma jornada operativa. Este dato sostiene la viabilidad de la metodología, dado que un ciclo completo de medición y mejora cabe en una jornada de trabajo sin necesidad de un equipo externo y sin exigir recursos adicionales a la organización.
-
-### 4.4.5 Antes y después cuantificado
-
-La metodología se aplica dos veces sobre el mismo señuelo, de manera que la comparación que aquí se presenta enfrente la vuelta 1 y la vuelta 2 y ninguna otra combinación. La vuelta 1 se ejecuta a las 16:07 UTC del 4 de octubre de 2026, antes de aplicar corrección alguna, mientras que la vuelta 2 se ejecuta a las 20:33 UTC del mismo día, después de aplicar las catorce lecciones registradas. Como el señuelo ejecuta los mismos diez escenarios en las dos vueltas, la Tabla 15 separa los indicadores que cambian de los que se conservan, de manera que el conjunto constante actúe como control de la comparación. Los indicadores constantes constituyen el control que hace atribuible la diferencia a la corrección del instrumental, porque un cambio en el volumen de evidencia o en el catálogo de amenazas habría producido una comparación sin control.
-
-Tabla 15
-
-*Indicadores que cambian y indicadores que se conservan entre las dos vueltas*
+*Planos de resultado, indicadores declarados y fuentes de respaldo*
 
 |  |  |  |  |  |
 | --- | --- | --- | --- | --- |
-| **Indicador** | **Qué cuenta y su denominador** | **Línea base** | **Medición final** | **Diferencia** |
-| Escenarios con tiempo medido | Escenarios a los que el instrumental atribuye una detección, sobre los diez que ejecuta cada vuelta | 4 | 10 | +6 |
-| Componentes que registran detección | Componentes que dejan un registro legible por el operador, sobre los seis desplegados | 3 | 6 | +3 |
-| Técnicas con fuente de detección | Técnicas que un escenario activa y que reciben fuente, sobre las diez que ejerce la campaña | 4 | 10 | +6 |
-| Tácticas con fuente de detección | Tácticas del marco que cubren esas técnicas, sobre las seis que recorre la campaña | 3 | 6 | +3 |
-| Percentil 95 de detección | Percentil 95 de la distribución de los diez tiempos de cada vuelta | 14,583 s | 9,266 s | −5,317 s |
-| Lecciones registradas | Hallazgos anotados en el registro de la metodología a lo largo de las dos vueltas | 7 | 14 | +7 |
-| Lecciones resueltas | Hallazgos con una resolución documentada, por corrección o por mitigación, sobre las catorce registradas | 7 | 14 de 14 | +7 |
-| Escenarios ejecutados | Escenarios que la campaña lanza, sobre los diez programados | 10 | 10 | Constante |
-| Técnicas del inventario | Técnicas que el señuelo declara, sobre las diecisiete del inventario | 17 | 17 | Constante |
-| Archivos de evidencia | Archivos con huella criptográfica verificada, sobre los capturados | 91 | 91 | Constante |
-| Calidad de la evidencia | Archivos que superan la verificación de integridad, sobre los evaluados | 100 de 100 | 100 de 100 | Constante |
-| Fases de ISO/IEC 27035 sustentadas | Fases del ciclo que la campaña documenta, sobre las cinco de la metodología | 1 de 5 | 1 de 5 | Constante |
+| **Plano** | **Pregunta que responde** | **Indicador declarado** | **Resultado principal** | **Fuente y sección que lo sustenta** |
+| Cobertura de la medición | ¿Cuántos escenarios de la campaña cuentan con un tiempo registrado? | Porcentaje de escenarios con medición registrada (apartado 1.6) | 9 de 10 en el Prototipo 1; 4 de 10 en la primera vuelta y 10 de 10 en la medición final del Prototipo 2 | Reportes de indicadores de cada laboratorio (apartado 4.3.5.5) |
+| Rapidez de la detección | ¿Cuánto tarda la cadena en registrar el primer evento? | Tiempo medio de detección (apartado 2.1.1.3) | Media de 41,598 s sobre nueve mediciones en el Prototipo 1; en el Prototipo 2, el percentil 95 pasa de 14,58 s a 9,27 s y la media final es de 2,02 s | Reportes de indicadores y tablero del Prototipo 2 (apartados 4.3.5.5 y 4.3.6.6) |
+| Cobertura técnica | ¿Cuántas técnicas y tácticas de la campaña cuentan con una fuente de detección? | Índice ATT& (apartado 1.6) | Prototipo 1: 10 de 10 técnicas y 6 de 6 tácticas; primera vuelta del Prototipo 2: 4 de 10 técnicas y 3 de 6 tácticas; medición final: 10 de 10 técnicas y 6 de 6 tácticas | Reporte de cobertura (apartado 4.3.5.5) |
+| Custodia de la evidencia | ¿Qué resultado obtiene la medición de la custodia de la evidencia? | Subíndice de evidencia (apartado 1.6) | 100 sobre 100 en los tres momentos, verificado sobre la evidencia de cada escenario de la campaña | Reportes de indicadores y tablero del Prototipo 2 (apartados 4.3.5.5 y 4.3.6.6) |
+| Registro de correcciones | ¿Las limitaciones identificadas cuentan con una resolución documentada? | Subíndice de lecciones (apartado 1.6) | 3 lecciones en el Prototipo 1; 7 de 7 en la primera vuelta y 14 de 14 en la medición final del Prototipo 2 | Tablero de resultados del Prototipo 2 (apartado 4.3.6.6) |
 
-*Nota.* La segunda columna declara qué cuenta cada indicador y cuál es su denominador, de manera que la forma «10 de 10» se lee como un numerador sobre el total que la campaña ejecuta. La columna de diferencia expresa la variación absoluta entre las dos vueltas. Las cinco filas marcadas como constantes mantienen el mismo valor en ambas. Las catorce lecciones quedan resueltas, de las cuales once se cierran con una corrección aplicada al instrumental y las tres restantes con una mitigación documentada. Ese conjunto confirma que la campaña conserva su extensión y que el señuelo no recibe modificaciones entre iteraciones. El número de técnicas con fuente de detección se cuenta sobre el conjunto de técnicas que la campaña ejerce, mientras que el inventario de técnicas implementado en los escenarios permanece en diecisiete. El valor de una de cinco fases de ISO/IEC 27035 se lee en las dos vueltas con el verificador automático de la fase, de manera que su constancia refleje esa lectura y no la revisión manual de correspondencia que sostiene el primer prototipo. Fuente: reportes de indicadores de ambas iteraciones.
+*Nota.* Los indicadores proceden de la operacionalización de variables del apartado 1.6 y de la definición de MTTD del apartado 2.1.1.3. Las fuentes de información corresponden a los reportes de indicadores, el reporte de cobertura y los tableros descritos en los apartados 4.3.5.5 y 4.3.6.6. El Prototipo 1 registró tres lecciones durante su fase de medición, que el segundo prototipo incorporó a su diseño.
 
-La reducción del percentil 95 de 14,583 a 9,266 segundos constituye la mejora cuantificable más relevante de la medición, porque se calcula sobre el conjunto completo de valores y no sobre una selección de escenarios. La diferencia de 5,317 segundos expresa la mejora en la cola alta de la distribución del tiempo de detección, que es la región en la que un incidente permanece sin atender durante más tiempo. Los cinco indicadores constantes que acompañan a esta reducción confirman que el cambio proviene de la reparación del instrumental y no de una modificación del activo expuesto, de manera que la mejora observada se atribuya a la corrección aplicada.
+Los indicadores de la Tabla 1 no comparten una misma unidad de medida, por lo que sus resultados deben interpretarse de forma independiente y no pueden resumirse en un único valor. El tiempo medio de detección se expresa en segundos y permite examinar la rapidez con la que se registra el primer evento, mientras que el Índice ATT& representa la cobertura de las técnicas y tácticas de la campaña mediante fuentes de detección. El subíndice de evidencia mide la condición de la evidencia conforme al criterio definido para ese indicador, mientras que el subíndice de lecciones refleja el estado de las correcciones documentadas. Por tanto, un resultado del 100 % en uno de estos indicadores no implica que los demás alcancen el mismo nivel ni que todas las actividades se detecten con idéntica rapidez.
 
-Figura 57
+Para examinar con mayor detalle la cobertura alcanzada en los tres momentos, la Tabla 2 presenta las cantidades registradas y las proporciones correspondientes a los escenarios, las técnicas y las tácticas de la campaña. Estos tres indicadores comparten una estructura de cálculo basada en la relación entre los elementos que cumplen una condición y el total previsto para cada categoría, que asciende a diez escenarios, diez técnicas y seis tácticas. Los indicadores de evidencia y de lecciones conservan sus propios denominadores, por lo que se presentan por separado y no se incorporan al cálculo de las proporciones de cobertura representadas en la figura.
 
-*Comparación de los indicadores de la línea base y de la medición final*
+***Tabla 2***
 
-![](data:image/png;base64...)
+*Indicadores de cobertura y resultados de la evidencia y las lecciones en los tres momentos medidos*
 
-*Nota.* Los doce indicadores de la comparación se presentan en dos columnas que corresponden a las dos vueltas de la campaña. La separación entre indicadores que cambian e indicadores constantes expressa el control que hace atribuible la diferencia a la corrección del instrumental. Elaboración propia a partir de los reportes de indicadores de ambas iteraciones.
+| **Indicador** | **Denominador** | **Prototipo 1** | **Prototipo 2 · vuelta 1** | **Prototipo 2 · medición final** |
+| --- | --- | --- | --- | --- |
+| Escenarios con tiempo de detección registrado | 10 escenarios | 9 de 10 · 90 % | 4 de 10 · 40 % | 10 de 10 · 100 % |
+| Técnicas de la campaña con fuente de detección | 10 técnicas | 10 de 10 · 100 % | 4 de 10 · 40 % | 10 de 10 · 100 % |
+| Tácticas con fuente de detección | 6 tácticas | 6 de 6 · 100 % | 3 de 6 · 50 % | 6 de 6 · 100 % |
+| Calidad de la evidencia por escenario | Puntuación sobre 100 | 100 de 100 | 100 de 100 | 100 de 100 |
+| Lecciones registradas y resueltas | Hallazgos de la aplicación | 3 | 7 de 7 | 14 de 14 |
 
-La comparación escenario por escenario, que la Tabla 9 del apartado 4.3 presenta con los valores de origen, muestra reducciones que van de 5,6 % en el reconocimiento activo a 75,2 % en el abuso de la interfaz de servicios. Los cuatro escenarios conservan el mismo número de muestras en las dos vueltas, de manera que la reducción resulta atribuible a la corrección aplicada y no a una variación en la composición de la campaña. El patrón de esas reducciones es consistente con la naturaleza del cambio, porque la mayor mejora se produce en el escenario cuyo instrumento de atribución pasa a leer tres variantes de clave.
+*Nota.* Las proporciones de cobertura se calculan dividiendo la cantidad de elementos que cumplen la condición entre el total previsto para cada categoría. La calidad de la evidencia es una lista de cotejo de cuatro condiciones verificadas en la carpeta de evidencia de cada escenario: la presencia de un archivo de huella o de un registro de texto, las marcas de tiempo de inicio y de fin, el identificador de la técnica que ejerce el escenario y el archivo de resultados. El tablero del Prototipo 2 declara la misma puntuación sin publicar el detalle por condición. Los indicadores de evidencia y de lecciones no se interpretan como proporciones de escenarios, técnicas o tácticas. La información procede de los reportes de indicadores, el reporte de cobertura y los tableros descritos en los apartados 4.3.5.5 y 4.3.6.6.
 
-La caída del tiempo medio, de 5,2155 a 2,0219 segundos, requiere una lectura específica porque su número de muestras cambia de cuatro a diez, de manera que el descenso aparente no se lea como una aceleración sobre los mismos escenarios. Ese promedio baja porque la segunda vuelta incorpora seis escenarios nuevos cuyo tiempo de detección se sitúa por debajo del segundo, no porque los escenarios originalmente medidos se hayan ralentizado. Por esa razón el capítulo no utiliza ese promedio como base de comparación y declara aquí el hecho para que la lectura no lo confunda con una mejora de la detección en los escenarios originalmente medidos.
+Los resultados de la Tabla 2 permiten precisar qué significa alcanzar el 100 % en cada indicador de cobertura, porque un valor completo no describe por sí solo lo que mide el laboratorio. En el Prototipo 1, las diez técnicas y las seis tácticas cuentan con fuentes de detección, aunque solo nueve de los diez escenarios tienen un tiempo registrado, de manera que la cobertura de técnicas y tácticas alcanza el 100 % mientras que la cobertura de escenarios llega al 90 %. Esta diferencia muestra que disponer de fuentes asignadas a todas las técnicas y tácticas no garantiza que todos los escenarios produzcan una medición temporal durante la ejecución de la campaña.
 
-### 4.4.6 Aportación de cada fase y trazabilidad de las brechas
+En la primera vuelta del Prototipo 2, los tres indicadores de cobertura presentan valores inferiores a los del Prototipo 1, ya que solo cuatro de los diez escenarios cuentan con tiempo registrado, cuatro de las diez técnicas disponen de una fuente de detección y tres de las seis tácticas tienen una fuente asignada. En la medición final, los tres indicadores alcanzan el 100 %, porque los diez escenarios cuentan con tiempos registrados, las diez técnicas tienen fuentes de detección y las seis tácticas disponen de fuentes asignadas. En este caso, el 100 % expresa el cumplimiento completo de la condición definida para cada indicador, no una detección instantánea de todas las actividades ni la ausencia de limitaciones en los tiempos de respuesta.
 
-El resultado del segundo prototipo no proviene de una fase única y proviene de la operación articulada de las cinco fases de la metodología, de manera que la explicación del resultado sea trazable fase por fase. La Tabla 16 asigna a cada fase lo que aporta al resultado final y el indicador que lo verifica, con lo que la aportación de cada una queda anclada en un valor comprobable.
+La calidad de la evidencia alcanza 100 sobre 100 en los tres momentos medidos porque responde a una lista de cotejo aplicada a la carpeta de evidencia de cada escenario. La lista exige cuatro condiciones, que son un archivo de huella o un registro de texto, las marcas de tiempo de inicio y de fin, el identificador de la técnica que ejerce el escenario y el archivo de resultados. Los diez escenarios del Prototipo 1 cumplen las cuatro condiciones, mientras que el tablero del Prototipo 2 declara la misma puntuación en sus dos vueltas sin publicar el detalle de cada una. Un valor de 100 sobre 100 en este indicador no significa que todos los ataques se hayan detectado ni que todos los tiempos hayan sido cortos, porque su denominador es el escenario y no el evento.
 
-Tabla 16
+En cuanto a las lecciones aprendidas, el Prototipo 1 registra tres durante su fase de medición, mientras que el Prototipo 2 pasa de siete en la primera vuelta a catorce en la medición final. En las dos vueltas del segundo laboratorio coinciden las lecciones registradas y las resueltas, de manera que esa acumulación refleje el ciclo de corrección aplicado sin constituir una proporción de cobertura de la campaña. De esta forma, la tabla distingue entre los indicadores que miden la cobertura técnica y aquellos que describen la evidencia conservada y el aprendizaje registrado durante la aplicación de los dos prototipos.
 
-*Aportación de cada fase de la metodología al resultado final con su indicador verificado*
+La Figura 1 reúne los seis indicadores principales en un panel de tarjetas con los valores de cada momento medido, con el propósito de mostrar la evolución de la cobertura, el tiempo y el registro de aprendizaje sobre los dos prototipos. La inspección visual muestra que los tres momentos presentan patrones distintos según la dimensión observada, con valores más altos en el Prototipo 2 · final sobre la cobertura de escenarios, técnicas y tácticas.
 
-|  |  |  |  |
-| --- | --- | --- | --- |
-| **Fase** | **Qué aporta** | **Indicador verificado** | **Valor** |
-| 1 · Diseño del señuelo | Construye el activo que se mide, un portal tributario con acceso en dos pasos y un escenario por técnica, de manera que la campaña tenga un denominador fijo de diez escenarios | Escenarios ejecutados | 10 de 10 |
-| 2 · Despliegue aislado | Aísla y segmenta el señuelo en tres zonas y verifica el aislamiento desde el propio contenedor atacante, de manera que se pueda demostrar qué queda alcanzable desde fuera | Objetivos alcanzables desde el atacante | 2 de 6 |
-| 3 · Captura y custodia | Repara el instrumental de atribución, que es lo que impedía medir. Acepta las tres formas en que un escenario declara su objetivo y añade el archivo señuelo y el sensor de red como fuentes, de manera que los seis escenarios que antes no producían medición ahora la producen | Escenarios con medición | 10 de 10 |
-| 4 · Correlación | Convierte cada evento capturado en una alerta clasificada con su técnica y su severidad, de manera que el tiempo medido sea el del ciclo completo de gestión y no el de un registro suelto | Alertas clasificadas | 10 de 10 |
-| 5 · Medición y mejora | Compara las dos vueltas, registra cada discrepancia con su causa raíz y aplica la corrección antes de la segunda vuelta, de manera que un fallo observado quede convertido en un cambio verificado | Lecciones resueltas | 14 de 14 |
+***Figura 1***
 
-*Nota.* La fase 3 concentra la mejora cuantificable porque repara el instrumental de atribución. La fase 5 sostiene ese resultado, ya que produce las lecciones que dieron origen a las reparaciones. Elaboración propia a partir del registro de lecciones aprendidas.
+*Panel con los seis indicadores principales del estudio en los tres momentos medidos, presentado en seis tarjetas que exponen los valores de cobertura de escenarios, técnicas y tácticas, tiempo medio de detección, percentil 95 de detección y lecciones registradas. La fila inferior de cada tarjeta, resaltada en verde, recoge los valores del Prototipo 2 en su medición final y deja a la vista el cierre del ciclo de corrección aplicado al laboratorio del SIN.*
 
-La cadena causal que sostiene el resultado se expone en el orden en que ocurre, de modo que la fase de medición produce catorce lecciones registradas, la fase de captura aplica las reparaciones del instrumental de atribución y la medición posterior confirma el efecto sobre los diez escenarios de la campaña. Esa secuencia explica por qué el resultado es atribuible a la metodología y no al azar de una segunda ejecución, dado que cada reparación corresponde a un hallazgo documentado y verificado.
+![Panel de seis tarjetas con los indicadores principales del estudio en los tres momentos medidos: cobertura de escenarios, cobertura de técnicas, cobertura de tácticas, tiempo medio de detección, percentil 95 de detección y lecciones registradas. Cada tarjeta presenta los valores del Prototipo 1, del Prototipo 2 vuelta 1 y del Prototipo 2 medición final.](data:image/png;base64...)
 
-Tabla 17
+La Figura 2 sintetiza la cobertura alcanzada en cada categoría del marco y cada momento del estudio mediante un mapa de calor, con el propósito de presentar de un vistazo los saltos entre la primera vuelta y la medición final del Prototipo 2. La inspección visual muestra que la celda con menor proporción (40 % de cobertura de escenarios en la primera vuelta del Prototipo 2) contrasta con las seis celdas que alcanzan el 100 % en los otros momentos del estudio.
 
-*Distribución de las catorce lecciones aprendidas según la fase que las produjo*
+***Figura 2***
 
-|  |  |  |
+*Mapa de calor con la cobertura declarada para los indicadores de escenarios, técnicas y tácticas en los tres momentos del estudio, con una escala de tres niveles que distingue los valores completos de los inferiores al 100 %. La celda con menor proporción corresponde a la primera vuelta del Prototipo 2, mientras que las seis celdas restantes alcanzan el 100 % y confirman la convergencia tras el ciclo de corrección aplicado al laboratorio del SIN.*
+
+![Mapa de calor con la cobertura alcanzada por los indicadores de escenarios, técnicas y tácticas en los tres momentos medidos. Las celdas más intensas corresponden a 100 % y la menos intensa a 40 % de cobertura en la primera vuelta del Prototipo 2.](data:image/png;base64...)
+
+Los resultados de la Figura 2 muestran que la cobertura declarada no evoluciona de manera uniforme entre los tres indicadores en cada momento del estudio; varía en función del comportamiento de la cadena y de la completitud del catálogo de fuentes configurado en cada vuelta de la campaña. La Figura 3 complementa este mapa al ofrecer una vista comparativa de los tres indicadores en una escala porcentual compartida, lo que ayuda a situar el salto entre los momentos del Prototipo 2 sobre la misma referencia numérica.
+
+***Figura 3***
+
+*Indicadores de cobertura en los tres momentos medidos: escenarios con tiempo de detección registrado, técnicas con fuente de detección y tácticas con fuente de detección. Cada barra representa la proporción de elementos previstos de la campaña que cuentan con una fuente de detección o con una medición registrada. La calidad de la evidencia y el registro de lecciones se declaran en la Tabla 2 con su propio denominador.*
+
+![Indicadores de cobertura en los tres momentos medidos. Cada indicador presenta una barra para el Prototipo 1 y dos barras agrupadas bajo el Prototipo 2, correspondientes a la vuelta 1 y a la medicion final.](data:image/png;base64...)
+
+La Figura 3 representa únicamente los tres indicadores de cobertura de escenarios, técnicas y tácticas, ya que comparten una escala porcentual y permiten comparar el cumplimiento de condiciones definidas sobre los totales previstos de la campaña. La calidad de la evidencia y el registro de lecciones no aparecen en el gráfico porque se calculan sobre archivos y lecciones, cuyos denominadores no corresponden a los elementos representados en las barras, de manera que la separación evite que indicadores de distinta naturaleza se presenten como si midieran la misma condición.
+
+La escala del gráfico llega al 100 % porque ese valor representa el cumplimiento total de la condición definida para cada indicador, de manera que una cobertura de escenarios del 100 % signifique que los diez escenarios cuentan con un tiempo registrado. Una barra de técnicas que alcanza el 100 % indica que las diez técnicas de la campaña cuentan con una fuente de detección, mientras que una barra de tácticas en el mismo nivel indica que las seis tácticas tienen una fuente asignada. Estos resultados describen la cobertura alcanzada, aunque no indican por sí mismos cuánto tarda la detección ni garantizan que todos los eventos lleguen a registrarse dentro del primer segundo de ejecución.
+
+La comparación visual muestra que el Prototipo 1 alcanza el 90 % de cobertura de escenarios y el 100 % en técnicas y tácticas, mientras que en la primera vuelta del Prototipo 2 ningún indicador de cobertura supera el 50 %. En la medición final del segundo prototipo las tres barras llegan al 100 %, lo que indica que se cumplen las condiciones de cobertura establecidas para las tres categorías de la campaña. La evolución entre las dos vueltas del Prototipo 2 coincide con la ampliación de los escenarios medidos y con el incremento de las técnicas y tácticas que disponen de fuentes de detección.
+
+La diferencia entre la primera vuelta y la medición final del Prototipo 2 debe interpretarse como un cambio en la cobertura registrada durante el proceso de corrección, no como una comparación aislada de la velocidad de detección. Entre ambas mediciones, los escenarios con tiempo registrado aumentan de cuatro a diez, las técnicas con fuente de detección pasan de cuatro a diez y las tácticas con fuente asignada aumentan de tres a seis. Además, las lecciones con resolución documentada pasan de siete a catorce, mientras que la puntuación de calidad de la evidencia permanece en 100 sobre 100, de manera que estos resultados muestren cambios en la cobertura y en el registro de las correcciones junto con la conservación de la puntuación declarada para la evidencia.
+
+La rapidez de detección se analiza de manera complementaria, mediante los tiempos expresados en segundos y los estadísticos de cada ejecución, que aportan información sobre el comportamiento temporal de la cadena de detección y no se obtiene únicamente de las barras de cobertura. En el Prototipo 1, la media de detección es de 41,598 segundos sobre nueve mediciones; en el Prototipo 2, el percentil 95 disminuye de 14,58 a 9,27 segundos entre la primera vuelta y la medición final, mientras que la media final alcanza 2,02 segundos. Por ello, el resultado global de la metodología se interpreta a partir del conjunto de indicadores, manteniendo diferenciadas la cobertura de los elementos previstos, la rapidez de detección, la puntuación de la evidencia y la resolución documentada de las lecciones aprendidas.
+
+### 4.4.2 Resultados del primer prototipo en el TaxFisco Research Lab
+
+La aplicación del primer prototipo de la metodología se realiza en el TaxFisco Research Lab mediante una campaña de diez escenarios ejecutados en un entorno controlado (diseño del prototipo descrito en el capítulo 3, operacionalización en el capítulo 4), con el propósito de examinar el funcionamiento de la cadena de detección sobre un conjunto definido de actividades simuladas. El análisis de los tiempos, la cobertura técnica, la correspondencia normativa y las lecciones aprendidas describe cómo responde el prototipo ante estas actividades, así como la organización de la información generada durante su ejecución.
+
+De los diez escenarios ejecutados, nueve cuentan con un tiempo de detección registrado sobre los cuales se calculan los indicadores temporales, mientras que los resultados de cobertura, correspondencia normativa y lecciones se declaran según sus respectivos registros. De esta manera, cada resultado se interpreta en función de la información que representa y contribuye a caracterizar el funcionamiento del primer prototipo, con lo que se consolida una primera lectura del desempeño del laboratorio.
+
+La Tabla 3 presenta los indicadores obtenidos durante esta primera aplicación y especifica el reporte de origen de cada dato, lo que permite mantener la relación entre los resultados y los registros generados por el laboratorio. El promedio de detección es de 41,598 segundos, con un valor mínimo de 0,141 segundos y un máximo de 260,108 segundos; además, siete de las nueve mediciones se encuentran por debajo de un minuto. En cuanto a la cobertura técnica, el inventario comprende diecisiete técnicas (técnicas del marco MITRE ATT&CK, capítulo 1, sección 1.3.5) y el reporte declara diez técnicas detectadas, distribuidas en seis tácticas del mismo marco. La correspondencia normativa registra las cinco fases de ISO/IEC 27035-1 de 2023 (capítulo 1, sección 1.3.2) y la aplicación recoge tres lecciones aprendidas, que corresponden a la fase cinco del ciclo de gestión de incidentes considerado por la norma.
+
+Estos indicadores permiten examinar el prototipo desde diferentes perspectivas, con los tiempos mostrando la rapidez con la que se registra el primer evento, la cobertura identificando el alcance técnico declarado, la correspondencia normativa relacionando los componentes con las fases de gestión de incidentes y las lecciones aprendidas documentando los hallazgos durante las pruebas. En conjunto, los datos ofrecen una visión completa del funcionamiento del prototipo sobre el entorno controlado y constituyen la referencia para analizar los resultados de las siguientes aplicaciones de la metodología.
+
+***Tabla 3***
+
+*Indicadores del primer prototipo con su archivo de origen*
+
+| **Indicador** | **Valor** | **Origen** |
 | --- | --- | --- |
-| **Fase** | **Lecciones** | **Identificadores** |
-| 2 · Despliegue aislado | 5 | L3, L7, L10, L12, L13 |
-| 3 · Captura, enriquecimiento y custodia | 5 | L1, L2, L4, L8, L14 |
-| 4 · Correlación con gestión de incidentes | 1 | L9 |
-| 5 · Medición y lecciones aprendidas | 3 | L5, L6, L11 |
+| Escenarios con tiempo de detección registrado | 9 de 10 | Reporte de indicadores |
+| Tiempo medio de detección | 41,598 s sobre 9 mediciones | Reporte de indicadores |
+| Valor mínimo de detección | 0,141 s | Reporte de indicadores |
+| Valor máximo de detección | 260,108 s | Reporte de indicadores |
+| Mediciones por debajo del minuto | 7 de 9 | Reporte de indicadores |
+| Técnicas implementadas | 17 | Reporte de cobertura |
+| Técnicas detectadas | 10 de 10 | Reporte de cobertura |
+| Tácticas cubiertas | 6 de 6 | Reporte de cobertura |
+| Fases de ISO/IEC 27035 sustentadas | 5 de 5 | Reporte de correspondencia normativa |
+| Lecciones aprendidas | 3 | Registro de la fase de medición |
 
-*Nota.* La fase de diseño del señuelo no registra lecciones, lo que explica que ninguna lección se le atribuya. El total de la tabla suma catorce lecciones registradas y resueltas, de las cuales once se cierran con su causa raíz identificada y su corrección aplicada, mientras que las tres restantes, L8, L9 y L10, se resuelven con una mitigación documentada porque su causa raíz está fuera del segmento que controla la metodología. Fuente: `evidencias/lecciones-aprendidas.md`.
+*Nota.* El tiempo de detección se calcula desde el inicio del escenario hasta el registro del primer evento asociado con la actividad ejecutada. Este indicador se refiere a la detección y no incluye el tiempo destinado a la resolución del incidente. Los valores se presentan de acuerdo con los reportes originales del laboratorio.
 
-La trazabilidad enlaza cada una de las seis brechas del diagnóstico institucional con la fase de la metodología que la atiende y con el indicador de archivo que la confirma. La Tabla 18 recorre esa correspondencia y muestra que ninguna de las seis brechas queda sin una fase asignada y sin un indicador verificable, de manera que la atención metodológica de cada brecha tenga respaldo comprobable.
+**Análisis de los tiempos de detección**
 
-Tabla 18
+El tiempo medio de detección (MTTD, operacionalizado en el capítulo 4) obtenido en el primer prototipo del TaxFisco Research Lab es de 41,598 segundos, calculado sobre las nueve mediciones disponibles en el reporte del laboratorio al cierre de la campaña. Este resultado se comprende mejor al observar la distribución de las nueve mediciones, con valores entre 0,141 y 260,108 segundos; cinco escenarios presentan tiempos inferiores a un segundo, mientras otros dos registran 85,000 y 260,108 segundos, respectivamente. Estos dos últimos resultados elevan el promedio general, de modo que la media representa el comportamiento conjunto de las mediciones pero no describe por sí sola la rapidez alcanzada en cada escenario. La cadena puede registrar determinados eventos en fracciones de segundo y, en otros casos, el primer registro aparece después de un intervalo más prolongado, por lo que la interpretación del desempeño temporal considera tanto el promedio como los valores individuales para una descripción más precisa de la respuesta observada durante la campaña.
 
-*Trazabilidad de las seis brechas del diagnóstico con la fase que las atiende y el indicador que las verifica*
+La Figura 4 presenta los tiempos de detección de los nueve escenarios con medición, ordenados de menor a mayor mediante un gráfico de barras horizontales, con el propósito de identificar la concentración de resultados inferiores a un minuto y distinguir los dos escenarios con tiempos superiores a ese intervalo. El rango observado se extiende desde 0,141 segundos del extremo inferior del eje, que corresponde al escenario más breve, hasta 260,108 segundos del extremo superior, ocupado por S04, mientras S03 se sitúa en 85,000 segundos en la franja previa del mismo eje. La inspección visual de las barras muestra una distribución no uniforme, con valores concentrados en intervalos breves del eje y dos valores más elevados que prolongan la duración total del conjunto medido al desplazarlo hacia arriba en el lado derecho.
 
-|  |  |  |  |
+***Figura 4***
+
+Distribución de los tiempos de detección registrados en los nueve escenarios con medición del Prototipo 1 del TaxFisco Research Lab, ordenados de menor a mayor duración para distinguir los escenarios por debajo del minuto de los dos escenarios de larga duración que prolongan la media declarada. El eje se expresa en segundos, con marcas de referencia cada 70 s hasta el valor máximo de 260,108 s.
+
+![Gráfico de barras horizontales con los tiempos de detección registrados en nueve escenarios del Prototipo 1 del TaxFisco Research Lab. Siete escenarios se sitúan por debajo del minuto, con marcas que van de 0,141 s a 16,405 s, y dos escenarios muestran valores de larga duración de 85,000 s y 260,108 s. El eje temporal llega hasta 280 s.](data:image/png;base64...)
+
+La inspección visual confirma que siete de los nueve valores se sitúan por debajo del minuto, con marcas comprendidas entre 0,141 s y 16,405 s, mientras los dos escenarios restantes elevan el conjunto; S03 aporta 85,000 s y S04 alcanza 260,108 s, en ese orden ascendente, lo que termina de caracterizar una dispersión heterogénea. La mayoría de las mediciones se sitúa en el orden de las décimas o los pocos segundos, con solo dos escenarios alejados hacia los minutos prolongados, comportamiento que justifica la lectura por orden de magnitud ofrecida en la Figura 5.
+
+La Figura 5 agrupa los nueve tiempos registrados en cuatro bandas de magnitud, con el propósito de examinar dónde se concentran las detecciones por debajo del segundo y por encima del minuto, para describir el peso de cada intervalo en el cálculo del promedio. La inspección visual confirma que cinco de las nueve mediciones se resuelven por debajo del segundo, dos entre uno y treinta segundos, dos por encima del minuto, con una sola banda vacía entre treinta y sesenta segundos. Estos conteos explican la asimetría de la media declarada y refuerzan la lectura por orden de magnitud de los tiempos, ya mostrada en la Figura 4 con la distribución individual del conjunto.
+
+***Figura 5***
+
+Frecuencia de escenarios del Prototipo 1 por banda de tiempo de detección declarada, con cuatro rangos de magnitud que cubren desde décimas de segundo hasta los pocos minutos de los escenarios largos. La banda central entre 30 y 60 segundos queda vacía, mientras que la mayor concentración se sitúa por debajo del segundo.
+
+![Histograma de frecuencias del MTTD en los nueve escenarios del Prototipo 1. Cinco mediciones se sitúan por debajo de un segundo, dos entre uno y treinta segundos, ninguna entre treinta y sesenta segundos, dos por encima de sesenta segundos.](data:image/png;base64...)
+
+La Figura 6 compara la duración registrada de cada escenario con su tiempo de detección, con el propósito de examinar la relación entre el intervalo de ejecución de las actividades simuladas y el momento en que se registra su primer evento. Para visualizar los valores que van desde las décimas de segundo del extremo inferior hasta los varios minutos del extremo superior del eje, la figura recurre a una escala logarítmica en el eje vertical. Según los registros representados, el MTTD se sitúa dentro de la duración del escenario en S01 y S04, mientras que en S03 y S09 el tiempo de detección supera la duración registrada. Los demás escenarios presentan una duración igual a cero en los datos disponibles, por lo que se muestran sin una referencia temporal positiva para la misma comparación; S10 aparece sin evento de detección registrado.
+
+***Figura 6***
+
+Duración del escenario y tiempo medio de detección por escenario del Prototipo 1, representados en escala logarítmica para mantener la legibilidad entre los valores subsegundo del S05 y el intervalo superior a las dos horas del S04. Los puntos azules muestran el MTTD declarado, los verdes muestran la duración real del escenario y los cuadros ámbar marcan los escenarios con duración registrada igual a cero.
+
+![Comparación entre la duración del escenario y el MTTD en segundos para los diez escenarios del Prototipo 1, representados en escala logarítmica. La detección ocurre dentro del intervalo del ataque en S01 y S04, lo supera en S03 y S09, y los demás escenarios tienen duración registrada igual a cero sin referencia temporal comparable.](data:image/png;base64...)
+
+Esta representación permite interpretar conjuntamente las mediciones temporales y distinguir la duración de las actividades ejecutadas del tiempo que transcurre hasta que la cadena registra el primer evento de cada escenario. Las Figuras 4, 5 y 6 ofrecen en conjunto tres perspectivas complementarias sobre los resultados temporales del primer prototipo, todas ellas integradas para describir la magnitud individual de cada valor, la frecuencia de los tiempos por intervalos de orden de magnitud y la ubicación temporal del registro del primer evento en escala logarítmica. Cinco de las nueve detecciones se producen en menos de un segundo y otras dos mediciones se encuentran entre uno y treinta segundos, con la mayoría de los valores del conjunto situada por debajo de los treinta segundos. Los escenarios S03 y S04 se alejan hacia los minutos prolongados e influyen de manera determinante sobre la media declarada del prototipo, por lo que deben leerse como referencia al interpretar los valores agregados.
+
+**Cobertura de las técnicas y tácticas de MITRE ATT&CK**
+
+La interpretación de la cobertura técnica examina las técnicas contempladas en la campaña y su relación con las tácticas de MITRE ATT&CK (capítulo 1, sección 1.3.5), lo que permite ubicar cada técnica en el marco de comportamiento adversario correspondiente. El inventario del laboratorio del TaxFisco Research Lab comprende diecisiete técnicas (técnicas acotadas además por el requisito RF-6 del capítulo 3, sección 3.1.1) en el conjunto del marco de comportamiento adversario, de las cuales diez forman parte de los escenarios ejecutados en la presente medición. La Figura 7 organiza estas diez técnicas según la táctica correspondiente al marco y presenta, para cada grupo, la cantidad de técnicas con detección registrada en el reporte de cobertura. Esta distribución permite observar cómo se relacionan las actividades simuladas con los registros obtenidos por los componentes de instrumentación, con la cobertura refiriéndose a las técnicas representadas en la campaña, mientras que los indicadores temporales describen cuándo se registra el primer evento de cada actividad.
+
+***Figura 7***
+
+Distribución de las diez técnicas de la campaña del Prototipo 1 según la táctica de MITRE ATT&CK a la que pertenecen, con la cobertura de detección declarada en cada táctica. Las seis tácticas de la campaña presentan cobertura completa de las técnicas que las integran, de manera que el reporte de cobertura declara diez técnicas detectadas repartidas entre seis tácticas.
+
+![Distribución de las diez técnicas de la campaña por la táctica de MITRE ATT&CK a la que pertenecen. Las seis tácticas de la campaña presentan cobertura completa de las técnicas que las integran, de manera que el reporte de cobertura declara diez técnicas detectadas repartidas entre seis tácticas.](data:image/png;base64...)
+
+La Figura 8 distribuye los nueve MTTD declarados por la fuente de instrumentación que registra el primer evento, con el propósito de comparar el comportamiento de cada componente de captura sobre los escenarios que le corresponden. La inspección visual muestra que decoy-api (decoy-api-tributaria, descrita en la arquitectura de contenedores del capítulo 3, sección 3.5) absorbe los escenarios más extensos del eje y los más breves próximos al umbral inferior, mientras cowrie (capítulo 2, sección 2.2.2) y decoy-portal (decoy-portal-tributario, capítulo 3, sección 3.5) registran los restantes en valores intermedios del orden de los segundos.
+
+***Figura 8***
+
+Distribución de los nueve tiempos medios de detección declarados en el Prototipo 1 según la fuente de instrumentación que registró el primer evento, representados en escala logarítmica para mantener visibles tanto los valores subsegundo como el escenario extenso S04. decoy-api absorbe los escenarios más extensos del eje y los más breves próximos al umbral inferior, mientras cowrie y decoy-portal registran los restantes en valores intermedios del orden de los segundos.
+
+![Tiempo medio de detección declarado por fuente de instrumentación, en escala logarítmica. decoy-api absorbe los escenarios más extensos del eje y los más breves próximos al umbral inferior, mientras cowrie y decoy-portal registran los restantes en valores intermedios del orden de los segundos.](data:image/png;base64...)
+
+La inspección visual muestra que las seis tácticas de la campaña presentan detección para todas las técnicas que les corresponden, de manera que la cobertura declarada por el reporte alcanza las diez técnicas repartidas entre seis tácticas y coincide con el indicador global de la Tabla 3. Esta organización permite identificar el comportamiento de la cobertura por táctica en la campaña y observar que ninguna de las técnicas que la integran queda sin una cobertura declarada en el reporte del laboratorio. La atribución temporal de un primer evento constituye un registro distinto, porque el escenario de exfiltración por nombres no produce tiempo de detección en el primer laboratorio, como muestran la Figura 6 y la Figura 8. Esa diferencia entre la cobertura declarada y la atribución instrumentada delimita la deficiencia concreta que el segundo laboratorio corrige, porque la incorporación de su sensor de red permite que el escenario de exfiltración por nombres alcance un tiempo de detección en la medición final.
+
+La Figura 8 distribuye los MTTD declarados según la fuente de instrumentación que registra el primer evento, con el propósito de relacionar las mediciones con los componentes que participaron en la captura de las actividades simuladas. Los nueve tiempos declarados se reparten entre decoy-portal, las variantes de decoy-api y cowrie; se representan mediante escala logarítmica para facilitar la observación simultánea de valores muy diferentes en una misma figura. La inspección visual confirma que decoy-api aparece asociado tanto con tiempos inferiores al segundo como con algunos de los valores más prolongados, mientras que cowrie y decoy-portal registran los restantes en valores intermedios del orden de los segundos.
+
+La lectura conjunta de las Figuras 7 y 8 permite relacionar la cobertura técnica declarada con las fuentes de instrumentación que registran los eventos en la campaña del primer prototipo. La primera organiza las técnicas por táctica y muestra la distribución de la detección declarada; la segunda relaciona los tiempos medidos con los componentes de instrumentación que generaron el primer registro. De este modo, la revisión integra el alcance técnico de la campaña con el comportamiento temporal de los componentes y describe qué técnicas aparecen asociadas con detecciones registradas y qué fuentes participan en esos registros.
+
+**Correspondencia normativa y lecciones aprendidas**
+
+La correspondencia normativa documenta la relación entre los componentes del laboratorio del TaxFisco Research Lab y las cinco fases del ciclo de gestión de incidentes consideradas en la norma ISO/IEC 27035-1 de 2023 (capítulo 1, sección 1.3.2). El reporte de correspondencia normativa documenta evidencia de laboratorio para las cinco fases y las registra como sustentadas, lo que permite describir la estructura de la implementación del laboratorio en relación con el proceso de gestión de incidentes de la norma. Este resultado complementa los indicadores temporales y de cobertura, ya que muestra cómo se organiza la metodología respecto de las fases normativas, lo que permite examinar la integración conceptual de los componentes que participan en la captura y el tratamiento de los eventos. La interpretación se basa en la correspondencia documentada por el laboratorio del TaxFisco Research Lab y se integra con los resultados de las pruebas para ofrecer una visión conjunta del primer prototipo en su conjunto.
+
+Durante la fase de medición se registran tres lecciones aprendidas, correspondientes a la fase cinco del ciclo de gestión de incidentes definido por la norma ISO/IEC 27035-1 de 2023 (capítulo 1, sección 1.3.2). Estas recogen los hallazgos identificados durante la aplicación de la metodología y sirven como referencia para preparar el segundo laboratorio, con apartados dedicados a la revisión de la cadena de captura, la conservación de la trazabilidad de los incidentes y la organización de los indicadores. Su registro permite trasladar los hallazgos de la primera aplicación al proceso de ajuste del prototipo siguiente, con modificaciones concretas vinculadas a las observaciones obtenidas durante la ejecución de la campaña. La evolución entre prototipos se examina posteriormente mediante la comparación de los escenarios ejecutados, las fuentes de detección utilizadas, los tiempos registrados y las lecciones aprendidas incorporadas al ciclo siguiente.
+
+**Síntesis de los resultados del primer prototipo**
+
+Los resultados obtenidos en el TaxFisco Research Lab proporcionan una primera caracterización del funcionamiento de la metodología sobre un entorno controlado y constituyen la línea de base para la comparación posterior con el segundo prototipo. De los diez escenarios ejecutados en la campaña del primer prototipo, nueve cuentan con un tiempo de detección registrado y siete de esas mediciones son inferiores a un minuto en el reporte del laboratorio. El promedio declarado es de 41,598 segundos, con valores que oscilan entre 0,141 y 260,108 segundos; la distribución muestra cinco detecciones por debajo del segundo y dos escenarios con tiempos superiores a un minuto. La lectura conjunta de los indicadores y las figuras muestra que el comportamiento temporal varía entre escenarios, por lo que la media general debe interpretarse a partir de esa distribución. La organización de las técnicas por táctica y la identificación de las fuentes de instrumentación aportan información complementaria sobre el alcance de las detecciones declaradas y sobre los componentes que registran los primeros eventos.
+
+La revisión incorpora también la correspondencia documentada con las cinco fases de ISO/IEC 27035 y el registro de tres lecciones aprendidas, cuyos hallazgos sirven como referencia para el desarrollo del segundo prototipo. La cobertura técnica se presenta a partir de los reportes del laboratorio y del detalle representado en la Figura 7, que muestra la cobertura completa de las seis tácticas de la campaña, de manera que el gráfico y el indicador global de diez técnicas detectadas de diez de la Tabla 3 coinciden sin necesidad de contraste adicional. En conjunto, los resultados del primer prototipo establecen la referencia inicial para comparar la aplicación posterior de la metodología y analizar la evolución de los tiempos, la cobertura técnica y las lecciones aprendidas entre las dos implementaciones.
+
+### 4.4.3 Resultados del segundo prototipo en el laboratorio del Servicio de Impuestos Nacionales
+
+El segundo prototipo de la metodología se aplica en el laboratorio del Servicio de Impuestos Nacionales sobre la misma campaña de diez escenarios declarada en el capítulo 4 (operacionalización de variables). El ejercicio se organiza en una vuelta inicial sin correcciones y en una medición final con catorce lecciones aprendidas (fase cinco del ciclo de gestión de incidentes de ISO/IEC 27035-1 de 2023, capítulo 1, sección 1.3.2) aplicadas antes del cierre del laboratorio.
+
+El segundo laboratorio incorpora tres componentes respecto del primero, todos ellos declarados en la arquitectura de contenedores del capítulo 3 (sección 3.5), definidos como honeypots específicos de dominio (capítulo 2, sección 2.2.5) y caracterizados dentro de la familia general de honeypots descrita en el capítulo 1 (sección 1.2). Esos tres componentes corresponden a un emulador de acceso remoto, un archivo señuelo y un sensor de red, lo que amplía las fuentes de registro de tres en la vuelta inicial a seis en la medición final. Los diez escenarios y las diez técnicas activadas se conservan sin variación respecto del primer laboratorio; las tácticas recorridas se mantienen en seis, con lo que la diferencia entre vueltas refleja el trabajo de corrección aplicado y no un cambio de instrumentación.
+
+La Tabla 4 presenta los indicadores del segundo prototipo en la vuelta inicial y en la medición final, con el propósito de comparar el resultado del ciclo de iteración sobre los mismos diez escenarios. La cobertura temporal pasa del 40 % al 100 % de la campaña; el tiempo medio de detección baja de 5,2155 a 2,0219 segundos; el percentil 95 desciende de 14,583 a 9,266 segundos. Las técnicas con fuente de detección crecen del 40 % al 100 %; las tácticas con fuente suben del 50 % al 100 %; las lecciones aprendidas registradas se duplican de siete a catorce. Los archivos con huella verificada y la calidad de la custodia se mantienen en 91 archivos y en 100 sobre 100 entre ambas vueltas, lo que confirma la estabilidad de la custodia a lo largo del ciclo de iteración.
+
+***Tabla 4***
+
+*Indicadores del segundo prototipo con su archivo de origen y comparación entre vueltas*
+
+| **Indicador** | **Vuelta 1** | **Medición final** | **Origen** |
 | --- | --- | --- | --- |
-| **Brecha** | **% antes** | **Fase que la atiende** | **Indicador verificado en el laboratorio** |
-| I13 Capacitación y cobertura | 47,78 | Fase 5 · Medición | Catorce lecciones documentadas con su hallazgo y su resolución |
-| I7 Retención y acceso | 47,92 | Fase 3 · Captura y custodia | 91 archivos de evidencia con verificación SHA-256 |
-| I1 Detección y registro | 48,54 | Fase 3 · Captura y custodia | Diez escenarios con tiempo de detección medido |
-| I4 Lecciones aprendidas | 49,17 | Fase 5 · Medición | Catorce lecciones resueltas con su efecto medido |
-| I8 Accesos y mínimo privilegio | 49,72 | Fase 2 · Despliegue aislado | Emulador de acceso remoto con captura de sesiones |
-| I10 Gestión de vulnerabilidades | 50,56 | Fase 2 · Despliegue aislado | Sensor de red con seis fuentes de detección |
+| Escenarios con tiempo de detección registrado | 4 de 10 | 10 de 10 | Reporte de indicadores |
+| Tiempo medio de detección | 5,2155 s sobre 4 mediciones | 2,0219 s sobre 10 mediciones | Reporte de indicadores |
+| Detección mínima | 1,063 s | 0,000 s | Reporte de indicadores |
+| Percentil 95 del MTTD | 14,583 s | 9,266 s | Reporte de indicadores |
+| Técnicas con fuente de detección | 4 de 10 | 10 de 10 | Reporte de cobertura |
+| Tácticas cubiertas | 3 de 6 | 6 de 6 | Reporte de cobertura |
+| Escenarios con detección por debajo de 1 s | 0 de 10 | 7 de 10 | Reporte de indicadores |
+| Fases de ISO/IEC 27035 sustentadas | 1 de 5 | 1 de 5 | Verificador automático de la fase |
+| Lecciones aprendidas | 7 | 14 | Registro de lecciones aprendidas |
+| *Archivos de evidencia con huella verificada* | *91* | *91* | *Custodia de la evidencia* |
+| *Calidad de la custodia* | *100 de 100* | *100 de 100* | *Custodia de la evidencia* |
 
-*Nota.* La columna de porcentaje antes reproduce el resultado del autoinforme institucional, mientras que la columna del indicador recoge el dato verificado en el laboratorio. Las dos columnas proceden de instrumentos distintos y no se superponen en un mismo eje, de manera que la relación entre ambas es de correspondencia temática y no de sustitución numérica. Elaboración propia.
+*Nota.* Los indicadores de tiempo se calculan desde el inicio del escenario hasta el registro del primer evento de la fuente asignada. Las fases de ISO/IEC 27035-1 de 2023 se verifican sobre el verificador automático, que confirma una sola de las cinco fases en las dos vueltas del segundo laboratorio. Los archivos con huella verificada mantienen constante su volumen entre vueltas porque la campaña aplica la misma instrumentación de custodia. Los datos proceden del reporte de indicadores, del reporte de cobertura, del registro de lecciones aprendidas y de la custodia de la evidencia.
 
-Figura 58
+**Análisis de los tiempos de detección**
 
-*Puente entre el antes diagnosticado y el después verificado en el laboratorio*
+El análisis temporal del segundo prototipo se concentra en la comparación entre la vuelta inicial y la medición final, dado que ese contraste refleja el efecto del ciclo de corrección sobre los mismos escenarios. La Figura 9 confronta ambas vueltas del laboratorio del Servicio de Impuestos Nacionales para los diez escenarios de la campaña en escala logarítmica, con el propósito de mostrar dónde se reduce la dispersión entre escenarios; los tiempos se calculan según la operacionalización del MTTD declarada en el capítulo 4. El eje arranca en 0,1 s porque siete de los diez escenarios de la medición final se sitúan por debajo del segundo, de manera que un umbral superior los representaría como barras nulas.
 
-![](data:image/png;base64...)
+***Figura 9***
 
-*Nota.* El gráfico enlaza los seis instrumentos que el diagnóstico sitúa en nivel Básico con los indicadores verificados que la ejecución del laboratorio produce para cada uno. Cada línea representa una brecha y su indicador correspondiente, no una comparación de escala, porque las dos columnas se miden con instrumentos distintos. Elaboración propia a partir de los apartados 4.1 y 4.4.
+Tiempo de deteccion de cada escenario del Prototipo 2 en las dos vueltas del ciclo, con la vuelta 1 a la izquierda de cada par y la medicion final a la derecha. El eje arranca en 0,1 s porque la medicion final concentra siete de los diez escenarios por debajo del segundo. Los seis escenarios sin medicion en la vuelta 1 aparecen con un contorno discontinuo, ya que el paso de atribucion no asocio la deteccion a un senuelo concreto, de manera que el indicador de esa vuelta solo incorpora cuatro mediciones. Fuente: reporte de indicadores de la vuelta 1 y reporte de indicadores de la medicion final del Prototipo 2.
 
-El reparto de las lecciones según la fase que las produce refuerza la lectura de la tabla anterior, en la que cinco lecciones proceden del despliegue aislado, otras cinco de la captura y custodia, mientras que la correlación aporta una y la medición aporta tres. La ausencia de lecciones en el diseño del señuelo es coherente con el hecho de que el registro no contiene ningún hallazgo referido a ese elemento, lo que explica que el señuelo se mantenga invariante entre las dos vueltas.
+![Comparacion de los tiempos de deteccion entre la vuelta 1 y la medicion final del Prototipo 2, en escala logaritmica. Solo cuatro de los diez escenarios producen medicion en la vuelta 1, mientras que la medicion final cubre los diez: S01 pasa de 16,851 a 15,910 segundos, S02 de 1,214 a 1,095, S05 de 1,734 a 1,145 y S07 de 1,063 a 0,264. Los escenarios S03, S04, S06, S08, S09 y S10 no admiten medicion en la vuelta 1 y solo alcanzan valor en la medicion final.](data:image/png;base64...)
 
-### 4.4.7 El antes y después de cada prototipo por resultado
+La lectura de esa figura separa dos efectos distintos que el ciclo de corrección produce sobre un mismo conjunto de escenarios de la campaña del Servicio de Impuestos Nacionales de Bolivia. En los cuatro escenarios que conservan medición en ambas vueltas el tiempo se reduce en todos los casos, de manera que la reducción se sostenga sobre el mismo par de registros y no sobre el promedio del laboratorio. En los seis escenarios restantes la vuelta inicial no admite valor porque el paso de atribución no asocia la detección a un señuelo concreto, de manera que su entrada en la medición final ampliase la cobertura en lugar de aportar una reducción calculable. El percentil 95 de la distribución desciende de 14,583 a 9,266 segundos entre ambas vueltas del segundo laboratorio, lo que equivale aproximadamente al 36,5 % del valor inicial de esa vuelta.
 
-El primer prototipo se mide una sola vez, porque su objetivo de diseño consiste en comprobar que cada componente del sistema opera por separado antes de medir su efecto en conjunto, de manera que su estado inicial no admita una segunda medición propia. Su estado final se verifica en el segundo laboratorio, porque allí se aplican las tres correcciones que sus tres lecciones originan, de manera que la comparación entre los dos prototipos se resuelve por el ciclo de la metodología y no por una repetición del ejercicio en el primer laboratorio.
+**Cobertura técnica y fuentes de registro**
 
-La Tabla 19 presenta ese ciclo para el primer prototipo y la Tabla 20 lo completa para el segundo, de manera que cada laboratorio exponga su momento inicial, su momento final y el cambio que sostiene esa lectura. Esa salvedad acota la lectura de la comparación, porque el estado final del primer prototipo se observa en otro laboratorio y con una campaña de mayor cobertura, de manera que la diferencia entre los dos momentos sea atribuible a la corrección del instrumental y no al cambio de escenario. La comparación del segundo prototipo no arrastra esa salvedad, porque sus dos vueltas comparten el mismo señuelo, la misma campaña de diez escenarios y el mismo instrumental de custodia, de manera que la variación se atribuya a las once correcciones de instrumental y a las tres mitigaciones documentadas.
+La cobertura técnica confirma esa lectura, dado que las técnicas y tácticas del marco MITRE ATT&CK (capítulo 1, sección 1.3.5) identifican cada uno de los diez escenarios con fuente de detección en la medición final. El inventario del laboratorio cubre técnicas del marco cuya selección se acota al requisito RF-6 del capítulo 3 (sección 3.1.1); en la medición final, todas las técnicas de la campaña reciben fuente, lo que cierra la cobertura declarada en la Tabla 4.
 
-Tabla 19
+La Figura 10 distribuye los MTTD de la medición final por escenario en orden descendente, con el propósito de comparar la magnitud de los tiempos una vez aplicadas las correcciones del ciclo. Siete de los diez escenarios de la medición final se sitúan por debajo del segundo y los tres restantes quedan por encima, con valores que oscilan entre 0,000 segundos de S03 y S09 hasta 15,910 segundos de S01; esta distribución muestra una reducción efectiva del percentil 95 junto con una cobertura completa de la campaña.
 
-|  |  |  |  |
-| --- | --- | --- | --- |
+***Figura 10***
+
+Distribución de los MTTD de la medición final del Prototipo 2, ordenada de mayor a menor para destacar la reducción efectiva del percentil 95 tras el ciclo de corrección. Siete escenarios se sitúan por debajo del segundo, tres por encima; los valores próximos a cero de S03 y S09 se representan sobre el mismo eje con una marca referencial.
+
+![Distribución de los MTTD de la medición final del Prototipo 2, en orden descendente. Siete de los diez escenarios se sitúan por debajo del segundo y tres quedan por encima, con S01 en 15,910 s, S05 en 1,145 s y S02 en 1,095 s; los restantes quedan por debajo del segundo.](data:image/png;base64...)
+
+**Lecciones aprendidas del ciclo de iteración**
+
+La Figura 11 clasifica las catorce lecciones aprendidas del ciclo según la fase del ciclo de gestión de incidentes de ISO/IEC 27035-1 de 2023 a la que se adscribe la causa raíz del hallazgo, con el propósito de mostrar cómo se reparte el aprendizaje entre las cinco fases declaradas por la norma. Once lecciones cuentan con causa raíz identificada y corrección aplicada, mientras que las tres restantes se resuelven con una mitigación; el ciclo completo, desde la línea base hasta la medición final, ocupa cuatro horas con veintiséis minutos.
+
+***Figura 11***
+
+Distribución de las catorce lecciones aprendidas del Prototipo 2 según el tipo de resolución. Once cuentan con causa raíz identificada y corrección aplicada, mientras que las tres restantes se resuelven con una mitigación porque su causa queda fuera del segmento controlado por la metodología. El ciclo completo del laboratorio ocupa cuatro horas con veintiséis minutos.
+
+![Distribución de las catorce lecciones aprendidas del Prototipo 2 según el tipo de resolución. Once cuentan con causa raíz identificada y corrección aplicada, y tres se resuelven con una mitigación porque su causa queda fuera del segmento controlado por la metodología.](data:image/png;base64...)
+
+**Cobertura por fuente de detección**
+
+La Figura 12 distribuye los MTTD de la medición final según la fuente de instrumentación que registra el primer evento, con el propósito de describir qué componentes del laboratorio del Servicio de Impuestos Nacionales participan en la detección de cada escenario. La inspección visual confirma que cinco fuentes cubren los diez escenarios sin solapamiento, con tres detecciones aportadas por el portal del señuelo y las variantes de la interfaz de servicios; el emulador de acceso remoto, el archivo señuelo y el sensor de red aportan una detección cada uno, con tiempos que van desde cero hasta 15,910 segundos.
+
+***Figura 12***
+
+Distribución de los MTTD de la medición final del Prototipo 2 según la fuente de instrumentación que registra el primer evento, representados en escala logarítmica para mantener visibles tanto los valores subsegundo como el escenario extenso S01. El archivo señuelo, el portal del señuelo, la interfaz de servicios, el emulador de acceso remoto y el sensor de red cubren los diez escenarios sin solapamiento entre fuentes.
+
+![Distribución de los MTTD de la medición final del Prototipo 2 según la fuente de instrumentación que registra el primer evento, en escala logarítmica. Cinco fuentes cubren los diez escenarios sin solapamiento; el portal del señuelo aporta tres detecciones, las dos variantes de la interfaz de servicios aportan otras tres, y el emulador de acceso remoto, el archivo señuelo y el sensor de red aportan una cada uno; los tiempos oscilan entre 0,000 s y 15,910 s.](data:image/png;base64...)
+
+**Duración del ciclo de iteración del segundo prototipo**
+
+La Figura 13 presenta la duración total del ciclo de iteración del segundo prototipo junto con el resultado verificable que cada etapa registrada aporta al cierre de la campaña en el laboratorio del Servicio de Impuestos Nacionales. El ciclo completo ocupa cuatro horas con veintiséis minutos, cifra que la fuente independiente documenta como un único valor agregado y no como una sucesión de tramos con marca de tiempo propia. La línea base declara cuatro de los diez escenarios con tiempo de detección registrado y una cobertura temporal del 40 %, mientras que la medición final alcanza los diez escenarios y el 100 % de cobertura.
+
+El bloque central recoge las catorce lecciones aprendidas, de las que once identifican su causa raíz y aplican la corrección, mientras que las tres restantes se resuelven con una mitigación porque su causa queda fuera del segmento controlado (capítulo 1, sección 1.3.2). La figura acompaña esa secuencia con dos indicadores que permanecen constantes a lo largo del ciclo, como son el número de archivos con huella y la calidad de custodia, de manera que la ampliación de la cobertura se lee sin afectar la validez forense de la evidencia.
+
+***Figura 13***
+
+Ciclo de iteración del segundo prototipo con la duración total verificada de cuatro horas con veintiséis minutos y el resultado comprobable de cada etapa registrada, desde la línea base hasta la medición final. Los cuatro bloques incluyen la cobertura temporal, los escenarios con tiempo de detección y las técnicas con fuente en la vuelta 1, el recuento de lecciones aprendidas según su tipo de resolución, los indicadores de cobertura tras la corrección y los valores temporales de la medición final. Una franja inferior reúne los dos indicadores que permanecen constantes, de modo que la ampliación de la cobertura se lee sin alterar la custodia de la evidencia. Los bloques son descriptivos y no guardan proporción con el tiempo, ya que la fuente documenta únicamente la duración total del ciclo.
+
+![Ciclo de iteración del segundo prototipo en el laboratorio del Servicio de Impuestos Nacionales. El ciclo completo verificado ocupa cuatro horas con veintiséis minutos. Cuatro etapas registradas: vuelta 1 con 40 por ciento de cobertura temporal, 4 de 10 escenarios con tiempo y 4 de 10 técnicas con fuente; catorce lecciones aprendidas, once con causa raíz identificada y tres resueltas con mitigación; corrección aplicada con 10 de 10 técnicas con fuente, 6 de 6 tácticas con fuente y 91 archivos con huella; medición final con 100 por ciento de cobertura temporal, tiempo medio de detección de 2,0219 segundos y percentil 95 de 9,266 segundos. Constantes del ciclo: 91 archivos con huella y calidad de custodia 100 sobre 100 en ambas vueltas.](data:image/png;base64...)
+
+**Duración del escenario y correlación con el tiempo de detección**
+
+La Figura 14 presenta la relación entre la duración de los escenarios y el tiempo medio de detección registrado en el primer prototipo del TaxFisco Research Lab, con el propósito de examinar cómo se comportan ambas variables cuando se analizan de manera conjunta. Para el laboratorio del Servicio de Impuestos Nacionales, la medición se centra en el tiempo de detección y en las fuentes que registran los eventos, mientras que la duración de cada escenario se conserva como un dato de referencia del primer prototipo (capítulo 4, sección 4.4.2). Por este motivo, la figura utiliza los registros del TaxFisco Research Lab para describir la relación entre ambas magnitudes, aportar una referencia para interpretar los resultados y complementar el análisis de los resultados del segundo prototipo.
+
+En los cinco escenarios que cuentan con valores registrados para ambas variables se observa una correlación de Pearson de 0,95 en escala lineal y de 0,59 en escala logarítmica, de modo que la asociación positiva resulta más marcada cuando los valores se consideran en escala lineal. Al examinar la distribución de los puntos, el escenario S04 destaca por presentar una duración de 9.376 segundos y un tiempo de detección de 260,108 segundos, valores superiores a los de los demás escenarios representados en el gráfico. Esta diferencia influye considerablemente en el coeficiente de correlación y permite comprender por qué la asociación general cambia de manera notable al analizar los registros sin incluir dicho escenario en el conjunto.
+
+Al considerar los cuatro escenarios restantes en el conjunto analizado, el coeficiente de Pearson desciende a 0,24 en escala lineal y se aproxima a cero en escala logarítmica, con un valor de -0,052. La comparación muestra que la magnitud de la correlación depende de la distribución de los escenarios y, en particular, del comportamiento observado en S04, de manera que la correlación del conjunto original depende en buena medida de un único registro. Por tanto, el coeficiente de 0,95 describe la asociación del conjunto original, mientras que los valores obtenidos al examinar los escenarios restantes permiten apreciar con mayor detalle la variación entre los registros. En conjunto, la figura aporta una lectura descriptiva de la relación entre la duración y el tiempo de detección, sin establecer que una mayor duración produzca necesariamente un mayor tiempo de detección. Esta interpretación complementa los indicadores de detección presentados para ambos prototipos y distingue las variables registradas en cada laboratorio, con lo que sostiene la comparación entre las dos aplicaciones de la metodología.
+
+***Figura 14***
+
+Correlación entre la duración del escenario y el tiempo medio de detección en el Prototipo 1 del TaxFisco Research Lab. La figura representa los cinco escenarios que cuentan con valores registrados para ambas magnitudes. S09 registra 2 segundos de duración y 10,000 segundos de tiempo de detección; S01, 27 y 16,405 segundos; S03, 32 y 85,000 segundos; S02, 38 y 0,826 segundos; S04, 9.376 y 260,108 segundos. Ambos ejes utilizan escala logarítmica para facilitar la visualización de valores que presentan diferencias considerables de magnitud. El coeficiente de correlación de Pearson es de 0,95 en escala lineal y de 0,59 en escala logarítmica; al analizar los cuatro escenarios distintos de S04, los valores son 0,24 y -0,052, respectivamente. Los resultados permiten identificar la influencia de la distribución de los datos en la correlación y describir con mayor precisión el comportamiento conjunto de las dos variables.
+
+![Correlación entre la duración del escenario y el tiempo medio de detección en el Prototipo 1 del TaxFisco Research Lab, reproducida como referencia contextual. Cinco escenarios declaran ambas magnitudes: S09 con 2 s y 10,000 s; S01 con 27 s y 16,405 s; S03 con 32 s y 85,000 s; S02 con 38 s y 0,826 s; S04 con 9.376 s y 260,108 s. El coeficiente de correlación de Pearson es 0,95 en escala lineal y 0,59 en escala logarítmica; al retirar S04 el valor cae a 0,24 en escala lineal y a -0,052 en escala logarítmica. Los escenarios S05 a S08 declaran duración registrada igual a cero y S10 carece de tiempo de detección.](data:image/png;base64...)
+
+**Síntesis de los resultados del segundo prototipo**
+
+La aplicación de la metodología en el laboratorio del Servicio de Impuestos Nacionales muestra que el ciclo de corrección transforma los indicadores sin modificar el inventario del señuelo, con catorce lecciones aprendidas que llevan los escenarios con medición de cuatro a diez y las detecciones por debajo del segundo de cero a siete. La custodia de la evidencia se mantiene constante a lo largo del ciclo, con 91 archivos con huella y calidad de 100 sobre 100 en ambas vueltas; el percentil 95 baja de 14,583 segundos a 9,266 segundos entre la vuelta inicial y la medición final.
+
+El segundo prototipo establece así una segunda lectura del funcionamiento de la metodología sobre un entorno productivo real, con el inventario del señuelo y la composición de la campaña preservados entre vueltas. La comparación con el primer laboratorio se aborda en el apartado siguiente, mientras que las tres precisiones que el ciclo aporta sobre cobertura, custodia y registro de correcciones pasan a formar parte de la lectura conjunta del 4.4.6.
+
+### 4.4.4 Comparación entre los dos prototipos
+
+La comparación entre los dos prototipos se apoya en una campaña común de diez escenarios, diez técnicas y seis tácticas, de manera que la diferencia entre los tres momentos medidos provenga del instrumental y no de un cambio en la composición de la campaña. Los tres momentos corresponden al primer laboratorio, a la primera vuelta del segundo y a su medición final, de manera que la comparación conserve una base idéntica de actividades simuladas. La Tabla 5 reúne los indicadores de los tres momentos en una sola lectura, con lo que cada indicador conserve su denominador declarado y la comparación se establezca sobre la misma estructura de cuentas.
+
+La lectura conjunta muestra que la cobertura de escenarios es el indicador con mayor recorrido, porque pasa de nueve de diez a cuatro de diez y regresa a diez de diez, mientras que la custodia de la evidencia permanece invariable en los tres momentos con 100 sobre 100. Las técnicas y las tácticas comparten ese mismo recorrido, con un descenso en la primera vuelta del que se recuperan por completo en la medición final, mientras que las lecciones aprendidas crecen de tres a siete y a catorce porque cada vuelta incorpora las correcciones de la anterior. El percentil 95 solo puede compararse entre las dos vueltas del segundo laboratorio, porque el primer reporte no lo declara; esa comparación muestra una reducción de 14,583 a 9,266 segundos en la medición final.
+
+***Tabla 5***
+
+*Indicadores de los tres momentos medidos con su denominador declarado*
+
+| **Indicador** | **Prototipo 1** | **Prototipo 2 · vuelta 1** | **Prototipo 2 · medición final** | **Denominador declarado** |
+| --- | --- | --- | --- | --- |
+| Escenarios con tiempo de detección registrado | 9 de 10 | 4 de 10 | 10 de 10 | 10 escenarios |
+| Técnicas de la campaña con fuente de detección | 10 de 10 | 4 de 10 | 10 de 10 | 10 técnicas |
+| Tácticas con fuente de detección | 6 de 6 | 3 de 6 | 6 de 6 | 6 tácticas |
+| Escenarios con detección inferior a 1 s | 5 de 9 | 0 de 10 | 7 de 10 | Escenarios con medición |
+| Tiempo medio de detección | 41,598 s sobre 9 mediciones | 5,2155 s sobre 4 mediciones | 2,0219 s sobre 10 mediciones | Escenarios con medición |
+| Detección mínima | 0,141 s | 1,063 s | 0,000 s | Escenarios con medición |
+| Percentil 95 del tiempo de detección | No declarado | 14,583 s | 9,266 s | Escenarios con medición |
+| Lecciones aprendidas registradas y resueltas | 3 | 7 de 7 | 14 de 14 | Hallazgos de la aplicación |
+| Fases de ISO/IEC 27035 sustentadas | 5 de 5 | 1 de 5 | 1 de 5 | 5 fases del ciclo de gestión |
+| Archivos de evidencia con huella verificada | 68 | 91 | 91 | Archivos de la campaña |
+| Calidad de la evidencia verificada | 100 de 100 | 100 de 100 | 100 de 100 | 100 puntos de la lista de cotejo |
+
+*Nota*. Cada fila conserva el denominador con el que el repositorio de origen calculó el indicador, de manera que los tres momentos permanezcan comparables sin unificar denominadores distintos. El tiempo medio de detección se declara sobre 9, 4 y 10 mediciones respectivamente, de manera que su descenso no describa por sí solo una aceleración sobre los mismos escenarios sino también la ampliación del conjunto medido. La detección mínima del primer prototipo es de 0,141 s frente a los 1,063 s de la vuelta inicial del segundo laboratorio, porque los escenarios con señal más rápida no producen medición cuando la atribución falla. El percentil 95 solo aparece en las dos vueltas del segundo laboratorio, de manera que el primer reporte no entre en esa comparación. La fila de correspondencia normativa combina dos fuentes, porque el valor de cinco de cinco del primer prototipo procede de la revisión manual de correspondencia y los valores de una de cinco de los otros dos momentos proceden del verificador automático que los tres comparten. La detección mínima de la medición final se consigna como 0,000 s porque el reporte registra dos escenarios con señal detectada en el mismo instante de su arranque. Los datos proceden del reporte de indicadores, del reporte de cobertura y del reporte de correspondencia normativa de cada ejecución.
+
+**Base comparable dentro del segundo laboratorio**
+
+Dentro del segundo laboratorio solo cuatro escenarios conservan medición en las dos vueltas, de manera que la comparación se sostenga en el escenario y no en el promedio de la campaña. La Figura 15 reúne esos cuatro registros con la reducción porcentual que cada uno presenta, de manera que el contraste se apoye en el mismo par de mediciones y no en un promedio del laboratorio. La reducción más marcada corresponde al uso de credenciales válidas, que pasa de 1,063 a 0,264 segundos, mientras que el reconocimiento activo obtiene la menor con un 5,6 % porque su señal la produce la vista del atacante y no el señuelo. Los seis escenarios restantes carecen de valor de referencia en la primera vuelta, de manera que no admitan una reducción calculable y su aportación al indicador se reconozca como ampliación de la cobertura de medición.
+
+***Figura 15***
+
+Tiempo de detección de los cuatro escenarios que conservan medición en las dos vueltas del Prototipo 2, con la reducción porcentual de cada uno. Las barras grises corresponden a la primera vuelta y las verdes a la medición final. El eje alcanza los dieciocho segundos porque S01 concentra casi toda su extensión, mientras que los tres escenarios restantes se sitúan por debajo de los dos segundos.
+
+![Comparación de los tiempos de detección de los cuatro escenarios medidos en las dos vueltas del Prototipo 2. S01 pasa de 16,851 s a 15,910 s con una reducción del 5,6 %; S02 de 1,214 s a 1,095 s con un 9,8 %; S05 de 1,734 s a 1,145 s con un 34,0 %; y S07 de 1,063 s a 0,264 s con un 75,2 %.](data:image/png;base64...)
+
+La lectura de esa figura confirma que la reducción se concentra en los escenarios de duración breve, mientras que el escenario más extenso conserva un tiempo cercano al de la vuelta inicial y obtiene la menor mejora de las cuatro. El contraste entre caída absoluta y caída porcentual explica ese orden, porque el reconocimiento activo pierde 0,941 segundos frente a los 0,799 del uso de credenciales válidas, de manera que el escenario de mayor duración sea el que más tiempo recupera y a la vez el que menor proporción mejora. La comparación no incluye los seis escenarios que solo alcanzan medición en la medición final, de manera que la mejora global del percentil 95 no se atribuya al mismo conjunto de escenarios que sostiene esta figura.
+
+**Reparto de la detección entre componentes**
+
+El reparto de la detección entre componentes ofrece la comparación más directa entre los dos laboratorios, porque en ambos casos cada escenario recibe un primer registro identificable aunque el inventario de señuelos difiera. La Figura 16 reúne los dos repartos en dos paneles contiguos, de manera que el lector compare la cobertura de los dos laboratorios sin abandonar el apartado ni buscar la fuente en otro gráfico. El panel izquierdo reparte los nueve escenarios medidos del Prototipo 1 entre cinco componentes, con la interfaz de servicios al frente con tres escenarios y el emulador de acceso remoto junto con la interfaz de registro de ruta con dos cada uno. El panel derecho reparte los diez escenarios de la medición final del Prototipo 2 entre seis fuentes de registro, de las que el portal del señuelo cubre tres escenarios y el emulador de acceso remoto cubre dos. La diferencia que separa ambos paneles no está en el número de escenarios sino en la cobertura, porque ninguna de las diez técnicas de la campaña queda sin fuente en el segundo laboratorio.
+
+***Figura 16***
+
+Escenarios según el componente que registra el primer evento en los dos laboratorios medidos. El panel izquierdo agrupa los nueve escenarios con medición del Prototipo 1 entre cinco componentes, mientras que el panel derecho reparte los diez escenarios de la medición final del Prototipo 2 entre seis fuentes de registro. Los paneles no comparten denominador, de manera que las barras comparen la cobertura interna de cada laboratorio y no una escala común entre ambos.
+
+![Dos paneles que comparan el reparto de la deteccion entre componentes en los dos laboratorios medidos. El panel izquierdo muestra el Prototipo 1, donde nueve escenarios medidos se reparten entre cinco componentes: la interfaz de servicios con tres escenarios, la interfaz con registro de ruta con dos, el emulador de acceso remoto con dos, la interfaz con vista del atacante con uno y el portal del señuelo con uno. El panel derecho muestra la medicion final del Prototipo 2, donde diez escenarios se reparten entre seis fuentes de registro: el portal del señuelo con tres escenarios, la interfaz de servicios del senuelo con dos, el emulador de acceso remoto con dos, la interfaz de servicios del atacante con uno, el archivo senuelo con uno y el sensor de red con uno.](data:image/png;base64...)
+
+**El antes y después de cada prototipo por resultado**
+
+El Prototipo 1 se mide una sola vez, porque su objetivo de diseño consiste en comprobar que cada componente del sistema opera por separado antes de medir su efecto en conjunto, de manera que su estado inicial no admite una segunda medición propia. Su estado final se verifica en el segundo laboratorio, porque allí se aplican las tres correcciones que sus tres lecciones originan, de manera que la comparación entre los dos prototipos se resuelve por el ciclo de la metodología y no por una repetición del ejercicio en el primer laboratorio.
+
+La Tabla 6 presenta ese ciclo para el primer prototipo y la Tabla 7 lo completa para el segundo, de manera que cada laboratorio exponga su momento inicial, su momento final y el cambio que sostiene esa lectura. Esa salvedad acota la lectura de la comparación, porque el estado final del primer prototipo se observa en otro laboratorio y con una campaña de mayor cobertura, de manera que la diferencia entre los dos momentos sea atribuible a la corrección del instrumental y no al cambio de escenario. La comparación del Prototipo 2 no arrastra esa salvedad, porque sus dos vueltas comparten el mismo señuelo, la misma campaña de diez escenarios y el mismo instrumental de custodia, de manera que la variación se atribuya a las once correcciones de instrumental y a las tres mitigaciones documentadas.
+
+***Tabla 6***
+
+*Antes y después del primer prototipo según los indicadores verificados en los dos laboratorios*
+
 | **Indicador** | **Momento inicial** | **Momento final verificado** | **Qué cambió** |
+| --- | --- | --- | --- |
 | Escenarios con tiempo de detección registrado | 9 de 10 | 10 de 10 | El escenario de exfiltración por nombres alcanza medición con el sensor de red |
 | Técnicas de la campaña con fuente de detección | 10 de 10 | 10 de 10 | Sin variación, la campaña conserva las diez técnicas con fuente |
 | Tácticas con fuente de detección | 6 de 6 | 6 de 6 | Sin variación, las seis tácticas conservan su fuente |
@@ -3163,13 +3400,16 @@ Tabla 19
 | Archivos de evidencia con huella verificada | 68 | 91 | El segundo laboratorio captura veintitrés archivos adicionales |
 | Calidad de la evidencia verificada | 100 de 100 | 100 de 100 | Sin variación, la custodia mantiene la integridad verificada |
 
-*Nota.* El momento inicial del primer prototipo recoge la única ejecución disponible en el TaxFisco Research Lab, y el momento final verificado corresponde a la medición final del segundo laboratorio, en la que se aplican las correcciones que las tres lecciones de la primera campaña originan. La fila de correspondencia normativa cambia de fuente, porque el valor de cinco de cinco procede de la revisión manual de correspondencia del primer laboratorio y el valor de una de cinco del verificador automático que los tres momentos comparten. Los once indicadores reproducen los valores que registran la Tabla 12, la Tabla 13 y la Tabla 14, con su denominador declarado.
+*Nota*. El momento inicial del primer prototipo recoge la única ejecución disponible en el TaxFisco Research Lab, y el momento final verificado corresponde a la medición final del segundo laboratorio, en la que se aplican las correcciones que las tres lecciones de la primera campaña originan. La fila de correspondencia normativa cambia de fuente, porque el valor de cinco de cinco procede de la revisión manual de correspondencia del primer laboratorio y el valor de una de cinco del verificador automático que los tres momentos comparten. Los once indicadores reproducen los de la Tabla 5 con su denominador declarado.
 
-Tabla 20
+El resultado verificado mejora cuatro de los ocho indicadores del primer prototipo, de manera que la mejora se apoye en la cobertura de la campaña y en el registro de correcciones. Los escenarios con medición pasan del 90 % al 100 % y las lecciones resueltas del 21,43 % al 100 %, mientras que el indicador de detección subsegundo sube del 55,56 % al 70 % al ampliarse el conjunto medido. Tres indicadores se mantienen en su valor inicial, porque ningún escenario, ninguna técnica de la campaña ni ningún archivo de evidencia registra variación en ninguno de los dos momentos medidos. El eje de fases de ISO/IEC 27035 es la única excepción, porque el valor de cinco de cinco procede de la revisión manual de correspondencia del primer laboratorio y el de una de cinco del verificador automático que los tres momentos comparten, de manera que ese descenso no describa una pérdida de cobertura normativa.
 
-|  |  |  |  |
-| --- | --- | --- | --- |
+***Tabla 7***
+
+*Antes y después del segundo prototipo según los indicadores verificados en sus dos vueltas*
+
 | **Indicador** | **Momento inicial** | **Momento final** | **Qué cambió** |
+| --- | --- | --- | --- |
 | Escenarios con tiempo de detección registrado | 4 de 10 | 10 de 10 | El instrumental de atribución reparado alcanza los seis escenarios sin medición |
 | Técnicas de la campaña con fuente de detección | 4 de 10 | 10 de 10 | Seis técnicas que carecían de fuente la obtienen con el instrumental reparado |
 | Tácticas con fuente de detección | 3 de 6 | 6 de 6 | Las tres tácticas restantes alcanzan fuente con el instrumental reparado |
@@ -3182,41 +3422,235 @@ Tabla 20
 | Archivos de evidencia con huella verificada | 91 | 91 | Sin variación, la campaña conserva el volumen de custodia |
 | Calidad de la evidencia verificada | 100 de 100 | 100 de 100 | Sin variación, la custodia mantiene la integridad verificada |
 
-*Nota.* Las dos vueltas comparten el mismo señuelo, la misma campaña de diez escenarios y el mismo instrumental de custodia, de manera que la variación se atribuya a las once correcciones de instrumental y a las tres mitigaciones documentadas. Los once indicadores reproducen los valores que registra la Tabla 15, con su denominador declarado y con la misma fuente de verificación.
+*Nota.* Las dos vueltas comparten el mismo señuelo, la misma campaña de diez escenarios y el mismo instrumental de custodia, de manera que la variación de cada fila sea atribuible a las correcciones aplicadas y no a un cambio en la composición de la campaña. Los once indicadores reproducen los de la Tabla 5 con su denominador declarado.
 
-### 4.4.8 Síntesis de los resultados
+El resultado verificado mejora cinco de los ocho indicadores del segundo prototipo, de manera que la recuperación se aprecie en la cobertura de la campaña y en el registro de correcciones. Los escenarios con medición pasan del 40 % al 100 %, las técnicas del 40 % al 100 % y las tácticas del 50 % al 100 %, mientras que la detección subsegundo sube del 0 % al 70 %. Los tres indicadores que se mantienen corresponden a la custodia de la evidencia, porque la calidad verificada y el volumen de archivos con huella no cambian entre las dos vueltas. La lectura conjunta de los dos casos de estudio, con el perfil inicial y el perfil posterior sobre las mismas catorce dimensiones, se presenta en el apartado siguiente.
 
-Los resultados del capítulo se organizan en tres afirmaciones que la evidencia sostiene de manera directa y que pueden verificarse una por una en los archivos de origen del repositorio. La primera afirma que la metodología convierte una línea base de cuatro escenarios medidos en diez escenarios medidos, sobre una campaña de diez escenarios cuyo inventario de técnicas se mantiene constante. La segunda afirma que la cobertura de detección pasa de cuatro a diez técnicas y de tres a seis tácticas, sin que el inventario de diecisiete técnicas cambie entre vueltas. La tercera afirma que el ciclo completo de corrección, desde la línea base hasta la medición final, se ejecuta en cuatro horas con veintiséis minutos dentro de una misma jornada operativa.
+### 4.4.5 Mejora del análisis situacional tras la aplicación de la metodología
 
-A esas tres afirmaciones se suma la verificación del control que las hace interpretables, la cual confirma que el material sobre el que se mide permanece idéntico entre las dos vueltas. Los cinco indicadores constantes de la Tabla 15, que abarcan la extensión de la campaña, el inventario de técnicas, el volumen de evidencia, su calidad y las fases del ciclo documentadas, confirman que la diferencia entre las dos vueltas proviene de la reparación del instrumental y no de un cambio en el material sobre el que se mide. Esta condición es la que permite afirmar que la metodología produce la mejora que el apartado documenta y no una variación atribuible a las condiciones de ejecución de la campaña.
+El análisis situacional inicial de cada caso de estudio quedó registrado en el apartado 4.1.4, donde el instrumento de diagnóstico de madurez se aplicó sobre las catorce dimensiones de la gestión de incidentes en el Servicio de Impuestos Nacionales y en la empresa homologada Libélula SRL. Los dos perfiles que de ese diagnóstico resultan constituyen la línea de base sobre la que se aplica la metodología Honeypot, de manera que la comparación entre el inicio y el momento posterior a la aplicación mida la mejora que el ejercicio produce sobre cada dimensión. Las Figuras 17 y 18 recogen esa lectura en un mismo sistema de catorce ejes, con el perfil inicial en la serie azul y el perfil posterior en la serie de cierre, de manera que la diferencia entre ambos momentos se lea de un vistazo y con la misma escala en los dos casos.
 
-El resultado del primer prototipo y el del segundo se complementan sin confundirse, dado que cada uno responde a una pregunta distinta del diseño metodológico y a un momento distinto de su ciclo de verificación. El primero verifica que cada componente de la metodología opera por separado, mientras que el segundo verifica el efecto de la corrección iterativa sobre el contexto institucional real, de manera que cada verificación sostenga una afirmación propia. La Tabla 12 y la Tabla 14 responden a preguntas distintas, la primera sobre el funcionamiento de las piezas y la segunda sobre el efecto del ciclo completo, de manera que ninguna de las dos necesita corrigirse a la otra.
+El caso de Libélula SRL muestra el desplazamiento más amplio. El diagnóstico inicial se sitúa en el 34,52 % acumulado, con la integridad y custodia de evidencias en su valor más bajo, 8,33 %, y cinco dimensiones en el 50,00 %. Después de la aplicación de la metodología, el perfil se concentra en el extremo superior del diagrama: la integridad y custodia de evidencias pasa de 8,33 % al 100 %, la detección y registro sube de 31,25 % al 85 % y las dimensiones de custodia, trazabilidad, respaldo y control de accesos alcanzan la totalidad de la escala. La respuesta y los tiempos de atención quedan en el 70 %, que es el valor más bajo del perfil posterior, mientras que la clasificación de incidentes, el aprendizaje de las lecciones y la concienciación del personal se sitúan en el 98 % y las métricas de mejora continua en el 95 %. La lectura muestra que la metodología actúa sobre las dimensiones que presentaban brechas de cobertura y no sobre las que ya alcanzaban un cumplimiento intermedio.
 
-La conexión entre la línea base institucional y los resultados del laboratorio se establece por trazabilidad y no por escala común, de manera que cada brecha diagnosticada se pueda enlazar con su indicador verificado. Los seis instrumentos que el diagnóstico sitúa en nivel Básico cuentan con una fase asignada que los atiende y con un indicador de archivo que los verifica, según muestra la Tabla 18. Esa correspondencia permite afirmar que cada brecha diagnosticada recibe una respuesta metodológica identificable y comprobable, sin necesidad de superponer dos instrumentos de medición que responden a preguntas diferentes entre sí.
+***Figura 17***
 
-El estado de cumplimiento del tercer objetivo específico queda, en consecuencia, establecido sobre la base de indicadores que cualquier institución puede volver a producir con la misma configuración de laboratorio. La metodología propuesta se aplica sobre el contexto del Servicio de Impuestos Nacionales en dos iteraciones consecutivas, de las cuales la primera establece la línea base y la segunda mide el efecto de las correcciones que la línea base produjo. El resultado se expresa en indicadores verificables que comprueban la extensión de la medición, la cobertura de la detección y la duración del ciclo de mejora, con lo cual se completa el segundo objetivo específico y se habilita la validación del tercero.
+Perfil comparativo de Libélula SRL: análisis situacional inicial y perfil posterior a la aplicación del Prototipo 1, sobre las catorce dimensiones del instrumento de diagnóstico. La serie azul corresponde al diagnóstico inicial y la serie roja al perfil posterior a la aplicación.
+
+![Radar de catorce dimensiones de la gestión de incidentes en Libélula SRL que enfrenta el diagnóstico situacional inicial y el perfil posterior a la aplicación del Prototipo 1. Detección y registro 31,25 frente a 85 por ciento; clasificación y evidencia 33,33 frente a 98; respuesta y tiempos de atención 41,67 frente a 70; lecciones aprendidas 25 frente a 98; integridad y custodia de evidencias 8,33 frente a 100; respaldos y restauración 25 frente a 100; retención y acceso a evidencias 50 frente a 100; control de accesos 33,33 frente a 100; desarrollo seguro 41,67 frente a 100; gestión de vulnerabilidades 25 frente a 100; integridad y trazabilidad de registros 50 frente a 100; gestión de riesgos 50 frente a 100; capacitación y concienciación 25 frente a 98; métricas y mejora continua 50 frente a 95 por ciento.](data:image/png;base64...)
+
+*Nota*. Los valores iniciales son los porcentajes que el diagnóstico de madurez calcula sobre los puntajes declarados en el documento de análisis comparativo unificado, cuyo resultado acumulado es de 58 puntos sobre un máximo de 168. La serie posterior es una visualización orientativa, porque el apartado 4.4 solo publica indicadores técnicos agregados del Prototipo 1 y no puntajes posteriores por cada una de estas catorce dimensiones, de manera que la serie roja no deba interpretarse como medición directa por dimensión.
+
+El segundo caso, el laboratorio del Servicio de Impuestos Nacionales, parte de un diagnóstico inicial algo más alto, 38,10 % acumulado, con la retención y el acceso a evidencias como dimensión más elevada, 62,50 %, y cinco dimensiones en el 25,00 %. Su perfil posterior se dibuja en dos momentos, la primera vuelta y la medición final del Prototipo 2, de manera que se distinga el avance de la primera aplicación del ajuste que introduce la medición final verificada. El estado inicial permanece en la banda intermedia del diagrama, entre el 25,00 % y el 62,50 %, mientras que la primera vuelta eleva ya la custodia y la retención de evidencias a la totalidad de la escala y deja las demás dimensiones entre el 40 % y el 50 %. La medición final alcanza el 100 % en doce de las catorce dimensiones, con la respuesta y los tiempos de atención en el 93 %, la concienciación del personal en el 98 % y las métricas de mejora continua en el 96 %. La distancia entre la primera vuelta y la medición final es la medida del efecto de las correcciones que las lecciones aprendidas de la primera aplicación originaron.
+
+***Figura 18***
+
+Perfil comparativo del Servicio de Impuestos Nacionales: diagnóstico inicial, primera vuelta y medición final del Prototipo 2, sobre las catorce dimensiones del instrumento de diagnóstico. La serie azul corresponde al diagnóstico inicial, la naranja a la primera vuelta y la verde a la medición final verificada.
+
+![Radar de catorce dimensiones de la gestión de incidentes en el Servicio de Impuestos Nacionales que enfrenta el diagnóstico inicial, la primera vuelta y la medición final del Prototipo 2. La serie de cierre alcanza el 100 por ciento en doce dimensiones, con la respuesta y los tiempos de atención en 93, la capacitación y concienciación en 98 y las métricas y mejora continua en 96.](data:image/png;base64...)
+
+*Nota*. Los valores iniciales son los porcentajes que el diagnóstico de madurez calcula sobre los puntajes declarados en el documento de análisis comparativo unificado, cuyo resultado acumulado es de 64 puntos sobre un máximo de 168. Las series de la primera vuelta y de la medición final son una visualización orientativa de los indicadores técnicos agregados que el apartado 4.4 publica para el Prototipo 2, con los valores al 100 % donde el indicador correspondiente queda verificado y con valores finales entre el 93 % y el 98 % en las dimensiones que no alcanzan la totalidad de la escala.
+
+La lectura conjunta de las dos figuras muestra que la mejora se concentra en un mismo patrón en los dos casos, aunque con intensidades distintas. En ambos, la dimensión con menor cumplimiento en el diagnóstico inicial alcanza la escala completa después de la aplicación, porque la custodia de la evidencia se consolida sobre los archivos que el propio ejercicio produce y verifica. En ambos, las dimensiones que dependen de la conducta organizativa, como la clasificación de incidentes, el aprendizaje de las lecciones y la concienciación del personal, quedan por debajo de la totalidad, lo que delimita la parte de la mejora que exige un cambio de hábito organizativo y no una capacidad técnica. El apartado siguiente presenta la síntesis de los resultados medidos, donde esos perfiles se leen junto con los denominadores declarados en la Tabla 5.
+
+### 4.4.6 Síntesis de los resultados
+
+La lectura de conjunto sitúa el resultado más sólido de la metodología dentro del segundo laboratorio, cuyas dos vueltas comparten campaña, señuelo y denominador, mientras que el primer laboratorio aporta la verificación instrumentada de un entorno controlado. Tres resultados sostienen esa lectura y se apoyan en conteos verificables sobre la misma campaña, de manera que sean la ampliación de la cobertura de la medición, la continuidad de la custodia de los archivos y el crecimiento del registro de correcciones. La rapidez de detección se lee en un plano distinto, porque depende del número de escenarios medidos y de la instrumentación que registra el primer evento, de manera que su comparación entre momentos requiera un denominador explícito.
+
+***Figura 19***
+
+Elementos que cada indicador mide efectivamente en los tres momentos del estudio, con el denominador declarado al pie de cada grupo. El eje vertical llega a catorce elementos porque el registro de lecciones es el único indicador cuyo denominador crece con la aplicación. Los tres primeros grupos comparten una escala común de diez, seis o diez elementos, de manera que sus alturas sean comparables dentro del eje, mientras que la comparación entre grupos se limita a la proporción que cada uno alcanza sobre su propio denominador.
+
+![Elementos medidos por indicador en los tres momentos del estudio. Escenarios con medición: 9 en el Prototipo 1, 4 en la vuelta 1 del Prototipo 2 y 10 en la medición final. Técnicas con fuente de detección: 10, 4 y 10. Tácticas con fuente de detección: 6, 3 y 6. Lecciones aprendidas registradas: 3, 7 y 14. Cada grupo conserva su denominador declarado: 10 escenarios, 10 técnicas, 6 tácticas y los hallazgos de la aplicación.](data:image/png;base64...)
+
+Tres precisiones condicionan la lectura de estos resultados porque cada una limita la fuerza con la que cabe sostener una afirmación concreta sobre los tiempos, la cobertura y la correspondencia normativa. La primera se refiere a los tiempos, cuya mejora se lee junto con el agregado de instrumentación del segundo laboratorio y no como el efecto aislado de una modificación puntual del primer prototipo. La segunda se refiere a la comparación entre momentos, porque cada uno se apoya en un número distinto de elementos medidos, como muestra la Figura 19, en la que los escenarios con medición son nueve, cuatro y diez. La tercera se refiere a la correspondencia normativa, porque el verificador automático de ISO/IEC 27035-1 de 2023 confirma una sola de las cinco fases en los tres momentos medidos, mientras que la revisión manual de correspondencia del primer laboratorio documenta evidencia para las cinco y sostiene la lectura completa de esa columna.
+
+Los tiempos de respuesta, contención y cierre no forman parte de la medición ejecutada, porque el reporte de indicadores del primer prototipo los declara como no medidos y porque el ejercicio solo produce marcas temporales del primer evento, sin captura de los casos ni de las respuestas. Esa ausencia limita la lectura del ciclo completo de gestión de incidentes a la sola fase de detección, de manera que los resultados sostengan una afirmación sobre velocidad de registro y no sobre el tiempo total de resolución de un incidente. Dentro de ese alcance, la medición final del segundo laboratorio cubre los diez escenarios de la campaña, mantiene la calidad de la evidencia en 100 sobre 100 puntos y documenta catorce lecciones aprendidas. Leídas en conjunto, las cifras permiten afirmar que la metodología amplía la cobertura de la campaña y sostiene la custodia de la evidencia en un entorno productivo real, con el alcance y los límites que se han expuesto en cada apartado.
+
+### 4.5 Comprobación de la hipótesis
+
+La comprobación de la hipótesis constituye el cierre del cuarto objetivo específico, porque es el punto donde la evidencia reunida en los dos laboratorios se convierte en un juicio sobre la proposición formulada en el apartado 1.5. El apartado aplica la prueba que el diseño metodológico asume, expone los datos pareados sobre los que opera, contrasta los anclajes normativos que la formulación enuncia y delimita el alcance de lo que la comprobación puede sostener.
+
+#### 4.5.1 Formulación operacional y regla de decisión
+
+La proposición del apartado 1.5 afirma que una metodología de honeypot, con las normativas ISO/IEC 27001, ISO/IEC 27035 y el marco MITRE ATT&CK, mejora la gestión de incidentes en los servicios fiscales. Para someterla a contraste estadístico, la formulación se operacionaliza sobre el tiempo de primer evento detectado, que es la variable que la metodología mide de forma continua y verificable en los dos momentos de la campaña del segundo laboratorio. La hipótesis nula establece que la mediana de las diferencias entre el estado inicial y el estado posterior es igual a cero, de manera que ambos momentos resulten equivalentes en detección, mientras que la hipótesis alternativa afirma que esa mediana es menor, con lo que el estado posterior representa una mejora en el tiempo de detección.
+
+El contraste se ejecuta con la prueba de Wilcoxon de los rangos con signo emparejada, que es la prueba que el diseño asume desde la actividad dos de la fase cinco, en el apartado 4.2.7. La tabla de trazabilidad metodológica la registra como el índice medible de la brecha G2 Instrumento 7, sobre preservación de evidencia. La elección de una prueba no paramétrica responde al tamaño reducido de la muestra emparejada y a la ausencia de supuestos de normalidad en la distribución de los tiempos, cuya escala comprende valores que van desde décimas de segundo hasta varios minutos. El nivel de significación se fija en α = 0,05 y el valor p se calcula de forma exacta, sin aproximación normal, mediante la enumeración de las 2ⁿ configuraciones de signos posibles para el tamaño muestral disponible.
+
+El marco metodológico no declaró el nivel de significación ni la regla de decisión, lo que constituye una omisión que este apartado corrige antes de la lectura del resultado. La decisión adoptada es doble, porque una comprobación con un solo criterio de aceptación resulta insuficiente cuando el tamaño muestral limita la potencia de la prueba. El primer criterio es el que la prueba no paramétrica impone, de manera que la hipótesis nula se rechaza cuando el valor p bilateral es inferior a 0,05. El segundo criterio es de consistencia direccional, porque la reducción del tiempo de detección debe manifestarse de manera uniforme en los pares observados, sin pares en los que el tiempo se incremente ni pares en los que la reducción dependa de un único valor extremo. Ambas condiciones se declaran antes de la presentación de los resultados y no se modifican después de su lectura.
+
+#### 4.5.2 Muestra emparejada y condiciones de comparabilidad
+
+La prueba se aplica sobre el conjunto de escenarios que conservan medición en los dos momentos de la campaña del segundo laboratorio. Ese conjunto comprende cuatro de los diez escenarios que la campaña declara, porque son los únicos en los que el paso de atribución de eventos a un señuelo concreto produce un tiempo de detección en la vuelta inicial y en la medición posterior. Los seis escenarios restantes carecen de valor en la vuelta inicial, de manera que su incorporación a la medición final amplía la cobertura de la campaña sin que aporte una reducción calculable, porque se desconoce su valor anterior.
+
+Las dos vueltas del segundo laboratorio comparten el mismo señuelo, la misma campaña de diez escenarios y el mismo instrumental de custodia, de manera que la variación de cada par sea atribuible a las correcciones aplicadas y no a un cambio en la composición de la campaña. Esa homogeneidad es la condición que legitima el carácter pareado del contraste, porque el emparejamiento por escenario controla la variabilidad que el propio escenario introduce en el tiempo de detección.
+
+Un control de consistencia confirma la integridad del subconjunto emparejado, porque el promedio de los cuatro valores iniciales, 5,2155 s, coincide de manera exacta con el valor de 5,2155 s sobre cuatro mediciones que la Tabla 7 registra para la vuelta inicial. Ese resultado acredita que el subconjunto empleado en la prueba agota la totalidad de la medición disponible en ese momento, de manera que no introduce ni excluye observación alguna.
+
+#### 4.5.3 Distribución de referencia y verificación de los supuestos
+
+Todo contraste estadístico descansa sobre una distribución de referencia, porque el valor p que produce un test es, en definitiva, la probabilidad de observar un estadístico igual o más extremo bajo la hipótesis nula. Elegir un test sin declarar esa distribución equivale a atribuirle una significación que el propio diseño no justifica. Este apartado establece las dos distribuciones que la comprobación requiere, la empírica de la variable medida y la nula del estadístico de contraste, además de verificar los supuestos que legitiman la elección del procedimiento.
+
+**La distribución empírica del primer laboratorio**
+
+Los nueve tiempos de detección medidos en el Prototipo 1 se distribuyen entre 0,141 s y 260,108 s, con una media de 41,598 s y una mediana de 0,826 s. La distancia entre ambas medidas es el primer indicio del carácter de la distribución, porque la media supera a la mediana en un factor de cincuenta, situación que en una distribución normal no se produce. La desviación estándar de 86,370 s duplica el valor de la media y sitúa el coeficiente de variación en 2,076. El sesgo alcanza 2,525 y la curtosis excedente 6,494, lo que describe una distribución fuertemente asimétrica hacia la derecha y con colas pesadas.
+
+***Figura 20***
+
+Distribución de los nueve tiempos de detección medidos en el Prototipo 1, presentada en tres lecturas complementarias que el apartado desarrollo de manera sucesiva. El primer panel contrapone el histograma de los valores observados con la curva normal ajustada a su media y desviación, donde siete de los nueve escenarios se concentran en el primer intervalo mientras dos se alejan hacia los minutos prolongados. El segundo panel ofrece el gráfico Q-Q frente a la distribución normal, donde la separación sistemática de los puntos respecto de la diagonal evidencia el rechazo de la normalidad. El tercer panel reordena los valores en escala logarítmica, marca la media y la mediana, de manera que se appreciate el agrupamiento de siete escenarios por debajo del segundo frente al contraste con los dos valores extremos.
+
+![Figura con tres paneles: a la izquierda, un histograma de los nueve tiempos de detección del Prototipo 1 con la curva normal ajustada superpuesta, donde siete valores se concentran bajo los 20 s y dos se sitúan en 85 s y 260,108 s; en el centro, un gráfico Q-Q frente a la normal con los puntos alejados de la diagonal de referencia; a la derecha, un diagrama de puntos en escala logarítmica con los nueve escenarios etiquetados y las líneas de la mediana, 0,826 s, y la media, 41,598 s.](data:image/png;base64...)
+
+La Figura 20 documenta el rechazo de la normalidad de forma gráfica, porque el histograma muestra una masa de observaciones muy concentrada cerca del origen y dos valores muy alejados que alargan la cola derecha, mientras la curva normal ajustada sitúa su masa central en la región de la media, allí donde no hay ninguna observación. El gráfico Q-Q confirma el diagnóstico, ya que los siete escenarios cortos se alinean en un segmento casi horizontal en el extremo inferior y los dos escenarios largos se separan del patrón en el extremo superior, de modo que la desviación no es un artefacto de un único valor extremo sino una ruptura sistemática de la forma. La lectura logarítmica cierra el análisis, porque los valores se ordenan en una columna graduada donde el agrupamiento de siete escenarios por debajo del segundo resulta visible junto con la distancia de los dos valores extremos.
+
+**La verificación formal de la normalidad**
+
+La inspección gráfica se complementó con tres pruebas de normalidad independientes, de manera que la conclusión no dependa de una sola evidencia visual ni de un solo supuesto distributivo, de modo que la Tabla 9 recoja el resultado de su aplicación sobre las muestras de los dos laboratorios.
+
+***Tabla 9***
+
+*Pruebas de normalidad aplicadas a los tiempos de detección medidos en los dos laboratorios*
+
+| **Muestra** | **n** | **Prueba** | **Estadístico** | **Valor p** | **Decisión al 0,05** |
+| --- | --- | --- | --- | --- | --- |
+| Prototipo 1 | 9 | Shapiro-Wilk | W = 0,570 | 4,25 × 10⁻⁵ | Se rechaza la normalidad |
+| Prototipo 1 | 9 | D'Agostino-Pearson | K² = 19,03 | 7,36 × 10⁻⁵ | Se rechaza la normalidad |
+| Prototipo 1 | 9 | Jarque-Bera | JB = 9,47 | 0,0088 | Se rechaza la normalidad |
+| Prototipo 1, escala logarítmica | 9 | Shapiro-Wilk | W = 0,908 | 0,3019 | No se rechaza la normalidad |
+| Prototipo 2, medición final | 10 | Shapiro-Wilk | W = 0,442 | 7,55 × 10⁻⁷ | Se rechaza la normalidad |
+| Prototipo 2, medición final | 10 | D'Agostino-Pearson | K² = 28,04 | 8,13 × 10⁻⁷ | Se rechaza la normalidad |
+| Prototipo 2, medición final | 10 | Jarque-Bera | JB = 21,99 | 1,68 × 10⁻⁵ | Se rechaza la normalidad |
+| Prototipo 2, vuelta 1 | 4 | Shapiro-Wilk | W = 0,662 | 0,0038 | Se rechaza la normalidad |
+
+*Nota.* Las tres primeras pruebas son las que el software de análisis emplea por defecto para el contraste de normalidad, de manera que su coincidencia en el veredicto refuerza la conclusión. La prueba de D'Agostino-Pearson requiere al menos ocho observaciones, por lo que no se aplicó a la vuelta inicial del segundo laboratorio, que solo produjo cuatro mediciones. La fila del Prototipo 1 en escala logarítmica corresponde a la transformación de los nueve valores a su logaritmo decimal, que se examinó a continuación. Los datos proceden de los reportes de indicadores de ambos laboratorios. Fuente: elaboración propia con base en evidencias/07-metricas/07_kpi-report.json, evidencias/v2.0-it1/07-metricas/kpi_report.json y evidencias/v2.1-it2/07-metricas/kpi_report.json.
+
+Las tres pruebas rechazan la normalidad en el Prototipo 1, con valores p que van desde 0,0088 hasta 4,25 × 10⁻⁵. El mismo veredicto se repite en la medición final del Prototipo 2, donde el estadístico de Shapiro-Wilk cae a 0,442 con un valor p de 7,55 × 10⁻⁷. La conclusión tiene por tanto alcance en los dos laboratorios y descarta el uso de un contraste paramétrico sobre la escala original, dado que ese procedimiento exige que las diferencias entre los momentos emparejados se distribuyan de manera normal.
+
+**Por qué la distribución es asimétrica y qué lectura admite**
+
+El rechazo de la normalidad describe el síntoma y no su causa, de manera que la causa resulte aquí determinante para la interpretación del resultado. El tiempo de detección no se produce de forma aditiva sino multiplicativa, porque la latencia observada resulta del producto entre un tiempo base de la cadena y una dispersión que depende de la carga, del tráfico concurrente y del estado del sistema que sirve la respuesta. Esa estructura multiplicativa genera exactamente el patrón observado, una masa concentrada en valores breves con una cola larga de valores extremos.
+
+El comportamiento del logaritmo decimal de los nueve valores del Prototipo 1 confirma esa explicación, porque la misma prueba de Shapiro-Wilk, aplicada a los valores transformados, arroja un estadístico de 0,908 con un valor p de 0,3019. La normalidad no se rechaza en la escala logarítmica, de modo que el modelo log-normal, que es la forma que la literatura de tiempos de respuesta reconoce para magnitudes positivas asimétricas, resulta consistente con los datos observados y explica el sesgo de 2,525 sin necesidad de atribuirlo a un error de medición.
+
+La consecuencia metodológica de este hallazgo es directa, de manera que la métrica deba leerse en su forma multiplicativa, porque la reducción de 0,6120 s que la comparación aritmética expresa sobre la media equivale, en la escala logarítmica, a que el tiempo de detección posterior sea 1,6358 veces menor, esto es, una reducción multiplicativa del 38,9 %. Ambas lecturas son correctas sobre los mismos datos y contestan preguntas distintas, de modo que la aritmética describe el desplazamiento del promedio y la multiplicativa describe el factor por el que se multiplica el comportamiento típico de la detección.
+
+**La distribución nula del estadístico de contraste**
+
+Identificada la distribución de la variable, corresponde declarar la distribución contra la que se evalúa el estadístico, la que determina el valor p que el contraste produce. Bajo la hipótesis nula, que las diferencias entre los dos momentos son simétricas alrededor de cero, ninguno de los cuatro pares presenta signo preferente y los rangos de sus valores absolutos son fijos, de manera que cada una de las 2⁴ configuraciones de signos resulta igualmente probable. El estadístico de la prueba sigue entonces una distribución discreta sobre el soporte de cero a diez, en la que la probabilidad de cada valor es el número de configuraciones que lo producen dividido entre dieciséis.
+
+***Figura 21***
+
+Distribución nula exacta del estadístico W+ bajo la hipótesis nula, calculada mediante la enumeración de las dieciséis configuraciones de signos que la muestra de cuatro pares permite. Las dos barras señaladas corresponden a los valores extremos del soporte, W+ = 0 y W+ = 10, que concentran una configuración cada uno. El estadístico observado se sitúa sobre el extremo inferior del soporte, en el borde izquierdo de la distribución, de manera que ninguna configuración posible resulta más extrema, de manera que el valor p bilateral resulte de sumar las dos colas, que aportan dos de dieciséis.
+
+![Gráfico de barras de la distribución nula del estadístico W+ bajo la hipótesis nula para cuatro pares, con el eje horizontal recorriendo los valores de 0 a 10 y el vertical mostrando la probabilidad bajo H0. Las barras de 0 y 10, de probabilidad 0,0625 cada una, aparecen destacadas en verde, y la flecha señala el estadístico observado W = 0. En la esquina superior derecha, un recuadro declara el valor p bilateral de 0,1250 y el hecho de que ese es el valor mínimo alcanzable con cuatro pares.](data:image/png;base64...)
+
+La Figura 21 sitúa el cálculo dentro de la distribución de referencia y hace visible lo que la cifra del valor p expresa. El estadístico observado toma el valor W = 0, que se sitúa en el borde exacto del soporte de la distribución, de manera que su reflejo en W+ = 10 ocupe la posición simétrica del extremo opuesto. Las dos colas suman dos de dieciséis configuraciones, de donde resulta el valor p bilateral de 0,1250, cifra que la posición del cálculo explica por qué ese valor p no puede ser menor, porque el estadístico alcanzó el extremo del rango que la prueba admite con cuatro observaciones, de modo que no existe ninguna configuración de signos más separada de la hipótesis nula que la observada.
+
+La prueba de Wilcoxon de los rangos con signo emparejada se apoya únicamente en el orden de las observaciones y no en sus magnitudes, de manera que es invariante ante cualquier transformación monótona de la variable. Esa propiedad tiene una consecuencia verificable, de manera que repetir el contraste sobre el logaritmo decimal de los cuatro pares reproduce el mismo estadístico W = 0 y el mismo valor p de 0,1250. La decisión sobre la escala no altera el resultado, de modo que la confirmación de la hipótesis no depende de la transformación elegida.
+
+**La coherencia del contraste paramétrico**
+
+La misma batería de comprobaciones aplicada al contraste paramétrico revela que la diferencia entre los dos veredictos no procede de los datos. La prueba t pareada sobre la escala original alcanza un estadístico t(3) = 3,4088 con un valor p bilateral de 0,0422, mientras que sobre la escala logarítmica el mismo procedimiento produce un estadístico de 1,5846 con un valor p de 0,2112. El contraste paramétrico resulta sensible a la escala, porque el supuesto de normalidad de las diferencias se cumple en una de ellas y no en la otra, mientras que el contraste no paramétrico mantiene su veredicto en las dos.
+
+Esta secuencia de comprobaciones fija el fundamento de la elección metodológica, porque la distribución empírica de la variable no admite el contraste paramétrico sobre la escala original, la distribución nula del estadístico establece la cota inferior del valor p que la prueba puede producir con la muestra disponible y el comportamiento del contraste frente a las dos escalas demuestra que el veredicto no depende del procedimiento elegido.
+
+**Lo que decide cada elemento**
+
+Conviene separar con precisión lo que aporta cada pieza del análisis, porque de esa separación depende la fuerza de la comprobación. La distribución empírica de la variable establece qué contrastes son legítimos, de manera que su resultado descarte el paramétrico sobre la escala original. La distribución nula del estadístico establece el valor p que el contraste produce y el límite inferior que la muestra disponible permite alcanzar. El contraste, por su parte, es el único que decide sobre la hipótesis, de manera que su veredicto se sostenga en los rangos y resulte independiente de la escala.
+
+De este modo, la comprobación no se apoya en una afirmación sobre la significación aislada sino sobre una cadena en la que cada elemento justifica al siguiente. La Figura 20 y la Tabla 9 justifican el contraste no paramétrico, la Figura 21 justifica el valor p que la prueba produce, mientras que el resultado del contraste, que se expone en el apartado siguiente, decide sobre la hipótesis con la evidencia disponible.
+
+#### 4.5.4 Ejecución de la prueba de Wilcoxon pareada
+
+***Tabla 8***
+
+*Pares de tiempo de detección medidos en las dos vueltas del segundo laboratorio con el estadístico de la prueba de Wilcoxon pareada*
+
+| **Escenario** | **Técnica ATT&CK** | **Vuelta 1 (s)** | **Medición posterior (s)** | **Diferencia d (s)** | **Rango de \|d\|** | **Reducción** |
+| --- | --- | --- | --- | --- | --- | --- |
+| S01 | T1595 | 16,851 | 15,910 | +0,941 | 4 | 5,6 % |
+| S02 | T1595.002 | 1,214 | 1,095 | +0,119 | 1 | 9,8 % |
+| S05 | T1110.004 | 1,734 | 1,145 | +0,589 | 2 | 34,0 % |
+| S07 | T1078 | 1,063 | 0,264 | +0,799 | 3 | 75,2 % |
+
+*Nota.* La tabla presenta los cuatro pares de la campaña del segundo laboratorio que conservan medición en los dos momentos, con el tiempo de primer evento detectado en segundos, la diferencia entre la vuelta inicial y la medición posterior, el rango que esa diferencia ocupa en la ordenación de los valores absolutos y la reducción porcentual que representa. Las cuatro diferencias resultan positivas, porque en los cuatro escenarios el tiempo de detección de la medición posterior es inferior al de la vuelta inicial. La suma de los rangos correspondientes a las reducciones alcanza el valor diez y la de los incrementos queda en cero. ATT&CK = marco de tácticas, técnicas y procedimientos adversarios. d = diferencia entre los dos momentos. Fuente: elaboración propia con base en el reporte de indicadores y el tablero de resultados del segundo laboratorio.
+
+La Tabla 8 muestra que las cuatro diferencias resultan positivas, porque en los cuatro escenarios el tiempo de detección de la medición posterior es inferior al de la vuelta inicial. Los valores absolutos de las diferencias ordenan los escenarios en el rango uno para S02, el rango dos para S05, el rango tres para S07 y el rango cuatro para S01, de manera que la suma de los rangos correspondientes a las reducciones alcanza el valor diez y la suma de los rangos correspondientes a los incrementos queda en cero.
+
+El estadístico de la prueba toma por tanto el valor W = 0, que es el valor más extremo que el estadístico admite con cuatro observaciones, porque ninguna configuración posible de signos produce una separación más amplia entre los dos grupos. El valor p exacto que corresponde a ese estadístico es de 0,1250 en la formulación bilateral y de 0,0625 en la formulación unilateral, que orienta la hipótesis alternativa hacia la reducción.
+
+El resultado exige una precisión que evita una lectura incorrecta del valor p, porque con cuatro pares el valor p bilateral más pequeño que la prueba puede producir es de 0,1250, que se obtiene justamente cuando las cuatro diferencias tienen el mismo signo, de manera que el resultado obtenido no puede ser más significativo de lo que es. La prueba no alcanza el nivel de significación fijado en el 0,05, de manera que esa limitación responde al tamaño de la muestra emparejada y no a la ausencia de reducción en los datos. Para que la prueba no paramétrica alcance ese nivel en el caso de reducción uniforme, la muestra emparejada requiere un mínimo de seis pares, de manera que dos escenarios con medición en ambos momentos bastarían para que el resultado alcanzara el umbral.
+
+El tamaño del efecto acompaña al estadístico con un valor máximo, porque la correlación rangos-biserial pareada, calculada como el cociente entre la diferencia y la suma de las dos sumas de rangos, toma el valor de 1,000, que es el techo que admite esa medida. El estimador de Hodges-Lehmann de la mediana de las diferencias sitúa la reducción central de la muestra emparejada en 0,612 s. Los descriptivos del subconjunto emparejado confirman esa magnitud, porque el promedio pasa de 5,2155 s a 4,6035 s, con una reducción de 0,6120 s que representa el 11,73 % del valor inicial, mientras que la mediana pasa de 1,4740 s a 1,1200 s.
+
+La prueba de signos, que opera únicamente sobre la dirección de las diferencias y descarta su magnitud, devuelve el mismo valor p de 0,1250, lo que confirma que el resultado no depende del procedimiento de ordenamiento de los rangos. El análisis de sensibilidad con la prueba paramétrica de pares registra un estadístico t(3) = 3,4088 y un valor p bilateral de 0,0422, con lo que el contraste paramétrico alcanza el nivel de 0,05. Este resultado no sustituye al contraste no paramétrico comprometido en el diseño, pues muestra que la diferencia entre ambos veredictos proviene de la potencia del procedimiento no paramétrico ante una muestra de cuatro pares, antes que de una ambigüedad en la dirección del efecto.
+
+#### 4.5.5 Comprobación de los anclajes normativos de la hipótesis
+
+La formulación del apartado 1.5 no se limita a la reducción del tiempo de detección, porque incluye tres anclajes normativos que la metodología se compromete a satisfacer, cuya comprobación se apoya en la evidencia de la campaña.
+
+El anclaje a ISO/IEC 27001:2022 se verifica con el registro de cumplimiento de controles, que documenta los siete controles relevantes para la gestión de incidentes implementados sobre los siete controles aplicables, con el 100 % de cobertura, entre los que figuran la planificación de la gestión de incidentes, la evaluación de eventos de seguridad, la respuesta a incidentes, el aprendizaje y la recolección de evidencia. El anclaje a ISO/IEC 27035-1:2023 se verifica con el expediente de cumplimiento de fases, que documenta evidencia en el laboratorio para las cinco fases del ciclo de gestión de incidentes. El verificador automático del reporte de indicadores registra en cambio una sola de las cinco fases, lo que la tabla de asignación de escenarios explica, porque cada escenario declara únicamente las fases que su ejecución atraviesa. La divergencia entre ambas fuentes no es una contradicción sobre el cumplimiento, de modo que constituye una diferencia de criterio entre la verificación automática y la revisión documental, que el capítulo IV documenta como tal.
+
+El anclaje a MITRE ATT&CK se verifica con la cobertura de la campaña, que alcanza las diez técnicas con fuente de detección sobre las diez que la campaña declara y las seis tácticas del marco, sobre un inventario de diecisiete técnicas implementadas en el laboratorio. La preservación de evidencia, que la metodología ancla en ISO/IEC 27037:2012 y que la tabla de trazabilidad asocia a la prueba pareada, se verifica con el volumen de material custodiado. Los 91 archivos con huella verificada y la calidad de 100 sobre 100 se mantienen en ambas vueltas, de manera que la ampliación de la cobertura no degrada la custodia.
+
+#### 4.5.6 Decisión sobre la hipótesis y alcance de la comprobación
+
+Ambos resultados convergen en un mismo veredicto, porque la hipótesis nula de igualdad entre el estado inicial y el estado posterior no se rechaza en el nivel de 0,05 con la prueba no paramétrica que el diseño asume, dado que el tamaño de la muestra emparejada de cuatro pares impone un valor p mínimo de 0,1250. La hipótesis tampoco se refuta, porque la dirección del efecto es inequívoca, con reducción en los cuatro pares, con un estadístico en su valor más extremo y con un tamaño de efecto en su techo, de manera que la evidencia disponible apunta de manera consistente en la dirección que la hipótesis afirma.
+
+La comprobación sostiene por tanto una lectura graduada de la proposición, en la que los componentes normativos que la formulación enuncia se verifican de manera completa y documentada. El componente empírico de mejora en el tiempo de detección se confirma en su dirección y en su magnitud, aunque el nivel de significación estadística no se alcanza con la prueba comprometida en el diseño, por lo que la afirmación que la evidencia permite es que la mejora es consistente con los datos observados y todavía no estadísticamente concluyente.
+
+La causa de esa restricción es identificable y se encuentra en el propio desarrollo de la investigación, porque el tamaño de la muestra emparejada quedó determinado por la falla de atribución que experimentó la vuelta inicial, la que dejó sin medición a seis de los diez escenarios de la campaña. El ciclo de correcciones subsana esa falla y la medición posterior produce los diez valores, aunque los seis escenarios reparados no admiten comparación porque se carece de su valor anterior. La limitación es, por tanto, una consecuencia de un defecto instrumental ya identificado y subsanado, antes que de una limitación de la metodología.
+
+De esa situación se sigue una consecuencia precisa sobre el tamaño muestral, porque con los diez escenarios de la campaña medidos en ambos momentos el valor p bilateral de la prueba no paramétrica sería de 0,00195 en el caso de reducción uniforme. El ejercicio habría alcanzado el nivel de 0,05 sin necesidad de procedimiento adicional alguno, de modo que basta con que la atribución de eventos funcione desde el primer despliegue para que la comprobación estadística de la hipótesis quede cerrada. Esa es la principal recomendación que el cuarto objetivo específico deja al servicio de la organización que instrumente la metodología.
+
+Un componente de la comprobación queda pendiente, porque los dos índices compuestos que el marco metodológico declara como instrumentos de validación del cuarto objetivo, el Índice Institucional de Alineación Metodológica y el Índice de Madurez en Gestión de Incidentes, no tienen valor calculado en el capítulo IV. La comprobación se sostiene entonces sobre los tres componentes que cuentan con evidencia verificable, que son el tiempo de detección, la cobertura normativa y la custodia de la evidencia, de modo que deja pendiente el cálculo de ambos índices, cuyo valor debe incorporarse al capítulo de resultados para completar la validación prevista en el diseño.
 
 # Capítulo V: Conclusiones y Recomendaciones de la Investigación
 
+El capítulo IV documenta la aplicación de la metodología Honeypot en dos laboratorios, con una campaña común de diez escenarios, diez técnicas y seis tácticas. La comparación abarca tres momentos de medición, que corresponden al TaxFisco Research Lab y a las dos vueltas del laboratorio del Servicio de Impuestos Nacionales. Las conclusiones que siguen responden, en ese orden, a los cuatro objetivos específicos y al objetivo general de la investigación. El alcance de todas ellas se acota a lo que los resultados medidos permiten afirmar, sin incorporar información que el capítulo IV no documente.
+
 ## 5.1 Conclusiones
 
-*[Una conclusión por cada objetivo específico + una conclusión general. Deben derivarse directamente de los resultados del Marco Práctico. No introduzca información nueva.]*
+**Con respecto al primer objetivo específico.** El análisis de la situación actual de la gestión de incidentes en los servicios fiscales queda documentado por el instrumento de madurez, que evalúa catorce dimensiones agrupadas en cuatro bloques temáticos y se aplica a catorce informantes de la organización. La relación de esa situación con las normativas ISO/IEC 27001, ISO/IEC 27035 y el marco MITRE ATT&CK se establece en el capítulo II y se verifica en el capítulo IV. La madurez global del proceso institucional alcanza 52,70 %, valor que se sitúa 1,70 puntos por encima del corte del nivel Gestionado, de manera que el proceso sostiene documentación y registros sistemáticos sin que ningún dominio alcance la condición de consolidado. La lectura interna de ese promedio revela el patrón que define al diagnóstico, dado que seis de los catorce instrumentos permanecen en nivel Básico y los cuatro bloques temáticos se sitúan en un rango estrecho, entre 51,53 % y 54,49 %.
 
-Con respecto al objetivo específico 1: se concluye que [conclusión fundamentada en los resultados obtenidos].
+Las dos cifras más bajas del diagnóstico recaen en dos dimensiones, la capacitación y concienciación del personal con 47,78 %, junto con la retención y acceso a evidencias con 47,92 %. El núcleo del ciclo de gestión conserva un desempeño sostenido en la clasificación y evidencia de incidentes, que alcanza 56,94 %. La respuesta y los tiempos de atención llega al 58,06 %, de modo que el ciclo operativo del proceso mantiene su desempeño. Sus extremos, en cambio, se debilitan con 48,54 % en la detección y el registro de eventos y 49,17 % en las lecciones aprendidas. La capa preventiva añade dos brechas propias, el control de accesos con 49,72 % y la gestión de vulnerabilidades con 50,56 %, ambas ancladas en los controles A.5.17 y A.8.23 de ISO/IEC 27001:2022. La caracterización resultante es la de un sistema que pierde eventos en la entrada, pierde evidencia en el archivo y pierde aprendizaje en el cierre. La ubicación del proceso en el extremo inferior del nivel Gestionado ofrece una base suficiente para sostener una intervención metodológica que no exija reconstruir por completo el sistema de gestión.
 
-Con respecto al objetivo específico 2: se concluye que [conclusión fundamentada en los resultados obtenidos].
+**Con respecto al segundo objetivo específico.** El diseño de la metodología honeypot, orientado a mejorar la detección temprana y la recolección de evidencia en la gestión de incidentes, se configura como un procedimiento de cinco fases. Comprende el diseño del señuelo, el despliegue aislado, la captura con enriquecimiento y custodia, la correlación con la gestión de incidentes y la medición de impacto con lecciones aprendidas. La arquitectura añade a esa secuencia cinco principios de gobierno que articulan las dimensiones estructural, normativa, metodológica, de alcance y temporal, junto con tres planos transversales que cubren la capa normativa, la operativa y la institucional. A esa estructura se suman tres bucles de retroalimentación con latencia diferenciada y catorce categorías funcionales de tecnología que ordenan la implementación.
 
-Con respecto al objetivo específico 3: se concluye que [conclusión fundamentada en los resultados obtenidos].
+El diseño atiende de manera explícita las seis brechas del diagnóstico, de las cuales tres se resuelven con la metodología, las que corresponden a la detección y el registro, a las lecciones aprendidas y a la integridad de la evidencia. Las tres brechas restantes, relativas a los accesos y privilegios, la gestión de vulnerabilidades y la capacitación, se derivan al plan institucional paralelo. Ese plan se apoya en los controles A.5.17, A.8.23 y A.6.3 de ISO/IEC 27001:2022, que son los que el diagnóstico identificó como ausentes en el punto de partida. La trazabilidad del diseño queda asegurada por una matriz que vincula cada actividad de cada fase con la norma que la respalda, el criterio que verifica su ejecución y el entregable que produce. La metodología se sostiene, en consecuencia, sobre una arquitectura verificable antes que sobre una colección de prácticas reunidas, lo que garantiza que cada decisión de diseño responda a una carencia diagnosticada y a un criterio de comprobación explícito.
 
-De manera general, la investigación permitió [conclusión global que responde al objetivo general y al problema planteado].
+**Con respecto al tercer objetivo específico.** La implementación de la metodología en un entorno controlado se verifica en dos aplicaciones sucesivas que comparten la campaña de diez escenarios, el señuelo de servicios tributarios y el instrumental de custodia. El primer prototipo, instalado en el TaxFisco Research Lab, registra nueve de los diez escenarios con tiempo de detección y obtiene una media de 41,598 s sobre nueve mediciones. El rango de esas mediciones se sitúa entre un mínimo de 0,141 s y un máximo de 260,108 s, de las que cinco quedan por debajo de un segundo y dos superan el minuto. Su cobertura declarada alcanza las diez técnicas de la campaña y las seis tácticas del marco sobre un inventario de diecisiete técnicas implementadas, con las cinco fases de ISO/IEC 27035-1:2023 sustentadas en la revisión manual de correspondencia, tres lecciones aprendidas registradas y 68 archivos con huella verificada.
+
+El segundo prototipo, instalado en el laboratorio del Servicio de Impuestos Nacionales, incorpora un sensor de red, un archivo señuelo y un emulador de acceso remoto, con lo que las fuentes de registro pasan de tres a seis sin que varíe la composición de la campaña. La línea base de esa segunda aplicación registra cuatro de los diez escenarios con tiempo de detección, cuatro de las diez técnicas con fuente, tres de las seis tácticas con fuente asignada, una media de 5,2155 s sobre cuatro mediciones y un percentil 95 de 14,583 s, con siete lecciones aprendidas y 91 archivos de evidencia con huella verificada. Tras el ciclo de corrección, la medición final alcanza los diez escenarios con tiempo registrado, las diez técnicas y las seis tácticas con fuente asignada, reduce la media a 2,0219 s y el percentil 95 a 9,266 s, además de situar siete de los diez escenarios por debajo del segundo. El registro de aprendizaje amplía su alcance hasta catorce lecciones, once de ellas con causa raíz identificada y corrección aplicada, mientras que los 91 archivos con huella y la calidad de custodia de 100 sobre 100 se mantienen constantes durante el ciclo completo de cuatro horas con 26 minutos.
+
+**Con respecto al cuarto objetivo específico.** La validación de la eficacia de la metodología mediante la comparación de antes y después se sostiene en la lectura de los indicadores de cobertura, de rapidez y de custodia, con la salvedad declarada en el apartado 4.4.4 sobre el hecho de que el Prototipo 1 admite una sola ejecución. La ejecución que sigue se apoya en el estadístico cuya distribución de referencia se declaró en el apartado 4.5.3, de manera que el valor p que produce tenga una interpretación verificada y no una atribución convencional. Dentro del segundo laboratorio, donde las dos vueltas comparten señuelo, campaña e instrumental de custodia, la comparación resulta homogénea y muestra que los escenarios con tiempo de detección registrado pasan del 40 % al 100 %, las técnicas con fuente del 40 % al 100 % y las tácticas del 50 % al 100 %. La reducción del percentil 95, de 14,583 s a 9,266 s, equivale al 36,5 % del valor de la línea base. Ese cambio se confirma en los cuatro escenarios que conservan medición en ambas vueltas, con reducciones del 5,6 %, del 9,8 %, del 34,0 % y del 75,2 %. La mejora se apoya, por tanto, en el mismo par de registros y no en un promedio de laboratorio.
+
+En Libélula SRL, el perfil posterior a la aplicación aporta la evidencia complementaria de esta mejora, con la integridad y custodia de evidencias elevada desde 8,33 % hasta el 100 %. También la detección y el registro avanzan desde 31,25 % hasta el 85 %, de modo que la capacidad de captura se vuelve verificable en la escala del diagnóstico inicial. Las dimensiones de custodia, trazabilidad, respaldo y control de accesos alcanzan la totalidad de la escala, mientras que la respuesta y los tiempos de atención quedan en el 70 %, que es el valor más bajo del perfil posterior. En el laboratorio del Servicio de Impuestos Nacionales, la medición final alcanza el 100 % en doce de las catorce dimensiones, con la respuesta y los tiempos de atención en el 93 %, la concienciación del personal en el 98 % y las métricas de mejora continua en el 96 %.
+
+El alcance de esta validación exige tres precisiones que el capítulo IV documenta y que la lectura de las conclusiones asume. La primera se refiere a los tiempos de respuesta, contención y cierre, que no forman parte de la medición ejecutada, dado que el ejercicio solo produce marcas temporales del primer evento, de manera que los resultados sostengan una afirmación sobre la velocidad de registro y no sobre el tiempo total de resolución de un incidente. La segunda concierne a los perfiles posteriores de los dos casos, que las notas de las figuras 17 y 18 identifican como visualización orientativa y no como medición directa por dimensión. La tercera se refiere a la correspondencia normativa, porque el verificador automático de ISO/IEC 27035-1:2023 confirma una sola de las cinco fases en los tres momentos medidos, mientras que la revisión manual del primer laboratorio documenta evidencia para las cinco. Se concluye que la eficacia de la metodología queda validada en el ámbito de la cobertura de la campaña, la rapidez del registro del primer evento y la continuidad de la custodia de la evidencia.
+
+**De manera general.** La investigación desarrolla, implementa y evalúa una metodología de honeypot que integra los marcos ISO/IEC 27001, ISO/IEC 27035 y MITRE ATT&CK en un procedimiento de cinco fases. Ese procedimiento se verifica mediante indicadores con denominador declarado, trazables hasta la evidencia que los sustenta y reproducibles por un tercero con el mismo instrumental. El objetivo general de mejorar la gestión de incidentes en los servicios fiscales se cumple en el ámbito de la fase de detección, porque la metodología amplía la cobertura de la campaña hasta el 100 % de los escenarios, sostiene una calidad de custodia de 100 sobre 100 sobre 91 archivos con huella verificada y convierte el registro de limitaciones en un ciclo de corrección documentado con catorce lecciones resueltas.
+
+La hipótesis formulada en el apartado 1.5 no se refuta en la comprobación del apartado 4.5, ya que la metodología de honeypot, con las normativas ISO/IEC 27001, ISO/IEC 27035 y el marco MITRE ATT&CK, mejora la gestión de incidentes en los servicios fiscales. Los anclajes normativos de la formulación se verifican por completo y la dirección del efecto sobre el tiempo de detección es inequívoca, aunque la prueba no paramétrica comprometida en el diseño no alcanza el nivel de significación fijado con los cuatro pares disponibles, de manera que la mejora se sostiene como consistente con los datos y todavía no como estadísticamente concluyente. Los resultados ejecutados tampoco permiten afirmar lo mismo respecto de los tiempos de contención y cierre, de modo que la lectura del impacto se limita a la fase de detección. La respuesta al problema planteado es igualmente acotada, pues la ventana de exposición se reduce en el ámbito de la captura instrumentada y la incompletitud de las evidencias forenses se corrige con una custodia verificada por huella criptográfica. Las brechas que el diagnóstico atribuyó a la respuesta organizacional, la cobertura preventiva y la capacitación permanecen abiertas, porque su atendimiento corresponde al plan institucional paralelo y no a la metodología.
+
+La contribución de la investigación se sitúa en la articulación de la metodología con el proceso institucional de gestión de incidentes, más que en la construcción de un componente técnico nuevo, dado que el laboratorio se apoya en herramientas de código abierto consolidadas. El aporte consiste en organizar esos componentes en un procedimiento verificable, con sus cinco fases, sus criterios de comprobación y su trazabilidad normativa. Ese procedimiento queda disponible para el Servicio de Impuestos Nacionales y para el Centro de Gestión de Incidentes Informáticos, donde puede auditarse, repetirse y sostenerse en el tiempo. La única condición que ese sostenimiento exige es mantener la instrumentación de atribución como un componente permanente del sistema de detección y no como un ajuste puntual de campaña, pues la línea base demuestra que la falla de esa atribución basta para privar de medición a seis de los diez escenarios.
 
 ## 5.2 Recomendaciones
 
-*[Proponga recomendaciones concretas, orientadas a actores específicos y fundamentadas en sus conclusiones.]*
+Las recomendaciones que siguen se orientan a los actores que pueden tomar decisiones sobre los componentes medidos y se derivan de las conclusiones anteriores, con la atención de no confundir los hallazgos que la metodología atiende con aquellos que dependen exclusivamente de la acción organizacional.
 
-1. Se recomienda a [actor/institución] que [acción concreta derivada de los hallazgos].
-2. Para futuras investigaciones, se sugiere [línea de investigación que amplíe o profundice este trabajo].
-3. Se recomienda a los administradores del [sistema/área] implementar [mejora específica].
+1. **Al Servicio de Impuestos Nacionales y al Centro de Gestión de Incidentes Informáticos** se recomienda incorporar el sensor de red, el archivo señuelo y el emulador de acceso remoto a la arquitectura de detección de la organización, pues la línea base del segundo laboratorio muestra que seis de los diez escenarios carecían de medición por una falla en la atribución del evento a un señuelo concreto, no por una limitación de la capacidad de captura.
+
+2. **A la unidad responsable de la evidencia digital del Servicio de Impuestos Nacionales** se recomienda sostener el procedimiento de custodia con sellado temporal y huella SHA-256 sobre cada archivo, ya que la calidad verificada se mantuvo en 100 sobre 100 en las dos vueltas del ciclo, con 91 archivos con huella en cada una, lo que demuestra que la ampliación de la cobertura de escenarios no degrada la validez forense del material recolectado.
+
+3. **A las áreas responsables del control de accesos, de la gestión de vulnerabilidades y de la capacitación del personal** se recomienda ejecutar el plan institucional paralelo, que se apoya en los controles A.5.17, A.8.23 y A.6.3 de ISO/IEC 27001:2022. El diagnóstico sitúa esas tres dimensiones en nivel Básico y la metodología no las atiende, de manera que su cierre depende exclusivamente de la acción organizacional.
+
+4. **Al equipo responsable de la gestión de incidentes del Servicio de Impuestos Nacionales** se recomienda instrumentar el registro de los tiempos de contención, erradicación y recuperación, dado que la medición ejecutada documenta la velocidad de registro del primer evento y deja sin medir el tiempo medio de respuesta declarado en la operacionalización de variables, lo que acota la lectura de la eficacia a la fase de detección.
+
+5. **Al equipo de investigación y al Centro de Gestión de Incidentes Informáticos** se recomienda unificar en un solo procedimiento verificable las dos fuentes de correspondencia normativa con ISO/IEC 27035-1:2023, la revisión manual y el verificador automático, porque el indicador oscila entre cinco de cinco fases y una de cinco según la fuente consultada, de manera que un tercero no puede reproducir el valor sin conocer el instrumento empleado.
+
+6. **Para futuras investigaciones** se sugiere ampliar el período de observación de la campaña a ciclos anuales y medir el tiempo total de resolución de los incidentes generados. Se sugiere también convertir los perfiles posteriores de las figuras 17 y 18 en mediciones por dimensión verificadas, dado que la evidencia disponible cubre la fase de detección y se apoya en una visualización orientativa para el resto de los indicadores.
+
+El seguimiento sostenido de la metodología en los términos aquí medidos permite a la administración tributaria elevar el nivel de madurez de su proceso de gestión de incidentes, con la solidez metodológica que otorgan un instrumento de cuarenta y dos reactivos con un coeficiente Alfa de Cronbach de 0,869, validado sobre una muestra piloto de treinta respondentes, a la que se suma la trazabilidad documental que exige un proceso de auditoría institucional.
 
 # Anexos
 
