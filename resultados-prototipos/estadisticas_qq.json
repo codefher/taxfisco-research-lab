@@ -2,6 +2,7 @@
   "descripcion": "Parametros verificados de la Figura 13 (graficos Q-Q): coordenadas de Blom, valores observados, recta de referencia de la normal ajustada a cada muestra y escalas de los ejes.",
   "metodo_recta": "y = media + desviacion estandar por z. Es la recta de la distribucion normal ajustada a la muestra, no una regresion ajustada sobre los puntos observados.",
   "posiciones": "Blom: p_i = (i - 3/8) / (n + 1/4); cuantiles normales estandar.",
+  "ejes": "El eje de cuantiles va de -2 a 2 desviaciones en pasos de 0,5 y se rotula con un decimal. El eje de valores observados usa el paso comodo que cubre datos y recta, con los decimales exactos de ese paso. Cada punto lleva rotulado su valor observado con tres decimales.",
   "paneles": [
     {
       "clave": "p1_orig",
@@ -30,18 +31,29 @@
         85.0,
         260.108
       ],
+      "rotulos": [
+        "0,141",
+        "0,533",
+        "0,543",
+        "0,824",
+        "0,826",
+        "10,000",
+        "16,405",
+        "85,000",
+        "260,108"
+      ],
       "media": 41.5978,
       "desviacion": 86.3705,
       "recta_normal": {
         "pendiente": 86.3705,
         "ordenada": 41.5978,
         "z_extremos": [
-          -1.4942,
-          1.4942
+          -2.0,
+          2.0
         ],
         "y_extremos": [
-          -87.4531,
-          170.6487
+          -131.1432,
+          214.3387
         ]
       },
       "recta_cuartiles": {
@@ -62,18 +74,24 @@
           100,
           200,
           300
-        ]
+        ],
+        "decimales": 0
       },
       "eje_z": {
         "min": -2.0,
         "max": 2.0,
         "marcas": [
           -2.0,
+          -1.5,
           -1.0,
+          -0.5,
           0.0,
+          0.5,
           1.0,
+          1.5,
           2.0
-        ]
+        ],
+        "decimales": 1
       },
       "shapiro": {
         "w": 0.57,
@@ -107,18 +125,29 @@
         4.4427,
         5.5611
       ],
+      "rotulos": [
+        "-1,959",
+        "-0,629",
+        "-0,611",
+        "-0,194",
+        "-0,191",
+        "2,303",
+        "2,798",
+        "4,443",
+        "5,561"
+      ],
       "media": 1.28,
       "desviacion": 2.5915,
       "recta_normal": {
         "pendiente": 2.5915,
         "ordenada": 1.28,
         "z_extremos": [
-          -1.4942,
-          1.4942
+          -2.0,
+          2.0
         ],
         "y_extremos": [
-          -2.592,
-          5.1521
+          -3.9029,
+          6.463
         ]
       },
       "recta_cuartiles": {
@@ -132,27 +161,31 @@
         ]
       },
       "eje_y": {
-        "min": -5.0,
-        "max": 7.5,
+        "min": -5,
+        "max": 10,
         "marcas": [
-          -5.0,
-          -2.5,
-          0.0,
-          2.5,
-          5.0,
-          7.5
-        ]
+          -5,
+          0,
+          5,
+          10
+        ],
+        "decimales": 0
       },
       "eje_z": {
         "min": -2.0,
         "max": 2.0,
         "marcas": [
           -2.0,
+          -1.5,
           -1.0,
+          -0.5,
           0.0,
+          0.5,
           1.0,
+          1.5,
           2.0
-        ]
+        ],
+        "decimales": 1
       },
       "shapiro": {
         "w": 0.908,
@@ -176,18 +209,24 @@
         1.734,
         16.851
       ],
+      "rotulos": [
+        "1,063",
+        "1,214",
+        "1,734",
+        "16,851"
+      ],
       "media": 5.2155,
       "desviacion": 7.7623,
       "recta_normal": {
         "pendiente": 7.7623,
         "ordenada": 5.2155,
         "z_extremos": [
-          -1.0491,
-          1.0491
+          -2.0,
+          2.0
         ],
         "y_extremos": [
-          -2.9282,
-          13.3592
+          -10.3091,
+          20.7401
         ]
       },
       "recta_cuartiles": {
@@ -202,25 +241,30 @@
       },
       "eje_y": {
         "min": 0,
-        "max": 20,
+        "max": 30,
         "marcas": [
           0,
-          5,
           10,
-          15,
-          20
-        ]
+          20,
+          30
+        ],
+        "decimales": 0
       },
       "eje_z": {
         "min": -2.0,
         "max": 2.0,
         "marcas": [
           -2.0,
+          -1.5,
           -1.0,
+          -0.5,
           0.0,
+          0.5,
           1.0,
+          1.5,
           2.0
-        ]
+        ],
+        "decimales": 1
       },
       "shapiro": {
         "w": 0.6617,
@@ -244,18 +288,24 @@
         0.5504,
         2.8244
       ],
+      "rotulos": [
+        "0,061",
+        "0,194",
+        "0,550",
+        "2,824"
+      ],
       "media": 0.9075,
       "desviacion": 1.2946,
       "recta_normal": {
         "pendiente": 1.2946,
         "ordenada": 0.9075,
         "z_extremos": [
-          -1.0491,
-          1.0491
+          -2.0,
+          2.0
         ],
         "y_extremos": [
-          -0.4507,
-          2.2656
+          -1.6817,
+          3.4966
         ]
       },
       "recta_cuartiles": {
@@ -269,26 +319,31 @@
         ]
       },
       "eje_y": {
-        "min": -1.0,
-        "max": 3.0,
+        "min": -2,
+        "max": 4,
         "marcas": [
-          -1.0,
-          0.0,
-          1.0,
-          2.0,
-          3.0
-        ]
+          -2,
+          0,
+          2,
+          4
+        ],
+        "decimales": 0
       },
       "eje_z": {
         "min": -2.0,
         "max": 2.0,
         "marcas": [
           -2.0,
+          -1.5,
           -1.0,
+          -0.5,
           0.0,
+          0.5,
           1.0,
+          1.5,
           2.0
-        ]
+        ],
+        "decimales": 1
       },
       "shapiro": {
         "w": 0.7629,
@@ -324,18 +379,30 @@
         1.145,
         15.91
       ],
+      "rotulos": [
+        "0,000",
+        "0,000",
+        "0,137",
+        "0,264",
+        "0,460",
+        "0,562",
+        "0,646",
+        "1,095",
+        "1,145",
+        "15,910"
+      ],
       "media": 2.0219,
       "desviacion": 4.8966,
       "recta_normal": {
         "pendiente": 4.8966,
         "ordenada": 2.0219,
         "z_extremos": [
-          -1.5466,
-          1.5466
+          -2.0,
+          2.0
         ],
         "y_extremos": [
-          -5.5514,
-          9.5952
+          -7.7713,
+          11.8151
         ]
       },
       "recta_cuartiles": {
@@ -357,18 +424,24 @@
           10,
           15,
           20
-        ]
+        ],
+        "decimales": 0
       },
       "eje_z": {
         "min": -2.0,
         "max": 2.0,
         "marcas": [
           -2.0,
+          -1.5,
           -1.0,
+          -0.5,
           0.0,
+          0.5,
           1.0,
+          1.5,
           2.0
-        ]
+        ],
+        "decimales": 1
       },
       "shapiro": {
         "w": 0.4415,
@@ -400,18 +473,28 @@
         0.1354,
         2.7669
       ],
+      "rotulos": [
+        "-1,988",
+        "-1,332",
+        "-0,777",
+        "-0,576",
+        "-0,437",
+        "0,091",
+        "0,135",
+        "2,767"
+      ],
       "media": -0.2645,
       "desviacion": 1.4129,
       "recta_normal": {
         "pendiente": 1.4129,
         "ordenada": -0.2645,
         "z_extremos": [
-          -1.4342,
-          1.4342
+          -2.0,
+          2.0
         ],
         "y_extremos": [
-          -2.2909,
-          1.7618
+          -3.0903,
+          2.5612
         ]
       },
       "recta_cuartiles": {
@@ -433,18 +516,24 @@
           0,
           2,
           4
-        ]
+        ],
+        "decimales": 0
       },
       "eje_z": {
         "min": -2.0,
         "max": 2.0,
         "marcas": [
           -2.0,
+          -1.5,
           -1.0,
+          -0.5,
           0.0,
+          0.5,
           1.0,
+          1.5,
           2.0
-        ]
+        ],
+        "decimales": 1
       },
       "shapiro": {
         "w": 0.877,

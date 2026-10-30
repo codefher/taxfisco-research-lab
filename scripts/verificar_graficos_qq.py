@@ -53,14 +53,15 @@ def tipo7(x: np.ndarray, p: float) -> float:
 
 
 def escala_agradable(lo: float, hi: float, objetivo: int = 4):
-    """Devuelve (min, max, marcas) con numeros redondos y paso comodo."""
+    """Devuelve (min, max, marcas, decimales) con numeros redondos y paso comodo."""
     if hi <= lo:
         hi = lo + 1.0
     bruto = (hi - lo) / max(1, objetivo)
     magnitud = 10 ** math.floor(math.log10(bruto))
+    paso = magnitud
     for mult in (1, 2, 2.5, 5, 10):
-        paso = mult * magnitud
-        if paso >= bruto:
+        if mult * magnitud >= bruto:
+            paso = mult * magnitud
             break
     minimo = math.floor(lo / paso) * paso
     maximo = math.ceil(hi / paso) * paso
@@ -69,7 +70,18 @@ def escala_agradable(lo: float, hi: float, objetivo: int = 4):
     while minimo + k * paso <= maximo + paso * 1e-9:
         marcas.append(round(minimo + k * paso, 10))
         k += 1
-    return minimo, maximo, marcas
+    return minimo, maximo, marcas, decimales_de(paso)
+
+
+def decimales_de(paso: float) -> int:
+    """Decimales exactos que necesita el paso: las marcas nunca se redondean."""
+    if abs(paso - round(paso)) < 1e-9:
+        return 0
+    for d in range(1, 5):
+        factor = 10 ** d
+        if abs(paso - round(paso * factor) / factor) < 1e-9:
+            return d
+    return 4
 
 
 def panel(clave: str, etiqueta: str, valores: list[float], transformada: str):
@@ -82,8 +94,9 @@ def panel(clave: str, etiqueta: str, valores: list[float], transformada: str):
     z = blom(len(x))
     media = float(np.mean(x))
     sd = float(np.std(x, ddof=1))
-    # recta de la normal ajustada a la muestra
-    z_ext = np.array([z.min(), z.max()])
+    # recta de la normal ajustada a la muestra, sobre el eje de cuantiles [-2, 2]
+    z_min, z_max = -2.0, 2.0
+    z_ext = np.array([z_min, z_max])
     y_ext = media + sd * z_ext
     # recta de cuartiles (qqline de R), para contraste
     z_q = [tipo7(z, 0.25), tipo7(z, 0.75)]
@@ -94,8 +107,8 @@ def panel(clave: str, etiqueta: str, valores: list[float], transformada: str):
     if transformada == "lineal":
         # en segundos el eje no baja de cero: la recta se recorta al salir del panel
         y_lo = max(0.0, y_lo)
-    y_min, y_max, marcas_y = escala_agradable(y_lo, y_hi)
-    z_min, z_max, marcas_z = escala_agradable(float(z.min()), float(z.max()))
+    y_min, y_max, marcas_y, dec_y = escala_agradable(y_lo, y_hi)
+    marcas_z = [round(k * 0.5, 10) for k in range(-4, 5)]
     return {
         "clave": clave,
         "etiqueta": etiqueta,
@@ -103,6 +116,7 @@ def panel(clave: str, etiqueta: str, valores: list[float], transformada: str):
         "n": len(x),
         "z": [round(float(v), 4) for v in z],
         "y": [round(float(v), 4) for v in x],
+        "rotulos": [f"{v:.3f}".replace(".", ",") for v in x],
         "media": round(media, 4),
         "desviacion": round(sd, 4),
         "recta_normal": {
@@ -119,8 +133,9 @@ def panel(clave: str, etiqueta: str, valores: list[float], transformada: str):
             "min": round(y_min, 4),
             "max": round(y_max, 4),
             "marcas": marcas_y,
+            "decimales": dec_y,
         },
-        "eje_z": {"min": round(z_min, 4), "max": round(z_max, 4), "marcas": marcas_z},
+        "eje_z": {"min": z_min, "max": z_max, "marcas": marcas_z, "decimales": 1},
         "shapiro": {
             "w": round(float(stats.shapiro(x).statistic), 4),
             "p": round(float(stats.shapiro(x).pvalue), 4),
@@ -148,6 +163,12 @@ def main() -> None:
             "ajustada a la muestra, no una regresion ajustada sobre los puntos observados."
         ),
         "posiciones": "Blom: p_i = (i - 3/8) / (n + 1/4); cuantiles normales estandar.",
+        "ejes": (
+            "El eje de cuantiles va de -2 a 2 desviaciones en pasos de 0,5 y se rotula con un "
+            "decimal. El eje de valores observados usa el paso comodo que cubre datos y recta, "
+            "con los decimales exactos de ese paso. Cada punto lleva rotulado su valor observado "
+            "con tres decimales."
+        ),
         "paneles": paneles,
     }
     DESTINO.parent.mkdir(parents=True, exist_ok=True)

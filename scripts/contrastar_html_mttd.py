@@ -23,7 +23,7 @@ from pathlib import Path
 sys.stdout.reconfigure(encoding="utf-8")
 
 BASE = Path(__file__).resolve().parent.parent / "resultados-prototipos"
-HTML = BASE / (sys.argv[1] if len(sys.argv) > 1 else "mttd-analisis-estadistico-v3.html")
+HTML = BASE / (sys.argv[1] if len(sys.argv) > 1 else "mttd-analisis-estadistico-v4.html")
 EST = BASE / "estadisticas_mttd.json"
 HIP = BASE / "estadisticas_hipotesis.json"
 QQ = BASE / "estadisticas_qq.json"
@@ -157,6 +157,28 @@ exigir(r"unilateral</strong>", "falta la declaracion de la hipotesis alternativa
 exigir(r"4\.5\.1", "falta el anclaje de la formulacion en la tesis")
 exigir(r"Valor p que decide", "falta la declaracion de que decide el valor p bilateral")
 exigir(r"cap[ií]tulo III", "falta el anclaje del procedimiento en el capitulo III")
+
+# --- tercera auditoria: coherencia entre alternativa unilateral y criterio bilateral
+exigir(r"m[aá]s exigente</strong>", "falta la reconciliacion entre la alternativa unilateral y el criterio bilateral")
+exigir(r"misma</strong> distribuci[oó]n nula", "falta la explicacion de que los dos valores p provienen de la misma distribucion nula")
+exigir(r"no altera el veredicto", "falta la constancia de que el criterio no altera el veredicto")
+exigir(r"θ &lt; 0", "falta la equivalencia de convenciones de signo de la diferencia")
+
+# --- tercera auditoria: ejes del Q-Q con precision y rotulos de los valores
+prohibir(r"NF\(v,0\)", "las marcas de los ejes siguen redondeadas a cero decimales")
+exigir(r"decimalesDe", "falta el calculo de los decimales exactos de las marcas de eje")
+exigir(r"NF\(y\[i\],3\)", "falta el rotulo de los valores observados con tres decimales")
+exigir(r"escalaCuantil", "falta la escala de cuantiles teoricos en pasos de 0,5")
+
+# --- tercera auditoria: pareamiento justificado por identificadores
+prohibir(r"agota la medici[oó]n disponible", "el pareamiento se sigue fundamentando en la coincidencia de medias")
+exigir(r"identificador del escenario", "falta la justificacion del pareamiento por identificador de escenario")
+exigir(r"acredita los valores, no la\s+completitud", "falta la distincion entre el control de consistencia y la completitud del subconjunto")
+
+# --- tercera auditoria: formulacion de la normalidad basada en la prueba
+prohibir(r"los datos\s*\n?\s*<strong>no son normales</strong>", "se mantiene la afirmacion absoluta de que los datos no son normales")
+exigir(r"rechaza la hip[oó]tesis de\s*\n?\s*normalidad</strong>", "falta la formulacion de la normalidad en terminos del rechazo de Shapiro-Wilk")
+exigir(r"nivel de significaci[oó]n del 5\s*%", "falta el nivel de significacion en la formulacion de la normalidad")
 
 print("COHERENCIA DEL TEXTO:")
 if problemas:
