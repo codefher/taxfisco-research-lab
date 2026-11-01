@@ -89,7 +89,26 @@ Ningún valor se modifica: W⁺ = 10, W⁻ = 0, W = 0, valor p bilateral 0,1250,
 
 ---
 
-## 6. Observaciones que siguen abiertas
+## 7. Versión en Word
+
+El capítulo se ha convertido además a Word en `capitulo-4-5-comprobacion.docx`, tomando como plantilla `capitulo-4-4-resultados.docx` para que ambos capítulos compartan tipografía, márgenes, encabezado de página y estilo de tabla.
+
+| Elemento | Resultado |
+|---|---|
+| Páginas | 41 (A4 carta, márgenes de 2,54 cm, doble interlineado) |
+| Portada | Título, subtítulo, descripción del alcance y autoría |
+| Índice | 8 entradas de primer nivel y 27 de segundo, con los 35 títulos del HTML |
+| Encabezados | 7 apartados (4.5.1 a 4.5.7) y 27 subapartados, con los estilos Título 1 a 4 |
+| Tablas | 13, con la misma plantilla de bordes, cabecera en negrita y columna numérica alineada a la derecha |
+| Figuras | 15, exportadas de los SVG del HTML a PNG de alta resolución con la leyenda incluida en la imagen |
+| Avisos, remites y fórmulas | Conservados como recuadros con sombreado y filete lateral, y como bloques monoespaciados |
+| Cifras verificadas | 74 de 74 presentes en el texto del Word |
+| Fidelidad del texto | Los 221 párrafos de prosa del HTML aparecen íntegros en el Word |
+
+El documento no lleva páginas de referencia cruzada activas: los títulos de los apartados y los rótulos de tabla y figura son texto plano, igual que en el HTML y en el capítulo 4.4. El botón «Descargar PNG» que el HTML usa para exportar cada figura no existe en el Word, donde las imágenes vienen ya incorporadas.
+
+---
+
 
 Se mantiene lo que el informe del V10 dejó anotado y que no depende de este cambio:
 
